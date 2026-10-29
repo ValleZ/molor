@@ -1,0 +1,229 @@
+name,smiles,source
+2-Acetyl Pyridine,CC(=O)C1=CC=CC=N1,GS-LF
+2-Acetyl Thiazole,CC(=O)C1=NC=CS1,GS-LF
+2-Ethylhexyl Salicylate,CCCCC(CC)COC(=O)C1=CC=CC=C1O,GS-LF
+2-Isobutyl Quinoline,CC(C)CC1=CC2=C(C=C1)N=CC=C2,GS-LF
+2-Isopropyl Phenol,CC(C)C1=CC=CC=C1O,GS-LF
+6-Methyl Quinoline,CC1=CC2=C(C=C1)N=CC=C2,GS-LF
+Acetate C-9,CCCCCCCCCOC(=O)C,GS-LF
+Acetoin,CC(C(=O)C)O,GS-LF
+Acetophenone,CC(=O)C1=CC=CC=C1,GS-LF
+Alcohol C-11 Undecylenic,C=CCCCCCCCCCO,GS-LF
+Aldehyde C-10,CCCCCCCCCC=O,GS-LF
+Aldehyde C-11 Undecylenic,C=CCCCCCCCCC=O,GS-LF
+Aldehyde C-11 Undecylic,CCCCCCCCCCC=O,GS-LF
+Aldehyde C-12 Lauric,CCCCCCCCCCCC=O,GS-LF
+Aldehyde C-12 MNA,CCCCCCCCCC(C)C=O,GS-LF
+Aldehyde C-7,CCCCCCC=O,GS-LF
+Aldehyde C-8,CCCCCCCC=O,GS-LF
+Aldehyde C-9,CCCCCCCCC=O,GS-LF
+Allyl Anthranilate,C=CCOC(=O)C1=CC=CC=C1N,GS-LF
+Allyl Heptanoate,CCCCCCC(=O)OCC=C,GS-LF
+Allyl Hexanoate,CCCCCC(=O)OCC=C,GS-LF
+Alpha Angelica Lactone,CC1=CCC(=O)O1,GS-LF
+Alpha Pinene,CC1=CC[C@H]2C[C@@H]1C2(C)C,GS-LF
+Amyl Acetate,CCCCCOC(=O)C,GS-LF
+Amyl Salicylate,CCCCCOC(=O)C1=CC=CC=C1O,GS-LF
+Anethole ex Star Anise,C/C=C/C1=CC=C(C=C1)OC,GS-LF
+Aurantiol,CC(CCCC(C)(C)O)CC=NC1=CC=CC=C1C(=O)OC,GS-LF
+Benzaldehyde 50% DPG,C1=CC=C(C=C1)C=O,GS-LF
+Benzophenone,C1=CC=C(C=C1)C(=O)C2=CC=CC=C2,GS-LF
+"Benzyl Acetate, Natural",CC(=O)OCC1=CC=CC=C1,GS-LF
+Benzyl Alcohol,C1=CC=C(C=C1)CO,GS-LF
+Benzyl Benzoate,C1=CC=C(C=C1)COC(=O)C2=CC=CC=C2,GS-LF
+Benzyl Butyrate,CCCC(=O)OCC1=CC=CC=C1,GS-LF
+Benzyl Cinnamate,C1=CC=C(C=C1)COC(=O)/C=C/C2=CC=CC=C2,GS-LF
+Benzyl Formate,C1=CC=C(C=C1)COC=O,GS-LF
+Benzyl Isobutyrate,CC(C)C(=O)OCC1=CC=CC=C1,GS-LF
+Benzyl Isovalerate,CC(C)CC(=O)OCC1=CC=CC=C1,GS-LF
+Benzyl Phenylacetate,C1=CC=C(C=C1)CC(=O)OCC2=CC=CC=C2,GS-LF
+Benzyl Propionate,CCC(=O)OCC1=CC=CC=C1,GS-LF
+Benzyl Salicylate,C1=CC=C(C=C1)COC(=O)C2=CC=CC=C2O,GS-LF
+Beta Pinene,CC1(C2CCC(=C)C1C2)C,GS-LF
+Camphor Crystals,C[C@]12CCC(C1(C)C)CC2=O,GS-LF
+Caprylic Acid,CCCCCCCC(=O)O,GS-LF
+Carvacrol,CC1=C(C=C(C=C1)C(C)C)O,GS-LF
+Caryophyllene Beta,C/C/1=C\CCC(=C)[C@H]2CC([C@@H]2CC1)(C)C,GS-LF
+Cashmeran,CC1C(C2=C(C1(C)C)C(=O)CCC2)(C)C,GS-LF
+Cedrene Alpha,C[C@@H]1CC[C@@H]2[C@]13CC=C(C(C3)C2(C)C)C,GS-LF
+Cedrenyl Acetate,C[C@@H]1CC[C@@H]2[C@]13CC=C([C@H](C3)C2(C)C)COC(=O)C,GS-LF
+Cedrol Crystals,C[C@@H]1CC[C@@H]2[C@]13CC[C@@]([C@H](C3)C2(C)C)(C)O,GS-LF
+"Cedryl Acetate, Crystals",C[C@@H]1CC[C@@H]2C13CCC(C(C3)C2(C)C)(C)OC(=O)C,GS-LF
+Celestolide,CC(=O)C1=C2CCC(C2=CC(=C1)C(C)(C)C)(C)C,GS-LF
+Cinnamaldehyde,C1=CC=C(C=C1)/C=C/C=O,GS-LF
+Cinnamyl Acetate,CC(=O)OC/C=C/C1=CC=CC=C1,GS-LF
+Cinnamyl Alcohol,C1=CC=C(C=C1)/C=C/CO,GS-LF
+Cinnamyl Cinnamate,C1=CC=C(C=C1)/C=C/COC(=O)/C=C/C2=CC=CC=C2,GS-LF
+Cinnamyl Propionate,CCC(=O)OC/C=C/C1=CC=CC=C1,GS-LF
+Cis Jasmone,CC/C=C\CC1=C(CCC1=O)C,GS-LF
+Cis-3-Hexenol,CC/C=C\CCO,GS-LF
+Cis-3-Hexenyl Acetate,CC/C=C\CCOC(=O)C,GS-LF
+Cis-3-Hexenyl Benzoate,CC/C=C\CCOC(=O)C1=CC=CC=C1,GS-LF
+Cis-3-Hexenyl Butyrate,CCCC(=O)OCC/C=C\CC,GS-LF
+Cis-3-Hexenyl Isobutyrate,CC/C=C\CCOC(=O)C(C)C,GS-LF
+Cis-3-Hexenyl Isovalerate,CC/C=C\CCOC(=O)CC(C)C,GS-LF
+Cis-3-Hexenyl Salicylate,CC/C=C\CCOC(=O)C1=CC=CC=C1O,GS-LF
+Citral,CC(=CCC/C(=C/C=O)/C)C,GS-LF
+Citronellal,CC(CCC=C(C)C)CC=O,GS-LF
+Citronellol 98,CC(CCC=C(C)C)CCO,GS-LF
+Citronellyl Acetate,CC(CCC=C(C)C)CCOC(=O)C,GS-LF
+Citronellyl Formate,CC(CCC=C(C)C)CCOC=O,GS-LF
+Coumarin,C1=CC=C2C(=C1)C=CC(=O)O2,GS-LF
+D-Limonene,CC1=CC[C@@H](CC1)C(=C)C,GS-LF
+Damascenone,C/C=C/C(=O)C1=C(C=CCC1(C)C)C,GS-LF
+Damascone Alpha,C/C=C/C(=O)C1C(=CCCC1(C)C)C,GS-LF
+Damascone Delta,C/C=C/C(=O)C1C(C=CCC1(C)C)C,GS-LF
+Damascone Gamma,C/C=C/C(=O)C1C(=C)CCCC1(C)C,GS-LF
+Delta Decalactone,CCCCC[C@@H]1CCCC(=O)O1,GS-LF
+Delta Dodecalactone,CCCCCCCC1CCCC(=O)O1,GS-LF
+Delta Nonalactone,CCCCC1CCCC(=O)O1,GS-LF
+Delta Undecalactone,CCCCCCC1CCCC(=O)O1,GS-LF
+Diacetyl,CC(=O)C(=O)C,GS-LF
+Diethyl Malonate,CCOC(=O)CC(=O)OCC,GS-LF
+Diethyl Phthalate (DEP),CCOC(=O)C1=CC=CC=C1C(=O)OCC,GS-LF
+Diethyl Succinate,CCOC(=O)CCC(=O)OCC,GS-LF
+Dihydro Alpha Ionone,CC1=CCCC(C1CCC(=O)C)(C)C,GS-LF
+Dihydro Beta Ionone,CC1=C(C(CCC1)(C)C)CCC(=O)C,GS-LF
+Dihydrocarveol,CC1CCC(CC1O)C(=C)C,GS-LF
+Dihydrocarvyl Acetate,CC1CCC(CC1OC(=O)C)C(=C)C,GS-LF
+Dihydromyrcenol,CC(CCCC(C)(C)O)C=C,GS-LF
+Dihydroterpinyl Acetate,CC1CCC(CC1)C(C)(C)OC(=O)C,GS-LF
+Dimethyl Sulfide 1% DPG,CSC,GS-LF
+Ebanol,CC1=CCC(C1(C)C)/C=C/C(C)C(C)O,GS-LF
+Ethyl Acetate,CCOC(=O)C,GS-LF
+Ethyl Acetoacetate,CCOC(=O)CC(=O)C,GS-LF
+Ethyl Benzoate,CCOC(=O)C1=CC=CC=C1,GS-LF
+Ethyl Butyrate,CCCC(=O)OCC,GS-LF
+Ethyl Caproate,CCCCCC(=O)OCC,GS-LF
+Ethyl Decanoate,CCCCCCCCCC(=O)OCC,GS-LF
+Ethyl Formate,CCOC=O,GS-LF
+Ethyl Heptanoate,CCCCCCC(=O)OCC,GS-LF
+Ethyl Isobutyrate,CCOC(=O)C(C)C,GS-LF
+Ethyl Laurate,CCCCCCCCCCCC(=O)OCC,GS-LF
+Ethyl Levulinate,CCOC(=O)CCC(=O)C,GS-LF
+Ethyl Linalool,CC/C(=C/CCC(C)(C=C)O)/C,GS-LF
+Ethyl Maltol,CCC1=C(C(=O)C=CO1)O,GS-LF
+Ethyl Myristate,CCCCCCCCCCCCCC(=O)OCC,GS-LF
+Ethyl Salicylate,CCOC(=O)C1=CC=CC=C1O,GS-LF
+Ethyl Tiglate,CCOC(=O)/C(=C/C)/C,GS-LF
+Ethylene Brassylate,C1CCCCCC(=O)OCCOC(=O)CCCCC1,GS-LF
+Eucalyptol,CC1(C2CCC(O1)(CC2)C)C,GS-LF
+Eugenol,COC1=C(C=CC(=C1)CC=C)O,GS-LF
+Farnesene Alpha,CC(=CCC/C(=C/C/C=C(\C)/C=C)/C)C,GS-LF
+Farnesol,CC(=CCC/C(=C/CC/C(=C/CO)/C)/C)C,GS-LF
+Fenchol,CC1(C2CCC(C2)(C1O)C)C,GS-LF
+Fenchone Alpha,CC1(C2CCC(C2)(C1=O)C)C,GS-LF
+Furfural 5% DPG,C1=COC(=C1)C=O,GS-LF
+Furfuryl Acetate,CC(=O)OCC1=CC=CO1,GS-LF
+Galaxolide,CC1COCC2=CC3=C(C=C12)C(C(C3(C)C)C)(C)C,GS-LF
+Gamma Decalactone,CCCCCC[C@@H]1CCC(=O)O1,GS-LF
+Gamma Dodecalactone,CCCCCCCCC1CCC(=O)O1,GS-LF
+Gamma Heptalactone,CCCC1CCC(=O)O1,GS-LF
+Gamma Nonalactone,CCCCC[C@@H]1CCC(=O)O1,GS-LF
+Gamma Octalactone,CCCCC1CCC(=O)O1,GS-LF
+Gamma Undecalactone,CCCCCCCC1CCC(=O)O1,GS-LF
+Geosmin,C[C@@H]1CCC[C@]2([C@]1(CCCC2)O)C,GS-LF
+Geraniol Extra,CC(=CCC/C(=C/CO)/C)C,GS-LF
+Geranyl Acetate,CC(=CCC/C(=C/COC(=O)C)/C)C,GS-LF
+Geranyl Butyrate,CCCC(=O)OC/C=C(\C)/CCC=C(C)C,GS-LF
+Geranyl Formate,CC(=CCC/C(=C/COC=O)/C)C,GS-LF
+Geranyl Propionate,CCC(=O)OC/C=C(\C)/CCC=C(C)C,GS-LF
+Guaiacol,COC1=CC=CC=C1O,GS-LF
+Habanolide,C1CCCCCCOC(=O)/C=C/CCCCC1,GS-LF
+Heliotropin 20% DPG,C1OC2=C(O1)C=C(C=C2)C=O,GS-LF
+Hexyl Acetate,CCCCCCOC(=O)C,GS-LF
+Hexyl Benzoate,CCCCCCOC(=O)C1=CC=CC=C1,GS-LF
+Hexyl Butyrate,CCCCCCOC(=O)CCC,GS-LF
+Hexyl Isobutyrate,CCCCCCOC(=O)C(C)C,GS-LF
+Hexyl Isovalerate,CCCCCCOC(=O)CC(C)C,GS-LF
+Hexyl Salicylate,CCCCCCOC(=O)C1=CC=CC=C1O,GS-LF
+Hexyl Tiglate,CCCCCCOC(=O)/C(=C/C)/C,GS-LF
+Hydratropic Aldehyde,C[C@@H](C=O)C1=CC=CC=C1,GS-LF
+Hydroxycitronellal,CC(CCCC(C)(C)O)CC=O,GS-LF
+Indole,C1=CC=C2C(=C1)C=CN2,GS-LF
+Ionone Alpha,CC1=CCCC(C1/C=C/C(=O)C)(C)C,GS-LF
+Ionone Beta,CC1=C(C(CCC1)(C)C)/C=C/C(=O)C,GS-LF
+Isoamyl Acetate,CC(C)CCOC(=O)C,GS-LF
+Isoamyl Benzoate,CC(C)CCOC(=O)C1=CC=CC=C1,GS-LF
+Isoamyl Isovalerate,CC(C)CCOC(=O)CC(C)C,GS-LF
+Isoamyl Salicylate,CC(C)CCOC(=O)C1=CC=CC=C1O,GS-LF
+Isobornyl Acetate,CC(=O)O[C@H]1C[C@H]2CC[C@]1(C2(C)C)C,GS-LF
+Isobutyl Benzoate,CC(C)COC(=O)C1=CC=CC=C1,GS-LF
+Isobutyl Quinoline,CC(C)CC1=CC2=C(C=C1)N=CC=C2,GS-LF
+Isobutyl Salicylate,CC(C)COC(=O)C1=CC=CC=C1O,GS-LF
+Isoeugenol,C/C=C/C1=CC(=C(C=C1)O)OC,GS-LF
+Isophytol,CC(C)CCCC(C)CCCC(C)CCCC(C)(C=C)O,GS-LF
+Isopropyl Myristate (IPM),CCCCCCCCCCCCCC(=O)OC(C)C,GS-LF
+Laevo Menthol,CC1CCC(C(C1)O)C(C)C,GS-LF
+Levulinic Acid,CC(=O)CCC(=O)O,GS-LF
+Linalool,CC(=CCC[C@](C)(C=C)O)C,GS-LF
+Linalyl Acetate,CC(=CCCC(C)(C=C)OC(=O)C)C,GS-LF
+Linalyl Cinnamate,CC(=CCCC(C)(C=C)OC(=O)/C=C/C1=CC=CC=C1)C,GS-LF
+Linalyl Formate,CC(=CCCC(C)(C=C)OC=O)C,GS-LF
+Linalyl Propionate,CCC(=O)OC(C)(CCC=C(C)C)C=C,GS-LF
+Lyral,CC(C)(CCCC1=CCC(CC1)C=O)O,GS-LF
+Maltol,CC1=C(C(=O)C=CO1)O,GS-LF
+Maltol Isobutyrate,CC1=C(C(=O)C=CO1)OC(=O)C(C)C,GS-LF
+Matsutake Alcohol,CCCCC[C@@H](C=C)O,GS-LF
+Menthone,C[C@@H]1CC[C@H](C(=O)C1)C(C)C,GS-LF
+Methyl Anthranilate,COC(=O)C1=CC=CC=C1N,GS-LF
+Methyl Benzoate,COC(=O)C1=CC=CC=C1,GS-LF
+Methyl Butyrate,CCCC(=O)OC,GS-LF
+Methyl Chavicol,COC1=CC=C(C=C1)CC=C,GS-LF
+Methyl Cinnamate,COC(=O)/C=C/C1=CC=CC=C1,GS-LF
+Methyl Heptenone,CC(=CCCC(=O)C)C,GS-LF
+Methyl Heptine Carbonate,CCCCCC#CC(=O)OC,GS-LF
+Methyl Isobutyrate,CC(C)C(=O)OC,GS-LF
+Methyl Isoeugenol,CC=CC1=CC(=C(C=C1)OC)OC,GS-LF
+Methyl Linoleate,CCCCC/C=C\C/C=C\CCCCCCCC(=O)OC,GS-LF
+Methyl Nicotinate,COC(=O)C1=CN=CC=C1,GS-LF
+Methyl Nonyl Ketone,CCCCCCCCCC(=O)C,GS-LF
+Methyl Octine Carbonate,CCCCCCC#CC(=O)OC,GS-LF
+Methyl Palmitate,CCCCCCCCCCCCCCCC(=O)OC,GS-LF
+Methyl Propionate,CCC(=O)OC,GS-LF
+Methyl Salicylate,COC(=O)C1=CC=CC=C1O,GS-LF
+Muscone,CC1CCCCCCCCCCCCC(=O)C1,GS-LF
+Musk Ambrette,CC1=C(C=C(C(=C1[N+](=O)[O-])OC)C(C)(C)C)[N+](=O)[O-],GS-LF
+Musk Ketone,CC1=C(C(=C(C(=C1[N+](=O)[O-])C(C)(C)C)[N+](=O)[O-])C)C(=O)C,GS-LF
+Musk Xylene,CC1=C(C(=C(C(=C1[N+](=O)[O-])C(C)(C)C)[N+](=O)[O-])C)[N+](=O)[O-],GS-LF
+Myrcene,CC(=CCCC(=C)C=C)C,GS-LF
+Myristic Acid,CCCCCCCCCCCCCC(=O)O,GS-LF
+Nerol,CC(=CCC/C(=C\CO)/C)C,GS-LF
+Nerolidol,CC(=CCC/C(=C/CC[C@@](C)(C=C)O)/C)C,GS-LF
+Neryl Acetate,CC(=CCC/C(=C\COC(=O)C)/C)C,GS-LF
+Nootkatone Crystals,C[C@H]1CC(=O)C=C2[C@@]1(C[C@H](CC2)C(=C)C)C,GS-LF
+Nopyl Acetate,CC(=O)OCCC1=CCC2CC1C2(C)C,GS-LF
+Ocimene,CC(=CCC=C(C)C=C)C,GS-LF
+Palmitic Acid,CCCCCCCCCCCCCCCC(=O)O,GS-LF
+Para Cresol,CC1=CC=C(C=C1)O,GS-LF
+Para Methyl Acetophenone,CC1=CC=C(C=C1)C(=O)C,GS-LF
+Para Tolyl Aldehyde,CC1=CC=C(C=C1)C=O,GS-LF
+Phenyl Acetaldehyde 50% PEA,C1=CC=C(C=C1)CC=O,GS-LF
+Phenyl Acetic Acid 40% DPG,C1=CC=C(C=C1)CC(=O)O,GS-LF
+Phenyl Ethyl Acetate,CC(=O)OCCC1=CC=CC=C1,GS-LF
+Piperitone,CC1=CC(=O)C(CC1)C(C)C,GS-LF
+Piperonyl Acetate,CC(=O)OCC1=CC2=C(C=C1)OCO2,GS-LF
+Prenyl Acetate,CC(=CCOC(=O)C)C,GS-LF
+Rhodinol Ex Geranium Bourbon,C[C@@H](CCCC(=C)C)CCO,GS-LF
+Rhodinyl Acetate,CC(CCCC(=C)C)CCOC(=O)C,GS-LF
+Rhodinyl Formate,CC(CCCC(=C)C)CCOC=O,GS-LF
+Safranal,CC1=C(C(CC=C1)(C)C)C=O,GS-LF
+Sandalore,CC1=CCC(C1(C)C)CCC(C)C(C)O,GS-LF
+Strawberry Furanone,CC1C(=O)C(=C(O1)C)O,GS-LF
+Terpinene Gamma,CC1=CCC(=CC1)C(C)C,GS-LF
+Terpineol Alpha,CC1=CC[C@H](CC1)C(C)(C)O,GS-LF
+"Terpinolene, Rectified",CC1=CCC(=C(C)C)CC1,GS-LF
+Terpinyl Acetate,CC1=CCC(CC1)C(C)(C)OC(=O)C,GS-LF
+Theaspirane,CC1CCC2(O1)C(=CCCC2(C)C)C,GS-LF
+Thymol Crystals,CC1=CC(=C(C=C1)C(C)C)O,GS-LF
+Tonalide,CC1CC(C2=C(C1(C)C)C=C(C(=C2)C(=O)C)C)(C)C,GS-LF
+"Trans-2,Cis-6-Nonadienal",CC/C=C\CC/C=C/C=O,GS-LF
+Trans-2-Decenal,CCCCCCC/C=C/C=O,GS-LF
+Trans-2-Hexenol,CCC/C=C/CO,GS-LF
+Trans-2-Nonenal,CCCCCC/C=C/C=O,GS-LF
+Trans-2-Octenal,CCCCC/C=C/C=O,GS-LF
+"Triethyl Citrate, Natural (TEC)",CCOC(=O)CC(CC(=O)OCC)(C(=O)OCC)O,GS-LF
+Vanillin Acetate,CC(=O)OC1=C(C=C(C=C1)C=O)OC,GS-LF
+Vanillin ex Vanilla Bean,COC1=C(C=CC(=C1)C=O)O,GS-LF
+Whiskey Lactone,CCCCC1C(CC(=O)O1)C,GS-LF
+Zingerone,CC(=O)CCC1=CC(=C(C=C1)O)OC,GS-LF

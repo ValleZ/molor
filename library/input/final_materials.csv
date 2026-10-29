@@ -1,0 +1,129 @@
+name,smiles,class,formula,heavy_atoms,source,input_smiles
+Aldehyde C-10,CCCCCCCCCC=O,aliphatic_aldehyde,C10H20O,11,original,CCCCCCCCCC=O
+Aldehyde C-11 Undecylenic,C=CCCCCCCCCC=O,aliphatic_aldehyde,C11H20O,12,original,C=CCCCCCCCCC=O
+Aldehyde C-12 MNA,CCCCCCCCCC(C)C=O,aliphatic_aldehyde,C12H24O,13,original,CCCCCCCCCC(C)C=O
+Aldehyde C-8,CCCCCCCC=O,aliphatic_aldehyde,C8H16O,9,original,CCCCCCCC=O
+Allyl Amyl Glycolate,C=CCOC(=O)COCCC(C)C,aliphatic_ester,C10H18O3,13,original,CC(C)CCOCC(=O)OCC=C
+Alpha Pinene,CC1=CCC2CC1C2(C)C,hydrocarbon,C10H16,10,original,CC1=CCC2CC1C2(C)C
+Ambrettolide,O=C1CCCCC/C=C\CCCCCCCCO1,macrocyclic_lactone,C16H28O2,18,original,C1CCCCOC(=O)CCCCC/C=C\CCC1
+"Ambroxan, 10% in Alcohol",CC1(C)CCC[C@]2(C)[C@H]3CCO[C@]3(C)CC[C@@H]12,heterocycle,C16H28O,17,original,C[C@]12CCCC([C@@H]1CC[C@@]3([C@@H]2CCO3)C)(C)C
+Anethole ex Star Anise,C/C=C/c1ccc(OC)cc1,aromatic_other,C10H12O,11,original,C/C=C/C1=CC=C(C=C1)OC
+"Anisaldehyde, Natural",COc1ccc(C=O)cc1,aromatic_aldehyde,C8H8O2,10,original,COc1ccc(C=O)cc1
+Aurantiol,COC(=O)c1ccccc1/N=C/CC(C)CCCC(C)(C)O,schiff_base,C18H27NO3,22,original,CC(CCCC(C)(C)O)C/C=N/C1=CC=CC=C1C(=O)OC
+"Benzaldehyde, 50% DPG",O=Cc1ccccc1,aromatic_aldehyde,C7H6O,8,original,C1=CC=C(C=C1)C=O
+Benzyl Acetate,CC(=O)OCc1ccccc1,aromatic_ester,C9H10O2,11,original,CC(=O)OCC1=CC=CC=C1
+"Benzyl Isoeugenol, crystals",C/C=C/c1ccc(OCc2ccccc2)c(OC)c1,aromatic_other,C17H18O2,19,original,C/C=C/C1=CC(=C(C=C1)OCC2=CC=CC=C2)OC
+Benzyl Salicylate,O=C(OCc1ccccc1)c1ccccc1O,phenolic,C14H12O3,17,original,C1=CC=C(C=C1)COC(=O)C2=CC=CC=C2O
+"Blackcurrant mercaptan, 0.1% DPG",COCCC(C)(C)S,sulfur_note,C6H14OS,8,original,CC(C)(CCOC)S
+Calone 1951,Cc1ccc2c(c1)OCC(=O)CO2,aromatic_ketone,C10H10O3,13,original,CC1=CC2=C(C=C1)OCC(=O)CO2
+Cashmeran,CC1C(C)(C)C2=C(C(=O)CCC2)C1(C)C,terpenoid_ketone,C14H22O,15,original,CC1C(C2=C(C1(C)C)C(=O)CCC2)(C)C
+Cassifix,CC1=CCC(C23CCCC(C)(C2)OC3)C1(C)C,heterocycle,C16H26O,17,original,CC1=CCC(C1(C)C)C23CCCC(C2)(OC3)C
+"Cinnamaldehyde, 10% DPG",O=C/C=C/c1ccccc1,aromatic_aldehyde,C9H8O,10,original,C1=CC=C(C=C1)/C=C/C=O
+Cinnamyl Alcohol,OC/C=C/c1ccccc1,aromatic_alcohol,C9H10O,10,original,C1=CC=C(C=C1)/C=C/CO
+Cis-3-Hexenyl Salicylate,CC/C=C\CCOC(=O)c1ccccc1O,phenolic,C13H16O3,16,corrected,CC/C=C\CCOC(=O)c1ccccc1O
+Citral,CC(C)=CCC/C(C)=C/C=O,aliphatic_aldehyde,C10H16O,11,original,CC(=CCC/C(=C/C=O)/C)C
+Citronellol,CC(C)=CCCC(C)CCO,aliphatic_alcohol,C10H20O,11,original,CC(=CCCC(C)CCO)C
+Citronellyl Acetate,CC(=O)OCCC(C)CCC=C(C)C,aliphatic_ester,C12H22O2,14,corrected,CC(=O)OCCC(C)CCC=C(C)C
+"Coumarin, crystals",O=c1ccc2ccccc2o1,heterocycle,C9H6O2,11,original,C1=CC=C2C(=C1)C=CC(=O)O2
+Cyclamen Aldehyde,CC(C=O)Cc1ccc(C(C)C)cc1,aromatic_aldehyde,C13H18O,14,original,CC(CC1=CC=C(C=C1)C(C)C)C=O
+D-Limonene,C=C(C)[C@@H]1CC=C(C)CC1,hydrocarbon,C10H16,10,original,CC1=CC[C@H](CC1)C(=C)C
+"Damascenone Total, 10%",C/C=C/C(=O)C1=C(C)C=CCC1(C)C,terpenoid_ketone,C13H18O,14,corrected,C/C=C/C(=O)C1=C(C)C=CCC1(C)C
+"Damascone Alpha, 10% DPG",C/C=C/C(=O)C1C(C)=CCCC1(C)C,terpenoid_ketone,C13H20O,14,corrected,C/C=C/C(=O)C1C(C)=CCCC1(C)C
+"Damascone Beta, 10% DPG",C/C=C/C(=O)C1=C(C)CCCC1(C)C,terpenoid_ketone,C13H20O,14,corrected,C/C=C/C(=O)C1=C(C)CCCC1(C)C
+Delta Decalactone,CCCCCC1CCCC(=O)O1,lactone,C10H18O2,12,original,CCCCCC1CCCC(=O)O1
+Dihydro Eugenol,CCCc1ccc(O)c(OC)c1,phenolic,C10H14O2,12,original,CCCC1=CC(=C(C=C1)O)OC
+Dihydro Myrcenol,C=CC(C)CCCC(C)(C)O,aliphatic_alcohol,C10H20O,11,corrected,C=CC(C)CCCC(C)(C)O
+Dimethyl Benzyl Carbinyl Acetate,CC(=O)OC(C)(C)Cc1ccccc1,aromatic_ester,C12H16O2,14,original,CC(=O)OC(C)(C)CC1=CC=CC=C1
+Dimethyl Octenone,CCC(=O)C(C)CC=C(C)C,aliphatic_ketone,C10H18O,11,corrected,CCC(=O)C(C)CC=C(C)C
+"Dimethyl Sulfide, 1% DPG",CSC,sulfur_note,C2H6S,3,original,CSC
+Doremox,CC1CCOC(c2ccccc2)C1,aromatic_other,C12H16O,13,corrected,CC1CC(c2ccccc2)OCC1
+Ebanol,CC1=CCC(C=CC(C)C(C)O)C1(C)C,aliphatic_alcohol,C14H24O,15,original,CC1=CCC(C1(C)C)C=CC(C)C(C)O
+Edenolide,CCOC(=O)CC(=O)OC(C)C1CCCC(C)(C)C1,aliphatic_ester,C15H26O4,19,corrected,CCOC(=O)CC(=O)OC(C)C1CCCC(C1)(C)C
+Ethyl 2-methyl butyrate,CCOC(=O)C(C)CC,aliphatic_ester,C7H14O2,9,original,CCC(C)C(=O)OCC
+"Ethyl Acetate, 10% DPG",CCOC(C)=O,aliphatic_ester,C4H8O2,6,original,CCOC(=O)C
+Ethyl Benzoate,CCOC(=O)c1ccccc1,aromatic_ester,C9H10O2,11,original,CCOC(=O)C1=CC=CC=C1
+Ethyl Butyrate,CCCC(=O)OCC,aliphatic_ester,C6H12O2,8,original,CCCC(=O)OCC
+"Ethyl Furaneol, 10% DPG",CCC1=C(O)C(=O)C(C)O1,heterocycle,C7H10O3,10,original,CCC1=C(C(=O)C(O1)C)O
+Ethyl Linalool,C=CC(C)(O)CCC=C(C)CC,aliphatic_alcohol,C11H20O,12,corrected,C=CC(C)(O)CCC=C(C)CC
+"Ethyl Maltol, 1% in PG",CCc1occc(=O)c1O,heterocycle,C7H8O3,10,original,CCC1=C(O)C(=O)C=CO1
+Ethyl Vanillin,CCOc1cc(C=O)ccc1O,phenolic,C9H10O3,12,original,CCOC1=C(C=CC(=C1)C=O)O
+Ethylene Brassylate,O=C1CCCCCCCCCCCC(=O)OCCO1,macrocyclic_lactone,C15H26O4,19,corrected,C1CCCCCC(=O)OCCOC(=O)CCCCC1
+Eugenol ex Clove,C=CCc1ccc(O)c(OC)c1,phenolic,C10H12O2,12,corrected,C=CCc1ccc(O)c(OC)c1
+Exaltolide Total,O=C1CCCCCCCCCCCCCCO1,macrocyclic_lactone,C15H28O2,17,original,C1CCCCCCCCCC(=O)OCCCC1
+Floralozone,CCc1ccc(CC(C)(C)C=O)cc1,aromatic_aldehyde,C13H18O,14,original,CCC1=CC=C(C=C1)CC(C)(C)C=O
+Florhydral,CC(C)c1cccc(C(C)CC=O)c1,aromatic_aldehyde,C13H18O,14,corrected,CC(CC=O)c1cccc(C(C)C)c1
+Florol,CC(C)CC1CC(C)(O)CCO1,heterocycle,C10H20O2,12,original,CC(C)CC1CC(C)(CCO1)O
+Fructone,CCOC(=O)CC1(C)OCCO1,aliphatic_ester,C8H14O4,12,original,CCOC(=O)CC1(C)OCCO1
+Galaxolide 50% IPM,CC1COCc2cc3c(cc21)C(C)(C)C(C)C3(C)C,aromatic_other,C18H26O,19,corrected,CC1COCC2=CC3=C(C=C12)C(C(C3(C)C)C)(C)C
+Gamma Decalactone,CCCCCCC1CCC(=O)O1,lactone,C10H18O2,12,original,CCCCCCC1CCC(=O)O1
+Gamma Nonalactone,CCCCCC1CCC(=O)O1,lactone,C9H16O2,11,original,CCCCCC1CCC(=O)O1
+Gamma Undecalactone,CCCCCCCC1CCC(=O)O1,lactone,C11H20O2,13,original,CCCCCCCC1CCC(=O)O1
+Geraniol 95,CC(C)=CCC/C(C)=C/CO,aliphatic_alcohol,C10H18O,11,original,CC(=CCC/C(=C/CO)/C)C
+Geranyl Acetate,CC(=O)OC/C=C(/C)CCC=C(C)C,aliphatic_ester,C12H20O2,14,original,CC(=O)OC/C=C(/C)CCC=C(C)C
+Habanolide,O=C1CCCCCCCCCC=CCCCO1,macrocyclic_lactone,C15H26O2,17,corrected,C1CCCCC=CCCCOC(=O)CCCC1
+Hedione,CCCCCC1C(=O)CCC1CC(=O)OC,terpenoid_ketone,C13H22O3,16,corrected,COC(=O)CC1C(CCCCC)C(=O)CC1
+Helional,CC(C=O)Cc1ccc2c(c1)OCO2,aromatic_aldehyde,C11H12O3,14,original,CC(CC1=CC2=C(C=C1)OCO2)C=O
+"Heliotropin, 20% DPG",O=Cc1ccc2c(c1)OCO2,aromatic_aldehyde,C8H6O3,11,original,C1=CC2=C(C=C1C=O)OCO2
+Helvetolide,CCC(=O)OCC(C)(C)OC(C)C1CCCC(C)(C)C1,aliphatic_ester,C17H32O3,20,corrected,CCC(=O)OCC(C)(C)OC(C)C1CCCC(C1)(C)C
+Hexenol-3-CIS,CC/C=C\CCO,aliphatic_alcohol,C6H12O,7,original,CC/C=C\CCO
+Hexenyl-3-CIS Acetate,CC/C=C\CCOC(C)=O,aliphatic_ester,C8H14O2,10,original,CC(=O)OCC/C=C\CC
+Hexyl Acetate,CCCCCCOC(C)=O,aliphatic_ester,C8H16O2,10,original,CCCCCCOC(=O)C
+Hexyl Cinnamic Aldehyde,CCCCCCC(C=O)=Cc1ccccc1,aromatic_aldehyde,C15H20O,16,original,CCCCCCC(=CC1=CC=CC=C1)C=O
+Hexyl Salicylate,CCCCCCOC(=O)c1ccccc1O,phenolic,C13H18O3,16,original,CCCCCCOC(=O)C1=CC=CC=C1O
+Hydroxycitronellal,CC(CC=O)CCCC(C)(C)O,aliphatic_aldehyde,C10H20O2,12,original,CC(CCCC(C)(C)O)CC=O
+Indolene 50,c1ccc2[nH]ccc2c1,heterocycle,C8H7N,9,original,C1=CC=C2C(=C1)C=CN2
+Ionone Alpha,CC(=O)/C=C/C1C(C)=CCCC1(C)C,terpenoid_ketone,C13H20O,14,original,CC(=O)/C=C/C1C(C)=CCCC1(C)C
+Ionone Beta,CC(=O)/C=C/C1=C(C)CCCC1(C)C,terpenoid_ketone,C13H20O,14,original,CC(=O)/C=C/C1=C(C)CCCC1(C)C
+Iso E Super,CC(=O)C1(C)CC2=C(CCCC2(C)C)CC1C,terpenoid_ketone,C16H26O,17,corrected,CC1CC2=C(CC1(C)C(=O)C)C(CCC2)(C)C
+Isoamyl Acetate,CC(=O)OCCC(C)C,aliphatic_ester,C7H14O2,9,original,CC(=O)OCCC(C)C
+Isobornyl Acetate,CC(=O)OC1CC2CCC1(C)C2(C)C,aliphatic_ester,C12H20O2,14,original,CC(=O)OC1CC2CCC1(C)C2(C)C
+Isobutyl Phenyl Acetate,CC(C)COC(=O)Cc1ccccc1,aromatic_ester,C12H16O2,14,original,CC(C)COC(=O)CC1=CC=CC=C1
+Kephalis,C=C(OCC)C1C(C)(C)CC(=O)CC1(C)C,heterocycle,C14H24O2,16,corrected,CCOC(=C)C1C(C)(C)CC(=O)CC1(C)C
+Lemonile,CCC(C)=CCCC(C)=CC#N,nitrile,C11H17N,12,corrected,CCC(C)=CCCC(C)=CC#N
+Liffarome,CC/C=C\CCOC(=O)OC,aliphatic_ester,C8H14O3,11,corrected,CC/C=C\CCOC(=O)OC
+Linalool,C=CC(C)(O)CCC=C(C)C,aliphatic_alcohol,C10H18O,11,original,CC(=CCCC(C)(O)C=C)C
+Linalyl Acetate,C=CC(C)(CCC=C(C)C)OC(C)=O,aliphatic_ester,C12H20O2,14,original,CC(=O)OC(C)(C=C)CCC=C(C)C
+Linalyl Propionate,C=CC(C)(CCC=C(C)C)OC(=O)CC,aliphatic_ester,C13H22O2,15,original,CCC(=O)OC(C)(C=C)CCC=C(C)C
+Maltol Isobutyrate,Cc1c(OC(=O)C(C)C)occc1=O,heterocycle,C10H12O4,14,original,CC(C)C(=O)OC1=C(C(=O)C=CO1)C
+Manzanate,CCCC(C)C(=O)OCC,aliphatic_ester,C8H16O2,10,corrected,CCCC(C)C(=O)OCC
+"Melonal, 10% DPG",CC(C)=CCCC(C)C=O,aliphatic_aldehyde,C9H16O,10,corrected,CC(CCC=C(C)C)C=O
+Methyl Anthranilate,COC(=O)c1ccccc1N,aromatic_ester,C8H9NO2,11,original,COC(=O)C1=CC=CC=C1N
+Methyl Benzoate,COC(=O)c1ccccc1,aromatic_ester,C8H8O2,10,original,COC(=O)C1=CC=CC=C1
+Methyl Cinnamate,COC(=O)/C=C/c1ccccc1,aromatic_ester,C10H10O2,12,original,COC(=O)/C=C/C1=CC=CC=C1
+Methyl Diantilis,CCOc1cc(COC)ccc1O,phenolic,C10H14O3,13,corrected,CCOc1cc(COC)ccc1O
+Methyl Ionone Gamma Coeur,CC(=O)C=C(C)C1C(C)=CCCC1(C)C,terpenoid_ketone,C14H22O,15,original,CC(=O)C=C(C)C1C(C)=CCCC1(C)C
+"Methyl Laitone, 10% in DPG",CC1CCC2(CCC(=O)O2)CC1,lactone,C10H16O2,12,corrected,CC1CCC2(CC1)CCC(=O)O2
+Methyl Pamplemousse,COC(OC)C(C)(C)CC=C(C)C,acetal,C11H22O2,13,corrected,COC(OC)C(C)(C)CC=C(C)C
+Neobergamate Forte,C=CC(=C)CCCC(C)(C)OC(C)=O,aliphatic_ester,C12H20O2,14,corrected,CC(=O)OC(C)(C)CCCC(=C)C=C
+Nootkatone,C=C(C)C1CCC2=CC(=O)CC(C)C2(C)C1,terpenoid_ketone,C15H22O,16,corrected,CC1CC(=O)C=C2CCC(CC12C)C(=C)C
+Nympheal,Cc1cc(CC(C)C)ccc1CCC=O,aromatic_aldehyde,C14H20O,15,corrected,CC(C)CC1=CC=C(CCC=O)C(C)=C1
+Oranger Crystals,CC(=O)c1ccc2ccccc2c1,aromatic_ketone,C12H10O,13,original,CC(=O)c1ccc2ccccc2c1
+"Oxane, 50% TEC",CCCC1CCOC(C)S1,sulfur_note,C8H16OS,10,original,CCCC1CCOC(C)S1
+"Para Cresyl Acetate, 50% in IPM",CC(=O)Oc1ccc(C)cc1,aromatic_ester,C9H10O2,11,original,CC(=O)Oc1ccc(C)cc1
+Paradisamide,CCC(CC)C(=O)N(C)c1cccc(C)c1,amide,C14H21NO,16,corrected,CCC(CC)C(=O)N(C)c1cccc(C)c1
+Pear Ester,CCCCC/C=C\C=C\C(=O)OCC,aliphatic_ester,C12H20O2,14,original,CCOC(=O)/C=C/C=C\CCCCC
+Peonile,N#CC(=C1CCCCC1)c1ccccc1,nitrile,C14H15N,15,corrected,N#CC(=C1CCCCC1)c1ccccc1
+Phenethyl Acetate,CC(=O)OCCc1ccccc1,aromatic_ester,C10H12O2,12,original,CC(=O)OCCc1ccccc1
+Phenethyl Alcohol,OCCc1ccccc1,aromatic_alcohol,C8H10O,9,original,OCCc1ccccc1
+"Phenyl Acetaldehyde, 50% PEA",O=CCc1ccccc1,aromatic_aldehyde,C8H8O,9,original,C1=CC=C(C=C1)CC=O
+"Pistachio Thiazole, 1% DPG",Cc1ccsc1C(C)C,sulfur_note,C8H12S,9,original,CC1=C(SC=C1)C(C)C
+Raspberry Ketone,CC(=O)CCc1ccc(O)cc1,phenolic,C10H12O2,12,original,CC(=O)CCc1ccc(O)cc1
+Rhuboflor,CC=C1CC2CC1C1CCCOC21,heterocycle,C12H18O,13,corrected,C(C)=C1C2C3C(C(C2)C1)OCCC3
+Rose Oxide,CC(C)=CC1CCC(C)CO1,heterocycle,C10H18O,11,original,CC1CCC(OC1)C=C(C)C
+Sandalore,CC1=CCC(CCC(C)C(C)O)C1(C)C,aliphatic_alcohol,C14H26O,15,original,CC1=CCC(C1(C)C)CCC(C)C(C)O
+Stemone,CCC(CC(C)CC)=NO,schiff_base,C8H17NO,10,corrected,CCC(=NO)CC(C)CC
+"Strawberry Furanone, 10% DPG",CC1=C(O)C(=O)C(C)O1,heterocycle,C6H8O3,9,original,CC1=C(C(=O)C(O1)C)O
+Strawberry Glycidate,CCOC(=O)C1OC1(C)c1ccccc1,aromatic_ester,C12H14O3,15,original,CCOC(=O)C1OC1(C)c1ccccc1
+Styrallyl Acetate,CC(=O)OC(C)c1ccccc1,aromatic_ester,C10H12O2,12,original,CC(=O)OC(C)c1ccccc1
+Terpineol Alpha,CC1=CCC(C(C)(C)O)CC1,aliphatic_alcohol,C10H18O,11,original,CC1=CCC(CC1)C(C)(C)O
+Tetrahydro Linalool,CCC(C)(O)CCCC(C)C,aliphatic_alcohol,C10H22O,11,original,CC(C)CCCC(C)(O)CC
+"Thiocineole, 0.1% DPG",CC12CCC(CC1)SC2(C)C,sulfur_note,C10H18S,11,original,CC12CCC(CC1)SC2(C)C
+Toscanol,COc1ccc(CC2CC2)cc1,aromatic_other,C11H14O,12,corrected,COc1ccc(CC2CC2)cc1
+"Trans-2,Cis-6-Nonadienal, 1% DPG",CC/C=C\CC/C=C/C=O,aliphatic_aldehyde,C9H14O,10,original,CC/C=C\CC/C=C/C=O
+"Trans-4-Decenal, 10% DPG",CCCCC/C=C/CCC=O,aliphatic_aldehyde,C10H18O,11,original,CCCCC/C=C/CCC=O
+Triplal,CC1=CC(C)C(C=O)CC1,aliphatic_aldehyde,C9H14O,10,original,O=CC1C(C)C=C(C)CC1
+Undecavertol,CCC=C(C)C(O)CCCCC,aliphatic_alcohol,C11H22O,12,original,CCCCCC(O)C(C)=CCC
+Vanillin,COc1cc(C=O)ccc1O,phenolic,C8H8O3,11,original,COc1cc(C=O)ccc1O
+Veloutone,CCCCCC1(C)CCC(C)(C)C1=O,terpenoid_ketone,C13H24O,14,corrected,CCCCCC1(CCC(C1=O)(C)C)C
+Velvione,O=C1CCCC=CCCCCCCCCCC1,aliphatic_ketone,C16H28O,17,corrected,O=C1CCCC=CCCCCCCCCCC1
+Verdox HC,CC(=O)OC1CCCCC1C(C)(C)C,aliphatic_ester,C12H22O2,14,original,CC(=O)OC1CCCCC1C(C)(C)C

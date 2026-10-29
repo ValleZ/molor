@@ -1,0 +1,782 @@
+<meta charset="utf-8">
+<title>Aromachemical Receptor Atlas</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+/* Layout: instrument console - plot pane left, inspector rail right, sticky control bar. */
+:root {
+  --bg: #eef1f3;
+  --surface: #ffffff;
+  --surface-2: #f6f8f9;
+  --line: #d6dee4;
+  --fg: #141f28;
+  --muted: #5c6b77;
+  --accent: #0a6f7d;
+  --accent-soft: #d2ebee;
+  --warn: #b4532a;
+  --font-display: "Bricolage Grotesque", Georgia, serif;
+  --font-body: "Archivo", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d141a;
+    --surface: #151f27;
+    --surface-2: #1b262f;
+    --line: #27343f;
+    --fg: #e5edf3;
+    --muted: #91a1ae;
+    --accent: #45c6d6;
+    --accent-soft: #11313a;
+    --warn: #e08b5f;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d141a;
+  --surface: #151f27;
+  --surface-2: #1b262f;
+  --line: #27343f;
+  --fg: #e5edf3;
+  --muted: #91a1ae;
+  --accent: #45c6d6;
+  --accent-soft: #11313a;
+  --warn: #e08b5f;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.45;
+  margin: 0;
+}
+.wrap {
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 18px 28px;
+  max-width: 1680px;
+  margin: 0 auto;
+}
+h1 {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 3vw, 31px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 4px;
+  text-wrap: balance;
+}
+.sub { color: var(--muted); margin: 0 0 16px; max-width: 70ch; }
+.sub code { font-family: var(--font-mono); font-size: 0.88em; }
+
+.bar {
+  display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: 10px; padding: 10px 12px; margin-bottom: 12px;
+}
+.field { display: flex; align-items: center; gap: 6px; min-width: 0; }
+label.lab {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--muted); font-weight: 600;
+}
+select, input[type="search"] {
+  font-family: var(--font-body); font-size: 13px; color: var(--fg);
+  background: var(--surface-2); border: 1px solid var(--line);
+  border-radius: 7px; padding: 6px 9px; min-width: 0;
+}
+input[type="search"] { width: 190px; }
+.toggle {
+  display: inline-flex; align-items: center; gap: 6px; cursor: pointer;
+  font-size: 13px; color: var(--fg); user-select: none;
+}
+.btn {
+  font-family: var(--font-body); font-size: 12.5px; font-weight: 500;
+  background: var(--surface-2); color: var(--fg);
+  border: 1px solid var(--line); border-radius: 7px;
+  padding: 6px 11px; cursor: pointer;
+}
+.btn:hover { border-color: var(--accent); }
+.btn.on { background: var(--accent-soft); border-color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.main { display: grid; grid-template-columns: minmax(0,1fr) 352px; gap: 12px; align-items: start; }
+@media (max-width: 980px) { .main { grid-template-columns: minmax(0,1fr); } }
+
+.plotcard {
+  position: relative; background: var(--surface);
+  border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
+  min-width: 0;
+}
+#plot { display: block; width: 100%; height: clamp(400px, 70vh, 880px); cursor: grab; touch-action: none; }
+#plot.drag { cursor: grabbing; }
+.readout {
+  position: absolute; left: 12px; bottom: 10px;
+  font-family: var(--font-mono); font-size: 11px; color: var(--muted);
+  background: color-mix(in srgb, var(--surface) 86%, transparent);
+  border: 1px solid var(--line); border-radius: 6px; padding: 4px 8px;
+  pointer-events: none;
+}
+#tip {
+  position: absolute; pointer-events: none; z-index: 5;
+  background: var(--surface); border: 1px solid var(--accent);
+  border-radius: 7px; padding: 6px 9px; font-size: 12.5px;
+  box-shadow: 0 6px 20px rgba(0,0,0,.18); max-width: 260px;
+}
+#tip .t-name { font-weight: 600; }
+#tip .t-meta { color: var(--muted); font-family: var(--font-mono); font-size: 11px; }
+
+.rail { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.panel {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: 10px; padding: 12px 13px; min-width: 0;
+}
+.panel h2 {
+  font-family: var(--font-display); font-size: 14px; font-weight: 700;
+  margin: 0 0 9px; letter-spacing: -0.01em;
+}
+.chip {
+  display: inline-block; font-size: 11px; font-weight: 600;
+  padding: 2px 8px; border-radius: 999px; color: #fff;
+  letter-spacing: .01em;
+}
+.kv { display: grid; grid-template-columns: auto 1fr; gap: 3px 10px; font-size: 12.5px; }
+.kv dt { color: var(--muted); }
+.kv dd { margin: 0; font-family: var(--font-mono); font-size: 11.5px; word-break: break-all; }
+.bars { display: flex; flex-direction: column; gap: 3px; }
+.rrow { display: grid; grid-template-columns: 66px 1fr 46px; gap: 7px; align-items: center; font-size: 11.5px; }
+.rrow .g { font-family: var(--font-mono); }
+.track { background: var(--surface-2); border-radius: 3px; height: 11px; overflow: hidden; }
+.fill { height: 100%; background: var(--accent); border-radius: 3px; }
+.rrow .v { font-family: var(--font-mono); text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; }
+.nn { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.nn li { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: baseline; }
+.nn button {
+  background: none; border: none; padding: 2px 0; text-align: left; cursor: pointer;
+  color: var(--fg); font-family: var(--font-body); font-size: 12.5px;
+  text-decoration: underline; text-decoration-color: var(--line); min-width: 0;
+}
+.nn button:hover { color: var(--accent); }
+.nn .d { font-family: var(--font-mono); font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.legend { display: flex; flex-wrap: wrap; gap: 5px; }
+.lg {
+  display: inline-flex; align-items: center; gap: 5px; cursor: pointer;
+  border: 1px solid var(--line); border-radius: 999px;
+  padding: 2px 8px 2px 5px; font-size: 11.5px; background: var(--surface-2);
+  user-select: none;
+}
+.lg.off { opacity: .35; }
+.lg i { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+.note { color: var(--muted); font-size: 12px; margin: 8px 0 0; }
+.warnbox {
+  border-left: 3px solid var(--warn); padding-left: 9px;
+  color: var(--muted); font-size: 12px; margin-top: 9px;
+}
+.empty { color: var(--muted); font-size: 12.5px; }
+footer { color: var(--muted); font-size: 12px; margin-top: 18px; max-width: 78ch; }
+footer strong { color: var(--fg); font-weight: 600; }
+</style>
+
+<div class="wrap">
+  <h1>Aromachemical Receptor Atlas</h1>
+  <p class="sub">
+    128 perfumery materials scored against 386 functional human olfactory receptors
+    by the MolOR cross-attention model. Click any point to inspect its receptor
+    profile and true nearest neighbours. Grey links join pairs that are mutual
+    nearest neighbours in the full 386-dimensional space, not on this plane. Switch encoders to see how much the architecture alone moves things.
+  </p>
+
+  <div class="bar">
+    <div class="field">
+      <label class="lab" for="colourby">Colour / filter by</label>
+      <select id="colourby">
+        <option value="percept">predicted odour (GS-LF model)</option>
+        <option value="odour">odour family (your notes)</option>
+        <option value="cls">chemical class</option>
+      </select>
+    </div>
+    <div class="field">
+      <label class="lab" for="model">Encoder</label>
+      <select id="model"></select>
+    </div>
+    <div class="field">
+      <label class="lab" for="proj">Projection</label>
+      <select id="proj"></select>
+    </div>
+    <div class="field">
+      <label class="lab" for="q">Find</label>
+      <input type="search" id="q" placeholder="vanillin, musk, ester…" autocomplete="off">
+    </div>
+    <label class="toggle"><input type="checkbox" id="tLinks" checked> links</label>
+    <label class="toggle"><input type="checkbox" id="tLabels" checked> labels</label>
+    <label class="toggle"><input type="checkbox" id="tSize" checked> size = potency</label>
+    <button class="btn" id="reset" type="button">Reset view</button>
+    <button class="btn" id="clearPin" type="button" hidden>Clear comparison</button>
+  </div>
+
+  <div class="main">
+    <div class="plotcard">
+      <canvas id="plot"></canvas>
+      <div class="readout" id="readout"></div>
+      <div id="tip" hidden></div>
+    </div>
+
+    <div class="rail">
+      <div class="panel" id="detail">
+        <h2>Inspector</h2>
+        <p class="empty">Click a point to inspect it. Shift-click a second point to compare two materials.</p>
+      </div>
+      <div class="panel">
+        <h2 id="legendTitle">Odour family</h2>
+        <div class="legend" id="legend"></div>
+        <p class="note">Click a class to show or hide it.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer id="foot"></footer>
+</div>
+
+<script id="odata" type="application/json">__ORVECTOR_DATA__</script>
+<script>
+window.addEventListener("error", function (ev) {
+  var el = document.getElementById("detail");
+  if (!el) return;
+  el.innerHTML = '<h2>Something went wrong</h2><p class="empty">'
+    + String(ev.message) + "<br><br>" + String((ev.filename || "") + ":" + (ev.lineno || ""))
+    + "</p>";
+});
+(function () {
+  "use strict";
+  var D = JSON.parse(document.getElementById("odata").textContent);
+  var N = D.molecules.length;
+
+  function M() { return D.models[state.model]; }
+
+  var hasOdour = Array.isArray(D.odours) && D.odours.length > 0;
+  var hasPercept = Array.isArray(D.percepts) && D.percepts.length > 0;
+  var defaultScheme = hasPercept ? "percept" : hasOdour ? "odour" : "cls";
+
+  function groupsOf(i) {
+    // Chemical class gives one group; odour schemes can give several.
+    if (state.scheme === "cls") return [D.molecules[i].cls];
+    var t = (state.scheme === "percept" ? D.molecules[i].percept : D.molecules[i].odour) || [];
+    return t.length ? t : ["unclassified"];
+  }
+  function groupList() {
+    if (state.scheme === "cls") return D.classes;
+    var base = state.scheme === "percept" ? D.percepts : D.odours;
+    return base.concat(["unclassified"]);
+  }
+  function groupColour(g) {
+    if (state.scheme === "cls") return D.classColour[g];
+    var map = state.scheme === "percept" ? D.perceptColour : D.odourColour;
+    return (map && map[g]) || "#9aa6b1";
+  }
+  function primary(i) { return groupsOf(i)[0]; }
+
+  // Flattened upper-triangle distances per encoder, for percentile lookups.
+  var flatCache = {};
+  function flatFor(key) {
+    if (!flatCache[key]) {
+      var dd = D.models[key].dist, f = [];
+      for (var a = 0; a < N; a++) for (var b = a + 1; b < N; b++) f.push(dd[a][b]);
+      f.sort(function (p, q) { return p - q; });
+      flatCache[key] = f;
+    }
+    return flatCache[key];
+  }
+  function pct(d) {
+    var flat = flatFor(state.model);
+    var lo = 0, hi = flat.length;
+    while (lo < hi) { var m = (lo + hi) >> 1; if (flat[m] < d) lo = m + 1; else hi = m; }
+    return (100 * lo / flat.length);
+  }
+
+  var state = {
+    scheme: defaultScheme, model: D.modelOrder[0], proj: "mds_full", sel: null, pin: null, hover: null,
+    hidden: Object.create(null), links: true, labels: true, sizeByPotency: true,
+    k: 1, tx: 0, ty: 0, fitted: false, query: "", yaw: 0.6, pitch: 0.35
+  };
+
+  var cv = document.getElementById("plot");
+  var ctx = cv.getContext("2d");
+  var tip = document.getElementById("tip");
+  var readout = document.getElementById("readout");
+
+  // ---- controls ----
+  var msel = document.getElementById("model");
+  D.modelOrder.forEach(function (k) {
+    var o = document.createElement("option");
+    o.value = k; o.textContent = D.models[k].label;
+    msel.appendChild(o);
+  });
+  msel.value = state.model;
+  msel.addEventListener("change", function () {
+    state.model = msel.value; state.fitted = false;
+    draw(); renderDetail(); renderFoot();
+  });
+
+  var sel = document.getElementById("proj");
+  Object.keys(M().projections).forEach(function (k) {
+    var o = document.createElement("option");
+    o.value = k;
+    o.textContent = M().projections[k].label;
+    sel.appendChild(o);
+  });
+  sel.value = state.proj;
+  sel.addEventListener("change", function () {
+    state.proj = sel.value; state.fitted = false; draw(); renderFoot();
+  });
+
+  document.getElementById("tLinks").addEventListener("change", function (e) {
+    state.links = e.target.checked; draw();
+  });
+  document.getElementById("tLabels").addEventListener("change", function (e) {
+    state.labels = e.target.checked; draw();
+  });
+  document.getElementById("tSize").addEventListener("change", function (e) {
+    state.sizeByPotency = e.target.checked; draw();
+  });
+  document.getElementById("reset").addEventListener("click", function () {
+    state.fitted = false; draw();
+  });
+  var clearPin = document.getElementById("clearPin");
+  clearPin.addEventListener("click", function () {
+    state.pin = null; clearPin.hidden = true; renderDetail(); draw();
+  });
+  document.getElementById("q").addEventListener("input", function (e) {
+    state.query = e.target.value.trim().toLowerCase(); draw();
+  });
+
+  // ---- legend ----
+  var legend = document.getElementById("legend");
+  function buildLegend() {
+  legend.innerHTML = "";
+  document.getElementById("legendTitle").textContent =
+    state.scheme === "cls" ? "Chemical class"
+      : state.scheme === "percept" ? "Predicted odour" : "Odour family (your notes)";
+  groupList().forEach(function (c) {
+    var el = document.createElement("span");
+    el.className = "lg";
+    el.innerHTML = '<i style="background:' + groupColour(c) + '"></i>' + c.replace(/_/g, " ").toLowerCase();
+    el.setAttribute("role", "button");
+    el.tabIndex = 0;
+    function toggle() {
+      state.hidden[c] = !state.hidden[c];
+      el.classList.toggle("off", !!state.hidden[c]);
+      draw();
+    }
+    el.addEventListener("click", toggle);
+    el.addEventListener("keydown", function (ev) {
+      if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); toggle(); }
+    });
+    legend.appendChild(el);
+  });
+  }
+  buildLegend();
+
+  var cby = document.getElementById("colourby");
+  if (!hasOdour) { cby.value = "cls"; cby.disabled = true; }
+  cby.value = state.scheme;
+  cby.addEventListener("change", function () {
+    state.scheme = cby.value;
+    state.hidden = Object.create(null);
+    buildLegend(); draw(); renderDetail();
+  });
+
+  function visible(i) {
+    var g = groupsOf(i);
+    for (var k = 0; k < g.length; k++) if (!state.hidden[g[k]]) return true;
+    return false;
+  }
+  function matches(i) {
+    if (!state.query) return false;
+    var m = D.molecules[i];
+    var hay = m.name + " " + m.cls + " " + m.formula + " "
+      + (m.odour || []).join(" ") + " " + (m.percept || []).join(" ") + " " + (m.note || "");
+    return hay.toLowerCase().indexOf(state.query) >= 0;
+  }
+
+  // ---- geometry ----
+  var W = 0, H = 0, dpr = 1;
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var r = cv.getBoundingClientRect();
+    W = Math.max(240, r.width); H = Math.max(240, r.height);
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  function P() { return M().projections[state.proj]; }
+  function is3D() { return Array.isArray(P().z); }
+
+  //  Orthographic orbit. 128 points, so a painter's algorithm is plenty and
+  //  keeps the page free of any 3D library.
+  var _rot = {x: [], y: [], d: []};
+  function rotateAll() {
+    var p = P(), n = p.x.length;
+    var cy = Math.cos(state.yaw), sy = Math.sin(state.yaw);
+    var cp = Math.cos(state.pitch), sp = Math.sin(state.pitch);
+    _rot.x.length = _rot.y.length = _rot.d.length = n;
+    for (var i = 0; i < n; i++) {
+      var X = p.x[i], Y = p.y[i], Z = p.z ? p.z[i] : 0;
+      var x1 = cy * X + sy * Z;
+      var z1 = -sy * X + cy * Z;
+      var y2 = cp * Y - sp * z1;
+      var z2 = sp * Y + cp * z1;
+      _rot.x[i] = x1; _rot.y[i] = y2; _rot.d[i] = z2;
+    }
+  }
+  function fit() {
+    var p = P(), pad = 54;
+    rotateAll();
+    var xs = _rot.x, ys = _rot.y;
+    var x0 = Math.min.apply(null, xs), x1 = Math.max.apply(null, xs);
+    var y0 = Math.min.apply(null, ys), y1 = Math.max.apply(null, ys);
+    var sx = (W - 2 * pad) / Math.max(1e-6, x1 - x0);
+    var sy = (H - 2 * pad) / Math.max(1e-6, y1 - y0);
+    state.k = Math.min(sx, sy);
+    state.tx = (W - state.k * (x0 + x1)) / 2;
+    state.ty = (H + state.k * (y0 + y1)) / 2;
+    state.fitted = true;
+  }
+  function sx(i) { return _rot.x[i] * state.k + state.tx; }
+  function sy(i) { return -_rot.y[i] * state.k + state.ty; }
+  function depth(i) { return _rot.d[i]; }
+  function depthScale(i) {
+    if (!is3D()) return 1;
+    var lo = Infinity, hi = -Infinity;
+    for (var k = 0; k < _rot.d.length; k++) {
+      if (_rot.d[k] < lo) lo = _rot.d[k];
+      if (_rot.d[k] > hi) hi = _rot.d[k];
+    }
+    var t = hi > lo ? (_rot.d[i] - lo) / (hi - lo) : 0.5;
+    return 0.72 + 0.46 * t;           // nearer = larger
+  }
+  function radius(i) {
+    var base = state.sizeByPotency ? 4.2 + 7.5 * Math.min(1, M().total[i] / 22) : 6;
+    return base * depthScale(i);
+  }
+
+  // ---- drawing ----
+  function draw() {
+    if (!W || !H) resize();
+    if (!state.fitted) fit(); else rotateAll();
+    var p = P();
+    ctx.clearRect(0, 0, W, H);
+
+    var css = getComputedStyle(document.documentElement);
+    var line = css.getPropertyValue("--line").trim();
+    var fg = css.getPropertyValue("--fg").trim();
+    var muted = css.getPropertyValue("--muted").trim();
+    var accent = css.getPropertyValue("--accent").trim();
+    var surface = css.getPropertyValue("--surface").trim();
+
+    // true-neighbour links
+    if (state.links) {
+      ctx.strokeStyle = line; ctx.lineWidth = 1;
+      ctx.globalAlpha = is3D() ? 0.55 : 0.9;
+      ctx.beginPath();
+      for (var e = 0; e < M().edges.length; e++) {
+        var i = M().edges[e][0], j = M().edges[e][1];
+        if (!visible(i) || !visible(j)) continue;
+        ctx.moveTo(sx(i), sy(i)); ctx.lineTo(sx(j), sy(j));
+      }
+      ctx.stroke(); ctx.globalAlpha = 1;
+    }
+
+    // highlight links from the selected point
+    if (state.sel !== null) {
+      ctx.strokeStyle = accent; ctx.lineWidth = 1.6;
+      ctx.beginPath();
+      for (var e2 = 0; e2 < M().edges.length; e2++) {
+        var i2 = M().edges[e2][0], j2 = M().edges[e2][1];
+        if (i2 !== state.sel && j2 !== state.sel) continue;
+        if (!visible(i2) || !visible(j2)) continue;
+        ctx.moveTo(sx(i2), sy(i2)); ctx.lineTo(sx(j2), sy(j2));
+      }
+      ctx.stroke();
+    }
+
+    // points
+    var order = [];
+    for (var n = 0; n < N; n++) if (visible(n)) order.push(n);
+    if (is3D()) order.sort(function (a1, b1) { return depth(a1) - depth(b1); });
+    for (var o = 0; o < order.length; o++) {
+      var idx = order[o], r = radius(idx);
+      var rel = p.reliability[idx];
+      var hit = matches(idx);
+      var isSel = idx === state.sel, isPin = idx === state.pin;
+      ctx.beginPath();
+      ctx.arc(sx(idx), sy(idx), r, 0, 6.2832);
+      ctx.fillStyle = groupColour(primary(idx));
+      ctx.globalAlpha = (state.query && !hit) ? 0.18 : 0.92;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+      if (isSel || isPin) { ctx.strokeStyle = accent; ctx.lineWidth = 3; }
+      else if (hit) { ctx.strokeStyle = fg; ctx.lineWidth = 2; }
+      else if (rel < 0.25) { ctx.strokeStyle = muted; ctx.lineWidth = 1; ctx.setLineDash([2, 2]); }
+      else { ctx.strokeStyle = surface; ctx.lineWidth = 1; }
+      ctx.stroke(); ctx.setLineDash([]);
+    }
+
+    // labels, skipping ones that would overlap
+    if (state.labels) {
+      ctx.font = '500 11px "Archivo", system-ui, sans-serif';
+      ctx.textAlign = "center"; ctx.textBaseline = "bottom";
+      var boxes = [];
+      var prio = order.slice().sort(function (p1, p2) {
+        var s1 = (p1 === state.sel || p1 === state.pin) ? 2 : matches(p1) ? 1 : 0;
+        var s2 = (p2 === state.sel || p2 === state.pin) ? 2 : matches(p2) ? 1 : 0;
+        if (s1 !== s2) return s2 - s1;
+        return M().total[p2] - M().total[p1];
+      });
+      var frontCut = 0;
+      if (is3D()) {
+        var ds = order.map(depth).sort(function (a1, b1) { return a1 - b1; });
+        frontCut = ds[Math.max(0, Math.floor(ds.length * 0.55))];
+      }
+      for (var q = 0; q < prio.length; q++) {
+        var id2 = prio[q];
+        if (is3D() && depth(id2) < frontCut
+            && id2 !== state.sel && id2 !== state.pin && !matches(id2)) continue;
+        if (state.query && !matches(id2) && id2 !== state.sel && id2 !== state.pin) continue;
+        var nm = D.molecules[id2].name;
+        if (nm.length > 30) nm = nm.slice(0, 29) + "…";
+        var w = ctx.measureText(nm).width;
+        var cx = sx(id2), cy = sy(id2) - radius(id2) - 3;
+        var bx = cx - w / 2 - 2, by = cy - 12, bw = w + 4, bh = 13;
+        if (bx < -40 || bx > W + 40 || by < -20 || by > H + 20) continue;
+        var clash = false;
+        for (var z = 0; z < boxes.length; z++) {
+          var o2 = boxes[z];
+          if (bx < o2[0] + o2[2] && bx + bw > o2[0] && by < o2[1] + o2[3] && by + bh > o2[1]) { clash = true; break; }
+        }
+        if (clash) continue;
+        boxes.push([bx, by, bw, bh]);
+        ctx.fillStyle = surface; ctx.globalAlpha = 0.78;
+        ctx.fillRect(bx, by, bw, bh);
+        ctx.globalAlpha = 1;
+        ctx.fillStyle = (id2 === state.sel || id2 === state.pin) ? accent : fg;
+        ctx.fillText(nm, cx, cy);
+      }
+    }
+
+    var hiddenCount = groupList().filter(function (c) { return state.hidden[c]; }).length;
+    readout.textContent = order.length + "/" + N + " shown"
+      + (hiddenCount ? " · " + hiddenCount + " class(es) hidden" : "")
+      + (is3D() ? " · drag to rotate, shift-drag to pan" : " · drag to pan");
+  }
+
+  function pick(mx, my) {
+    var best = null, bestDepth = -Infinity, bd = 1e9;
+    for (var i = 0; i < N; i++) {
+      if (!visible(i)) continue;
+      var dx = mx - sx(i), dy = my - sy(i);
+      var d2 = dx * dx + dy * dy, rr = radius(i) + 5;
+      if (d2 >= rr * rr) continue;
+      if (is3D()) {
+        if (depth(i) > bestDepth) { bestDepth = depth(i); best = i; }
+      } else if (d2 < bd) { bd = d2; best = i; }
+    }
+    return best;
+  }
+
+  // ---- interaction ----
+  var dragging = false, moved = false, lx = 0, ly = 0;
+  cv.addEventListener("pointerdown", function (ev) {
+    dragging = true; moved = false; lx = ev.offsetX; ly = ev.offsetY;
+    cv.classList.add("drag"); cv.setPointerCapture(ev.pointerId);
+  });
+  cv.addEventListener("pointermove", function (ev) {
+    var mx = ev.offsetX, my = ev.offsetY;
+    if (dragging) {
+      var dx = mx - lx, dy = my - ly;
+      if (Math.abs(dx) + Math.abs(dy) > 2) moved = true;
+      if (is3D() && !ev.shiftKey) {
+        state.yaw += dx * 0.009;
+        state.pitch = Math.max(-1.45, Math.min(1.45, state.pitch + dy * 0.009));
+      } else {
+        state.tx += dx; state.ty += dy;
+      }
+      lx = mx; ly = my;
+      tip.hidden = true;
+      draw();
+      return;
+    }
+    var h = pick(mx, my);
+    if (h !== state.hover) { state.hover = h; }
+    if (h === null) { tip.hidden = true; return; }
+    var m = D.molecules[h];
+    tip.innerHTML = '<div class="t-name">' + esc(m.name) + '</div>'
+      + '<div class="t-meta">' + esc(m.cls.replace(/_/g, " ")) + " · " + esc(m.formula)
+      + " · Σ " + M().total[h].toFixed(1) + "</div>";
+    tip.hidden = false;
+    var tw = tip.offsetWidth, th = tip.offsetHeight;
+    tip.style.left = Math.min(Math.max(6, mx + 14), W - tw - 6) + "px";
+    tip.style.top = Math.min(Math.max(6, my - th - 12), H - th - 6) + "px";
+  });
+  cv.addEventListener("pointerup", function (ev) {
+    dragging = false; cv.classList.remove("drag");
+    if (moved) return;
+    var h = pick(ev.offsetX, ev.offsetY);
+    if (h === null) { state.sel = null; state.pin = null; clearPin.hidden = true; }
+    else if (ev.shiftKey && state.sel !== null && h !== state.sel) {
+      state.pin = state.sel; state.sel = h; clearPin.hidden = false;
+    } else { state.sel = h; }
+    renderDetail(); draw();
+  });
+  cv.addEventListener("pointerleave", function () { tip.hidden = true; dragging = false; cv.classList.remove("drag"); });
+  cv.addEventListener("wheel", function (ev) {
+    ev.preventDefault();
+    var f = Math.exp(-ev.deltaY * 0.0014);
+    var mx = ev.offsetX, my = ev.offsetY;
+    state.tx = mx - (mx - state.tx) * f;
+    state.ty = my - (my - state.ty) * f;
+    state.k *= f;
+    tip.hidden = true;
+    draw();
+  }, { passive: false });
+
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+    });
+  }
+
+  // ---- inspector ----
+  function topReceptors(i, n) {
+    var row = M().scores[i], out = [];
+    for (var r = 0; r < row.length; r++) out.push([r, row[r]]);
+    out.sort(function (a2, b2) { return b2[1] - a2[1]; });
+    return out.slice(0, n);
+  }
+  function neighbours(i, n) {
+    var out = [];
+    for (var j = 0; j < N; j++) if (j !== i) out.push([j, M().dist[i][j]]);
+    out.sort(function (a2, b2) { return a2[1] - b2[1]; });
+    return out.slice(0, n);
+  }
+
+  function renderDetail() {
+    var el = document.getElementById("detail");
+    if (state.sel === null) {
+      el.innerHTML = '<h2>Inspector</h2><p class="empty">Click a point to inspect it. '
+        + 'Shift-click a second point to compare two materials.</p>';
+      return;
+    }
+    var i = state.sel, m = D.molecules[i], p = P();
+    var html = '<h2>Inspector</h2>';
+    var chips = '<span class="chip" style="background:' + D.classColour[m.cls] + '">'
+      + esc(m.cls.replace(/_/g, " ")) + "</span>";
+    (m.odour || []).forEach(function (t) {
+      chips += ' <span class="chip" style="background:' + groupColour(t) + '">'
+        + esc(t.toLowerCase()) + "</span>";
+    });
+    html += '<p style="margin:0 0 7px;display:flex;gap:4px;flex-wrap:wrap">' + chips + "</p>";
+    html += '<p style="margin:0 0 9px;font-family:var(--font-display);font-size:17px;font-weight:700">'
+      + esc(m.name) + "</p>";
+    html += '<dl class="kv">'
+      + "<dt>Formula</dt><dd>" + esc(m.formula) + "</dd>"
+      + "<dt>SMILES</dt><dd>" + esc(m.smiles) + "</dd>"
+      + "<dt>Heavy atoms</dt><dd>" + m.atoms + "</dd>"
+      + "<dt>Total activation</dt><dd>" + M().total[i].toFixed(2) + "</dd>"
+      + (m.note ? "<dt>Your note</dt><dd style=\"font-family:var(--font-body);font-size:12px\">"
+         + esc(m.note) + "</dd>" : "")
+      + ((m.perceptTop && m.perceptTop.length)
+         ? "<dt>Predicted odour</dt><dd style=\"font-family:var(--font-body);font-size:12px\">"
+           + m.perceptTop.map(function (t) { return esc(t[0]) + " " + t[1].toFixed(2); }).join(", ")
+           + "</dd>" : "")
+      + "<dt>Placement</dt><dd>" + p.reliability[i].toFixed(2)
+      + (p.reliability[i] < 0.25 ? " — unreliable" : "") + "</dd></dl>";
+
+    if (p.reliability[i] < 0.25) {
+      html += '<p class="warnbox">This point sits badly on the plane: its plotted '
+        + "neighbours are mostly not its real ones. Trust the list below, not the position.</p>";
+    }
+
+    if (state.pin !== null && state.pin !== i) {
+      var j = state.pin, d = M().dist[i][j];
+      html += '<h2 style="margin-top:14px">Compared with ' + esc(D.molecules[j].name) + "</h2>";
+      html += '<dl class="kv"><dt>Distance</dt><dd>' + d.toFixed(2)
+        + "</dd><dt>Percentile</dt><dd>" + pct(d).toFixed(1)
+        + "th of all pairs</dd><dt>Library median</dt><dd>" + M().medianDistance + "</dd></dl>";
+      var diffs = [];
+      for (var r2 = 0; r2 < D.receptors.length; r2++) {
+        diffs.push([r2, M().scores[i][r2] - M().scores[j][r2]]);
+      }
+      diffs.sort(function (a2, b2) { return Math.abs(b2[1]) - Math.abs(a2[1]); });
+      html += '<p class="note" style="margin:8px 0 5px">Receptors that separate them</p><div class="bars">';
+      for (var q2 = 0; q2 < 6; q2++) {
+        var rr = diffs[q2];
+        var sign = rr[1] > 0 ? esc(m.name) : esc(D.molecules[j].name);
+        html += '<div class="rrow"><span class="g">' + esc(D.receptors[rr[0]].gene) + "</span>"
+          + '<span class="v" style="text-align:left;color:var(--muted)">' + sign.slice(0, 20) + "</span>"
+          + '<span class="v">' + (rr[1] >= 0 ? "+" : "") + rr[1].toFixed(2) + "</span></div>";
+      }
+      html += "</div>";
+    }
+
+    html += '<h2 style="margin-top:14px">Receptor profile</h2><div class="bars">';
+    topReceptors(i, 12).forEach(function (t) {
+      html += '<div class="rrow"><span class="g">' + esc(D.receptors[t[0]].gene) + "</span>"
+        + '<span class="track"><span class="fill" style="width:' + (t[1] * 100).toFixed(1) + '%"></span></span>'
+        + '<span class="v">' + t[1].toFixed(3) + "</span></div>";
+    });
+    html += "</div>";
+    html += '<p class="note">Scores are sigmoid outputs: P(receptor responds), not intensity.</p>';
+
+    html += '<h2 style="margin-top:14px">Nearest in receptor space</h2><ul class="nn">';
+    neighbours(i, 8).forEach(function (t) {
+      html += '<li><button type="button" data-go="' + t[0] + '">' + esc(D.molecules[t[0]].name)
+        + '</button><span class="d">' + t[1].toFixed(1) + "</span></li>";
+    });
+    html += "</ul>";
+    html += '<p class="note">Distances are from the full 386-dimensional space, '
+      + "so they stay true even where the plane distorts.</p>";
+
+    el.innerHTML = html;
+    Array.prototype.forEach.call(el.querySelectorAll("[data-go]"), function (b) {
+      b.addEventListener("click", function () {
+        state.sel = parseInt(b.getAttribute("data-go"), 10);
+        renderDetail(); draw();
+      });
+    });
+  }
+
+  function renderFoot() {
+    var p = P();
+    var ex = p.explained
+      ? " Axes carry " + (p.explained[0] * 100).toFixed(1) + "% and "
+        + (p.explained[1] * 100).toFixed(1) + "% of variance."
+      : "";
+    document.getElementById("foot").innerHTML =
+      "<strong>" + esc(M().label) + ".</strong> Shepard rank correlation is <strong>"
+      + p.shepard.toFixed(3) + "</strong>: how faithfully distances on this plane reproduce the "
+      + "real 386-dimensional ones." + ex
+      + " That is a global measure and oversells local detail, which is why true "
+      + "mutual-nearest-neighbour links are drawn and why points whose plotted neighbours "
+      + "are mostly wrong get a dotted outline. "
+      + "<strong>Two limits worth knowing.</strong> Stereochemistry is invisible to the model, "
+      + "so enantiomers and E/Z isomers land on exactly the same point. And the vectors encode "
+      + "chemical structure rather than odour, which is why musks spanning different chemotypes "
+      + "do not group together. The two encoders agree with each other only at Spearman 0.26, "
+      + "so switching between them reshuffles the space: treat any single map as "
+      + "architecture-dependent, not as a fact about smell. "
+      + "Panel " + esc(D.meta.panel_hash) + " · checkpoint " + esc(D.meta.checkpoint_md5.slice(0, 12))
+      + " · " + D.meta.n_molecules + " materials × " + D.meta.n_receptors + " receptors.";
+  }
+
+  window.addEventListener("resize", function () { resize(); state.fitted = false; draw(); });
+  if (window.matchMedia) {
+    var mq = window.matchMedia("(prefers-color-scheme: dark)");
+    if (mq.addEventListener) mq.addEventListener("change", draw);
+  }
+  resize(); draw(); renderDetail(); renderFoot();
+})();
+</script>

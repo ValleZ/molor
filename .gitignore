@@ -1,0 +1,16 @@
+# Large downloaded or derived artifacts
+.venv/
+vendor/olfaction/
+vendor/zenodo/
+artifacts/esm_cache/
+artifacts/panel_embeddings.npy
+artifacts/*.log
+
+# Keep the small, reproducibility-critical artifacts:
+!artifacts/receptors.tsv
+!artifacts/manifest.json
+
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/

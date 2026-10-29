@@ -1,0 +1,291 @@
+name,smiles,source
+2-Acetyl Pyridine,CC(=O)c1ccccn1,GS-LF
+2-Acetyl Thiazole,CC(=O)c1nccs1,GS-LF
+2-Ethylhexyl Salicylate,CCCCC(CC)COC(=O)c1ccccc1O,GS-LF
+2-Isobutyl Quinoline,CC(C)Cc1ccc2ncccc2c1,GS-LF
+2-Isopropyl Phenol,CC(C)c1ccccc1O,GS-LF
+6-Methyl Quinoline,Cc1ccc2ncccc2c1,GS-LF
+Acetate C-9,CCCCCCCCCOC(C)=O,GS-LF
+Acetoin,CC(=O)C(C)O,GS-LF
+Acetophenone,CC(=O)c1ccccc1,GS-LF
+Alcohol C-11 Undecylenic,C=CCCCCCCCCCO,GS-LF
+Aldehyde C-10,CCCCCCCCCC=O,curated
+Aldehyde C-11 Undecylenic,C=CCCCCCCCCC=O,curated
+Aldehyde C-11 Undecylic,CCCCCCCCCCC=O,GS-LF
+Aldehyde C-12 Lauric,CCCCCCCCCCCC=O,GS-LF
+Aldehyde C-12 MNA,CCCCCCCCCC(C)C=O,curated
+Aldehyde C-7,CCCCCCC=O,GS-LF
+Aldehyde C-8,CCCCCCCC=O,curated
+Aldehyde C-9,CCCCCCCCC=O,GS-LF
+Allyl Amyl Glycolate,C=CCOC(=O)COCCC(C)C,curated
+Allyl Anthranilate,C=CCOC(=O)c1ccccc1N,GS-LF
+Allyl Heptanoate,C=CCOC(=O)CCCCCC,GS-LF
+Allyl Hexanoate,C=CCOC(=O)CCCCC,GS-LF
+Alpha Angelica Lactone,CC1=CCC(=O)O1,GS-LF
+Alpha Pinene,CC1=CCC2CC1C2(C)C,curated
+Ambrettolide,O=C1CCCCC/C=C\CCCCCCCCO1,curated
+"Ambroxan, 10% in Alcohol",CC1(C)CCC[C@]2(C)[C@H]3CCO[C@]3(C)CC[C@@H]12,curated
+Amyl Acetate,CCCCCOC(C)=O,GS-LF
+Amyl Salicylate,CCCCCOC(=O)c1ccccc1O,GS-LF
+Anethole ex Star Anise,C/C=C/c1ccc(OC)cc1,curated
+"Anisaldehyde, Natural",COc1ccc(C=O)cc1,curated
+Aurantiol,COC(=O)c1ccccc1/N=C/CC(C)CCCC(C)(C)O,curated
+"Benzaldehyde, 50% DPG",O=Cc1ccccc1,curated
+Benzophenone,O=C(c1ccccc1)c1ccccc1,GS-LF
+Benzyl Acetate,CC(=O)OCc1ccccc1,curated
+Benzyl Alcohol,OCc1ccccc1,GS-LF
+Benzyl Benzoate,O=C(OCc1ccccc1)c1ccccc1,GS-LF
+Benzyl Butyrate,CCCC(=O)OCc1ccccc1,GS-LF
+Benzyl Cinnamate,O=C(/C=C/c1ccccc1)OCc1ccccc1,GS-LF
+Benzyl Formate,O=COCc1ccccc1,GS-LF
+Benzyl Isobutyrate,CC(C)C(=O)OCc1ccccc1,GS-LF
+"Benzyl Isoeugenol, crystals",C/C=C/c1ccc(OCc2ccccc2)c(OC)c1,curated
+Benzyl Isovalerate,CC(C)CC(=O)OCc1ccccc1,GS-LF
+Benzyl Phenylacetate,O=C(Cc1ccccc1)OCc1ccccc1,GS-LF
+Benzyl Propionate,CCC(=O)OCc1ccccc1,GS-LF
+Benzyl Salicylate,O=C(OCc1ccccc1)c1ccccc1O,curated
+Beta Pinene,C=C1CCC2CC1C2(C)C,GS-LF
+"Blackcurrant mercaptan, 0.1% DPG",COCCC(C)(C)S,curated
+Calone 1951,Cc1ccc2c(c1)OCC(=O)CO2,curated
+Camphor Crystals,CC1(C)C2CC[C@]1(C)C(=O)C2,GS-LF
+Caprylic Acid,CCCCCCCC(=O)O,GS-LF
+Carvacrol,Cc1ccc(C(C)C)cc1O,GS-LF
+Caryophyllene Beta,C=C1CC/C=C(\C)CC[C@@H]2[C@@H]1CC2(C)C,GS-LF
+Cashmeran,CC1C(C)(C)C2=C(C(=O)CCC2)C1(C)C,curated
+Cassifix,CC1=CCC(C23CCCC(C)(C2)OC3)C1(C)C,curated
+Cedrene Alpha,CC1=CC[C@@]23CC1C(C)(C)[C@@H]2CC[C@H]3C,GS-LF
+Cedrenyl Acetate,CC(=O)OCC1=CC[C@@]23C[C@@H]1C(C)(C)[C@@H]2CC[C@H]3C,GS-LF
+Cedrol Crystals,C[C@@H]1CC[C@H]2C(C)(C)[C@H]3C[C@@]12CC[C@@]3(C)O,GS-LF
+"Cedryl Acetate, Crystals",CC(=O)OC1(C)CCC23CC1C(C)(C)[C@@H]2CC[C@H]3C,GS-LF
+Celestolide,CC(=O)c1cc(C(C)(C)C)cc2c1CCC2(C)C,GS-LF
+"Cinnamaldehyde, 10% DPG",O=C/C=C/c1ccccc1,curated
+Cinnamyl Acetate,CC(=O)OC/C=C/c1ccccc1,GS-LF
+Cinnamyl Alcohol,OC/C=C/c1ccccc1,curated
+Cinnamyl Cinnamate,O=C(/C=C/c1ccccc1)OC/C=C/c1ccccc1,GS-LF
+Cinnamyl Propionate,CCC(=O)OC/C=C/c1ccccc1,GS-LF
+Cis Jasmone,CC/C=C\CC1=C(C)CCC1=O,GS-LF
+Cis-3-Hexenyl Benzoate,CC/C=C\CCOC(=O)c1ccccc1,GS-LF
+Cis-3-Hexenyl Butyrate,CC/C=C\CCOC(=O)CCC,GS-LF
+Cis-3-Hexenyl Isobutyrate,CC/C=C\CCOC(=O)C(C)C,GS-LF
+Cis-3-Hexenyl Isovalerate,CC/C=C\CCOC(=O)CC(C)C,GS-LF
+Cis-3-Hexenyl Salicylate,CC/C=C\CCOC(=O)c1ccccc1O,curated
+Citral,CC(C)=CCC/C(C)=C/C=O,curated
+Citronellal,CC(C)=CCCC(C)CC=O,GS-LF
+Citronellol,CC(C)=CCCC(C)CCO,curated
+Citronellyl Acetate,CC(=O)OCCC(C)CCC=C(C)C,curated
+Citronellyl Formate,CC(C)=CCCC(C)CCOC=O,GS-LF
+"Coumarin, crystals",O=c1ccc2ccccc2o1,curated
+Cyclamen Aldehyde,CC(C=O)Cc1ccc(C(C)C)cc1,curated
+D-Limonene,C=C(C)[C@@H]1CC=C(C)CC1,curated
+"Damascenone Total, 10%",C/C=C/C(=O)C1=C(C)C=CCC1(C)C,curated
+"Damascone Alpha, 10% DPG",C/C=C/C(=O)C1C(C)=CCCC1(C)C,curated
+"Damascone Beta, 10% DPG",C/C=C/C(=O)C1=C(C)CCCC1(C)C,curated
+Damascone Delta,C/C=C/C(=O)C1C(C)C=CCC1(C)C,GS-LF
+Damascone Gamma,C=C1CCCC(C)(C)C1C(=O)/C=C/C,GS-LF
+Delta Decalactone,CCCCCC1CCCC(=O)O1,curated
+Delta Dodecalactone,CCCCCCCC1CCCC(=O)O1,GS-LF
+Delta Nonalactone,CCCCC1CCCC(=O)O1,GS-LF
+Delta Undecalactone,CCCCCCC1CCCC(=O)O1,GS-LF
+Diacetyl,CC(=O)C(C)=O,GS-LF
+Diethyl Malonate,CCOC(=O)CC(=O)OCC,GS-LF
+Diethyl Phthalate (DEP),CCOC(=O)c1ccccc1C(=O)OCC,GS-LF
+Diethyl Succinate,CCOC(=O)CCC(=O)OCC,GS-LF
+Dihydro Alpha Ionone,CC(=O)CCC1C(C)=CCCC1(C)C,GS-LF
+Dihydro Beta Ionone,CC(=O)CCC1=C(C)CCCC1(C)C,GS-LF
+Dihydro Eugenol,CCCc1ccc(O)c(OC)c1,curated
+Dihydro Myrcenol,C=CC(C)CCCC(C)(C)O,curated
+Dihydrocarveol,C=C(C)C1CCC(C)C(O)C1,GS-LF
+Dihydrocarvyl Acetate,C=C(C)C1CCC(C)C(OC(C)=O)C1,GS-LF
+Dihydroterpinyl Acetate,CC(=O)OC(C)(C)C1CCC(C)CC1,GS-LF
+Dimethyl Benzyl Carbinyl Acetate,CC(=O)OC(C)(C)Cc1ccccc1,curated
+Dimethyl Octenone,CCC(=O)C(C)CC=C(C)C,curated
+"Dimethyl Sulfide, 1% DPG",CSC,curated
+Doremox,CC1CCOC(c2ccccc2)C1,curated
+Ebanol,CC1=CCC(C=CC(C)C(C)O)C1(C)C,curated
+Edenolide,CCOC(=O)CC(=O)OC(C)C1CCCC(C)(C)C1,curated
+Ethyl 2-methyl butyrate,CCOC(=O)C(C)CC,curated
+"Ethyl Acetate, 10% DPG",CCOC(C)=O,curated
+Ethyl Acetoacetate,CCOC(=O)CC(C)=O,GS-LF
+Ethyl Benzoate,CCOC(=O)c1ccccc1,curated
+Ethyl Butyrate,CCCC(=O)OCC,curated
+Ethyl Caproate,CCCCCC(=O)OCC,GS-LF
+Ethyl Decanoate,CCCCCCCCCC(=O)OCC,GS-LF
+Ethyl Formate,CCOC=O,GS-LF
+"Ethyl Furaneol, 10% DPG",CCC1=C(O)C(=O)C(C)O1,curated
+Ethyl Heptanoate,CCCCCCC(=O)OCC,GS-LF
+Ethyl Isobutyrate,CCOC(=O)C(C)C,GS-LF
+Ethyl Laurate,CCCCCCCCCCCC(=O)OCC,GS-LF
+Ethyl Levulinate,CCOC(=O)CCC(C)=O,GS-LF
+Ethyl Linalool,C=CC(C)(O)CCC=C(C)CC,curated
+"Ethyl Maltol, 1% in PG",CCc1occc(=O)c1O,curated
+Ethyl Myristate,CCCCCCCCCCCCCC(=O)OCC,GS-LF
+Ethyl Salicylate,CCOC(=O)c1ccccc1O,GS-LF
+Ethyl Tiglate,C/C=C(\C)C(=O)OCC,GS-LF
+Ethyl Vanillin,CCOc1cc(C=O)ccc1O,curated
+Ethylene Brassylate,O=C1CCCCCCCCCCCC(=O)OCCO1,curated
+Eucalyptol,CC12CCC(CC1)C(C)(C)O2,GS-LF
+Eugenol ex Clove,C=CCc1ccc(O)c(OC)c1,curated
+Exaltolide Total,O=C1CCCCCCCCCCCCCCO1,curated
+Farnesene Alpha,C=C/C(C)=C/C/C=C(\C)CCC=C(C)C,GS-LF
+Farnesol,CC(C)=CCC/C(C)=C/CC/C(C)=C/CO,GS-LF
+Fenchol,CC12CCC(C1)C(C)(C)C2O,GS-LF
+Fenchone Alpha,CC12CCC(C1)C(C)(C)C2=O,GS-LF
+Floralozone,CCc1ccc(CC(C)(C)C=O)cc1,curated
+Florhydral,CC(C)c1cccc(C(C)CC=O)c1,curated
+Florol,CC(C)CC1CC(C)(O)CCO1,curated
+Fructone,CCOC(=O)CC1(C)OCCO1,curated
+Furfural 5% DPG,O=Cc1ccco1,GS-LF
+Furfuryl Acetate,CC(=O)OCc1ccco1,GS-LF
+Galaxolide 50% IPM,CC1COCc2cc3c(cc21)C(C)(C)C(C)C3(C)C,curated
+Gamma Decalactone,CCCCCCC1CCC(=O)O1,curated
+Gamma Dodecalactone,CCCCCCCCC1CCC(=O)O1,GS-LF
+Gamma Heptalactone,CCCC1CCC(=O)O1,GS-LF
+Gamma Nonalactone,CCCCCC1CCC(=O)O1,curated
+Gamma Octalactone,CCCCC1CCC(=O)O1,GS-LF
+Gamma Undecalactone,CCCCCCCC1CCC(=O)O1,curated
+Geosmin,C[C@@H]1CCC[C@]2(C)CCCC[C@@]12O,GS-LF
+Geraniol 95,CC(C)=CCC/C(C)=C/CO,curated
+Geranyl Acetate,CC(=O)OC/C=C(/C)CCC=C(C)C,curated
+Geranyl Butyrate,CCCC(=O)OC/C=C(\C)CCC=C(C)C,GS-LF
+Geranyl Formate,CC(C)=CCC/C(C)=C/COC=O,GS-LF
+Geranyl Propionate,CCC(=O)OC/C=C(\C)CCC=C(C)C,GS-LF
+Guaiacol,COc1ccccc1O,GS-LF
+Habanolide,O=C1CCCCCCCCCC=CCCCO1,curated
+Hedione,CCCCCC1C(=O)CCC1CC(=O)OC,curated
+Helional,CC(C=O)Cc1ccc2c(c1)OCO2,curated
+"Heliotropin, 20% DPG",O=Cc1ccc2c(c1)OCO2,curated
+Helvetolide,CCC(=O)OCC(C)(C)OC(C)C1CCCC(C)(C)C1,curated
+Hexenol-3-CIS,CC/C=C\CCO,curated
+Hexenyl-3-CIS Acetate,CC/C=C\CCOC(C)=O,curated
+Hexyl Acetate,CCCCCCOC(C)=O,curated
+Hexyl Benzoate,CCCCCCOC(=O)c1ccccc1,GS-LF
+Hexyl Butyrate,CCCCCCOC(=O)CCC,GS-LF
+Hexyl Cinnamic Aldehyde,CCCCCCC(C=O)=Cc1ccccc1,curated
+Hexyl Isobutyrate,CCCCCCOC(=O)C(C)C,GS-LF
+Hexyl Isovalerate,CCCCCCOC(=O)CC(C)C,GS-LF
+Hexyl Salicylate,CCCCCCOC(=O)c1ccccc1O,curated
+Hexyl Tiglate,C/C=C(\C)C(=O)OCCCCCC,GS-LF
+Hydratropic Aldehyde,C[C@@H](C=O)c1ccccc1,GS-LF
+Hydroxycitronellal,CC(CC=O)CCCC(C)(C)O,curated
+Indolene 50,c1ccc2[nH]ccc2c1,curated
+Ionone Alpha,CC(=O)/C=C/C1C(C)=CCCC1(C)C,curated
+Ionone Beta,CC(=O)/C=C/C1=C(C)CCCC1(C)C,curated
+Iso E Super,CC(=O)C1(C)CC2=C(CCCC2(C)C)CC1C,curated
+Isoamyl Acetate,CC(=O)OCCC(C)C,curated
+Isoamyl Benzoate,CC(C)CCOC(=O)c1ccccc1,GS-LF
+Isoamyl Isovalerate,CC(C)CCOC(=O)CC(C)C,GS-LF
+Isoamyl Salicylate,CC(C)CCOC(=O)c1ccccc1O,GS-LF
+Isobornyl Acetate,CC(=O)OC1CC2CCC1(C)C2(C)C,curated
+Isobutyl Benzoate,CC(C)COC(=O)c1ccccc1,GS-LF
+Isobutyl Phenyl Acetate,CC(C)COC(=O)Cc1ccccc1,curated
+Isobutyl Salicylate,CC(C)COC(=O)c1ccccc1O,GS-LF
+Isoeugenol,C/C=C/c1ccc(O)c(OC)c1,GS-LF
+Isophytol,C=CC(C)(O)CCCC(C)CCCC(C)CCCC(C)C,GS-LF
+Isopropyl Myristate (IPM),CCCCCCCCCCCCCC(=O)OC(C)C,GS-LF
+Kephalis,C=C(OCC)C1C(C)(C)CC(=O)CC1(C)C,curated
+Laevo Menthol,CC1CCC(C(C)C)C(O)C1,GS-LF
+Lemonile,CCC(C)=CCCC(C)=CC#N,curated
+Levulinic Acid,CC(=O)CCC(=O)O,GS-LF
+Liffarome,CC/C=C\CCOC(=O)OC,curated
+Linalool,C=CC(C)(O)CCC=C(C)C,curated
+Linalyl Acetate,C=CC(C)(CCC=C(C)C)OC(C)=O,curated
+Linalyl Cinnamate,C=CC(C)(CCC=C(C)C)OC(=O)/C=C/c1ccccc1,GS-LF
+Linalyl Formate,C=CC(C)(CCC=C(C)C)OC=O,GS-LF
+Linalyl Propionate,C=CC(C)(CCC=C(C)C)OC(=O)CC,curated
+Lyral,CC(C)(O)CCCC1=CCC(C=O)CC1,GS-LF
+Maltol,Cc1occc(=O)c1O,GS-LF
+Maltol Isobutyrate,Cc1c(OC(=O)C(C)C)occc1=O,curated
+Manzanate,CCCC(C)C(=O)OCC,curated
+Matsutake Alcohol,C=C[C@@H](O)CCCCC,GS-LF
+"Melonal, 10% DPG",CC(C)=CCCC(C)C=O,curated
+Menthone,CC(C)[C@@H]1CC[C@@H](C)CC1=O,GS-LF
+Methyl Anthranilate,COC(=O)c1ccccc1N,curated
+Methyl Benzoate,COC(=O)c1ccccc1,curated
+Methyl Butyrate,CCCC(=O)OC,GS-LF
+Methyl Chavicol,C=CCc1ccc(OC)cc1,GS-LF
+Methyl Cinnamate,COC(=O)/C=C/c1ccccc1,curated
+Methyl Diantilis,CCOc1cc(COC)ccc1O,curated
+Methyl Heptenone,CC(=O)CCC=C(C)C,GS-LF
+Methyl Heptine Carbonate,CCCCCC#CC(=O)OC,GS-LF
+Methyl Ionone Gamma Coeur,CC(=O)C=C(C)C1C(C)=CCCC1(C)C,curated
+Methyl Isobutyrate,COC(=O)C(C)C,GS-LF
+Methyl Isoeugenol,CC=Cc1ccc(OC)c(OC)c1,GS-LF
+"Methyl Laitone, 10% in DPG",CC1CCC2(CCC(=O)O2)CC1,curated
+Methyl Linoleate,CCCCC/C=C\C/C=C\CCCCCCCC(=O)OC,GS-LF
+Methyl Nicotinate,COC(=O)c1cccnc1,GS-LF
+Methyl Nonyl Ketone,CCCCCCCCCC(C)=O,GS-LF
+Methyl Octine Carbonate,CCCCCCC#CC(=O)OC,GS-LF
+Methyl Palmitate,CCCCCCCCCCCCCCCC(=O)OC,GS-LF
+Methyl Pamplemousse,COC(OC)C(C)(C)CC=C(C)C,curated
+Methyl Propionate,CCC(=O)OC,GS-LF
+Methyl Salicylate,COC(=O)c1ccccc1O,GS-LF
+Muscone,CC1CCCCCCCCCCCCC(=O)C1,GS-LF
+Musk Ambrette,COc1c(C(C)(C)C)cc([N+](=O)[O-])c(C)c1[N+](=O)[O-],GS-LF
+Musk Ketone,CC(=O)c1c(C)c([N+](=O)[O-])c(C(C)(C)C)c([N+](=O)[O-])c1C,GS-LF
+Musk Xylene,Cc1c([N+](=O)[O-])c(C)c([N+](=O)[O-])c(C(C)(C)C)c1[N+](=O)[O-],GS-LF
+Myrcene,C=CC(=C)CCC=C(C)C,GS-LF
+Myristic Acid,CCCCCCCCCCCCCC(=O)O,GS-LF
+Neobergamate Forte,C=CC(=C)CCCC(C)(C)OC(C)=O,curated
+Nerol,CC(C)=CCC/C(C)=C\CO,GS-LF
+Nerolidol,C=C[C@@](C)(O)CC/C=C(\C)CCC=C(C)C,GS-LF
+Nootkatone,C=C(C)C1CCC2=CC(=O)CC(C)C2(C)C1,curated
+Nootkatone Crystals,C=C(C)[C@H]1CCC2=CC(=O)C[C@H](C)[C@@]2(C)C1,GS-LF
+Nopyl Acetate,CC(=O)OCCC1=CCC2CC1C2(C)C,GS-LF
+Nympheal,Cc1cc(CC(C)C)ccc1CCC=O,curated
+Ocimene,C=CC(C)=CCC=C(C)C,GS-LF
+Oranger Crystals,CC(=O)c1ccc2ccccc2c1,curated
+"Oxane, 50% TEC",CCCC1CCOC(C)S1,curated
+Palmitic Acid,CCCCCCCCCCCCCCCC(=O)O,GS-LF
+Para Cresol,Cc1ccc(O)cc1,GS-LF
+"Para Cresyl Acetate, 50% in IPM",CC(=O)Oc1ccc(C)cc1,curated
+Para Methyl Acetophenone,CC(=O)c1ccc(C)cc1,GS-LF
+Para Tolyl Aldehyde,Cc1ccc(C=O)cc1,GS-LF
+Paradisamide,CCC(CC)C(=O)N(C)c1cccc(C)c1,curated
+Pear Ester,CCCCC/C=C\C=C\C(=O)OCC,curated
+Peonile,N#CC(=C1CCCCC1)c1ccccc1,curated
+Phenethyl Acetate,CC(=O)OCCc1ccccc1,curated
+Phenethyl Alcohol,OCCc1ccccc1,curated
+"Phenyl Acetaldehyde, 50% PEA",O=CCc1ccccc1,curated
+Phenyl Acetic Acid 40% DPG,O=C(O)Cc1ccccc1,GS-LF
+Piperitone,CC1=CC(=O)C(C(C)C)CC1,GS-LF
+Piperonyl Acetate,CC(=O)OCc1ccc2c(c1)OCO2,GS-LF
+"Pistachio Thiazole, 1% DPG",Cc1ccsc1C(C)C,curated
+Prenyl Acetate,CC(=O)OCC=C(C)C,GS-LF
+Raspberry Ketone,CC(=O)CCc1ccc(O)cc1,curated
+Rhodinol Ex Geranium Bourbon,C=C(C)CCC[C@H](C)CCO,GS-LF
+Rhodinyl Acetate,C=C(C)CCCC(C)CCOC(C)=O,GS-LF
+Rhodinyl Formate,C=C(C)CCCC(C)CCOC=O,GS-LF
+Rhuboflor,CC=C1CC2CC1C1CCCOC21,curated
+Rose Oxide,CC(C)=CC1CCC(C)CO1,curated
+Safranal,CC1=C(C=O)C(C)(C)CC=C1,GS-LF
+Sandalore,CC1=CCC(CCC(C)C(C)O)C1(C)C,curated
+Stemone,CCC(CC(C)CC)=NO,curated
+"Strawberry Furanone, 10% DPG",CC1=C(O)C(=O)C(C)O1,curated
+Strawberry Glycidate,CCOC(=O)C1OC1(C)c1ccccc1,curated
+Styrallyl Acetate,CC(=O)OC(C)c1ccccc1,curated
+Terpinene Gamma,CC1=CCC(C(C)C)=CC1,GS-LF
+Terpineol Alpha,CC1=CCC(C(C)(C)O)CC1,curated
+"Terpinolene, Rectified",CC1=CCC(=C(C)C)CC1,GS-LF
+Terpinyl Acetate,CC(=O)OC(C)(C)C1CC=C(C)CC1,GS-LF
+Tetrahydro Linalool,CCC(C)(O)CCCC(C)C,curated
+Theaspirane,CC1=CCCC(C)(C)C12CCC(C)O2,GS-LF
+"Thiocineole, 0.1% DPG",CC12CCC(CC1)SC2(C)C,curated
+Thymol Crystals,Cc1ccc(C(C)C)c(O)c1,GS-LF
+Tonalide,CC(=O)c1cc2c(cc1C)C(C)(C)C(C)CC2(C)C,GS-LF
+Toscanol,COc1ccc(CC2CC2)cc1,curated
+"Trans-2,Cis-6-Nonadienal, 1% DPG",CC/C=C\CC/C=C/C=O,curated
+Trans-2-Decenal,CCCCCCC/C=C/C=O,GS-LF
+Trans-2-Hexenol,CCC/C=C/CO,GS-LF
+Trans-2-Nonenal,CCCCCC/C=C/C=O,GS-LF
+Trans-2-Octenal,CCCCC/C=C/C=O,GS-LF
+"Trans-4-Decenal, 10% DPG",CCCCC/C=C/CCC=O,curated
+"Triethyl Citrate, Natural (TEC)",CCOC(=O)CC(O)(CC(=O)OCC)C(=O)OCC,GS-LF
+Triplal,CC1=CC(C)C(C=O)CC1,curated
+Undecavertol,CCC=C(C)C(O)CCCCC,curated
+Vanillin,COc1cc(C=O)ccc1O,curated
+Vanillin Acetate,COc1cc(C=O)ccc1OC(C)=O,GS-LF
+Veloutone,CCCCCC1(C)CCC(C)(C)C1=O,curated
+Velvione,O=C1CCCC=CCCCCCCCCCC1,curated
+Verdox HC,CC(=O)OC1CCCCC1C(C)(C)C,curated
+Whiskey Lactone,CCCCC1OC(=O)CC1C,GS-LF
+Zingerone,COc1cc(CCC(C)=O)ccc1O,GS-LF

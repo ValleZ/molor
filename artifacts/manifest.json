@@ -1,0 +1,69 @@
+{
+  "created_utc": "2026-10-29T13:36:31+00:00",
+  "orvector_version": "0.1.0",
+  "panel_hash": "cc30925632f53b01a48429d6655eb2f08467466ed1981ef819128f0b94512913",
+  "n_receptors": 386,
+  "receptors_tsv": "receptors.tsv",
+  "repaired_receptors": [
+    {
+      "gene": "OR2G6",
+      "uniprot": "Q5TZ20",
+      "seq_len": 316
+    }
+  ],
+  "checkpoint_md5": "98b3bcc6f0bae4c8faddb40ffb22c7d5",
+  "model_config_hash": "72bd3d64bb3db34c",
+  "encoder_config_hash": "68a0a9f01fc82dcf",
+  "seq_pad_len": 443,
+  "max_node_len": 98,
+  "software": {
+    "orvector": "0.1.0",
+    "python": "3.11.18",
+    "torch": "2.3.0+cu121",
+    "dgl": "2.2.1",
+    "rdkit": "2023.03.1",
+    "numpy": "1.26.4",
+    "pandas": "2.0.3"
+  },
+  "provenance": {
+    "upstream_repo": "https://github.com/microsoft/olfaction",
+    "upstream_commit": "0b8bd710509d50310e8c45396301e22eebbc8f69",
+    "checkpoint": "m2or_MolOR_esm_650m_unweighted.pth",
+    "checkpoint_md5": "98b3bcc6f0bae4c8faddb40ffb22c7d5",
+    "checkpoint_source": "Zenodo record 13765978 (doi:10.1101/2024.09.16.613334)",
+    "panel_source": "data/datasets/genes.csv + data/datasets/HORDE/functional_indices.json",
+    "esm_model": "esm2_t33_650M_UR50D",
+    "esm_layer": 33,
+    "seq_pad_len": 443,
+    "max_node_len": 98
+  },
+  "model_config": {
+    "in_feats": 74,
+    "hidden_feats": [
+      256,
+      256
+    ],
+    "residual": [
+      true,
+      true
+    ],
+    "batchnorm": [
+      false,
+      false
+    ],
+    "dropout": [
+      0.05,
+      0.05
+    ],
+    "add_feats": 1280,
+    "prot_feats": 1280,
+    "gnn_attended_feats": null,
+    "mol2_prot": true,
+    "model_encoder": "GCN",
+    "max_seq_len": 443,
+    "max_node_len": 98,
+    "predictor_hidden_feats": 128,
+    "predictor_dropout": 0.05,
+    "n_tasks": 1
+  }
+}
