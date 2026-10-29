@@ -1,7 +1,10 @@
 # Large downloaded or derived artifacts
 .venv/
+.venv-pom/
 vendor/olfaction/
 vendor/zenodo/
+# OpenPOM clone: 10 x 25 MB ensemble checkpoints, re-cloneable
+vendor/openpom/
 artifacts/esm_cache/
 artifacts/panel_embeddings.npy
 artifacts/*.log

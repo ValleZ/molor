@@ -68,7 +68,10 @@ def main() -> int:
     names = [e.name for e in entries]
     low = {n.lower(): n for n in names}
 
-    pj = json.loads((ROOT / "artifacts" / "percepts_expanded.json").read_text(encoding="utf-8"))
+    import os
+    _pf = os.environ.get("ORV_PERCEPTS", "artifacts/percepts_expanded.json")
+    pj = json.loads((ROOT / _pf).read_text(encoding="utf-8"))
+    print(f"[percepts] {_pf}")
     desc = pj["descriptors"]
     P = {n: np.asarray(r, float) for n, r in zip(pj["molecules"], pj["probs"])}
     mu = np.stack([P[n] for n in names]).mean(axis=0)

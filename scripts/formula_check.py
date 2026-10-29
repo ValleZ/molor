@@ -77,7 +77,10 @@ def main() -> int:
     idx = {n: i for i, n in enumerate(names)}
     rmu = scores.mean(axis=0)
 
-    pj = json.loads((ROOT / "artifacts" / "percepts_expanded.json").read_text(encoding="utf-8"))
+    import os
+    _pf = os.environ.get("ORV_PERCEPTS", "artifacts/percepts_expanded.json")
+    pj = json.loads((ROOT / _pf).read_text(encoding="utf-8"))
+    print(f"[percepts] {_pf}")
     desc = pj["descriptors"]
     P = {n: np.asarray(r, float) for n, r in zip(pj["molecules"], pj["probs"])}
     pmu = np.stack(list(P.values())).mean(axis=0)

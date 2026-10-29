@@ -165,7 +165,10 @@ def main() -> int:
         # descriptor distance matched the perfumer and receptor distance did not.
         import json as _j
 
-        pj = _j.loads((ROOT / "artifacts" / "percepts_expanded.json").read_text(encoding="utf-8"))
+        import os as _os
+        _pf = _os.environ.get("ORV_PERCEPTS", "artifacts/percepts_expanded.json")
+        pj = _j.loads((ROOT / _pf).read_text(encoding="utf-8"))
+        print(f"[percepts] {_pf}")
         pm = {n: np.asarray(r, float) for n, r in zip(pj["molecules"], pj["probs"])}
         miss = [n for n in names if n not in pm]
         if miss:
@@ -250,7 +253,8 @@ def main() -> int:
     # with the same caveats, but in a space that can be read as smell.
     import json as _json
 
-    pfile = ROOT / "artifacts" / "percepts_expanded.json"
+    import os as _os2
+    pfile = ROOT / _os2.environ.get("ORV_PERCEPTS", "artifacts/percepts_expanded.json")
     if pfile.is_file():
         pj = _json.loads(pfile.read_text(encoding="utf-8"))
         desc = pj["descriptors"]
