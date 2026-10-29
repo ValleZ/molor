@@ -1,0 +1,6 @@
+name,smiles,source
+Ethyl Octanoate,CCCCCCCC(=O)OCC,GS-LF
+Phenyl Propyl Alcohol,C1=CC=C(C=C1)CCCO,GS-LF
+Borneol,C[C@]12CC[C@@H](C1(C)C)C[C@H]2O,GS-LF
+Floropal,CC1CC(OC(O1)C)(C)C2=CC=CC=C2,GS-LF
+Hydrocinnamic Acid,C1=CC=C(C=C1)CCC(=O)O,GS-LF

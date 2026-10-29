@@ -90,7 +90,8 @@ select, input[type="search"] {
   background: var(--surface-2); border: 1px solid var(--line);
   border-radius: 7px; padding: 6px 9px; min-width: 0;
 }
-input[type="search"] { width: 190px; }
+input[type="search"] { width: 100%; min-width: 200px; }
+.field.grow { flex: 1 1 260px; min-width: 0; }
 .toggle {
   display: inline-flex; align-items: center; gap: 6px; cursor: pointer;
   font-size: 13px; color: var(--fg); user-select: none;
@@ -151,8 +152,10 @@ input[type="search"] { width: 190px; }
 .bars { display: flex; flex-direction: column; gap: 3px; }
 .rrow { display: grid; grid-template-columns: 66px 1fr 46px; gap: 7px; align-items: center; font-size: 11.5px; }
 .rrow .g { font-family: var(--font-mono); }
-.track { background: var(--surface-2); border-radius: 3px; height: 11px; overflow: hidden; }
-.fill { height: 100%; background: var(--accent); border-radius: 3px; }
+.track { display: block; background: var(--surface-2); border-radius: 3px; height: 11px; overflow: hidden; }
+/* display:block matters: a bare <span> is inline, and inline boxes ignore
+   width and height, which rendered every bar empty. */
+.fill { display: block; height: 100%; min-width: 2px; background: var(--accent); border-radius: 3px; }
 .rrow .v { font-family: var(--font-mono); text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; }
 .nn { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
 .nn li { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: baseline; }
@@ -164,6 +167,8 @@ input[type="search"] { width: 190px; }
 .nn button:hover { color: var(--accent); }
 .nn .d { font-family: var(--font-mono); font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; }
 .legend { display: flex; flex-wrap: wrap; gap: 5px; }
+.legend-actions { display: flex; gap: 6px; margin: 0 0 8px; }
+.btn.mini { font-size: 11.5px; padding: 3px 9px; }
 .lg {
   display: inline-flex; align-items: center; gap: 5px; cursor: pointer;
   border: 1px solid var(--line); border-radius: 999px;
@@ -184,38 +189,14 @@ footer strong { color: var(--fg); font-weight: 600; }
 
 <div class="wrap">
   <h1>Aromachemical Receptor Atlas</h1>
-  <p class="sub">
-    128 perfumery materials scored against 386 functional human olfactory receptors
-    by the MolOR cross-attention model. Click any point to inspect its receptor
-    profile and true nearest neighbours. Grey links join pairs that are mutual
-    nearest neighbours in the full 386-dimensional space, not on this plane. Switch encoders to see how much the architecture alone moves things.
-  </p>
+  <p class="sub" id="sub"></p>
 
   <div class="bar">
-    <div class="field">
-      <label class="lab" for="colourby">Colour / filter by</label>
-      <select id="colourby">
-        <option value="percept">predicted odour (GS-LF model)</option>
-        <option value="odour">odour family (your notes)</option>
-        <option value="cls">chemical class</option>
-      </select>
-    </div>
-    <div class="field">
-      <label class="lab" for="model">Encoder</label>
-      <select id="model"></select>
-    </div>
-    <div class="field">
-      <label class="lab" for="proj">Projection</label>
-      <select id="proj"></select>
-    </div>
-    <div class="field">
+    <div class="field grow">
       <label class="lab" for="q">Find</label>
-      <input type="search" id="q" placeholder="vanillin, musk, ester…" autocomplete="off">
+      <input type="search" id="q"
+             placeholder="name, formula, odour descriptor, SMILES…" autocomplete="off">
     </div>
-    <label class="toggle"><input type="checkbox" id="tLinks" checked> links</label>
-    <label class="toggle"><input type="checkbox" id="tLabels" checked> labels</label>
-    <label class="toggle"><input type="checkbox" id="tSize" checked> size = potency</label>
-    <button class="btn" id="reset" type="button">Reset view</button>
     <button class="btn" id="clearPin" type="button" hidden>Clear comparison</button>
   </div>
 
@@ -233,6 +214,10 @@ footer strong { color: var(--fg); font-weight: 600; }
       </div>
       <div class="panel">
         <h2 id="legendTitle">Odour family</h2>
+        <div class="legend-actions">
+          <button class="btn mini" id="selAll" type="button">Select all</button>
+          <button class="btn mini" id="selNone" type="button">Deselect all</button>
+        </div>
         <div class="legend" id="legend"></div>
         <p class="note">Click a class to show or hide it.</p>
       </div>
@@ -298,11 +283,29 @@ window.addEventListener("error", function (ev) {
     return (100 * lo / flat.length);
   }
 
+  // Prefer the 3D projection; it preserves local neighbourhoods far better
+  // (top-10 overlap 0.70 vs 0.51), which is what stops unrelated materials
+  // from looking like cluster members.
+  var proj3d = Object.keys(D.models[D.modelOrder[0]].projections)
+    .filter(function (k) { return k.indexOf("3") >= 0 && k.indexOf("quality") < 0; });
   var state = {
-    scheme: defaultScheme, model: D.modelOrder[0], proj: "mds_full", sel: null, pin: null, hover: null,
-    hidden: Object.create(null), links: true, labels: true, sizeByPotency: true,
+    scheme: defaultScheme,
+    model: D.modelOrder[0],
+    proj: proj3d.length ? proj3d[0] : Object.keys(D.models[D.modelOrder[0]].projections)[0],
+    sel: null, pin: null, hover: null,
+    hidden: Object.create(null), links: true, labels: true, sizeByPotency: false,
     k: 1, tx: 0, ty: 0, fitted: false, query: "", yaw: 0.6, pitch: 0.35
   };
+
+  document.getElementById("selAll").addEventListener("click", function () {
+    state.hidden = Object.create(null);
+    buildLegend(); draw();
+  });
+  document.getElementById("selNone").addEventListener("click", function () {
+    state.hidden = Object.create(null);
+    groupList().forEach(function (g) { state.hidden[g] = true; });
+    buildLegend(); draw();
+  });
 
   var cv = document.getElementById("plot");
   var ctx = cv.getContext("2d");
@@ -310,42 +313,9 @@ window.addEventListener("error", function (ev) {
   var readout = document.getElementById("readout");
 
   // ---- controls ----
-  var msel = document.getElementById("model");
-  D.modelOrder.forEach(function (k) {
-    var o = document.createElement("option");
-    o.value = k; o.textContent = D.models[k].label;
-    msel.appendChild(o);
-  });
-  msel.value = state.model;
-  msel.addEventListener("change", function () {
-    state.model = msel.value; state.fitted = false;
-    draw(); renderDetail(); renderFoot();
-  });
-
-  var sel = document.getElementById("proj");
-  Object.keys(M().projections).forEach(function (k) {
-    var o = document.createElement("option");
-    o.value = k;
-    o.textContent = M().projections[k].label;
-    sel.appendChild(o);
-  });
-  sel.value = state.proj;
-  sel.addEventListener("change", function () {
-    state.proj = sel.value; state.fitted = false; draw(); renderFoot();
-  });
-
-  document.getElementById("tLinks").addEventListener("change", function (e) {
-    state.links = e.target.checked; draw();
-  });
-  document.getElementById("tLabels").addEventListener("change", function (e) {
-    state.labels = e.target.checked; draw();
-  });
-  document.getElementById("tSize").addEventListener("change", function (e) {
-    state.sizeByPotency = e.target.checked; draw();
-  });
-  document.getElementById("reset").addEventListener("click", function () {
-    state.fitted = false; draw();
-  });
+  // One view only: the 3D MDS of the MPNN encoder, coloured by predicted
+  // odour. The other projections and encoders stayed in the payload but the
+  // controls for them are gone, so the page has nothing to configure.
   var clearPin = document.getElementById("clearPin");
   clearPin.addEventListener("click", function () {
     state.pin = null; clearPin.hidden = true; renderDetail(); draw();
@@ -363,7 +333,9 @@ window.addEventListener("error", function (ev) {
       : state.scheme === "percept" ? "Predicted odour" : "Odour family (your notes)";
   groupList().forEach(function (c) {
     var el = document.createElement("span");
-    el.className = "lg";
+    // Reflect current state: buildLegend() runs after Select/Deselect all, and
+    // a fresh chip would otherwise always look enabled.
+    el.className = "lg" + (state.hidden[c] ? " off" : "");
     el.innerHTML = '<i style="background:' + groupColour(c) + '"></i>' + c.replace(/_/g, " ").toLowerCase();
     el.setAttribute("role", "button");
     el.tabIndex = 0;
@@ -381,14 +353,6 @@ window.addEventListener("error", function (ev) {
   }
   buildLegend();
 
-  var cby = document.getElementById("colourby");
-  if (!hasOdour) { cby.value = "cls"; cby.disabled = true; }
-  cby.value = state.scheme;
-  cby.addEventListener("change", function () {
-    state.scheme = cby.value;
-    state.hidden = Object.create(null);
-    buildLegend(); draw(); renderDetail();
-  });
 
   function visible(i) {
     var g = groupsOf(i);
@@ -631,6 +595,10 @@ window.addEventListener("error", function (ev) {
     } else { state.sel = h; }
     renderDetail(); draw();
   });
+  // The Reset control is gone, so double-clicking the plot re-fits the view.
+  cv.addEventListener("dblclick", function () {
+    state.fitted = false; state.yaw = 0.6; state.pitch = 0.35; draw();
+  });
   cv.addEventListener("pointerleave", function () { tip.hidden = true; dragging = false; cv.classList.remove("drag"); });
   cv.addEventListener("wheel", function (ev) {
     ev.preventDefault();
@@ -686,8 +654,6 @@ window.addEventListener("error", function (ev) {
       + "<dt>SMILES</dt><dd>" + esc(m.smiles) + "</dd>"
       + "<dt>Heavy atoms</dt><dd>" + m.atoms + "</dd>"
       + "<dt>Total activation</dt><dd>" + M().total[i].toFixed(2) + "</dd>"
-      + (m.note ? "<dt>Your note</dt><dd style=\"font-family:var(--font-body);font-size:12px\">"
-         + esc(m.note) + "</dd>" : "")
       + ((m.perceptTop && m.perceptTop.length)
          ? "<dt>Predicted odour</dt><dd style=\"font-family:var(--font-body);font-size:12px\">"
            + m.perceptTop.map(function (t) { return esc(t[0]) + " " + t[1].toFixed(2); }).join(", ")
@@ -737,8 +703,6 @@ window.addEventListener("error", function (ev) {
         + '</button><span class="d">' + t[1].toFixed(1) + "</span></li>";
     });
     html += "</ul>";
-    html += '<p class="note">Distances are from the full 386-dimensional space, '
-      + "so they stay true even where the plane distorts.</p>";
 
     el.innerHTML = html;
     Array.prototype.forEach.call(el.querySelectorAll("[data-go]"), function (b) {
@@ -751,25 +715,25 @@ window.addEventListener("error", function (ev) {
 
   function renderFoot() {
     var p = P();
-    var ex = p.explained
-      ? " Axes carry " + (p.explained[0] * 100).toFixed(1) + "% and "
-        + (p.explained[1] * 100).toFixed(1) + "% of variance."
-      : "";
+    document.getElementById("sub").innerHTML =
+      D.meta.n_molecules + " perfumery materials scored against " + D.meta.n_receptors
+      + " functional human olfactory receptors by <strong>MolOR</strong> "
+      + "(MPNN encoder, ESM-2 650M protein embeddings), then coloured by odour "
+      + "descriptors predicted with the GS-LF model. Drag to rotate, shift-drag to pan, "
+      + "scroll to zoom. Click a material to inspect it; shift-click a second to compare. "
+      + "<br><br>"
+      + "Grey links join pairs that are mutual nearest neighbours in the real "
+      + "386-dimensional space, so <strong>trust the links over bare proximity</strong> — "
+      + "a dotted outline marks a material whose plotted neighbours are mostly not its true "
+      + "ones. This projection reproduces the real distances at Shepard "
+      + p.shepard.toFixed(3) + ". Two limits: stereochemistry is invisible to the model, so "
+      + "enantiomers and E/Z isomers land on the same point; and the vectors encode chemical "
+      + "structure more strongly than smell.";
     document.getElementById("foot").innerHTML =
-      "<strong>" + esc(M().label) + ".</strong> Shepard rank correlation is <strong>"
-      + p.shepard.toFixed(3) + "</strong>: how faithfully distances on this plane reproduce the "
-      + "real 386-dimensional ones." + ex
-      + " That is a global measure and oversells local detail, which is why true "
-      + "mutual-nearest-neighbour links are drawn and why points whose plotted neighbours "
-      + "are mostly wrong get a dotted outline. "
-      + "<strong>Two limits worth knowing.</strong> Stereochemistry is invisible to the model, "
-      + "so enantiomers and E/Z isomers land on exactly the same point. And the vectors encode "
-      + "chemical structure rather than odour, which is why musks spanning different chemotypes "
-      + "do not group together. The two encoders agree with each other only at Spearman 0.26, "
-      + "so switching between them reshuffles the space: treat any single map as "
-      + "architecture-dependent, not as a fact about smell. "
-      + "Panel " + esc(D.meta.panel_hash) + " · checkpoint " + esc(D.meta.checkpoint_md5.slice(0, 12))
-      + " · " + D.meta.n_molecules + " materials × " + D.meta.n_receptors + " receptors.";
+      "Model: MolOR MPNN, checkpoint " + esc(D.meta.checkpoint_md5.slice(0, 12))
+      + " · receptor panel " + esc(D.meta.panel_hash)
+      + " · odour descriptors from GS_LF_baseline_gcn · "
+      + "weights from Zenodo record 13765978, code from microsoft/olfaction.";
   }
 
   window.addEventListener("resize", function () { resize(); state.fitted = false; draw(); });

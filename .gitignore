@@ -14,3 +14,9 @@ __pycache__/
 *.py[cod]
 *.egg-info/
 .pytest_cache/
+
+# Build outputs: regenerated in seconds from the library store plus the
+# template, so the inputs are versioned and these are not.
+artifacts/viewer_data*.json
+artifacts/receptor_atlas*.html
+artifacts/maps*/

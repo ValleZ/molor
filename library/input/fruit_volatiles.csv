@@ -1,0 +1,9 @@
+name,smiles,source
+(Z)-3-Hexenal,CC/C=C\CC=O,manual
+(E)-2-Hexenal,CCC/C=C/C=O,manual
+Methyl Butanoate,CCCC(=O)OC,manual
+Ethyl Acetate,CCOC(=O)C,manual
+Ethyl Butanoate,CCCC(=O)OCC,manual
+(Z)-3-Hexen-1-ol,CC/C=C\CCO,manual
+Methyl Acetate,COC(=O)C,manual
+Heptan-2-one,CCCCCC(=O)C,manual

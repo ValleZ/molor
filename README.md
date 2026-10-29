@@ -301,6 +301,80 @@ coherence (0.617 vs 0.422) and it fixed the vanillin/p-cresyl-acetate artefact,
 but it is blind to a distinction the GCN does make. Which encoder is preferable
 depends entirely on the question being asked, and neither predicts smell.
 
+## The limit that matters: chemistry, not smell
+
+The descriptor test above shows a weak but real perceptual signal. A sharper
+test asks what happens where chemistry and smell *disagree* — two materials
+from unrelated chemical families that smell alike. That is the case a perfumer
+actually needs a receptor-level map for, and it is where this fails.
+
+`scripts/chem_vs_smell.py` and `scripts/musk_test.py` measure three independent
+things per pair: Morgan (ECFP4) Tanimoto for structure, GS-LF descriptor cosine
+for smell, and MPNN receptor distance.
+
+### Musk chemotypes do not recognise each other
+
+Musks are the textbook case: four unrelated scaffolds, one odour class.
+
+| | median receptor percentile |
+|---|---|
+| **within** nitro | 6.5% |
+| **within** alicyclic | 8.0% |
+| **within** macrocyclic | 18.7% |
+| nitro vs macrocyclic | **86%** |
+| nitro vs polycyclic | **91%** |
+| macrocyclic vs polycyclic | **91%** |
+
+Musk Xylene and Galaxolide — both unmistakably musks — sit at the **96th
+percentile** of all 45,150 pairs. The model holds a tight, correct cluster per
+chemotype and has no concept uniting them. Expected, given the deorphanization
+gap: OR5AN1 is the known musk receptor and its learned signal is weak, so there
+is no training data from which "musk" could be learned as one thing.
+
+### A validation that looked like a pass, and was not
+
+Scored across all 301 materials using the **percept model** as the smell axis,
+structurally unrelated but similar-smelling pairs sat at the 7.7th percentile
+versus 52.8th for a control — an apparent success.
+
+That axis is itself a graph network over the same molecules. Two structure-based
+models can agree while sharing a blind spot. Repeating the test with the
+perfumer's own notes as judge — the only odour data here no model produced:
+
+| judged by the perfumer's notes | median receptor percentile |
+|---|---|
+| structurally unrelated, notes agree (426 pairs) | 50.4% |
+| structurally unrelated, notes share nothing (3920 pairs) | 52.6% |
+
+**No signal.** The 7.7-vs-52.8 result was two correlated models agreeing with
+each other. Any evaluation that uses one model to judge another must be treated
+as circular until checked against data outside both.
+
+Partial correlations over all pairs: receptor~structure with smell held fixed
+is −0.188; receptor~smell with structure held fixed is −0.113. Both survive, so
+there is odour information beyond structure — but it is weaker, and it vanishes
+on the hard cases.
+
+### Practical consequence
+
+**The vectors are a chemistry representation with a weak odour correlate, not
+an odour representation.** They succeed where chemistry and smell already agree
+and add nothing where they diverge.
+
+When using this to pick materials, sort candidates by Tanimoto to the query:
+
+* **Tanimoto ≥ 0.25** — reliable regime, but the answers are mostly ones a
+  perfumer would reach anyway (for a green-C6 target it suggests more green C6).
+* **Tanimoto < 0.25** — blind spot. Both positive and negative verdicts here
+  are uninformative, and the negatives are the worst of all: the noisy-OR
+  combination rule only ever adds, so it structurally undervalues any material
+  whose job is to cut, sharpen or contrast.
+
+So this is a bookkeeping and gap-finding tool over a material library, not a
+discovery engine. It reliably reports what is missing in descriptor terms and
+what is chemically adjacent to fill it. It will not find the unexpected
+material from an unrelated family.
+
 ## Why this is a learned model and not a physics simulation
 
 A reasonable question: protein structures are predictable now, molecular

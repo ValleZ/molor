@@ -1,4 +1,6 @@
 name,smiles,source
+(E)-2-Hexenal,CCC/C=C/C=O,fruit-volatile
+(Z)-3-Hexenal,CC/C=C\CC=O,fruit-volatile
 2-Acetyl Pyridine,CC(=O)c1ccccn1,GS-LF
 2-Acetyl Thiazole,CC(=O)c1nccs1,GS-LF
 2-Ethylhexyl Salicylate,CCCCC(CC)COC(=O)c1ccccc1O,GS-LF
@@ -9,6 +11,7 @@ Acetate C-9,CCCCCCCCCOC(C)=O,GS-LF
 Acetoin,CC(=O)C(C)O,GS-LF
 Acetophenone,CC(=O)c1ccccc1,GS-LF
 Alcohol C-11 Undecylenic,C=CCCCCCCCCCO,GS-LF
+Alcohol C-6,CCCCCCO,GS-LF
 Aldehyde C-10,CCCCCCCCCC=O,curated
 Aldehyde C-11 Undecylenic,C=CCCCCCCCCC=O,curated
 Aldehyde C-11 Undecylic,CCCCCCCCCCC=O,GS-LF
@@ -46,6 +49,7 @@ Benzyl Propionate,CCC(=O)OCc1ccccc1,GS-LF
 Benzyl Salicylate,O=C(OCc1ccccc1)c1ccccc1O,curated
 Beta Pinene,C=C1CCC2CC1C2(C)C,GS-LF
 "Blackcurrant mercaptan, 0.1% DPG",COCCC(C)(C)S,curated
+Borneol,C[C@]12CC[C@@H](C1(C)C)C[C@H]2O,GS-LF
 Calone 1951,Cc1ccc2c(c1)OCC(=O)CO2,curated
 Camphor Crystals,CC1(C)C2CC[C@]1(C)C(=O)C2,GS-LF
 Caprylic Acid,CCCCCCCC(=O)O,GS-LF
@@ -119,6 +123,7 @@ Ethyl Levulinate,CCOC(=O)CCC(C)=O,GS-LF
 Ethyl Linalool,C=CC(C)(O)CCC=C(C)CC,curated
 "Ethyl Maltol, 1% in PG",CCc1occc(=O)c1O,curated
 Ethyl Myristate,CCCCCCCCCCCCCC(=O)OCC,GS-LF
+Ethyl Octanoate,CCCCCCCC(=O)OCC,GS-LF
 Ethyl Salicylate,CCOC(=O)c1ccccc1O,GS-LF
 Ethyl Tiglate,C/C=C(\C)C(=O)OCC,GS-LF
 Ethyl Vanillin,CCOc1cc(C=O)ccc1O,curated
@@ -133,6 +138,7 @@ Fenchone Alpha,CC12CCC(C1)C(C)(C)C2=O,GS-LF
 Floralozone,CCc1ccc(CC(C)(C)C=O)cc1,curated
 Florhydral,CC(C)c1cccc(C(C)CC=O)c1,curated
 Florol,CC(C)CC1CC(C)(O)CCO1,curated
+Floropal,CC1CC(OC(O1)C)(C)C2=CC=CC=C2,GS-LF
 Fructone,CCOC(=O)CC1(C)OCCO1,curated
 Furfural 5% DPG,O=Cc1ccco1,GS-LF
 Furfuryl Acetate,CC(=O)OCc1ccco1,GS-LF
@@ -155,6 +161,7 @@ Hedione,CCCCCC1C(=O)CCC1CC(=O)OC,curated
 Helional,CC(C=O)Cc1ccc2c(c1)OCO2,curated
 "Heliotropin, 20% DPG",O=Cc1ccc2c(c1)OCO2,curated
 Helvetolide,CCC(=O)OCC(C)(C)OC(C)C1CCCC(C)(C)C1,curated
+Heptan-2-one,CCCCCC(=O)C,fruit-volatile
 Hexenol-3-CIS,CC/C=C\CCO,curated
 Hexenyl-3-CIS Acetate,CC/C=C\CCOC(C)=O,curated
 Hexyl Acetate,CCCCCCOC(C)=O,curated
@@ -166,6 +173,7 @@ Hexyl Isovalerate,CCCCCCOC(=O)CC(C)C,GS-LF
 Hexyl Salicylate,CCCCCCOC(=O)c1ccccc1O,curated
 Hexyl Tiglate,C/C=C(\C)C(=O)OCCCCCC,GS-LF
 Hydratropic Aldehyde,C[C@@H](C=O)c1ccccc1,GS-LF
+Hydrocinnamic Acid,C1=CC=C(C=C1)CCC(=O)O,GS-LF
 Hydroxycitronellal,CC(CC=O)CCCC(C)(C)O,curated
 Indolene 50,c1ccc2[nH]ccc2c1,curated
 Ionone Alpha,CC(=O)/C=C/C1C(C)=CCCC1(C)C,curated
@@ -183,6 +191,7 @@ Isoeugenol,C/C=C/c1ccc(O)c(OC)c1,GS-LF
 Isophytol,C=CC(C)(O)CCCC(C)CCCC(C)CCCC(C)C,GS-LF
 Isopropyl Myristate (IPM),CCCCCCCCCCCCCC(=O)OC(C)C,GS-LF
 Kephalis,C=C(OCC)C1C(C)(C)CC(=O)CC1(C)C,curated
+Labienoxime,CC(C)/C(=N/O)/C(C)(C)C/C=C(\C)/C=C,GS-LF
 Laevo Menthol,CC1CCC(C(C)C)C(O)C1,GS-LF
 Lemonile,CCC(C)=CCCC(C)=CC#N,curated
 Levulinic Acid,CC(=O)CCC(=O)O,GS-LF
@@ -199,6 +208,7 @@ Manzanate,CCCC(C)C(=O)OCC,curated
 Matsutake Alcohol,C=C[C@@H](O)CCCCC,GS-LF
 "Melonal, 10% DPG",CC(C)=CCCC(C)C=O,curated
 Menthone,CC(C)[C@@H]1CC[C@@H](C)CC1=O,GS-LF
+Methyl Acetate,COC(=O)C,fruit-volatile
 Methyl Anthranilate,COC(=O)c1ccccc1N,curated
 Methyl Benzoate,COC(=O)c1ccccc1,curated
 Methyl Butyrate,CCCC(=O)OC,GS-LF
@@ -247,6 +257,7 @@ Phenethyl Acetate,CC(=O)OCCc1ccccc1,curated
 Phenethyl Alcohol,OCCc1ccccc1,curated
 "Phenyl Acetaldehyde, 50% PEA",O=CCc1ccccc1,curated
 Phenyl Acetic Acid 40% DPG,O=C(O)Cc1ccccc1,GS-LF
+Phenyl Propyl Alcohol,C1=CC=C(C=C1)CCCO,GS-LF
 Piperitone,CC1=CC(=O)C(C(C)C)CC1,GS-LF
 Piperonyl Acetate,CC(=O)OCc1ccc2c(c1)OCO2,GS-LF
 "Pistachio Thiazole, 1% DPG",Cc1ccsc1C(C)C,curated

@@ -107,6 +107,8 @@ def main() -> int:
     ap.add_argument("--name", default=None, help="library directory under artifacts/")
     ap.add_argument("--device", default="cpu")
     ap.add_argument("--batch-size", type=int, default=16)
+    ap.add_argument("--force", action="store_true",
+                    help="recompute molecules already stored")
     args = ap.parse_args()
 
     name = args.name or f"library_mpnn_s{args.steps}"
@@ -136,6 +138,15 @@ def main() -> int:
         edge_featurizer=CanonicalBondFeaturizer(self_loop=True),
     )
 
+    # Append-only: existing molecules are kept and only new InChIKeys computed,
+    # so growing the library costs the new molecules rather than all of them.
+    existing_entries, existing_logits = [], None
+    lib_pre = Library(paths, name=name)
+    if lib_pre.exists() and not args.force:
+        existing_entries, existing_logits, _ = lib_pre.load()
+        print(f"[mpnn] library already holds {len(existing_entries)} molecules")
+    known = {e.inchikey for e in existing_entries}
+
     rows = list(csv.DictReader(open(ROOT / args.csv, newline="", encoding="utf-8-sig")))
     mols, entries = [], []
     for r in rows:
@@ -145,6 +156,10 @@ def main() -> int:
             print(f"  skip unparseable {r['name']}")
             continue
         can = Chem.MolToSmiles(mol)
+        key = Chem.MolToInchiKey(mol)
+        if key in known:
+            continue
+        known.add(key)
         g = s2g(can)
         if g is None or g.num_nodes() > MAX_NODE_LEN:
             print(f"  skip {r['name']}")
@@ -225,7 +240,10 @@ def main() -> int:
     if delta > 1e-4:
         raise SystemExit("hoisted path diverges from upstream forward; aborting")
 
-    print(f"[mpnn] scoring {len(mols)} molecules x {R} receptors on {args.device}")
+    if not mols:
+        print("[mpnn] nothing new to compute")
+        return 0
+    print(f"[mpnn] scoring {len(mols)} new molecules x {R} receptors on {args.device}")
     with torch.inference_mode():
         for mi, g in enumerate(mols):
             for s in range(0, R, args.batch_size):
@@ -237,6 +255,11 @@ def main() -> int:
     if not np.isfinite(logits).all():
         raise SystemExit("non-finite logits")
     scores = (1.0 / (1.0 + np.exp(-logits.astype(np.float64)))).astype(np.float32)
+
+    if existing_entries:
+        entries = existing_entries + entries
+        logits = np.vstack([existing_logits, logits])
+        scores = (1.0 / (1.0 + np.exp(-logits.astype(np.float64)))).astype(np.float32)
 
     lib = Library(paths, name=name)
     lib._write(entries, logits, scores, panel_hash(receptors),

@@ -25,6 +25,27 @@ from check_impressions import tags_for  # noqa: E402
 ROOT = Path(__file__).resolve().parents[1]
 
 
+#: Descriptor -> colour. Chosen so the legend reads as the smell it names;
+#: related families share a hue (greens together, browns together).
+SEMANTIC_COLOUR = {
+    "green": "#3f9b4f", "vegetable": "#2b7a46", "herbal": "#7da23c",
+    "grassy": "#5faa55", "minty": "#49b58a", "fresh": "#4fb3c4",
+    "ozone": "#5aa6d0", "marine": "#3f86b5", "aldehydic": "#9fb8c8",
+    "citrus": "#f2b705", "tropical": "#f28a2e", "fruity": "#e8603c",
+    "apple": "#cf4f54", "pineapple": "#e0a32b", "banana": "#e8c547",
+    "berry": "#c2384f", "melon": "#8fbf6a",
+    "rose": "#e86a9a", "floral": "#d16ac4", "powdery": "#b9a8d4",
+    "sweet": "#f0a6c0", "vanilla": "#e3d08f", "caramellic": "#c98b35",
+    "creamy": "#e2cfae", "coconut": "#d8c7a2",
+    "woody": "#8a5a33", "balsamic": "#73452c", "earthy": "#6b5a44",
+    "phenolic": "#9a7b3f", "spicy": "#c0452b", "camphoreous": "#7f9aa6",
+    "musk": "#8d7bb5", "animal": "#7a6253",
+    "fatty": "#c9a86a", "waxy": "#cbbf96", "oily": "#b9a76f",
+    "sulfurous": "#9bb02e", "meaty": "#a05a4a", "ethereal": "#8fb8d8",
+    "winey": "#8e3b5a", "rummy": "#a85b3a", "nutty": "#a87a4f",
+    "other": "#9aa6b1",
+}
+
 EDGE_K = 2  # mutual-kNN depth for the true-neighbour links
 
 #: First entry is what the viewer opens on. The MPNN leads because it is the
@@ -110,6 +131,8 @@ def main() -> int:
                     help="comma-separated key=library pairs; first is the reference set")
     ap.add_argument("--out", default="artifacts/viewer_data.json")
     ap.add_argument("--percepts", default="artifacts/percepts_baseline.json")
+    ap.add_argument("--no-notes", action="store_true",
+                    help="omit the perfumer's private smelling notes (use for public builds)")
     args = ap.parse_args()
     global MODELS
     if args.models:
@@ -193,9 +216,13 @@ def main() -> int:
             percept_tags[k] = [t for t in percept_tags[k] if t in keepset] or ["other"]
         if any("other" in v for v in percept_tags.values()):
             percept_list = percept_list + ["other"]
+        # Semantic colours: a descriptor should look like what it smells of,
+        # so green is green and woody is brown. Anything unlisted falls back to
+        # a categorical palette.
         pal2 = plt.get_cmap("tab20")
         percept_colour = {
-            t: "#%02x%02x%02x" % tuple(int(255 * v) for v in pal2(i % 20)[:3])
+            t: SEMANTIC_COLOUR.get(
+                t, "#%02x%02x%02x" % tuple(int(255 * v) for v in pal2(i % 20)[:3]))
             for i, t in enumerate(percept_list)
         }
         print(f"  percept descriptors in legend: {percept_list}")
@@ -226,14 +253,14 @@ def main() -> int:
         "molecules": [
             {"name": e.name, "cls": e.cls, "formula": e.formula,
              "smiles": e.canonical_smiles, "atoms": e.n_atoms,
-             "odour": sorted(odour_tags.get(e.name, [])),
+             "odour": [] if args.no_notes else sorted(odour_tags.get(e.name, [])),
              "percept": percept_tags.get(e.name, []),
              "perceptTop": percept_top.get(e.name, []),
-             "note": notes.get(e.name, "")}
+             "note": "" if args.no_notes else notes.get(e.name, "")}
             for e in entries
         ],
-        "odours": odour_list,
-        "odourColour": odour_colour,
+        "odours": [] if args.no_notes else odour_list,
+        "odourColour": {} if args.no_notes else odour_colour,
         "percepts": percept_list,
         "perceptColour": percept_colour,
         "models": models,
