@@ -55,14 +55,15 @@ ALIAS = {
     "blackcurrant mercaptan": "Blackcurrant mercaptan",
     "calone": "Calone 1951",
     # Matched to the library by InChIKey from the CAS number on the stock, not
-    # by name: the library spells these differently.
-    "heliotropine": "Heliotropin",            # 120-57-0, piperonal
+    # by name: the library spells these differently. "heliotropine" and
+    # "terpineol" are already below; terpineol is 8000-41-7, the isomer
+    # mixture, against the library's alpha isomer alone -- an approximation
+    # rather than an identity.
     "anisic aldehyde": "Anisaldehyde",         # 123-11-5, p-anisaldehyde
     "dihydro ionone beta": "Dihydro Beta Ionone",   # 17283-81-7
     "nonadienal": "Trans-2,Cis-6-Nonadienal",
-    # 8000-41-7 is the isomer mixture; the library holds the alpha isomer only,
-    # which is the bulk of it. An approximation, not an identity.
-    "terpineol": "Terpineol Alpha",
+    "pharone": "Pharaone",                     # 313973-37-4, as the sheet spells it
+    "padma": "Viridine",                       # 101-48-4, the acronym for it
     "dihydromyrcenol": "Dihydro Myrcenol",
     "dihydro myrcenol": "Dihydro Myrcenol",
     "dihydromircenol": "Dihydro Myrcenol",
