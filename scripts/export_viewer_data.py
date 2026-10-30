@@ -372,9 +372,16 @@ def main() -> int:
              "odt": thresh.get(e.name, [None, None, None])[0],
              "odtSrc": thresh.get(e.name, [None, None, None])[1],
              "odtPct": thresh.get(e.name, [None, None, None])[2],
-             "topPct": usage.get(e.name, [None, None, None])[0],
-             "family": usage.get(e.name, [None, None, None])[1],
-             "volatility": usage.get(e.name, [None, None, None])[2],
+             # The inventory fields are the perfumer's own compiled working
+             # data -- what they dose a material at, how they classify it --
+             # so they are withheld from public builds alongside the smelling
+             # notes. The measured thresholds are published literature and stay.
+             "topPct": None if args.no_notes
+                       else usage.get(e.name, [None, None, None])[0],
+             "family": None if args.no_notes
+                       else usage.get(e.name, [None, None, None])[1],
+             "volatility": None if args.no_notes
+                           else usage.get(e.name, [None, None, None])[2],
              "note": "" if args.no_notes else notes.get(e.name, "")}
             for e in entries
         ],
