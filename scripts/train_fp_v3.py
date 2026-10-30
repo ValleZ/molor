@@ -133,6 +133,10 @@ def main() -> int:
     ap.add_argument("--ensemble", type=int, default=5)
     ap.add_argument("--folds", type=int, default=5)
     ap.add_argument("--predict-csv", default="library/input/expanded_materials.csv")
+    ap.add_argument("--train-csv", default=TRAIN,
+                    help="label set to train on; data/percept/"
+                         "gslf_hierarchical.csv is GS-LF with its implied "
+                         "hierarchy propagated")
     ap.add_argument("--out", default="artifacts/percepts_fp3.json")
     args = ap.parse_args()
 
@@ -146,7 +150,7 @@ def main() -> int:
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"[v3] device {device}")
 
-    df = pd.read_csv(ROOT / TRAIN)
+    df = pd.read_csv(ROOT / args.train_csv)
     smi_col = "nonStereoSMILES" if "nonStereoSMILES" in df.columns else df.columns[0]
     tasks = [c for c in df.columns if c not in (smi_col, "descriptors")]
     Xraw, ok = featurise(df[smi_col].astype(str).tolist())

@@ -1,155 +1,47 @@
 {
   "dravnieks": {
     "materials_with_profiles": 43,
-    "materials_scored": 30,
+    "materials_scored": 43,
     "descriptors": 146,
-    "FP v1": {
-      "materials": 30,
-      "pairs": 435,
-      "spearman": 0.2103,
+    "v3 original": {
+      "materials": 43,
+      "pairs": 903,
+      "spearman": 0.2967,
       "ci95": [
-        0.1495,
-        0.4378
+        0.2194,
+        0.48
       ]
     },
-    "FP v2": {
-      "materials": 30,
-      "pairs": 435,
-      "spearman": 0.2895,
+    "v3 hierarchical": {
+      "materials": 43,
+      "pairs": 903,
+      "spearman": 0.3002,
       "ci95": [
-        0.2126,
-        0.5365
-      ]
-    },
-    "FP v3": {
-      "materials": 30,
-      "pairs": 435,
-      "spearman": 0.2851,
-      "ci95": [
-        0.2247,
-        0.5014
-      ]
-    },
-    "OpenPOM": {
-      "materials": 30,
-      "pairs": 435,
-      "spearman": 0.3161,
-      "ci95": [
-        0.2368,
-        0.5591
-      ]
-    },
-    "DenseSense": {
-      "materials": 30,
-      "pairs": 435,
-      "spearman": 0.2974,
-      "ci95": [
-        0.2011,
-        0.5453
-      ]
-    },
-    "GS-LF MPNN": {
-      "materials": 30,
-      "pairs": 435,
-      "spearman": 0.2816,
-      "ci95": [
-        0.1746,
-        0.5005
-      ]
-    },
-    "Uni-Mol": {
-      "materials": 30,
-      "pairs": 435,
-      "spearman": 0.1224,
-      "ci95": [
-        0.0583,
-        0.4224
-      ]
-    },
-    "ECFP4 (raw)": {
-      "materials": 30,
-      "pairs": 435,
-      "spearman": 0.1691,
-      "ci95": [
-        0.1289,
-        0.4124
+        0.2278,
+        0.4917
       ]
     }
   },
   "keller": {
     "materials_with_profiles": 99,
-    "materials_scored": 88,
+    "materials_scored": 99,
     "descriptors": 20,
-    "FP v1": {
-      "materials": 88,
-      "pairs": 3828,
-      "spearman": 0.0993,
+    "v3 original": {
+      "materials": 99,
+      "pairs": 4851,
+      "spearman": 0.1229,
       "ci95": [
-        0.0667,
-        0.1974
+        0.0967,
+        0.2115
       ]
     },
-    "FP v2": {
-      "materials": 88,
-      "pairs": 3828,
-      "spearman": 0.1091,
+    "v3 hierarchical": {
+      "materials": 99,
+      "pairs": 4851,
+      "spearman": 0.1322,
       "ci95": [
-        0.0854,
-        0.1966
-      ]
-    },
-    "FP v3": {
-      "materials": 88,
-      "pairs": 3828,
-      "spearman": 0.125,
-      "ci95": [
-        0.0962,
-        0.2349
-      ]
-    },
-    "OpenPOM": {
-      "materials": 88,
-      "pairs": 3828,
-      "spearman": 0.1152,
-      "ci95": [
-        0.0821,
-        0.2197
-      ]
-    },
-    "DenseSense": {
-      "materials": 88,
-      "pairs": 3828,
-      "spearman": 0.0938,
-      "ci95": [
-        0.0765,
-        0.1862
-      ]
-    },
-    "GS-LF MPNN": {
-      "materials": 88,
-      "pairs": 3828,
-      "spearman": 0.1098,
-      "ci95": [
-        0.0806,
-        0.215
-      ]
-    },
-    "Uni-Mol": {
-      "materials": 88,
-      "pairs": 3828,
-      "spearman": 0.0653,
-      "ci95": [
-        0.0458,
-        0.1745
-      ]
-    },
-    "ECFP4 (raw)": {
-      "materials": 88,
-      "pairs": 3828,
-      "spearman": 0.049,
-      "ci95": [
-        0.0349,
-        0.1398
+        0.1052,
+        0.2124
       ]
     }
   }

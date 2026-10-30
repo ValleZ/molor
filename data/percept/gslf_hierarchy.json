@@ -1,0 +1,197 @@
+{
+  "source": "vendor/openpom/openpom/data/curated_datasets/curated_GS_LF_merged_4983.csv",
+  "hierarchy": {
+    "fruity": [
+      "apple",
+      "apricot",
+      "banana",
+      "berry",
+      "black currant",
+      "cherry",
+      "grape",
+      "melon",
+      "peach",
+      "pear",
+      "pineapple",
+      "plum",
+      "raspberry",
+      "strawberry",
+      "tropical"
+    ],
+    "citrus": [
+      "bergamot",
+      "grapefruit",
+      "lemon",
+      "orange"
+    ],
+    "floral": [
+      "geranium",
+      "hyacinth",
+      "jasmin",
+      "lily",
+      "muguet",
+      "orangeflower",
+      "rose",
+      "violet",
+      "hawthorn"
+    ],
+    "woody": [
+      "cedar",
+      "sandalwood",
+      "vetiver"
+    ],
+    "green": [
+      "grassy",
+      "leafy",
+      "weedy"
+    ],
+    "sulfurous": [
+      "alliaceous",
+      "garlic",
+      "onion",
+      "cabbage"
+    ],
+    "dairy": [
+      "buttery",
+      "milky"
+    ],
+    "nutty": [
+      "almond",
+      "hazelnut"
+    ],
+    "spicy": [
+      "cinnamon",
+      "clove"
+    ],
+    "roasted": [
+      "coffee",
+      "popcorn"
+    ]
+  },
+  "excluded": {
+    "musk under animal": "different qualities; they cluster separately",
+    "lavender under floral": "read as aromatic/herbal in perfumery",
+    "hay under green": "dry rather than green",
+    "cheesy under dairy": "fermented rather than dairy",
+    "citrus under fruity": "sibling families in practice, not parent and child"
+  },
+  "labels_added": 951,
+  "per_parent": {
+    "fruity": {
+      "children": [
+        "apple",
+        "apricot",
+        "banana",
+        "berry",
+        "black currant",
+        "cherry",
+        "grape",
+        "melon",
+        "peach",
+        "pear",
+        "pineapple",
+        "plum",
+        "raspberry",
+        "strawberry",
+        "tropical"
+      ],
+      "molecules_gaining_the_parent": 239,
+      "parent_count_before": 1902,
+      "parent_count_after": 2141
+    },
+    "citrus": {
+      "children": [
+        "bergamot",
+        "grapefruit",
+        "lemon",
+        "orange"
+      ],
+      "molecules_gaining_the_parent": 112,
+      "parent_count_before": 379,
+      "parent_count_after": 491
+    },
+    "floral": {
+      "children": [
+        "geranium",
+        "hyacinth",
+        "jasmin",
+        "lily",
+        "muguet",
+        "orangeflower",
+        "rose",
+        "violet",
+        "hawthorn"
+      ],
+      "molecules_gaining_the_parent": 166,
+      "parent_count_before": 1100,
+      "parent_count_after": 1266
+    },
+    "woody": {
+      "children": [
+        "cedar",
+        "sandalwood",
+        "vetiver"
+      ],
+      "molecules_gaining_the_parent": 13,
+      "parent_count_before": 679,
+      "parent_count_after": 692
+    },
+    "green": {
+      "children": [
+        "grassy",
+        "leafy",
+        "weedy"
+      ],
+      "molecules_gaining_the_parent": 29,
+      "parent_count_before": 1446,
+      "parent_count_after": 1475
+    },
+    "sulfurous": {
+      "children": [
+        "alliaceous",
+        "garlic",
+        "onion",
+        "cabbage"
+      ],
+      "molecules_gaining_the_parent": 84,
+      "parent_count_before": 402,
+      "parent_count_after": 486
+    },
+    "dairy": {
+      "children": [
+        "buttery",
+        "milky"
+      ],
+      "molecules_gaining_the_parent": 152,
+      "parent_count_before": 123,
+      "parent_count_after": 275
+    },
+    "nutty": {
+      "children": [
+        "almond",
+        "hazelnut"
+      ],
+      "molecules_gaining_the_parent": 65,
+      "parent_count_before": 366,
+      "parent_count_after": 431
+    },
+    "spicy": {
+      "children": [
+        "cinnamon",
+        "clove"
+      ],
+      "molecules_gaining_the_parent": 24,
+      "parent_count_before": 464,
+      "parent_count_after": 488
+    },
+    "roasted": {
+      "children": [
+        "coffee",
+        "popcorn"
+      ],
+      "molecules_gaining_the_parent": 67,
+      "parent_count_before": 305,
+      "parent_count_after": 372
+    }
+  }
+}

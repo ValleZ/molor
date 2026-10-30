@@ -61,6 +61,7 @@ MODELS = [
     ("FP v1", "artifacts/percepts_fp.json"),
     ("FP v2", "artifacts/percepts_fp2.json"),
     ("FP v3", "artifacts/percepts_fp3.json"),
+    ("FP v3 hierarchical", "artifacts/percepts_fp3h.json"),
     ("OpenPOM", "artifacts/percepts_openpom.json"),
     ("DenseSense", "artifacts/percepts_densesense.json"),
     ("GS-LF MPNN", "artifacts/percepts_expanded.json"),
