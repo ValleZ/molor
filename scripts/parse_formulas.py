@@ -150,6 +150,39 @@ ALIAS = {
     "benzyl salicylate": "Benzyl Salicylate",
     "toscanol": "Toscanol",
     "nympheal": "Nympheal",
+    'verdox': 'Verdox HC',
+    'limonene': 'D-Limonene',
+    'cinnamal': 'Cinnamaldehyde',
+    'cinnamaldehyde': 'Cinnamaldehyde',
+    'ethyl hexanoate': 'Ethyl Caproate',
+    'allyl heptanoate': 'Allyl Heptanoate',
+    'hexyl cinnamal': 'Hexyl Cinnamic Aldehyde',
+    'patchouli alcohol': 'Patchouli Dark',
+    'terpineol alpha': 'Terpineol Alpha',
+    'heliotropine': 'Heliotropin',
+    'methyl latione': 'Methyl Laitone',
+    'oranger': 'Oranger Crystals',
+    'orangers': 'Oranger Crystals',
+    'pinene': 'Alpha Pinene',
+    'alpha-pinene': 'Alpha Pinene',
+    'beta-pinene': 'Beta Pinene',
+    'eugenol': 'Eugenol ex Clove',
+    'isoeugenol': 'Isoeugenol',
+    'linalyl acetate': 'Linalyl Acetate',
+    'citronellol': 'Citronellol',
+    'geranyl acetate': 'Geranyl Acetate',
+    'nerol': 'Nerol',
+    'eucalyptol': 'Eucalyptol',
+    'beta-caryophyllene': 'Caryophyllene Beta',
+    'caryophyllene': 'Caryophyllene Beta',
+    'triplal': 'Triplal',
+    'myrcene': 'Myrcene',
+    'safrole': 'Safrole',
+    'coumarin': 'Coumarin',
+    'hexyl salicylate': 'Hexyl Salicylate',
+    'otne': 'Iso E Super',
+    'ethyl linalool': 'Ethyl Linalool',
+    'dihydromyrcenol': 'Dihydro Myrcenol',
 }
 
 #: Lines that are arithmetic or bookkeeping, not ingredients. A "Total 1000"
@@ -267,6 +300,13 @@ def parse(text: str, library: set[str]):
         # the low end as part of the name.
         body = re.sub(r"(\d+(?:\.\d+)?)\s*[–—-]\s*\d+(?:\.\d+)?\s*$",
                       r"\1", body)
+        # A weight-first line, as in the Clinique Happy transcription.
+        lead = re.match(r"^(\d+(?:\.\d+)?)\s*(?:g|mg|parts?|p)?\s+"
+                        r"(?=[A-Za-z])(.+?)(?:\s+[A-Z]-\d[\d.]*)?$", body)
+        if lead and not re.search(r"\d\s*(?:g|mg|%|parts?)?\s*$", body):
+            cur["lines"].append((lead.group(2), None,
+                                 float(lead.group(1)), None))
+            continue
         m = AMOUNT.match(body)
         if m and norm(m.group("name")):
             cur["lines"].append((m.group("name"), m.group("strength"),
@@ -309,6 +349,102 @@ def parse(text: str, library: set[str]):
     return out
 
 
+#: "hexyl cinnamal / Verdox / allyl heptanoate 2-5% ea" -- several materials
+#: sharing one declared range, each at that range.
+EACH = re.compile(r"\bea\b\.?$", re.I)
+RANGE = re.compile(r"(\d+(?:\.\d+)?)\s*[-–]\s*(\d+(?:\.\d+)?)\s*%")
+LONE = re.compile(r"<?\s*(\d+(?:\.\d+)?)\s*(%|g|mg|parts?|p)\b", re.I)
+RATIO = re.compile(r"(\d+(?:\.\d+)?(?::\d+(?:\.\d+)?)+)\s*$")
+
+
+def parse_mixes(path: Path, library: set[str]):
+    """Parse the spreadsheet's ingredient strings, one formula per row.
+
+    A different shape from the document: comma-separated on one line, with
+    declared ranges rather than weights for the commercial oils. A range is
+    taken at its midpoint, and a trailing ratio like "1:1:0.3" is applied to
+    the names listed before it.
+
+    Commercial fragrance oils are marked partial. Their published compositions
+    list only the regulated and notable constituents, so a large and unstated
+    share of the formula is missing, and a prediction from the declared part is
+    weaker evidence than one from a formula the perfumer weighed out.
+    """
+    out = []
+    for r in csv.DictReader(io.open(path, encoding="utf-8-sig")):
+        text = (r.get("Ingredients") or "").strip()
+        verdict = (r.get("impression") or "").strip()
+        if not text or not verdict or len(text) < 12:
+            continue
+        is_fo = (r.get("family") or "").strip().lower() == "fragrance oil"
+        rows, issues = [], []
+
+        ratio = None
+        m = RATIO.search(text)
+        if m:
+            ratio = [float(x) for x in m.group(1).split(":")]
+            text = text[:m.start()].strip().rstrip(",")
+
+        parts = [p.strip() for p in re.split(r",(?![^()]*\))", text) if p.strip()]
+        for pi, part in enumerate(parts):
+            each = bool(EACH.search(part))
+            part_clean = EACH.sub("", part).strip()
+            rm = RANGE.search(part_clean)
+            if rm:
+                amount = (float(rm.group(1)) + float(rm.group(2))) / 2.0
+                names_blob = part_clean[:rm.start()].strip()
+            else:
+                # Some records put the weight first: "300 Hexyl Cinnamaldehyde".
+                lead = re.match(r"^(\d+(?:\.\d+)?)\s*(?:g|mg|parts?|p)?\s+"
+                                r"(?=[A-Za-z])(.+)$", part_clean)
+                lm = LONE.search(part_clean)
+                if lead and not lm:
+                    amount = float(lead.group(1))
+                    names_blob = lead.group(2).strip()
+                elif lm:
+                    amount = float(lm.group(1))
+                    names_blob = part_clean[:lm.start()].strip()
+                elif ratio is not None and pi < len(ratio):
+                    amount = ratio[pi]
+                    names_blob = part_clean
+                else:
+                    continue
+            names = ([n.strip() for n in names_blob.split("/") if n.strip()]
+                     if each or "/" in names_blob else [names_blob])
+            for nm in names:
+                kind, resolved = classify(nm, library)
+                if kind == "skip":
+                    continue
+                strength = None
+                sm = re.search(r"(\d+(?:\.\d+)?)\s*%", nm)
+                if sm and float(sm.group(1)) <= 50:
+                    strength = float(sm.group(1)) / 100.0
+                frac = strength if strength else 1.0
+                rows.append({"raw": norm(nm), "kind": kind, "name": resolved,
+                             "amount": amount, "unit": "",
+                             "strength": frac, "delivered": amount * frac})
+                if kind in ("unknown", "natural", "base"):
+                    issues.append(f"{kind}: {resolved}")
+
+        actives = [x for x in rows if x["kind"] == "material"]
+        total = sum(x["delivered"] for x in rows if x["kind"] != "solvent")
+        unres = sum(x["delivered"] for x in rows
+                    if x["kind"] in ("unknown", "natural", "base"))
+        for x in actives:
+            x["fraction"] = x["delivered"] / total if total else 0.0
+        out.append({
+            "name": r["material"].strip(),
+            "verdict": verdict,
+            "source": "mixes.csv",
+            "partial_composition": is_fo,
+            "ingredients": rows,
+            "n_materials": len(actives),
+            "unresolved_share": round(unres / total, 3) if total else 1.0,
+            "issues": sorted(set(issues)),
+        })
+    return out
+
+
 def main() -> int:
     # Some verdicts are in Russian and this console is cp1252.
     try:
@@ -328,6 +464,15 @@ def main() -> int:
                 encoding="utf-8-sig"))}
     text = io.open(args.doc, encoding="utf-8").read()
     formulas = parse(text, library)
+    for f in formulas:
+        f.setdefault("source", "recipes.md")
+        f.setdefault("partial_composition", False)
+    mixes_csv = ROOT / "data" / "formulas" / "mixes.csv"
+    if mixes_csv.is_file():
+        mixes = parse_mixes(mixes_csv, library)
+        print(f"[parse] {len(mixes)} rows from mixes.csv with an ingredient "
+              f"list and an impression")
+        formulas += mixes
 
     usable = [f for f in formulas
               if f["n_materials"] >= 3

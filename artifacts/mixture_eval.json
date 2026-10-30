@@ -1,53 +1,53 @@
 {
   "summary": {
-    "n": 10,
-    "base_rate_auc": 0.8189,
+    "n": 13,
+    "base_rate_auc": 0.798,
     "noisy-or": {
-      "auc": 0.8685,
-      "vs_base_rate": 0.0496,
-      "vs_dominant": 0.0179,
+      "auc": 0.8491,
+      "vs_base_rate": 0.0511,
+      "vs_dominant": 0.0446,
       "ci_vs_dominant": [
-        -0.0183,
-        0.0506
+        0.0056,
+        0.0825
       ],
       "ci_vs_base_rate": [
-        0.0231,
-        0.076
+        0.0298,
+        0.0721
       ]
     },
     "weighted-mean": {
-      "auc": 0.867,
-      "vs_base_rate": 0.048,
-      "vs_dominant": 0.0164,
+      "auc": 0.8485,
+      "vs_base_rate": 0.0505,
+      "vs_dominant": 0.044,
       "ci_vs_dominant": [
-        -0.0213,
-        0.0494
+        0.004,
+        0.0826
       ],
       "ci_vs_base_rate": [
-        0.0209,
-        0.0733
+        0.0293,
+        0.0712
       ]
     },
     "max": {
-      "auc": 0.8314,
-      "vs_base_rate": 0.0125,
-      "vs_dominant": -0.0192,
+      "auc": 0.8269,
+      "vs_base_rate": 0.0288,
+      "vs_dominant": 0.0224,
       "ci_vs_dominant": [
-        -0.096,
-        0.0377
+        -0.0493,
+        0.0852
       ],
       "ci_vs_base_rate": [
-        -0.0317,
-        0.0458
+        -0.0094,
+        0.059
       ]
     },
     "dominant": {
-      "auc": 0.8506,
-      "vs_base_rate": 0.0317,
+      "auc": 0.8045,
+      "vs_base_rate": 0.0065,
       "vs_dominant": 0.0,
       "ci_vs_base_rate": [
-        -0.0025,
-        0.0716
+        -0.0298,
+        0.0473
       ]
     }
   },
@@ -80,6 +80,21 @@
       "max": 0.8565,
       "dominant": 0.7806,
       "base-rate": 0.7796
+    },
+    {
+      "formula": "Japanese Cherry Blossom 3 (B&BW)",
+      "n_ingredients": 12,
+      "descriptors": [
+        "citrus",
+        "coconut",
+        "vanilla",
+        "woody"
+      ],
+      "noisy-or": 0.819,
+      "weighted-mean": 0.8228,
+      "max": 0.806,
+      "dominant": 0.6539,
+      "base-rate": 0.7472
     },
     {
       "formula": "Strawberry Astra 2",
@@ -209,6 +224,33 @@
       "max": 0.8268,
       "dominant": 0.8268,
       "base-rate": 0.8117
+    },
+    {
+      "formula": "Clinique happy",
+      "n_ingredients": 11,
+      "descriptors": [
+        "floral",
+        "musk"
+      ],
+      "noisy-or": 0.8162,
+      "weighted-mean": 0.8199,
+      "max": 0.8713,
+      "dominant": 0.6691,
+      "base-rate": 0.7592
+    },
+    {
+      "formula": "Watermelon FO 277",
+      "n_ingredients": 10,
+      "descriptors": [
+        "fruity",
+        "medicinal",
+        "melon"
+      ],
+      "noisy-or": 0.7185,
+      "weighted-mean": 0.7185,
+      "max": 0.758,
+      "dominant": 0.6296,
+      "base-rate": 0.679
     }
   ]
 }
