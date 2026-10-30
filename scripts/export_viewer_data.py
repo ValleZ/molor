@@ -252,13 +252,20 @@ def main() -> int:
         _df = _pd.read_csv(_gslf)
         _col = ("nonStereoSMILES" if "nonStereoSMILES" in _df.columns
                 else _df.columns[0])
+        # Match on the InChIKey connectivity block, not the full key. GS-LF
+        # stores nonStereoSMILES, so a stereo-specified library material never
+        # matches the full key even when the model was trained on its label
+        # row -- and the percept model's input fingerprint is stereo-blind
+        # anyway, so the two are the same input to it. Matching the full key
+        # undercounted by 67 of 303, which understated memorisation badly.
         _keys = set()
         for _s in _df[_col].astype(str):
             _m = _Chem.MolFromSmiles(_s)
             if _m is not None:
-                _keys.add(_Chem.MolToInchiKey(_m))
+                _keys.add(_Chem.MolToInchiKey(_m)[:14])
         for _e in entries:
-            if getattr(_e, "inchikey", None) in _keys:
+            _k = getattr(_e, "inchikey", None)
+            if _k and _k[:14] in _keys:
                 in_train.add(_e.name)
         print(f"  {len(in_train)} of {len(entries)} materials are in the "
               f"percept model's training set")
