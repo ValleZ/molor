@@ -125,9 +125,26 @@ def main() -> int:
     bad = 0
     for p in args.pages:
         h = Path(p).read_text(encoding="utf-8")
-        scripts = re.findall(r"<script[^>]*>(.*?)</script>", h, re.S)
-        # Skip the data blob: it is JSON in a script tag, not code.
-        bodies = [s for s in scripts if "function" in s]
+        scripts = re.findall(r"<script([^>]*)>(.*?)</script>", h, re.S)
+        # Skip the data blob, which is JSON in a script tag rather than code,
+        # and skip blocks with a src: there is no inline body to scan. Decided
+        # from the tag's own type attribute, not from the body. This used to
+        # test `"function" in s`, which silently skipped any code block that
+        # happened to declare no function -- an unchecked block is the whole
+        # failure mode this script exists to catch, since the blank page it was
+        # written for was a parse error that stopped a block from running at
+        # all.
+        bodies = []
+        for attrs, body in scripts:
+            t = re.search(r"""type\s*=\s*["']?([^"'\s>]+)""", attrs)
+            kind = (t.group(1).lower() if t else "text/javascript")
+            if kind not in ("", "text/javascript", "application/javascript",
+                            "module"):
+                continue
+            if re.search(r"""\bsrc\s*=""", attrs):
+                continue
+            if body.strip():
+                bodies.append(body)
         print(f"{p}  ({len(scripts)} script blocks, {len(bodies)} with code)")
         if not bodies:
             print("   no code block found")
