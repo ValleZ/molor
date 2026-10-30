@@ -1,5 +1,5 @@
 {
-  "built_utc": "2026-10-30T12:56:24+00:00",
+  "built_utc": "2026-10-30T13:47:55+00:00",
   "datasets": {
     "dravnieks": {
       "source": "pyrfume dravnieks_1985 (ASTM DS61, doi:10.1520/DS61-EB)",
@@ -49,5 +49,12 @@
       "concentration_levels": [],
       "labels_per_molecule_mean": 4.88
     }
+  },
+  "keller_intensity_ceiling": {
+    "n_subjects": 55,
+    "split_half_r": 0.9671,
+    "spearman_brown_full_panel_r": 0.9833,
+    "splits": 50,
+    "note": "ceiling for predicting the panel mean intensity"
   }
 }

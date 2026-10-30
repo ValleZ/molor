@@ -234,6 +234,54 @@ def build_keller(lib: dict[str, str]) -> tuple[pd.DataFrame, dict]:
     return out, meta
 
 
+def keller_intensity_ceiling(seed: int = 0, splits: int = 50) -> dict:
+    """How well the panel's mean intensity predicts itself.
+
+    Between-subject spread on this scale averages 26 points out of 100, so the
+    target is noisy and a model cannot be judged against a perfect score. Half
+    the subjects are averaged and correlated against the other half; the
+    Spearman-Brown correction turns that into the reliability of the whole
+    panel, which is the most any model could reach without fitting noise.
+
+    Computed here because it needs the raw per-subject ratings, and this is the
+    environment that can reach them. The result travels in the manifest so the
+    training script can quote it without pyrfume.
+    """
+    import pyrfume
+    from scipy.stats import pearsonr
+
+    raw = pyrfume.load_data("keller_2016/behavior.csv")
+    beh = raw[raw["MeasurementValue"] == "HOW STRONG IS THE SMELL?"].copy()
+    beh["num"] = pd.to_numeric(beh["Value"], errors="coerce")
+    nothing = raw[(raw["MeasurementValue"] == "CAN OR CAN'T SMELL")
+                  & (raw["Value"] == "I can't smell anything")][
+        ["Stimulus", "Subject"]].drop_duplicates()
+    nothing["_n"] = True
+    beh = beh.merge(nothing, on=["Stimulus", "Subject"], how="left")
+    beh.loc[beh["num"].isna() & beh["_n"].eq(True), "num"] = 0.0
+    beh = beh[beh["num"].notna()]
+
+    subjects = np.array(sorted(beh["Subject"].unique()))
+    rng = np.random.default_rng(seed)
+    rs = []
+    for _ in range(splits):
+        perm = rng.permutation(subjects)
+        half = len(perm) // 2
+        ma = beh[beh["Subject"].isin(set(perm[:half]))].groupby(
+            "Stimulus")["num"].mean()
+        mb = beh[beh["Subject"].isin(set(perm[half:]))].groupby(
+            "Stimulus")["num"].mean()
+        j = pd.concat([ma, mb], axis=1, join="inner").dropna()
+        if len(j) > 20:
+            rs.append(float(pearsonr(j.iloc[:, 0], j.iloc[:, 1]).statistic))
+    r_half = float(np.mean(rs))
+    return {"n_subjects": int(len(subjects)),
+            "split_half_r": round(r_half, 4),
+            "spearman_brown_full_panel_r": round(2 * r_half / (1 + r_half), 4),
+            "splits": len(rs),
+            "note": "ceiling for predicting the panel mean intensity"}
+
+
 def gslf_stats() -> dict:
     path = ("vendor/openpom/openpom/data/curated_datasets/"
             "curated_GS_LF_merged_4983.csv")
@@ -278,6 +326,13 @@ def main() -> int:
           f"{kmeta['descriptors']} descriptors + {len(kmeta['scales'])} scales, "
           f"{kmeta['trials_completed']}/{kmeta['trials_total']} trials used, "
           f"{kmeta['in_library_molecules']} in library")
+
+    print("[data] computing the keller intensity noise ceiling ...", flush=True)
+    manifest["keller_intensity_ceiling"] = keller_intensity_ceiling()
+    c = manifest["keller_intensity_ceiling"]
+    print(f"[data] panel ceiling: split-half r {c['split_half_r']:.4f}, "
+          f"full-panel r {c['spearman_brown_full_panel_r']:.4f} "
+          f"over {c['n_subjects']} subjects")
 
     manifest["datasets"]["gslf"] = gslf_stats()
     (out / "manifest.json").write_text(json.dumps(manifest, indent=2),
