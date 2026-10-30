@@ -1,35 +1,74 @@
 {
   "why": "A natural is a known mixture of mostly common materials, so it can be built from its GC composition and scored as a sub-mixture instead of being dropped. This matters for coverage: across the 22 published patent formulas, naturals are 6316 g of the 13362 g the library could not resolve, and bergamot alone is 2084 g of it.",
-  "caveat": "A composition is a chemotype, not a substance. The four lavenders below share a name and differ enough to smell like different materials, and the model ranks them accordingly. Any formula that just says 'lavender oil' is therefore underspecified, and picking a chemotype for it is an assumption the prediction inherits.",
-  "unbuildable": "Treemoss, patchouli, vetiver and the resinoids stay out of reach: their character sits in atranol-type phenolics, patchoulol and sesquiterpene alcohols that the library does not hold, so building them from the fraction that is available would misrepresent them more than dropping them does.",
+  "caveat": "A composition is a chemotype or a lot, not a substance. The four lavenders below share a name and differ enough to smell like different materials, and the model ranks them accordingly. Any formula that says only 'lavender oil' is therefore underspecified, and picking a profile for it is an assumption the prediction inherits silently. Every figure here is a single published analysis, not a specification; where a source gave a range the midpoint is used and the range is recorded.",
+  "unbuildable": "Treemoss, patchouli, vetiver and the resinoids stay out of reach: their character sits in atranol-type phenolics, patchoulol and sesquiterpene alcohols the library does not hold, so building them from the fraction that is available would misrepresent them more than dropping them does.",
+  "wanted": "Lemon and neroli were searched for and no usable GC table came back, so they are deliberately absent rather than estimated. Spearmint is buildable now that l-Carvone is in the library but needs a sourced figure.",
   "naturals": {
-    "lavender oil, L. angustifolia commercial French": {
-      "source": "GC-MS of commercial market samples; linalyl acetate 37.8, linalool 33.1, eucalyptol 4.9, camphor 4.1. Minor terpenes added from the same literature range.",
+    "Lavender EO (French, L. angustifolia)": {
+      "source": "GC-MS of commercial market samples: linalyl acetate 37.8, linalool 33.1, eucalyptol 4.9, camphor 4.1; minor terpenes from the same literature range.",
       "note": "The default for an unqualified 'lavender oil' in a perfumery formula.",
       "composition": {
         "Linalyl Acetate": 37.8, "Linalool": 33.1, "Eucalyptol": 4.9,
         "Camphor": 4.1, "Ocimene": 3.0, "Caryophyllene Beta": 3.0,
         "Borneol": 1.5
       },
-      "omitted": "terpinen-4-ol (~2%) and lavandulyl acetate are not in the library"
+      "omitted": "terpinen-4-ol (~2%), lavandulyl acetate"
     },
-    "lavender oil, L. angustifolia Spanish var. pyrenaica": {
+    "Lavender EO (Spanish, var. pyrenaica)": {
       "source": "linalool 38.0, borneol 19.7, camphor 8.1, cineole ~3, linalyl acetate ~1.1",
       "composition": {
         "Linalool": 38.0, "Borneol": 19.7, "Camphor": 8.1,
         "Eucalyptol": 3.0, "Linalyl Acetate": 1.1
       }
     },
-    "spike lavender oil, L. latifolia": {
-      "source": "Spanish oil; linalool ~37, 1,8-cineole ~31, camphor ~13.6",
+    "Spike Lavender EO (L. latifolia)": {
+      "source": "Spanish oil: linalool ~37, 1,8-cineole ~31, camphor ~13.6",
       "composition": {"Linalool": 37.0, "Eucalyptol": 31.0, "Camphor": 13.6}
     },
-    "lavender oil, South African": {
+    "Lavender EO (South African)": {
       "source": "cineole 45.6, camphor 17.9, linalool 11.6, linalyl acetate 4.9, (E)-beta-ocimene ~1.4",
-      "note": "Barely a lavender by odour, and the model places it with Camphor rather than with the linalyl esters.",
+      "note": "Barely a lavender by odour; kept as the negative control, since a method that calls this one lavender is not discriminating.",
       "composition": {
         "Eucalyptol": 45.6, "Camphor": 17.9, "Linalool": 11.6,
         "Linalyl Acetate": 4.9, "Ocimene": 1.4
+      }
+    },
+    "Bergamot EO (Turkish)": {
+      "source": "Peer-reviewed analysis of Turkish bergamot oil, 2000: linalyl acetate 38.7, limonene 23.7, linalool 14.7, gamma-terpinene 4.7, beta-pinene 3.0, myrcene 2.0.",
+      "note": "Other origins range linalyl acetate 19-41%, limonene 24-44%, linalool 7-26%, so this is one profile out of a wide family.",
+      "composition": {
+        "Linalyl Acetate": 38.7, "D-Limonene": 23.7, "Linalool": 14.7,
+        "Terpinene Gamma": 4.7, "Beta Pinene": 3.0, "Myrcene": 2.0
+      }
+    },
+    "Geranium EO (Bourbon, Madagascar)": {
+      "source": "Supplier specification by ISO 4731: citronellol 23.2, geraniol 15.5, isomenthone 8.2, linalool 5.9, cis-rose oxide 1.1, trans-rose oxide 0.4.",
+      "composition": {
+        "Citronellol": 23.2, "Geraniol 95": 15.5, "Linalool": 5.9,
+        "Rose Oxide": 1.5
+      },
+      "omitted": "isomenthone (8.2%) is not in the library, and it carries much of the oil's minty-green bite"
+    },
+    "Peppermint EO (Michigan)": {
+      "source": "Kubeczka 1993 via TGSC: menthol 38.01, menthone 23.14, menthyl acetate 3.69, menthofuran 2.48, limonene 2.44, beta-pinene 1.65, gamma-terpinene 0.68.",
+      "composition": {
+        "Laevo Menthol": 38.01, "Menthone": 23.14, "D-Limonene": 2.44,
+        "Beta Pinene": 1.65, "Terpinene Gamma": 0.68
+      },
+      "omitted": "menthyl acetate (3.7%) and menthofuran (2.5%) are absent; menthofuran in particular carries the oil's characteristic sweetness"
+    },
+    "Clove Bud EO (steam distilled)": {
+      "source": "Turkish steam-distilled analysis: eugenol 87.00, eugenyl acetate 8.01, beta-caryophyllene 3.56.",
+      "note": "Near enough a single molecule that predicting 'clove' from it is close to trivial; included for formula coverage rather than as a test.",
+      "composition": {"Eugenol ex Clove": 87.0, "Caryophyllene Beta": 3.56},
+      "omitted": "eugenyl acetate (8.0%)"
+    },
+    "Cinnamon Bark EO (commercial)": {
+      "source": "GC-MS of commercial oil: cinnamal 63.59, eugenol 8.32, cinnamyl acetate 7.48, caryophyllene 6.88, linalool 6.31, eucalyptol 2.57.",
+      "composition": {
+        "Cinnamaldehyde": 63.59, "Eugenol ex Clove": 8.32,
+        "Cinnamyl Acetate": 7.48, "Caryophyllene Beta": 6.88,
+        "Linalool": 6.31, "Eucalyptol": 2.57
       }
     }
   }

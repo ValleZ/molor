@@ -1,0 +1,174 @@
+"""Build essential oils from their GC composition and score them as mixtures.
+
+Naturals were being dropped from every formula, which cost more coverage than
+anything else: across the published patent formulas they are 6316 g of the
+13362 g the library could not resolve. But a natural is a known mixture of
+mostly common materials, so it can be built rather than dropped.
+
+Each oil is combined by the same noisy-OR used for a formula, in both spaces.
+Percept space gives a predicted descriptor profile. Receptor space assumes a
+receptor fires if any constituent fires it, which is right at low occupancy and
+wrong once ligands compete for one pocket -- the same caveat that applies to
+any mixture here, and the reason the receptor vector is for placing the oil on
+the atlas rather than for arguing about it.
+
+The validation is built in and is close to free: the model's own vocabulary
+contains the words bergamot, lavender, geranium, mint, clove, cinnamon, rose,
+lemon, orange and a dozen more. So an oil can be scored without being told its
+name, and the question is where its own name lands by lift against a null of
+random blends of the same size. A method that cannot put "lavender" near the
+top for lavender oil is not worth wiring into anything.
+
+Two things this cannot fix. A composition is one published analysis of one lot
+or chemotype, so an oil built here is a plausible member of a family rather
+than the bottle on the shelf; the four lavenders are kept partly to make that
+visible. And where a constituent is missing from the library the weights are
+renormalised over what remains, which quietly rewrites the oil -- geranium
+loses isomenthone, peppermint loses menthofuran, and both of those carry
+character out of proportion to their percentage.
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import sys
+from pathlib import Path
+
+import numpy as np
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(ROOT / "scripts"))
+
+from eval_mixtures import combine  # noqa: E402
+from orvector.store import Library  # noqa: E402
+
+COMPOSITIONS = ROOT / "data" / "naturals" / "compositions.json"
+NULL_DRAWS = 3000
+
+#: The descriptor each oil's own name claims, for the blind self-check. Only
+#: where the vocabulary has the word; an oil with no matching word is built but
+#: not scored.
+SELF_WORD = {
+    "lavender": "lavender", "spike lavender": "lavender",
+    "bergamot": "bergamot", "geranium": "geranium", "peppermint": "mint",
+    "spearmint": "mint", "clove bud": "clove", "cinnamon bark": "cinnamon",
+    "rose": "rose", "lemon": "lemon", "neroli": "orangeflower",
+    "vetiver": "vetiver", "sandalwood": "sandalwood", "cedarwood": "cedar",
+    "chamomile": "chamomile", "grapefruit": "grapefruit", "jasmine": "jasmin",
+    "orange": "orange", "pine": "pine", "tea": "tea",
+}
+
+
+def self_word(name: str) -> str | None:
+    low = name.lower()
+    for key in sorted(SELF_WORD, key=len, reverse=True):
+        if key in low:
+            return SELF_WORD[key]
+    return None
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--percepts", default="artifacts/percepts_fp3.json")
+    ap.add_argument("--store", default="library")
+    ap.add_argument("--out", default="artifacts/naturals.json")
+    ap.add_argument("--min-coverage", type=float, default=0.6,
+                    help="fraction of the stated composition that must resolve")
+    args = ap.parse_args()
+
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:  # noqa: BLE001
+        pass
+
+    pj = json.loads((ROOT / args.percepts).read_text(encoding="utf-8"))
+    desc = pj["descriptors"]
+    names = list(pj["molecules"])
+    P = {n: np.asarray(r, float) for n, r in zip(names, pj["probs"])}
+    LM = np.stack([P[n] for n in names])
+
+    entries, _, scores = Library(name=args.store).load()
+    S = {e.name: s for e, s in zip(entries, scores)}
+
+    spec = json.loads(COMPOSITIONS.read_text(encoding="utf-8"))["naturals"]
+    rng = np.random.default_rng(0)
+    X = LM - LM.mean(0)
+    Xn = X / np.maximum(np.linalg.norm(X, axis=1, keepdims=True), 1e-12)
+
+    out = {"descriptors": desc, "naturals": {}}
+    print(f"[nat] building {len(spec)} essential oils from GC composition\n")
+    for oil, meta in spec.items():
+        comp = meta["composition"]
+        stated = sum(comp.values())
+        res = [(n, v) for n, v in comp.items() if n in P and n in S]
+        cov = sum(v for _, v in res) / stated if stated else 0.0
+        missing = [n for n in comp if n not in P or n not in S]
+        if not res or cov < args.min_coverage:
+            print(f"  SKIP {oil}: only {cov:.0%} of the stated composition "
+                  f"resolves ({', '.join(missing)})")
+            continue
+
+        w = np.array([v for _, v in res], float)
+        w = w / w.sum()
+        V = np.stack([P[n] for n, _ in res])
+        mix = combine("noisy-or", V, w)
+        rec = combine("noisy-or", np.stack([S[n] for n, _ in res]), w)
+
+        null = np.stack([
+            combine("noisy-or", LM[rng.choice(len(LM), len(res), replace=False)], w)
+            for _ in range(NULL_DRAWS)])
+        z = (mix - null.mean(0)) / np.maximum(null.std(0), 1e-9)
+        order = list(np.argsort(-z))
+
+        y = mix - LM.mean(0)
+        y = y / max(float(np.linalg.norm(y)), 1e-12)
+        sim = Xn @ y
+        near = [names[k] for k in np.argsort(-sim)[:5]]
+
+        word = self_word(oil)
+        check = None
+        if word and word in desc:
+            i = desc.index(word)
+            check = {"descriptor": word, "rank": order.index(i) + 1,
+                     "of": len(desc), "z": round(float(z[i]), 2),
+                     "p": round(float(mix[i]), 3)}
+
+        out["naturals"][oil] = {
+            "composition_used": {n: round(float(x), 4) for (n, _), x in zip(res, w)},
+            "coverage": round(cov, 4),
+            "omitted_from_library": missing,
+            "source": meta.get("source", ""),
+            "note": meta.get("note", ""),
+            "percept": [round(float(v), 4) for v in mix],
+            "receptors": [round(float(v), 4) for v in rec],
+            "lift_top": [{"name": desc[i], "z": round(float(z[i]), 2)}
+                         for i in order[:10]],
+            "nearest_materials": near,
+            "self_check": check,
+        }
+
+        tag = (f"{check['descriptor']} rank {check['rank']}/{check['of']}, "
+               f"z {check['z']:+.2f}" if check else "no vocabulary word")
+        print(f"  {oil}")
+        print(f"    {len(res)} constituents, {cov:.0%} of composition   "
+              f"SELF-CHECK: {tag}")
+        print(f"    top lift: " + ", ".join(
+            f"{desc[i]}({z[i]:+.1f})" for i in order[:6]))
+        print(f"    nearest:  " + ", ".join(near))
+        if missing:
+            print(f"    omitted:  {', '.join(missing)}")
+
+    (ROOT / args.out).write_text(json.dumps(out, indent=2), encoding="utf-8")
+    passed = [k for k, v in out["naturals"].items()
+              if v["self_check"] and v["self_check"]["rank"] <= 5]
+    scored = [k for k, v in out["naturals"].items() if v["self_check"]]
+    print(f"\n[nat] {len(out['naturals'])} built, {len(scored)} self-checkable, "
+          f"{len(passed)} put their own name in the top 5 of {len(desc)}")
+    print(f"[nat] wrote {args.out}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
