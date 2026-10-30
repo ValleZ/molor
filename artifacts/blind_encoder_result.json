@@ -11,117 +11,129 @@
     "9": "a",
     "10": "b",
     "11": "b",
-    "12": "tie"
+    "12": "b"
   },
   "per_trial": [
     {
       "trial": 1,
       "probe": "Dimethyl Octenone",
-      "chose": "Alpha Pinene",
       "pick": "a",
+      "chose": "Alpha Pinene",
       "slot_a_model": "MPNN",
+      "confidence": "firm",
       "winner": "MPNN"
     },
     {
       "trial": 2,
       "probe": "Methyl Ionone Gamma Coeur",
-      "chose": "Damascone Beta",
       "pick": "b",
+      "chose": "Damascone Beta",
       "slot_a_model": "GCN",
+      "confidence": "firm",
       "winner": "MPNN"
     },
     {
       "trial": 3,
       "probe": "Iso E Super",
-      "chose": null,
       "pick": "tie",
+      "chose": null,
       "slot_a_model": "GCN",
+      "confidence": "tie",
       "winner": "tie"
     },
     {
       "trial": 4,
       "probe": "Doremox",
-      "chose": "Gamma Decalactone",
       "pick": "b",
+      "chose": "Gamma Decalactone",
       "slot_a_model": "MPNN",
+      "confidence": "firm",
       "winner": "GCN"
     },
     {
       "trial": 5,
       "probe": "Aurantiol",
-      "chose": "Hydroxycitronellal",
       "pick": "a",
+      "chose": "Hydroxycitronellal",
       "slot_a_model": "GCN",
+      "confidence": "firm",
       "winner": "GCN"
     },
     {
       "trial": 6,
       "probe": "Nympheal",
-      "chose": "Cyclamen Aldehyde",
       "pick": "b",
+      "chose": "Cyclamen Aldehyde",
       "slot_a_model": "GCN",
+      "confidence": "firm",
       "winner": "MPNN"
     },
     {
       "trial": 7,
       "probe": "Benzyl Salicylate",
-      "chose": "Cis-3-Hexenyl Salicylate",
       "pick": "b",
+      "chose": "Cis-3-Hexenyl Salicylate",
       "slot_a_model": "GCN",
+      "confidence": "firm",
       "winner": "MPNN"
     },
     {
       "trial": 8,
       "probe": "Edenolide",
-      "chose": "Hedione",
       "pick": "b",
+      "chose": "Hedione",
       "slot_a_model": "GCN",
+      "confidence": "firm",
       "winner": "MPNN"
     },
     {
       "trial": 9,
       "probe": "Ethyl Butyrate",
-      "chose": "Fructone",
       "pick": "a",
+      "chose": "Fructone",
       "slot_a_model": "MPNN",
+      "confidence": "firm",
       "winner": "MPNN"
     },
     {
       "trial": 10,
       "probe": "Methyl Pamplemousse",
-      "chose": "Ethyl Linalool",
       "pick": "b",
+      "chose": "Ethyl Linalool",
       "slot_a_model": "MPNN",
+      "confidence": "firm",
       "winner": "GCN"
     },
     {
       "trial": 11,
       "probe": "Undecavertol",
-      "chose": "Citronellol",
       "pick": "b",
+      "chose": "Citronellol",
       "slot_a_model": "GCN",
+      "confidence": "firm",
       "winner": "MPNN"
     },
     {
       "trial": 12,
       "probe": "Phenethyl Acetate",
-      "chose": null,
-      "pick": "tie",
+      "pick": "b",
+      "chose": "Ethyl Benzoate",
       "slot_a_model": "GCN",
-      "winner": "tie"
+      "confidence": "lean",
+      "winner": "MPNN"
     }
   ],
   "tally": {
     "GCN": 3,
-    "MPNN": 7,
-    "ties": 2,
-    "decided": 10
+    "MPNN": 8,
+    "ties": 1,
+    "decided": 11
   },
-  "binomial_one_sided_p_for_leader": 0.1719,
+  "binomial_one_sided_p_for_leader": 0.1133,
   "slot_b_preference": {
-    "picked_b": 7,
-    "of_decided": 10,
-    "two_sided_p": 0.3438
+    "picked_b": 8,
+    "of_decided": 11,
+    "two_sided_p": 0.2266
   },
   "stratified": {
     "slot_a_GCN": {
@@ -139,5 +151,7 @@
     "if_true_rate_0.70": 37,
     "if_true_rate_0.80": 18
   },
-  "verdict": "not resolved; leans MPNN but within noise and partly entangled with a slot preference"
+  "verdict": "still not resolved; 8 of 11 falls short of the 9 needed, and the slot preference remains uncontrolled",
+  "revision": "trial 12 revised from tie to a lean on (b)",
+  "significance_threshold_wins": 9
 }
