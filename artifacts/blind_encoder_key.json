@@ -1,0 +1,128 @@
+{
+  "seed": 20261030,
+  "design": "forced choice, 1 probe vs 2 nominees",
+  "gcn_store": "library",
+  "mpnn_store": "library_mpnn_clean",
+  "trials": [
+    {
+      "trial": 1,
+      "probe": "Dimethyl Octenone",
+      "a": "Alpha Pinene",
+      "b": "Hexyl Cinnamic Aldehyde",
+      "a_model": "MPNN",
+      "b_model": "GCN",
+      "gcn_nominee_rank_under_mpnn": 99,
+      "mpnn_nominee_rank_under_gcn": 96
+    },
+    {
+      "trial": 2,
+      "probe": "Methyl Ionone Gamma Coeur",
+      "a": "Ethyl 2-methyl butyrate",
+      "b": "Damascone Beta",
+      "a_model": "GCN",
+      "b_model": "MPNN",
+      "gcn_nominee_rank_under_mpnn": 104,
+      "mpnn_nominee_rank_under_gcn": 92
+    },
+    {
+      "trial": 3,
+      "probe": "Iso E Super",
+      "a": "Florhydral",
+      "b": "Helvetolide",
+      "a_model": "GCN",
+      "b_model": "MPNN",
+      "gcn_nominee_rank_under_mpnn": 101,
+      "mpnn_nominee_rank_under_gcn": 91
+    },
+    {
+      "trial": 4,
+      "probe": "Doremox",
+      "a": "Toscanol",
+      "b": "Gamma Decalactone",
+      "a_model": "MPNN",
+      "b_model": "GCN",
+      "gcn_nominee_rank_under_mpnn": 85,
+      "mpnn_nominee_rank_under_gcn": 71
+    },
+    {
+      "trial": 5,
+      "probe": "Aurantiol",
+      "a": "Hydroxycitronellal",
+      "b": "Indolene 50",
+      "a_model": "GCN",
+      "b_model": "MPNN",
+      "gcn_nominee_rank_under_mpnn": 72,
+      "mpnn_nominee_rank_under_gcn": 65
+    },
+    {
+      "trial": 6,
+      "probe": "Nympheal",
+      "a": "Ethylene Brassylate",
+      "b": "Cyclamen Aldehyde",
+      "a_model": "GCN",
+      "b_model": "MPNN",
+      "gcn_nominee_rank_under_mpnn": 72,
+      "mpnn_nominee_rank_under_gcn": 59
+    },
+    {
+      "trial": 7,
+      "probe": "Benzyl Salicylate",
+      "a": "Benzyl Acetate",
+      "b": "Cis-3-Hexenyl Salicylate",
+      "a_model": "GCN",
+      "b_model": "MPNN",
+      "gcn_nominee_rank_under_mpnn": 56,
+      "mpnn_nominee_rank_under_gcn": 71
+    },
+    {
+      "trial": 8,
+      "probe": "Edenolide",
+      "a": "Manzanate",
+      "b": "Hedione",
+      "a_model": "GCN",
+      "b_model": "MPNN",
+      "gcn_nominee_rank_under_mpnn": 54,
+      "mpnn_nominee_rank_under_gcn": 53
+    },
+    {
+      "trial": 9,
+      "probe": "Ethyl Butyrate",
+      "a": "Fructone",
+      "b": "Linalyl Propionate",
+      "a_model": "MPNN",
+      "b_model": "GCN",
+      "gcn_nominee_rank_under_mpnn": 48,
+      "mpnn_nominee_rank_under_gcn": 48
+    },
+    {
+      "trial": 10,
+      "probe": "Methyl Pamplemousse",
+      "a": "Isobornyl Acetate",
+      "b": "Ethyl Linalool",
+      "a_model": "MPNN",
+      "b_model": "GCN",
+      "gcn_nominee_rank_under_mpnn": 37,
+      "mpnn_nominee_rank_under_gcn": 39
+    },
+    {
+      "trial": 11,
+      "probe": "Undecavertol",
+      "a": "Verdox HC",
+      "b": "Citronellol",
+      "a_model": "GCN",
+      "b_model": "MPNN",
+      "gcn_nominee_rank_under_mpnn": 49,
+      "mpnn_nominee_rank_under_gcn": 34
+    },
+    {
+      "trial": 12,
+      "probe": "Phenethyl Acetate",
+      "a": "Methyl Cinnamate",
+      "b": "Ethyl Benzoate",
+      "a_model": "GCN",
+      "b_model": "MPNN",
+      "gcn_nominee_rank_under_mpnn": 31,
+      "mpnn_nominee_rank_under_gcn": 59
+    }
+  ]
+}
