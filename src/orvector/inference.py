@@ -41,11 +41,75 @@ class Molecule:
     graph: object
 
 
+def normalise_hydrogens(mol):
+    """Make hydrogen bookkeeping independent of how the SMILES was written.
+
+    Chirality must be written in brackets, as in ``[C@H]``, and RDKit then
+    records that atom's hydrogens as *explicit*, which sets its implicit valence
+    to zero. ``CanonicalAtomFeaturizer`` includes implicit valence as a feature
+    block, so the same molecule featurises differently depending only on its
+    notation. Measured on this library, 14 of the 15 materials written with
+    bracket atoms were affected, and their receptor vectors were therefore not
+    comparable with the other 287.
+
+    Handing the hydrogens back to the implicit count fixes it. The chiral tag
+    lives on the atom, not on the hydrogen count, so stereochemistry survives --
+    which matters because bond stereo *is* a bond feature, so discarding stereo
+    notation wholesale would change far more than this artefact. The InChIKey is
+    checked before and after and the original kept on any mismatch, so the
+    compound itself can never be altered silently.
+    """
+    from rdkit import Chem
+
+    if not any(a.GetNumExplicitHs() for a in mol.GetAtoms()):
+        return mol
+    before = Chem.MolToInchiKey(mol)
+    patched = Chem.Mol(mol)
+    for a in patched.GetAtoms():
+        if a.GetNumExplicitHs():
+            a.SetNoImplicit(False)
+            a.SetNumExplicitHs(0)
+    try:
+        Chem.SanitizeMol(patched)
+    except Exception:  # noqa: BLE001 - a failed normalisation must not lose the molecule
+        return mol
+    return patched if Chem.MolToInchiKey(patched) == before else mol
+
+
+def mol_to_graph(mol, *, add_self_loop=True, node_featurizer=None,
+                 edge_featurizer=None):
+    """Featurise a molecule, normalising hydrogen bookkeeping first.
+
+    Equivalent to ``SMILESToBigraph`` with the same arguments -- which is
+    ``smiles_to_bigraph``, i.e. ``MolFromSmiles`` then ``mol_to_bigraph`` with
+    ``canonical_atom_order=True`` -- except that it takes a molecule, so the
+    normalisation above can be applied before the atom features are read.
+    """
+    from dgllife.utils import mol_to_bigraph
+
+    return mol_to_bigraph(normalise_hydrogens(mol),
+                          add_self_loop=add_self_loop,
+                          node_featurizer=node_featurizer,
+                          edge_featurizer=edge_featurizer,
+                          canonical_atom_order=True,
+                          explicit_hydrogens=False,
+                          num_virtual_nodes=0)
+
+
 def _featurizer():
     """Upstream's molecular featurisation, as used to train the checkpoint."""
-    from dgllife.utils import CanonicalAtomFeaturizer, SMILESToBigraph
+    from dgllife.utils import CanonicalAtomFeaturizer
 
-    return SMILESToBigraph(add_self_loop=True, node_featurizer=CanonicalAtomFeaturizer())
+    def build(smiles: str):
+        from rdkit import Chem
+
+        mol = Chem.MolFromSmiles(smiles)
+        if mol is None:
+            return None
+        return mol_to_graph(mol, add_self_loop=True,
+                            node_featurizer=CanonicalAtomFeaturizer())
+
+    return build
 
 
 def canonicalize(smiles: str) -> str:

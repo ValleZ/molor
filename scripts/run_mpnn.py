@@ -127,16 +127,21 @@ def main() -> int:
     embeddings = load_panel_embeddings(paths, n_receptors=len(receptors))
     masks = panel_residue_masks(receptors)
 
-    from dgllife.utils import CanonicalAtomFeaturizer, CanonicalBondFeaturizer, SMILESToBigraph
+    from dgllife.utils import CanonicalAtomFeaturizer, CanonicalBondFeaturizer
     from rdkit import Chem, RDLogger
     from rdkit.Chem import rdMolDescriptors
 
+    from orvector.inference import mol_to_graph
+
     RDLogger.DisableLog("rdApp.*")
-    s2g = SMILESToBigraph(
-        add_self_loop=True,
-        node_featurizer=CanonicalAtomFeaturizer(),
-        edge_featurizer=CanonicalBondFeaturizer(self_loop=True),
-    )
+    _node_f = CanonicalAtomFeaturizer()
+    _edge_f = CanonicalBondFeaturizer(self_loop=True)
+
+    def s2g(mol):
+        """As SMILESToBigraph, but from a molecule so hydrogen bookkeeping can
+        be normalised first -- see orvector.inference.normalise_hydrogens."""
+        return mol_to_graph(mol, add_self_loop=True,
+                            node_featurizer=_node_f, edge_featurizer=_edge_f)
 
     # Append-only: existing molecules are kept and only new InChIKeys computed,
     # so growing the library costs the new molecules rather than all of them.
@@ -160,7 +165,7 @@ def main() -> int:
         if key in known:
             continue
         known.add(key)
-        g = s2g(can)
+        g = s2g(mol)
         if g is None or g.num_nodes() > MAX_NODE_LEN:
             print(f"  skip {r['name']}")
             continue
