@@ -54,6 +54,15 @@ ALIAS = {
     "ethyl 2-methylbutyrate": "Ethyl 2-methyl butyrate",
     "blackcurrant mercaptan": "Blackcurrant mercaptan",
     "calone": "Calone 1951",
+    # Matched to the library by InChIKey from the CAS number on the stock, not
+    # by name: the library spells these differently.
+    "heliotropine": "Heliotropin",            # 120-57-0, piperonal
+    "anisic aldehyde": "Anisaldehyde",         # 123-11-5, p-anisaldehyde
+    "dihydro ionone beta": "Dihydro Beta Ionone",   # 17283-81-7
+    "nonadienal": "Trans-2,Cis-6-Nonadienal",
+    # 8000-41-7 is the isomer mixture; the library holds the alpha isomer only,
+    # which is the bulk of it. An approximation, not an identity.
+    "terpineol": "Terpineol Alpha",
     "dihydromyrcenol": "Dihydro Myrcenol",
     "dihydro myrcenol": "Dihydro Myrcenol",
     "dihydromircenol": "Dihydro Myrcenol",
