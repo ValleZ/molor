@@ -1,0 +1,36 @@
+{
+  "why": "A natural is a known mixture of mostly common materials, so it can be built from its GC composition and scored as a sub-mixture instead of being dropped. This matters for coverage: across the 22 published patent formulas, naturals are 6316 g of the 13362 g the library could not resolve, and bergamot alone is 2084 g of it.",
+  "caveat": "A composition is a chemotype, not a substance. The four lavenders below share a name and differ enough to smell like different materials, and the model ranks them accordingly. Any formula that just says 'lavender oil' is therefore underspecified, and picking a chemotype for it is an assumption the prediction inherits.",
+  "unbuildable": "Treemoss, patchouli, vetiver and the resinoids stay out of reach: their character sits in atranol-type phenolics, patchoulol and sesquiterpene alcohols that the library does not hold, so building them from the fraction that is available would misrepresent them more than dropping them does.",
+  "naturals": {
+    "lavender oil, L. angustifolia commercial French": {
+      "source": "GC-MS of commercial market samples; linalyl acetate 37.8, linalool 33.1, eucalyptol 4.9, camphor 4.1. Minor terpenes added from the same literature range.",
+      "note": "The default for an unqualified 'lavender oil' in a perfumery formula.",
+      "composition": {
+        "Linalyl Acetate": 37.8, "Linalool": 33.1, "Eucalyptol": 4.9,
+        "Camphor": 4.1, "Ocimene": 3.0, "Caryophyllene Beta": 3.0,
+        "Borneol": 1.5
+      },
+      "omitted": "terpinen-4-ol (~2%) and lavandulyl acetate are not in the library"
+    },
+    "lavender oil, L. angustifolia Spanish var. pyrenaica": {
+      "source": "linalool 38.0, borneol 19.7, camphor 8.1, cineole ~3, linalyl acetate ~1.1",
+      "composition": {
+        "Linalool": 38.0, "Borneol": 19.7, "Camphor": 8.1,
+        "Eucalyptol": 3.0, "Linalyl Acetate": 1.1
+      }
+    },
+    "spike lavender oil, L. latifolia": {
+      "source": "Spanish oil; linalool ~37, 1,8-cineole ~31, camphor ~13.6",
+      "composition": {"Linalool": 37.0, "Eucalyptol": 31.0, "Camphor": 13.6}
+    },
+    "lavender oil, South African": {
+      "source": "cineole 45.6, camphor 17.9, linalool 11.6, linalyl acetate 4.9, (E)-beta-ocimene ~1.4",
+      "note": "Barely a lavender by odour, and the model places it with Camphor rather than with the linalyl esters.",
+      "composition": {
+        "Eucalyptol": 45.6, "Camphor": 17.9, "Linalool": 11.6,
+        "Linalyl Acetate": 4.9, "Ocimene": 1.4
+      }
+    }
+  }
+}

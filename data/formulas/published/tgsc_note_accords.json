@@ -1,0 +1,216 @@
+{
+  "source": "thegoodscentscompany.com/demos/dm1004331.html and dm1000931.html, fragrance demo formulas. Unlike the patent-era bases in tgsc_patent_demos.json these are built mostly from single synthetic materials, so the library can cover them.",
+  "retrieved": "2026-10-30",
+  "why": "Each formula is named for the thing it is meant to smell like, and most of those names are words in the model's own 138-descriptor vocabulary. That makes the test blind and sharp: the formula is scored without its name, and the question is where the named descriptor lands by lift. 'melon type' appears identically on both pages and is kept once.",
+  "formulas": [
+    {
+      "name": "green apple type",
+      "target": ["apple", "green"],
+      "total": 1000,
+      "ingredients": {
+        "alpha-damascone 10%": 300, "cis-3-hexenyl 2-methyl butyrate": 200,
+        "cis-green acetate": 200, "ethylene brassylate": 50,
+        "geranyl acetone": 40, "phenethyl alcohol": 30,
+        "beta-damascone 1%": 20, "veloutone": 20,
+        "ethyl acetoacetate": 120, "(E)-2-hexenol 10%": 10,
+        "diethyl malonate": 10
+      }
+    },
+    {
+      "name": "apple type",
+      "target": ["apple"],
+      "total": 1200,
+      "ingredients": {
+        "cis-3-hexenyl acetate 10%": 20, "verdyl acetate": 20,
+        "ethyl acetoacetate": 80, "hexanol": 10,
+        "2-phenyl propyl alcohol": 40, "acetaldehyde 10%": 80,
+        "benzyl benzoate": 200, "alpha-damascone 10%": 100,
+        "helvetolide": 80, "green acetate": 40, "diethyl malonate": 40,
+        "dynascone 1%": 30, "nerol": 40, "phenethylol": 100,
+        "geranyl acetone": 120, "terpineol": 40, "triplal": 10,
+        "phenyl acetaldehyde dimethyl acetal": 20, "melozone 10%": 100,
+        "cis-3-hexenyl butyrate 10%": 30
+      }
+    },
+    {
+      "name": "melon type",
+      "target": ["melon"],
+      "total": 1000,
+      "ingredients": {
+        "scentenal": 200, "alpha-amyl cinnamaldehyde": 200,
+        "phenethyl alcohol": 120, "diethyl malonate": 100,
+        "nonisyl acetate": 70, "nerol": 60,
+        "phenoxyethyl isobutyrate": 40, "(Z)-6-nonen-1-ol 1%": 40,
+        "strawberry furanone 0.1%": 40, "isoamyl isobutyrate": 30,
+        "cis-3-hexenol 10%": 20, "methyl heptine carbonate 1%": 20,
+        "methyl octine carbonate 1%": 10, "styrallyl acetate": 10,
+        "mayol": 10, "omega-pentadecalactone": 10, "beta-damascone 1%": 10,
+        "beta-cyclocitral 10%": 5, "(E,Z)-2,6-nonadien-1-ol 10%": 5
+      }
+    },
+    {
+      "name": "grape type",
+      "target": ["grape"],
+      "total": 100,
+      "ingredients": {
+        "citronellyl acetate": 1.5, "ethyl acetate": 1.0,
+        "ethyl acetoacetate": 0.5, "ethyl butyrate": 4.0,
+        "ethyl propionate": 40.0, "ethyl valerate": 0.5,
+        "ethyl vanillin": 1.5, "oenanthic ether": 0.5, "maltol 2%": 25.0,
+        "phenethyl isobutyrate": 0.5, "strawberry furanone 15%": 7.5,
+        "styralyl acetate": 0.5, "vanillin": 1.5,
+        "methyl 2-methyl benzoate": 3.0, "dipropylene glycol": 12.5
+      }
+    },
+    {
+      "name": "fruit type",
+      "target": ["fruity"],
+      "total": 1000,
+      "ingredients": {
+        "aldehyde C-14": 0.5, "allyl caproate": 11.0, "caproic acid": 4.0,
+        "citronellol": 0.3, "lemon oil": 2.0, "ethyl butyrate": 18.0,
+        "ethyl caproate": 2.0, "ethyl heptanoate": 1.0,
+        "ethyl pelargonate": 0.5, "furaneol 15%": 50.0,
+        "isoamyl butyrate": 0.5,
+        "methyl 3-(methyl thio) propionate": 1.3, "propionic acid": 4.5,
+        "propylene glycol": 904.4
+      }
+    },
+    {
+      "name": "wild strawberry type",
+      "target": ["strawberry"],
+      "total": 9500,
+      "ingredients": {
+        "acetaldehyde 10%": 30, "alpha-amyl cinnamaldehyde": 1000,
+        "hexanal": 5, "octanal": 10, "allyl caproate": 200,
+        "1-octen-3-ol 10%": 20, "methyl cinnamate": 25,
+        "ethyl maltol": 500, "alpha-damascone": 100,
+        "berry pentadienoate": 1000, "fructalate": 400, "furaneol": 100,
+        "habanolide": 1000, "iralia total": 300,
+        "isopropyl 2-methyl butyrate": 500, "aldehyde C-16": 2550,
+        "hedione": 1000, "dimethyl sulfide 1%": 10, "galbascone": 50,
+        "cis-3-hexenol": 100, "terpinolene": 300,
+        "2,4-ivy carbaldehyde": 300
+      }
+    },
+    {
+      "name": "Pink Guava Accord",
+      "target": ["tropical", "fruity"],
+      "total": 1000,
+      "ingredients": {
+        "aldehyde C-6 10%": 8, "cinnamaldehyde 10%": 3,
+        "cinnamyl acetate": 9, "cyclogalbanate": 6,
+        "alpha-damascone 10%": 2, "gamma-decalactone": 8,
+        "dimethyl benzyl carbinyl butyrate": 10, "DIPG": 492.85,
+        "ethyl acetate": 90, "ethyl butyrate": 50, "ethyl caproate": 11,
+        "ethyl cinnamate": 72, "ethyl thioacetate 0.1%": 6,
+        "eugenol 10%": 15, "exaltolide": 20, "furaneol 10%": 10,
+        "grapefruit oil": 10, "trans-2-hexenal 10%": 4,
+        "cis-3-hexenol": 56, "cis-3-hexenyl acetate": 8,
+        "cis-3-hexenyl butyrate": 6, "cis-3-hexenyl hexanoate": 3,
+        "hexyl acetate": 6, "hexyl butyrate": 9, "limediene 1%": 0.15,
+        "methyl cinnamate": 40, "gamma-octalactone 10%": 8,
+        "p-mentha-8-thiol-3-one 0.01%": 2, "triplal 10%": 6, "vanillin": 4,
+        "guavanate 10%": 25
+      }
+    },
+    {
+      "name": "Clementine accord",
+      "target": ["orange", "citrus"],
+      "total": 10000,
+      "ingredients": {
+        "rose oxide": 1, "buchu leaf oil": 2, "geranyl acetate": 3,
+        "geranyl butyrate": 3, "ethyl caprylate": 4, "(E)-2-hexenal": 4,
+        "geranyl isobutyrate": 4, "cinnamaldehyde": 5, "oxane 5%": 5,
+        "hexanal": 6, "cis-3-hexenol": 6, "linalool oxide": 6,
+        "isoeugenyl acetate": 7, "corps pampelmousse 10%": 10,
+        "benzaldehyde": 15, "allyl heptanoate": 15,
+        "cinnamyl acetate": 20, "beta-ionone": 24,
+        "ethyl acetoacetate": 60, "gamma-undecalactone": 80,
+        "ethyl acetate": 120, "labienoxime 10%": 200,
+        "lemon oil italy": 600, "strawberry furanone 1%": 1060,
+        "orange peel oil 7 fold": 2000, "orange oil brazil": 2400,
+        "DIPG": 3340
+      }
+    },
+    {
+      "name": "Chocolate Accord",
+      "target": ["chocolate", "cocoa"],
+      "total": 1000,
+      "ingredients": {
+        "benzaldehyde": 0.8, "isobutyraldehyde": 8.0, "DIPG": 533.8,
+        "maltol": 7.4, "phenyl acetaldehyde 50%": 1.2,
+        "phenethyl alcohol": 1.6, "2,3,5-trimethyl pyrazine": 6.4,
+        "isovaleraldehyde": 4.8, "vanillin": 72.0,
+        "5-methyl furfural 1%": 40.0, "gamma-nonalactone 10%": 8.0,
+        "cinnamaldehyde 10%": 4.0, "2,3-dimethyl pyrazine 1%": 40.0,
+        "furaneol 15%": 2.0, "gamma-valerolactone 1%": 40.0,
+        "2-methyl butyraldehyde 1%": 16.0,
+        "5-methyl-2-phenyl-2-hexenal 10%": 4.0, "orrisol": 4.0,
+        "butyl acetate 1%": 24.0, "ethyl phenyl acetate 1%": 24.0,
+        "gamma-hexalactone 1%": 24.0,
+        "methyl cyclopentenolone 10%": 8.0, "sulfurol 10%": 4.0,
+        "2-methyl pyrazine 1%": 8.0, "2-acetyl furan 10%": 16.0,
+        "2,5-dimethyl pyrazine 10%": 4.0, "phenethyl acetate 1%": 24.0,
+        "lavender aldehyde 10%": 40.0, "honeyflor 1%": 30.0
+      }
+    },
+    {
+      "name": "Water blossoms",
+      "target": ["floral", "fresh"],
+      "total": 100,
+      "ingredients": {
+        "dextro-limonene": 9.55, "mayol": 3.00, "cyclacet": 2.96,
+        "benzyl acetate": 23.70, "linalool": 18.96,
+        "linalyl acetate": 4.90, "cis-3-hexenol": 0.62, "triplal": 0.80,
+        "dihydromyrcenol": 1.90, "rose oxide": 0.04,
+        "tetrahydrolinalol": 2.54, "cis-3-hexenyl acetate": 0.21,
+        "canthoxal": 0.35, "neofolione": 0.30, "ethyl linalool": 1.90,
+        "alpha-terpineol": 0.32, "florhydral": 0.35,
+        "beta-damascone": 0.20, "cis-3-hexenyl benzoate": 0.43,
+        "mugetanol": 0.71, "dimethyl benzyl carbinol": 0.08,
+        "cis-jasmone": 0.09, "raspberry ketone methyl ether": 2.02,
+        "iso e super": 1.90, "ethyl phenyl glycidate": 2.02,
+        "damascenone": 0.06, "raspberry ketone": 4.27, "hedione": 3.52,
+        "habanolide": 1.90, "benzyl salicylate": 9.48,
+        "strawberry furanone": 0.01, "phenethyl salicylate": 0.91
+      }
+    },
+    {
+      "name": "Tarte Tatin Accord",
+      "target": ["apple", "caramellic"],
+      "total": 1000,
+      "ingredients": {
+        "allyl amyl glycolate 10%": 10, "alpha-ionone": 10,
+        "benzyl acetate": 20, "cis-3-hexenol 10%": 1,
+        "citronellol BRI": 20, "alpha-damascone 10%": 10,
+        "dihydromyrcenol": 10, "DIPG": 544, "furaneol": 2,
+        "galaxolide 50 DPG": 60, "gamma-undecalactone": 10,
+        "hexyl salicylate": 2, "isoamyl acetate": 40,
+        "isononyl acetate": 70, "phenethyl isobutyrate": 100,
+        "green acetate": 10, "tonalid": 1, "trans-2-Hexenal 1%": 30,
+        "triplal": 30, "verdyl acetate": 10, "cerezoate 10%": 1000
+      }
+    },
+    {
+      "name": "aldehydic fresh citrus fragrance",
+      "target": ["citrus", "aldehydic", "fresh"],
+      "total": 800,
+      "ingredients": {
+        "acetaldehyde dimethyl acetal": 15.0, "methoxymelonal": 12.0,
+        "calone": 10.0, "cyclamal extra": 22.0, "ethyl butyrate": 6.6,
+        "aldehyde C-16": 10.0, "ethyl 2-methyl butyrate": 5.0,
+        "cis-3-hexenol 10%": 170.0,
+        "cis-3-hexenyl isobutyrate 10%": 8.5, "isoamyl acetate": 10.0,
+        "isoamyl butyrate": 45.0, "lemon oil terpenes": 50.0,
+        "lilial": 52.0, "linalyl acetate": 0.8,
+        "linalyl isobutyrate": 14.0, "melonal 10%": 60.0,
+        "(E,Z)-2,6-nonadien-1-ol 1%": 10.0, "raspberry ketone": 3.0,
+        "phenethyl alcohol": 2.0, "strawberry furanone 1%": 3.8,
+        "prenyl acetate": 0.5, "scentenal 10%": 3.0,
+        "alpha-terpineol": 0.8, "gamma-undecalactone": 10.0,
+        "vanillin": 3.0, "dipropylene glycol": 273.0
+      }
+    }
+  ]
+}
