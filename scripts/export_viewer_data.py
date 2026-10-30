@@ -48,11 +48,14 @@ SEMANTIC_COLOUR = {
 
 EDGE_K = 2  # mutual-kNN depth for the true-neighbour links
 
-#: First entry is what the viewer opens on. The MPNN leads because it is the
-#: better model on both axes measured so far: chemical-class coherence
-#: (0.617 vs 0.422) and agreement with perceptual notes (p = 0.006 vs 0.31).
+#: First entry is what the viewer opens on, and --models overrides this list.
+#: Which encoder deserves that slot is unsettled: after the notes were matched
+#: to the cleaned material names, nearest-neighbour agreement with them favours
+#: the GCN (0.560, p < 0.0001) over the MPNN (0.474, p = 0.0435), reversing the
+#: earlier reading that put the MPNN first. Six measures have not separated
+#: them, so the viewer now offers both and lets the nose decide.
 MODELS = [
-    ("mpnn", "library_mpnn_s6", "MPNN encoder (uses bond features)"),
+    ("mpnn", "library_mpnn_s6", "MPNN encoder (bond features reach it, then saturate away)"),
     ("gcn", "library", "GCN encoder (no bond features)"),
 ]
 
@@ -164,7 +167,7 @@ def main() -> int:
         for part in args.models.split(","):
             k, _, v = part.partition("=")
             MODELS.append((k.strip(), v.strip(),
-                           {"mpnn": "MPNN encoder (uses bond features)",
+                           {"mpnn": "MPNN encoder (bond features reach it, then saturate away)",
                             "gcn": "GCN encoder (no bond features)"}.get(k.strip(), k.strip())))
 
     paths = resolve_paths()

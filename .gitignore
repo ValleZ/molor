@@ -25,4 +25,7 @@ __pycache__/
 # template, so the inputs are versioned and these are not.
 artifacts/viewer_data*.json
 artifacts/receptor_atlas*.html
+artifacts/molor_public*.html
 artifacts/maps*/
+# The deployed copy of the atlas is versioned in the valkon.us repo, which is
+# how the site is published; keeping a second copy here only doubles the churn.
