@@ -1,5 +1,5 @@
 {
-  "built_utc": "2026-10-30T13:47:55+00:00",
+  "built_utc": "2026-10-30T14:05:29+00:00",
   "datasets": {
     "dravnieks": {
       "source": "pyrfume dravnieks_1985 (ASTM DS61, doi:10.1520/DS61-EB)",
@@ -39,6 +39,15 @@
         "1e-07"
       ],
       "in_library_molecules": 99
+    },
+    "abraham_thresholds": {
+      "source": "pyrfume abraham_2012 (doi:10.1093/chemse/bjr094)",
+      "values": "Log(1/ODT): higher means a lower detection threshold, i.e. a more potent material. MEASURED, not predicted.",
+      "molecules": 268,
+      "value_min": -2.78,
+      "value_max": 6.114,
+      "in_library_molecules": 28,
+      "note": "the right target for dosing; keller_2016 intensity is perceived strength at a fixed dilution, a different variable (the two correlate at r 0.59 over the 28 shared materials)"
     },
     "gslf": {
       "source": "openpom curated_GS_LF_merged_4983.csv",

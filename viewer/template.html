@@ -661,31 +661,50 @@ window.addEventListener("error", function (ev) {
       + "<dt>Placement</dt><dd>" + p.reliability[i].toFixed(2)
       + (p.reliability[i] < 0.25 ? " — unreliable" : "") + "</dd></dl>";
 
-    // Predicted strength. Kept out of the point size deliberately: an earlier
-    // build encoded potency that way and it read as importance rather than
-    // intensity. The percentile matters more than the raw score, since the
-    // number is only meaningful relative to the rest of the library.
-    if (m.intensity !== null && m.intensity !== undefined) {
-      var im = (D.meta && D.meta.intensity_model) || {};
-      html += '<h2 style="margin-top:14px">Predicted strength</h2>'
+    // Potency. Detection threshold leads because it is what dosing turns on
+    // and because 28 of these values are measured rather than modelled.
+    // Perceived intensity follows as a secondary, weaker line: it is strength
+    // at one fixed dilution, which is a different variable -- linalool reads
+    // mid-range there and near the bottom by threshold, and the bench agrees
+    // with the threshold. Neither is encoded in the point size; an earlier
+    // build did that and it read as importance.
+    if (m.odt !== null && m.odt !== undefined) {
+      var tm = (D.meta && D.meta.threshold_model) || {};
+      var ood = m.odtSrc === "out-of-domain";
+      var badge = m.odtSrc === "measured"
+        ? '<span class="chip" style="background:#3f9b4f">measured</span>'
+        : (ood ? '<span class="chip" style="background:#c0452b">extrapolated</span>'
+               : '<span class="chip" style="background:#5aa6d0">predicted</span>');
+      html += '<h2 style="margin-top:14px">Potency ' + badge + "</h2>"
         + '<div class="bars"><div class="rrow">'
-        + '<span class="g">intensity</span>'
+        + '<span class="g">log(1/ODT)</span>'
         + '<span class="track"><span class="fill" style="width:'
-        + Math.max(0, Math.min(100, m.intensity)).toFixed(1) + '%"></span></span>'
-        + '<span class="v">' + m.intensity.toFixed(1) + "</span></div></div>"
-        + '<p class="note">' + m.intensityPct.toFixed(0)
-        + "th percentile of this library"
-        + (im.concentration
-            ? ", predicted at a " + im.concentration.toExponential(0)
-              + " dilution in paraffin oil" : "")
-        + ". Perceived strength at a fixed dose, which is a potency proxy, not a "
-        + "detection threshold or an odour activity value."
-        + (im.pearson
-            ? " The model reaches r " + im.pearson.toFixed(2)
-              + " against a panel ceiling of "
-              + (im.ceiling ? im.ceiling.toFixed(2) : "?")
-              + ", so treat it as a ranking rather than a measurement." : "")
+        + Math.max(0, Math.min(100, m.odtPct)).toFixed(1)
+        + '%' + (ood ? ';opacity:.45' : '') + '"></span></span>'
+        + '<span class="v">' + m.odt.toFixed(2) + "</span></div></div>"
+        + '<p class="note">' + m.odtPct.toFixed(0)
+        + "th percentile of the library. Higher means a lower detection "
+        + "threshold, so a more potent material. "
+        + (m.odtSrc === "measured"
+            ? "This value is measured (Abraham 2012), not modelled."
+            : (ood
+                ? "This material lies outside what Abraham measured &mdash; "
+                  + "heavier than any training molecule, or unlike all of them "
+                  + "&mdash; and extrapolations there run systematically too "
+                  + "potent. Do not dose on this number."
+                : "Predicted"
+                  + (tm.pearson ? ", from a model reaching r "
+                      + tm.pearson.toFixed(2) + " on "
+                      + (tm.training_molecules || "?") + " measured molecules"
+                      : "")
+                  + ". A ranking, not a measurement."))
         + "</p>";
+      if (m.intensity !== null && m.intensity !== undefined) {
+        html += '<p class="note">Perceived strength at a 1&times;10<sup>-3</sup> '
+          + "dilution rates " + m.intensity.toFixed(0) + "/100 ("
+          + m.intensityPct.toFixed(0) + "th percentile) &mdash; a different "
+          + "quantity from threshold, and the weaker of the two.</p>";
+      }
     }
 
     if (p.reliability[i] < 0.25) {
@@ -789,15 +808,19 @@ window.addEventListener("error", function (ev) {
       + ", trained on GoodScents + Leffingwell (4983 molecules). "
       + "Selected by ablation to keep similarity structure that per-label accuracy "
       + "tuning destroys."
-      + ((D.meta && D.meta.intensity_model && D.meta.intensity_model.pearson)
-          ? "<br><strong>Strength</strong>: separate regression on Keller 2016, "
-            + "474 molecules rated 0&ndash;100 by 55 subjects at known dilutions; "
-            + "held out by molecule, r "
-            + D.meta.intensity_model.pearson.toFixed(2) + " against a panel "
-            + "ceiling of "
-            + (D.meta.intensity_model.ceiling
-                ? D.meta.intensity_model.ceiling.toFixed(2) : "?")
-            + "."
+      + ((D.meta && D.meta.threshold_model && D.meta.threshold_model.pearson)
+          ? "<br><strong>Potency</strong>: odour detection thresholds from "
+            + "Abraham 2012, measured for "
+            + (D.meta.threshold_model.n_measured || 0)
+            + " of these materials and predicted for the rest by a model "
+            + "reaching r " + D.meta.threshold_model.pearson.toFixed(2)
+            + " on " + (D.meta.threshold_model.training_molecules || "?")
+            + " measured molecules. "
+            + (D.meta.threshold_model.n_out_of_domain || 0)
+            + " materials are heavier or more unusual than anything measured "
+            + "and are marked extrapolated; their numbers run too potent. "
+            + "Perceived strength, shown alongside, comes from Keller 2016 and "
+            + "is a separate and weaker quantity."
           : "")
       // The two encoders fail differently, and the MPNN's failure is the more
       // serious one, so the caveat has to follow whichever built this page.

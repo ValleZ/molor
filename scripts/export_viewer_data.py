@@ -219,6 +219,34 @@ def main() -> int:
         }
         print(f"  intensity available for {len(intensity)} molecules")
 
+    # Measured or predicted detection threshold, which is the quantity dosing
+    # turns on. Carried with its provenance per material, because 28 values are
+    # measured, 163 are in-domain predictions, and 110 are extrapolations beyond
+    # anything Abraham measured and must not read as equivalent.
+    thresh, thresh_meta = {}, {}
+    tpath = ROOT / "artifacts" / "threshold.json"
+    if tpath.is_file():
+        tj = json.loads(tpath.read_text(encoding="utf-8"))
+        tv = np.asarray(tj["log_inv_odt"], dtype=float)
+        trust = np.array([s_ != "out-of-domain" for s_ in tj["source"]])
+        # Percentile is computed over the trustworthy subset only, so an
+        # extrapolation cannot shift where everything else appears to sit.
+        ref = np.sort(tv[trust]) if trust.any() else np.sort(tv)
+        for n, v, src in zip(tj["molecules"], tv, tj["source"]):
+            pc = 100.0 * float(np.searchsorted(ref, v)) / max(len(ref) - 1, 1)
+            thresh[n] = (round(float(v), 2), src, round(min(pc, 100.0), 1))
+        sc = tj.get("scores", {}).get("model (ECFP4 + descriptors)", {})
+        thresh_meta = {
+            "pearson": sc.get("pearson"),
+            "training_molecules": tj.get("training_molecules"),
+            "n_measured": int(sum(1 for x in tj["source"] if x == "measured")),
+            "n_out_of_domain": int(sum(1 for x in tj["source"]
+                                       if x == "out-of-domain")),
+            "domain": tj.get("applicability_domain", {}),
+        }
+        print(f"  thresholds: {thresh_meta['n_measured']} measured, "
+              f"{thresh_meta['n_out_of_domain']} out-of-domain")
+
     # Predicted GS-LF odour descriptors, from whichever model --percepts names.
     percept_path = ROOT / args.percepts
     percept_tags, percept_list, percept_colour, percept_top = {}, [], {}, {}
@@ -285,6 +313,7 @@ def main() -> int:
             "checkpoint_md5": prov["checkpoint_md5"],
             "percept_model": percept_meta,
             "intensity_model": intensity_meta,
+            "threshold_model": thresh_meta,
         },
         "receptors": [{"gene": g, "family": f} for g, f in zip(genes, families)],
         "classes": classes,
@@ -297,6 +326,9 @@ def main() -> int:
              "perceptTop": percept_top.get(e.name, []),
              "intensity": intensity.get(e.name, [None, None])[0],
              "intensityPct": intensity.get(e.name, [None, None])[1],
+             "odt": thresh.get(e.name, [None, None, None])[0],
+             "odtSrc": thresh.get(e.name, [None, None, None])[1],
+             "odtPct": thresh.get(e.name, [None, None, None])[2],
              "note": "" if args.no_notes else notes.get(e.name, "")}
             for e in entries
         ],

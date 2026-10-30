@@ -234,6 +234,67 @@ def build_keller(lib: dict[str, str]) -> tuple[pd.DataFrame, dict]:
     return out, meta
 
 
+def build_abraham(lib: dict[str, str]) -> tuple[pd.DataFrame, dict]:
+    """Measured human odour detection thresholds.
+
+    This is the quantity perfumery dosing actually turns on, and it is measured
+    rather than modelled, so it should be used in preference to any prediction
+    wherever it exists. Perceived intensity at a fixed dilution -- what
+    keller_2016 records -- is a different variable: linalool rates 57.6 out of
+    100 at a 1e-3 dilution there, which reads as mid-range, while its measured
+    threshold puts it near the bottom of this library. The second agrees with
+    the bench and the first does not.
+
+    The column is Log(1/ODT), so larger means a lower threshold and a more
+    potent material. The file also carries Abraham's solvation descriptors
+    (E, S, A, B, L, V), which are the inputs to his published linear
+    free-energy model; they are experimental parameters rather than anything
+    RDKit computes, so they are kept for reference but cannot be derived for a
+    new molecule.
+    """
+    import pyrfume
+
+    beh = pyrfume.load_data("abraham_2012/behavior.csv")
+    sti = pyrfume.load_data("abraham_2012/stimuli.csv")
+    mol = pyrfume.load_data("abraham_2012/molecules.csv")
+
+    s2c = (dict(zip(sti.index, sti["CID"])) if sti.index.name == "Stimulus"
+           else dict(zip(sti["Stimulus"], sti["CID"])))
+    cid2smi = dict(zip(mol.index, mol["IsomericSMILES"]))
+    cid2name = dict(zip(mol.index, mol["name"]))
+
+    keep = [c for c in ("Log (1/ODT)", "E", "S", "A", "B", "L", "V") if c in beh]
+    rows = []
+    for stim, r in beh.iterrows():
+        odt = r.get("Log (1/ODT)")
+        cid = s2c.get(stim)
+        smi = cid2smi.get(cid)
+        if not isinstance(smi, str) or not np.isfinite(odt):
+            continue
+        key = inchikey(smi)
+        if key is None:
+            continue
+        rows.append({"inchikey": key, "smiles": smi,
+                     "name": cid2name.get(cid, ""),
+                     "in_library": lib.get(key, ""),
+                     **{c: r.get(c) for c in keep}})
+    df = pd.DataFrame(rows).drop_duplicates("inchikey")
+    v = df["Log (1/ODT)"].to_numpy(float)
+    meta = {
+        "source": "pyrfume abraham_2012 (doi:10.1093/chemse/bjr094)",
+        "values": "Log(1/ODT): higher means a lower detection threshold, "
+                  "i.e. a more potent material. MEASURED, not predicted.",
+        "molecules": int(len(df)),
+        "value_min": round(float(v.min()), 3),
+        "value_max": round(float(v.max()), 3),
+        "in_library_molecules": int((df["in_library"] != "").sum()),
+        "note": "the right target for dosing; keller_2016 intensity is "
+                "perceived strength at a fixed dilution, a different variable "
+                "(the two correlate at r 0.59 over the 28 shared materials)",
+    }
+    return df, meta
+
+
 def keller_intensity_ceiling(seed: int = 0, splits: int = 50) -> dict:
     """How well the panel's mean intensity predicts itself.
 
@@ -326,6 +387,13 @@ def main() -> int:
           f"{kmeta['descriptors']} descriptors + {len(kmeta['scales'])} scales, "
           f"{kmeta['trials_completed']}/{kmeta['trials_total']} trials used, "
           f"{kmeta['in_library_molecules']} in library")
+
+    abr, ameta = build_abraham(lib)
+    abr.to_csv(out / "abraham_thresholds.csv", index=False, encoding="utf-8")
+    manifest["datasets"]["abraham_thresholds"] = ameta
+    print(f"[data] abraham: {ameta['molecules']} molecules with a MEASURED "
+          f"threshold, range {ameta['value_min']} to {ameta['value_max']}, "
+          f"{ameta['in_library_molecules']} in library")
 
     print("[data] computing the keller intensity noise ceiling ...", flush=True)
     manifest["keller_intensity_ceiling"] = keller_intensity_ceiling()
