@@ -396,6 +396,46 @@ window.addEventListener("error", function (ev) {
       _rot.x[i] = x1; _rot.y[i] = y2; _rot.d[i] = z2;
     }
   }
+  // The MDS axes come out in an arbitrary orientation, and the cloud usually
+  // has one dominant direction. At a fixed starting angle that direction can
+  // land vertically, which leaves the view a thin column in a wide window and
+  // makes the first thing anyone sees the worst view of the data. So pick the
+  // opening angle from the data: search orientations and keep the one that
+  // lets the points fill the canvas, which is the one maximising the fit
+  // scale. A little pitch is held back from the optimum so the plot still
+  // reads as three-dimensional rather than as a flat sheet seen face-on.
+  function chooseView() {
+    if (!is3D() || !W || !H) return;
+    var p = P(), X = p.x, Y = p.y, Z = p.z, n = X.length, pad = 54;
+    // The coordinates arrive axis-aligned, widest spread along x, so the
+    // search only needs to trim for the window's aspect. It is deliberately
+    // held near zero yaw: a wider search finds angles that fill more canvas by
+    // turning the long axis into depth, which foreshortens the very gradient
+    // the plot exists to show. Filling the frame is not worth hiding that.
+    var best = -1, bestYaw = 0, bestPitch = 0.22;
+    for (var a = -4; a <= 4; a++) {
+      var yaw = a * 0.14, cy = Math.cos(yaw), sy2 = Math.sin(yaw);
+      for (var b = -3; b <= 3; b++) {
+        var pitch = b * 0.14, cp = Math.cos(pitch), sp = Math.sin(pitch);
+        var x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity;
+        for (var i = 0; i < n; i++) {
+          var rx = cy * X[i] + sy2 * Z[i];
+          var rz = -sy2 * X[i] + cy * Z[i];
+          var ry = cp * Y[i] - sp * rz;
+          if (rx < x0) x0 = rx;
+          if (rx > x1) x1 = rx;
+          if (ry < y0) y0 = ry;
+          if (ry > y1) y1 = ry;
+        }
+        var k = Math.min((W - 2 * pad) / Math.max(1e-6, x1 - x0),
+                         (H - 2 * pad) / Math.max(1e-6, y1 - y0));
+        if (k > best) { best = k; bestYaw = yaw; bestPitch = pitch; }
+      }
+    }
+    state.yaw = bestYaw;
+    state.pitch = Math.abs(bestPitch) < 0.12 ? 0.22 : bestPitch;
+  }
+
   function fit() {
     var p = P(), pad = 54;
     rotateAll();
@@ -597,7 +637,7 @@ window.addEventListener("error", function (ev) {
   });
   // The Reset control is gone, so double-clicking the plot re-fits the view.
   cv.addEventListener("dblclick", function () {
-    state.fitted = false; state.yaw = 0.6; state.pitch = 0.35; draw();
+    state.fitted = false; chooseView(); draw();
   });
   cv.addEventListener("pointerleave", function () { tip.hidden = true; dragging = false; cv.classList.remove("drag"); });
   cv.addEventListener("wheel", function (ev) {
@@ -668,42 +708,42 @@ window.addEventListener("error", function (ev) {
     // mid-range there and near the bottom by threshold, and the bench agrees
     // with the threshold. Neither is encoded in the point size; an earlier
     // build did that and it read as importance.
-    if (m.odt !== null && m.odt !== undefined) {
-      var tm = (D.meta && D.meta.threshold_model) || {};
-      var ood = m.odtSrc === "out-of-domain";
-      var badge = m.odtSrc === "measured"
-        ? '<span class="chip" style="background:#3f9b4f">measured</span>'
-        : (ood ? '<span class="chip" style="background:#c0452b">extrapolated</span>'
-               : '<span class="chip" style="background:#5aa6d0">predicted</span>');
-      html += '<h2 style="margin-top:14px">Potency ' + badge + "</h2>"
-        + '<div class="bars"><div class="rrow">'
-        + '<span class="g">log(1/ODT)</span>'
-        + '<span class="track"><span class="fill" style="width:'
-        + Math.max(0, Math.min(100, m.odtPct)).toFixed(1)
-        + '%' + (ood ? ';opacity:.45' : '') + '"></span></span>'
-        + '<span class="v">' + m.odt.toFixed(2) + "</span></div></div>"
-        + '<p class="note">' + m.odtPct.toFixed(0)
-        + "th percentile of the library. Higher means a lower detection "
-        + "threshold, so a more potent material. "
-        + (m.odtSrc === "measured"
-            ? "This value is measured (Abraham 2012), not modelled."
-            : (ood
-                ? "This material lies outside what Abraham measured &mdash; "
-                  + "heavier than any training molecule, or unlike all of them "
-                  + "&mdash; and extrapolations there run systematically too "
-                  + "potent. Do not dose on this number."
-                : "Predicted"
-                  + (tm.pearson ? ", from a model reaching r "
-                      + tm.pearson.toFixed(2) + " on "
-                      + (tm.training_molecules || "?") + " measured molecules"
-                      : "")
-                  + ". A ranking, not a measurement."))
-        + "</p>";
-      if (m.intensity !== null && m.intensity !== undefined) {
-        html += '<p class="note">Perceived strength at a 1&times;10<sup>-3</sup> '
-          + "dilution rates " + m.intensity.toFixed(0) + "/100 ("
-          + m.intensityPct.toFixed(0) + "th percentile) &mdash; a different "
-          + "quantity from threshold, and the weaker of the two.</p>";
+    // Dosing. Only two numbers earn a place here. A measured threshold, where
+    // one exists, and the perfumer's own maximum use level, which tracks those
+    // measured values at rho 0.76. Model-predicted thresholds are deliberately
+    // absent: they reached rho 0.14 against the same use levels in-domain and
+    // -0.17 outside it, so they carried no information and sometimes pointed
+    // the wrong way, despite scoring 0.82 in cross-validation on the training
+    // set's own chemical space.
+    if ((m.odt !== null && m.odt !== undefined)
+        || (m.topPct !== null && m.topPct !== undefined)) {
+      html += '<h2 style="margin-top:14px">Dosing</h2>';
+      if (m.odt !== null && m.odt !== undefined) {
+        html += '<div class="bars"><div class="rrow">'
+          + '<span class="g">log(1/ODT)</span>'
+          + '<span class="track"><span class="fill" style="width:'
+          + Math.max(0, Math.min(100, m.odtPct)).toFixed(1) + '%"></span></span>'
+          + '<span class="v">' + m.odt.toFixed(2) + "</span></div></div>"
+          + '<p class="note"><strong>Measured</strong> detection threshold '
+          + "(Abraham 2012), " + m.odtPct.toFixed(0)
+          + "th percentile of the materials that have one. Higher means a lower "
+          + "threshold, so a more potent material.</p>";
+      }
+      if (m.topPct !== null && m.topPct !== undefined) {
+        html += '<dl class="kv"><dt>Max use level</dt><dd>'
+          + m.topPct + "%</dd>"
+          + (m.volatility ? "<dt>Volatility</dt><dd>" + esc(m.volatility)
+             + "</dd>" : "")
+          + (m.family ? "<dt>Family</dt><dd>" + esc(m.family) + "</dd>" : "")
+          + "</dl>"
+          + '<p class="note">Use level is the perfumer\'s own working ceiling, '
+          + "which also reflects IFRA limits, cost and how much of the character "
+          + "is wanted &mdash; not potency alone.</p>";
+      }
+      if (m.odt === null || m.odt === undefined) {
+        html += '<p class="note">No measured threshold for this material. '
+          + "A predicted one is not shown: those predictions did not track "
+          + "practice on this library.</p>";
       }
     }
 
@@ -810,19 +850,16 @@ window.addEventListener("error", function (ev) {
       + ", trained on GoodScents + Leffingwell (4983 molecules). "
       + "Selected by ablation to keep similarity structure that per-label accuracy "
       + "tuning destroys."
-      + ((D.meta && D.meta.threshold_model && D.meta.threshold_model.pearson)
-          ? "<br><strong>Potency</strong>: odour detection thresholds from "
-            + "Abraham 2012, measured for "
-            + (D.meta.threshold_model.n_measured || 0)
-            + " of these materials and predicted for the rest by a model "
-            + "reaching r " + D.meta.threshold_model.pearson.toFixed(2)
-            + " on " + (D.meta.threshold_model.training_molecules || "?")
-            + " measured molecules. "
-            + (D.meta.threshold_model.n_out_of_domain || 0)
-            + " materials are heavier or more unusual than anything measured "
-            + "and are marked extrapolated; their numbers run too potent. "
-            + "Perceived strength, shown alongside, comes from Keller 2016 and "
-            + "is a separate and weaker quantity."
+      + ((D.meta && D.meta.threshold_model && D.meta.threshold_model.n_measured)
+          ? "<br><strong>Dosing</strong>: measured odour detection thresholds "
+            + "from Abraham 2012 for "
+            + D.meta.threshold_model.n_measured
+            + " materials, and the perfumer's own maximum use levels. "
+            + "Predicted thresholds are withheld: a model scoring r 0.82 in "
+            + "cross-validation on Abraham's chemical space reached only "
+            + "Spearman 0.14 against those use levels on this library, and "
+            + "-0.17 for materials outside its training range, so it carried "
+            + "no usable information here."
           : "")
       // The two encoders fail differently, and the MPNN's failure is the more
       // serious one, so the caveat has to follow whichever built this page.
@@ -839,11 +876,13 @@ window.addEventListener("error", function (ev) {
       + "not as a prediction of smell.";
   }
 
-  window.addEventListener("resize", function () { resize(); state.fitted = false; draw(); });
+  window.addEventListener("resize", function () {
+    resize(); state.fitted = false; chooseView(); draw();
+  });
   if (window.matchMedia) {
     var mq = window.matchMedia("(prefers-color-scheme: dark)");
     if (mq.addEventListener) mq.addEventListener("change", draw);
   }
-  resize(); draw(); renderDetail(); renderFoot();
+  resize(); chooseView(); draw(); renderDetail(); renderFoot();
 })();
 </script>

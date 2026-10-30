@@ -76,6 +76,29 @@ def build_model_block(paths, name, genes_ref, names_ref):
 
     reduced, _ = preprocess(logits, drop_pc1=False, n_components=20)
     D = squareform(pdist(reduced))
+    def axis_align(coords):
+        """Rotate a point cloud so its widest spread runs along x, then y.
+
+        MDS returns an arbitrary orientation, and these clouds are strongly
+        elongated -- about three to one. If the long axis lands on y the viewer
+        opens as a thin vertical column in a landscape window, which is the
+        worst available view of the data. The viewer can only yaw about y and
+        pitch about x, with no roll, so it cannot move the long axis out of y
+        by itself; the orientation has to be right in the data.
+
+        A rotation preserves every pairwise distance, so Shepard correlations
+        and neighbour preservation are untouched.
+        """
+        c = coords - coords.mean(axis=0, keepdims=True)
+        # Principal axes, largest variance first.
+        _, _, vt = np.linalg.svd(c, full_matrices=False)
+        out = c @ vt.T
+        # Fix the sign convention so repeated builds do not mirror randomly.
+        for j in range(out.shape[1]):
+            if out[np.argmax(np.abs(out[:, j])), j] < 0:
+                out[:, j] = -out[:, j]
+        return out
+
     projections = {}
     # 3D first: it preserves local neighbourhoods far better (0.70 vs 0.51 on
     # top-10 overlap), which is what prevents unrelated molecules from looking
@@ -88,6 +111,7 @@ def build_model_block(paths, name, genes_ref, names_ref):
         d3 = pdist(red3)
         c3 = _MDS(n_components=3, dissimilarity="precomputed", random_state=0,
                   n_init=6, max_iter=800, normalized_stress="auto").fit_transform(_sq(d3))
+        c3 = axis_align(c3)
         from scipy.stats import spearmanr as _sp
 
         projections[f"mds3_{'quality' if drop3 else 'full'}"] = {
@@ -232,20 +256,39 @@ def main() -> int:
         # Percentile is computed over the trustworthy subset only, so an
         # extrapolation cannot shift where everything else appears to sit.
         ref = np.sort(tv[trust]) if trust.any() else np.sort(tv)
+        # Only measured values are carried. The predictions validated badly
+        # against the perfumer's own use levels -- Spearman 0.14 in-domain and
+        # -0.17 out-of-domain, against 0.76 for the measured values -- so the
+        # model has no external validity on this library despite scoring 0.82
+        # in cross-validation on Abraham's own chemical space. Shipping a
+        # number that anticorrelates with practice is worse than shipping none.
         for n, v, src in zip(tj["molecules"], tv, tj["source"]):
+            if src != "measured":
+                continue
             pc = 100.0 * float(np.searchsorted(ref, v)) / max(len(ref) - 1, 1)
             thresh[n] = (round(float(v), 2), src, round(min(pc, 100.0), 1))
-        sc = tj.get("scores", {}).get("model (ECFP4 + descriptors)", {})
         thresh_meta = {
-            "pearson": sc.get("pearson"),
-            "training_molecules": tj.get("training_molecules"),
-            "n_measured": int(sum(1 for x in tj["source"] if x == "measured")),
-            "n_out_of_domain": int(sum(1 for x in tj["source"]
-                                       if x == "out-of-domain")),
-            "domain": tj.get("applicability_domain", {}),
+            "n_measured": len(thresh),
+            "predictions_withheld": int(len(tj["molecules"]) - len(thresh)),
+            "why_withheld": "model predictions reached Spearman 0.14 against "
+                            "the perfumer's own maximum use levels in-domain "
+                            "and -0.17 out-of-domain, where the measured "
+                            "values reach 0.76",
         }
-        print(f"  thresholds: {thresh_meta['n_measured']} measured, "
-              f"{thresh_meta['n_out_of_domain']} out-of-domain")
+        print(f"  thresholds: {len(thresh)} measured kept, "
+              f"{thresh_meta['predictions_withheld']} predictions withheld")
+
+    # The perfumer's own maximum use level, which is the best dosing signal
+    # available: it tracks measured thresholds at rho 0.76 where both exist.
+    usage = {}
+    ipath = ROOT / "data" / "inventory" / "inventory.csv"
+    if ipath.is_file():
+        import csv as _c
+        for r in _c.DictReader(open(ipath, encoding="utf-8-sig")):
+            if r.get("top_pct"):
+                usage[r["name"]] = (float(r["top_pct"]), r.get("family", ""),
+                                    r.get("volatility_class", ""))
+        print(f"  inventory: {len(usage)} materials with a use level")
 
     # Predicted GS-LF odour descriptors, from whichever model --percepts names.
     percept_path = ROOT / args.percepts
@@ -329,6 +372,9 @@ def main() -> int:
              "odt": thresh.get(e.name, [None, None, None])[0],
              "odtSrc": thresh.get(e.name, [None, None, None])[1],
              "odtPct": thresh.get(e.name, [None, None, None])[2],
+             "topPct": usage.get(e.name, [None, None, None])[0],
+             "family": usage.get(e.name, [None, None, None])[1],
+             "volatility": usage.get(e.name, [None, None, None])[2],
              "note": "" if args.no_notes else notes.get(e.name, "")}
             for e in entries
         ],

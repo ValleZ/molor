@@ -1,0 +1,14 @@
+{
+  "source": "perfumery-inventory spreadsheet, exported by the perfumer",
+  "rows": 166,
+  "single_molecules": 129,
+  "join_library": 128,
+  "top_pct_filled": 165,
+  "family_filled": 165,
+  "families": 94,
+  "log_drop_measured": 19,
+  "caveats": {
+    "top_pct": "perfumer's own maximum use level; rho 0.756 against measured air thresholds over 11 materials, but also reflects IFRA limits, cost and desired character",
+    "water_threshold_ppb": "assembled from mixed sources and flagged rough by the perfumer; rho 0.451 against Abraham air thresholds (n=11) and 0.386 against the sheet's own top %; water and air thresholds are different quantities"
+  }
+}
