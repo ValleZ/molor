@@ -734,6 +734,15 @@ window.addEventListener("error", function (ev) {
       html += "</div>";
     }
 
+    // Neighbours first: they are what the map is read for, and the per-receptor
+    // profile is reference material underneath it.
+    html += '<h2 style="margin-top:14px">Nearest in receptor space</h2><ul class="nn">';
+    neighbours(i, 8).forEach(function (t) {
+      html += '<li><button type="button" data-go="' + t[0] + '">' + esc(D.molecules[t[0]].name)
+        + '</button><span class="d">' + t[1].toFixed(1) + "</span></li>";
+    });
+    html += "</ul>";
+
     html += '<h2 style="margin-top:14px">Receptor profile</h2><div class="bars">';
     topReceptors(i, 12).forEach(function (t) {
       html += '<div class="rrow"><span class="g">' + esc(D.receptors[t[0]].gene) + "</span>"
@@ -742,13 +751,6 @@ window.addEventListener("error", function (ev) {
     });
     html += "</div>";
     html += '<p class="note">Scores are sigmoid outputs: P(receptor responds), not intensity.</p>';
-
-    html += '<h2 style="margin-top:14px">Nearest in receptor space</h2><ul class="nn">';
-    neighbours(i, 8).forEach(function (t) {
-      html += '<li><button type="button" data-go="' + t[0] + '">' + esc(D.molecules[t[0]].name)
-        + '</button><span class="d">' + t[1].toFixed(1) + "</span></li>";
-    });
-    html += "</ul>";
 
     el.innerHTML = html;
     Array.prototype.forEach.call(el.querySelectorAll("[data-go]"), function (b) {
