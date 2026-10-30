@@ -530,6 +530,94 @@ vanillin, α-ionone ↔ β-ionone, dihydroeugenol ↔ methyl diantilis.
 Caveat: the ionones as a *group* sit at the 49th percentile, because methyl
 ionone γ falls far from α/β-ionone. Not every intuitive family is tight.
 
+## Predicting smell directly: five models, two axes
+
+Receptor vectors encode chemistry, not smell (above). So the library is also
+scored by models trained on human odour descriptors — the GS-LF set
+(GoodScents + Leffingwell, 4983 molecules × 138 descriptors) that OpenPOM uses.
+
+The important discovery is that **the usual accuracy metric and the thing this
+project needs are not the same measurement**, and optimising one damages the
+other.
+
+- *Out-of-fold ROC-AUC* asks whether a model ranks molecules correctly **within
+  one descriptor** — is this molecule more `fruity` than that one?
+- *Label-grounded similarity* asks whether two molecules sit near each other
+  **across all descriptors**. This is what the viewer's layout, the
+  nearest-neighbour suggestions and the accord substitution work all rely on.
+  Measured as the Spearman correlation between predicted cosine similarity and
+  the Jaccard overlap of human descriptor sets, over the 26 106 pairs of the 229
+  library materials GS-LF covers (`scripts/eval_similarity.py`).
+
+| model | OOF AUC | similarity ρ |
+|---|---|---|
+| fingerprint **v3** (ablation-selected) | 0.8672 | **+0.4894** |
+| fingerprint v2 (`pos_weight`, ensemble) | **0.8818** | +0.3731 |
+| fingerprint v1 (first attempt) | 0.7912 | **+0.5505** |
+| OpenPOM (published checkpoints) | 0.8872\* | +0.4476 |
+| Dense Sense (adds electron density) | — | +0.3731 |
+| GS-LF MPNN | — | +0.3355 |
+| Uni-Mol (pretrained, no odour labels) | — | +0.1508 |
+| raw ECFP4 (control) | — | +0.1804 |
+
+\* OpenPOM's own published figure under a similar protocol, not a head-to-head:
+its checkpoints were trained on all of GS-LF, so it cannot be scored on a
+held-out part of it. See `scripts/eval_fp_percept.py`.
+
+Two results are worth stating plainly.
+
+**Uni-Mol scores below raw fingerprints.** It is a transformer pretrained on
+209M 3D conformers and has never seen an odour label; its CLS embedding reaches
++0.151 against raw ECFP4's +0.180. A general-purpose 3D chemical prior does not
+encode smell similarity, which is evidence the odour labels carry information
+chemistry alone does not — and means fine-tuning is the only route by which a
+3D model could help here.
+
+**The best-AUC model had the worst geometry, and the trade was avoidable.** Two
+ablation rounds (`scripts/ablate_fp.py`, `ablate_fp2.py`) found that nearly
+everything v2 added for accuracy was paid for in geometry, and that the two
+costliest additions bought almost nothing:
+
+| change | Δ similarity | Δ AUC |
+|---|---|---|
+| drop per-label `pos_weight` | **+0.079** | −0.008 |
+| standardise all features, bits included | **+0.064** | −0.018 |
+| drop dropout | +0.045 | −0.009 |
+
+`pos_weight` upweights rare descriptors, so the model asserts them widely; that
+adds a shared component to every vector and washes out the differences between
+molecules. Standardising the binary fingerprint bits — which v2 removed as a
+bug — divides each column by its standard deviation, so a molecule carrying a
+rare substructure gets a correspondingly large input. For per-label ranking
+that is noise; for telling two molecules apart it is signal.
+
+Caveat on precision: a single-model v3 scores 0.8537/+0.4263, worse on **both**
+axes than the five-model ensemble, which puts roughly ±0.03 of seed noise on the
+single-model Spearman values above. Only the first two rows are safely outside
+it; the dropout term is marginal and the batchnorm and layer-width terms were
+within noise.
+
+v3 is therefore v1's architecture — (512, 256), no batchnorm, no dropout, all
+features standardised, no `pos_weight` — trained v2's way, with a five-model
+ensemble and long cosine-annealed training, both of which cost no geometry.
+Nothing measured here dominates it on both axes.
+
+```bash
+python scripts/train_fp_v3.py                      # writes artifacts/percepts_fp3.json
+python scripts/eval_similarity.py --percept "v3=artifacts/percepts_fp3.json" --ecfp
+```
+
+### What none of them did
+
+A blind test (`scripts/blind_set.py`) drew six materials spanning the predicted
+range — some predicted to improve a gooseberry accord, some predicted to do
+nothing — and presented them shuffled, with the key written to a file rather
+than the terminal. The perfumer's rankings did not match the predictions: of
+the six, only one of the strongly-predicted materials helped. Four earlier
+*unblinded* trials had appeared to confirm the model, which is the expected
+shape of expectation bias. Treat the suggestion ranking as a search heuristic
+over a 302-material library, not as a prediction.
+
 ## Layout
 
 ```
