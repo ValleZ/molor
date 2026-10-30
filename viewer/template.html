@@ -523,7 +523,20 @@ window.addEventListener("error", function (ev) {
       var hit = matches(idx);
       var isSel = idx === state.sel, isPin = idx === state.pin;
       ctx.beginPath();
-      ctx.arc(sx(idx), sy(idx), r, 0, 6.2832);
+      if (D.molecules[idx].isNatural) {
+        // Essential oils are not molecules: they are mixtures built from a
+        // published GC composition, so they get a diamond rather than a disc.
+        // Their position is a combination of their constituents' vectors, not
+        // a measurement of the oil.
+        var ox = sx(idx), oy = sy(idx), orr = r * 1.45;
+        ctx.moveTo(ox, oy - orr);
+        ctx.lineTo(ox + orr, oy);
+        ctx.lineTo(ox, oy + orr);
+        ctx.lineTo(ox - orr, oy);
+        ctx.closePath();
+      } else {
+        ctx.arc(sx(idx), sy(idx), r, 0, 6.2832);
+      }
       ctx.fillStyle = groupColour(primary(idx));
       ctx.globalAlpha = (state.query && !hit) ? 0.18 : 0.92;
       ctx.fill();
@@ -758,6 +771,10 @@ window.addEventListener("error", function (ev) {
     // than through groupColour, which colours by whatever scheme is active and
     // so greyed them out whenever the predicted-descriptor scheme was selected.
     var chips = "";
+    if (m.isNatural) {
+      chips += '<span class="chip" style="background:var(--accent);'
+        + 'color:#fff">EO</span> ';
+    }
     if (m.family) {
       chips += '<span class="chip" style="background:var(--surface-2);'
         + 'color:var(--fg)">' + esc(m.family) + "</span>";

@@ -60,10 +60,70 @@ MODELS = [
 ]
 
 
+class NaturalEntry:
+    """An essential oil, standing in for a library Entry.
+
+    A natural is not a molecule, so it has no InChIKey, formula or SMILES and
+    cannot live in the molecule store, which keys on exactly those. It is
+    carried alongside instead, with the same receptor and percept vectors, so
+    the atlas can place it. ``cls`` is left empty and ``is_natural`` is what
+    the viewer keys its different marker off.
+    """
+
+    is_natural = True
+    cls = ""
+    inchikey = ""
+    n_atoms = 0
+
+    def __init__(self, name: str, constituents: dict[str, float]):
+        self.name = name
+        # The inspector shows the build in place of a structure.
+        self.canonical_smiles = ""
+        self.formula = " + ".join(
+            f"{n} {100 * v:.0f}%" for n, v in
+            sorted(constituents.items(), key=lambda kv: -kv[1])[:4])
+
+
+def load_naturals(store: str):
+    """Return (entries, percept rows, receptor probability rows) for one store.
+
+    Naturals are built per store because each encoder has its own receptor
+    space; ``build_naturals.py --store`` writes one file per store, and a model
+    with no file for it simply raises, which the caller already reports as a
+    skipped model rather than silently mixing spaces.
+    """
+    path = (ROOT / "artifacts" / "naturals.json" if store == "library"
+            else ROOT / "artifacts" / f"naturals_{store}.json")
+    if not path.is_file():
+        return [], {}, {}
+    blob = json.loads(path.read_text(encoding="utf-8"))
+    ents, percept, rec = [], {}, {}
+    for oil, v in blob["naturals"].items():
+        ents.append(NaturalEntry(oil, v["composition_used"]))
+        percept[oil] = np.asarray(v["percept"], dtype=float)
+        rec[oil] = np.asarray(v["receptors"], dtype=float)
+    return ents, percept, rec
+
+
+def _logit(p):
+    q = np.clip(np.asarray(p, dtype=float), 1e-6, 1 - 1e-6)
+    return np.log(q / (1 - q))
+
+
 def build_model_block(paths, name, genes_ref, names_ref):
     """Score matrix, distances, links and projections for one encoder."""
     lib = Library(paths, name=name)
     entries, logits, scores = lib.load()
+    nat_ents, _, nat_rec = load_naturals(name)
+    if nat_ents:
+        entries = list(entries) + nat_ents
+        extra = np.stack([nat_rec[e.name] for e in nat_ents])
+        if extra.shape[1] != scores.shape[1]:
+            raise ValueError(
+                f"naturals for {name} have {extra.shape[1]} receptors, "
+                f"the store has {scores.shape[1]}")
+        scores = np.vstack([scores, extra])
+        logits = np.vstack([logits, _logit(extra)])
     names = [e.name for e in entries]
     if names != names_ref:
         # Reorder to the reference ordering so one molecule list serves both.
@@ -181,6 +241,14 @@ def main() -> int:
     families = [r["family"] for r in rec_rows]
 
     rec_rows2 = rec_rows
+    # Essential oils join the molecule set here, so every lookup keyed on a
+    # name picks them up and every one they have no value for falls through to
+    # its default -- they have no notes, no inventory row and no measured
+    # threshold, which is correct rather than missing.
+    nat_ents, nat_percept, _ = load_naturals(MODELS[0][1])
+    if nat_ents:
+        entries = list(entries) + nat_ents
+        print(f"  {len(nat_ents)} essential oils built from GC composition")
     names_ref = [e.name for e in entries]
 
     import matplotlib
@@ -363,6 +431,10 @@ def main() -> int:
             "config": pj.get("config"),
         }
         pm = {n: np.asarray(r) for n, r in zip(pj["molecules"], pj["probs"])}
+        # The oils' percept vectors are combined from their constituents', so
+        # they belong in the same map and get tags, a top-6 and a full row by
+        # the same rules as everything else.
+        pm.update(nat_percept)
         for e in entries:
             r = pm.get(e.name)
             if r is None:
@@ -435,6 +507,7 @@ def main() -> int:
              # share -- so a per-descriptor ranking answers a question that
              # similarity cannot.
              "perceptAll": percept_row.get(e.name, []),
+             "isNatural": int(getattr(e, "is_natural", False)),
              "inTrain": int(e.name in in_train),
              "intensity": intensity.get(e.name, [None, None])[0],
              "intensityPct": intensity.get(e.name, [None, None])[1],
