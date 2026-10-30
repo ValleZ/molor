@@ -32,6 +32,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -64,13 +65,26 @@ SELF_WORD = {
     # lemon, the nearest available word, so a pass there is weaker evidence
     # than a pass on an oil whose own name is in the vocabulary.
     "tangerine": "orange", "lime": "lemon",
+    # These two name a smell rather than a plant, and the claim is testable:
+    # lemongrass claims lemon and palmarosa claims rose. Whole-word matching
+    # does not reach inside either name, so they are listed.
+    "lemongrass": "lemon", "palmarosa": "rose",
 }
 
 
 def self_word(name: str) -> str | None:
-    low = name.lower()
+    """The descriptor an oil's name claims, matched on whole words only.
+
+    Substring matching is wrong here and quietly so: "rosemary" contains
+    "rose", so a rosemary oil was being scored against the rose descriptor and
+    landing 134th of 138, which reads as a failed build rather than a mismatched
+    question. The vocabulary has no word for rosemary, and saying so is the
+    correct answer.
+    """
+    low = re.sub(r"[^a-z]+", " ", name.lower())
+    words = set(low.split())
     for key in sorted(SELF_WORD, key=len, reverse=True):
-        if key in low:
+        if all(part in words for part in key.split()):
             return SELF_WORD[key]
     return None
 
