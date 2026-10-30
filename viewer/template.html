@@ -742,9 +742,9 @@ window.addEventListener("error", function (ev) {
       + "386-dimensional space, so <strong>trust the links over bare proximity</strong> — "
       + "a dotted outline marks a material whose plotted neighbours are mostly not its true "
       + "ones. This projection reproduces the real distances at Shepard "
-      + p.shepard.toFixed(3) + ". Two limits: stereochemistry is invisible to the model, so "
-      + "enantiomers and E/Z isomers land on the same point; and the vectors encode chemical "
-      + "structure more strongly than smell.";
+      + p.shepard.toFixed(3) + ". Two limits: enantiomers and E/Z isomers land on the "
+      + "same point, so stereochemistry is effectively invisible; and the vectors encode "
+      + "chemical structure more strongly than smell.";
     document.getElementById("foot").innerHTML =
       "<strong>Layout</strong>: MolOR MPNN cross-attention over ESM-2 650M receptor "
       + "embeddings, checkpoint " + esc(D.meta.checkpoint_md5.slice(0, 12))
@@ -758,10 +758,13 @@ window.addEventListener("error", function (ev) {
       + "Selected by ablation to keep similarity structure that per-label accuracy "
       + "tuning destroys."
       + "<br><strong>Read it with care</strong>: predicted descriptors are not "
-      + "measured ones, stereochemistry is invisible to both models, and a blind "
-      + "test of the suggestion ranking did not reproduce the perfumer's own "
-      + "ordering. Useful as a search heuristic over the library, not as a "
-      + "prediction of smell.";
+      + "measured ones; chirality is invisible to both models, and although bond "
+      + "stereo does reach the receptor model's encoder it is lost inside it, so "
+      + "E/Z isomers also coincide; roughly half of that encoder's output "
+      + "dimensions saturate, so the layout rests on a partly degenerate "
+      + "representation; and a blind test of the suggestion ranking did not "
+      + "reproduce the perfumer's own ordering. Useful as a search heuristic over "
+      + "the library, not as a prediction of smell.";
   }
 
   window.addEventListener("resize", function () { resize(); state.fitted = false; draw(); });
