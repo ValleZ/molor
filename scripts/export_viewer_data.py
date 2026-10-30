@@ -193,6 +193,32 @@ def main() -> int:
     }
     print(f"  odour families: {dict(freq)}")
 
+    # Predicted perceived intensity, if it has been trained. This is a
+    # different quantity from everything else on the page: receptor scores are
+    # probabilities that a receptor responds and descriptor scores are
+    # probabilities that a quality applies, whereas this is how strong the
+    # material smells at a stated dilution. It is the only number here that
+    # bears on dosing, so the percentile is carried too -- 70 out of 100 means
+    # little without knowing where the library sits.
+    intensity, intensity_meta = {}, {}
+    ipath = ROOT / "artifacts" / "intensity.json"
+    if ipath.is_file():
+        ij = json.loads(ipath.read_text(encoding="utf-8"))
+        vals = np.asarray(ij["predicted_intensity"], dtype=float)
+        order = np.argsort(np.argsort(vals))
+        pctl = 100.0 * order / max(len(vals) - 1, 1)
+        intensity = {n: (round(float(v), 1), round(float(p), 1))
+                     for n, v, p in zip(ij["molecules"], vals, pctl)}
+        sc = ij.get("scores", {}).get("model (structure + concentration)", {})
+        intensity_meta = {
+            "concentration": ij.get("predicted_at_concentration"),
+            "pearson": sc.get("pearson"),
+            "ceiling": (ij.get("noise_ceiling") or {}).get(
+                "spearman_brown_full_panel_r"),
+            "source": ij.get("target"),
+        }
+        print(f"  intensity available for {len(intensity)} molecules")
+
     # Predicted GS-LF odour descriptors, from whichever model --percepts names.
     percept_path = ROOT / args.percepts
     percept_tags, percept_list, percept_colour, percept_top = {}, [], {}, {}
@@ -258,6 +284,7 @@ def main() -> int:
             "panel_hash": prov["panel_hash"][:16],
             "checkpoint_md5": prov["checkpoint_md5"],
             "percept_model": percept_meta,
+            "intensity_model": intensity_meta,
         },
         "receptors": [{"gene": g, "family": f} for g, f in zip(genes, families)],
         "classes": classes,
@@ -268,6 +295,8 @@ def main() -> int:
              "odour": [] if args.no_notes else sorted(odour_tags.get(e.name, [])),
              "percept": percept_tags.get(e.name, []),
              "perceptTop": percept_top.get(e.name, []),
+             "intensity": intensity.get(e.name, [None, None])[0],
+             "intensityPct": intensity.get(e.name, [None, None])[1],
              "note": "" if args.no_notes else notes.get(e.name, "")}
             for e in entries
         ],

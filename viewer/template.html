@@ -661,6 +661,33 @@ window.addEventListener("error", function (ev) {
       + "<dt>Placement</dt><dd>" + p.reliability[i].toFixed(2)
       + (p.reliability[i] < 0.25 ? " — unreliable" : "") + "</dd></dl>";
 
+    // Predicted strength. Kept out of the point size deliberately: an earlier
+    // build encoded potency that way and it read as importance rather than
+    // intensity. The percentile matters more than the raw score, since the
+    // number is only meaningful relative to the rest of the library.
+    if (m.intensity !== null && m.intensity !== undefined) {
+      var im = (D.meta && D.meta.intensity_model) || {};
+      html += '<h2 style="margin-top:14px">Predicted strength</h2>'
+        + '<div class="bars"><div class="rrow">'
+        + '<span class="g">intensity</span>'
+        + '<span class="track"><span class="fill" style="width:'
+        + Math.max(0, Math.min(100, m.intensity)).toFixed(1) + '%"></span></span>'
+        + '<span class="v">' + m.intensity.toFixed(1) + "</span></div></div>"
+        + '<p class="note">' + m.intensityPct.toFixed(0)
+        + "th percentile of this library"
+        + (im.concentration
+            ? ", predicted at a " + im.concentration.toExponential(0)
+              + " dilution in paraffin oil" : "")
+        + ". Perceived strength at a fixed dose, which is a potency proxy, not a "
+        + "detection threshold or an odour activity value."
+        + (im.pearson
+            ? " The model reaches r " + im.pearson.toFixed(2)
+              + " against a panel ceiling of "
+              + (im.ceiling ? im.ceiling.toFixed(2) : "?")
+              + ", so treat it as a ranking rather than a measurement." : "")
+        + "</p>";
+    }
+
     if (p.reliability[i] < 0.25) {
       html += '<p class="warnbox">This point sits badly on the plane: its plotted '
         + "neighbours are mostly not its real ones. Trust the list below, not the position.</p>";
@@ -762,6 +789,16 @@ window.addEventListener("error", function (ev) {
       + ", trained on GoodScents + Leffingwell (4983 molecules). "
       + "Selected by ablation to keep similarity structure that per-label accuracy "
       + "tuning destroys."
+      + ((D.meta && D.meta.intensity_model && D.meta.intensity_model.pearson)
+          ? "<br><strong>Strength</strong>: separate regression on Keller 2016, "
+            + "474 molecules rated 0&ndash;100 by 55 subjects at known dilutions; "
+            + "held out by molecule, r "
+            + D.meta.intensity_model.pearson.toFixed(2) + " against a panel "
+            + "ceiling of "
+            + (D.meta.intensity_model.ceiling
+                ? D.meta.intensity_model.ceiling.toFixed(2) : "?")
+            + "."
+          : "")
       // The two encoders fail differently, and the MPNN's failure is the more
       // serious one, so the caveat has to follow whichever built this page.
       + "<br><strong>Read it with care</strong>: predicted descriptors are not "
