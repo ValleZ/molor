@@ -84,6 +84,10 @@ h1 {
   background: var(--surface); border: 1px solid var(--line);
   border-radius: 10px; padding: 10px 12px; margin-bottom: 12px;
 }
+/* The hidden attribute is a UA-stylesheet rule, so any author rule that
+   sets display beats it -- .field below did, which left the layout
+   picker on screen and empty whenever the payload carried one encoder. */
+[hidden] { display: none !important; }
 .field { display: flex; align-items: center; gap: 6px; min-width: 0; }
 label.lab {
   font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em;
