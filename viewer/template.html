@@ -1,4 +1,5 @@
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Aromachemical Receptor Atlas</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -116,6 +117,27 @@ input[type="search"] { width: 100%; min-width: 200px; }
 
 .main { display: grid; grid-template-columns: minmax(0,1fr) 352px; gap: 12px; align-items: start; }
 @media (max-width: 980px) { .main { grid-template-columns: minmax(0,1fr); } }
+
+/* Phones. The plot gets shorter so the inspector is reachable without a long
+   scroll, the search field is allowed to shrink below its 200px minimum
+   (which overflowed a 320px screen), and anything tappable grows to about
+   44px so it can be hit with a thumb. */
+@media (max-width: 640px) {
+  .wrap { padding-block: 12px 20px; }
+  .sub { margin-bottom: 12px; font-size: 14px; }
+  .bar { gap: 8px; padding: 9px 10px; }
+  input[type="search"] { min-width: 0; }
+  .field.grow { flex: 1 1 100%; }
+  #plot { height: clamp(300px, 52vh, 560px); }
+  .btn { padding: 9px 12px; font-size: 13px; }
+  select { padding: 9px 10px; font-size: 14px; }
+  input[type="search"] { padding: 9px 10px; font-size: 14px; }
+  .toggle { font-size: 14px; padding: 4px 0; }
+  .panel { padding: 12px; }
+  /* A hover tooltip has no meaning on a touch screen: tapping selects, and
+     the inspector below is the readout. */
+  #tip { display: none !important; }
+}
 
 .plotcard {
   position: relative; background: var(--surface);
@@ -620,11 +642,58 @@ window.addEventListener("error", function (ev) {
 
   // ---- interaction ----
   var dragging = false, moved = false, lx = 0, ly = 0;
+  // Every live pointer, so a second finger becomes a pinch instead of a
+  // second simultaneous drag. The canvas sets touch-action:none, so the
+  // browser hands the gesture over rather than zooming the page -- which is
+  // what we want, since zooming the page would scale the bitmap instead of
+  // redrawing the plot at the new scale.
+  var pointers = new Map();
+  var pinch = null;
+  var lastTap = 0;
+
+  function pinchState() {
+    var a = [];
+    pointers.forEach(function (v) { a.push(v); });
+    var dx = a[0].x - a[1].x, dy = a[0].y - a[1].y;
+    return {
+      dist: Math.max(1e-6, Math.sqrt(dx * dx + dy * dy)),
+      mx: (a[0].x + a[1].x) / 2,
+      my: (a[0].y + a[1].y) / 2
+    };
+  }
+
   cv.addEventListener("pointerdown", function (ev) {
-    dragging = true; moved = false; lx = ev.offsetX; ly = ev.offsetY;
-    cv.classList.add("drag"); cv.setPointerCapture(ev.pointerId);
+    pointers.set(ev.pointerId, { x: ev.offsetX, y: ev.offsetY });
+    if (pointers.size === 1) {
+      dragging = true; moved = false; lx = ev.offsetX; ly = ev.offsetY;
+      cv.classList.add("drag");
+      try { cv.setPointerCapture(ev.pointerId); } catch (e) { /* ignore */ }
+    } else if (pointers.size === 2) {
+      // A pinch is starting, so whatever the first finger was doing stops
+      // here rather than rotating the view while the other hand zooms.
+      dragging = false; moved = true; pinch = pinchState();
+      tip.hidden = true; cv.classList.remove("drag");
+    }
   });
   cv.addEventListener("pointermove", function (ev) {
+    if (pointers.has(ev.pointerId)) {
+      pointers.set(ev.pointerId, { x: ev.offsetX, y: ev.offsetY });
+    }
+    if (pointers.size >= 2) {
+      if (!pinch) { pinch = pinchState(); return; }
+      var now = pinchState();
+      var f = now.dist / pinch.dist;
+      // Map the old midpoint onto the new one while scaling about it, so the
+      // gesture pans and zooms in one step and the point under the fingers
+      // stays under the fingers.
+      state.tx = now.mx + (state.tx - pinch.mx) * f;
+      state.ty = now.my + (state.ty - pinch.my) * f;
+      state.k *= f;
+      pinch = now;
+      tip.hidden = true;
+      draw();
+      return;
+    }
     var mx = ev.offsetX, my = ev.offsetY;
     if (dragging) {
       var dx = mx - lx, dy = my - ly;
@@ -640,6 +709,10 @@ window.addEventListener("error", function (ev) {
       draw();
       return;
     }
+    // No hover on a touch screen: a finger that is not down is not pointing
+    // at anything, and a tooltip pinned under the thumb covers the point it
+    // describes. Tapping selects, and the inspector is the readout.
+    if (ev.pointerType === "touch") return;
     var h = pick(mx, my);
     if (h !== state.hover) { state.hover = h; }
     if (h === null) { tip.hidden = true; return; }
@@ -652,9 +725,31 @@ window.addEventListener("error", function (ev) {
     tip.style.left = Math.min(Math.max(6, mx + 14), W - tw - 6) + "px";
     tip.style.top = Math.min(Math.max(6, my - th - 12), H - th - 6) + "px";
   });
+  cv.addEventListener("pointercancel", function (ev) {
+    pointers.delete(ev.pointerId);
+    if (pointers.size < 2) pinch = null;
+    if (pointers.size === 0) { dragging = false; cv.classList.remove("drag"); }
+  });
   cv.addEventListener("pointerup", function (ev) {
+    var wasPinch = pointers.size >= 2;
+    pointers.delete(ev.pointerId);
+    if (pointers.size < 2) pinch = null;
+    // Lifting one finger out of a pinch leaves the other down. Treat that as
+    // the end of the gesture rather than the start of a drag, or the view
+    // lurches as the remaining finger comes off.
+    if (wasPinch) { dragging = false; cv.classList.remove("drag"); return; }
     dragging = false; cv.classList.remove("drag");
     if (moved) return;
+    // Double-tap re-fits, the touch equivalent of the double-click below.
+    if (ev.pointerType === "touch") {
+      var t = Date.now();
+      if (t - lastTap < 320) {
+        lastTap = 0;
+        state.fitted = false; chooseView(); draw();
+        return;
+      }
+      lastTap = t;
+    }
     var h = pick(ev.offsetX, ev.offsetY);
     if (h === null) { state.sel = null; state.pin = null; clearPin.hidden = true; }
     else if (ev.shiftKey && state.sel !== null && h !== state.sel) {
@@ -666,7 +761,12 @@ window.addEventListener("error", function (ev) {
   cv.addEventListener("dblclick", function () {
     state.fitted = false; chooseView(); draw();
   });
-  cv.addEventListener("pointerleave", function () { tip.hidden = true; dragging = false; cv.classList.remove("drag"); });
+  cv.addEventListener("pointerleave", function (ev) {
+    tip.hidden = true;
+    pointers.delete(ev.pointerId);
+    if (pointers.size < 2) pinch = null;
+    if (pointers.size === 0) { dragging = false; cv.classList.remove("drag"); }
+  });
   cv.addEventListener("wheel", function (ev) {
     ev.preventDefault();
     var f = Math.exp(-ev.deltaY * 0.0014);
@@ -974,7 +1074,9 @@ window.addEventListener("error", function (ev) {
       + "(" + esc(encoder) + ", ESM-2 650M protein embeddings). <strong>Position is "
       + "receptor response, not smell</strong> &mdash; " + colourNote
       + "Drag to rotate, shift-drag to pan, "
-      + "scroll to zoom. Click a material to inspect it; shift-click a second to compare. "
+      + "scroll to zoom; on a touch screen drag to rotate, pinch to zoom and "
+      + "double-tap to re-fit. Click or tap a material to inspect it; "
+      + "shift-click a second to compare. "
       + "<br><br>"
       + "Grey links join pairs that are mutual nearest neighbours in the real "
       + "386-dimensional space, so <strong>trust the links over bare proximity</strong> — "
