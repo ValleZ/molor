@@ -99,6 +99,8 @@ def main() -> int:
     ap.add_argument("--out", default="artifacts/naturals.json")
     ap.add_argument("--min-coverage", type=float, default=0.6,
                     help="fraction of the stated composition that must resolve")
+    ap.add_argument("--max-nearest-cosine", type=float, default=0.98,
+                    help="drop an oil this close to a single library material")
     args = ap.parse_args()
 
     try:
@@ -121,6 +123,7 @@ def main() -> int:
     Xn = X / np.maximum(np.linalg.norm(X, axis=1, keepdims=True), 1e-12)
 
     out = {"descriptors": desc, "naturals": {}}
+    trimmed: list[tuple[str, float, str]] = []
     print(f"[nat] building {len(spec)} essential oils from GC composition\n")
     for oil, meta in spec.items():
         comp = meta["composition"]
@@ -160,6 +163,19 @@ def main() -> int:
         top = int(np.argmax(sim))
         collapsed = names[top] if sim[top] >= 0.995 else None
 
+        # An oil this close to one of its own constituents earns no place on
+        # the atlas: the point repeats what the molecule already says.
+        # Lemongrass and clove pass their own self-check and are still
+        # dropped, because passing a name test is not the same as carrying
+        # information -- lemongrass at 0.992 from Citral tells you what Citral
+        # tells you. The composition stays in the data file with its source,
+        # so raising the threshold brings it back without redoing the work.
+        if sim[top] >= args.max_nearest_cosine:
+            trimmed.append((oil, float(sim[top]), names[top]))
+            print(f"  TRIM {oil}: cosine {sim[top]:.3f} to {names[top]}, "
+                  f"carries nothing the material does not")
+            continue
+
         word = self_word(oil)
         check = None
         if word and word in desc:
@@ -198,11 +214,13 @@ def main() -> int:
             print(f"    COLLAPSED onto {collapsed} at cosine "
                   f"{sim[int(np.argmax(sim))]:.4f}: not a distinguishable oil")
 
+    out["trimmed"] = [{"name": n, "nearest_cosine": round(c, 4),
+                       "nearest": m} for n, c, m in trimmed]
     (ROOT / args.out).write_text(json.dumps(out, indent=2), encoding="utf-8")
     passed = [k for k, v in out["naturals"].items()
               if v["self_check"] and v["self_check"]["rank"] <= 5]
     scored = [k for k, v in out["naturals"].items() if v["self_check"]]
-    print(f"\n[nat] {len(out['naturals'])} built, {len(scored)} self-checkable, "
+    print(f"\n[nat] {len(out['naturals'])} kept, {len(trimmed)} trimmed, {len(scored)} self-checkable, "
           f"{len(passed)} put their own name in the top 5 of {len(desc)}")
     print(f"[nat] wrote {args.out}")
     return 0
