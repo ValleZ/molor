@@ -1,0 +1,44 @@
+{
+  "seed": 20261029,
+  "runs": 6,
+  "materials": {
+    "Pear Ester": {
+      "median_gain": 0.02318,
+      "top5_of_runs": 5,
+      "rank_of": "1/109"
+    },
+    "Hexyl Acetate": {
+      "median_gain": 0.02515,
+      "top5_of_runs": 4,
+      "rank_of": "2/109"
+    },
+    "Floralozone": {
+      "median_gain": -0.00077,
+      "top5_of_runs": 0,
+      "rank_of": "54/109"
+    },
+    "Hedione": {
+      "median_gain": -0.00079,
+      "top5_of_runs": 0,
+      "rank_of": "55/109"
+    },
+    "Alpha Pinene": {
+      "median_gain": -0.00212,
+      "top5_of_runs": 0,
+      "rank_of": "108/109"
+    },
+    "Isobornyl Acetate": {
+      "median_gain": -0.00215,
+      "top5_of_runs": 0,
+      "rank_of": "109/109"
+    }
+  },
+  "presented_order": [
+    "Floralozone",
+    "Isobornyl Acetate",
+    "Pear Ester",
+    "Hexyl Acetate",
+    "Alpha Pinene",
+    "Hedione"
+  ]
+}

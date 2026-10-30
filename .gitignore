@@ -5,6 +5,9 @@ vendor/olfaction/
 vendor/zenodo/
 # OpenPOM clone: 10 x 25 MB ensemble checkpoints, re-cloneable
 vendor/openpom/
+# Dense Sense clone: 4.1 GB of ensemble checkpoints, re-cloneable
+vendor/densesense/
+vendor/unimol*/
 artifacts/esm_cache/
 artifacts/panel_embeddings.npy
 artifacts/*.log
