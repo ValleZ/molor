@@ -730,11 +730,15 @@ window.addEventListener("error", function (ev) {
             : pm.auc ? ")" : "")
         + ". "
       : "";
+    // Which encoder produced the layout comes from the payload: the same page
+    // is built from more than one, and naming one in prose got it wrong.
+    var encoder = (D.models && D.modelOrder && D.models[D.modelOrder[0]]
+                   && D.models[D.modelOrder[0]].label) || "";
     document.getElementById("sub").innerHTML =
       D.meta.n_molecules + " perfumery materials scored against " + D.meta.n_receptors
       + " functional human olfactory receptors by <strong>MolOR</strong> "
-      + "(MPNN encoder, ESM-2 650M protein embeddings). <strong>Position is receptor "
-      + "response, not smell</strong> &mdash; " + colourNote
+      + "(" + esc(encoder) + ", ESM-2 650M protein embeddings). <strong>Position is "
+      + "receptor response, not smell</strong> &mdash; " + colourNote
       + "Drag to rotate, shift-drag to pan, "
       + "scroll to zoom. Click a material to inspect it; shift-click a second to compare. "
       + "<br><br>"
@@ -746,8 +750,9 @@ window.addEventListener("error", function (ev) {
       + "same point, so stereochemistry is effectively invisible; and the vectors encode "
       + "chemical structure more strongly than smell.";
     document.getElementById("foot").innerHTML =
-      "<strong>Layout</strong>: MolOR MPNN cross-attention over ESM-2 650M receptor "
-      + "embeddings, checkpoint " + esc(D.meta.checkpoint_md5.slice(0, 12))
+      "<strong>Layout</strong>: MolOR " + esc(encoder) + ", cross-attention over "
+      + "ESM-2 650M receptor embeddings, checkpoint "
+      + esc(D.meta.checkpoint_md5.slice(0, 12))
       + ", receptor panel " + esc(D.meta.panel_hash)
       + " (" + D.meta.n_receptors + " functional receptors from HORDE, pseudogenes "
       + "and fragments excluded). Weights from Zenodo record 13765978, code from "
@@ -757,14 +762,19 @@ window.addEventListener("error", function (ev) {
       + ", trained on GoodScents + Leffingwell (4983 molecules). "
       + "Selected by ablation to keep similarity structure that per-label accuracy "
       + "tuning destroys."
+      // The two encoders fail differently, and the MPNN's failure is the more
+      // serious one, so the caveat has to follow whichever built this page.
       + "<br><strong>Read it with care</strong>: predicted descriptors are not "
-      + "measured ones; chirality is invisible to both models, and although bond "
-      + "stereo does reach the receptor model's encoder it is lost inside it, so "
-      + "E/Z isomers also coincide; roughly half of that encoder's output "
-      + "dimensions saturate, so the layout rests on a partly degenerate "
-      + "representation; and a blind test of the suggestion ranking did not "
-      + "reproduce the perfumer's own ordering. Useful as a search heuristic over "
-      + "the library, not as a prediction of smell.";
+      + "measured ones; chirality is invisible to both models and E/Z isomers "
+      + "coincide too, "
+      + (/MPNN/i.test(encoder)
+          ? "because although bond stereo reaches this encoder it is destroyed "
+            + "inside it &mdash; roughly half its output dimensions saturate, so "
+            + "the layout rests on a partly degenerate representation"
+          : "because this encoder consumes no bond features at all")
+      + "; and a blind test of the suggestion ranking did not reproduce the "
+      + "perfumer's own ordering. Useful as a search heuristic over the library, "
+      + "not as a prediction of smell.";
   }
 
   window.addEventListener("resize", function () { resize(); state.fitted = false; draw(); });
