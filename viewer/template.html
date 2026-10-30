@@ -707,14 +707,26 @@ window.addEventListener("error", function (ev) {
         + '<button type="button" data-go="' + i2 + '" '
         + 'style="background:none;border:0;padding:0;color:inherit;'
         + 'font:inherit;cursor:pointer;text-align:left">'
-        + esc(D.molecules[i2].name) + "</button></span>"
+        + esc(D.molecules[i2].name)
+        + (D.molecules[i2].inTrain ? '<sup title="this material is in the '
+            + 'model's training set, so its score is partly recall of a human '
+            + 'label">t</sup>' : "")
+        + "</button></span>"
         + '<span class="track"><span class="fill" style="width:'
         + (Math.max(0, Math.min(1, v)) * 100).toFixed(1) + '%"></span></span>'
         + '<span class="v">' + v.toFixed(3) + "</span></div>";
     }
     html += "</div>";
+    var nt = 0;
+    for (var z = 0; z < Math.min(3, rows.length); z++) {
+      if (D.molecules[rows[z][0]].inTrain) nt++;
+    }
     html += '<p class="note">Top 3 of ' + D.molecules.length
-      + " materials, ranked on this descriptor alone. Predicted, not measured.</p>";
+      + " materials, ranked on this descriptor alone. Predicted, not measured"
+      + (nt ? "; " + nt + " of the 3 marked <sup>t</sup> are in the model's "
+          + "training set, so their score is partly recall of a human label "
+          + "rather than a prediction" : "")
+      + ".</p>";
     return html;
   }
 
@@ -747,7 +759,8 @@ window.addEventListener("error", function (ev) {
       + "<dt>Heavy atoms</dt><dd>" + m.atoms + "</dd>"
       + "<dt>Total activation</dt><dd>" + M().total[i].toFixed(2) + "</dd>"
       + ((m.perceptTop && m.perceptTop.length)
-         ? "<dt>Predicted odour</dt><dd style=\"font-family:var(--font-body);font-size:12px\">"
+         ? "<dt>Predicted odour" + (m.inTrain ? " <sup>t</sup>" : "")
+           + "</dt><dd style=\"font-family:var(--font-body);font-size:12px\">"
            + m.perceptTop.map(function (t) {
                return '<button type="button" data-desc="' + esc(t[0]) + '" '
                  + 'style="background:none;border:0;padding:0;color:inherit;'

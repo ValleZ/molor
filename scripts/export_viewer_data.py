@@ -217,6 +217,34 @@ def main() -> int:
     }
     print(f"  odour families: {dict(freq)}")
 
+    # Which materials the percept model was trained on. 228 of the 301 are in
+    # GS-LF, so for most of the library a "predicted" descriptor is partly
+    # recall of a human label rather than a generalisation. The gain over a
+    # base-rate prior survives on unseen materials (+0.052 against +0.061 of
+    # AUC), but precision at the top of the list does not (0.284 against
+    # 0.377) -- and the top of the list is what the ranking view shows. So the
+    # distinction is marked rather than left for the reader to assume.
+    in_train: set[str] = set()
+    _gslf = ROOT / ("vendor/openpom/openpom/data/curated_datasets/"
+                    "curated_GS_LF_merged_4983.csv")
+    if _gslf.is_file():
+        import pandas as _pd
+        from rdkit import Chem as _Chem, RDLogger as _RDL
+        _RDL.DisableLog("rdApp.*")
+        _df = _pd.read_csv(_gslf)
+        _col = ("nonStereoSMILES" if "nonStereoSMILES" in _df.columns
+                else _df.columns[0])
+        _keys = set()
+        for _s in _df[_col].astype(str):
+            _m = _Chem.MolFromSmiles(_s)
+            if _m is not None:
+                _keys.add(_Chem.MolToInchiKey(_m))
+        for _e in entries:
+            if getattr(_e, "inchikey", None) in _keys:
+                in_train.add(_e.name)
+        print(f"  {len(in_train)} of {len(entries)} materials are in the "
+              f"percept model's training set")
+
     # Predicted perceived intensity, if it has been trained. This is a
     # different quantity from everything else on the page: receptor scores are
     # probabilities that a receptor responds and descriptor scores are
@@ -382,6 +410,7 @@ def main() -> int:
              # share -- so a per-descriptor ranking answers a question that
              # similarity cannot.
              "perceptAll": percept_row.get(e.name, []),
+             "inTrain": int(e.name in in_train),
              "intensity": intensity.get(e.name, [None, None])[0],
              "intensityPct": intensity.get(e.name, [None, None])[1],
              "odt": thresh.get(e.name, [None, None, None])[0],
