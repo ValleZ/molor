@@ -1,0 +1,44 @@
+{
+  "FP v1": {
+    "materials": 229,
+    "pairs": 26106,
+    "spearman": 0.5505,
+    "dim": 138
+  },
+  "FP v2": {
+    "materials": 229,
+    "pairs": 26106,
+    "spearman": 0.3731,
+    "dim": 138
+  },
+  "OpenPOM": {
+    "materials": 229,
+    "pairs": 26106,
+    "spearman": 0.4476,
+    "dim": 138
+  },
+  "DenseSense": {
+    "materials": 229,
+    "pairs": 26106,
+    "spearman": 0.3731,
+    "dim": 138
+  },
+  "GS-LF MPNN": {
+    "materials": 229,
+    "pairs": 26106,
+    "spearman": 0.3355,
+    "dim": 152
+  },
+  "Uni-Mol (no labels)": {
+    "materials": 229,
+    "pairs": 26106,
+    "spearman": 0.1508,
+    "dim": 512
+  },
+  "ECFP4 (raw)": {
+    "materials": 229,
+    "pairs": 26106,
+    "spearman": 0.1804,
+    "dim": 2048
+  }
+}

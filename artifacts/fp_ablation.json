@@ -1,0 +1,65 @@
+{
+  "v2 full (probs)": {
+    "auc": 0.8782,
+    "spearman": 0.3731,
+    "dim": 138,
+    "pos_weight": true,
+    "ensemble": 5,
+    "epochs": 180,
+    "readout": "probs"
+  },
+  "v2 logits": {
+    "auc": 0.8782,
+    "spearman": 0.3855,
+    "dim": 138,
+    "pos_weight": true,
+    "ensemble": 5,
+    "epochs": 180,
+    "readout": "logits"
+  },
+  "v2 penultimate": {
+    "auc": 0.8782,
+    "spearman": 0.3625,
+    "dim": 512,
+    "pos_weight": true,
+    "ensemble": 5,
+    "epochs": 180,
+    "readout": "hidden"
+  },
+  "no pos_weight": {
+    "auc": 0.8704,
+    "spearman": 0.4519,
+    "dim": 138,
+    "pos_weight": false,
+    "ensemble": 5,
+    "epochs": 180,
+    "readout": "probs"
+  },
+  "single model": {
+    "auc": 0.8734,
+    "spearman": 0.3686,
+    "dim": 138,
+    "pos_weight": true,
+    "ensemble": 1,
+    "epochs": 180,
+    "readout": "probs"
+  },
+  "short training": {
+    "auc": 0.8783,
+    "spearman": 0.3731,
+    "dim": 138,
+    "pos_weight": true,
+    "ensemble": 5,
+    "epochs": 25,
+    "readout": "probs"
+  },
+  "v1-like (all four)": {
+    "auc": 0.8554,
+    "spearman": 0.4698,
+    "dim": 138,
+    "pos_weight": false,
+    "ensemble": 1,
+    "epochs": 25,
+    "readout": "probs"
+  }
+}

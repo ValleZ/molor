@@ -1,0 +1,79 @@
+{
+  "round-1 best": {
+    "auc": 0.8583,
+    "spearman": 0.4205,
+    "hidden": [
+      1024,
+      512
+    ],
+    "batchnorm": true,
+    "dropout": 0.3,
+    "scale_all": false
+  },
+  "+ scale all feats": {
+    "auc": 0.8399,
+    "spearman": 0.4841,
+    "hidden": [
+      1024,
+      512
+    ],
+    "batchnorm": true,
+    "dropout": 0.3,
+    "scale_all": true
+  },
+  "+ no batchnorm": {
+    "auc": 0.864,
+    "spearman": 0.41,
+    "hidden": [
+      1024,
+      512
+    ],
+    "batchnorm": false,
+    "dropout": 0.3,
+    "scale_all": false
+  },
+  "+ no dropout": {
+    "auc": 0.8496,
+    "spearman": 0.4653,
+    "hidden": [
+      1024,
+      512
+    ],
+    "batchnorm": true,
+    "dropout": 0.0,
+    "scale_all": false
+  },
+  "+ narrow (512,256)": {
+    "auc": 0.8514,
+    "spearman": 0.4271,
+    "hidden": [
+      512,
+      256
+    ],
+    "batchnorm": true,
+    "dropout": 0.3,
+    "scale_all": false
+  },
+  "v1 architecture": {
+    "auc": 0.8569,
+    "spearman": 0.5148,
+    "hidden": [
+      512,
+      256
+    ],
+    "batchnorm": false,
+    "dropout": 0.0,
+    "scale_all": true
+  },
+  "v1 arch, keep BN": {
+    "auc": 0.8051,
+    "spearman": 0.5019,
+    "hidden": [
+      512,
+      256
+    ],
+    "batchnorm": true,
+    "dropout": 0.0,
+    "scale_all": true
+  }
+}
