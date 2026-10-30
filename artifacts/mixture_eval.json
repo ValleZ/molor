@@ -1,0 +1,214 @@
+{
+  "summary": {
+    "n": 10,
+    "base_rate_auc": 0.8189,
+    "noisy-or": {
+      "auc": 0.8685,
+      "vs_base_rate": 0.0496,
+      "vs_dominant": 0.0179,
+      "ci_vs_dominant": [
+        -0.0183,
+        0.0506
+      ],
+      "ci_vs_base_rate": [
+        0.0231,
+        0.076
+      ]
+    },
+    "weighted-mean": {
+      "auc": 0.867,
+      "vs_base_rate": 0.048,
+      "vs_dominant": 0.0164,
+      "ci_vs_dominant": [
+        -0.0213,
+        0.0494
+      ],
+      "ci_vs_base_rate": [
+        0.0209,
+        0.0733
+      ]
+    },
+    "max": {
+      "auc": 0.8314,
+      "vs_base_rate": 0.0125,
+      "vs_dominant": -0.0192,
+      "ci_vs_dominant": [
+        -0.096,
+        0.0377
+      ],
+      "ci_vs_base_rate": [
+        -0.0317,
+        0.0458
+      ]
+    },
+    "dominant": {
+      "auc": 0.8506,
+      "vs_base_rate": 0.0317,
+      "vs_dominant": 0.0,
+      "ci_vs_base_rate": [
+        -0.0025,
+        0.0716
+      ]
+    }
+  },
+  "per_formula": [
+    {
+      "formula": "F5 Sunlit Field 5/25/2026",
+      "n_ingredients": 30,
+      "descriptors": [
+        "aldehydic",
+        "animal",
+        "banana",
+        "berry",
+        "citrus",
+        "coconut",
+        "floral",
+        "fruity",
+        "green",
+        "honey",
+        "medicinal",
+        "musk",
+        "peach",
+        "powdery",
+        "rose",
+        "sweet",
+        "vanilla",
+        "woody"
+      ],
+      "noisy-or": 0.813,
+      "weighted-mean": 0.8153,
+      "max": 0.8565,
+      "dominant": 0.7806,
+      "base-rate": 0.7796
+    },
+    {
+      "formula": "Strawberry Astra 2",
+      "n_ingredients": 10,
+      "descriptors": [
+        "animal",
+        "vanilla"
+      ],
+      "noisy-or": 0.6618,
+      "weighted-mean": 0.6581,
+      "max": 0.4485,
+      "dominant": 0.7721,
+      "base-rate": 0.6176
+    },
+    {
+      "formula": "Gooseberry 8",
+      "n_ingredients": 14,
+      "descriptors": [
+        "animal",
+        "apple",
+        "berry",
+        "green"
+      ],
+      "noisy-or": 0.8507,
+      "weighted-mean": 0.8489,
+      "max": 0.8153,
+      "dominant": 0.8172,
+      "base-rate": 0.8134
+    },
+    {
+      "formula": "Gooseberry 10",
+      "n_ingredients": 16,
+      "descriptors": [
+        "apple",
+        "berry",
+        "citrus"
+      ],
+      "noisy-or": 0.9531,
+      "weighted-mean": 0.9506,
+      "max": 0.9037,
+      "dominant": 0.8864,
+      "base-rate": 0.8395
+    },
+    {
+      "formula": "Gooseberry 11",
+      "n_ingredients": 14,
+      "descriptors": [
+        "berry",
+        "citrus"
+      ],
+      "noisy-or": 0.9191,
+      "weighted-mean": 0.9191,
+      "max": 0.8529,
+      "dominant": 0.8272,
+      "base-rate": 0.8162
+    },
+    {
+      "formula": "GB13 \u2014 Cassis Base/Ribes skin",
+      "n_ingredients": 14,
+      "descriptors": [
+        "berry",
+        "green"
+      ],
+      "noisy-or": 0.9669,
+      "weighted-mean": 0.9669,
+      "max": 0.886,
+      "dominant": 0.9706,
+      "base-rate": 0.8603
+    },
+    {
+      "formula": "Gooseberry 14 (new mix, no AI)",
+      "n_ingredients": 9,
+      "descriptors": [
+        "berry",
+        "green"
+      ],
+      "noisy-or": 0.8934,
+      "weighted-mean": 0.8897,
+      "max": 0.9081,
+      "dominant": 0.8088,
+      "base-rate": 0.8603
+    },
+    {
+      "formula": "Gooseberry 15",
+      "n_ingredients": 9,
+      "descriptors": [
+        "apple",
+        "green"
+      ],
+      "noisy-or": 0.9816,
+      "weighted-mean": 0.9743,
+      "max": 0.9816,
+      "dominant": 0.9963,
+      "base-rate": 0.9375
+    },
+    {
+      "formula": "Lilac 40 (Louis Appel, 1982)",
+      "n_ingredients": 9,
+      "descriptors": [
+        "berry",
+        "floral"
+      ],
+      "noisy-or": 0.8235,
+      "weighted-mean": 0.8235,
+      "max": 0.8346,
+      "dominant": 0.8199,
+      "base-rate": 0.8529
+    },
+    {
+      "formula": "\u201clilac fragrance\u201d (TGSC page, no source given)",
+      "n_ingredients": 9,
+      "descriptors": [
+        "aldehydic",
+        "animal",
+        "citrus",
+        "floral",
+        "green",
+        "honey",
+        "medicinal",
+        "musk",
+        "rose",
+        "sweet",
+        "woody"
+      ],
+      "noisy-or": 0.8218,
+      "weighted-mean": 0.8232,
+      "max": 0.8268,
+      "dominant": 0.8268,
+      "base-rate": 0.8117
+    }
+  ]
+}
