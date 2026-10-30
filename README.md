@@ -7,6 +7,25 @@ Scores are continuous sigmoid outputs of the model's raw logits. They are not
 binned, thresholded, or normalised, and they are not concentration-specific
 activation strengths.
 
+## Corrections
+
+Several findings in this document were later overturned by their own
+re-examination. Each section carries the correction inline; collected here so a
+reader does not act on a retracted claim:
+
+| original claim | status |
+|---|---|
+| bond features change the MPNN's answer | **false** — zeroing every edge feature changes its output by exactly 0.0 |
+| isomer blindness is a 1-Weisfeiler-Leman readout limit | **false** — it is GRU saturation in that one checkpoint; the GCN separates the same isomers |
+| the MPNN beats the GCN on chemical-class coherence, 0.617 vs 0.422 | **not comparable** — different material sets (302 vs 128); re-measured, 0.262 vs 0.271, indistinguishable |
+| fingerprint v1 has the best similarity structure | **artefact** — measured against the training labels; on independent panels no trained model separates from another |
+| the ablation selected v3 on similarity grounds | **unsupported** — the metric it was selected on does not predict independent panel data |
+| predicted odour thresholds are usable for dosing | **withdrawn** — Spearman 0.14 against the perfumer's use levels in-domain, −0.17 outside it |
+
+The pattern is worth stating: every number that looked good on its own
+cross-validation failed when checked against something it had not been fitted
+to. Bench observations caught four of these before any metric did.
+
 ## What this is built on
 
 | Component | Pin |
@@ -204,43 +223,74 @@ Also asserted: per-sequence embedding caching is valid because ESM-2 output is
 invariant to batch grouping; padding length is load-bearing; the OR2G6 repair
 matches UniProt.
 
-## GCN vs MPNN: bond features change the answer
+## GCN vs MPNN: bond features reach the encoder and are then destroyed
+
+> **This section's original claim was wrong and is corrected below.** It read
+> "bond features change the answer". They do not reach the MPNN's output at
+> all. Measured with `scripts/encoder_health.py`: zeroing *every* edge feature
+> changes the encoder's output by exactly `0.0`. They do reach the NNConv layer
+> — zeroing them moves *its* output by 2.4e4 — and are then annihilated.
 
 Upstream ships two MolOR encoders. The GCN variant (the default checkpoint)
 runs with `edge_featurizer=None` and so discards bond information entirely;
-the MPNN variant consumes `CanonicalBondFeaturizer(self_loop=True)`, 13 dims.
-`scripts/run_mpnn.py` scores the library with the MPNN checkpoint,
-`scripts/compare_variants.py` diffs the two.
+the MPNN variant is handed `CanonicalBondFeaturizer(self_loop=True)`, 13 dims,
+of which 6 are bond stereo.
 
-| measure | GCN | MPNN |
+**The MPNN checkpoint's encoder is numerically degenerate.** NNConv emits values
+up to 4.8e4, which pins the GRU that follows it: 49.6% of its 256 output
+dimensions sit at exactly ±1, and the whole 2816-cell representation takes only
+82–100 distinct values. Saturation is complete after a *single* message-passing
+step and does not change through six, so it is a property of the published
+weights rather than of how they are run, and it cannot be repaired — rescaling
+to unsaturate would produce a function the checkpoint was never trained for.
+Upstream appears to have known: `gcn_or_predictor.py` carries the comment
+`## problem causing NaNs is here` on the line that calls this encoder.
+
+An earlier version of this section reported that "the encoder reaches a fixed
+point by step 3, so 3 and 6 give bit-identical output" and treated that as a
+convenient invariance. It was the saturation, observed and misread.
+
+The GCN encoder is healthy on every measure: no pinned outputs, 490–626
+distinct values, and it responds to perturbation (Δ 526 from zeroing one atom's
+features). It is blind to E/Z, but legitimately so, having no bond features to
+lose.
+
+**Which encoder lays the library out better is unresolved after six attempts:**
+
+| measure | favours | strength |
 |---|---|---|
-| nearest neighbour shares chemical class | 0.422 | **0.617** (chance 0.074) |
-| p-cresyl acetate ↔ vanillin | 4.7th pct | 49.7th |
-| Helvetolide ↔ Aldehyde C-10 | 1.8th pct | 15.0th |
-| methyl benzoate ↔ benzyl acetate | 17.3rd pct | 0.2nd *(regression)* |
-| fatty aldehyde series tightness | 0.1st pct | 8.5th *(looser)* |
+| nearest-neighbour agreement with the perfumer's notes | GCN | 0.554 vs 0.457, p = 0.005 |
+| global mean distance over descriptor-sharing pairs | MPNN | p = 0.030, fails its two-descriptor variant |
+| family coherence (`scripts/class_coherence.py`) | GCN | +0.008 to +0.014, CI spans ±0.1 |
+| homologous-series tightness | GCN | 0.0–0.1 vs 8.8–10.8 pct, may be over-clustering by chain length |
+| blind forced choice, 12 trials | — | 8–3 raw, but Fisher p = 0.49 once the slot preference is controlled |
+| encoder health | GCN | mechanism, not perception |
 
-Bond features substantially improve chemical coherence, and they fix the two
-worst GCN artefacts: vanillin no longer sits beside two acetates, and
-Helvetolide moves from a row of fatty aldehydes to Iso E Super and Verdox HC.
-But it is not a clean win — methyl benzoate and benzyl acetate collapse
-together, and homologous series loosen (the GCN's tightness there was partly
-over-smoothing).
+**The two spaces agree only at Spearman 0.255.** Same data, same panel, same
+ESM embeddings, same attention head — only the molecular encoder differs. The
+deployment stays on the MPNN because nothing has shown the GCN clearly better,
+not because the MPNN is sound.
 
-**The two spaces agree only at Spearman 0.256.** Same data, same panel, same
-ESM embeddings, same attention head — only the molecular encoder differs. So
-conclusions drawn from either variant are architecture-dependent, and neither
-has been validated against perception.
+Bench cases point both ways and are worth more than any single statistic. The
+GCN puts Styrallyl Acetate next to Dimethyl Benzyl Carbinyl Acetate where the
+MPNN chose Strawberry Glycidate; the MPNN puts Oxane next to Thiocineole where
+the GCN chose Citral. Neither is explained by fingerprint similarity.
+
+An earlier table here quoted chemical-class coherence as 0.422 for the GCN
+against 0.617 for the MPNN. Those came from a 128-material file with a `class`
+column that `expanded_materials.csv` does not have, and the two stores held
+different molecule sets (128 against 302), so they were never comparable.
+Re-measured on the same cleaned 301 with the perfumer's own family labels:
+GCN 0.271, MPNN 0.262, chance 0.047 — both far above chance, neither
+distinguishable from the other.
 
 Two implementation notes. `num_step_message_passing` cannot be recovered from
 the weights (one layer is reused each step, the GRU is shared), and the shipped
-config is unreliable — it disagrees with the checkpoint on `node_out_feats`
-(128 vs 256) and `edge_hidden_feats` (64 vs 128). It turns out not to matter:
-the encoder reaches a fixed point by step 3, so 3 and 6 give **bit-identical**
-output for every molecule in the library (1 vs 3 does differ). Separately,
-`run_mpnn.py` hoists the GNN out of the receptor loop, since node features do
-not depend on the receptor; the script asserts bit-identity against upstream's
-own forward before using it, and it turns hours of compute into minutes.
+config disagrees with the checkpoint on `node_out_feats` (128 vs 256) and
+`edge_hidden_feats` (64 vs 128). It does not matter, for the reason above.
+Separately, `run_mpnn.py` hoists the GNN out of the receptor loop, since node
+features do not depend on the receptor; it asserts bit-identity against
+upstream's own forward before using it, turning hours of compute into minutes.
 
 ## Validation against perceptual notes: the vectors do not predict smell
 
@@ -270,7 +320,12 @@ Caveat: one nose, 128 materials, free text, a hand-written vocabulary. The
 GS-LF set (5862 molecules, 152 descriptors, already in the repo) remains the
 properly powered test.
 
-### The MPNN cannot distinguish structural isomers
+### The MPNN returns identical vectors for structural isomers — because its encoder saturates
+
+> **The observations below stand; the original explanation did not.** This was
+> attributed to a Weisfeiler-Leman expressiveness limit. It is the GRU
+> saturation described above, and it is specific to the MPNN checkpoint. The
+> GCN encoder separates the same isomers cleanly.
 
 The notes exposed a concrete pathology. The MPNN's closest pairs are largely
 structural isomers with unrelated smells:
@@ -283,23 +338,31 @@ structural isomers with unrelated smells:
 | α-damascone ("pear, eucalyptus") vs α-ionone ("classical violet") | 2.62 | **9.5e-07** |
 
 1e-6 is float32 noise: the MPNN returns the *same vector* for molecules that
-smell nothing alike. Verified mechanism, for δ/γ-decalactone:
+smell nothing alike. For δ/γ-decalactone:
 
 * the two graphs differ in exactly one feature, `is_in_ring` (12 vs 10 directed
   ring-bond edges), and that feature carries real learned weight;
 * per-atom GNN outputs do differ (row-wise max 18.2);
 * but the **sorted multisets of atom embeddings are bit-identical**, and the
   encoder resolves only 6 distinct atom representations among 12 atoms;
-* `MolORPredictor`'s readout is a permutation-invariant weighted sum, so the
-  same bag of embeddings in a different order gives the same prediction.
+* `MolORPredictor`'s readout is permutation-invariant, so the same bag of
+  embeddings in a different order gives the same prediction.
 
-This is a Weisfeiler-Leman-style expressiveness limit: the model effectively
-encodes an atom-environment histogram, which isomers share.
+The fourth point is why the vectors coincide. The third is the cause of the
+second, and it is not an expressiveness limit — it is the saturated GRU
+collapsing 12 atoms onto 6 representations. A 1-Weisfeiler-Leman argument would
+predict that *any* message-passing model with a permutation-invariant readout
+fails here. The GCN does not: on the same pair its summed readout differs by
+**796**, and it shows no saturation. Ring size is well within reach of these
+architectures.
 
-**So "the MPNN is better" needs qualifying.** It is better on chemical-class
-coherence (0.617 vs 0.422) and it fixed the vanillin/p-cresyl-acetate artefact,
-but it is blind to a distinction the GCN does make. Which encoder is preferable
-depends entirely on the question being asked, and neither predicts smell.
+That matters because the 1-WL reading drove a lot of subsequent work — the
+fingerprint models, a search for published fixes to "the readout bottleneck",
+and the Dense Sense detour — on the premise of a fundamental limit that was in
+fact one checkpoint's numerics.
+
+**So "the MPNN is better" needs qualifying**, and so does "the GCN is better".
+Neither predicts smell, and the six measures above do not separate them.
 
 ## The limit that matters: chemistry, not smell
 
@@ -509,7 +572,12 @@ true 386-dim ones — so you can tell a result from a decoration.
 
 ### Does receptor space encode chemistry?
 
-Measured on a 128-material aromachemical library:
+Measured on the 128-material library this section was written against, with the
+GCN checkpoint. The class labels came from that file's `class` column, which
+`expanded_materials.csv` does not carry; re-measuring on the cleaned 301 needs
+the perfumer's family labels instead, and gives 0.271 against a chance rate of
+0.047 (`scripts/class_coherence.py`). The figures below are therefore historical
+and not comparable with anything measured on the current library.
 
 | check | value |
 |---|---|
@@ -663,6 +731,53 @@ the six, only one of the strongly-predicted materials helped. Four earlier
 *unblinded* trials had appeared to confirm the model, which is the expected
 shape of expectation bias. Treat the suggestion ranking as a search heuristic
 over a 302-material library, not as a prediction.
+
+## Evaluation data that nothing here is trained on
+
+The lesson of the corrections above is that a metric built from the training
+labels will flatter the model fitted to them. These are the instruments that do
+not have that defect. `scripts/build_percept_datasets.py` writes them to
+`data/percept/` with a manifest recording provenance and every judgement made.
+
+| dataset | content | in the library |
+|---|---|---|
+| `dravnieks.csv` | 144 stimuli, 146 descriptors, percent applicability with 2146 distinct values | 43 |
+| `keller.csv` | 956 stimuli over 474 molecules at two dilutions, 20 descriptors plus intensity, pleasantness and familiarity, 0–100 per subject with between-subject spread | 99 |
+| `abraham_thresholds.csv` | 268 **measured** air-phase detection thresholds, `Log(1/ODT)` | 28 |
+| `gslf_hierarchical.csv` | GS-LF with its implied hierarchy propagated, 951 labels added | — |
+
+Two interpretation decisions in the Keller build are recorded rather than
+hidden. Blank descriptor ratings are read as zero: the blank rate is 83% and
+barely moves with intensity, so they mean "not applied". A blank *intensity* is
+also zero, but for a different reason — it coincides with the subject reporting
+they smelled nothing in 97% of such trials — and averaging only over subjects
+who did smell something would overstate every molecule.
+
+`data/inventory/` holds the perfumer's own sheet, normalised by
+`scripts/build_inventory.py`: 166 rows, 129 single molecules, 128 joining the
+library. Its `top %` column — the working ceiling they actually dose at — tracks
+the measured thresholds at Spearman 0.756, better than anything modelled here,
+and is the reason the predicted thresholds were withdrawn. Its `family` column
+restored the class axis. Its assembled water-threshold column is kept as
+reference only: rho 0.451 against Abraham, and 0.386 against the sheet's own
+use levels.
+
+### The evaluation scripts
+
+| script | asks |
+|---|---|
+| `eval_similarity_graded.py` | does a representation's geometry match graded human panels? Paired bootstrap over materials, since pairs are not independent |
+| `notes_vs_models.py` | does a model rank the perfumer's own descriptors highly? Scored against a base-rate prior, which alone reaches 0.841 AUC |
+| `nn_agreement.py` | does a material's nearest neighbour share a descriptor with it? The local measure, which is what reading a map actually is |
+| `class_coherence.py` | same question for odour family |
+| `encoder_health.py` | saturation, representation diversity, input sensitivity, and two isomer probes |
+| `probe_pair.py` | where every representation puts one specific pair, with the chemistry baseline and what each dataset actually says |
+| `blind_encoder_test.py` | forced choice between two layouts, key written to a file and never printed |
+
+A caution carried by `notes_vs_models`: predicting GS-LF base rates while
+ignoring the molecule entirely scores 0.841 AUC against the perfumer's notes,
+where the best model reaches 0.905. Most of an impressive-looking AUC on
+unbalanced odour labels is the prior.
 
 ## Layout
 

@@ -321,7 +321,7 @@ window.addEventListener("error", function (ev) {
     state.pin = null; clearPin.hidden = true; renderDetail(); draw();
   });
   document.getElementById("q").addEventListener("input", function (e) {
-    state.query = e.target.value.trim().toLowerCase(); draw();
+    state.query = e.target.value.trim().toLowerCase(); renderDetail(); draw();
   });
 
   // ---- legend ----
@@ -671,11 +671,63 @@ window.addEventListener("error", function (ev) {
     return out.slice(0, n);
   }
 
+  // Typing a descriptor name ranks the library on that one quality. This
+  // answers a question whole-vector similarity cannot: a material has several
+  // odour facets, and two that share one strongly can still sit far apart
+  // because the other hundred-odd dimensions dominate the cosine. No new
+  // control for it -- the search box already matches descriptor names.
+  function descriptorQuery() {
+    var q = (state.query || "").trim();
+    if (q.length < 3 || !D.perceptAllNames) return null;
+    var names = D.perceptAllNames;
+    var exact = names.indexOf(q);
+    if (exact >= 0) return {name: names[exact], col: exact};
+    var hits = [];
+    for (var i = 0; i < names.length; i++) {
+      if (names[i].indexOf(q) === 0) hits.push(i);
+    }
+    return hits.length === 1 ? {name: names[hits[0]], col: hits[0]} : null;
+  }
+
+  function rankingHtml() {
+    var dq = descriptorQuery();
+    if (!dq) return "";
+    var rows = [];
+    for (var i = 0; i < D.molecules.length; i++) {
+      var r = D.molecules[i].perceptAll;
+      if (r && r.length > dq.col) rows.push([i, r[dq.col]]);
+    }
+    if (!rows.length) return "";
+    rows.sort(function (a, b) { return b[1] - a[1]; });
+    var html = '<h2>Strongest on &ldquo;' + esc(dq.name) + '&rdquo;</h2>'
+      + '<div class="bars">';
+    for (var k = 0; k < Math.min(15, rows.length); k++) {
+      var i2 = rows[k][0], v = rows[k][1];
+      html += '<div class="rrow"><span class="g" style="text-align:left">'
+        + '<button type="button" data-go="' + i2 + '" '
+        + 'style="background:none;border:0;padding:0;color:inherit;'
+        + 'font:inherit;cursor:pointer;text-align:left">'
+        + esc(D.molecules[i2].name) + "</button></span>"
+        + '<span class="track"><span class="fill" style="width:'
+        + (Math.max(0, Math.min(1, v)) * 100).toFixed(1) + '%"></span></span>'
+        + '<span class="v">' + v.toFixed(3) + "</span></div>";
+    }
+    html += "</div>";
+    html += '<p class="note">Ranked on this descriptor alone, over all '
+      + D.molecules.length + " materials. Predicted, not measured.</p>";
+    return html;
+  }
+
   function renderDetail() {
     var el = document.getElementById("detail");
+    var rank = rankingHtml();
     if (state.sel === null) {
-      el.innerHTML = '<h2>Inspector</h2><p class="empty">Click a point to inspect it. '
-        + 'Shift-click a second point to compare two materials.</p>';
+      el.innerHTML = rank
+        || ('<h2>Inspector</h2><p class="empty">Click a point to inspect it. '
+            + 'Shift-click a second point to compare two materials. '
+            + 'Type an odour descriptor in the search box to rank the library '
+            + 'on it.</p>');
+      bindGo(el);
       return;
     }
     var i = state.sel, m = D.molecules[i], p = P();
@@ -792,7 +844,11 @@ window.addEventListener("error", function (ev) {
     html += "</div>";
     html += '<p class="note">Scores are sigmoid outputs: P(receptor responds), not intensity.</p>';
 
-    el.innerHTML = html;
+    el.innerHTML = rank ? rank + html : html;
+    bindGo(el);
+  }
+
+  function bindGo(el) {
     Array.prototype.forEach.call(el.querySelectorAll("[data-go]"), function (b) {
       b.addEventListener("click", function () {
         state.sel = parseInt(b.getAttribute("data-go"), 10);

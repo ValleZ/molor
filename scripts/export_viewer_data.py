@@ -293,6 +293,8 @@ def main() -> int:
     # Predicted GS-LF odour descriptors, from whichever model --percepts names.
     percept_path = ROOT / args.percepts
     percept_tags, percept_list, percept_colour, percept_top = {}, [], {}, {}
+    percept_row: dict[str, list[float]] = {}
+    percept_all_names: list[str] = []
     percept_meta = {}
     if percept_path.is_file():
         pj = json.loads(percept_path.read_text(encoding="utf-8"))
@@ -317,6 +319,7 @@ def main() -> int:
             keep = [int(j) for j in order[:4] if r[j] >= 0.25] or [int(order[0])]
             percept_tags[e.name] = [desc[j] for j in keep]
             percept_top[e.name] = [[desc[int(j)], round(float(r[j]), 3)] for j in order[:6]]
+        percept_row = {n: [round(float(v), 3) for v in pm[n]] for n in pm}
         c2 = _Counter(t for v in percept_tags.values() for t in v)
         percept_list = [t for t, n in c2.most_common(22)]
         keepset = set(percept_list)
@@ -333,7 +336,10 @@ def main() -> int:
                 t, "#%02x%02x%02x" % tuple(int(255 * v) for v in pal2(i % 20)[:3]))
             for i, t in enumerate(percept_list)
         }
+        percept_all_names = list(desc)
         print(f"  percept descriptors in legend: {percept_list}")
+        print(f"  full descriptor matrix: {len(percept_row)} molecules x "
+              f"{len(percept_all_names)}")
 
     models = {}
     for key, libname, label in MODELS:
@@ -367,6 +373,15 @@ def main() -> int:
              "odour": [] if args.no_notes else sorted(odour_tags.get(e.name, [])),
              "percept": percept_tags.get(e.name, []),
              "perceptTop": percept_top.get(e.name, []),
+             # The full descriptor row, so the page can rank the library on any
+             # single quality. The top-6 list above cannot: asking "what else
+             # smells animalic" needs every material's animal score, not each
+             # material's own strongest six. Para Cresyl Acetate and Habanolide
+             # are 3rd and 6th on that axis while their whole-vector cosine is
+             # only +0.26, because 137 other dimensions drown the one they
+             # share -- so a per-descriptor ranking answers a question that
+             # similarity cannot.
+             "perceptAll": percept_row.get(e.name, []),
              "intensity": intensity.get(e.name, [None, None])[0],
              "intensityPct": intensity.get(e.name, [None, None])[1],
              "odt": thresh.get(e.name, [None, None, None])[0],
@@ -385,6 +400,7 @@ def main() -> int:
         "odours": [] if args.no_notes else odour_list,
         "odourColour": {} if args.no_notes else odour_colour,
         "percepts": percept_list,
+        "perceptAllNames": percept_all_names,
         "perceptColour": percept_colour,
         "models": models,
         "modelOrder": [k for k, _, _ in MODELS if k in models],
