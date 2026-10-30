@@ -701,7 +701,7 @@ window.addEventListener("error", function (ev) {
     rows.sort(function (a, b) { return b[1] - a[1]; });
     var html = '<h2>Strongest on &ldquo;' + esc(dq.name) + '&rdquo;</h2>'
       + '<div class="bars">';
-    for (var k = 0; k < Math.min(15, rows.length); k++) {
+    for (var k = 0; k < Math.min(3, rows.length); k++) {
       var i2 = rows[k][0], v = rows[k][1];
       html += '<div class="rrow"><span class="g" style="text-align:left">'
         + '<button type="button" data-go="' + i2 + '" '
@@ -713,8 +713,8 @@ window.addEventListener("error", function (ev) {
         + '<span class="v">' + v.toFixed(3) + "</span></div>";
     }
     html += "</div>";
-    html += '<p class="note">Ranked on this descriptor alone, over all '
-      + D.molecules.length + " materials. Predicted, not measured.</p>";
+    html += '<p class="note">Top 3 of ' + D.molecules.length
+      + " materials, ranked on this descriptor alone. Predicted, not measured.</p>";
     return html;
   }
 
@@ -748,7 +748,13 @@ window.addEventListener("error", function (ev) {
       + "<dt>Total activation</dt><dd>" + M().total[i].toFixed(2) + "</dd>"
       + ((m.perceptTop && m.perceptTop.length)
          ? "<dt>Predicted odour</dt><dd style=\"font-family:var(--font-body);font-size:12px\">"
-           + m.perceptTop.map(function (t) { return esc(t[0]) + " " + t[1].toFixed(2); }).join(", ")
+           + m.perceptTop.map(function (t) {
+               return '<button type="button" data-desc="' + esc(t[0]) + '" '
+                 + 'style="background:none;border:0;padding:0;color:inherit;'
+                 + 'font:inherit;cursor:pointer;text-decoration:underline;'
+                 + 'text-decoration-style:dotted;text-underline-offset:2px">'
+                 + esc(t[0]) + " " + t[1].toFixed(2) + "</button>";
+             }).join(", ")
            + "</dd>" : "")
       + "<dt>Placement</dt><dd>" + p.reliability[i].toFixed(2)
       + (p.reliability[i] < 0.25 ? " — unreliable" : "") + "</dd></dl>";
@@ -852,6 +858,18 @@ window.addEventListener("error", function (ev) {
     Array.prototype.forEach.call(el.querySelectorAll("[data-go]"), function (b) {
       b.addEventListener("click", function () {
         state.sel = parseInt(b.getAttribute("data-go"), 10);
+        renderDetail(); draw();
+      });
+    });
+    // A descriptor in the inspector ranks the library on itself. The search box
+    // is updated too, so the control and the view never disagree about what is
+    // being asked.
+    Array.prototype.forEach.call(el.querySelectorAll("[data-desc]"), function (b) {
+      b.addEventListener("click", function () {
+        var d = b.getAttribute("data-desc");
+        var box = document.getElementById("q");
+        if (box) box.value = d;
+        state.query = d.toLowerCase();
         renderDetail(); draw();
       });
     });
