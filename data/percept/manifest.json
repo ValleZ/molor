@@ -1,0 +1,53 @@
+{
+  "built_utc": "2026-10-30T12:56:24+00:00",
+  "datasets": {
+    "dravnieks": {
+      "source": "pyrfume dravnieks_1985 (ASTM DS61, doi:10.1520/DS61-EB)",
+      "values": "percent applicability, averaged over the panel",
+      "stimuli": 144,
+      "molecules": 138,
+      "descriptors": 146,
+      "value_min": 0.0,
+      "value_max": 91.63,
+      "distinct_values": 2146,
+      "concentration_levels": [
+        "high",
+        "low"
+      ],
+      "in_library_molecules": 43
+    },
+    "keller": {
+      "source": "pyrfume keller_2016 (doi:10.1186/s12868-016-0287-2)",
+      "values": "mean subject rating 0-100; '__sd' columns are between-subject standard deviations",
+      "blank_descriptors": "read as 0 (not applied), per DREAM convention",
+      "trials_total": 52800,
+      "trials_completed": 52800,
+      "stimuli": 956,
+      "molecules": 474,
+      "descriptors": 20,
+      "scales": [
+        "intensity",
+        "pleasantness",
+        "familiarity"
+      ],
+      "value_min": 0.0,
+      "value_max": 38.95454545454545,
+      "concentration_levels": [
+        "0.001",
+        "0.1",
+        "1e-05",
+        "1e-07"
+      ],
+      "in_library_molecules": 99
+    },
+    "gslf": {
+      "source": "openpom curated_GS_LF_merged_4983.csv",
+      "values": "binary presence flags",
+      "molecules": 4983,
+      "descriptors": 138,
+      "distinct_values": 2,
+      "concentration_levels": [],
+      "labels_per_molecule_mean": 4.88
+    }
+  }
+}

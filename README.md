@@ -564,6 +564,52 @@ other.
 its checkpoints were trained on all of GS-LF, so it cannot be scored on a
 held-out part of it. See `scripts/eval_fp_percept.py`.
 
+### Correction: the similarity column above is measured against the training labels
+
+The ρ column in that table is agreement with GS-LF label overlap — the same
+labels every model there was fitted on. Two independent graded datasets
+(`scripts/build_percept_datasets.py`, `data/percept/`) were later used to check
+it, and **the ranking does not survive**.
+
+Dravnieks (30 materials in common, 146 graded descriptors) and Keller (88
+materials, 20 descriptors) are human panel data, continuous rather than binary,
+and neither trained anything here:
+
+| model | GS-LF ρ | Dravnieks ρ | Keller ρ |
+|---|---|---|---|
+| fingerprint v1 | **+0.5505** | +0.2103 | +0.0993 |
+| fingerprint v2 | +0.3731 | +0.2895 | +0.1091 |
+| fingerprint v3 | +0.4894 | +0.2851 | **+0.1250** |
+| OpenPOM | +0.4476 | **+0.3161** | +0.1152 |
+| Dense Sense | +0.3731 | +0.2974 | +0.0938 |
+| GS-LF MPNN | +0.3355 | +0.2816 | +0.1098 |
+| Uni-Mol | +0.1508 | +0.1224 | +0.0653 |
+| raw ECFP4 | +0.1804 | +0.1691 | +0.0490 |
+
+v1's large lead inverts: it is last among the trained models on Dravnieks and
+second-last on Keller. A paired bootstrap over materials — resampling both
+models on the same draw, which is the right test when the pairs are not
+independent — returns **no significant difference between any two trained
+models** on either dataset. The single significant result anywhere is v3 over
+raw ECFP4 on Keller, +0.072 with CI [+0.017, +0.129].
+
+So three things follow, and they undercut the section above.
+
+1. **The trained models are indistinguishable on independent human data.** The
+   v1-vs-v2-vs-v3 ordering was measuring fit to GS-LF, not agreement with
+   smell.
+2. **The ablation table below therefore rests on a discredited metric.** The
+   "drop pos_weight, gain +0.079 of similarity" result is real as a statement
+   about GS-LF Jaccard and unsupported as a statement about smell. v3 remains a
+   sensible configuration, but it was not *selected* on evidence that holds up.
+3. **Absolute agreement is low everywhere** — ρ ≈ 0.1–0.3. None of these models
+   reproduces human descriptor profiles well. The honest summary is that they
+   beat raw chemistry and are otherwise hard to tell apart.
+
+What the graded data is for, going forward: it is the evaluation set, because it
+is not the training target; and Keller carries concentration, perceived
+intensity and between-subject spread, none of which GS-LF can express.
+
 Two results are worth stating plainly.
 
 **Uni-Mol scores below raw fingerprints.** It is a transformer pretrained on
