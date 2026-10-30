@@ -715,11 +715,27 @@ window.addEventListener("error", function (ev) {
 
   function renderFoot() {
     var p = P();
+    var pm = (D.meta && D.meta.percept_model) || {};
+    // Two different models are on screen at once and conflating them is the
+    // easy mistake: the layout is receptor space, the colours are predicted
+    // smell. Say so, and quote each model's own numbers.
+    var colourNote = pm.name
+      ? "then coloured by <strong>" + (pm.n_descriptors || "") + " predicted odour "
+        + "descriptors</strong> from a separate model trained on the human-labelled "
+        + "GS-LF set"
+        + (pm.auc ? " (out-of-fold AUC " + pm.auc.toFixed(3) : "")
+        + (pm.auc && pm.similarity
+            ? ", label-grounded similarity &rho; " + (pm.similarity > 0 ? "+" : "")
+              + pm.similarity.toFixed(3) + ")"
+            : pm.auc ? ")" : "")
+        + ". "
+      : "";
     document.getElementById("sub").innerHTML =
       D.meta.n_molecules + " perfumery materials scored against " + D.meta.n_receptors
       + " functional human olfactory receptors by <strong>MolOR</strong> "
-      + "(MPNN encoder, ESM-2 650M protein embeddings), then coloured by odour "
-      + "descriptors predicted with the GS-LF model. Drag to rotate, shift-drag to pan, "
+      + "(MPNN encoder, ESM-2 650M protein embeddings). <strong>Position is receptor "
+      + "response, not smell</strong> &mdash; " + colourNote
+      + "Drag to rotate, shift-drag to pan, "
       + "scroll to zoom. Click a material to inspect it; shift-click a second to compare. "
       + "<br><br>"
       + "Grey links join pairs that are mutual nearest neighbours in the real "
@@ -730,10 +746,22 @@ window.addEventListener("error", function (ev) {
       + "enantiomers and E/Z isomers land on the same point; and the vectors encode chemical "
       + "structure more strongly than smell.";
     document.getElementById("foot").innerHTML =
-      "Model: MolOR MPNN, checkpoint " + esc(D.meta.checkpoint_md5.slice(0, 12))
-      + " · receptor panel " + esc(D.meta.panel_hash)
-      + " · odour descriptors from GS_LF_baseline_gcn · "
-      + "weights from Zenodo record 13765978, code from microsoft/olfaction.";
+      "<strong>Layout</strong>: MolOR MPNN cross-attention over ESM-2 650M receptor "
+      + "embeddings, checkpoint " + esc(D.meta.checkpoint_md5.slice(0, 12))
+      + ", receptor panel " + esc(D.meta.panel_hash)
+      + " (" + D.meta.n_receptors + " functional receptors from HORDE, pseudogenes "
+      + "and fragments excluded). Weights from Zenodo record 13765978, code from "
+      + "microsoft/olfaction."
+      + "<br><strong>Colours</strong>: " + esc(pm.name || "none")
+      + (pm.n_descriptors ? ", " + pm.n_descriptors + " descriptors" : "")
+      + ", trained on GoodScents + Leffingwell (4983 molecules). "
+      + "Selected by ablation to keep similarity structure that per-label accuracy "
+      + "tuning destroys."
+      + "<br><strong>Read it with care</strong>: predicted descriptors are not "
+      + "measured ones, stereochemistry is invisible to both models, and a blind "
+      + "test of the suggestion ranking did not reproduce the perfumer's own "
+      + "ordering. Useful as a search heuristic over the library, not as a "
+      + "prediction of smell.";
   }
 
   window.addEventListener("resize", function () { resize(); state.fitted = false; draw(); });

@@ -193,12 +193,23 @@ def main() -> int:
     }
     print(f"  odour families: {dict(freq)}")
 
-    # Predicted GS-LF odour descriptors (GS_LF_baseline_gcn), if available.
+    # Predicted GS-LF odour descriptors, from whichever model --percepts names.
     percept_path = ROOT / args.percepts
     percept_tags, percept_list, percept_colour, percept_top = {}, [], {}, {}
+    percept_meta = {}
     if percept_path.is_file():
         pj = json.loads(percept_path.read_text(encoding="utf-8"))
         desc = pj["descriptors"]
+        # Carried into the payload so the page states which model coloured it
+        # and how well that model scores, rather than naming one in hard-coded
+        # prose that goes stale the next time the model is swapped.
+        percept_meta = {
+            "name": pj.get("checkpoint", percept_path.stem),
+            "n_descriptors": len(desc),
+            "auc": pj.get("oof_mean_auc"),
+            "similarity": pj.get("similarity_spearman"),
+            "config": pj.get("config"),
+        }
         pm = {n: np.asarray(r) for n, r in zip(pj["molecules"], pj["probs"])}
         for e in entries:
             r = pm.get(e.name)
@@ -246,6 +257,7 @@ def main() -> int:
             "n_receptors": len(genes),
             "panel_hash": prov["panel_hash"][:16],
             "checkpoint_md5": prov["checkpoint_md5"],
+            "percept_model": percept_meta,
         },
         "receptors": [{"gene": g, "family": f} for g, f in zip(genes, families)],
         "classes": classes,
