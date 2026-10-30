@@ -11,6 +11,12 @@
     "spearman": 0.3731,
     "dim": 138
   },
+  "FP v3": {
+    "materials": 229,
+    "pairs": 26106,
+    "spearman": 0.4894,
+    "dim": 138
+  },
   "OpenPOM": {
     "materials": 229,
     "pairs": 26106,
