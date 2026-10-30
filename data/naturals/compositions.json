@@ -33,6 +33,23 @@
         "Linalyl Acetate": 4.9, "Ocimene": 1.4
       }
     },
+    "Petitgrain EO (bigarade)": {
+      "source": "Reference ranges for petitgrain bigarade: linalyl acetate 51-71, linalool 12-24, terpineol 2-5, geraniol 1-2, geranyl acetate 1-3, nerol <1. Midpoints used.",
+      "note": "In the perfumer's inventory. An Egyptian GC/MS study puts linalool far higher, 30-34%, against linalyl acetate above 25 -- the sources disagree about which ester-to-alcohol ratio is typical, and this build takes the ester-heavy one.",
+      "composition": {
+        "Linalyl Acetate": 58.0, "Linalool": 18.0, "Terpineol Alpha": 3.5,
+        "Geranyl Acetate": 2.0, "Geraniol 95": 1.5, "Nerol": 0.5
+      },
+      "omitted": "neryl acetate (1-2%)"
+    },
+    "Cedarwood EO (Virginia)": {
+      "source": "Supplier GC ranges for Virginia type: alpha-cedrene plus funebrene 20-35, thujopsene 10-35, cedrol 16-25, beta-cedrene plus caryophyllene 4-8, alpha-cuparene 1.5-7, widdrol 2-5. Midpoints used; a single-batch GC-MS citing Lawrence 1980 agrees closely at cedrol 26.1, alpha-cedrene 24.6, thujopsene 15.1.",
+      "note": "In the perfumer's inventory. The weakest build here: thujopsene is a fifth of the oil and is not in the library, so the weights renormalise over cedrene and cedrol and the result is a cleaner, less dry wood than the real oil.",
+      "composition": {
+        "Cedrene Alpha": 27.0, "Cedrol": 22.0, "Caryophyllene Beta": 6.0
+      },
+      "omitted": "thujopsene (~21%), alpha-cuparene (~4%), widdrol (~3.5%) -- about a third of the oil"
+    },
     "Bergamot EO (Turkish)": {
       "source": "Peer-reviewed analysis of Turkish bergamot oil, 2000: linalyl acetate 38.7, limonene 23.7, linalool 14.7, gamma-terpinene 4.7, beta-pinene 3.0, myrcene 2.0.",
       "note": "Other origins range linalyl acetate 19-41%, limonene 24-44%, linalool 7-26%, so this is one profile out of a wide family.",
