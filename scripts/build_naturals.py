@@ -69,6 +69,9 @@ SELF_WORD = {
     # lemongrass claims lemon and palmarosa claims rose. Whole-word matching
     # does not reach inside either name, so they are listed.
     "lemongrass": "lemon", "palmarosa": "rose",
+    # A lavandin is a lavender hybrid, sold and used as a lavender, so the
+    # lavender descriptor is a fair claim to hold it to.
+    "lavandin": "lavender",
 }
 
 

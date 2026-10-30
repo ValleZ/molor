@@ -74,6 +74,50 @@
       },
       "omitted": "menthyl acetate (3.7%) and menthofuran (2.5%) are absent; menthofuran in particular carries the oil's characteristic sweetness"
     },
+    "Lemongrass EO": {
+      "source": "2025 study of Nepalese oil: neral 35.5, geranial 36.0, which together are citral. Commercial entries put citral totals at 45-70% and myrcene at 1-11%; midpoints used for the minors.",
+      "note": "In the perfumer's candidate list. Citral-dominated, and the library's Citral is itself the geranial/neral mixture, so the two isomers are entered as one material rather than double-counted. It passes its own name but sits at cosine 0.988 from plain Citral, so read it as citral with company.",
+      "composition": {
+        "Citral": 71.5, "Myrcene": 5.0, "Geraniol 95": 4.0, "Linalool": 2.0
+      }
+    },
+    "Lavandin EO (Grosso)": {
+      "source": "French reference profile via scent.vn citing a 1979 study, identified total 95.5%: linalool 32.25, linalyl acetate 32, camphor 7, 1,8-cineole 5, borneol 2. A 2024 Spanish study of 215 commercial samples confirms linalool, linalyl acetate, camphor and 1,8-cineole as the four principal compounds of the Grosso clone, with camphor at 7.2% and cineole at 5.7% against lower values in Super.",
+      "note": "In the perfumer's inventory. The camphor and cineole are what separate a lavandin from a true lavender, and both are in the library, so this is the one oil here that extends the chemotype family the model already handled well.",
+      "composition": {
+        "Linalool": 32.25, "Linalyl Acetate": 32.0, "Camphor": 7.0,
+        "Eucalyptol": 5.0, "Borneol": 2.0
+      },
+      "omitted": "terpinen-4-ol (~4.8% in one Grosso sample) and lavandulyl acetate (~3.2%)"
+    },
+    "Clary Sage EO": {
+      "source": "EU specification analysis by GC-FID over three batches: linalyl acetate about 68 (range 62-75), linalool about 15, germacrene-type triene about 4, alpha-terpineol about 1.7.",
+      "note": "In the perfumer's candidate list. Chemotypes diverge sharply -- an Israeli one is geraniol/geranyl acetate dominated with linalyl acetate at 0.3%, and some retail 'clary sage' is cineole-rich and not S. sclarea at all -- so this build is the European linalyl-acetate type and nothing else.",
+      "composition": {
+        "Linalyl Acetate": 68.0, "Linalool": 15.0, "Terpineol Alpha": 1.7
+      },
+      "omitted": "germacrene D (~4%) and sclareol, for which no figure was found"
+    },
+    "Rosemary EO (cineole type)": {
+      "source": "Commercial sample via scent.vn citing a 1989 ACS study: 1,8-cineole 44.5, alpha-pinene 13.3, camphor 10.1. That entry's identified total is 80.75%, so about a fifth of the oil is unlisted there as well as unbuildable.",
+      "note": "In the perfumer's inventory. Rosemary is strongly chemotyped: a Spanish sample runs camphor 27.3 against cineole 22.2, and a Himalayan one adds verbenone at 8.2. This is the cineole type, which is the common perfumery one.",
+      "composition": {
+        "Eucalyptol": 44.5, "Alpha Pinene": 13.3, "Camphor": 10.1
+      },
+      "omitted": "camphene (~3-4%) and verbenone (~8% in some chemotypes) are not in the library"
+    },
+    "Juniper Berry EO": {
+      "source": "Greek-grown sample, Koukos and Papadopoulou 1997: alpha-pinene about 48, myrcene about 13, sabinene about 8.",
+      "note": "In the perfumer's candidate list. Commercial oils run alpha-pinene far lower, 29-38%, so this Greek profile is at the pinene-rich end of the family.",
+      "composition": {"Alpha Pinene": 48.0, "Myrcene": 13.0},
+      "omitted": "sabinene (~8%), which is not in the library"
+    },
+    "Thyme EO (thymol type)": {
+      "source": "Brazilian leaf oil: thymol 44.7, p-cymene 18.6, gamma-terpinene 16.5. Across European samples thymol runs 0.9-75.7 and carvacrol 1.5-83.5, so chemotype dominates everything here.",
+      "note": "In the perfumer's candidate list, and the weakest coverage of the six: p-cymene is nearly a fifth of the oil and not in the library, so the build is thymol and terpinene and will read more purely phenolic than the bottle.",
+      "composition": {"Thymol": 44.7, "Terpinene Gamma": 16.5},
+      "omitted": "p-cymene (18.6%), which is not in the library"
+    },
     "Clove Bud EO (steam distilled)": {
       "source": "Turkish steam-distilled analysis: eugenol 87.00, eugenyl acetate 8.01, beta-caryophyllene 3.56.",
       "note": "Near enough a single molecule that predicting 'clove' from it is close to trivial; included for formula coverage rather than as a test.",
