@@ -102,8 +102,20 @@ def main() -> int:
         )
     }
 
+    # Store names are passed in rather than fixed, because the libraries get
+    # rebuilt under new names whenever the featurisation or the material list
+    # changes, and silently scoring a stale store is the easy mistake here.
+    gcn_name = "library"
+    mpnn_name = "library_mpnn_s6"
+    for i, a in enumerate(sys.argv):
+        if a == "--gcn" and i + 1 < len(sys.argv):
+            gcn_name = sys.argv[i + 1]
+        if a == "--mpnn" and i + 1 < len(sys.argv):
+            mpnn_name = sys.argv[i + 1]
+    print(f"GCN store: {gcn_name}   MPNN store: {mpnn_name}")
+
     models = {}
-    for key, libname in (("GCN", "library"), ("MPNN", "library_mpnn_s6")):
+    for key, libname in (("GCN", gcn_name), ("MPNN", mpnn_name)):
         names, idx, D, flat = load(libname)
         models[key] = dict(names=names, idx=idx, D=D, flat=flat)
 
