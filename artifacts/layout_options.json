@@ -1,0 +1,78 @@
+{
+  "nn_agreement": {
+    "receptor space, GCN": {
+      "materials": 116,
+      "nn_shares": 0.5603,
+      "chance": 0.3798,
+      "p": 0.0
+    },
+    "receptor space, MPNN": {
+      "materials": 116,
+      "nn_shares": 0.4741,
+      "chance": 0.3798,
+      "p": 0.0435
+    },
+    "percept space, FP v3": {
+      "materials": 116,
+      "nn_shares": 0.5172,
+      "chance": 0.3798,
+      "p": 0.005
+    },
+    "percept space, FP v1": {
+      "materials": 92,
+      "nn_shares": 0.6304,
+      "chance": 0.3963,
+      "p": 0.0
+    },
+    "percept space, FP v2": {
+      "materials": 92,
+      "nn_shares": 0.5326,
+      "chance": 0.3963,
+      "p": 0.0065
+    },
+    "percept space, OpenPOM": {
+      "materials": 92,
+      "nn_shares": 0.5217,
+      "chance": 0.3963,
+      "p": 0.0125
+    },
+    "percept space, DenseSense": {
+      "materials": 74,
+      "nn_shares": 0.5405,
+      "chance": 0.3847,
+      "p": 0.007
+    },
+    "percept space, GS-LF MPNN": {
+      "materials": 92,
+      "nn_shares": 0.5217,
+      "chance": 0.3963,
+      "p": 0.014
+    }
+  },
+  "graded": {
+    "dravnieks": {
+      "materials": 30,
+      "rho": {
+        "FP v3": 0.2851,
+        "FP v1": 0.2103,
+        "FP v2": 0.2895,
+        "OpenPOM": 0.3161,
+        "DenseSense": 0.2974,
+        "GS-LF MPNN": 0.2816,
+        "ENSEMBLE (mean of 5)": 0.3131
+      }
+    },
+    "keller": {
+      "materials": 88,
+      "rho": {
+        "FP v3": 0.125,
+        "FP v1": 0.0993,
+        "FP v2": 0.1091,
+        "OpenPOM": 0.1152,
+        "DenseSense": 0.0938,
+        "GS-LF MPNN": 0.1098,
+        "ENSEMBLE (mean of 5)": 0.1147
+      }
+    }
+  }
+}
