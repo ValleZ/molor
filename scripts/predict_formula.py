@@ -76,6 +76,23 @@ def centred_cosine_to(P: np.ndarray, q: np.ndarray) -> np.ndarray:
     return X @ y
 
 
+def thresholds() -> dict[str, float]:
+    """Measured water-phase detection thresholds in ppb, by InChIKey block."""
+    path = ROOT / "data" / "inventory" / "inventory.csv"
+    out: dict[str, float] = {}
+    if not path.is_file():
+        return out
+    for r in csv.DictReader(io.open(path, encoding="utf-8")):
+        v = (r.get("water_threshold_ppb") or "").strip()
+        k = (r.get("inchikey") or "").strip()
+        if v and k:
+            try:
+                out[k[:14]] = float(v)
+            except ValueError:
+                pass
+    return out
+
+
 def logit(p: np.ndarray) -> np.ndarray:
     q = np.clip(p, 1e-6, 1 - 1e-6)
     return np.log(q / (1 - q))
@@ -88,6 +105,10 @@ def main() -> int:
     ap.add_argument("--store", default="library")
     ap.add_argument("--rule", default="noisy-or",
                     choices=["noisy-or", "weighted-mean", "max", "dominant"])
+    ap.add_argument("--weight", default="mass", choices=["mass", "oav"],
+                    help="mass: neat share. oav: neat share / measured "
+                         "detection threshold, so traces of strong materials "
+                         "count for what they do")
     ap.add_argument("--top", type=int, default=12)
     ap.add_argument("--neighbours", type=int, default=8)
     ap.add_argument("--out", default=None)
@@ -111,14 +132,18 @@ def main() -> int:
     rows = read_formula(fpath if fpath.is_absolute() else ROOT / fpath)
     total_neat = sum(r["neat"] for r in rows)
 
+    thr = thresholds()
+    block = {e.name: e.inchikey[:14] for e in entries}
     resolved, missing = [], []
     for r in rows:
         kind, name = classify(r["name"], lib_set)
         if kind == "material" and name in P:
             r["resolved"] = name
+            r["threshold"] = thr.get(block.get(name, ""))
             resolved.append(r)
         else:
             r["resolved"] = None
+            r["threshold"] = None
             missing.append(r)
 
     cov = sum(r["neat"] for r in resolved) / total_neat
@@ -141,6 +166,24 @@ def main() -> int:
         raise SystemExit("too few resolvable ingredients to combine")
 
     w = np.array([r["neat"] for r in resolved], float)
+    if args.weight == "oav":
+        # Odour activity: neat share divided by the measured detection
+        # threshold, so a trace of something enormously strong counts for what
+        # it does rather than for what it weighs. The thresholds are water-phase
+        # and assembled from mixed sources, which is the wrong phase for
+        # sniffing a blend and not very accurate either; and detection
+        # threshold is not perceived contribution at the dose used, which is
+        # what the rule actually wants. Ethyl Maltol shows the gap: a weak
+        # threshold, yet a few percent of it is plainly sweet on the bench.
+        have = [r for r in resolved if r["threshold"] is not None]
+        if len(have) < len(resolved):
+            lost = [r["resolved"] for r in resolved if r["threshold"] is None]
+            print(f"\n  [oav] no measured threshold for {', '.join(lost)}; "
+                  f"dropped from the odour-activity weighting")
+        if len(have) < 3:
+            raise SystemExit("too few ingredients have a measured threshold")
+        resolved = have
+        w = np.array([r["neat"] / r["threshold"] for r in resolved], float)
     w = w / w.sum()
     V = np.stack([P[r["resolved"]] for r in resolved])
     mix = combine(args.rule, V, w)
