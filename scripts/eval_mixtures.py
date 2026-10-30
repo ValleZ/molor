@@ -51,6 +51,38 @@ PARSED = ROOT / "data" / "formulas" / "parsed.json"
 EPS = 1e-6
 
 
+def thresholds() -> dict[str, float]:
+    """Measured water-phase detection thresholds in ppb, by InChIKey block.
+
+    Defined here rather than imported, because predict_formula.py imports
+    ``combine`` from this module and the dependency would be circular.
+    """
+    path = ROOT / "data" / "inventory" / "inventory.csv"
+    out: dict[str, float] = {}
+    if not path.is_file():
+        return out
+    for r in csv.DictReader(io.open(path, encoding="utf-8")):
+        v = (r.get("water_threshold_ppb") or "").strip()
+        k = (r.get("inchikey") or "").strip()
+        if v and k:
+            try:
+                out[k[:14]] = float(v)
+            except ValueError:
+                pass
+    return out
+
+
+def name_to_threshold() -> dict[str, float]:
+    """Material name -> measured threshold, via the library's InChIKeys."""
+    sys.path.insert(0, str(ROOT / "src"))
+    from orvector.store import Library  # noqa: PLC0415
+
+    thr = thresholds()
+    entries, _, _ = Library(name="library").load()
+    return {e.name: thr[e.inchikey[:14]] for e in entries
+            if e.inchikey[:14] in thr}
+
+
 def verdict_descriptors(text: str, valid: set[str]) -> set[str]:
     low = text.lower()
     tags = {d for d, keys in VOCAB.items() if any(k in low for k in keys)}
@@ -177,8 +209,102 @@ def main() -> int:
         summary[rule]["ci_vs_base_rate"] = [round(float(lo), 4),
                                             round(float(hi), 4)]
 
+    # ---- mass weighting against odour activity -------------------------
+    #
+    # Every rule above weights an ingredient by how much of it there is. That
+    # is wrong in a way one formula showed sharply: a cocktail accord's rum
+    # came only from an ester dosed at 3.4% whose threshold is 1 ppb, and mass
+    # weighting read it as noise. Dividing each share by its measured
+    # threshold is the obvious correction, and this is the test of whether it
+    # generalises past that one formula.
+    #
+    # Both arms are scored on the SAME ingredient subset -- those with a
+    # measured threshold -- so the comparison is of the weighting and not of
+    # coverage. The thresholds are water-phase and assembled from mixed
+    # sources, which is the wrong phase for sniffing a blend; and a detection
+    # threshold is not a perceived contribution at the dose used. So a null
+    # result here would not acquit mass weighting, it would only fail to
+    # convict it on this proxy.
+    thr_by_name = name_to_threshold()
+    pair_rows = []
+    pair: dict[str, dict[str, list[float]]] = {
+        r: {"mass": [], "oav": []} for r in rules}
+    for f in parsed:
+        tags = verdict_descriptors(f["verdict"], set(idx))
+        if len(tags) < args.min_descriptors:
+            continue
+        mats = [(r["name"], r["fraction"]) for r in f["ingredients"]
+                if r["kind"] == "material" and r["name"] in P
+                and r.get("fraction", 0) > 0 and r["name"] in thr_by_name]
+        if len(mats) < 3:
+            continue
+        V = np.stack([P[n] for n, _ in mats])
+        frac = np.array([x for _, x in mats], float)
+        wm = frac / frac.sum()
+        wo = frac / np.array([thr_by_name[n] for n, _ in mats], float)
+        wo = wo / wo.sum()
+        mask = np.zeros(len(desc), dtype=bool)
+        for t in tags:
+            mask[idx[t]] = True
+        row = {"formula": f["name"], "n_ingredients": len(mats)}
+        ok = True
+        for rule in rules:
+            a = auc_within(combine(rule, V, wm), mask)
+            b = auc_within(combine(rule, V, wo), mask)
+            if a is None or b is None:
+                ok = False
+                break
+            row[f"{rule}_mass"] = round(a, 4)
+            row[f"{rule}_oav"] = round(b, 4)
+            pair[rule]["mass"].append(a)
+            pair[rule]["oav"].append(b)
+        if ok:
+            pair_rows.append(row)
+
+    if len(pair_rows) >= 5:
+        print(f"\n[mix] mass weighting vs odour activity, on the "
+              f"{len(pair_rows)} formulas with >=3 ingredients that have a "
+              f"measured threshold")
+        print(f"\n  {'rule':16s} {'mass':>8s} {'oav':>8s} {'oav-mass':>9s} "
+              f"{'95% CI':>22s}")
+        rng2 = np.random.default_rng(0)
+        oav_summary = {"n": len(pair_rows)}
+        for rule in rules:
+            a = np.array(pair[rule]["oav"])
+            b = np.array(pair[rule]["mass"])
+            d = [float(np.mean(a[i] - b[i])) for i in
+                 (rng2.integers(0, len(a), len(a)) for _ in range(4000))]
+            lo, hi = np.percentile(d, [2.5, 97.5])
+            sig = "SIGNIFICANT" if (lo > 0 or hi < 0) else "not significant"
+            print(f"  {rule:16s} {b.mean():8.4f} {a.mean():8.4f} "
+                  f"{a.mean() - b.mean():+9.4f}  [{lo:+.4f}, {hi:+.4f}] {sig}")
+            oav_summary[rule] = {
+                "mass_auc": round(float(b.mean()), 4),
+                "oav_auc": round(float(a.mean()), 4),
+                "delta": round(float(a.mean() - b.mean()), 4),
+                "ci": [round(float(lo), 4), round(float(hi), 4)],
+                "significant": bool(lo > 0 or hi < 0)}
+        # "max" ignores the weights, so it is identical under both arms by
+        # construction -- a useful check that this code weights anything at
+        # all, and useless for a per-formula breakdown. Pick the best of the
+        # rules that actually read w.
+        weight_sensitive = [r for r in rules if r != "max"]
+        best = max(weight_sensitive, key=lambda r: np.mean(pair[r]["oav"]))
+        print(f"\n  per formula, {best} under each weighting:")
+        for r in sorted(pair_rows,
+                        key=lambda x: x[f"{best}_oav"] - x[f"{best}_mass"]):
+            dd = r[f"{best}_oav"] - r[f"{best}_mass"]
+            print(f"    {r['formula'][:38]:38s} {r['n_ingredients']:2d} mats  "
+                  f"mass {r[f'{best}_mass']:.3f}  oav {r[f'{best}_oav']:.3f}  "
+                  f"{dd:+.3f}")
+        summary["odour_activity"] = oav_summary
+    else:
+        print(f"\n[mix] only {len(pair_rows)} formulas have enough ingredients "
+              f"with measured thresholds; skipping the weighting comparison")
+
     (ROOT / args.out).write_text(json.dumps(
-        {"summary": summary, "per_formula": rows}, indent=2), encoding="utf-8")
+        {"summary": summary, "per_formula": rows,
+         "weighting_per_formula": pair_rows}, indent=2), encoding="utf-8")
     print(f"\n[mix] wrote {args.out}")
     return 0
 

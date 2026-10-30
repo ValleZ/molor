@@ -49,6 +49,49 @@
         -0.0298,
         0.0473
       ]
+    },
+    "odour_activity": {
+      "n": 13,
+      "noisy-or": {
+        "mass_auc": 0.8518,
+        "oav_auc": 0.8261,
+        "delta": -0.0256,
+        "ci": [
+          -0.0685,
+          0.0165
+        ],
+        "significant": false
+      },
+      "weighted-mean": {
+        "mass_auc": 0.8513,
+        "oav_auc": 0.8275,
+        "delta": -0.0239,
+        "ci": [
+          -0.065,
+          0.0173
+        ],
+        "significant": false
+      },
+      "max": {
+        "mass_auc": 0.8291,
+        "oav_auc": 0.8291,
+        "delta": 0.0,
+        "ci": [
+          0.0,
+          0.0
+        ],
+        "significant": false
+      },
+      "dominant": {
+        "mass_auc": 0.8148,
+        "oav_auc": 0.7296,
+        "delta": -0.0851,
+        "ci": [
+          -0.1681,
+          -0.0016
+        ],
+        "significant": true
+      }
     }
   },
   "per_formula": [
@@ -251,6 +294,164 @@
       "max": 0.758,
       "dominant": 0.6296,
       "base-rate": 0.679
+    }
+  ],
+  "weighting_per_formula": [
+    {
+      "formula": "F5 Sunlit Field 5/25/2026",
+      "n_ingredients": 30,
+      "noisy-or_mass": 0.813,
+      "noisy-or_oav": 0.7829,
+      "weighted-mean_mass": 0.8153,
+      "weighted-mean_oav": 0.7838,
+      "max_mass": 0.8565,
+      "max_oav": 0.8565,
+      "dominant_mass": 0.7806,
+      "dominant_oav": 0.7155
+    },
+    {
+      "formula": "Japanese Cherry Blossom 3 (B&BW)",
+      "n_ingredients": 12,
+      "noisy-or_mass": 0.819,
+      "noisy-or_oav": 0.8601,
+      "weighted-mean_mass": 0.8228,
+      "weighted-mean_oav": 0.8657,
+      "max_mass": 0.806,
+      "max_oav": 0.806,
+      "dominant_mass": 0.6539,
+      "dominant_oav": 0.7043
+    },
+    {
+      "formula": "Strawberry Astra 2",
+      "n_ingredients": 10,
+      "noisy-or_mass": 0.6618,
+      "noisy-or_oav": 0.4596,
+      "weighted-mean_mass": 0.6581,
+      "weighted-mean_oav": 0.4596,
+      "max_mass": 0.4485,
+      "max_oav": 0.4485,
+      "dominant_mass": 0.7721,
+      "dominant_oav": 0.4632
+    },
+    {
+      "formula": "Gooseberry 8",
+      "n_ingredients": 14,
+      "noisy-or_mass": 0.8507,
+      "noisy-or_oav": 0.8377,
+      "weighted-mean_mass": 0.8489,
+      "weighted-mean_oav": 0.8377,
+      "max_mass": 0.8153,
+      "max_oav": 0.8153,
+      "dominant_mass": 0.8172,
+      "dominant_oav": 0.6241
+    },
+    {
+      "formula": "Gooseberry 10",
+      "n_ingredients": 16,
+      "noisy-or_mass": 0.9531,
+      "noisy-or_oav": 0.884,
+      "weighted-mean_mass": 0.9506,
+      "weighted-mean_oav": 0.8864,
+      "max_mass": 0.9037,
+      "max_oav": 0.9037,
+      "dominant_mass": 0.8864,
+      "dominant_oav": 0.6704
+    },
+    {
+      "formula": "Gooseberry 11",
+      "n_ingredients": 14,
+      "noisy-or_mass": 0.9191,
+      "noisy-or_oav": 0.8529,
+      "weighted-mean_mass": 0.9191,
+      "weighted-mean_oav": 0.8566,
+      "max_mass": 0.8529,
+      "max_oav": 0.8529,
+      "dominant_mass": 0.8272,
+      "dominant_oav": 0.8235
+    },
+    {
+      "formula": "GB13 \u2014 Cassis Base/Ribes skin",
+      "n_ingredients": 14,
+      "noisy-or_mass": 0.9669,
+      "noisy-or_oav": 0.9081,
+      "weighted-mean_mass": 0.9669,
+      "weighted-mean_oav": 0.9081,
+      "max_mass": 0.886,
+      "max_oav": 0.886,
+      "dominant_mass": 0.9706,
+      "dominant_oav": 0.8566
+    },
+    {
+      "formula": "Gooseberry 14 (new mix, no AI)",
+      "n_ingredients": 9,
+      "noisy-or_mass": 0.8934,
+      "noisy-or_oav": 0.886,
+      "weighted-mean_mass": 0.8897,
+      "weighted-mean_oav": 0.8934,
+      "max_mass": 0.9081,
+      "max_oav": 0.9081,
+      "dominant_mass": 0.8088,
+      "dominant_oav": 0.8566
+    },
+    {
+      "formula": "Gooseberry 15",
+      "n_ingredients": 9,
+      "noisy-or_mass": 0.9816,
+      "noisy-or_oav": 0.9154,
+      "weighted-mean_mass": 0.9743,
+      "weighted-mean_oav": 0.9154,
+      "max_mass": 0.9816,
+      "max_oav": 0.9816,
+      "dominant_mass": 0.9963,
+      "dominant_oav": 0.6452
+    },
+    {
+      "formula": "Lilac 40 (Louis Appel, 1982)",
+      "n_ingredients": 7,
+      "noisy-or_mass": 0.8529,
+      "noisy-or_oav": 0.8015,
+      "weighted-mean_mass": 0.8529,
+      "weighted-mean_oav": 0.8015,
+      "max_mass": 0.8493,
+      "max_oav": 0.8493,
+      "dominant_mass": 0.8199,
+      "dominant_oav": 0.7518
+    },
+    {
+      "formula": "\u201clilac fragrance\u201d (TGSC page, no source given)",
+      "n_ingredients": 9,
+      "noisy-or_mass": 0.8218,
+      "noisy-or_oav": 0.854,
+      "weighted-mean_mass": 0.8232,
+      "weighted-mean_oav": 0.8547,
+      "max_mass": 0.8268,
+      "max_oav": 0.8268,
+      "dominant_mass": 0.8268,
+      "dominant_oav": 0.83
+    },
+    {
+      "formula": "Clinique happy",
+      "n_ingredients": 11,
+      "noisy-or_mass": 0.8162,
+      "noisy-or_oav": 0.9669,
+      "weighted-mean_mass": 0.8199,
+      "weighted-mean_oav": 0.9632,
+      "max_mass": 0.8713,
+      "max_oav": 0.8713,
+      "dominant_mass": 0.6691,
+      "dominant_oav": 0.9044
+    },
+    {
+      "formula": "Watermelon FO 277",
+      "n_ingredients": 7,
+      "noisy-or_mass": 0.7235,
+      "noisy-or_oav": 0.7309,
+      "weighted-mean_mass": 0.7259,
+      "weighted-mean_oav": 0.7309,
+      "max_mass": 0.7728,
+      "max_oav": 0.7728,
+      "dominant_mass": 0.763,
+      "dominant_oav": 0.6395
     }
   ]
 }
