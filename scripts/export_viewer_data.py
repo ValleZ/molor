@@ -99,7 +99,13 @@ def load_naturals(store: str):
     blob = json.loads(path.read_text(encoding="utf-8"))
     ents, percept, rec = [], {}, {}
     for oil, v in blob["naturals"].items():
-        ents.append(NaturalEntry(oil, v["composition_used"]))
+        e = NaturalEntry(oil, v["composition_used"])
+        # Carried through to the card: an oil that sits on top of one of its
+        # own constituents is not a distinguishable oil, and saying so is more
+        # use than a diamond that implies otherwise.
+        e.collapsed_onto = v.get("collapsed_onto")
+        e.omitted = v.get("omitted_from_library") or []
+        ents.append(e)
         percept[oil] = np.asarray(v["percept"], dtype=float)
         rec[oil] = np.asarray(v["receptors"], dtype=float)
     return ents, percept, rec
@@ -508,6 +514,7 @@ def main() -> int:
              # similarity cannot.
              "perceptAll": percept_row.get(e.name, []),
              "isNatural": int(getattr(e, "is_natural", False)),
+             "collapsedOnto": getattr(e, "collapsed_onto", None),
              "inTrain": int(e.name in in_train),
              "intensity": intensity.get(e.name, [None, None])[0],
              "intensityPct": intensity.get(e.name, [None, None])[1],

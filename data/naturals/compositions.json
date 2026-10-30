@@ -63,6 +63,32 @@
       "composition": {"Eugenol ex Clove": 87.0, "Caryophyllene Beta": 3.56},
       "omitted": "eugenyl acetate (8.0%)"
     },
+    "Orange EO (sweet, Florida)": {
+      "source": "Commercial GC-MS profile, Myers & Lee: limonene ~91, myrcene ~1.5, citral ~0.06, beta-pinene ~0.01, gamma-terpinene ~0.01. Other sweet orange profiles put limonene at 95-98.",
+      "note": "Effectively limonene. An oil this dominated by one constituent is barely a mixture, so the build is close to a rename of D-Limonene and should not be read as the model understanding orange oil.",
+      "composition": {
+        "D-Limonene": 91.0, "Myrcene": 1.5, "Citral": 0.06,
+        "Beta Pinene": 0.01, "Terpinene Gamma": 0.01
+      },
+      "omitted": "octanal and decanal, the aldehydes that carry much of a fresh expressed peel oil, are not in the library"
+    },
+    "Lime EO (Persian, expressed)": {
+      "source": "Persian lime profile: limonene ~52, gamma-terpinene ~14, beta-pinene ~12, citral up to 2.8, myrcene ~1.4. Across lime entries limonene runs 49-56 and gamma-terpinene 12-14.",
+      "note": "The one citrus here that is a real mixture rather than limonene with traces. Expressed, not distilled: distilled lime rearranges under acid into p-cymene and terpinen-4-ol and smells quite different, and neither is in the library.",
+      "composition": {
+        "D-Limonene": 52.0, "Terpinene Gamma": 14.0, "Beta Pinene": 12.0,
+        "Citral": 2.8, "Myrcene": 1.4
+      },
+      "omitted": "sabinene, p-cymene, terpinen-4-ol and the bergapten-type coumarins"
+    },
+    "Tangerine EO": {
+      "source": "GC-MS of tangerine oil: limonene ~95 (range 84-97 across dilutions), gamma-terpinene and beta-pinene in traces only.",
+      "note": "Included on request, and it should be expected to fail to separate from orange. What makes a tangerine smell like a tangerine rather than an orange is methyl N-methylanthranilate plus thymol, and no source gave a usable figure for the first; the library holds Methyl Anthranilate, which is a different molecule, so substituting it would be a fabrication rather than an approximation. What is built here is therefore limonene with traces, like the orange.",
+      "composition": {
+        "D-Limonene": 95.0, "Terpinene Gamma": 0.5, "Beta Pinene": 0.3
+      },
+      "omitted": "methyl N-methylanthranilate and thymol, which are the whole distinction from orange"
+    },
     "Cinnamon Bark EO (commercial)": {
       "source": "GC-MS of commercial oil: cinnamal 63.59, eugenol 8.32, cinnamyl acetate 7.48, caryophyllene 6.88, linalool 6.31, eucalyptol 2.57.",
       "composition": {

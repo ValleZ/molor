@@ -58,6 +58,12 @@ SELF_WORD = {
     "vetiver": "vetiver", "sandalwood": "sandalwood", "cedarwood": "cedar",
     "chamomile": "chamomile", "grapefruit": "grapefruit", "jasmine": "jasmin",
     "orange": "orange", "pine": "pine", "tea": "tea",
+    # The vocabulary has no word for either of these. Tangerine is checked
+    # against orange, which is the honest comparison anyway since the build
+    # omits the only things that distinguish them. Lime is checked against
+    # lemon, the nearest available word, so a pass there is weaker evidence
+    # than a pass on an oil whose own name is in the vocabulary.
+    "tangerine": "orange", "lime": "lemon",
 }
 
 
@@ -127,6 +133,16 @@ def main() -> int:
         sim = Xn @ y
         near = [names[k] for k in np.argsort(-sim)[:5]]
 
+        # An oil dominated by one constituent is not a mixture in any useful
+        # sense: sweet orange at 91% limonene lands on D-Limonene at cosine
+        # 1.0000, and so does tangerine, because what separates them is a
+        # material the library does not hold. Three diamonds stacked on one
+        # disc would imply three oils the model can tell apart, so the collapse
+        # is recorded and shown on the card instead of being left to look like
+        # a result.
+        top = int(np.argmax(sim))
+        collapsed = names[top] if sim[top] >= 0.995 else None
+
         word = self_word(oil)
         check = None
         if word and word in desc:
@@ -146,6 +162,8 @@ def main() -> int:
             "lift_top": [{"name": desc[i], "z": round(float(z[i]), 2)}
                          for i in order[:10]],
             "nearest_materials": near,
+            "nearest_cosine": round(float(sim[int(np.argmax(sim))]), 4),
+            "collapsed_onto": collapsed,
             "self_check": check,
         }
 
@@ -159,6 +177,9 @@ def main() -> int:
         print(f"    nearest:  " + ", ".join(near))
         if missing:
             print(f"    omitted:  {', '.join(missing)}")
+        if collapsed:
+            print(f"    COLLAPSED onto {collapsed} at cosine "
+                  f"{sim[int(np.argmax(sim))]:.4f}: not a distinguishable oil")
 
     (ROOT / args.out).write_text(json.dumps(out, indent=2), encoding="utf-8")
     passed = [k for k, v in out["naturals"].items()

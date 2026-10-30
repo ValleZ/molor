@@ -792,9 +792,11 @@ window.addEventListener("error", function (ev) {
     html += '<p style="margin:0 0 9px;font-family:var(--font-display);font-size:17px;font-weight:700">'
       + esc(m.name) + "</p>";
     html += '<dl class="kv">'
-      + "<dt>Formula</dt><dd>" + esc(m.formula) + "</dd>"
-      + "<dt>SMILES</dt><dd>" + esc(m.smiles) + "</dd>"
-      + "<dt>Heavy atoms</dt><dd>" + m.atoms + "</dd>"
+      + (m.isNatural
+          ? "<dt>Built from</dt><dd>" + esc(m.formula) + "</dd>"
+          : "<dt>Formula</dt><dd>" + esc(m.formula) + "</dd>"
+            + "<dt>SMILES</dt><dd>" + esc(m.smiles) + "</dd>"
+            + "<dt>Heavy atoms</dt><dd>" + m.atoms + "</dd>")
       + "<dt>Total activation</dt><dd>" + M().total[i].toFixed(2) + "</dd>"
       + ((m.perceptTop && m.perceptTop.length)
          ? "<dt>Predicted odour" + (m.inTrain ? " <sup>t</sup>" : "")
@@ -809,6 +811,17 @@ window.addEventListener("error", function (ev) {
            + "</dd>" : "")
       + "<dt>Placement</dt><dd>" + p.reliability[i].toFixed(2)
       + (p.reliability[i] < 0.25 ? " — unreliable" : "") + "</dd></dl>";
+    // An oil built from a composition one constituent dominates lands on that
+    // constituent, so the diamond would otherwise imply an oil the model can
+    // tell apart from it. Sweet orange and tangerine both sit exactly on
+    // D-Limonene, because what separates them is a material the library has
+    // no entry for.
+    if (m.isNatural && m.collapsedOnto) {
+      html += '<p class="t-meta" style="color:var(--warn,#c9803a)">'
+        + "Not a distinguishable oil: this build sits on top of "
+        + esc(m.collapsedOnto)
+        + ", so its position says nothing the constituent does not.</p>";
+    }
 
     // Potency. Detection threshold leads because it is what dosing turns on
     // and because 28 of these values are measured rather than modelled.
