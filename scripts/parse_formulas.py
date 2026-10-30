@@ -67,7 +67,23 @@ ALIAS = {
     "l-menthol": "Laevo Menthol",
     "menthol": "Laevo Menthol",
     "l-carvone": "l-Carvone",
-    "cis-3-hexenol": "Hexenol-3-CIS",
+    # Trade and systematic names used by the patent-era published formulas.
+    # Only where it is the same molecule: bornyl acetate is NOT Isobornyl
+    # Acetate, acetyl cedrene is NOT Cedrene Alpha and methyl eugenol is NOT
+    # Methyl Isoeugenol, so those stay unmapped and are dropped instead.
+    "methyl dihydrojasmonate": "Hedione",
+    "alpha-ionone": "Ionone Alpha",
+    "beta-ionone": "Ionone Beta",
+    "isoraldeine": "Methyl Ionone Gamma Coeur",
+    "alpha-isomethyl ionone": "Methyl Ionone Gamma Coeur",
+    "alpha-hexyl cinnamaldehyde": "Hexyl Cinnamic Aldehyde",
+    "geraniol": "Geraniol 95",
+    "rhodinol": "Rhodinol Ex Geranium Bourbon",
+    "indole": "Indolene 50",
+    "isobutyl quinoline": "2-Isobutyl Quinoline",
+    "eugenol": "Eugenol ex Clove",
+    "alpha-terpineol": "Terpineol Alpha",
+    "musk xylol": "Musk Xylene",
     "dihydromyrcenol": "Dihydro Myrcenol",
     "dihydro myrcenol": "Dihydro Myrcenol",
     "dihydromircenol": "Dihydro Myrcenol",
@@ -210,7 +226,8 @@ NOT_INGREDIENT = re.compile(
     r"normalized\s*%|intended\s+role|role|note|notes|status|job|why|ov|"
     r"ifra|trial(?:,\s*mg)?)$", re.I)
 
-SOLVENT = {"dpg", "benzyl benzoate", "perfumer's alcohol", "witch hazel",
+SOLVENT = {"dpg", "dipg", "dipropylene glycol", "ethanol", "etoh",
+           "benzyl benzoate", "perfumer's alcohol", "witch hazel",
            "glycerin", "peg-7", "allantoin", "bisabolol", "ipm",
            "isopropyl myristate", "diethyl phthalate", "dep",
            "triethyl citrate", "tec", "water"}

@@ -1,0 +1,325 @@
+{
+  "source": "thegoodscentscompany.com/demos/dm1051131.html, which reproduces example compositions from the cited US patents. Patent text is public domain. The category label on each is the only statement of intended character, and it is what the prediction is tested against.",
+  "retrieved": "2026-10-30",
+  "note": "Accord N° 207710 (Firmenich, powdery animal leather) is on the same page but omitted: two separate extractions of it returned different amounts for the same ingredients, so the transcription cannot be trusted.",
+  "formulas": [
+    {
+      "name": "Chypre composition",
+      "category": "chypre",
+      "patent": "US4461309",
+      "total": 1000,
+      "ingredients": {
+        "madrox": 150, "bergamot oil bergaptene reduced": 150,
+        "bornyl acetate": 120, "hydroxycitronellal": 100,
+        "galaxolide 50 IPM": 100, "linalool": 80, "citronellol": 60,
+        "nerol": 50, "patchouli oil": 50, "treemoss absolute": 30,
+        "cedryl acetate crystalline": 30, "lemon oil": 30,
+        "styrallyl acetate": 20, "beta-ionyl ethyl ether": 30
+      }
+    },
+    {
+      "name": "Chypre perfume base (4,669,490)",
+      "category": "chypre",
+      "patent": "US4669490",
+      "total": 1000,
+      "ingredients": {
+        "styrallyl acetate": 20, "aldehyde C-12 mna 10%": 20,
+        "vetiveryl acetate": 50, "rhodinol": 50, "patchouli oil": 50,
+        "treemoss absolute 5%": 50, "lilial": 100, "hydroxycitronellal": 100,
+        "alpha-isomethyl ionone": 100, "musk ambrette replacer": 100,
+        "coumarin": 100, "bergamot oil bergaptene reduced": 100,
+        "(Z)-isogeranic acid": 10, "DIPG": 150
+      }
+    },
+    {
+      "name": "Chypre perfume base (4,657,700)",
+      "category": "chypre",
+      "patent": "US4657700",
+      "total": 1000,
+      "ingredients": {
+        "isoraldeine": 200, "musk ketone": 100, "phenethyl alcohol": 80,
+        "linalyl acetate": 70, "treemoss absolute": 50,
+        "vetiveryl acetate": 50, "methyl dihydrojasmonate": 50,
+        "alpha-hexyl cinnamaldehyde": 50, "patchouli oil": 30,
+        "rhodinol ex geranium": 30, "eugenol": 30, "sandela": 30,
+        "cedarwood oil virginia": 30, "styrallyl acetate": 20,
+        "galbanum oil": 10, "neroli oil": 10, "castoreum absolute 10%": 10,
+        "isobutyl quinoline 10%": 10, "armoise oil": 10,
+        "aldehyde C-11 undecylenic 10%": 10, "citral": 5, "aldehyde C-14": 5,
+        "cistus twig/leaf oil": 5, "DIPG": 105
+      }
+    },
+    {
+      "name": "Chypre perfume base (4,567,291)",
+      "category": "chypre",
+      "patent": "US4567291",
+      "total": 1000,
+      "ingredients": {
+        "bergamot oil bergaptene reduced": 200, "hydroxycitronellal": 160,
+        "linalool": 120, "patchouli oil": 60, "beta-ionone": 60,
+        "cervolide": 60, "laevo-bornyl acetate": 60, "treemoss absolute": 60,
+        "lemon oil": 60, "vetiveryl acetate": 60, "indole 10%": 20,
+        "armoise oil": 20, "pine needle absolute": 10, "eugenol": 10,
+        "rhodinol": 20, "tiglyl tiglate": 20
+      }
+    },
+    {
+      "name": "Chypre perfume base (4,544,714 a)",
+      "category": "chypre",
+      "patent": "US4544714",
+      "total": 900,
+      "ingredients": {
+        "hydroxycitronellal": 100, "bergamot oil bergaptene reduced": 80,
+        "methyl dihydrojasmonate": 80, "alpha-hexyl cinnamaldehyde": 80,
+        "phenethyl alcohol": 80, "treemoss absolute": 40,
+        "patchouli oil": 40, "linalool": 40, "alpha-ionone": 40,
+        "musk ketone": 40, "vetiver oil haiti": 20, "sandalwood oil": 20,
+        "benzyl acetate": 20, "styrallyl acetate": 5, "aldehyde C-14": 5,
+        "aldehyde C-11 undecylic 10%": 5, "civet oil 10%": 5, "DIPG": 200
+      }
+    },
+    {
+      "name": "Chypre perfume composition (4,485,036)",
+      "category": "chypre",
+      "patent": "US4485036",
+      "total": 1000,
+      "ingredients": {
+        "madrox": 200, "alpha-hexyl cinnamaldehyde": 200,
+        "bergamot oil bergaptene reduced": 200,
+        "methyl dihydrojasmonate": 80, "vetiveryl acetate": 60,
+        "alpha-ionone": 20, "coriander seed oil": 20, "benzyl acetate": 20,
+        "rhodinol": 20, "ethylene brassylate": 20,
+        "8-alpha,12-oxido-13,14,15,16-tetranorlabdane": 10,
+        "wormseed oil replacer": 10, "corps cassis": 10,
+        "3,5-ivy carbaldehyde 10%": 10, "treemoss absolute 50%": 20,
+        "patchouli oil": 20, "DIPG": 80
+      }
+    },
+    {
+      "name": "Cologne",
+      "category": "cologne",
+      "patent": "US4544714",
+      "total": 1000,
+      "ingredients": {
+        "DIPG": 315, "bergamot oil bergaptene reduced": 200,
+        "linalyl acetate": 100, "linalool": 80, "lemon oil italy": 80,
+        "alpha-amyl cinnamaldehyde": 50, "methyl dihydrojasmonate": 30,
+        "alpha-ionone": 30, "geraniol": 30, "citral": 20, "eugenol": 20,
+        "treemoss absolute": 20, "mandarin oil": 5, "rosemary oil": 5,
+        "castoreum synthetic": 5, "ylang ylang oil": 5, "indole 10%": 5
+      }
+    },
+    {
+      "name": "Cologne base",
+      "category": "cologne",
+      "patent": "US4948781",
+      "total": 900,
+      "ingredients": {
+        "myrascone": 80, "bergamot oil bergaptene reduced": 80,
+        "galaxolide 50 IPM": 60, "hydroxycitronellal": 60, "madrox": 60,
+        "laevo-bornyl acetate": 40, "sandalore": 30, "musk ketone": 40,
+        "givescone": 20, "petitgrain oil": 20, "corps cassis": 5,
+        "treemoss absolute": 5, "DIPG": 400
+      }
+    },
+    {
+      "name": "Modern cologne perfume base",
+      "category": "cologne",
+      "patent": "US4585662",
+      "total": 900,
+      "ingredients": {
+        "myrascone": 80, "galaxolide 50 IPM": 60, "hydroxycitronellal": 60,
+        "madrox": 60, "sandela": 60, "bergamot oil bergaptene reduced": 60,
+        "fir needle oil siberia": 30, "musk ketone": 40, "givescone": 20,
+        "3-prenyl-isocaranone": 20, "petitgrain oil SA": 15,
+        "corps cassis": 5, "treemoss absolute": 5, "DIPG": 385
+      }
+    },
+    {
+      "name": "Eau de cologne perfumery base",
+      "category": "cologne",
+      "patent": "US4567291",
+      "total": 1000,
+      "ingredients": {
+        "bergamot oil bergaptene reduced": 404, "lemon oil": 120,
+        "alpha-hexyl cinnamaldehyde": 100, "methyl dihydrojasmonate": 60,
+        "alpha-ionone": 60, "basil oil": 50, "rhodinol": 40, "eugenol": 40,
+        "neroli oil": 40, "patchouli oil": 20, "treemoss absolute 50%": 20,
+        "vetiveryl acetate": 20, "ylang ylang oil": 20, "tiglyl tiglate": 6
+      }
+    },
+    {
+      "name": "Fougere base (5,185,472)",
+      "category": "fougere",
+      "patent": "US5185472",
+      "total": 1000,
+      "ingredients": {
+        "coumarin": 20, "basil oil": 20, "geranium oil china": 20,
+        "treemoss absolute": 40, "isoamyl salicylate": 50,
+        "benzyl salicylate": 100, "lavender oil": 350, "boisiris": 400
+      }
+    },
+    {
+      "name": "Fougere base (4,892,966)",
+      "category": "fougere",
+      "patent": "US4892966",
+      "total": 800,
+      "ingredients": {
+        "lavender oil": 200, "linalyl acetate": 150,
+        "treemoss absolute": 60, "coumarin": 50, "patchouli oil": 30,
+        "rhodinol ex geranium": 30, "methyl dihydrojasmonate": 30,
+        "musk ketone": 30, "vetiveryl acetate": 30,
+        "geranium BB synth.": 30, "isoamyl salicylate": 20, "sandela": 20,
+        "linalool": 20, "benzyl acetate": 15, "ylang ylang oil": 15,
+        "eugenol": 15, "white thyme oil": 5,
+        "2-hydroxy-3,4,5-trimethyl-2-cyclopenten-1-one 10%": 10, "DIPG": 40
+      }
+    },
+    {
+      "name": "Fougere perfume base (4,657,700)",
+      "category": "fougere",
+      "patent": "US4657700",
+      "total": 1000,
+      "ingredients": {
+        "treemoss absolute": 60, "lavender oil": 200,
+        "linalyl acetate": 150, "coumarin": 50, "patchouli oil": 30,
+        "rhodinol ex geranium": 30, "methyl dihydrojasmonate": 30,
+        "musk ketone": 30, "vetiveryl acetate": 30,
+        "geranium oil bourbon": 30, "isoamyl salicylate": 20, "sandela": 20,
+        "linalool": 20, "benzyl acetate": 15, "ylang ylang oil": 15,
+        "eugenol": 15, "white thyme oil": 5, "DIPG": 250
+      }
+    },
+    {
+      "name": "Fougere perfume base (4,457,862)",
+      "category": "fougere",
+      "patent": "US4457862",
+      "total": 1000,
+      "ingredients": {
+        "lavandin oil": 140, "geranium oil africa": 140, "coumarin": 140,
+        "siam benzoin resinoid": 140, "treemoss absolute": 60,
+        "patchouli oil": 60, "bergamot oil bergaptene reduced": 60,
+        "vetiver oil bourbon": 40, "musk ketone": 60, "musk xylol": 60,
+        "dione": 100
+      }
+    },
+    {
+      "name": "Fougere perfume base (4,426,321)",
+      "category": "fougere",
+      "patent": "US4426321",
+      "total": 1000,
+      "ingredients": {
+        "madrox": 150, "2,2,8-trimethyl-7-nonen-3-ol": 150,
+        "cervolide": 70, "hydroxycitronellal": 70, "coriander seed oil": 50,
+        "patchouli oil": 50, "treemoss absolute 50%": 30, "galbanum oil": 30,
+        "rhodinol": 30, "isoraldeine": 30, "petitgrain oil": 20,
+        "allyl alpha-ionone": 20, "elemi oil": 15, "angelica seed oil": 10,
+        "geranium (synthetic)": 10,
+        "bergamot oil bergaptene reduced": 80,
+        "2,2-dimethyl-6,8-nonadien-3-ol": 50, "DIPG": 135
+      }
+    },
+    {
+      "name": "Fougere perfume composition (4,669,490)",
+      "category": "fougere",
+      "patent": "US4669490",
+      "total": 1000,
+      "ingredients": {
+        "lavender oil": 210, "isoamyl salicylate": 200,
+        "treemoss absolute 50%": 100, "citronellol": 100, "geraniol": 80,
+        "musk ambrette replacer": 80,
+        "bergamot oil bergaptene reduced": 80, "alpha-ionone": 80,
+        "alpha-amyl cinnamaldehyde": 25, "eugenol": 20, "metambrate": 23,
+        "(Z)-isogeranic acid": 2
+      }
+    },
+    {
+      "name": "Fresh green base",
+      "category": "fresh green",
+      "patent": "US4567291",
+      "total": 1000,
+      "ingredients": {
+        "laevo-bornyl acetate": 200, "madrox": 160,
+        "alpha-hexyl cinnamaldehyde": 140, "linalool": 100,
+        "olibanum resinoid": 80, "fixolide": 60, "alpha-terpineol": 60,
+        "alpha-ionone": 60, "styrallyl acetate": 30,
+        "linalyl anthranilate": 20, "aldehyde C-12 lauric 10%": 10,
+        "aldehyde C-12 mna 10%": 10, "3,5-ivy carbaldehyde": 6,
+        "corps cassis": 4, "treemoss absolute": 10, "citral": 20,
+        "tiglyl tiglate": 30
+      }
+    },
+    {
+      "name": "Tea perfume base (4,634,548)",
+      "category": "tea",
+      "patent": "US4634548",
+      "total": 900,
+      "ingredients": {
+        "linalyl acetate": 200, "linalool": 120, "hydroxycitronellal": 120,
+        "madrox": 120, "methyl dihydrojasmonate": 80, "patchouli oil": 60,
+        "methyl eugenol": 40, "acetanisole": 40, "basil oil": 20,
+        "laevo-bornyl acetate": 20, "treemoss absolute": 20, "DIPG": 60
+      }
+    },
+    {
+      "name": "Tea perfume base (4,544,714)",
+      "category": "tea",
+      "patent": "US4544714",
+      "total": 900,
+      "ingredients": {
+        "bergamot oil bergaptene reduced": 150, "linalool": 100,
+        "hydroxycitronellal": 100, "methyl dihydrojasmonate": 60,
+        "patchouli oil": 40, "basil oil": 30, "methyl eugenol": 20,
+        "beta-ionone": 20, "oxyoctaline formate": 10,
+        "galaxolide 50 IPM": 10, "laevo-bornyl acetate": 10,
+        "corps lavande": 10, "treemoss absolute colourless": 10,
+        "lemon oil": 10, "vertofix": 10, "indole 10%": 10, "DIPG": 300
+      }
+    },
+    {
+      "name": "Tea perfume composition (4,485,036)",
+      "category": "tea",
+      "patent": "US4485036",
+      "total": 1000,
+      "ingredients": {
+        "bergamot oil bergaptene reduced": 240, "hydroxycitronellal": 120,
+        "methyl dihydrojasmonate": 120, "patchouli oil": 60,
+        "basil oil": 60, "cedryl acetate crystalline": 60,
+        "acetanisole": 40, "beta-ionone": 40, "cervolide": 40,
+        "treemoss absolute 50%": 20, "lemon oil": 20,
+        "cedarwood acetate": 20, "armoise oil": 20,
+        "chamomile flower oil roman 10%": 20, "indole 10%": 10,
+        "rhodinol": 10, "thibetolide": 10, "spruce needle absolute": 6,
+        "wormseed oil replacer": 4, "methyl eugenol": 60, "DIPG": 20
+      }
+    },
+    {
+      "name": "Wood perfume base",
+      "category": "wood",
+      "patent": "US4669490",
+      "total": 1000,
+      "ingredients": {
+        "madrox": 150, "vetiveryl acetate": 150, "sandela": 150,
+        "linalool": 100, "citronellol": 50, "patchouli oil": 50,
+        "alpha-irone": 50, "linalyl acetate": 50, "benzyl acetate": 30,
+        "treemoss absolute": 30, "alpha-amyl cinnamaldehyde": 20,
+        "aldehyde C-12 mna 10%": 20, "eugenol": 20,
+        "aldehyde C-11 undecylenic 10%": 10, "cistus twig/leaf oil": 10,
+        "sandalore": 10, "(Z)-isogeranic acid": 10, "DIPG": 90
+      }
+    },
+    {
+      "name": "Woody forest perfume base",
+      "category": "wood",
+      "patent": "US4669490",
+      "total": 1000,
+      "ingredients": {
+        "turpentine oil (rectified)": 200, "elemi oil": 100,
+        "cypress oil": 100, "laevo-bornyl acetate": 50,
+        "cedryl acetate": 50, "myrrh oil": 10, "treemoss absolute": 10,
+        "acetyl cedrene": 10, "beta-caryophyllene": 5,
+        "labdanum oil 10%": 5, "(Z)-isogeranic acid": 10, "DIPG": 450
+      }
+    }
+  ]
+}
