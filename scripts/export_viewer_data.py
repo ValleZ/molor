@@ -211,8 +211,23 @@ def main() -> int:
     freq = _Counter(t for v in odour_tags.values() for t in v)
     odour_list = [t for t, _ in freq.most_common()]
     pal = plt.get_cmap("tab10")
+    # The note families were coloured from a categorical palette, which put
+    # GREEN on orange and FLORAL on green -- the same complaint that was fixed
+    # for the predicted descriptors and missed here. They now reuse the
+    # semantic map, so a family reads as the smell it names.
+    FAMILY_COLOUR = {
+        "GREEN": SEMANTIC_COLOUR["green"],
+        "FRUIT": SEMANTIC_COLOUR["fruity"],
+        "FLORAL": SEMANTIC_COLOUR["floral"],
+        "SWEET": SEMANTIC_COLOUR["sweet"],
+        "WOODY": SEMANTIC_COLOUR["woody"],
+        "ANIMAL": SEMANTIC_COLOUR["animal"],
+    }
     odour_colour = {
-        t: "#%02x%02x%02x" % tuple(int(255 * v) for v in pal(i % 10)[:3])
+        t: FAMILY_COLOUR.get(
+            t, SEMANTIC_COLOUR.get(
+                t.lower(),
+                "#%02x%02x%02x" % tuple(int(255 * v) for v in pal(i % 10)[:3])))
         for i, t in enumerate(odour_list)
     }
     print(f"  odour families: {dict(freq)}")

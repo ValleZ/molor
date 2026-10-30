@@ -169,6 +169,8 @@ input[type="search"] { width: 100%; min-width: 200px; }
 .legend { display: flex; flex-wrap: wrap; gap: 5px; }
 .legend-actions { display: flex; gap: 6px; margin: 0 0 8px; }
 .btn.mini { font-size: 11.5px; padding: 3px 9px; }
+select { font: inherit; color: var(--fg); background: var(--surface);
+  border: 1px solid var(--line); border-radius: 7px; padding: 6px 8px; }
 .lg {
   display: inline-flex; align-items: center; gap: 5px; cursor: pointer;
   border: 1px solid var(--line); border-radius: 999px;
@@ -196,6 +198,10 @@ footer strong { color: var(--fg); font-weight: 600; }
       <label class="lab" for="q">Find</label>
       <input type="search" id="q"
              placeholder="name, formula, odour descriptor, SMILES…" autocomplete="off">
+    </div>
+    <div class="field" id="modelField" hidden>
+      <label class="lab" for="model">Layout</label>
+      <select id="model"></select>
     </div>
     <button class="btn" id="clearPin" type="button" hidden>Clear comparison</button>
   </div>
@@ -744,10 +750,25 @@ window.addEventListener("error", function (ev) {
     }
     var i = state.sel, m = D.molecules[i], p = P();
     var html = '<h2>Inspector</h2>';
-    var chips = '<span class="chip" style="background:' + D.classColour[m.cls] + '">'
-      + esc(m.cls.replace(/_/g, " ")) + "</span>";
+    // The first chip used to show the chemical class, but no material has one:
+    // expanded_materials.csv carries no class column, so every value was the
+    // empty string and the chip rendered as a blank coloured pill. The
+    // perfumer's own odour family is shown instead, where the inventory has
+    // one. The note-family chips are coloured from the note palette rather
+    // than through groupColour, which colours by whatever scheme is active and
+    // so greyed them out whenever the predicted-descriptor scheme was selected.
+    var chips = "";
+    if (m.family) {
+      chips += '<span class="chip" style="background:var(--surface-2);'
+        + 'color:var(--fg)">' + esc(m.family) + "</span>";
+    }
+    if (m.volatility) {
+      chips += ' <span class="chip" style="background:var(--surface-2);'
+        + 'color:var(--muted)">' + esc(m.volatility) + "</span>";
+    }
     (m.odour || []).forEach(function (t) {
-      chips += ' <span class="chip" style="background:' + groupColour(t) + '">'
+      var c = (D.odourColour && D.odourColour[t]) || "#9aa6b1";
+      chips += ' <span class="chip" style="background:' + c + '">'
         + esc(t.toLowerCase()) + "</span>";
     });
     html += '<p style="margin:0 0 7px;display:flex;gap:4px;flex-wrap:wrap">' + chips + "</p>";
@@ -907,8 +928,8 @@ window.addEventListener("error", function (ev) {
       : "";
     // Which encoder produced the layout comes from the payload: the same page
     // is built from more than one, and naming one in prose got it wrong.
-    var encoder = (D.models && D.modelOrder && D.models[D.modelOrder[0]]
-                   && D.models[D.modelOrder[0]].label) || "";
+    var encoder = (D.models && D.models[state.model]
+                   && D.models[state.model].label) || "";
     document.getElementById("sub").innerHTML =
       D.meta.n_molecules + " perfumery materials scored against " + D.meta.n_receptors
       + " functional human olfactory receptors by <strong>MolOR</strong> "
@@ -970,6 +991,37 @@ window.addEventListener("error", function (ev) {
     var mq = window.matchMedia("(prefers-color-scheme: dark)");
     if (mq.addEventListener) mq.addEventListener("change", draw);
   }
+  // A layout picker, shown only when the payload carries more than one
+  // encoder. The two receptor spaces agree with each other at Spearman 0.255,
+  // so which one is on screen changes what sits next to what, and no measure
+  // has settled which is better -- the comparison is the point.
+  (function () {
+    var field = document.getElementById("modelField");
+    var sel = document.getElementById("model");
+    if (!field || !sel || !D.modelOrder || D.modelOrder.length < 2) return;
+    D.modelOrder.forEach(function (k) {
+      var o = document.createElement("option");
+      o.value = k;
+      o.textContent = (D.models[k] && D.models[k].label) || k;
+      sel.appendChild(o);
+    });
+    sel.value = state.model;
+    field.hidden = false;
+    sel.addEventListener("change", function () {
+      state.model = sel.value;
+      // Projections are per model, so the chosen one has to be re-resolved.
+      var keys = Object.keys(D.models[state.model].projections);
+      if (keys.indexOf(state.proj) < 0) {
+        var three = keys.filter(function (k) {
+          return Array.isArray(D.models[state.model].projections[k].z);
+        });
+        state.proj = three.length ? three[0] : keys[0];
+      }
+      state.fitted = false;
+      chooseView(); draw(); renderDetail(); renderFoot();
+    });
+  }());
+
   resize(); chooseView(); draw(); renderDetail(); renderFoot();
 })();
 </script>
