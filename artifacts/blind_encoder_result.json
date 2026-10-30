@@ -1,0 +1,143 @@
+{
+  "answers": {
+    "1": "a",
+    "2": "b",
+    "3": "tie",
+    "4": "b",
+    "5": "a",
+    "6": "b",
+    "7": "b",
+    "8": "b",
+    "9": "a",
+    "10": "b",
+    "11": "b",
+    "12": "tie"
+  },
+  "per_trial": [
+    {
+      "trial": 1,
+      "probe": "Dimethyl Octenone",
+      "chose": "Alpha Pinene",
+      "pick": "a",
+      "slot_a_model": "MPNN",
+      "winner": "MPNN"
+    },
+    {
+      "trial": 2,
+      "probe": "Methyl Ionone Gamma Coeur",
+      "chose": "Damascone Beta",
+      "pick": "b",
+      "slot_a_model": "GCN",
+      "winner": "MPNN"
+    },
+    {
+      "trial": 3,
+      "probe": "Iso E Super",
+      "chose": null,
+      "pick": "tie",
+      "slot_a_model": "GCN",
+      "winner": "tie"
+    },
+    {
+      "trial": 4,
+      "probe": "Doremox",
+      "chose": "Gamma Decalactone",
+      "pick": "b",
+      "slot_a_model": "MPNN",
+      "winner": "GCN"
+    },
+    {
+      "trial": 5,
+      "probe": "Aurantiol",
+      "chose": "Hydroxycitronellal",
+      "pick": "a",
+      "slot_a_model": "GCN",
+      "winner": "GCN"
+    },
+    {
+      "trial": 6,
+      "probe": "Nympheal",
+      "chose": "Cyclamen Aldehyde",
+      "pick": "b",
+      "slot_a_model": "GCN",
+      "winner": "MPNN"
+    },
+    {
+      "trial": 7,
+      "probe": "Benzyl Salicylate",
+      "chose": "Cis-3-Hexenyl Salicylate",
+      "pick": "b",
+      "slot_a_model": "GCN",
+      "winner": "MPNN"
+    },
+    {
+      "trial": 8,
+      "probe": "Edenolide",
+      "chose": "Hedione",
+      "pick": "b",
+      "slot_a_model": "GCN",
+      "winner": "MPNN"
+    },
+    {
+      "trial": 9,
+      "probe": "Ethyl Butyrate",
+      "chose": "Fructone",
+      "pick": "a",
+      "slot_a_model": "MPNN",
+      "winner": "MPNN"
+    },
+    {
+      "trial": 10,
+      "probe": "Methyl Pamplemousse",
+      "chose": "Ethyl Linalool",
+      "pick": "b",
+      "slot_a_model": "MPNN",
+      "winner": "GCN"
+    },
+    {
+      "trial": 11,
+      "probe": "Undecavertol",
+      "chose": "Citronellol",
+      "pick": "b",
+      "slot_a_model": "GCN",
+      "winner": "MPNN"
+    },
+    {
+      "trial": 12,
+      "probe": "Phenethyl Acetate",
+      "chose": null,
+      "pick": "tie",
+      "slot_a_model": "GCN",
+      "winner": "tie"
+    }
+  ],
+  "tally": {
+    "GCN": 3,
+    "MPNN": 7,
+    "ties": 2,
+    "decided": 10
+  },
+  "binomial_one_sided_p_for_leader": 0.1719,
+  "slot_b_preference": {
+    "picked_b": 7,
+    "of_decided": 10,
+    "two_sided_p": 0.3438
+  },
+  "stratified": {
+    "slot_a_GCN": {
+      "n": 6,
+      "picked_a": 1,
+      "picked_b": 5
+    },
+    "slot_a_MPNN": {
+      "n": 4,
+      "picked_a": 2,
+      "picked_b": 2
+    }
+  },
+  "trials_needed_for_80pct_power": {
+    "if_true_rate_0.70": 37,
+    "if_true_rate_0.80": 18
+  },
+  "verdict": "not resolved; leans MPNN but within noise and partly entangled with a slot preference"
+}
