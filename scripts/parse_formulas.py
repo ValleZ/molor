@@ -64,6 +64,7 @@ ALIAS = {
     "nonadienal": "Trans-2,Cis-6-Nonadienal",
     "pharone": "Pharaone",                     # 313973-37-4, as the sheet spells it
     "padma": "Viridine",                       # 101-48-4, the acronym for it
+    "phenyl acetaldehyde dimethyl acetal": "Viridine",
     "l-menthol": "Laevo Menthol",
     "menthol": "Laevo Menthol",
     "l-carvone": "l-Carvone",

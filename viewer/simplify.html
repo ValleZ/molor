@@ -6,7 +6,7 @@
 __MIXPANEL_SNIPPET__
 <style>
   :root {
-    --bg: #ffffff; --surface: #ffffff; --surface-2: #f3f5f7;
+    --bg: #f4f6f8; --surface: #ffffff; --surface-2: #f3f5f7;
     --fg: #121212; --muted: #5f6368; --line: #e3e6e9;
     --accent: #121212; --chart: #879eac; --warn: #9a5b33; --good: #3f6b52;
     --font-display: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
@@ -15,13 +15,13 @@ __MIXPANEL_SNIPPET__
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --bg: #121212; --surface: #191919; --surface-2: #202020;
+      --bg: #0f0f10; --surface: #1a1b1c; --surface-2: #232426;
       --fg: #ededed; --muted: #9aa0a6; --line: #2e2e2e;
       --accent: #ededed; --chart: #879eac; --warn: #c08b63; --good: #7fa891;
     }
   }
   :root[data-theme="dark"] {
-    --bg: #121212; --surface: #191919; --surface-2: #202020;
+    --bg: #0f0f10; --surface: #1a1b1c; --surface-2: #232426;
     --fg: #ededed; --muted: #9aa0a6; --line: #2e2e2e;
     --accent: #ededed; --chart: #879eac; --warn: #c08b63; --good: #7fa891;
   }
@@ -46,23 +46,24 @@ __MIXPANEL_SNIPPET__
   .lede { color: var(--muted); margin: 0 0 20px; max-width: 70ch; }
   .card {
     background: var(--surface); border: 1px solid var(--line);
-    border-radius: 2px; padding: 16px; margin: 0 0 16px;
+    border-radius: 12px; padding: 18px; margin: 0 0 16px;
   }
   textarea {
     width: 100%; min-height: 190px; resize: vertical; padding: 12px;
     font-family: var(--font-mono); font-size: 13px; line-height: 1.45;
-    background: var(--surface-2); color: var(--fg);
-    border: 1px solid var(--line); border-radius: 2px;
+    background: var(--bg); color: var(--fg);
+    border: 1px solid var(--line); border-radius: 10px;
   }
   .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
   button {
     font: inherit; font-weight: 400; padding: 10px 20px; cursor: pointer;
-    background: var(--accent); color: var(--bg); border: 1px solid var(--accent);
-    border-radius: 2px; letter-spacing: 0.04em; text-transform: uppercase;
+    background: var(--accent); color: var(--surface);
+    border: 1px solid var(--accent);
+    border-radius: 999px; letter-spacing: 0.04em; text-transform: uppercase;
     font-size: 13px;
   }
   button.ghost {
-    background: transparent; color: var(--fg);
+    background: var(--surface); color: var(--fg);
     border: 1px solid var(--line);
   }
   label.opt { display: inline-flex; gap: 6px; align-items: center; color: var(--muted); }
@@ -79,7 +80,7 @@ __MIXPANEL_SNIPPET__
   .warn { color: var(--warn); }
   .good { color: var(--good); }
   .pill {
-    display: inline-block; padding: 1px 6px; border-radius: 2px;
+    display: inline-block; padding: 1px 7px; border-radius: 999px;
     font-size: 11px; background: var(--surface-2); color: var(--muted);
     letter-spacing: 0.04em;
   }
@@ -87,7 +88,7 @@ __MIXPANEL_SNIPPET__
     background: transparent; color: var(--muted);
     border: 1px solid var(--line);
   }
-  .bar { height: 8px; border-radius: 0; background: var(--chart); }
+  .bar { height: 8px; border-radius: 4px; background: var(--chart); }
   .barrow { display: grid; grid-template-columns: 120px 1fr 56px; gap: 8px; align-items: center; margin: 3px 0; }
   .barrow .lbl { font-size: 13px; }
   .barrow .val { font-family: var(--font-mono); font-size: 12px; color: var(--muted); text-align: right; }
@@ -106,10 +107,11 @@ __MIXPANEL_SNIPPET__
   <h1>Formula simplifier</h1>
   <p class="lede">
     Paste a formula. This finds the smallest blend of materials whose
-    <em>predicted</em> character is closest to it, and tells you how close that
-    is on a scale where <strong id="yard">0.52</strong> is roughly the smallest
-    difference a nose can detect between two materials.
-    It runs entirely in this page — nothing is uploaded.
+    <em>predicted</em> character is closest to it. Closeness is reported
+    against what a random blend of the same size achieves and against the
+    nearest single material, because a distance on its own means nothing: a
+    long formula sits in a crowded part of the space where everything looks
+    close. It runs entirely in this page — nothing is uploaded.
   </p>
 
   <div class="card">
@@ -124,9 +126,8 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
     <div class="row" style="margin-top:12px">
       <button id="go" type="button">Simplify</button>
       <button id="demo" class="ghost" type="button">Load an example</button>
-      <label class="opt"><input type="checkbox" id="ownedOnly" checked> only materials in the inventory</label>
-      <label class="opt"><input type="checkbox" id="quiet"> prefer materials that blend away</label>
-      <label class="opt"><input type="checkbox" id="oavDose" checked> dose by odour activity</label>
+      <span class="note" style="margin:0">Substitutions come from the
+      inventory; doses are odour-activity corrected.</span>
     </div>
     <p class="note" id="meta"></p>
   </div>
@@ -167,6 +168,7 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
     <h2>The simplified formula</h2>
     <div class="card">
       <table id="proposal"></table>
+      <p class="note" id="against"></p>
       <p class="note" id="kept"></p>
       <p class="note" id="doseNote"></p>
       <p class="note warn" id="overUse" hidden></p>
@@ -211,7 +213,7 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
   var SOLV = {};
   D.solvents.forEach(function (s) { SOLV[s] = 1; });
 
-  document.getElementById("yard").textContent = YARD.toFixed(2);
+
   document.getElementById("meta").textContent =
     D.meta.n_materials + " materials (" + D.meta.n_oils + " built from GC "
     + "compositions), " + D.meta.n_owned + " in the inventory, "
@@ -468,6 +470,22 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
     }
     return w;
   }
+  function randomBaseline(target, pool, k, draws) {
+    var s = 987654321 + k * 7919, ds = [], i, j;
+    function rnd() { s = (s * 1103515245 + 12345) & 0x7fffffff; return s / 0x7fffffff; }
+    for (var d = 0; d < draws; d++) {
+      var pick = [];
+      while (pick.length < k) {
+        var c = pool[Math.floor(rnd() * pool.length)];
+        if (pick.indexOf(c) < 0) pick.push(c);
+      }
+      var w = fitSimplex(pick, target);
+      ds.push(dist(blend(pick, w), target));
+    }
+    ds.sort(function (a, b) { return a - b; });
+    return ds;
+  }
+
   function search(target, pool, k) {
     var b = new Float64Array(N), i;
     for (i = 0; i < N; i++) b[i] = dot(MAT[i].p, target);
@@ -608,40 +626,53 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
     }));
 
     // pool
-    // An ingredient already in the formula is always a candidate, whatever
-    // the filters say. The isolation filter exists for building a neutral
-    // blend, where an ingredient that reads as itself is a problem; when the
-    // job is to match a character, the distinctive materials are often the
-    // whole point. Unfiltered, it was excluding Hedione at the 91st
-    // percentile of isolation from the simplification of a formula that is
-    // 35% Hedione.
+    // Candidates are the inventory plus whatever the formula already
+    // contains, since an ingredient you are already using is always available
+    // whether or not it is on the inventory sheet. The isolation filter that
+    // used to be offered here is gone: it was built for assembling a neutral
+    // blend, where an ingredient reading as itself is the failure, and when
+    // the job is to match a character the distinctive materials are usually
+    // the point -- it was excluding Hedione, at the 91st percentile of
+    // isolation, from a formula that is 35% Hedione.
     var inFormula = {};
     idxs.forEach(function (i2) { inFormula[i2] = 1; });
     var pool = [];
     for (var i = 0; i < N; i++) {
-      if (!inFormula[i]) {
-        if (el("ownedOnly").checked && !MAT[i].own) continue;
-        if (el("quiet").checked && MAT[i].iso > 60) continue;
-      }
-      pool.push(i);
+      if (inFormula[i] || MAT[i].own) pool.push(i);
     }
     el("k").max = Math.min(12, Math.max(2, idxs.length));
     STATE = { target: target, pool: pool, idxs: idxs, w: w, rows: rows,
               inFormula: inFormula, cache: {} };
 
     // fidelity curve over every k, computed once
+    var nn = Infinity, nnName = "";
+    for (var q = 0; q < N; q++) {
+      var dq = dist(MAT[q].p, target);
+      if (dq < nn) { nn = dq; nnName = MAT[q].n; }
+    }
+    STATE.nn = nn; STATE.nnName = nnName;
+
     var curve = [];
-    for (var kk = 1; kk <= parseInt(el("k").max, 10); kk++) {
+    var kmax = parseInt(el("k").max, 10);
+    for (var kk = 1; kk <= kmax; kk++) {
       var s = search(target, pool, kk);
       STATE.cache[kk] = s;
       var got = blend(s.idxs, s.w);
-      curve.push([kk, centredCos(got, target), dist(got, target)]);
+      var base = randomBaseline(target, pool, kk, 40);
+      curve.push({ k: kk, cos: centredCos(got, target), d: dist(got, target),
+                   baseMed: base[Math.floor(base.length / 2)],
+                   baseBest: base[0] });
     }
     STATE.curve = curve;
+    // The floor: what the largest allowed blend achieves. Anything within a
+    // quarter of that is as close as adding materials is going to get, which
+    // is the only "good enough" this page can honestly assert.
+    var floor = Math.min.apply(null, curve.map(function (c) { return c.d; }));
+    STATE.floor = floor;
     bars(el("curve"), curve.map(function (c) {
-      return ["" + c[0] + (c[0] === 1 ? " material" : " materials"),
-              Math.max(0, c[1]),
-              c[1].toFixed(3) + (c[2] <= YARD ? " ✓" : "")];
+      return ["" + c.k + (c.k === 1 ? " material" : " materials"),
+              Math.max(0, 1 - c.d / Math.max(curve[0].d, 1e-9)),
+              c.d.toFixed(3) + (c.d <= floor * 1.25 ? " ◀ plateau" : "")];
     }), 1);
     el("out").hidden = false;
     if (parseInt(el("k").value, 10) > parseInt(el("k").max, 10)) {
@@ -658,13 +689,35 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
     if (!s) return;
     var got = blend(s.idxs, s.w);
     var cos = centredCos(got, STATE.target), dd = dist(got, STATE.target);
-    var within = dd <= YARD;
-    el("fid").innerHTML = "cosine " + cos.toFixed(3) + " · distance "
-      + dd.toFixed(3) + " · <span class=\"" + (within ? "good" : "warn")
-      + "\">" + (within ? "inside" : "outside")
-      + " the just-noticeable scale of " + YARD.toFixed(2) + "</span>";
+    var c = STATE.curve[k - 1];
+    var beat = 0;
+    if (c) {
+      // How many random k-material blends, each given its best weights, this
+      // proposal beats. This is the number that says whether k materials can
+      // do the job, rather than whether the search found a lucky corner.
+      beat = dd < c.baseBest ? 100
+        : dd > c.baseMed ? 50 * c.baseMed / Math.max(dd, 1e-9)
+        : 50 + 50 * (c.baseMed - dd) / Math.max(c.baseMed - c.baseBest, 1e-9);
+      beat = Math.max(0, Math.min(100, beat));
+    }
+    var plateau = dd <= STATE.floor * 1.25;
+    el("fid").innerHTML =
+      "distance <strong>" + dd.toFixed(3) + "</strong> · cosine "
+      + cos.toFixed(3) + " · <span class=\"" + (plateau ? "good" : "warn")
+      + "\">" + (plateau
+          ? "as close as more materials get"
+          : "more materials would help: " + STATE.floor.toFixed(3) + " at "
+            + STATE.curve.length) + "</span>";
+    el("against").innerHTML =
+      "A random " + k + "-material blend given its best possible weights lands "
+      + "<strong>" + (c ? c.baseMed.toFixed(3) : "?") + "</strong> away, and the "
+      + "best of 40 tries reached " + (c ? c.baseBest.toFixed(3) : "?")
+      + ". The single nearest material in the whole library is <strong>"
+      + esc(STATE.nnName) + "</strong> at " + STATE.nn.toFixed(3)
+      + ". This proposal beats roughly " + beat.toFixed(0)
+      + "% of random blends of its size.";
 
-    var useOav = el("oavDose").checked;
+    var useOav = true;
     var ds = doses(s.idxs, s.w, useOav);
     var html = "<tr><th>material</th><th class=num>stock</th>"
       + "<th class=num>parts</th><th class=num>neat %</th>"
@@ -745,6 +798,12 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
       + "adjust by nose.");
     cav.push("<strong>Suppression.</strong> Components mask each other and "
       + "nothing here models that; the blend is a weighted mean of its parts.");
+    cav.push("<strong>Whether it smells the same.</strong> This page can say "
+      + "that nothing simpler gets closer in the model's descriptor space. It "
+      + "cannot say the two smell alike. The one case tested on a bench — two "
+      + "materials standing in for petitgrain — was judged really close but "
+      + "not the same, with the real oil carrying a facet the model had "
+      + "backwards.");
     el("caveats").innerHTML = cav.map(function (c) {
       return "<li style='margin-bottom:6px'>" + c + "</li>";
     }).join("");
@@ -752,11 +811,7 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
 
   el("go").addEventListener("click", run);
   el("k").addEventListener("input", renderK);
-  ["ownedOnly", "quiet", "oavDose"].forEach(function (id) {
-    el(id).addEventListener("change", function () {
-      if (STATE) run();
-    });
-  });
+
   el("demo").addEventListener("click", function () {
     el("input").value = "Hedione\t300\nDihydromyrcenol\t120\n"
       + "Iso E Super\t100\nGalaxolide 50%\t100\nEthylene Brassylate\t60\n"
