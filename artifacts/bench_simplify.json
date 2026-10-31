@@ -1,0 +1,2536 @@
+{
+  "rows": [
+    {
+      "target": "Lavender EO (French, L. angustifolia)",
+      "kind": "oil",
+      "k": 2,
+      "ours": 0.23957371902504668,
+      "greedy_only": 0.23957371902504668,
+      "topk": 0.32447596855730837,
+      "random": 1.2048680206786333,
+      "recovered": 0,
+      "picked": [
+        "Lavandin EO (Grosso)",
+        "Ethyl Linalool"
+      ],
+      "true_topk": [
+        "Linalyl Acetate",
+        "Linalool"
+      ]
+    },
+    {
+      "target": "Lavender EO (French, L. angustifolia)",
+      "kind": "oil",
+      "k": 3,
+      "ours": 0.11569543767261316,
+      "greedy_only": 0.24348126884445812,
+      "topk": 0.11569543767261316,
+      "random": 0.9315007943187147,
+      "recovered": 3,
+      "picked": [
+        "Linalyl Acetate",
+        "Linalool",
+        "Eucalyptol"
+      ],
+      "true_topk": [
+        "Linalyl Acetate",
+        "Linalool",
+        "Eucalyptol"
+      ]
+    },
+    {
+      "target": "Lavender EO (French, L. angustifolia)",
+      "kind": "oil",
+      "k": 4,
+      "ours": 0.09198941336439306,
+      "greedy_only": 0.15168132649902277,
+      "topk": 0.09849730302406491,
+      "random": 0.9331588651955635,
+      "recovered": 2,
+      "picked": [
+        "Linalyl Acetate",
+        "Rosewood EO (Aniba rosaeodora)",
+        "Terpinolene, Rectified",
+        "Camphor"
+      ],
+      "true_topk": [
+        "Linalyl Acetate",
+        "Linalool",
+        "Eucalyptol",
+        "Camphor"
+      ]
+    },
+    {
+      "target": "Lavender EO (French, L. angustifolia)",
+      "kind": "oil",
+      "k": 5,
+      "ours": 0.07817153515806731,
+      "greedy_only": 0.1260771935422949,
+      "topk": 0.07817153515806731,
+      "random": 0.8931940949237713,
+      "recovered": 5,
+      "picked": [
+        "Linalyl Acetate",
+        "Linalool",
+        "Eucalyptol",
+        "Camphor",
+        "Ocimene"
+      ],
+      "true_topk": [
+        "Linalyl Acetate",
+        "Linalool",
+        "Eucalyptol",
+        "Camphor",
+        "Ocimene"
+      ]
+    },
+    {
+      "target": "Lavender EO (Spanish, var. pyrenaica)",
+      "kind": "oil",
+      "k": 2,
+      "ours": 0.16020090159114628,
+      "greedy_only": 0.38539943264369664,
+      "topk": 0.16020090159114628,
+      "random": 1.2061451438741502,
+      "recovered": 2,
+      "picked": [
+        "Linalool",
+        "Borneol"
+      ],
+      "true_topk": [
+        "Linalool",
+        "Borneol"
+      ]
+    },
+    {
+      "target": "Lavender EO (Spanish, var. pyrenaica)",
+      "kind": "oil",
+      "k": 3,
+      "ours": 0.036175903942425175,
+      "greedy_only": 0.1704307874106307,
+      "topk": 0.036175903942425175,
+      "random": 0.8753354295921579,
+      "recovered": 3,
+      "picked": [
+        "Linalool",
+        "Borneol",
+        "Camphor"
+      ],
+      "true_topk": [
+        "Linalool",
+        "Borneol",
+        "Camphor"
+      ]
+    },
+    {
+      "target": "Lavender EO (Spanish, var. pyrenaica)",
+      "kind": "oil",
+      "k": 4,
+      "ours": 0.01247375899053963,
+      "greedy_only": 0.14548520465335643,
+      "topk": 0.01247375899053963,
+      "random": 0.8633173759142587,
+      "recovered": 4,
+      "picked": [
+        "Linalool",
+        "Borneol",
+        "Camphor",
+        "Eucalyptol"
+      ],
+      "true_topk": [
+        "Linalool",
+        "Borneol",
+        "Camphor",
+        "Eucalyptol"
+      ]
+    },
+    {
+      "target": "Spike Lavender EO (L. latifolia)",
+      "kind": "oil",
+      "k": 2,
+      "ours": 0.14810792653412563,
+      "greedy_only": 0.3737398609379451,
+      "topk": 0.14810792653412563,
+      "random": 1.1619117809793185,
+      "recovered": 2,
+      "picked": [
+        "Linalool",
+        "Eucalyptol"
+      ],
+      "true_topk": [
+        "Linalool",
+        "Eucalyptol"
+      ]
+    },
+    {
+      "target": "Lavender EO (South African)",
+      "kind": "oil",
+      "k": 2,
+      "ours": 0.2216227679579899,
+      "greedy_only": 0.22162276795798996,
+      "topk": 0.38596696773201156,
+      "random": 1.1308223801109185,
+      "recovered": 1,
+      "picked": [
+        "Spike Lavender EO (L. latifolia)",
+        "Eucalyptol"
+      ],
+      "true_topk": [
+        "Eucalyptol",
+        "Camphor"
+      ]
+    },
+    {
+      "target": "Lavender EO (South African)",
+      "kind": "oil",
+      "k": 3,
+      "ours": 0.04846803715234761,
+      "greedy_only": 0.04846803715234761,
+      "topk": 0.04846803715234761,
+      "random": 1.122598451331159,
+      "recovered": 3,
+      "picked": [
+        "Camphor",
+        "Linalool",
+        "Eucalyptol"
+      ],
+      "true_topk": [
+        "Eucalyptol",
+        "Camphor",
+        "Linalool"
+      ]
+    },
+    {
+      "target": "Lavender EO (South African)",
+      "kind": "oil",
+      "k": 4,
+      "ours": 0.011550466386668254,
+      "greedy_only": 0.018232718860992484,
+      "topk": 0.012066173443792705,
+      "random": 1.0826239309299845,
+      "recovered": 3,
+      "picked": [
+        "Eucalyptol",
+        "Camphor",
+        "Rosewood EO (Aniba rosaeodora)",
+        "Linalyl Acetate"
+      ],
+      "true_topk": [
+        "Eucalyptol",
+        "Camphor",
+        "Linalool",
+        "Linalyl Acetate"
+      ]
+    },
+    {
+      "target": "Petitgrain EO (bigarade)",
+      "kind": "oil",
+      "k": 2,
+      "ours": 0.10178805870919728,
+      "greedy_only": 0.10178805870919728,
+      "topk": 0.16004515325722446,
+      "random": 1.3782657497810877,
+      "recovered": 0,
+      "picked": [
+        "Clary Sage EO",
+        "Ethyl Linalool"
+      ],
+      "true_topk": [
+        "Linalyl Acetate",
+        "Linalool"
+      ]
+    },
+    {
+      "target": "Petitgrain EO (bigarade)",
+      "kind": "oil",
+      "k": 3,
+      "ours": 0.08492685598008616,
+      "greedy_only": 0.08492685598008616,
+      "topk": 0.11566236383738128,
+      "random": 1.1048797938047787,
+      "recovered": 1,
+      "picked": [
+        "Clary Sage EO",
+        "Ethyl Linalool",
+        "Terpineol Alpha"
+      ],
+      "true_topk": [
+        "Linalyl Acetate",
+        "Linalool",
+        "Terpineol Alpha"
+      ]
+    },
+    {
+      "target": "Petitgrain EO (bigarade)",
+      "kind": "oil",
+      "k": 4,
+      "ours": 0.05591458516969672,
+      "greedy_only": 0.07646009867973128,
+      "topk": 0.05591458516969672,
+      "random": 1.14067368863609,
+      "recovered": 4,
+      "picked": [
+        "Linalyl Acetate",
+        "Linalool",
+        "Terpineol Alpha",
+        "Geranyl Acetate"
+      ],
+      "true_topk": [
+        "Linalyl Acetate",
+        "Linalool",
+        "Terpineol Alpha",
+        "Geranyl Acetate"
+      ]
+    },
+    {
+      "target": "Petitgrain EO (bigarade)",
+      "kind": "oil",
+      "k": 5,
+      "ours": 0.05483009746493548,
+      "greedy_only": 0.055050964702520445,
+      "topk": 0.05483009746493548,
+      "random": 0.9506469662102291,
+      "recovered": 5,
+      "picked": [
+        "Linalyl Acetate",
+        "Linalool",
+        "Terpineol Alpha",
+        "Geranyl Acetate",
+        "Geraniol 95"
+      ],
+      "true_topk": [
+        "Linalyl Acetate",
+        "Linalool",
+        "Terpineol Alpha",
+        "Geranyl Acetate",
+        "Geraniol 95"
+      ]
+    },
+    {
+      "target": "Cedarwood EO (Virginia)",
+      "kind": "oil",
+      "k": 2,
+      "ours": 0.12971639672510912,
+      "greedy_only": 0.12971639672510912,
+      "topk": 0.12971639672510912,
+      "random": 1.41624592160885,
+      "recovered": 2,
+      "picked": [
+        "Cedrene Alpha",
+        "Thujopsene"
+      ],
+      "true_topk": [
+        "Cedrene Alpha",
+        "Thujopsene"
+      ]
+    },
+    {
+      "target": "Cedarwood EO (Virginia)",
+      "kind": "oil",
+      "k": 3,
+      "ours": 0.07780938733059369,
+      "greedy_only": 0.07780938733059369,
+      "topk": 0.09349291784427283,
+      "random": 1.3259965593965746,
+      "recovered": 2,
+      "picked": [
+        "Vetiselinenol",
+        "Thujopsene",
+        "Cedrene Alpha"
+      ],
+      "true_topk": [
+        "Cedrene Alpha",
+        "Thujopsene",
+        "Cedrol"
+      ]
+    },
+    {
+      "target": "Cedarwood EO (Virginia)",
+      "kind": "oil",
+      "k": 4,
+      "ours": 0.052086040781556056,
+      "greedy_only": 0.052086040781556056,
+      "topk": 0.05908859536568479,
+      "random": 1.1351042292807958,
+      "recovered": 3,
+      "picked": [
+        "Cedrol",
+        "Thujopsene",
+        "Cedrene Alpha",
+        "Cuparene"
+      ],
+      "true_topk": [
+        "Cedrene Alpha",
+        "Thujopsene",
+        "Cedrol",
+        "Cedrene Beta"
+      ]
+    },
+    {
+      "target": "Cedarwood EO (Virginia)",
+      "kind": "oil",
+      "k": 5,
+      "ours": 0.02483056585912654,
+      "greedy_only": 0.024830565859126623,
+      "topk": 0.02483056585912654,
+      "random": 1.148052288221196,
+      "recovered": 5,
+      "picked": [
+        "Cedrene Alpha",
+        "Thujopsene",
+        "Cedrol",
+        "Cedrene Beta",
+        "Cuparene"
+      ],
+      "true_topk": [
+        "Cedrene Alpha",
+        "Thujopsene",
+        "Cedrol",
+        "Cedrene Beta",
+        "Cuparene"
+      ]
+    },
+    {
+      "target": "Bergamot EO (Turkish)",
+      "kind": "oil",
+      "k": 2,
+      "ours": 0.13620824695998435,
+      "greedy_only": 0.37762955056978925,
+      "topk": 0.13620824695998435,
+      "random": 1.2499051241169261,
+      "recovered": 2,
+      "picked": [
+        "Linalyl Acetate",
+        "D-Limonene"
+      ],
+      "true_topk": [
+        "Linalyl Acetate",
+        "D-Limonene"
+      ]
+    },
+    {
+      "target": "Bergamot EO (Turkish)",
+      "kind": "oil",
+      "k": 3,
+      "ours": 0.06577180474504904,
+      "greedy_only": 0.09884415567087154,
+      "topk": 0.06577180474504904,
+      "random": 1.1103251332402895,
+      "recovered": 3,
+      "picked": [
+        "Linalyl Acetate",
+        "D-Limonene",
+        "Linalool"
+      ],
+      "true_topk": [
+        "Linalyl Acetate",
+        "D-Limonene",
+        "Linalool"
+      ]
+    },
+    {
+      "target": "Bergamot EO (Turkish)",
+      "kind": "oil",
+      "k": 4,
+      "ours": 0.03849442026699603,
+      "greedy_only": 0.03849442026699603,
+      "topk": 0.049002705718449155,
+      "random": 1.0042759413886422,
+      "recovered": 2,
+      "picked": [
+        "Rosewood EO (Aniba rosaeodora)",
+        "Beta Pinene",
+        "Linalyl Acetate",
+        "D-Limonene"
+      ],
+      "true_topk": [
+        "Linalyl Acetate",
+        "D-Limonene",
+        "Linalool",
+        "Terpinene Gamma"
+      ]
+    },
+    {
+      "target": "Bergamot EO (Turkish)",
+      "kind": "oil",
+      "k": 5,
+      "ours": 0.010056545362407942,
+      "greedy_only": 0.09666711821280947,
+      "topk": 0.010056545362407942,
+      "random": 0.9295459954844882,
+      "recovered": 5,
+      "picked": [
+        "Linalyl Acetate",
+        "D-Limonene",
+        "Linalool",
+        "Terpinene Gamma",
+        "Beta Pinene"
+      ],
+      "true_topk": [
+        "Linalyl Acetate",
+        "D-Limonene",
+        "Linalool",
+        "Terpinene Gamma",
+        "Beta Pinene"
+      ]
+    },
+    {
+      "target": "Geranium EO (Bourbon, Madagascar)",
+      "kind": "oil",
+      "k": 2,
+      "ours": 0.20372433755585587,
+      "greedy_only": 0.20372433755585587,
+      "topk": 0.3040811327265404,
+      "random": 1.191184303823491,
+      "recovered": 1,
+      "picked": [
+        "Citronellol",
+        "Dihydrocarvyl Acetate"
+      ],
+      "true_topk": [
+        "Citronellol",
+        "Geraniol 95"
+      ]
+    },
+    {
+      "target": "Geranium EO (Bourbon, Madagascar)",
+      "kind": "oil",
+      "k": 3,
+      "ours": 0.10854694288764069,
+      "greedy_only": 0.10854694288764069,
+      "topk": 0.10854694288764069,
+      "random": 1.1986994390930215,
+      "recovered": 2,
+      "picked": [
+        "Citronellol",
+        "Menthone",
+        "Geraniol 95"
+      ],
+      "true_topk": [
+        "Citronellol",
+        "Geraniol 95",
+        "Isomenthone"
+      ]
+    },
+    {
+      "target": "Geranium EO (Bourbon, Madagascar)",
+      "kind": "oil",
+      "k": 4,
+      "ours": 0.07149110718054542,
+      "greedy_only": 0.07149110718054544,
+      "topk": 0.08050088319491604,
+      "random": 0.9403829932466812,
+      "recovered": 3,
+      "picked": [
+        "Citronellol",
+        "Geraniol 95",
+        "Isomenthone",
+        "Verdox HC"
+      ],
+      "true_topk": [
+        "Citronellol",
+        "Geraniol 95",
+        "Isomenthone",
+        "Citronellyl Formate"
+      ]
+    },
+    {
+      "target": "Geranium EO (Bourbon, Madagascar)",
+      "kind": "oil",
+      "k": 5,
+      "ours": 0.0465576578721016,
+      "greedy_only": 0.06423890781844084,
+      "topk": 0.0465576578721016,
+      "random": 0.9058832070311758,
+      "recovered": 5,
+      "picked": [
+        "Citronellol",
+        "Geraniol 95",
+        "Isomenthone",
+        "Citronellyl Formate",
+        "Linalool"
+      ],
+      "true_topk": [
+        "Citronellol",
+        "Geraniol 95",
+        "Isomenthone",
+        "Citronellyl Formate",
+        "Linalool"
+      ]
+    },
+    {
+      "target": "Peppermint EO (Michigan)",
+      "kind": "oil",
+      "k": 2,
+      "ours": 0.12613804108102192,
+      "greedy_only": 0.12613804108102192,
+      "topk": 0.12613804108102192,
+      "random": 1.7339942918446836,
+      "recovered": 2,
+      "picked": [
+        "Laevo Menthol",
+        "Menthone"
+      ],
+      "true_topk": [
+        "Laevo Menthol",
+        "Menthone"
+      ]
+    },
+    {
+      "target": "Peppermint EO (Michigan)",
+      "kind": "oil",
+      "k": 3,
+      "ours": 0.07214563306286934,
+      "greedy_only": 0.07214563306286934,
+      "topk": 0.08581798753218281,
+      "random": 1.5839627040088793,
+      "recovered": 2,
+      "picked": [
+        "Laevo Menthol",
+        "Menthone",
+        "Terpinene Gamma"
+      ],
+      "true_topk": [
+        "Laevo Menthol",
+        "Menthone",
+        "Eucalyptol"
+      ]
+    },
+    {
+      "target": "Peppermint EO (Michigan)",
+      "kind": "oil",
+      "k": 4,
+      "ours": 0.0589794951824462,
+      "greedy_only": 0.0589794951824462,
+      "topk": 0.06334247672189015,
+      "random": 1.5251476796291898,
+      "recovered": 3,
+      "picked": [
+        "Laevo Menthol",
+        "Menthone",
+        "Terpinene Gamma",
+        "Menthyl Acetate"
+      ],
+      "true_topk": [
+        "Laevo Menthol",
+        "Menthone",
+        "Eucalyptol",
+        "Menthyl Acetate"
+      ]
+    },
+    {
+      "target": "Peppermint EO (Michigan)",
+      "kind": "oil",
+      "k": 5,
+      "ours": 0.023395026795849073,
+      "greedy_only": 0.023395026795849073,
+      "topk": 0.04517617606609939,
+      "random": 1.2653922530988155,
+      "recovered": 4,
+      "picked": [
+        "Laevo Menthol",
+        "Menthone",
+        "Grapefruit EO (cold-pressed)",
+        "Menthyl Acetate",
+        "Eucalyptol"
+      ],
+      "true_topk": [
+        "Laevo Menthol",
+        "Menthone",
+        "Eucalyptol",
+        "Menthyl Acetate",
+        "Menthofuran"
+      ]
+    },
+    {
+      "target": "Lemongrass EO",
+      "kind": "oil",
+      "k": 2,
+      "ours": 0.062359876561126355,
+      "greedy_only": 0.09151658295643945,
+      "topk": 0.062359876561126355,
+      "random": 1.1469679502464167,
+      "recovered": 2,
+      "picked": [
+        "Citral",
+        "Myrcene"
+      ],
+      "true_topk": [
+        "Citral",
+        "Myrcene"
+      ]
+    },
+    {
+      "target": "Lemongrass EO",
+      "kind": "oil",
+      "k": 3,
+      "ours": 0.01580010060248072,
+      "greedy_only": 0.01580010060248072,
+      "topk": 0.015800100602480816,
+      "random": 1.0738713081746656,
+      "recovered": 3,
+      "picked": [
+        "Myrcene",
+        "Geraniol 95",
+        "Citral"
+      ],
+      "true_topk": [
+        "Citral",
+        "Myrcene",
+        "Geraniol 95"
+      ]
+    },
+    {
+      "target": "Lavandin EO (Grosso)",
+      "kind": "oil",
+      "k": 2,
+      "ours": 0.48195124187237565,
+      "greedy_only": 0.6674264543090546,
+      "topk": 0.48195124187237565,
+      "random": 1.2124060035267443,
+      "recovered": 2,
+      "picked": [
+        "Linalool",
+        "Linalyl Acetate"
+      ],
+      "true_topk": [
+        "Linalool",
+        "Linalyl Acetate"
+      ]
+    },
+    {
+      "target": "Lavandin EO (Grosso)",
+      "kind": "oil",
+      "k": 3,
+      "ours": 0.1549648429387737,
+      "greedy_only": 0.1807304560605013,
+      "topk": 0.1549648429387737,
+      "random": 1.0201244643495728,
+      "recovered": 3,
+      "picked": [
+        "Linalool",
+        "Linalyl Acetate",
+        "Camphor"
+      ],
+      "true_topk": [
+        "Linalool",
+        "Linalyl Acetate",
+        "Camphor"
+      ]
+    },
+    {
+      "target": "Lavandin EO (Grosso)",
+      "kind": "oil",
+      "k": 4,
+      "ours": 0.08747173121645471,
+      "greedy_only": 0.11806719958861954,
+      "topk": 0.1257306974513259,
+      "random": 0.894333057738151,
+      "recovered": 1,
+      "picked": [
+        "Rosewood EO (Aniba rosaeodora)",
+        "Linalyl Acetate",
+        "Rosemary EO (cineole type)",
+        "Cuparene"
+      ],
+      "true_topk": [
+        "Linalool",
+        "Linalyl Acetate",
+        "Camphor",
+        "Eucalyptol"
+      ]
+    },
+    {
+      "target": "Lavandin EO (Grosso)",
+      "kind": "oil",
+      "k": 5,
+      "ours": 0.07281912671675224,
+      "greedy_only": 0.09315942012040734,
+      "topk": 0.07281912671675224,
+      "random": 0.8071325451216917,
+      "recovered": 5,
+      "picked": [
+        "Linalool",
+        "Linalyl Acetate",
+        "Camphor",
+        "Eucalyptol",
+        "Terpinen-4-ol"
+      ],
+      "true_topk": [
+        "Linalool",
+        "Linalyl Acetate",
+        "Camphor",
+        "Eucalyptol",
+        "Terpinen-4-ol"
+      ]
+    },
+    {
+      "target": "Clary Sage EO",
+      "kind": "oil",
+      "k": 2,
+      "ours": 0.14245911026539518,
+      "greedy_only": 0.22775661138493994,
+      "topk": 0.14245911026539518,
+      "random": 1.4229887351050712,
+      "recovered": 2,
+      "picked": [
+        "Linalyl Acetate",
+        "Linalool"
+      ],
+      "true_topk": [
+        "Linalyl Acetate",
+        "Linalool"
+      ]
+    },
+    {
+      "target": "Clary Sage EO",
+      "kind": "oil",
+      "k": 3,
+      "ours": 0.09352800039209329,
+      "greedy_only": 0.09352800039209329,
+      "topk": 0.13315330617161542,
+      "random": 1.1912884541159994,
+      "recovered": 1,
+      "picked": [
+        "Linalyl Acetate",
+        "Neroli EO (Egyptian)",
+        "Isophytol"
+      ],
+      "true_topk": [
+        "Linalyl Acetate",
+        "Linalool",
+        "Geranyl Acetate"
+      ]
+    },
+    {
+      "target": "Clary Sage EO",
+      "kind": "oil",
+      "k": 4,
+      "ours": 0.03524772053135656,
+      "greedy_only": 0.08573559282077231,
+      "topk": 0.03524772053135656,
+      "random": 1.1985828681858246,
+      "recovered": 4,
+      "picked": [
+        "Linalyl Acetate",
+        "Linalool",
+        "Geranyl Acetate",
+        "Germacrene D"
+      ],
+      "true_topk": [
+        "Linalyl Acetate",
+        "Linalool",
+        "Geranyl Acetate",
+        "Germacrene D"
+      ]
+    },
+    {
+      "target": "Clary Sage EO",
+      "kind": "oil",
+      "k": 5,
+      "ours": 0.011338083761272384,
+      "greedy_only": 0.01797208474423594,
+      "topk": 0.011338083761272384,
+      "random": 0.9320033875434401,
+      "recovered": 5,
+      "picked": [
+        "Linalyl Acetate",
+        "Linalool",
+        "Geranyl Acetate",
+        "Germacrene D",
+        "Caryophyllene Beta"
+      ],
+      "true_topk": [
+        "Linalyl Acetate",
+        "Linalool",
+        "Geranyl Acetate",
+        "Germacrene D",
+        "Caryophyllene Beta"
+      ]
+    },
+    {
+      "target": "Rosemary EO (cineole type)",
+      "kind": "oil",
+      "k": 2,
+      "ours": 0.13921303883277425,
+      "greedy_only": 0.13921303883277425,
+      "topk": 0.2953382306585256,
+      "random": 1.5647805136447581,
+      "recovered": 1,
+      "picked": [
+        "Eucalyptol",
+        "Alpha Pinene"
+      ],
+      "true_topk": [
+        "Eucalyptol",
+        "Camphor"
+      ]
+    },
+    {
+      "target": "Rosemary EO (cineole type)",
+      "kind": "oil",
+      "k": 3,
+      "ours": 0.09969125503698367,
+      "greedy_only": 0.09969125503698367,
+      "topk": 0.0996912550369837,
+      "random": 1.2883662498251527,
+      "recovered": 3,
+      "picked": [
+        "Eucalyptol",
+        "Alpha Pinene",
+        "Camphor"
+      ],
+      "true_topk": [
+        "Eucalyptol",
+        "Camphor",
+        "Alpha Pinene"
+      ]
+    },
+    {
+      "target": "Rosemary EO (cineole type)",
+      "kind": "oil",
+      "k": 4,
+      "ours": 0.06326931195277123,
+      "greedy_only": 0.06326931195277123,
+      "topk": 0.08836917504717663,
+      "random": 1.290422093577619,
+      "recovered": 3,
+      "picked": [
+        "Eucalyptol",
+        "Alpha Pinene",
+        "Camphor",
+        "Terpinyl Acetate"
+      ],
+      "true_topk": [
+        "Eucalyptol",
+        "Camphor",
+        "Alpha Pinene",
+        "Borneol"
+      ]
+    },
+    {
+      "target": "Rosemary EO (cineole type)",
+      "kind": "oil",
+      "k": 5,
+      "ours": 0.04004395382236809,
+      "greedy_only": 0.04004395382236809,
+      "topk": 0.06604716777277783,
+      "random": 1.1685966878727714,
+      "recovered": 3,
+      "picked": [
+        "Eucalyptol",
+        "Alpha Pinene",
+        "Camphor",
+        "Myrcene",
+        "Verbenone"
+      ],
+      "true_topk": [
+        "Eucalyptol",
+        "Camphor",
+        "Alpha Pinene",
+        "Borneol",
+        "Camphene"
+      ]
+    },
+    {
+      "target": "Juniper Berry EO",
+      "kind": "oil",
+      "k": 2,
+      "ours": 0.11195476434701361,
+      "greedy_only": 0.11195476434701361,
+      "topk": 0.11195476434701361,
+      "random": 1.6357644872227142,
+      "recovered": 2,
+      "picked": [
+        "Alpha Pinene",
+        "Myrcene"
+      ],
+      "true_topk": [
+        "Alpha Pinene",
+        "Myrcene"
+      ]
+    },
+    {
+      "target": "Juniper Berry EO",
+      "kind": "oil",
+      "k": 3,
+      "ours": 0.06302586983848112,
+      "greedy_only": 0.06302586983848119,
+      "topk": 0.06302586983848112,
+      "random": 1.3797813955826208,
+      "recovered": 3,
+      "picked": [
+        "Alpha Pinene",
+        "Myrcene",
+        "Sabinene"
+      ],
+      "true_topk": [
+        "Alpha Pinene",
+        "Myrcene",
+        "Sabinene"
+      ]
+    },
+    {
+      "target": "Juniper Berry EO",
+      "kind": "oil",
+      "k": 4,
+      "ours": 0.04962624408772235,
+      "greedy_only": 0.049750134115957016,
+      "topk": 0.04962624408772235,
+      "random": 1.3060682102916905,
+      "recovered": 4,
+      "picked": [
+        "Alpha Pinene",
+        "Myrcene",
+        "Sabinene",
+        "D-Limonene"
+      ],
+      "true_topk": [
+        "Alpha Pinene",
+        "Myrcene",
+        "Sabinene",
+        "D-Limonene"
+      ]
+    },
+    {
+      "target": "Juniper Berry EO",
+      "kind": "oil",
+      "k": 5,
+      "ours": 0.02309669796239741,
+      "greedy_only": 0.025873187240085856,
+      "topk": 0.02309669796239741,
+      "random": 1.370567115918043,
+      "recovered": 5,
+      "picked": [
+        "Alpha Pinene",
+        "Myrcene",
+        "Sabinene",
+        "D-Limonene",
+        "Caryophyllene Beta"
+      ],
+      "true_topk": [
+        "Alpha Pinene",
+        "Myrcene",
+        "Sabinene",
+        "D-Limonene",
+        "Caryophyllene Beta"
+      ]
+    },
+    {
+      "target": "Thyme EO (thymol type)",
+      "kind": "oil",
+      "k": 2,
+      "ours": 0.17051679109648507,
+      "greedy_only": 0.17051679109648507,
+      "topk": 0.21613424866126263,
+      "random": 1.2157265823846326,
+      "recovered": 1,
+      "picked": [
+        "Thymol",
+        "Myrcene"
+      ],
+      "true_topk": [
+        "Thymol",
+        "p-Cymene"
+      ]
+    },
+    {
+      "target": "Thyme EO (thymol type)",
+      "kind": "oil",
+      "k": 3,
+      "ours": 0.06231804279414735,
+      "greedy_only": 0.06231804279414739,
+      "topk": 0.07579700295943673,
+      "random": 1.1436137951655745,
+      "recovered": 2,
+      "picked": [
+        "Thymol",
+        "p-Cymene",
+        "Myrcene"
+      ],
+      "true_topk": [
+        "Thymol",
+        "p-Cymene",
+        "Terpinene Gamma"
+      ]
+    },
+    {
+      "target": "Thyme EO (thymol type)",
+      "kind": "oil",
+      "k": 4,
+      "ours": 0.04630537580468295,
+      "greedy_only": 0.04630537580468295,
+      "topk": 0.07089753552219073,
+      "random": 1.0821226466138878,
+      "recovered": 2,
+      "picked": [
+        "Myrcene",
+        "Spike Lavender EO (L. latifolia)",
+        "Thymol",
+        "p-Cymene"
+      ],
+      "true_topk": [
+        "Thymol",
+        "p-Cymene",
+        "Terpinene Gamma",
+        "Carvacrol"
+      ]
+    },
+    {
+      "target": "Thyme EO (thymol type)",
+      "kind": "oil",
+      "k": 5,
+      "ours": 0.028916356227428653,
+      "greedy_only": 0.04169237205291642,
+      "topk": 0.02999127356601872,
+      "random": 1.0015754673412673,
+      "recovered": 3,
+      "picked": [
+        "Thymol",
+        "p-Cymene",
+        "Terpinene Gamma",
+        "Patchoulene Beta",
+        "Neroli EO (Egyptian)"
+      ],
+      "true_topk": [
+        "Thymol",
+        "p-Cymene",
+        "Terpinene Gamma",
+        "Carvacrol",
+        "Linalool"
+      ]
+    },
+    {
+      "target": "Clove Bud EO (steam distilled)",
+      "kind": "oil",
+      "k": 2,
+      "ours": 0.06459721083864234,
+      "greedy_only": 0.06459721083864234,
+      "topk": 0.07865082477639442,
+      "random": 1.5769281054311992,
+      "recovered": 1,
+      "picked": [
+        "Eugenol ex Clove",
+        "Caryophyllene Beta"
+      ],
+      "true_topk": [
+        "Eugenol ex Clove",
+        "Eugenyl Acetate"
+      ]
+    },
+    {
+      "target": "Orange EO (sweet, Florida)",
+      "kind": "oil",
+      "k": 2,
+      "ours": 0.01261157543197865,
+      "greedy_only": 0.01261157543197865,
+      "topk": 0.014403508903971879,
+      "random": 1.6342286854628898,
+      "recovered": 1,
+      "picked": [
+        "Tangerine EO",
+        "Myrcene"
+      ],
+      "true_topk": [
+        "D-Limonene",
+        "Myrcene"
+      ]
+    },
+    {
+      "target": "Orange EO (sweet, Florida)",
+      "kind": "oil",
+      "k": 3,
+      "ours": 0.0121598904699951,
+      "greedy_only": 0.015392466086462324,
+      "topk": 0.0121598904699951,
+      "random": 1.4330262181575357,
+      "recovered": 3,
+      "picked": [
+        "D-Limonene",
+        "Myrcene",
+        "Alpha Pinene"
+      ],
+      "true_topk": [
+        "D-Limonene",
+        "Myrcene",
+        "Alpha Pinene"
+      ]
+    },
+    {
+      "target": "Orange EO (sweet, Florida)",
+      "kind": "oil",
+      "k": 4,
+      "ours": 0.009681023021270883,
+      "greedy_only": 0.015390086707487172,
+      "topk": 0.009681023021270883,
+      "random": 1.3543400705596873,
+      "recovered": 4,
+      "picked": [
+        "D-Limonene",
+        "Myrcene",
+        "Alpha Pinene",
+        "Linalool"
+      ],
+      "true_topk": [
+        "D-Limonene",
+        "Myrcene",
+        "Alpha Pinene",
+        "Linalool"
+      ]
+    },
+    {
+      "target": "Orange EO (sweet, Florida)",
+      "kind": "oil",
+      "k": 5,
+      "ours": 0.006571929648600525,
+      "greedy_only": 0.007736398627313833,
+      "topk": 0.010704794681800613,
+      "random": 1.2795142180899735,
+      "recovered": 2,
+      "picked": [
+        "Tangerine EO",
+        "Myrcene",
+        "Aldehyde C-11 Undecylic",
+        "Dihydrocarveol",
+        "Sabinene"
+      ],
+      "true_topk": [
+        "D-Limonene",
+        "Myrcene",
+        "Alpha Pinene",
+        "Linalool",
+        "Sabinene"
+      ]
+    },
+    {
+      "target": "Lime EO (Persian, expressed)",
+      "kind": "oil",
+      "k": 2,
+      "ours": 0.1705085794724739,
+      "greedy_only": 0.19529980280184464,
+      "topk": 0.1705085794724739,
+      "random": 1.5384424503813814,
+      "recovered": 2,
+      "picked": [
+        "D-Limonene",
+        "Beta Pinene"
+      ],
+      "true_topk": [
+        "D-Limonene",
+        "Beta Pinene"
+      ]
+    },
+    {
+      "target": "Lime EO (Persian, expressed)",
+      "kind": "oil",
+      "k": 3,
+      "ours": 0.08600083083296636,
+      "greedy_only": 0.1952979840650011,
+      "topk": 0.08600083083296636,
+      "random": 1.3404686179491359,
+      "recovered": 3,
+      "picked": [
+        "D-Limonene",
+        "Beta Pinene",
+        "Terpinene Gamma"
+      ],
+      "true_topk": [
+        "D-Limonene",
+        "Beta Pinene",
+        "Terpinene Gamma"
+      ]
+    },
+    {
+      "target": "Lime EO (Persian, expressed)",
+      "kind": "oil",
+      "k": 4,
+      "ours": 0.055777924544060206,
+      "greedy_only": 0.09859969340901048,
+      "topk": 0.055777924544060206,
+      "random": 1.226606767448115,
+      "recovered": 4,
+      "picked": [
+        "D-Limonene",
+        "Beta Pinene",
+        "Terpinene Gamma",
+        "Citral"
+      ],
+      "true_topk": [
+        "D-Limonene",
+        "Beta Pinene",
+        "Terpinene Gamma",
+        "Citral"
+      ]
+    },
+    {
+      "target": "Lime EO (Persian, expressed)",
+      "kind": "oil",
+      "k": 5,
+      "ours": 0.03026349432054952,
+      "greedy_only": 0.08529751359955838,
+      "topk": 0.03026349432054952,
+      "random": 1.1225701028647321,
+      "recovered": 5,
+      "picked": [
+        "D-Limonene",
+        "Beta Pinene",
+        "Terpinene Gamma",
+        "Citral",
+        "Sabinene"
+      ],
+      "true_topk": [
+        "D-Limonene",
+        "Beta Pinene",
+        "Terpinene Gamma",
+        "Citral",
+        "Sabinene"
+      ]
+    },
+    {
+      "target": "Tangerine EO",
+      "kind": "oil",
+      "k": 2,
+      "ours": 0.009238369452481935,
+      "greedy_only": 0.010490737440925097,
+      "topk": 0.009238369452481935,
+      "random": 1.6509155577936196,
+      "recovered": 2,
+      "picked": [
+        "D-Limonene",
+        "Terpinene Gamma"
+      ],
+      "true_topk": [
+        "D-Limonene",
+        "Terpinene Gamma"
+      ]
+    },
+    {
+      "target": "Tangerine EO",
+      "kind": "oil",
+      "k": 3,
+      "ours": 0.002338040485562241,
+      "greedy_only": 0.002338040485562241,
+      "topk": 0.00492054638285921,
+      "random": 1.4847952702489569,
+      "recovered": 2,
+      "picked": [
+        "D-Limonene",
+        "Rosemary EO (cineole type)",
+        "Methyl N-Methylanthranilate"
+      ],
+      "true_topk": [
+        "D-Limonene",
+        "Terpinene Gamma",
+        "Methyl N-Methylanthranilate"
+      ]
+    },
+    {
+      "target": "Tangerine EO",
+      "kind": "oil",
+      "k": 4,
+      "ours": 0.007467594355149841,
+      "greedy_only": 0.007467594355149841,
+      "topk": 0.007467594355149841,
+      "random": 1.3761017491409935,
+      "recovered": 4,
+      "picked": [
+        "D-Limonene",
+        "Terpinene Gamma",
+        "Methyl N-Methylanthranilate",
+        "Beta Pinene"
+      ],
+      "true_topk": [
+        "D-Limonene",
+        "Terpinene Gamma",
+        "Methyl N-Methylanthranilate",
+        "Beta Pinene"
+      ]
+    },
+    {
+      "target": "Cinnamon Bark EO (commercial)",
+      "kind": "oil",
+      "k": 2,
+      "ours": 0.16434190886379432,
+      "greedy_only": 0.16434190886379432,
+      "topk": 0.26671932553568845,
+      "random": 1.4099555378536062,
+      "recovered": 1,
+      "picked": [
+        "Cinnamaldehyde",
+        "Isovalencenol"
+      ],
+      "true_topk": [
+        "Cinnamaldehyde",
+        "Eugenol ex Clove"
+      ]
+    },
+    {
+      "target": "Cinnamon Bark EO (commercial)",
+      "kind": "oil",
+      "k": 3,
+      "ours": 0.10848673656292208,
+      "greedy_only": 0.10848673656292208,
+      "topk": 0.2114112547343631,
+      "random": 1.322035088149212,
+      "recovered": 1,
+      "picked": [
+        "Cinnamaldehyde",
+        "Isovalencenol",
+        "Thyme EO (thymol type)"
+      ],
+      "true_topk": [
+        "Cinnamaldehyde",
+        "Eugenol ex Clove",
+        "Cinnamyl Acetate"
+      ]
+    },
+    {
+      "target": "Cinnamon Bark EO (commercial)",
+      "kind": "oil",
+      "k": 4,
+      "ours": 0.0856479529316024,
+      "greedy_only": 0.09126944376397704,
+      "topk": 0.1166487309607604,
+      "random": 1.1954971233906164,
+      "recovered": 2,
+      "picked": [
+        "Cinnamaldehyde",
+        "Clove Bud EO (steam distilled)",
+        "Neroli EO (Egyptian)",
+        "Caryophyllene Beta"
+      ],
+      "true_topk": [
+        "Cinnamaldehyde",
+        "Eugenol ex Clove",
+        "Cinnamyl Acetate",
+        "Caryophyllene Beta"
+      ]
+    },
+    {
+      "target": "Cinnamon Bark EO (commercial)",
+      "kind": "oil",
+      "k": 5,
+      "ours": 0.039205786691933905,
+      "greedy_only": 0.06992118528981883,
+      "topk": 0.039205786691933905,
+      "random": 1.1043212592414273,
+      "recovered": 5,
+      "picked": [
+        "Cinnamaldehyde",
+        "Eugenol ex Clove",
+        "Cinnamyl Acetate",
+        "Caryophyllene Beta",
+        "Linalool"
+      ],
+      "true_topk": [
+        "Cinnamaldehyde",
+        "Eugenol ex Clove",
+        "Cinnamyl Acetate",
+        "Caryophyllene Beta",
+        "Linalool"
+      ]
+    },
+    {
+      "target": "Lemon EO (Sicilian, cold-pressed)",
+      "kind": "oil",
+      "k": 2,
+      "ours": 0.10389921748583628,
+      "greedy_only": 0.11785343934739262,
+      "topk": 0.10389921748583628,
+      "random": 1.6665835328707295,
+      "recovered": 2,
+      "picked": [
+        "D-Limonene",
+        "Beta Pinene"
+      ],
+      "true_topk": [
+        "D-Limonene",
+        "Beta Pinene"
+      ]
+    },
+    {
+      "target": "Lemon EO (Sicilian, cold-pressed)",
+      "kind": "oil",
+      "k": 3,
+      "ours": 0.04504035637398869,
+      "greedy_only": 0.051547151615633384,
+      "topk": 0.04504035637398869,
+      "random": 1.5058299806781896,
+      "recovered": 3,
+      "picked": [
+        "D-Limonene",
+        "Beta Pinene",
+        "Terpinene Gamma"
+      ],
+      "true_topk": [
+        "D-Limonene",
+        "Beta Pinene",
+        "Terpinene Gamma"
+      ]
+    },
+    {
+      "target": "Lemon EO (Sicilian, cold-pressed)",
+      "kind": "oil",
+      "k": 4,
+      "ours": 0.04040602408250544,
+      "greedy_only": 0.04040602408250544,
+      "topk": 0.045790718896898536,
+      "random": 1.0970534699663779,
+      "recovered": 2,
+      "picked": [
+        "Terpinyl Acetate",
+        "Beta Pinene",
+        "Orange EO (sweet, Florida)",
+        "Terpinene Gamma"
+      ],
+      "true_topk": [
+        "D-Limonene",
+        "Beta Pinene",
+        "Terpinene Gamma",
+        "Alpha Pinene"
+      ]
+    },
+    {
+      "target": "Lemon EO (Sicilian, cold-pressed)",
+      "kind": "oil",
+      "k": 5,
+      "ours": 0.02888716595709546,
+      "greedy_only": 0.02888716595709546,
+      "topk": 0.03587595976629679,
+      "random": 1.1900162075947218,
+      "recovered": 3,
+      "picked": [
+        "Sabinene",
+        "Beta Pinene",
+        "Orange EO (sweet, Florida)",
+        "Terpinene Gamma",
+        "Citral"
+      ],
+      "true_topk": [
+        "D-Limonene",
+        "Beta Pinene",
+        "Terpinene Gamma",
+        "Alpha Pinene",
+        "Sabinene"
+      ]
+    },
+    {
+      "target": "Grapefruit EO (cold-pressed)",
+      "kind": "oil",
+      "k": 2,
+      "ours": 0.011657380743913582,
+      "greedy_only": 0.011765701961757996,
+      "topk": 0.011657380743913582,
+      "random": 1.5464622510360135,
+      "recovered": 2,
+      "picked": [
+        "D-Limonene",
+        "Myrcene"
+      ],
+      "true_topk": [
+        "D-Limonene",
+        "Myrcene"
+      ]
+    },
+    {
+      "target": "Grapefruit EO (cold-pressed)",
+      "kind": "oil",
+      "k": 3,
+      "ours": 0.008012260250479474,
+      "greedy_only": 0.016161777196926064,
+      "topk": 0.01081100360033285,
+      "random": 1.574636479159263,
+      "recovered": 1,
+      "picked": [
+        "Tangerine EO",
+        "Myrcene",
+        "Aldehyde C-12 Lauric"
+      ],
+      "true_topk": [
+        "D-Limonene",
+        "Myrcene",
+        "Terpinene Gamma"
+      ]
+    },
+    {
+      "target": "Grapefruit EO (cold-pressed)",
+      "kind": "oil",
+      "k": 4,
+      "ours": 0.008017523463709111,
+      "greedy_only": 0.015260158473090639,
+      "topk": 0.012670668845122518,
+      "random": 1.365450655336266,
+      "recovered": 1,
+      "picked": [
+        "Tangerine EO",
+        "Myrcene",
+        "Aldehyde C-12 Lauric",
+        "Methyl N-Methylanthranilate"
+      ],
+      "true_topk": [
+        "D-Limonene",
+        "Myrcene",
+        "Terpinene Gamma",
+        "Alpha Pinene"
+      ]
+    },
+    {
+      "target": "Grapefruit EO (cold-pressed)",
+      "kind": "oil",
+      "k": 5,
+      "ours": 0.014450864299499083,
+      "greedy_only": 0.014450864299499083,
+      "topk": 0.015282926891036079,
+      "random": 1.2645659934392102,
+      "recovered": 3,
+      "picked": [
+        "Beta Pinene",
+        "D-Limonene",
+        "Myrcene",
+        "Terpinene Gamma",
+        "Aldehyde C-10"
+      ],
+      "true_topk": [
+        "D-Limonene",
+        "Myrcene",
+        "Terpinene Gamma",
+        "Alpha Pinene",
+        "Aldehyde C-8"
+      ]
+    },
+    {
+      "target": "Mandarin EO (Italian, cold-pressed)",
+      "kind": "oil",
+      "k": 2,
+      "ours": 0.05833762803804575,
+      "greedy_only": 0.05905998738613906,
+      "topk": 0.05833762803804575,
+      "random": 1.5599343981287328,
+      "recovered": 2,
+      "picked": [
+        "D-Limonene",
+        "Terpinene Gamma"
+      ],
+      "true_topk": [
+        "D-Limonene",
+        "Terpinene Gamma"
+      ]
+    },
+    {
+      "target": "Mandarin EO (Italian, cold-pressed)",
+      "kind": "oil",
+      "k": 3,
+      "ours": 0.017764769422271218,
+      "greedy_only": 0.023305569840437888,
+      "topk": 0.017764769422271218,
+      "random": 1.4106439839293767,
+      "recovered": 3,
+      "picked": [
+        "D-Limonene",
+        "Terpinene Gamma",
+        "Alpha Pinene"
+      ],
+      "true_topk": [
+        "D-Limonene",
+        "Terpinene Gamma",
+        "Alpha Pinene"
+      ]
+    },
+    {
+      "target": "Mandarin EO (Italian, cold-pressed)",
+      "kind": "oil",
+      "k": 4,
+      "ours": 0.010403645666076019,
+      "greedy_only": 0.013668176962102678,
+      "topk": 0.010403645666076019,
+      "random": 1.3812418576652887,
+      "recovered": 4,
+      "picked": [
+        "D-Limonene",
+        "Terpinene Gamma",
+        "Alpha Pinene",
+        "Myrcene"
+      ],
+      "true_topk": [
+        "D-Limonene",
+        "Terpinene Gamma",
+        "Alpha Pinene",
+        "Myrcene"
+      ]
+    },
+    {
+      "target": "Mandarin EO (Italian, cold-pressed)",
+      "kind": "oil",
+      "k": 5,
+      "ours": 0.012171847442300002,
+      "greedy_only": 0.013397846334996823,
+      "topk": 0.012171847442300002,
+      "random": 1.1911699670703018,
+      "recovered": 5,
+      "picked": [
+        "D-Limonene",
+        "Terpinene Gamma",
+        "Alpha Pinene",
+        "Myrcene",
+        "Beta Pinene"
+      ],
+      "true_topk": [
+        "D-Limonene",
+        "Terpinene Gamma",
+        "Alpha Pinene",
+        "Myrcene",
+        "Beta Pinene"
+      ]
+    },
+    {
+      "target": "Neroli EO (Egyptian)",
+      "kind": "oil",
+      "k": 2,
+      "ours": 0.20132178010563256,
+      "greedy_only": 0.20132178010563256,
+      "topk": 0.32275636721063544,
+      "random": 1.227370082773085,
+      "recovered": 0,
+      "picked": [
+        "Rosewood EO (Aniba rosaeodora)",
+        "Lime EO (Persian, expressed)"
+      ],
+      "true_topk": [
+        "Linalool",
+        "Linalyl Acetate"
+      ]
+    },
+    {
+      "target": "Neroli EO (Egyptian)",
+      "kind": "oil",
+      "k": 3,
+      "ours": 0.11064833159197751,
+      "greedy_only": 0.1386962124374559,
+      "topk": 0.11064833159197751,
+      "random": 1.156704129081575,
+      "recovered": 3,
+      "picked": [
+        "Linalool",
+        "Linalyl Acetate",
+        "D-Limonene"
+      ],
+      "true_topk": [
+        "Linalool",
+        "Linalyl Acetate",
+        "D-Limonene"
+      ]
+    },
+    {
+      "target": "Neroli EO (Egyptian)",
+      "kind": "oil",
+      "k": 4,
+      "ours": 0.05693981918834452,
+      "greedy_only": 0.1007713163457952,
+      "topk": 0.05693981918834452,
+      "random": 1.033161276863315,
+      "recovered": 4,
+      "picked": [
+        "Linalool",
+        "Linalyl Acetate",
+        "D-Limonene",
+        "Beta Pinene"
+      ],
+      "true_topk": [
+        "Linalool",
+        "Linalyl Acetate",
+        "D-Limonene",
+        "Beta Pinene"
+      ]
+    },
+    {
+      "target": "Neroli EO (Egyptian)",
+      "kind": "oil",
+      "k": 5,
+      "ours": 0.03485932361552584,
+      "greedy_only": 0.06700148608105143,
+      "topk": 0.03836781520468095,
+      "random": 0.8374481853575649,
+      "recovered": 2,
+      "picked": [
+        "Rosewood EO (Aniba rosaeodora)",
+        "Linalyl Acetate",
+        "Grapefruit EO (cold-pressed)",
+        "Beta Pinene",
+        "Farnesol"
+      ],
+      "true_topk": [
+        "Linalool",
+        "Linalyl Acetate",
+        "D-Limonene",
+        "Beta Pinene",
+        "Nerolidol"
+      ]
+    },
+    {
+      "target": "Rosewood EO (Aniba rosaeodora)",
+      "kind": "oil",
+      "k": 2,
+      "ours": 0.017776871493471784,
+      "greedy_only": 0.017776871493471784,
+      "topk": 0.017776871493471784,
+      "random": 1.358871601607835,
+      "recovered": 2,
+      "picked": [
+        "Linalool",
+        "Terpineol Alpha"
+      ],
+      "true_topk": [
+        "Linalool",
+        "Terpineol Alpha"
+      ]
+    },
+    {
+      "target": "Rosewood EO (Aniba rosaeodora)",
+      "kind": "oil",
+      "k": 3,
+      "ours": 0.010255798701802613,
+      "greedy_only": 0.010255798701802613,
+      "topk": 0.010255798701802613,
+      "random": 1.1997896377733483,
+      "recovered": 2,
+      "picked": [
+        "Linalool",
+        "Terpineol Alpha",
+        "Geraniol 95"
+      ],
+      "true_topk": [
+        "Linalool",
+        "Terpineol Alpha",
+        "Nerol"
+      ]
+    },
+    {
+      "target": "Rosewood EO (Aniba rosaeodora)",
+      "kind": "oil",
+      "k": 4,
+      "ours": 0.003005893222187227,
+      "greedy_only": 0.0030058932221872503,
+      "topk": 0.01025746321531534,
+      "random": 0.9333037148949499,
+      "recovered": 3,
+      "picked": [
+        "Linalool",
+        "Terpineol Alpha",
+        "Caryophyllene Beta",
+        "Geraniol 95"
+      ],
+      "true_topk": [
+        "Linalool",
+        "Terpineol Alpha",
+        "Nerol",
+        "Geraniol 95"
+      ]
+    },
+    {
+      "target": "Rosewood EO (Aniba rosaeodora)",
+      "kind": "oil",
+      "k": 5,
+      "ours": 0.0010546531932603938,
+      "greedy_only": 0.0010546531932603938,
+      "topk": 0.003065513183496877,
+      "random": 0.9774218122506683,
+      "recovered": 4,
+      "picked": [
+        "Linalool",
+        "Terpineol Alpha",
+        "Geraniol 95",
+        "Caryophyllene Beta",
+        "Myrcene"
+      ],
+      "true_topk": [
+        "Linalool",
+        "Terpineol Alpha",
+        "Nerol",
+        "Geraniol 95",
+        "Caryophyllene Beta"
+      ]
+    },
+    {
+      "target": "Litsea Cubeba EO (Chinese, fruit)",
+      "kind": "oil",
+      "k": 2,
+      "ours": 0.031469514885166465,
+      "greedy_only": 0.12643186556774438,
+      "topk": 0.031469514885166465,
+      "random": 1.243176907626525,
+      "recovered": 2,
+      "picked": [
+        "Citral",
+        "D-Limonene"
+      ],
+      "true_topk": [
+        "Citral",
+        "D-Limonene"
+      ]
+    },
+    {
+      "target": "Litsea Cubeba EO (Chinese, fruit)",
+      "kind": "oil",
+      "k": 3,
+      "ours": 0.020938218754680386,
+      "greedy_only": 0.11100917550880321,
+      "topk": 0.020938218754680386,
+      "random": 1.0699055385078267,
+      "recovered": 3,
+      "picked": [
+        "Citral",
+        "D-Limonene",
+        "Linalool"
+      ],
+      "true_topk": [
+        "Citral",
+        "D-Limonene",
+        "Linalool"
+      ]
+    },
+    {
+      "target": "Litsea Cubeba EO (Chinese, fruit)",
+      "kind": "oil",
+      "k": 4,
+      "ours": 0.013010113222583676,
+      "greedy_only": 0.10158485066865741,
+      "topk": 0.013712794780687912,
+      "random": 0.9735782914945532,
+      "recovered": 2,
+      "picked": [
+        "Citral",
+        "Orange EO (sweet, Florida)",
+        "Citronellol",
+        "Methyl Heptenone"
+      ],
+      "true_topk": [
+        "Citral",
+        "D-Limonene",
+        "Linalool",
+        "Methyl Heptenone"
+      ]
+    },
+    {
+      "target": "Litsea Cubeba EO (Chinese, fruit)",
+      "kind": "oil",
+      "k": 5,
+      "ours": 0.0031209285237568797,
+      "greedy_only": 0.04661198856069636,
+      "topk": 0.0031209285237568797,
+      "random": 0.8737354218224869,
+      "recovered": 5,
+      "picked": [
+        "Citral",
+        "D-Limonene",
+        "Linalool",
+        "Methyl Heptenone",
+        "Citronellal"
+      ],
+      "true_topk": [
+        "Citral",
+        "D-Limonene",
+        "Linalool",
+        "Methyl Heptenone",
+        "Citronellal"
+      ]
+    },
+    {
+      "target": "Patchouli EO (Javanese)",
+      "kind": "oil",
+      "k": 2,
+      "ours": 0.15459091164764846,
+      "greedy_only": 0.21162815229653087,
+      "topk": 0.15459091164764846,
+      "random": 1.1300745667865546,
+      "recovered": 2,
+      "picked": [
+        "Patchoulol",
+        "Bulnesene Alpha"
+      ],
+      "true_topk": [
+        "Patchoulol",
+        "Bulnesene Alpha"
+      ]
+    },
+    {
+      "target": "Patchouli EO (Javanese)",
+      "kind": "oil",
+      "k": 3,
+      "ours": 0.10157364657752907,
+      "greedy_only": 0.1277234374043539,
+      "topk": 0.10157364657752907,
+      "random": 1.1656493971636666,
+      "recovered": 3,
+      "picked": [
+        "Patchoulol",
+        "Bulnesene Alpha",
+        "Guaiene Alpha"
+      ],
+      "true_topk": [
+        "Patchoulol",
+        "Bulnesene Alpha",
+        "Guaiene Alpha"
+      ]
+    },
+    {
+      "target": "Patchouli EO (Javanese)",
+      "kind": "oil",
+      "k": 4,
+      "ours": 0.07235197724840114,
+      "greedy_only": 0.07235197724840123,
+      "topk": 0.07235197724840114,
+      "random": 0.9838831990318408,
+      "recovered": 4,
+      "picked": [
+        "Patchoulol",
+        "Bulnesene Alpha",
+        "Guaiene Alpha",
+        "Seychellene"
+      ],
+      "true_topk": [
+        "Patchoulol",
+        "Bulnesene Alpha",
+        "Guaiene Alpha",
+        "Seychellene"
+      ]
+    },
+    {
+      "target": "Patchouli EO (Javanese)",
+      "kind": "oil",
+      "k": 5,
+      "ours": 0.017827844315386566,
+      "greedy_only": 0.017827844315386566,
+      "topk": 0.017827844315386625,
+      "random": 0.7826462793917113,
+      "recovered": 5,
+      "picked": [
+        "Seychellene",
+        "Caryophyllene Beta",
+        "Patchoulol",
+        "Bulnesene Alpha",
+        "Guaiene Alpha"
+      ],
+      "true_topk": [
+        "Patchoulol",
+        "Bulnesene Alpha",
+        "Guaiene Alpha",
+        "Seychellene",
+        "Caryophyllene Beta"
+      ]
+    },
+    {
+      "target": "Vetiver EO (Haiti)",
+      "kind": "oil",
+      "k": 2,
+      "ours": 0.07548658784888307,
+      "greedy_only": 0.07548658784888307,
+      "topk": 0.07548658784888307,
+      "random": 1.2520503623572024,
+      "recovered": 2,
+      "picked": [
+        "Khusimol",
+        "Isovalencenol"
+      ],
+      "true_topk": [
+        "Khusimol",
+        "Isovalencenol"
+      ]
+    },
+    {
+      "target": "Vetiver EO (Haiti)",
+      "kind": "oil",
+      "k": 3,
+      "ours": 0.043485373080605655,
+      "greedy_only": 0.043485373080605655,
+      "topk": 0.043485373080605655,
+      "random": 1.1091555334094854,
+      "recovered": 3,
+      "picked": [
+        "Khusimol",
+        "Isovalencenol",
+        "Vetiselinenol"
+      ],
+      "true_topk": [
+        "Khusimol",
+        "Isovalencenol",
+        "Vetiselinenol"
+      ]
+    },
+    {
+      "target": "Vetiver EO (Haiti)",
+      "kind": "oil",
+      "k": 4,
+      "ours": 0.028978438264928363,
+      "greedy_only": 0.028978438264928363,
+      "topk": 0.03563913802490845,
+      "random": 0.9689122435722242,
+      "recovered": 3,
+      "picked": [
+        "Khusimol",
+        "Isovalencenol",
+        "Vetiselinenol",
+        "Vetivone Beta"
+      ],
+      "true_topk": [
+        "Khusimol",
+        "Isovalencenol",
+        "Vetiselinenol",
+        "Vetivone Alpha"
+      ]
+    },
+    {
+      "target": "Vetiver EO (Haiti)",
+      "kind": "oil",
+      "k": 5,
+      "ours": 0.015275521545597052,
+      "greedy_only": 0.015275521545597059,
+      "topk": 0.015275521545597052,
+      "random": 0.9664360886208982,
+      "recovered": 5,
+      "picked": [
+        "Khusimol",
+        "Isovalencenol",
+        "Vetiselinenol",
+        "Vetivone Alpha",
+        "Vetivone Beta"
+      ],
+      "true_topk": [
+        "Khusimol",
+        "Isovalencenol",
+        "Vetiselinenol",
+        "Vetivone Alpha",
+        "Vetivone Beta"
+      ]
+    },
+    {
+      "target": "query: mimosa-key-accord",
+      "kind": "formula",
+      "k": 2,
+      "ours": 0.3780447262006329,
+      "greedy_only": 0.3780447262006329,
+      "topk": 0.7373664751605961,
+      "random": 0.9550562335161235,
+      "recovered": 1,
+      "picked": [
+        "Nympheal",
+        "Anisaldehyde"
+      ],
+      "true_topk": [
+        "Anisaldehyde",
+        "Dihydro Beta Ionone"
+      ]
+    },
+    {
+      "target": "query: mimosa-key-accord",
+      "kind": "formula",
+      "k": 3,
+      "ours": 0.22181802025518435,
+      "greedy_only": 0.22181802025518435,
+      "topk": 0.2710446023178023,
+      "random": 0.7428274968463693,
+      "recovered": 2,
+      "picked": [
+        "Damascone Gamma",
+        "Anisaldehyde",
+        "Peonile"
+      ],
+      "true_topk": [
+        "Anisaldehyde",
+        "Dihydro Beta Ionone",
+        "Peonile"
+      ]
+    },
+    {
+      "target": "query: mimosa-key-accord",
+      "kind": "formula",
+      "k": 4,
+      "ours": 0.13862792458955647,
+      "greedy_only": 0.13862792458955647,
+      "topk": 0.14373504154189318,
+      "random": 0.7493754424272236,
+      "recovered": 2,
+      "picked": [
+        "Nympheal",
+        "Anisaldehyde",
+        "Dihydro Myrcenol",
+        "Dihydro Beta Ionone"
+      ],
+      "true_topk": [
+        "Anisaldehyde",
+        "Dihydro Beta Ionone",
+        "Peonile",
+        "Florhydral"
+      ]
+    },
+    {
+      "target": "query: mimosa-key-accord",
+      "kind": "formula",
+      "k": 5,
+      "ours": 0.049180082768930544,
+      "greedy_only": 0.15322734833133783,
+      "topk": 0.049180082768930544,
+      "random": 0.6626058976284728,
+      "recovered": 5,
+      "picked": [
+        "Anisaldehyde",
+        "Dihydro Beta Ionone",
+        "Peonile",
+        "Florhydral",
+        "Terpineol Alpha"
+      ],
+      "true_topk": [
+        "Anisaldehyde",
+        "Dihydro Beta Ionone",
+        "Peonile",
+        "Florhydral",
+        "Terpineol Alpha"
+      ]
+    },
+    {
+      "target": "query: query-2-carvone-proxy",
+      "kind": "formula",
+      "k": 2,
+      "ours": 0.42692749611191705,
+      "greedy_only": 0.42692749611191705,
+      "topk": 0.5282508669246762,
+      "random": 0.9701171467835288,
+      "recovered": 0,
+      "picked": [
+        "Ocimene",
+        "Habanolide"
+      ],
+      "true_topk": [
+        "D-Limonene",
+        "Hedione"
+      ]
+    },
+    {
+      "target": "query: query-2-carvone-proxy",
+      "kind": "formula",
+      "k": 3,
+      "ours": 0.18917207645398734,
+      "greedy_only": 0.2303439536748029,
+      "topk": 0.18917207645398734,
+      "random": 0.7757286642933587,
+      "recovered": 3,
+      "picked": [
+        "D-Limonene",
+        "Hedione",
+        "Habanolide"
+      ],
+      "true_topk": [
+        "D-Limonene",
+        "Hedione",
+        "Habanolide"
+      ]
+    },
+    {
+      "target": "query: query-2-carvone-proxy",
+      "kind": "formula",
+      "k": 4,
+      "ours": 0.12380217585315663,
+      "greedy_only": 0.12615796112498026,
+      "topk": 0.14195375723140904,
+      "random": 0.6885322424838893,
+      "recovered": 2,
+      "picked": [
+        "Tangerine EO",
+        "Hedione",
+        "Habanolide",
+        "Ethyl Tiglate"
+      ],
+      "true_topk": [
+        "D-Limonene",
+        "Hedione",
+        "Habanolide",
+        "l-Carvone"
+      ]
+    },
+    {
+      "target": "query: query-2-carvone-proxy",
+      "kind": "formula",
+      "k": 5,
+      "ours": 0.07426723585209134,
+      "greedy_only": 0.07426723585209134,
+      "topk": 0.11215425293455895,
+      "random": 0.6329915041059064,
+      "recovered": 4,
+      "picked": [
+        "Hedione",
+        "Habanolide",
+        "l-Carvone",
+        "D-Limonene",
+        "Ethyl Levulinate"
+      ],
+      "true_topk": [
+        "D-Limonene",
+        "Hedione",
+        "Habanolide",
+        "l-Carvone",
+        "Citral"
+      ]
+    },
+    {
+      "target": "query: query-2",
+      "kind": "formula",
+      "k": 2,
+      "ours": 0.42378982715652236,
+      "greedy_only": 0.42378982715652236,
+      "topk": 0.5188287752921742,
+      "random": 1.0204185723748658,
+      "recovered": 0,
+      "picked": [
+        "Ocimene",
+        "Habanolide"
+      ],
+      "true_topk": [
+        "D-Limonene",
+        "Hedione"
+      ]
+    },
+    {
+      "target": "query: query-2",
+      "kind": "formula",
+      "k": 3,
+      "ours": 0.1579575190695219,
+      "greedy_only": 0.15856624649185147,
+      "topk": 0.1579575190695219,
+      "random": 0.8238017395164539,
+      "recovered": 3,
+      "picked": [
+        "D-Limonene",
+        "Hedione",
+        "Habanolide"
+      ],
+      "true_topk": [
+        "D-Limonene",
+        "Hedione",
+        "Habanolide"
+      ]
+    },
+    {
+      "target": "query: query-2",
+      "kind": "formula",
+      "k": 4,
+      "ours": 0.08196274722485986,
+      "greedy_only": 0.08196274722485986,
+      "topk": 0.1299616966904818,
+      "random": 0.7294085708550411,
+      "recovered": 3,
+      "picked": [
+        "Ethyl Levulinate",
+        "Habanolide",
+        "D-Limonene",
+        "Hedione"
+      ],
+      "true_topk": [
+        "D-Limonene",
+        "Hedione",
+        "Habanolide",
+        "Citral"
+      ]
+    },
+    {
+      "target": "query: query-2",
+      "kind": "formula",
+      "k": 5,
+      "ours": 0.04504017653142464,
+      "greedy_only": 0.04504017653142464,
+      "topk": 0.06121284918189642,
+      "random": 0.6383129564898611,
+      "recovered": 3,
+      "picked": [
+        "Citral",
+        "Habanolide",
+        "Tangerine EO",
+        "Hedione",
+        "Ethyl Levulinate"
+      ],
+      "true_topk": [
+        "D-Limonene",
+        "Hedione",
+        "Habanolide",
+        "Citral",
+        "Ethyl Maltol"
+      ]
+    },
+    {
+      "target": "query: query-3",
+      "kind": "formula",
+      "k": 2,
+      "ours": 0.6832230223309265,
+      "greedy_only": 0.6832230223309265,
+      "topk": 0.7357028579794064,
+      "random": 0.9704554274631181,
+      "recovered": 0,
+      "picked": [
+        "Neroli EO (Egyptian)",
+        "Cedarwood EO (Virginia)"
+      ],
+      "true_topk": [
+        "Hedione",
+        "Iso E Super"
+      ]
+    },
+    {
+      "target": "query: query-3",
+      "kind": "formula",
+      "k": 3,
+      "ours": 0.1977737834222654,
+      "greedy_only": 0.3994979585618297,
+      "topk": 0.2802060311353607,
+      "random": 0.7959562682012888,
+      "recovered": 0,
+      "picked": [
+        "Hexyl Cinnamic Aldehyde",
+        "Palissandin",
+        "Neroli EO (Egyptian)"
+      ],
+      "true_topk": [
+        "Hedione",
+        "Iso E Super",
+        "Bergamot EO (Turkish)"
+      ]
+    },
+    {
+      "target": "query: query-3",
+      "kind": "formula",
+      "k": 4,
+      "ours": 0.14192170809781704,
+      "greedy_only": 0.2839442903863978,
+      "topk": 0.24244306887131326,
+      "random": 0.681096215439355,
+      "recovered": 0,
+      "picked": [
+        "Hexyl Cinnamic Aldehyde",
+        "Palissandin",
+        "Lime EO (Persian, expressed)",
+        "Neroli EO (Egyptian)"
+      ],
+      "true_topk": [
+        "Hedione",
+        "Iso E Super",
+        "Bergamot EO (Turkish)",
+        "Linalool"
+      ]
+    },
+    {
+      "target": "query: query-3",
+      "kind": "formula",
+      "k": 5,
+      "ours": 0.12426810891928185,
+      "greedy_only": 0.21154803592007698,
+      "topk": 0.24248571029852437,
+      "random": 0.5897748223258691,
+      "recovered": 0,
+      "picked": [
+        "Hexyl Cinnamic Aldehyde",
+        "Palissandin",
+        "Lime EO (Persian, expressed)",
+        "Neroli EO (Egyptian)",
+        "Cedarwood EO (Virginia)"
+      ],
+      "true_topk": [
+        "Hedione",
+        "Iso E Super",
+        "Bergamot EO (Turkish)",
+        "Linalool",
+        "Cedramber"
+      ]
+    }
+  ],
+  "summary": {
+    "oil": {
+      "2": {
+        "n": 28,
+        "ours": 0.13296232184254675,
+        "greedy_only": 0.1344647177789417,
+        "greedy_beats_topk": 0.35714285714285715,
+        "topk": 0.13933367861268975,
+        "random": 1.3685686756944615,
+        "beats_topk": 0.35714285714285715,
+        "never_worse": 1.0,
+        "recovery": 0.7678571428571429
+      },
+      "3": {
+        "n": 26,
+        "ours": 0.06439883729176507,
+        "greedy_only": 0.08136812165533992,
+        "greedy_beats_topk": 0.34615384615384615,
+        "topk": 0.07078440385224288,
+        "random": 1.1949939466045105,
+        "beats_topk": 0.3076923076923077,
+        "never_worse": 1.0,
+        "recovery": 0.8205128205128205
+      },
+      "4": {
+        "n": 25,
+        "ours": 0.04630537580468295,
+        "greedy_only": 0.0589794951824462,
+        "greedy_beats_topk": 0.44,
+        "topk": 0.04962624408772235,
+        "random": 1.0970534699663779,
+        "beats_topk": 0.6,
+        "never_worse": 1.0,
+        "recovery": 0.75
+      },
+      "5": {
+        "n": 22,
+        "ours": 0.024112796327487807,
+        "greedy_only": 0.034465559889731774,
+        "greedy_beats_topk": 0.3181818181818182,
+        "topk": 0.02741091971257263,
+        "random": 0.9894986397959677,
+        "beats_topk": 0.36363636363636365,
+        "never_worse": 1.0,
+        "recovery": 0.8545454545454546
+      }
+    },
+    "formula": {
+      "2": {
+        "n": 4,
+        "ours": 0.4253586616342197,
+        "greedy_only": 0.4253586616342197,
+        "greedy_beats_topk": 1.0,
+        "topk": 0.6319768624520412,
+        "random": 0.9702862871233234,
+        "beats_topk": 1.0,
+        "never_worse": 1.0,
+        "recovery": 0.125
+      },
+      "3": {
+        "n": 4,
+        "ours": 0.19347292993812637,
+        "greedy_only": 0.22608098696499362,
+        "greedy_beats_topk": 0.25,
+        "topk": 0.2301083393858948,
+        "random": 0.7858424662473238,
+        "beats_topk": 0.5,
+        "never_worse": 1.0,
+        "recovery": 0.6666666666666666
+      },
+      "4": {
+        "n": 4,
+        "ours": 0.13121505022135654,
+        "greedy_only": 0.13239294285726838,
+        "greedy_beats_topk": 0.75,
+        "topk": 0.1428443993866511,
+        "random": 0.7089704066694652,
+        "beats_topk": 1.0,
+        "never_worse": 1.0,
+        "recovery": 0.4375
+      },
+      "5": {
+        "n": 4,
+        "ours": 0.061723659310510944,
+        "greedy_only": 0.11374729209171458,
+        "greedy_beats_topk": 0.75,
+        "topk": 0.08668355105822768,
+        "random": 0.6356522302978838,
+        "beats_topk": 0.75,
+        "never_worse": 1.0,
+        "recovery": 0.6
+      }
+    }
+  }
+}

@@ -491,11 +491,11 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
     return ds;
   }
 
-  function search(target, pool, k) {
+  function search(target, pool, k, seedIdx) {
     var b = new Float64Array(N), i;
     for (i = 0; i < N; i++) b[i] = dot(MAT[i].p, target);
     var tt = dot(target, target);
-    var chosen = [];
+    var chosen = seedIdx ? seedIdx.slice(0, k) : [];
     while (chosen.length < k) {
       var best = -1, bestR = Infinity;
       for (var c = 0; c < pool.length; c++) {
@@ -657,10 +657,45 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
     }
     STATE.nn = nn; STATE.nnName = nnName;
 
+    // What a perfumer would do by hand: keep the k largest ingredients. The
+    // benchmark over 28 oils and 34 published formulas found the search alone
+    // losing to this on 64% of the oils, because the greedy step optimises an
+    // unconstrained residual -- which is what the Gram matrix makes cheap --
+    // while the answer is finally fitted on a simplex. Running the search
+    // from the heuristic as well, and keeping whichever lands closer, makes
+    // the proposal no worse than the obvious thing by construction, and
+    // raised the share of an oil's real constituents that come back from
+    // about half to roughly four fifths.
+    var byWeight = idxs.slice().sort(function (a, b) {
+      return w[idxs.indexOf(b)] - w[idxs.indexOf(a)];
+    });
+
     var curve = [];
     var kmax = parseInt(el("k").max, 10);
     for (var kk = 1; kk <= kmax; kk++) {
-      var s = search(target, pool, kk);
+      var cands = [search(target, pool, kk),
+                   search(target, pool, kk, byWeight)];
+      if (kk === 1) {
+        // One material is a scan, not a search, and the greedy step ranks by
+        // an unconstrained residual that is not the same ordering -- which
+        // left the curve's first row able to disagree with the nearest
+        // single material reported two lines below it.
+        var bi = pool[0], bd = Infinity;
+        for (var pi = 0; pi < pool.length; pi++) {
+          var dq = dist(MAT[pool[pi]].p, target);
+          if (dq < bd) { bd = dq; bi = pool[pi]; }
+        }
+        cands.push({ idxs: [bi], w: [1] });
+      }
+      if (byWeight.length >= kk) {
+        var tk = byWeight.slice(0, kk);
+        cands.push({ idxs: tk, w: fitSimplex(tk, target) });
+      }
+      var s = cands[0], sd = dist(blend(s.idxs, s.w), target);
+      for (var ci = 1; ci < cands.length; ci++) {
+        var d2 = dist(blend(cands[ci].idxs, cands[ci].w), target);
+        if (d2 < sd - 1e-12) { s = cands[ci]; sd = d2; }
+      }
       STATE.cache[kk] = s;
       var got = blend(s.idxs, s.w);
       var base = randomBaseline(target, pool, kk, 40);
