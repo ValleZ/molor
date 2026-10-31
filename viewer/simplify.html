@@ -90,6 +90,22 @@ __MIXPANEL_SNIPPET__
   }
   .bar { height: 8px; border-radius: 4px; background: var(--chart); }
   .barrow { display: grid; grid-template-columns: 120px 1fr 56px; gap: 8px; align-items: center; margin: 3px 0; }
+  .divrow {
+    display: grid; grid-template-columns: 108px 1fr 1fr 52px;
+    gap: 0 8px; align-items: center; margin: 4px 0;
+  }
+  .divrow .lbl { font-size: 13px; }
+  .divrow .half { display: flex; height: 10px; }
+  .divrow .half.l { justify-content: flex-end; border-right: 1px solid var(--line); padding-right: 2px; }
+  .divrow .half.r { justify-content: flex-start; padding-left: 2px; }
+  .divrow .seg { height: 10px; border-radius: 3px; }
+  .divrow .val { font-family: var(--font-mono); font-size: 12px; color: var(--muted); text-align: right; }
+  .divkey {
+    display: grid; grid-template-columns: 108px 1fr 1fr 52px; gap: 0 8px;
+    font-size: 11.5px; color: var(--muted); margin-bottom: 6px;
+    text-transform: uppercase; letter-spacing: 0.05em;
+  }
+  .divkey .l { text-align: right; }
   .barrow .lbl { font-size: 13px; }
   .barrow .val { font-family: var(--font-mono); font-size: 12px; color: var(--muted); text-align: right; }
   input[type=range] { width: 100%; }
@@ -180,6 +196,11 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
         <h2>What it loses</h2>
         <div class="card">
           <div id="residual"></div>
+          <p class="note">Descriptor by descriptor, how the simplification
+            differs from the formula. Everything here is well under the
+            difference between two materials you would struggle to tell
+            apart, so read it as which way the character drifts rather than
+            as how far.</p>
         </div>
       </div>
       <div>
@@ -193,8 +214,6 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
 
   <p style="margin-top:34px;padding-top:18px;border-top:1px solid var(--line)">
     <a href="https://valkon.us/molor">&#8592; The receptor atlas</a>
-    <span class="dim" style="font-size:13px">&nbsp;&nbsp;361 materials, oils
-    and the white point, laid out by predicted receptor response</span>
   </p>
   <p class="note">
     The predicted character comes
@@ -625,6 +644,31 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
     }).join("");
   }
 
+  function divbars(container, items) {
+    // items: [label, value]; a positive value is something the formula has
+    // and the simplification lacks, a negative one something it gained.
+    var m = Math.max.apply(null, items.map(function (x) {
+      return Math.abs(x[1]);
+    })) || 1;
+    var html = '<div class="divkey"><span></span>'
+      + '<span class="l">the simplification adds</span>'
+      + "<span>the formula has, this lacks</span><span></span></div>";
+    html += items.map(function (x) {
+      var pctw = Math.min(100, 100 * Math.abs(x[1]) / m);
+      var neg = x[1] < 0;
+      return '<div class="divrow"><span class="lbl">' + esc(x[0])
+        + '</span><span class="half l">'
+        + (neg ? '<span class="seg" style="width:' + pctw.toFixed(1)
+            + '%;background:var(--warn)"></span>' : "")
+        + '</span><span class="half r">'
+        + (neg ? "" : '<span class="seg" style="width:' + pctw.toFixed(1)
+            + '%;background:var(--chart)"></span>')
+        + '</span><span class="val">' + Math.abs(x[1]).toFixed(3)
+        + "</span></div>";
+    }).join("");
+    container.innerHTML = html;
+  }
+
   var STATE = null;
 
   function run() {
@@ -864,10 +908,7 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
     var diff = [];
     for (var j = 0; j < ND; j++) diff.push([DESC[j], STATE.target[j] - got[j]]);
     diff.sort(function (a, b) { return Math.abs(b[1]) - Math.abs(a[1]); });
-    bars(el("residual"), diff.slice(0, 8).map(function (x) {
-      return [x[0] + (x[1] > 0 ? " (missing)" : " (added)"), x[1],
-              (x[1] >= 0 ? "+" : "") + x[1].toFixed(3)];
-    }));
+    divbars(el("residual"), diff.slice(0, 8));
 
     // caveats, the specific ones first
     var cav = [];
