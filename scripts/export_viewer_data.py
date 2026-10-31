@@ -116,6 +116,40 @@ def load_naturals(store: str):
     return ents, percept, rec
 
 
+class WhitePointEntry:
+    """The average of every material: where a big enough mixture ends up.
+
+    Not a material and not a mixture of named things -- the mean of the
+    library's vectors, which is the point random blends collapse towards as
+    ingredients are added. It earns a place on the atlas because the perfumer
+    made four blends aimed at it from four disjoint material sets and reported
+    the same base smell from all four, so the location is real rather than an
+    artefact of the arithmetic.
+
+    Its receptor vector is the mean of the logits rather than of the
+    probabilities, matching how a blend is placed, so it sits where a blend
+    aiming at it would sit.
+    """
+
+    is_white = True
+    is_query = False
+    is_natural = False
+    cls = ""
+    inchikey = ""
+    n_atoms = 0
+
+    def __init__(self, n_materials: int):
+        self.name = "WHITE POINT"
+        self.canonical_smiles = ""
+        self.formula = (f"the average of all {n_materials} materials, which is "
+                        f"what a large mixture converges to")
+
+
+def white_point(scores: np.ndarray) -> np.ndarray:
+    """Receptor vector of the average material, averaged in logit space."""
+    return 1.0 / (1.0 + np.exp(-_logit(scores).mean(axis=0)))
+
+
 class QueryEntry:
     """One blend being tried out, placed on the atlas but not of the library.
 
@@ -174,11 +208,19 @@ def _logit(p):
     return np.log(q / (1 - q))
 
 
-def build_model_block(paths, name, genes_ref, names_ref, query=None):
+def build_model_block(paths, name, genes_ref, names_ref, query=None,
+                      white=True):
     """Score matrix, distances, links and projections for one encoder."""
     lib = Library(paths, name=name)
     entries, logits, scores = lib.load()
     nat_ents, _, nat_rec = load_naturals(name)
+    if white:
+        # Computed from the molecules only, before the oils and any injected
+        # blends join the set: the average of the library's materials, not the
+        # average of whatever else happens to be on the page.
+        w_ent = WhitePointEntry(len(entries))
+        nat_ents = list(nat_ents) + [w_ent]
+        nat_rec = {**nat_rec, w_ent.name: white_point(scores)}
     if query is not None:
         q_ents, _, q_rec = load_queries(query, name)
         nat_ents = list(nat_ents) + q_ents
@@ -286,6 +328,8 @@ def main() -> int:
                     help="comma-separated key=library pairs; first is the reference set")
     ap.add_argument("--out", default="artifacts/viewer_data.json")
     ap.add_argument("--percepts", default="artifacts/percepts_baseline.json")
+    ap.add_argument("--no-white-point", action="store_true",
+                    help="omit the average-of-everything reference point")
     ap.add_argument("--query", default=None,
                     help="a file written by predict_formula.py --viewer-point: "
                          "its blends are laid out with the library and marked "
@@ -319,6 +363,15 @@ def main() -> int:
     # its default -- they have no notes, no inventory row and no measured
     # threshold, which is correct rather than missing.
     nat_ents, nat_percept, _ = load_naturals(MODELS[0][1])
+    if not args.no_white_point:
+        _pj = json.loads((ROOT / args.percepts).read_text(encoding="utf-8"))
+        _pm = {n: np.asarray(r, float)
+               for n, r in zip(_pj["molecules"], _pj["probs"])}
+        _rows = np.stack([_pm[e.name] for e in entries if e.name in _pm])
+        _w = WhitePointEntry(len(_rows))
+        nat_ents = list(nat_ents) + [_w]
+        nat_percept = {**nat_percept, _w.name: _rows.mean(axis=0)}
+        print(f"  white point added: the average of {len(_rows)} materials")
     if nat_ents:
         entries = list(entries) + nat_ents
         print(f"  {len(nat_ents)} essential oils built from GC composition")
@@ -550,7 +603,8 @@ def main() -> int:
     for key, libname, label in MODELS:
         try:
             models[key] = build_model_block(paths, libname, genes, names_ref,
-                                            query=query_path)
+                                            query=query_path,
+                                            white=not args.no_white_point)
             models[key]["label"] = label
             print(f"  model {key:5s} <- artifacts/{libname}")
         except Exception as exc:
@@ -590,6 +644,7 @@ def main() -> int:
              "perceptAll": percept_row.get(e.name, []),
              "isNatural": int(getattr(e, "is_natural", False)),
              "isQuery": int(getattr(e, "is_query", False)),
+             "isWhite": int(getattr(e, "is_white", False)),
              "queryCoverage": getattr(e, "coverage", None),
              "queryIngredients": getattr(e, "ingredients", None),
              "queryPlacement": getattr(e, "placement", None),

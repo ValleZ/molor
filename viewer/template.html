@@ -145,6 +145,10 @@ input[type="search"] { width: 100%; min-width: 200px; }
   min-width: 0;
 }
 #plot { display: block; width: 100%; height: clamp(400px, 70vh, 880px); cursor: grab; touch-action: none; }
+    /* The canvas alone is not enough: a pinch whose second finger lands a
+       few pixels outside it is a page gesture, and iOS then zooms the
+       document. The card around it opts out too. */
+    .plotcard { touch-action: none; }
 #plot.drag { cursor: grabbing; }
 .readout {
   position: absolute; left: 12px; bottom: 10px;
@@ -395,6 +399,7 @@ window.addEventListener("error", function (ev) {
     // carries no class or odour family, so every filter would hide it -- and
     // the whole reason it is on the page is to see where it sits.
     if (D.molecules[i].isQuery) return true;
+    if (D.molecules[i].isWhite) return true;
     var g = groupsOf(i);
     for (var k = 0; k < g.length; k++) if (!state.hidden[g[k]]) return true;
     return false;
@@ -410,7 +415,14 @@ window.addEventListener("error", function (ev) {
   // ---- geometry ----
   var W = 0, H = 0, dpr = 1;
   function resize() {
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    // iOS can still zoom the document despite everything below, and when it
+    // does the canvas keeps its old backing store and is drawn stretched --
+    // large, blurry dots that only a reload fixed. Folding the visual
+    // viewport's scale into the device pixel ratio re-renders the plot at the
+    // size it is actually being displayed, so the blur clears by itself.
+    var vv = window.visualViewport;
+    var zoom = (vv && vv.scale) ? vv.scale : 1;
+    dpr = Math.min((window.devicePixelRatio || 1) * zoom, 3);
     var r = cv.getBoundingClientRect();
     W = Math.max(240, r.width); H = Math.max(240, r.height);
     cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
@@ -505,6 +517,7 @@ window.addEventListener("error", function (ev) {
   function radius(i) {
     var base = state.sizeByPotency ? 4.2 + 7.5 * Math.min(1, M().total[i] / 22) : 6;
     if (D.molecules[i].isQuery) base *= 1.7;
+    if (D.molecules[i].isWhite) base *= 1.5;
     return base * depthScale(i);
   }
 
@@ -558,6 +571,23 @@ window.addEventListener("error", function (ev) {
       var hit = matches(idx);
       var isSel = idx === state.sel, isPin = idx === state.pin;
       ctx.beginPath();
+      if (D.molecules[idx].isWhite) {
+        // A hollow ring, so it reads as a place on the map rather than as
+        // something you could put in a bottle -- which it is not.
+        ctx.arc(sx(idx), sy(idx), r, 0, 6.2832);
+        ctx.fillStyle = surface;
+        ctx.globalAlpha = 0.55;
+        ctx.fill();
+        ctx.globalAlpha = 1;
+        ctx.lineWidth = 2.5;
+        ctx.strokeStyle = fg;
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(sx(idx), sy(idx), Math.max(1.5, r * 0.22), 0, 6.2832);
+        ctx.fillStyle = fg;
+        ctx.fill();
+        continue;
+      }
       if (D.molecules[idx].isQuery) {
         // A blend being tried out: a star, so it cannot be mistaken for
         // either a material or an oil. Its position is a noisy-OR of its
@@ -643,7 +673,7 @@ window.addEventListener("error", function (ev) {
     // star in a cloud of 300 points answers nothing.
     for (var qi = 0; qi < order.length; qi++) {
       var qid = order[qi];
-      if (!D.molecules[qid].isQuery) continue;
+      if (!D.molecules[qid].isQuery && !D.molecules[qid].isWhite) continue;
       ctx.font = '700 12px "Archivo", system-ui, sans-serif';
       ctx.textAlign = "center"; ctx.textBaseline = "bottom";
       var qnm = D.molecules[qid].name;
@@ -652,7 +682,7 @@ window.addEventListener("error", function (ev) {
       ctx.fillStyle = surface; ctx.globalAlpha = 0.85;
       ctx.fillRect(qcx - qw / 2 - 3, qcy - 13, qw + 6, 15);
       ctx.globalAlpha = 1;
-      ctx.fillStyle = accent;
+      ctx.fillStyle = D.molecules[qid].isWhite ? fg : accent;
       ctx.fillText(qnm, qcx, qcy);
     }
 
@@ -679,13 +709,21 @@ window.addEventListener("error", function (ev) {
   // ---- interaction ----
   var dragging = false, moved = false, lx = 0, ly = 0;
   // Every live pointer, so a second finger becomes a pinch instead of a
-  // second simultaneous drag. The canvas sets touch-action:none, so the
-  // browser hands the gesture over rather than zooming the page -- which is
-  // what we want, since zooming the page would scale the bitmap instead of
-  // redrawing the plot at the new scale.
+  // second simultaneous drag.
+  //
+  // touch-action:none was supposed to be enough here and is not. On iOS,
+  // Safari implements pinch through its own gesturestart/gesturechange events
+  // and zooms the document regardless of touch-action, so a two-finger
+  // gesture often scaled the whole page instead of the plot -- which looks
+  // like the dots going large and blurry, because the canvas is then a
+  // stretched bitmap. Those events are cancelled below, the card around the
+  // canvas opts out of touch actions as well so a stray finger cannot start a
+  // page gesture, and resize() now follows the visual viewport so that any
+  // zoom which does get through clears on the next redraw rather than needing
+  // a reload.
   var pointers = new Map();
   var pinch = null;
-  var lastTap = 0;
+  var lastTap = 0, lastTouchEnd = 0;
 
   function pinchState() {
     var a = [];
@@ -803,6 +841,44 @@ window.addEventListener("error", function (ev) {
     if (pointers.size < 2) pinch = null;
     if (pointers.size === 0) { dragging = false; cv.classList.remove("drag"); }
   });
+  // iOS-only pinch events. Cancelled when the gesture belongs to the plot,
+  // and left alone otherwise so the rest of the page can still be zoomed by
+  // anyone who needs to.
+  ["gesturestart", "gesturechange", "gestureend"].forEach(function (name) {
+    document.addEventListener(name, function (ev) {
+      var t = ev.target;
+      var inPlot = (t === cv) || (t && t.closest && t.closest(".plotcard"));
+      if (inPlot || pointers.size > 0) {
+        ev.preventDefault();
+        return;
+      }
+    }, { passive: false });
+  });
+
+  // Double-tap to zoom is a separate iOS behaviour from pinch, and the
+  // double-tap handler on pointerup cannot stop it. Cancelling the second
+  // touchend does.
+  cv.addEventListener("touchend", function (ev) {
+    var t = Date.now();
+    if (t - lastTouchEnd < 320) ev.preventDefault();
+    lastTouchEnd = t;
+  }, { passive: false });
+
+  // If a zoom happens anyway -- two fingers starting outside the card, or the
+  // accessibility zoom -- re-render at the new scale instead of staying
+  // blurry. The guard keeps this from looping on its own resize.
+  if (window.visualViewport) {
+    var lastZoom = window.visualViewport.scale || 1;
+    var onZoom = function () {
+      var z = window.visualViewport.scale || 1;
+      if (Math.abs(z - lastZoom) < 0.01) return;
+      lastZoom = z;
+      resize(); draw();
+    };
+    window.visualViewport.addEventListener("resize", onZoom);
+    window.visualViewport.addEventListener("scroll", onZoom);
+  }
+
   cv.addEventListener("wheel", function (ev) {
     ev.preventDefault();
     var f = Math.exp(-ev.deltaY * 0.0014);
@@ -919,6 +995,10 @@ window.addEventListener("error", function (ev) {
       chips += '<span class="chip" style="background:var(--warn,#c9803a);'
         + 'color:#fff">BLEND</span> ';
     }
+    if (m.isWhite) {
+      chips += '<span class="chip" style="background:var(--fg);'
+        + 'color:var(--bg)">REFERENCE POINT</span> ';
+    }
     if (m.isNatural) {
       chips += '<span class="chip" style="background:var(--accent);'
         + 'color:#fff">EO</span> ';
@@ -940,7 +1020,7 @@ window.addEventListener("error", function (ev) {
     html += '<p style="margin:0 0 9px;font-family:var(--font-display);font-size:17px;font-weight:700">'
       + esc(m.name) + "</p>";
     html += '<dl class="kv">'
-      + (m.isQuery || m.isNatural
+      + (m.isWhite || m.isQuery || m.isNatural
           ? "<dt>Built from</dt><dd>" + esc(m.formula) + "</dd>"
           : "<dt>Formula</dt><dd>" + esc(m.formula) + "</dd>"
             + "<dt>SMILES</dt><dd>" + esc(m.smiles) + "</dd>"
@@ -964,6 +1044,21 @@ window.addEventListener("error", function (ev) {
     // tell apart from it. Sweet orange and tangerine both sit exactly on
     // D-Limonene, because what separates them is a material the library has
     // no entry for.
+    if (m.isWhite) {
+      html += '<p class="t-meta">Not a material and not for mixing: this is'
+        + " the average of every material in the library, and the point a"
+        + " blend drifts towards as ingredients are added. A single material"
+        + " sits about 1.22 from it; three independent thirty-material blends"
+        + " sit 0.20 to 0.31 out, four to six times closer in than anything"
+        + " you could buy.</p>";
+      html += '<p class="t-meta">It is here because it was smelled. Four'
+        + " blends aimed at it, from four material sets with nothing in"
+        + " common, all came back with the same base smell — so the location"
+        + " is real and not an artefact of the arithmetic. It is also not"
+        + " characterless: the average smell is sweet 0.45, fruity 0.44,"
+        + " floral 0.38, green 0.35, which the perfumer described as “the"
+        + " bright white where all the receptors do fire”.</p>";
+    }
     if (m.isQuery) {
       var ing = (m.queryIngredients || []).map(function (q) {
         return esc(q.name) + " " + q.pct.toFixed(1) + "%"
