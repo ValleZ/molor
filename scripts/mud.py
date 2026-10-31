@@ -91,6 +91,31 @@ def masses(shares: np.ndarray, th: np.ndarray, exponent: float) -> np.ndarray:
     return m / s if s > 0 else np.full_like(m, 1.0 / len(m))
 
 
+def as_sheet(shares: np.ndarray, ladder: list[float], max_parts: float = 50.0):
+    """Turn neat mass shares into weighable (dilution, parts) pairs.
+
+    A mass floor was the wrong way to keep a sheet makeable, and the perfumer
+    caught it: forcing every ingredient to at least 2% of the blend pushed
+    dimethyl sulfide to 4.2%, which is unusable, when what the solver actually
+    wanted was a trace. A trace is weighable if it comes out of a dilution,
+    which is how it would be done on a bench and what the sheet's dilution
+    column is for. So the neat share stays exactly where the solver put it and
+    the stock strength moves instead: the ladder is stepped down until the
+    amount to weigh is at least one part.
+    """
+    scale = max_parts / max(shares.max(), 1e-12)
+    out = []
+    for s in shares:
+        neat = float(s) * scale
+        d = ladder[0]
+        for cand in ladder:
+            d = cand
+            if neat * 100.0 / cand >= 1.0:
+                break
+        out.append((d, neat * 100.0 / d, neat))
+    return out
+
+
 def fit(B: np.ndarray, target: np.ndarray, lam: float = 80.0):
     """Best convex blend of the rows of B for one target. Returns (w, residual)."""
     k = B.shape[0]
@@ -214,10 +239,17 @@ def main() -> int:
     ap.add_argument("--emit", action="store_true")
     ap.add_argument("--emit-k", type=int, action="append", default=None)
     ap.add_argument("--out", default="data/formulas/queries/mud")
-    ap.add_argument("--mass-floor", type=float, default=2.0,
-                    help="smallest share of the blend any ingredient may end "
-                         "up at, in percent, once doses are derived from "
-                         "thresholds")
+    ap.add_argument("--dose-variants", default=None,
+                    help="comma-separated odour-activity exponents. One sheet "
+                         "per exponent for the SAME chosen materials, so the "
+                         "bench can pick which dosing is right instead of the "
+                         "exponent being fitted to a single remark. 0 is mass "
+                         "dosing, which is what failed; 1 is straight "
+                         "odour-activity dosing")
+    ap.add_argument("--dilutions", default="100,10,1",
+                    help="stock strengths available, strongest first; a trace "
+                         "ingredient is stepped down this ladder until the "
+                         "amount to weigh is at least one part")
     ap.add_argument("--mass-ceiling", type=float, default=60.0,
                     help="largest share any one ingredient may end up at")
     ap.add_argument("--oav-exponent", type=float, default=1.0,
@@ -239,6 +271,7 @@ def main() -> int:
     X = np.asarray(pj["probs"], float)
     mu = X.mean(0)
     lv = use_levels()
+    ladder = [float(x) for x in args.dilutions.split(",") if x.strip()]
 
     thr = thresholds()
     pool = list(range(len(names)))
@@ -294,10 +327,13 @@ def main() -> int:
             m = masses(np.asarray(w, float),
                        np.array([thr[names[i]] for i in idx]),
                        args.oav_exponent)
-            return (100 * m.min() >= args.mass_floor
-                    and 100 * m.max() <= args.mass_ceiling)
-        print(f"[mud] doses must land between {args.mass_floor:g}% and "
-              f"{args.mass_ceiling:g}% of the blend to count as weighable")
+            # Only the ceiling is a real constraint now: one ingredient at 80%
+            # of the blend is not a blend. The old floor is gone, because a
+            # trace is made weighable by diluting the stock rather than by
+            # dosing more of it.
+            return 100 * m.max() <= args.mass_ceiling
+        print(f"[mud] no one ingredient may exceed {args.mass_ceiling:g}% of "
+              f"the neat material; traces are handled by dilution instead")
 
     rows = []
     for k in range(1, args.max_k + 1):
@@ -342,46 +378,46 @@ def main() -> int:
     if args.emit:
         outdir = ROOT / args.out
         outdir.mkdir(parents=True, exist_ok=True)
-        for k in (args.emit_k or [3, args.max_k]):
-            row = next(r for r in rows if r["k"] == k)
-            suffix = "_oav" if args.potency == "threshold" else ""
-            stem = {"centroid": "mud", "flat": "white_flat",
-                    "dull": "white_dull"}[args.target]
-            path = outdir / f"{stem}_{k}{suffix}.csv"
+        def write_sheet(path, row, exponent):
+            shares = np.asarray(row["weights"], float)
+            if args.potency == "threshold":
+                shares = masses(
+                    shares, np.array([thr[n_] for n_ in row["names"]]),
+                    exponent)
+            sheet = as_sheet(shares, ladder)
             over = []
             with open(path, "w", encoding="utf-8", newline="") as fh:
                 cw = csv.writer(fh)
                 cw.writerow(["material", "dilution", "weight"])
-                shares = np.asarray(row["weights"], float)
-                if args.potency == "threshold":
-                    # The solved weights are shares of odour activity. Mass is
-                    # activity times threshold: to contribute the same amount
-                    # of smell, a material detectable at 0.5 ppb needs six
-                    # times less mass than one detectable at 3 ppb. This is
-                    # the correction the first mud blend lacked, where methyl
-                    # benzoate at a third of the mass had six times the
-                    # threshold advantage and took the blend over.
-                    shares = masses(
-                        shares, np.array([thr[n_] for n_ in row["names"]]),
-                        args.oav_exponent)
-                for n_, x in zip(row["names"], shares):
-                    cw.writerow([n_, 100, round(100 * float(x), 2)])
+                for n_, x, (d, parts, neat) in zip(row["names"], shares, sheet):
+                    cw.writerow([n_, d, round(parts, 2)])
                     cap = lv.get(n_, float("nan"))
                     if cap == cap and 100 * x > cap * 1.02 + 0.02:
                         over.append((n_, 100 * float(x), cap))
-            if args.potency == "threshold":
-                print("      doses are odour-activity corrected: "
-                      + ", ".join(f"{n_} {100 * s:.1f}% (activity share "
-                                  f"{100 * w_:.0f}%)"
-                                  for n_, s, w_ in zip(row["names"], shares,
-                                                       row["weights"])))
             print(f"[mud] wrote {path.relative_to(ROOT)}  "
-                  f"(distance {row['residual']:.3f})")
+                  f"(distance {row['residual']:.3f}, exponent {exponent:g})")
+            print("      what to weigh, and the neat share it delivers:")
+            for n_, x, (d, parts, neat) in zip(row["names"], shares, sheet):
+                dil = "neat" if d >= 100 else f"{d:g}% dilution"
+                print(f"        {parts:7.1f} parts of {n_} ({dil})"
+                      f"   -> {100 * float(x):5.2f}% of the neat material")
             if over:
                 print("      [!] above your own use level, so smell it "
                       "diluted: "
                       + ", ".join(f"{n_} at {s:.1f}% vs {c:g}%"
                                   for n_, s, c in over))
+
+        for k in (args.emit_k or [3, args.max_k]):
+            row = next(r for r in rows if r["k"] == k)
+            suffix = "_oav" if args.potency == "threshold" else ""
+            stem = {"centroid": "mud", "flat": "white_flat",
+                    "dull": "white_dull"}[args.target]
+            variants = ([float(x) for x in args.dose_variants.split(",")]
+                        if args.dose_variants else [args.oav_exponent])
+            for ex in variants:
+                tag = ("" if not args.dose_variants
+                       else f"_n{str(ex).replace('.', 'p')}")
+                write_sheet(outdir / f"{stem}_{k}{suffix}{tag}.csv", row, ex)
         (outdir / "prediction.json").write_text(json.dumps(
             {"target": "library average point in percept space",
              "yardstick": yard, "owned_only": bool(args.owned),
