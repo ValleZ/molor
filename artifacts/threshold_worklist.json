@@ -1,0 +1,983 @@
+[
+  {
+    "name": "Hedione",
+    "worst_shift": 1.0047125450333838,
+    "formulas": 8,
+    "score": 8.03770036026707,
+    "threshold": 20.0,
+    "logp": 2.73,
+    "use": 30.0
+  },
+  {
+    "name": "Strawberry Furanone",
+    "worst_shift": 0.9196891044518491,
+    "formulas": 5,
+    "score": 4.5984455222592455,
+    "threshold": 20.0,
+    "logp": 0.76,
+    "use": 5.0
+  },
+  {
+    "name": "Ethyl Butyrate",
+    "worst_shift": 0.929631092836064,
+    "formulas": 4,
+    "score": 3.718524371344256,
+    "threshold": 1.0,
+    "logp": 1.35,
+    "use": 0.5
+  },
+  {
+    "name": "Iso E Super",
+    "worst_shift": 0.9196996437576389,
+    "formulas": 4,
+    "score": 3.6787985750305556,
+    "threshold": 0.5,
+    "logp": 4.52,
+    "use": 25.0
+  },
+  {
+    "name": "Isobornyl Acetate",
+    "worst_shift": 0.8489861263689137,
+    "formulas": 4,
+    "score": 3.3959445054756547,
+    "threshold": 225.0,
+    "logp": 2.76,
+    "use": 5.0
+  },
+  {
+    "name": "Methyl Diantilis",
+    "worst_shift": 0.8367108188940339,
+    "formulas": 4,
+    "score": 3.3468432755761355,
+    "threshold": 5.0,
+    "logp": 1.94,
+    "use": 5.0
+  },
+  {
+    "name": "Ethylene Brassylate",
+    "worst_shift": 0.826065222993879,
+    "formulas": 4,
+    "score": 3.304260891975516,
+    "threshold": 33.0,
+    "logp": 3.38,
+    "use": 15.0
+  },
+  {
+    "name": "Neobergamate Forte",
+    "worst_shift": 0.6550011012790063,
+    "formulas": 5,
+    "score": 3.275005506395032,
+    "threshold": 30.0,
+    "logp": 4.6,
+    "use": 5.0
+  },
+  {
+    "name": "Cinnamaldehyde",
+    "worst_shift": 0.786625964831158,
+    "formulas": 4,
+    "score": 3.146503859324632,
+    "threshold": 200.0,
+    "logp": 1.9,
+    "use": 10.0
+  },
+  {
+    "name": "D-Limonene",
+    "worst_shift": 1.0418852910413274,
+    "formulas": 3,
+    "score": 3.125655873123982,
+    "threshold": 10.0,
+    "logp": 3.31,
+    "use": 20.0
+  },
+  {
+    "name": "Habanolide",
+    "worst_shift": 0.772481230228303,
+    "formulas": 4,
+    "score": 3.089924920913212,
+    "threshold": 15.0,
+    "logp": 4.39,
+    "use": 10.0
+  },
+  {
+    "name": "Hexyl Acetate",
+    "worst_shift": 0.7573992138942095,
+    "formulas": 4,
+    "score": 3.029596855576838,
+    "threshold": 2.0,
+    "logp": 2.13,
+    "use": 1.0
+  },
+  {
+    "name": "Calone 1951",
+    "worst_shift": 0.5313476711804167,
+    "formulas": 5,
+    "score": 2.6567383559020836,
+    "threshold": 1.0,
+    "logp": 1.34,
+    "use": 1.0
+  },
+  {
+    "name": "Undecavertol",
+    "worst_shift": 0.5128348580545731,
+    "formulas": 5,
+    "score": 2.5641742902728653,
+    "threshold": 3.0,
+    "logp": 3.28,
+    "use": 2.0
+  },
+  {
+    "name": "Anisaldehyde",
+    "worst_shift": 0.5815546425297972,
+    "formulas": 4,
+    "score": 2.3262185701191886,
+    "threshold": 50.0,
+    "logp": 1.76,
+    "use": 5.0
+  },
+  {
+    "name": "Paradisamide",
+    "worst_shift": 0.5805568931423308,
+    "formulas": 4,
+    "score": 2.3222275725693233,
+    "threshold": 10.0,
+    "logp": 3.3,
+    "use": 5.0
+  },
+  {
+    "name": "Linalyl Acetate",
+    "worst_shift": 0.45879261625432594,
+    "formulas": 5,
+    "score": 2.2939630812716296,
+    "threshold": 25.0,
+    "logp": 3.24,
+    "use": 15.0
+  },
+  {
+    "name": "Geranyl Acetate",
+    "worst_shift": 0.7205548389580682,
+    "formulas": 3,
+    "score": 2.1616645168742044,
+    "threshold": 15.0,
+    "logp": 3.24,
+    "use": 5.0
+  },
+  {
+    "name": "Methyl Benzoate",
+    "worst_shift": 0.5024768473938268,
+    "formulas": 4,
+    "score": 2.0099073895753072,
+    "threshold": 0.52,
+    "logp": 1.47,
+    "use": 2.0
+  },
+  {
+    "name": "Cyclamen Aldehyde",
+    "worst_shift": 0.6467762704012112,
+    "formulas": 3,
+    "score": 1.9403288112036337,
+    "threshold": 4.0,
+    "logp": 3.19,
+    "use": 2.0
+  },
+  {
+    "name": "Rhuboflor",
+    "worst_shift": 0.6408835759519118,
+    "formulas": 3,
+    "score": 1.9226507278557354,
+    "threshold": null,
+    "logp": null,
+    "use": 2.0
+  },
+  {
+    "name": "Trans-2,Cis-6-Nonadienal",
+    "worst_shift": 0.8925852656311464,
+    "formulas": 2,
+    "score": 1.7851705312622927,
+    "threshold": 0.01,
+    "logp": 3.0,
+    "use": 1.0
+  },
+  {
+    "name": "Edenolide",
+    "worst_shift": 0.5509371392691232,
+    "formulas": 3,
+    "score": 1.6528114178073698,
+    "threshold": 15.0,
+    "logp": 3.09,
+    "use": 15.0
+  },
+  {
+    "name": "Sandalore",
+    "worst_shift": 0.7613456494617243,
+    "formulas": 2,
+    "score": 1.5226912989234487,
+    "threshold": 20.0,
+    "logp": 3.78,
+    "use": 5.0
+  },
+  {
+    "name": "Eugenol ex Clove",
+    "worst_shift": 0.5035095626530746,
+    "formulas": 3,
+    "score": 1.5105286879592237,
+    "threshold": 10.0,
+    "logp": 2.13,
+    "use": 1.0
+  },
+  {
+    "name": "Galaxolide",
+    "worst_shift": 0.7546385761574875,
+    "formulas": 2,
+    "score": 1.509277152314975,
+    "threshold": 10.0,
+    "logp": 4.53,
+    "use": 20.0
+  },
+  {
+    "name": "Ethyl Benzoate",
+    "worst_shift": 0.48178313353954216,
+    "formulas": 3,
+    "score": 1.4453494006186265,
+    "threshold": 60.0,
+    "logp": 2.64,
+    "use": 5.0
+  },
+  {
+    "name": "Kephalis",
+    "worst_shift": 0.6123784864158766,
+    "formulas": 2,
+    "score": 1.224756972831753,
+    "threshold": 10.0,
+    "logp": 3.9,
+    "use": 20.0
+  },
+  {
+    "name": "Velvione",
+    "worst_shift": 0.6089062167305662,
+    "formulas": 2,
+    "score": 1.2178124334611324,
+    "threshold": 15.0,
+    "logp": 5.2,
+    "use": 5.0
+  },
+  {
+    "name": "Citronellol",
+    "worst_shift": 0.5621195620353825,
+    "formulas": 2,
+    "score": 1.124239124070765,
+    "threshold": 40.0,
+    "logp": 2.75,
+    "use": 15.0
+  },
+  {
+    "name": "Peonile",
+    "worst_shift": 0.5166878679916942,
+    "formulas": 2,
+    "score": 1.0333757359833884,
+    "threshold": 30.0,
+    "logp": 3.93,
+    "use": 5.0
+  },
+  {
+    "name": "Methyl Cinnamate",
+    "worst_shift": 0.49606759754848556,
+    "formulas": 2,
+    "score": 0.9921351950969711,
+    "threshold": 30.0,
+    "logp": 2.62,
+    "use": 5.0
+  },
+  {
+    "name": "Coumarin",
+    "worst_shift": 0.4886054614554193,
+    "formulas": 2,
+    "score": 0.9772109229108386,
+    "threshold": 25.0,
+    "logp": 1.79,
+    "use": 5.0
+  },
+  {
+    "name": "Pistachio Thiazole",
+    "worst_shift": 0.48225531298259927,
+    "formulas": 2,
+    "score": 0.9645106259651985,
+    "threshold": 0.1,
+    "logp": 2.5,
+    "use": 1.0
+  },
+  {
+    "name": "Geraniol 95",
+    "worst_shift": 0.47163369523552967,
+    "formulas": 2,
+    "score": 0.9432673904710593,
+    "threshold": 40.0,
+    "logp": 2.67,
+    "use": 10.0
+  },
+  {
+    "name": "Maltol Isobutyrate",
+    "worst_shift": 0.46784168937507875,
+    "formulas": 2,
+    "score": 0.9356833787501575,
+    "threshold": null,
+    "logp": 1.6,
+    "use": 5.0
+  },
+  {
+    "name": "Damascone Beta",
+    "worst_shift": 0.9110846065993975,
+    "formulas": 1,
+    "score": 0.9110846065993975,
+    "threshold": 0.09,
+    "logp": 3.66,
+    "use": 5.0
+  },
+  {
+    "name": "Oxane",
+    "worst_shift": 0.7974609763017785,
+    "formulas": 1,
+    "score": 0.7974609763017785,
+    "threshold": 0.01,
+    "logp": 2.9,
+    "use": 1.0
+  },
+  {
+    "name": "Isoamyl Acetate",
+    "worst_shift": 0.7496876704463721,
+    "formulas": 1,
+    "score": 0.7496876704463721,
+    "threshold": 5.0,
+    "logp": 1.6,
+    "use": 1.0
+  },
+  {
+    "name": "Methyl Laitone",
+    "worst_shift": 0.7072549785276957,
+    "formulas": 1,
+    "score": 0.7072549785276957,
+    "threshold": 8.0,
+    "logp": 2.9,
+    "use": 0.5
+  },
+  {
+    "name": "Ebanol",
+    "worst_shift": 0.6667550501898343,
+    "formulas": 1,
+    "score": 0.6667550501898343,
+    "threshold": 1.0,
+    "logp": 3.55,
+    "use": 5.0
+  },
+  {
+    "name": "Florhydral",
+    "worst_shift": 0.6371619445158845,
+    "formulas": 1,
+    "score": 0.6371619445158845,
+    "threshold": 2.0,
+    "logp": 3.5,
+    "use": 2.0
+  },
+  {
+    "name": "Tetrahydro Linalool",
+    "worst_shift": 0.6166512653393149,
+    "formulas": 1,
+    "score": 0.6166512653393149,
+    "threshold": 100.0,
+    "logp": 2.97,
+    "use": 10.0
+  },
+  {
+    "name": "Lemonile",
+    "worst_shift": 0.609733782462991,
+    "formulas": 1,
+    "score": 0.609733782462991,
+    "threshold": 5.0,
+    "logp": 3.59,
+    "use": 1.0
+  },
+  {
+    "name": "Gamma Undecalactone",
+    "worst_shift": 0.6073196981129753,
+    "formulas": 1,
+    "score": 0.6073196981129753,
+    "threshold": 5.0,
+    "logp": 3.05,
+    "use": 1.0
+  },
+  {
+    "name": "Heliotropin",
+    "worst_shift": 0.3028619301084382,
+    "formulas": 2,
+    "score": 0.6057238602168764,
+    "threshold": 100.0,
+    "logp": 1.23,
+    "use": 5.0
+  },
+  {
+    "name": "Cassifix",
+    "worst_shift": 0.5927137328766069,
+    "formulas": 1,
+    "score": 0.5927137328766069,
+    "threshold": 5.0,
+    "logp": 4.0,
+    "use": 5.0
+  },
+  {
+    "name": "Veloutone",
+    "worst_shift": 0.5814225740831046,
+    "formulas": 1,
+    "score": 0.5814225740831046,
+    "threshold": 5.0,
+    "logp": 4.3,
+    "use": 5.0
+  },
+  {
+    "name": "Rose Oxide",
+    "worst_shift": 0.5767961260286,
+    "formulas": 1,
+    "score": 0.5767961260286,
+    "threshold": 0.5,
+    "logp": 2.77,
+    "use": 0.5
+  },
+  {
+    "name": "Methyl Ionone Gamma Coeur",
+    "worst_shift": 0.5484382122881973,
+    "formulas": 1,
+    "score": 0.5484382122881973,
+    "threshold": 5.0,
+    "logp": 3.9,
+    "use": 5.0
+  },
+  {
+    "name": "Manzanate",
+    "worst_shift": 0.5251966839261358,
+    "formulas": 1,
+    "score": 0.5251966839261358,
+    "threshold": 0.05,
+    "logp": 2.7,
+    "use": 1.0
+  },
+  {
+    "name": "Helvetolide",
+    "worst_shift": 0.5134537802552841,
+    "formulas": 1,
+    "score": 0.5134537802552841,
+    "threshold": 10.0,
+    "logp": 4.8,
+    "use": 10.0
+  },
+  {
+    "name": "Toscanol",
+    "worst_shift": 0.5097164362418302,
+    "formulas": 1,
+    "score": 0.5097164362418302,
+    "threshold": 30.0,
+    "logp": 3.3,
+    "use": 2.0
+  },
+  {
+    "name": "Raspberry Ketone",
+    "worst_shift": 0.48061731511826367,
+    "formulas": 1,
+    "score": 0.48061731511826367,
+    "threshold": 5.0,
+    "logp": 1.91,
+    "use": 1.0
+  },
+  {
+    "name": "Bergamot EO (Turkish)",
+    "worst_shift": 0.4504150661268719,
+    "formulas": 1,
+    "score": 0.4504150661268719,
+    "threshold": null,
+    "logp": null,
+    "use": null
+  },
+  {
+    "name": "l-Carvone",
+    "worst_shift": 0.44554360134368487,
+    "formulas": 1,
+    "score": 0.44554360134368487,
+    "threshold": null,
+    "logp": null,
+    "use": null
+  },
+  {
+    "name": "Citral",
+    "worst_shift": 0.19209030423987056,
+    "formulas": 2,
+    "score": 0.3841806084797411,
+    "threshold": 30.0,
+    "logp": 2.88,
+    "use": 1.0
+  },
+  {
+    "name": "Ethyl Linalool",
+    "worst_shift": 0.38057648147304,
+    "formulas": 1,
+    "score": 0.38057648147304,
+    "threshold": 8.0,
+    "logp": 3.06,
+    "use": 10.0
+  },
+  {
+    "name": "Nympheal",
+    "worst_shift": 0.3567579053654195,
+    "formulas": 1,
+    "score": 0.3567579053654195,
+    "threshold": 1.0,
+    "logp": 3.7,
+    "use": 2.0
+  },
+  {
+    "name": "Dihydro Beta Ionone",
+    "worst_shift": 0.3426749355700094,
+    "formulas": 1,
+    "score": 0.3426749355700094,
+    "threshold": null,
+    "logp": null,
+    "use": null
+  },
+  {
+    "name": "Linalool",
+    "worst_shift": 0.3061433121393572,
+    "formulas": 1,
+    "score": 0.3061433121393572,
+    "threshold": 6.0,
+    "logp": 2.67,
+    "use": 15.0
+  },
+  {
+    "name": "Triplal",
+    "worst_shift": 0.13636382554347673,
+    "formulas": 2,
+    "score": 0.27272765108695346,
+    "threshold": 0.5,
+    "logp": 2.18,
+    "use": 1.0
+  },
+  {
+    "name": "Ambroxan",
+    "worst_shift": 0.1287582284158878,
+    "formulas": 2,
+    "score": 0.2575164568317756,
+    "threshold": 3.0,
+    "logp": 4.41,
+    "use": 5.0
+  },
+  {
+    "name": "Grapefruit EO (cold-pressed)",
+    "worst_shift": 0.18540746978648573,
+    "formulas": 1,
+    "score": 0.18540746978648573,
+    "threshold": null,
+    "logp": null,
+    "use": null
+  },
+  {
+    "name": "Ethyl Maltol",
+    "worst_shift": 0.07205697356434997,
+    "formulas": 2,
+    "score": 0.14411394712869993,
+    "threshold": 100.0,
+    "logp": 0.91,
+    "use": 1.0
+  },
+  {
+    "name": "Lemon EO (Sicilian, cold-pressed)",
+    "worst_shift": 0.13132181628741094,
+    "formulas": 1,
+    "score": 0.13132181628741094,
+    "threshold": null,
+    "logp": null,
+    "use": null
+  },
+  {
+    "name": "Neroli EO (Egyptian)",
+    "worst_shift": 0.1283557058005776,
+    "formulas": 1,
+    "score": 0.1283557058005776,
+    "threshold": null,
+    "logp": null,
+    "use": null
+  },
+  {
+    "name": "Mandarin EO (Italian, cold-pressed)",
+    "worst_shift": 0.12369069825135065,
+    "formulas": 1,
+    "score": 0.12369069825135065,
+    "threshold": null,
+    "logp": null,
+    "use": null
+  },
+  {
+    "name": "Hexenol-3-CIS",
+    "worst_shift": 0.05308120158061531,
+    "formulas": 2,
+    "score": 0.10616240316123061,
+    "threshold": 10.0,
+    "logp": 1.33,
+    "use": 0.3
+  },
+  {
+    "name": "Patchouli EO (Javanese)",
+    "worst_shift": 0.10518231562833825,
+    "formulas": 1,
+    "score": 0.10518231562833825,
+    "threshold": null,
+    "logp": null,
+    "use": null
+  },
+  {
+    "name": "Blackcurrant mercaptan",
+    "worst_shift": 0.10384173181316877,
+    "formulas": 1,
+    "score": 0.10384173181316877,
+    "threshold": 0.0001,
+    "logp": 1.73,
+    "use": 2.0
+  },
+  {
+    "name": "Laevo Menthol",
+    "worst_shift": 0.05079914234729212,
+    "formulas": 2,
+    "score": 0.10159828469458423,
+    "threshold": null,
+    "logp": null,
+    "use": null
+  },
+  {
+    "name": "Cedramber",
+    "worst_shift": 0.09474404021741477,
+    "formulas": 1,
+    "score": 0.09474404021741477,
+    "threshold": null,
+    "logp": null,
+    "use": null
+  },
+  {
+    "name": "Cedarwood EO (Virginia)",
+    "worst_shift": 0.09347861960827882,
+    "formulas": 1,
+    "score": 0.09347861960827882,
+    "threshold": null,
+    "logp": null,
+    "use": null
+  },
+  {
+    "name": "Dimethyl Sulfide",
+    "worst_shift": 0.06435219547404518,
+    "formulas": 1,
+    "score": 0.06435219547404518,
+    "threshold": 1.0,
+    "logp": 0.92,
+    "use": 1.0
+  },
+  {
+    "name": "Lavandin EO (Grosso)",
+    "worst_shift": 0.05674449051400508,
+    "formulas": 1,
+    "score": 0.05674449051400508,
+    "threshold": null,
+    "logp": null,
+    "use": null
+  },
+  {
+    "name": "Terpineol Alpha",
+    "worst_shift": 0.028349197437018085,
+    "formulas": 2,
+    "score": 0.05669839487403617,
+    "threshold": 330.0,
+    "logp": 2.98,
+    "use": 10.0
+  },
+  {
+    "name": "Aldehyde C-8",
+    "worst_shift": 0.05458537891270202,
+    "formulas": 1,
+    "score": 0.05458537891270202,
+    "threshold": 0.7,
+    "logp": 2.55,
+    "use": 0.5
+  },
+  {
+    "name": "Lime EO (Persian, expressed)",
+    "worst_shift": 0.049299452311135424,
+    "formulas": 1,
+    "score": 0.049299452311135424,
+    "threshold": null,
+    "logp": null,
+    "use": null
+  },
+  {
+    "name": "Vetiver EO (Haiti)",
+    "worst_shift": 0.04180784314984633,
+    "formulas": 1,
+    "score": 0.04180784314984633,
+    "threshold": null,
+    "logp": null,
+    "use": null
+  },
+  {
+    "name": "Rosewood EO (Aniba rosaeodora)",
+    "worst_shift": 0.037706766404141424,
+    "formulas": 1,
+    "score": 0.037706766404141424,
+    "threshold": null,
+    "logp": null,
+    "use": null
+  },
+  {
+    "name": "Litsea Cubeba EO (Chinese, fruit)",
+    "worst_shift": 0.03162561995833192,
+    "formulas": 1,
+    "score": 0.03162561995833192,
+    "threshold": null,
+    "logp": null,
+    "use": null
+  },
+  {
+    "name": "Scentenal",
+    "worst_shift": 0.028716474495543654,
+    "formulas": 1,
+    "score": 0.028716474495543654,
+    "threshold": null,
+    "logp": null,
+    "use": null
+  },
+  {
+    "name": "Doremox",
+    "worst_shift": 0.026066588570352784,
+    "formulas": 1,
+    "score": 0.026066588570352784,
+    "threshold": 5.0,
+    "logp": 3.0,
+    "use": 2.0
+  },
+  {
+    "name": "Methyl Anthranilate",
+    "worst_shift": 0.02083595019228644,
+    "formulas": 1,
+    "score": 0.02083595019228644,
+    "threshold": 3.0,
+    "logp": 1.06,
+    "use": 1.0
+  },
+  {
+    "name": "Viridine",
+    "worst_shift": 0.019584830200796828,
+    "formulas": 1,
+    "score": 0.019584830200796828,
+    "threshold": null,
+    "logp": null,
+    "use": null
+  },
+  {
+    "name": "Benzyl Acetate",
+    "worst_shift": 0.019237391864846517,
+    "formulas": 1,
+    "score": 0.019237391864846517,
+    "threshold": 200.0,
+    "logp": 1.75,
+    "use": 10.0
+  },
+  {
+    "name": "Cinnamyl Alcohol",
+    "worst_shift": 0.01839598639565091,
+    "formulas": 1,
+    "score": 0.01839598639565091,
+    "threshold": 500.0,
+    "logp": 1.95,
+    "use": 1.0
+  },
+  {
+    "name": "Mahagonate",
+    "worst_shift": 0.015921558817149385,
+    "formulas": 1,
+    "score": 0.015921558817149385,
+    "threshold": null,
+    "logp": null,
+    "use": null
+  },
+  {
+    "name": "Oranger Crystals",
+    "worst_shift": 0.015533573348559659,
+    "formulas": 1,
+    "score": 0.015533573348559659,
+    "threshold": 10.0,
+    "logp": 1.51,
+    "use": 2.0
+  },
+  {
+    "name": "Hydroxycitronellal",
+    "worst_shift": 0.012200186593530943,
+    "formulas": 1,
+    "score": 0.012200186593530943,
+    "threshold": 30.0,
+    "logp": 2.15,
+    "use": 5.0
+  },
+  {
+    "name": "Ionone Alpha",
+    "worst_shift": 0.011837624174914792,
+    "formulas": 1,
+    "score": 0.011837624174914792,
+    "threshold": 0.4,
+    "logp": 3.51,
+    "use": 5.0
+  },
+  {
+    "name": "Phenethyl Alcohol",
+    "worst_shift": 0.008966849576464894,
+    "formulas": 1,
+    "score": 0.008966849576464894,
+    "threshold": 750.0,
+    "logp": 1.22,
+    "use": 20.0
+  },
+  {
+    "name": "Palissandin",
+    "worst_shift": 0.008764839978601576,
+    "formulas": 1,
+    "score": 0.008764839978601576,
+    "threshold": null,
+    "logp": null,
+    "use": null
+  },
+  {
+    "name": "Nootkatone",
+    "worst_shift": 0.00781270674598081,
+    "formulas": 1,
+    "score": 0.00781270674598081,
+    "threshold": 800.0,
+    "logp": 3.9,
+    "use": 0.5
+  },
+  {
+    "name": "Ethyl Vanillin",
+    "worst_shift": 0.0025346941903802386,
+    "formulas": 1,
+    "score": 0.0025346941903802386,
+    "threshold": 30.0,
+    "logp": 1.6,
+    "use": 1.0
+  },
+  {
+    "name": "Aldehyde C-10",
+    "worst_shift": 0.0009363620583979597,
+    "formulas": 1,
+    "score": 0.0009363620583979597,
+    "threshold": 0.5,
+    "logp": 3.33,
+    "use": 0.5
+  },
+  {
+    "name": "Delta Decalactone",
+    "worst_shift": 0.0009106309645350785,
+    "formulas": 1,
+    "score": 0.0009106309645350785,
+    "threshold": 100.0,
+    "logp": 2.66,
+    "use": 1.0
+  },
+  {
+    "name": "Pharaone",
+    "worst_shift": 0.0006339603737161117,
+    "formulas": 1,
+    "score": 0.0006339603737161117,
+    "threshold": null,
+    "logp": null,
+    "use": null
+  },
+  {
+    "name": "Verdox HC",
+    "worst_shift": 0.00017753520145961729,
+    "formulas": 1,
+    "score": 0.00017753520145961729,
+    "threshold": 100.0,
+    "logp": 4.3,
+    "use": 20.0
+  },
+  {
+    "name": "Citronellyl Acetate",
+    "worst_shift": 9.831016120929378e-05,
+    "formulas": 1,
+    "score": 9.831016120929378e-05,
+    "threshold": 100.0,
+    "logp": 4.2,
+    "use": 10.0
+  },
+  {
+    "name": "Gamma Nonalactone",
+    "worst_shift": 9.597333258949495e-05,
+    "formulas": 1,
+    "score": 9.597333258949495e-05,
+    "threshold": 30.0,
+    "logp": 2.27,
+    "use": 3.0
+  },
+  {
+    "name": "Isobutyl Phenyl Acetate",
+    "worst_shift": 8.47354859774927e-05,
+    "formulas": 1,
+    "score": 8.47354859774927e-05,
+    "threshold": 50.0,
+    "logp": 3.4,
+    "use": 5.0
+  },
+  {
+    "name": "Hexenyl-3-CIS Acetate",
+    "worst_shift": 4.749452863015907e-05,
+    "formulas": 1,
+    "score": 4.749452863015907e-05,
+    "threshold": 10.0,
+    "logp": 1.91,
+    "use": 0.5
+  },
+  {
+    "name": "Florol",
+    "worst_shift": 3.594292958686688e-05,
+    "formulas": 1,
+    "score": 3.594292958686688e-05,
+    "threshold": 100.0,
+    "logp": 1.96,
+    "use": 5.0
+  },
+  {
+    "name": "Vanillin",
+    "worst_shift": 2.585386554794099e-05,
+    "formulas": 1,
+    "score": 2.585386554794099e-05,
+    "threshold": 100.0,
+    "logp": 1.21,
+    "use": 3.0
+  },
+  {
+    "name": "Benzaldehyde",
+    "worst_shift": 1.1934241006722092e-06,
+    "formulas": 1,
+    "score": 1.1934241006722092e-06,
+    "threshold": 350.0,
+    "logp": 1.5,
+    "use": 0.5
+  },
+  {
+    "name": "Benzyl Isoeugenol",
+    "worst_shift": 5.208746244060849e-07,
+    "formulas": 1,
+    "score": 5.208746244060849e-07,
+    "threshold": 5000.0,
+    "logp": 4.31,
+    "use": 3.0
+  },
+  {
+    "name": "Ethyl Acetate",
+    "worst_shift": 3.5740109602594585e-07,
+    "formulas": 1,
+    "score": 3.5740109602594585e-07,
+    "threshold": 5000.0,
+    "logp": 0.73,
+    "use": 2.0
+  }
+]
