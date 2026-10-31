@@ -983,6 +983,52 @@ alcohol and 0.0% pistachio thiazole, which is one material with contamination.
 The search now rejects any subset whose implied doses fall outside
 `--mass-floor` to `--mass-ceiling`, so what it proposes can be weighed.
 
+### The dose error is larger than the thing being optimised
+
+Three blends aimed at the centre of percept space, from three disjoint material
+sets, came back with one verdict: "all of them give the same base smell but all
+different, and some facet sticking out slightly". That is the white point half
+confirmed -- a shared base from different recipes is the metamer claim -- and
+the facets turn out to be quantitatively predictable.
+
+The perfumer also disclosed that the inventory's water-phase thresholds are a
+compilation from published and web sources, with some approximated from
+air-phase figures, and may be out by a factor of ten or more. Every script here
+called them "measured". They are not, and the magnitudes below are why that is
+not a pedantic correction.
+
+Perturbing a single threshold by 10x moves a five-material blend's percept
+vector by **0.4 to 0.7**. The dose optimisation works at a scale of about 0.2,
+and the just-noticeable yardstick is 0.525. The input error is therefore larger
+than the quantity being optimised, and larger than the smallest difference a
+nose can detect. Over 4000 draws of independent threshold error spanning a
+decade either way:
+
+| blend | nominal | median under error | 90th percentile | worst 1% |
+|---|---|---|---|---|
+| five materials, nominal-optimised | 0.320 | 0.534 | 0.765 | 0.895 |
+| five materials, `--robust` optimised | 0.350 | **0.473** | **0.592** | **0.700** |
+| four materials (`mud_4_oav`) | 0.178 | 0.412 | 0.616 | 0.937 |
+
+The median realisation sits at or above the yardstick: a blend as actually
+weighed is typically as far from its target as two just-noticeably different
+materials are from each other. That is "same base, a different facet every
+time", reached from the bench and from the arithmetic independently.
+
+`--robust` optimises the 90th percentile under that noise instead of the
+nominal doses. It costs almost nothing nominally and improves the tail from
+0.765 to 0.592, and it gets there by refusing to depend on potent traces: the
+robust blend's masses span 8% to 31%, where the nominal one leaned on rose
+oxide at 3.7% of the mass but 36% of the predicted odour activity. A
+sensitivity ranking of the blend the perfumer actually made named hexyl
+acetate, gamma undecalactone and rose oxide as its three most error-sensitive
+ingredients; the perfumer, without having seen that ranking, named rose oxide
+and gamma undecalactone as the facets that stuck out.
+
+So the conclusion is about where effort belongs. A better solver cannot help.
+Either the thresholds get measured, or dosing stays an ordering heuristic and
+blends are chosen for insensitivity to it.
+
 ### Oversimplification works in the model's space, and is untested on a nose
 
 Effective dimensionality of the two spaces, measured on this library:
