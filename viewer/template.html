@@ -1257,7 +1257,11 @@ window.addEventListener("error", function (ev) {
       + "same point, so stereochemistry is effectively invisible; and the vectors encode "
       + "chemical structure more strongly than smell.";
     document.getElementById("foot").innerHTML =
-      "<strong>Layout</strong>: MolOR " + esc(encoder) + ", cross-attention over "
+      "<strong><a href=\"https://valkon.us/molor/simplify\" "
+      + "style=\"color:var(--accent)\">Formula simplifier &#8594;</a></strong>"
+      + " &nbsp;paste a formula and find the smallest blend with the same "
+      + "predicted character."
+      + "<br><br><strong>Layout</strong>: MolOR " + esc(encoder) + ", cross-attention over "
       + "ESM-2 650M receptor embeddings, checkpoint "
       + esc(D.meta.checkpoint_md5.slice(0, 12))
       + ", receptor panel " + esc(D.meta.panel_hash)
