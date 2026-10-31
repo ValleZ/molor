@@ -7,6 +7,33 @@ Scores are continuous sigmoid outputs of the model's raw logits. They are not
 binned, thresholded, or normalised, and they are not concentration-specific
 activation strengths.
 
+## Two things to look at
+
+**[The receptor atlas](https://valkon.us/molor)** — 375 points: 352 raw
+materials, 22 essential oils rebuilt from published GC compositions, and the
+average of everything, laid out by predicted receptor response. Six layouts,
+colouring by predicted descriptor or by the perfumer's own odour families,
+and a per-material card with predicted odour, measured threshold where one
+exists, and whether the percept model was trained on that molecule.
+
+**[The formula simplifier](https://valkon.us/molor/simplify)** — paste a
+formula, get the smallest blend of materials whose predicted character is
+closest to it. Runs entirely in the page. Closeness is reported against what
+a random blend of the same size achieves, against the nearest single
+material, and against the floor the largest allowed blend reaches, because a
+distance on its own means nothing.
+
+Both are single self-contained HTML files built from the library store by
+`scripts/export_viewer_data.py` + `scripts/build_viewer.py` and
+`scripts/export_simplify_data.py` + `scripts/build_simplify.py`. The deployed
+copies live in a separate site repository; `--no-notes` withholds the
+perfumer's written smelling impressions from any published build, and every
+deploy is checked for that.
+
+The rest of this document is the record of what was measured, what was
+retracted, and what is still wrong. The corrections table immediately below
+is the shortest honest summary of the whole project.
+
 ## Corrections
 
 Several findings in this document were later overturned by their own
@@ -1313,7 +1340,31 @@ src/orvector/
   model.py        checkpoint inspection and strict load
   inference.py    featurisation and the prediction loop
   cli.py          prepare / predict / info
-artifacts/        receptors.tsv, manifest.json, esm_cache/, panel_embeddings.npy
+  store.py        the library store: molecules, logits, scores, provenance
+
+scripts/          everything measured in this document, one script per claim
+  train_fp_v3.py            the percept model that colours the atlas
+  build_naturals.py         essential oils from GC compositions, self-checking
+  predict_formula.py        a formula's predicted character and neighbours
+  try_formula.py            paste a formula, get a local atlas with it on it
+  reverse_accord.py         a descriptor target or a material to reproduce
+  palette.py                the gamut of a fixed palette
+  rule_bakeoff.py           five mixture rules against the oils
+  mud.py / olfactory_white.py   the white point, and how few materials reach it
+  bench_simplify.py         the simplifier against the hand heuristic
+  discriminating_blends.py  blends whose smell would decide the mixture rule
+  export_viewer_data.py / build_viewer.py          the atlas
+  export_simplify_data.py / build_simplify.py      the simplifier
+  check_viewer_js.py        lexes a built page before it ships
+
+viewer/           template.html (atlas), simplify.html (simplifier)
+data/
+  inventory/      the perfumer's materials, use levels, threshold figures
+  naturals/       sourced GC compositions, with what each omits and why
+  formulas/       published formulas, and the queries run against them
+  percept/        GS-LF and Keller label sets, which nothing here is fitted to
+library/input/    what went into the store, one CSV per addition
+artifacts/        receptors.tsv, manifest.json, the library stores, esm_cache/
 vendor/olfaction  pinned upstream checkout
 vendor/zenodo     checkpoint and reference logits
 ```

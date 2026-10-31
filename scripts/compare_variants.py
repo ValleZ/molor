@@ -65,7 +65,7 @@ def nn_class_rate(m):
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--mpnn", default="library_mpnn_s6")
+    ap.add_argument("--mpnn", default="library_mpnn_clean")
     args = ap.parse_args()
 
     g = load("library")

@@ -1,6 +1,8 @@
 # Large downloaded or derived artifacts
 .venv/
 .venv-pom/
+.venv-pyrfume/
+.venv-unimol/
 vendor/olfaction/
 vendor/zenodo/
 # OpenPOM clone: 10 x 25 MB ensemble checkpoints, re-cloneable
@@ -26,6 +28,8 @@ __pycache__/
 artifacts/viewer_data*.json
 artifacts/receptor_atlas*.html
 artifacts/molor_public*.html
+artifacts/simplify*.html
+artifacts/simplify_data.json
 artifacts/maps*/
 # The deployed copy of the atlas is versioned in the valkon.us repo, which is
 # how the site is published; keeping a second copy here only doubles the churn.

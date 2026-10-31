@@ -106,7 +106,7 @@ def main() -> int:
     # rebuilt under new names whenever the featurisation or the material list
     # changes, and silently scoring a stale store is the easy mistake here.
     gcn_name = "library"
-    mpnn_name = "library_mpnn_s6"
+    mpnn_name = "library_mpnn_clean"
     for i, a in enumerate(sys.argv):
         if a == "--gcn" and i + 1 < len(sys.argv):
             gcn_name = sys.argv[i + 1]
