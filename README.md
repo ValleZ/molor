@@ -25,6 +25,7 @@ reader does not act on a retracted claim:
 | a blend's position on the atlas means something | **only under the right rule** — noisy-OR is a union, so it placed a 28-ingredient formula 62 from the cloud's centre where materials sit 14.6; the distance was measuring ingredient count |
 | noisy-OR lets a trace ingredient through where a mean buries it | **false** — it scales by `w / w.max()`, so 3% of a four-material blend enters at ~9% strength; in 40,000 random blends it never once carried a descriptor the mean did not |
 | a fixed palette of ~25 materials could reach any smell | **false for single molecules** — the reachable set is the palette's convex hull: 25 materials capture 95% of the space's energy and still reproduce only 45% of the library to cosine 0.90 |
+| the centroid of percept space is the olfactory white point, the "mud" | **false, and the perfumer caught it on the bench** — the centroid is the *average* smell, not a flat one: sweet 0.45, fruity 0.44, floral 0.38, green 0.35, sd 0.075 across descriptors. It has character by construction. Their description was "bright and sharp, like bright light", which is a better name for it |
 
 The pattern is worth stating: every number that looked good on its own
 cross-validation failed when checked against something it had not been fitted
@@ -937,6 +938,49 @@ benzoate; the furthest out are α- and β-pinene and fenchone.
 A real formula is also pulled well inward (0.61, versus 1.22 for a material),
 which is the uncomfortable part: by this measure a twelve-material accord is
 already a third of the way to white.
+
+### Three different whites, because the centroid is not flat
+
+Calling the centre of percept space "the mud" was wrong, and the error was
+caught by smelling it rather than by any measurement. The centroid is the
+*average* smell: sweet 0.45, fruity 0.44, floral 0.38, green 0.35, with a
+standard deviation of 0.075 across the 138 descriptors. Nothing about that is
+characterless. The perfumer's verdict on a three-material blend aimed at it was
+that it is "the bright white where all the receptors do fire ... bright and
+sharp like the bright light", which is a better description than mud and a
+different thing from what the published olfactory-white experiment produced.
+
+So `mud.py --target` now offers three, and they are measurably different:
+
+| target | what it asks for | best 5-material blend reaches | profile mean | profile sd |
+|---|---|---|---|---|
+| `centroid` | the library's average smell | 0.211 | 0.051 | 0.079 |
+| `flat` | every descriptor equally applicable | 0.546 | 0.041 | 0.046 |
+| `dull` | the origin: smelling of as little as possible | 0.647 | 0.031 | 0.045 |
+
+The ordering is the useful part. The centroid is the brightest and the most
+peaked; the flat target is dimmer and genuinely more even; the origin is dimmest
+of all. And only the centroid is reachable -- 0.211 is inside the
+nearest-neighbour yardstick of 0.525 while the other two are not, so from five
+materials an equal-energy white cannot be built at all, only approached.
+
+Dosing had to be fixed first, twice. The blend aimed at the centroid failed on
+the bench because methyl benzoate dominated it, and of the three potency
+signals in this repository only the measured detection thresholds predicted
+that (0.52 ppb against undecavertol's 3.0; the perfumer's use levels put all
+three materials at 2% and the predicted-intensity model ranked methyl benzoate
+*weaker*, though it answers a different question -- intensity at a fixed dose
+rather than threshold). `--potency threshold` makes the solved weights shares
+of odour activity and converts them to masses, which drops methyl benzoate from
+33.5% to 7.0%; the bench then preferred 5%, so `--oav-exponent` exists and 1.2
+fits that single observation, which is one parameter fitted to one data point
+and is labelled as such.
+
+The second fix: converting activity to mass with thresholds spanning orders of
+magnitude produces arithmetically correct nonsense -- a blend 96% cinnamyl
+alcohol and 0.0% pistachio thiazole, which is one material with contamination.
+The search now rejects any subset whose implied doses fall outside
+`--mass-floor` to `--mass-ceiling`, so what it proposes can be weighed.
 
 ### Oversimplification works in the model's space, and is untested on a nose
 
