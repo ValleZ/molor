@@ -6,24 +6,24 @@
 __MIXPANEL_SNIPPET__
 <style>
   :root {
-    --bg: #faf8f5; --surface: #ffffff; --surface-2: #f1ece6;
-    --fg: #1b1917; --muted: #6d655c; --line: #ded6cc;
-    --accent: #9c5b2e; --warn: #c9803a; --good: #3f7a52;
-    --font-display: "Archivo", system-ui, -apple-system, sans-serif;
-    --font-body: ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --bg: #ffffff; --surface: #ffffff; --surface-2: #f3f5f7;
+    --fg: #121212; --muted: #5f6368; --line: #e3e6e9;
+    --accent: #121212; --chart: #879eac; --warn: #9a5b33; --good: #3f6b52;
+    --font-display: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    --font-body: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
     --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --bg: #17161a; --surface: #201f25; --surface-2: #2a2931;
-      --fg: #ece9e4; --muted: #9c958c; --line: #3a3842;
-      --accent: #d08a52; --warn: #d79a5c; --good: #6aa87f;
+      --bg: #121212; --surface: #191919; --surface-2: #202020;
+      --fg: #ededed; --muted: #9aa0a6; --line: #2e2e2e;
+      --accent: #ededed; --chart: #879eac; --warn: #c08b63; --good: #7fa891;
     }
   }
   :root[data-theme="dark"] {
-    --bg: #17161a; --surface: #201f25; --surface-2: #2a2931;
-    --fg: #ece9e4; --muted: #9c958c; --line: #3a3842;
-    --accent: #d08a52; --warn: #d79a5c; --good: #6aa87f;
+    --bg: #121212; --surface: #191919; --surface-2: #202020;
+    --fg: #ededed; --muted: #9aa0a6; --line: #2e2e2e;
+    --accent: #ededed; --chart: #879eac; --warn: #c08b63; --good: #7fa891;
   }
   [hidden] { display: none !important; }
   * { box-sizing: border-box; }
@@ -32,33 +32,38 @@ __MIXPANEL_SNIPPET__
     font-family: var(--font-body); font-size: 15px; line-height: 1.5;
   }
   .wrap { max-width: 1060px; margin: 0 auto; padding: 24px 16px 64px; }
+  /* Fraterworks sets both heading and body weight to 400 and scales headings
+     down rather than up, so nothing on the page shouts. */
   h1 {
-    font-family: var(--font-display); font-size: 26px; font-weight: 800;
-    margin: 0 0 6px; letter-spacing: -0.015em;
+    font-family: var(--font-display); font-size: 25px; font-weight: 400;
+    margin: 0 0 8px; letter-spacing: 0.005em;
   }
   h2 {
-    font-family: var(--font-display); font-size: 16px; font-weight: 700;
-    margin: 28px 0 10px; letter-spacing: -0.01em;
+    font-family: var(--font-display); font-size: 14px; font-weight: 500;
+    margin: 30px 0 10px; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--muted);
   }
   .lede { color: var(--muted); margin: 0 0 20px; max-width: 70ch; }
   .card {
     background: var(--surface); border: 1px solid var(--line);
-    border-radius: 10px; padding: 16px; margin: 0 0 16px;
+    border-radius: 2px; padding: 16px; margin: 0 0 16px;
   }
   textarea {
     width: 100%; min-height: 190px; resize: vertical; padding: 12px;
     font-family: var(--font-mono); font-size: 13px; line-height: 1.45;
-    background: var(--bg); color: var(--fg);
-    border: 1px solid var(--line); border-radius: 8px;
+    background: var(--surface-2); color: var(--fg);
+    border: 1px solid var(--line); border-radius: 2px;
   }
   .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
   button {
-    font: inherit; font-weight: 600; padding: 9px 16px; cursor: pointer;
-    background: var(--accent); color: #fff; border: 0; border-radius: 8px;
+    font: inherit; font-weight: 400; padding: 10px 20px; cursor: pointer;
+    background: var(--accent); color: var(--bg); border: 1px solid var(--accent);
+    border-radius: 2px; letter-spacing: 0.04em; text-transform: uppercase;
+    font-size: 13px;
   }
   button.ghost {
-    background: var(--surface-2); color: var(--fg);
-    border: 1px solid var(--line); font-weight: 500;
+    background: transparent; color: var(--fg);
+    border: 1px solid var(--line);
   }
   label.opt { display: inline-flex; gap: 6px; align-items: center; color: var(--muted); }
   table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
@@ -74,16 +79,20 @@ __MIXPANEL_SNIPPET__
   .warn { color: var(--warn); }
   .good { color: var(--good); }
   .pill {
-    display: inline-block; padding: 1px 7px; border-radius: 999px;
-    font-size: 11.5px; background: var(--surface-2); color: var(--muted);
+    display: inline-block; padding: 1px 6px; border-radius: 2px;
+    font-size: 11px; background: var(--surface-2); color: var(--muted);
+    letter-spacing: 0.04em;
   }
-  .pill.eo { background: var(--accent); color: #fff; }
-  .bar { height: 9px; border-radius: 5px; background: var(--accent); }
+  .pill.eo {
+    background: transparent; color: var(--muted);
+    border: 1px solid var(--line);
+  }
+  .bar { height: 8px; border-radius: 0; background: var(--chart); }
   .barrow { display: grid; grid-template-columns: 120px 1fr 56px; gap: 8px; align-items: center; margin: 3px 0; }
   .barrow .lbl { font-size: 13px; }
   .barrow .val { font-family: var(--font-mono); font-size: 12px; color: var(--muted); text-align: right; }
   input[type=range] { width: 100%; }
-  .big { font-family: var(--font-display); font-size: 30px; font-weight: 800; letter-spacing: -0.02em; }
+  .big { font-family: var(--font-display); font-size: 26px; font-weight: 400; }
   .kv { display: grid; grid-template-columns: auto 1fr; gap: 2px 12px; margin: 0; font-size: 13.5px; }
   .kv dt { color: var(--muted); }
   .kv dd { margin: 0; font-variant-numeric: tabular-nums; }
@@ -541,7 +550,7 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
     var m = max || Math.max.apply(null, items.map(function (x) { return Math.abs(x[1]); })) || 1;
     container.innerHTML = items.map(function (x) {
       var pct = Math.min(100, 100 * Math.abs(x[1]) / m);
-      var col = x[1] < 0 ? "var(--muted)" : "var(--accent)";
+      var col = x[1] < 0 ? "var(--line)" : "var(--chart)";
       return '<div class="barrow"><span class="lbl">' + esc(x[0])
         + '</span><span><span class="bar" style="width:' + pct.toFixed(1)
         + '%;background:' + col + '"></span></span><span class="val">'
@@ -667,9 +676,7 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
         var m = MAT[x.idx];
         var note = [];
         if (m.oil) note.push('<span class="pill eo">EO</span> ' + esc(m.built || ""));
-        if (STATE.inFormula[x.idx]) {
-          note.push('<span class="pill">yours</span>');
-        } else if (m.iso > 60) {
+        if (!STATE.inFormula[x.idx] && m.iso > 60) {
           // Only worth saying about a substitution. On an ingredient the
           // formula already contains it is not a choice anyone is making.
           note.push('<span class="warn">distinctive — may read as itself</span>');
