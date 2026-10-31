@@ -145,6 +145,22 @@ ALIAS = {
     "citronellol": "Citronellol",
     "helional": "Helional",
     "hedione": "Hedione",
+    "dihydromyrcenol": "Dihydro Myrcenol",
+    "lemon fcf": "Lemon FCF",
+    # Hedione HC is the cis-enriched grade of the same molecule, and the
+    # percept model's fingerprint is stereo-blind, so it is the same input.
+    # The grades do not smell the same on a blotter; nothing here can tell
+    # them apart, and pretending otherwise by dropping the ingredient is worse.
+    "hedione hc": "Hedione",
+    # Sylvamber and Timbersilk are both the OTNE isomer family, CAS
+    # 54464-57-2, which is what Iso E Super is. Sylvamber is an enriched
+    # fraction of it and is perceptibly different on the bench; constitutionally
+    # it is the same material, which is all the model reads.
+    "sylvamber": "Iso E Super",
+    "timbersilk": "Iso E Super",
+    "e. brass.": "Ethylene Brassylate",
+    "e brass": "Ethylene Brassylate",
+    "palisandin": "Palissandin",
     "edenolide": "Edenolide",
     "velvione": "Velvione",
     "habanolide": "Habanolide",

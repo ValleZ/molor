@@ -21,10 +21,16 @@ reader does not act on a retracted claim:
 | fingerprint v1 has the best similarity structure | **artefact** — measured against the training labels; on independent panels no trained model separates from another |
 | the ablation selected v3 on similarity grounds | **unsupported** — the metric it was selected on does not predict independent panel data |
 | predicted odour thresholds are usable for dosing | **withdrawn** — Spearman 0.14 against the perfumer's use levels in-domain, −0.17 outside it |
+| patchouli and vetiver cannot be built from their GC compositions | **false** — a shelf limit, not a model limit; thirteen sesquiterpenoids added as reference molecules and vetiver now puts `vetiver` 3rd of 138 by lift |
+| a blend's position on the atlas means something | **only under the right rule** — noisy-OR is a union, so it placed a 28-ingredient formula 62 from the cloud's centre where materials sit 14.6; the distance was measuring ingredient count |
 
 The pattern is worth stating: every number that looked good on its own
 cross-validation failed when checked against something it had not been fitted
 to. Bench observations caught four of these before any metric did.
+
+The same pattern runs the other way once: the formula work below contains one
+prediction that was stated in advance and then confirmed on a blotter, and it
+is the only external validation here that no metric could have supplied.
 
 ## What this is built on
 
@@ -778,6 +784,252 @@ A caution carried by `notes_vs_models`: predicting GS-LF base rates while
 ignoring the molecule entirely scores 0.841 AUC against the perfumer's notes,
 where the best model reaches 0.905. Most of an impressive-looking AUC on
 unbalanced odour labels is the prior.
+
+## Formulas: reading a blend, and the one prediction a nose has checked
+
+Everything above this section predicts for one molecule at a time. This part
+predicts for a formula, and it contains the only claim in the whole repository
+that was stated in advance and then confirmed by smelling something.
+
+### The throwaway path
+
+```bash
+python scripts/try_formula.py pasted.txt --owned
+python scripts/try_formula.py v1.txt v2.txt --label "v1" --label "v2"
+```
+
+`try_formula.py` takes a formula sheet exactly as a perfumer writes one -- name
+first, amount last, tabs or spaces, percent signs optional, a stock strength in
+the name read as a dilution so `Calone 10%  40` contributes four parts of
+calone and not forty -- and produces a local atlas with the blend on it as a
+star. Several formulas go on one page, fitted together, so the distance between
+their stars is a distance in the same space as everything else.
+
+Nothing is added to the library and nothing is deployed: the intermediate files
+go to `artifacts/temp/`, which is gitignored, and the page gets no analytics
+because no token is passed. A formula is not a material and has no business in
+the molecule store.
+
+### Naturals are built from GC compositions, and they check themselves
+
+A formula written by a perfumer is mostly naturals, so dropping them costs more
+coverage than anything else. `scripts/build_naturals.py` builds each oil from a
+sourced GC composition in `data/naturals/compositions.json`, in both percept
+and receptor space, by the same combination rule a formula uses.
+
+The validation is close to free and it is blind: the percept model's
+138-descriptor vocabulary contains *bergamot*, *lavender*, *geranium*, *mint*,
+*clove*, *cinnamon*, *lemon*, *vetiver* and a dozen more, so an oil can be
+scored without being told its name. The question is where its own name lands by
+lift against a null of random blends of the same size. **14 of the 19
+checkable oils put their own name in the top 5 of 138.** Four lavender
+chemotypes span cosine 0.72 to 0.91 and the model ranks them as different
+materials, which is the clearest demonstration here that it reads proportions
+and not just ingredients.
+
+An oil within 0.98 centred cosine of a single library material is built but
+kept **off** the atlas: its point would say nothing the molecule beside it
+already says. Ten of 28 are in that position -- sweet orange and tangerine sit
+exactly on D-Limonene, lemongrass 0.992 from Citral. They remain available to
+formulas, because "useless as a point" and "necessary as an ingredient" are
+different questions, and dropping them from the file made any formula that said
+`Lemon EO` lose that weight.
+
+### The library now holds reference molecules, not only shelf stock
+
+`vetiver and patchouli cannot be built` was wrong, and wrong in an instructive
+way. Against a published vetiver composition the library resolved **1.4%** --
+caryophyllene and a trace of farnesol. The limit was never the model: it was
+that no vetiver sesquiterpenoid was in the library. Thirteen were added as
+reference molecules with PubChem structures (khusimol, the vetivones,
+vetiselinenol, isovalencenol, zizanoic acid, khusimone; patchoulol, the
+guaienes, seychellene, β-patchoulene, norpatchoulenol), which is consistent
+with what the library already was -- 321 materials of which about 129 are on
+the perfumer's actual shelf.
+
+| oil | resolves | blind self-check |
+|---|---|---|
+| Patchouli (Javanese) | 82% of the oil | no vocabulary word; lift reads earthy +2.9, camphoreous +2.5, woody +1.8 |
+| Vetiver (Haiti) | ~46% of the oil | **`vetiver` 3rd of 138, z +1.81** |
+
+Vetiver naming itself is worth more than it looks: khusimone is the only
+constituent GS-LF ever labelled *vetiver*, and it is 2.6% of the build, so the
+other 97% had to carry the word by structural similarity alone. It will also
+stay the weakest build here for a reason no addition fixes -- vetiver has no
+majority constituent, it is ~150 sesquiterpenoids, and the named ones total
+under half the oil.
+
+What stays out of reach is different in kind. Labdanum is C20 labdane acids
+plus an unassigned resin fraction: **5.7%** of a published composition resolves
+even now, and the volatiles that carry its smell are mostly unidentified in the
+literature. Adding molecules cannot fix a composition nobody has written down.
+
+### Read lift against a null, never the raw values
+
+The raw combined descriptor values are dominated by GS-LF label frequency. A
+random ten-material blend already scores floral 0.90 and sweet 0.95, so a
+formula scoring floral 0.99 has said almost nothing. `predict_formula.py`
+therefore standardises against a null of random blends **of the same size at
+the same weights**, and the lift is the only informative reading. On a 32-
+ingredient fresh-woody formula the raw list was floral / woody / fruity /
+green; the lift was `jasmin +6.5` (Hedione at 14.5%, read correctly), then
+natural, vetiver, amber, dry, cedar, lavender, sandalwood, bergamot.
+
+What the null cannot fix: formula and null are combined by the same rule, so a
+bias in the rule survives the subtraction.
+
+### A blend's position on the atlas is a property of the combination rule
+
+This was a bug, found by a perfumer asking why a blend was not in the middle of
+the cloud when its ingredients were. Noisy-OR is a union, not an average:
+`1 − Π(1 − wᵢpᵢ)` is ≥ every ingredient on every receptor, so a blend cannot
+land between its ingredients, it gets pushed outward. A 28-ingredient formula
+fired 89 receptors above 0.5 where the median single material fires none, and
+its total activation was 2nd highest of 325 points. Its distance from the
+centre was measuring ingredient count, not character.
+
+| rule | distance from the cloud's centre | nearest point |
+|---|---|---|
+| noisy-OR (union) | 62.2 | Cedrene Alpha |
+| mean of probabilities | 31.3 | Lime EO |
+| **mean of logits** | **14.5** (median material 14.6) | **Lavender EO (French)** |
+
+The atlas is built by taking logits and reducing them, so averaging in that
+space is averaging in the space the picture is drawn in. `--place logit-mean`
+is now the default for an injected blend, and the inspector card states which
+rule placed the star. The oils are mostly unharmed by the union rule -- with
+five to eight constituents the inflation is small -- with one exception worth
+knowing: **Cedarwood EO is the single most extreme point on the published
+atlas** at 152.8 total activation against a library median of 5.5.
+
+### Olfactory white sits at the centroid
+
+Published work reports that mixtures of ~30 equal-intensity components spanning
+odour space converge on a common percept. This model reproduces the
+convergence, and the measurement is only useful if the two mechanisms are kept
+apart.
+
+| blend | distance from the average point, by mean | by noisy-OR | nearest single material |
+|---|---|---|---|
+| single material (median) | 1.22 | 1.22 | — |
+| random 3 | 0.81 | 0.90 | +0.99 |
+| random 10 | 0.47 | 2.58 | +0.74 |
+| random 30, three independent draws | **0.20, 0.20, 0.31** | 4.2, 4.9, 5.6 | +0.55, +0.55, +0.60 |
+| a real 12-material formula | 0.61 | 1.95 | +0.81 |
+
+Under a mean, large random blends collapse **into** the centroid -- four to six
+times closer in than any material. Under noisy-OR they shoot **outward** to the
+saturation corner, and two unrelated 30-material blends then reach cosine
++0.94 with each other purely by both sitting against the ceiling. Only the
+first of those is the phenomenon; the second is an artefact, and cosine is
+misleading in both directions, so `--compare` now prints absolute distance from
+the average point alongside it and refuses to compare two blends combined by
+different rules.
+
+On the atlas the three random 30-material blends sit 1.1 to 4.4 from the
+cloud's centre where the median material sits 14.9 out -- the 0th to 1st
+percentile. The mud is in the middle, exactly. The single materials nearest
+that centre are Pharaone, Undecavertol, Nympheal, diethyl phthalate and methyl
+benzoate; the furthest out are α- and β-pinene and fenchone.
+
+A real formula is also pulled well inward (0.61, versus 1.22 for a material),
+which is the uncomfortable part: by this measure a twelve-material accord is
+already a third of the way to white.
+
+### Oversimplification works in the model's space, and is untested on a nose
+
+Effective dimensionality of the two spaces, measured on this library:
+
+| space | components for 80% of variance | for 90% |
+|---|---|---|
+| percept (138 descriptors) | 13 | 22 |
+| receptor (386 ORs) | 2 | 4 |
+
+The receptor figure is flattered -- its first component is essentially total
+potency, which is why the atlas offers a "potency removed" view. But 13 to 22
+effective axes for smell means a blend of k materials with k−1 free proportions
+should be able to reach any point in it for quite small k. That is the formal
+version of a metamer: different mixtures, one percept, exactly as different
+spectra give one colour.
+
+`reverse_accord.py --match` tests it against ground truth:
+
+```bash
+python scripts/reverse_accord.py --match Petitgrain --size 2 --owned
+```
+
+| materials allowed | proposal | centred cosine to petitgrain |
+|---|---|---|
+| 2 | Linalyl Acetate 60%, Neobergamate Forte 40% | **+0.948** |
+| 6 | + Undecavertol, Linalyl Propionate, Calone, Hexyl Acetate | +0.975 |
+
+The best single material in the library reaches about +0.78 of petitgrain. Two
+materials reach +0.95. And the search **did not rediscover the composition**:
+petitgrain is linalyl acetate 69%, linalool 22%, α-terpineol 4%, geranyl
+acetate 2%, geraniol 2%, nerol 1%, and it found 1 of those 6 -- though it found
+the one that is 69% of the oil, against 0.19 hits expected by chance. For the
+rest it substituted Neobergamate Forte and Undecavertol: a *different* mixture
+with the same predicted profile, which is a metamer claim the model cannot
+check about itself.
+
+**Open bench test:** linalyl acetate 60 / Neobergamate Forte 40 against a
+petitgrain bottle. Both materials are on the shelf. Unlike every reverse-search
+result before it, this one has a ground truth sitting next to it.
+
+### The prediction that was checked, and what it got wrong
+
+A perfumer's 12-material Acqua di Gio attempt resolved at 100%. Asked which
+materials *on their own shelf* the blend was nearest in percept space, the
+model answered -- before anything was smelled:
+
+```
+* +0.809  Bergamot EO            <- an ingredient, 17% of the blend
+  +0.778  Lavandin EO (Grosso)     not an ingredient
+  +0.671  Petitgrain EO            not an ingredient
+  +0.551  Linalyl Acetate
+```
+
+Bench verdict: *"It does smell like citrusy obviously but also like petitgrain
+(more) and like lavandin."*
+
+Both non-ingredient materials, top two of 142, named in advance. The **set** was
+right and the **order** was wrong -- the model ranked lavandin above petitgrain
+and the nose put petitgrain first. That is the strongest external validation in
+this repository, and it is worth being precise about its size: one formula, one
+nose, one session, and the model's own ranking within the pair was inverted.
+
+It also failed on the thing that formula exists for. **Neither this blend nor
+the 32-material version shows the aquatic note at all**: `ozone` comes out at
+z +0.15, rank 37 of 138, and there is no `marine` or `watery` descriptor in the
+vocabulary. Calone is 0.47% of the blend by mass, so a mass-weighted union
+cannot see it -- the same failure as nootkatone in grapefruit oil (0.1% of the
+oil, and the whole grapefruit note) and the same failure as the mojito. The
+model reads blends whose character is in their **bulk** and is blind to blends
+whose character is in their **traces**.
+
+Odour-activity weighting, which exists to fix exactly this, made it worse:
+weighting by neat share over measured threshold flipped the ranking to woody /
+cedar / amber, because Iso E Super and Ambroxan have very low thresholds and
+both citrus oils were dropped for having no measured threshold at all. That is
+the third formula on which OAV weighting has failed to generalise, against one
+on which it helped.
+
+### What is missing, in order of how soon it bites
+
+1. **Time.** A perfume is a trajectory; these vectors are static. There is no
+   volatility axis anywhere in the model, so a blend matched at t=0 says
+   nothing about t=1h -- which is the first thing a simplified formula loses.
+2. **Dose.** Detection thresholds span six orders of magnitude. A metamer
+   matched at one concentration is not one at another, and the weights
+   `reverse_accord` prints are proportions, not doses.
+3. **Suppression.** Real mixtures are sub-additive. Both combination rules here
+   (a union and a mean) were chosen for their shape, not fitted to mixture
+   data, and the choice moves a blend's position by a factor of four.
+4. **Hedonics.** No axis for richness, naturalness or whether something is
+   good. The perfumer's "fresh but not as nice as the real deal" is invisible
+   to every number here, and the usual explanation -- that richness comes from
+   dozens of components below any weight the model notices -- is precisely the
+   blind spot above.
 
 ## Layout
 

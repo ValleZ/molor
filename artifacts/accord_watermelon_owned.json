@@ -1,0 +1,146 @@
+{
+  "target": "melon=1,cucumber=0.7,green=0.6,juicy=0.6,fresh=0.5,ozone=0.4,fruit skin=0.4,sweet=0.3",
+  "size": 6,
+  "owned_only": true,
+  "match": 0.6009,
+  "accord": [
+    {
+      "name": "Hexyl Acetate",
+      "proportion": 0.3
+    },
+    {
+      "name": "Trans-2,Cis-6-Nonadienal",
+      "proportion": 0.2
+    },
+    {
+      "name": "Helional",
+      "proportion": 0.14
+    },
+    {
+      "name": "Pear Ester",
+      "proportion": 0.14
+    },
+    {
+      "name": "Calone 1951",
+      "proportion": 0.14
+    },
+    {
+      "name": "Verdox HC",
+      "proportion": 0.08
+    }
+  ],
+  "trace": [
+    {
+      "step": 1,
+      "added": "Trans-2,Cis-6-Nonadienal",
+      "score": 0.4867
+    },
+    {
+      "step": 2,
+      "added": "Helional",
+      "score": 0.5389
+    },
+    {
+      "step": 3,
+      "added": "Hexyl Acetate",
+      "score": 0.5827
+    },
+    {
+      "step": 4,
+      "added": "Pear Ester",
+      "score": 0.5881
+    },
+    {
+      "step": 5,
+      "added": "Calone 1951",
+      "score": 0.6079
+    },
+    {
+      "step": 6,
+      "added": "Verdox HC",
+      "score": 0.6144
+    }
+  ],
+  "profile": [
+    {
+      "name": "melon",
+      "z": 4.41
+    },
+    {
+      "name": "pear",
+      "z": 3.86
+    },
+    {
+      "name": "vegetable",
+      "z": 3.023
+    },
+    {
+      "name": "green",
+      "z": 2.887
+    },
+    {
+      "name": "cucumber",
+      "z": 2.846
+    },
+    {
+      "name": "grassy",
+      "z": 2.807
+    },
+    {
+      "name": "ozone",
+      "z": 2.719
+    },
+    {
+      "name": "cortex",
+      "z": 2.576
+    },
+    {
+      "name": "leafy",
+      "z": 2.075
+    },
+    {
+      "name": "fresh",
+      "z": 2.062
+    },
+    {
+      "name": "juicy",
+      "z": 1.814
+    },
+    {
+      "name": "fruit skin",
+      "z": 1.688
+    },
+    {
+      "name": "banana",
+      "z": 1.681
+    },
+    {
+      "name": "aldehydic",
+      "z": 1.547
+    },
+    {
+      "name": "fatty",
+      "z": 1.477
+    },
+    {
+      "name": "waxy",
+      "z": 1.329
+    },
+    {
+      "name": "lily",
+      "z": 1.289
+    },
+    {
+      "name": "metallic",
+      "z": 1.273
+    },
+    {
+      "name": "weedy",
+      "z": 1.265
+    },
+    {
+      "name": "mushroom",
+      "z": 1.174
+    }
+  ]
+}

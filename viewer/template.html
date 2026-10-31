@@ -391,6 +391,10 @@ window.addEventListener("error", function (ev) {
 
 
   function visible(i) {
+    // An injected blend is always visible. It is not a library material and
+    // carries no class or odour family, so every filter would hide it -- and
+    // the whole reason it is on the page is to see where it sits.
+    if (D.molecules[i].isQuery) return true;
     var g = groupsOf(i);
     for (var k = 0; k < g.length; k++) if (!state.hidden[g[k]]) return true;
     return false;
@@ -500,6 +504,7 @@ window.addEventListener("error", function (ev) {
   }
   function radius(i) {
     var base = state.sizeByPotency ? 4.2 + 7.5 * Math.min(1, M().total[i] / 22) : 6;
+    if (D.molecules[i].isQuery) base *= 1.7;
     return base * depthScale(i);
   }
 
@@ -553,7 +558,20 @@ window.addEventListener("error", function (ev) {
       var hit = matches(idx);
       var isSel = idx === state.sel, isPin = idx === state.pin;
       ctx.beginPath();
-      if (D.molecules[idx].isNatural) {
+      if (D.molecules[idx].isQuery) {
+        // A blend being tried out: a star, so it cannot be mistaken for
+        // either a material or an oil. Its position is a noisy-OR of its
+        // ingredients' receptor vectors, which is the same assumption the
+        // oils are placed under and no stronger.
+        var qx = sx(idx), qy = sy(idx), qr = r;
+        for (var sp = 0; sp < 10; sp++) {
+          var ang = -Math.PI / 2 + sp * Math.PI / 5;
+          var rad = (sp % 2 === 0) ? qr : qr * 0.45;
+          var px = qx + Math.cos(ang) * rad, py = qy + Math.sin(ang) * rad;
+          if (sp === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+        }
+        ctx.closePath();
+      } else if (D.molecules[idx].isNatural) {
         // Essential oils are not molecules: they are mixtures built from a
         // published GC composition, so they get a diamond rather than a disc.
         // Their position is a combination of their constituents' vectors, not
@@ -568,7 +586,8 @@ window.addEventListener("error", function (ev) {
         ctx.arc(sx(idx), sy(idx), r, 0, 6.2832);
       }
       ctx.fillStyle = groupColour(primary(idx));
-      ctx.globalAlpha = (state.query && !hit) ? 0.18 : 0.92;
+      ctx.globalAlpha = (state.query && !hit && !D.molecules[idx].isQuery)
+        ? 0.18 : 0.92;
       ctx.fill();
       ctx.globalAlpha = 1;
       if (isSel || isPin) { ctx.strokeStyle = accent; ctx.lineWidth = 3; }
@@ -618,6 +637,23 @@ window.addEventListener("error", function (ev) {
         ctx.fillStyle = (id2 === state.sel || id2 === state.pin) ? accent : fg;
         ctx.fillText(nm, cx, cy);
       }
+    }
+
+    // The blends are labelled whether or not labels are on: an unlabelled
+    // star in a cloud of 300 points answers nothing.
+    for (var qi = 0; qi < order.length; qi++) {
+      var qid = order[qi];
+      if (!D.molecules[qid].isQuery) continue;
+      ctx.font = '700 12px "Archivo", system-ui, sans-serif';
+      ctx.textAlign = "center"; ctx.textBaseline = "bottom";
+      var qnm = D.molecules[qid].name;
+      var qw = ctx.measureText(qnm).width;
+      var qcx = sx(qid), qcy = sy(qid) - radius(qid) - 4;
+      ctx.fillStyle = surface; ctx.globalAlpha = 0.85;
+      ctx.fillRect(qcx - qw / 2 - 3, qcy - 13, qw + 6, 15);
+      ctx.globalAlpha = 1;
+      ctx.fillStyle = accent;
+      ctx.fillText(qnm, qcx, qcy);
     }
 
     var hiddenCount = groupList().filter(function (c) { return state.hidden[c]; }).length;
@@ -879,6 +915,10 @@ window.addEventListener("error", function (ev) {
     // than through groupColour, which colours by whatever scheme is active and
     // so greyed them out whenever the predicted-descriptor scheme was selected.
     var chips = "";
+    if (m.isQuery) {
+      chips += '<span class="chip" style="background:var(--warn,#c9803a);'
+        + 'color:#fff">BLEND</span> ';
+    }
     if (m.isNatural) {
       chips += '<span class="chip" style="background:var(--accent);'
         + 'color:#fff">EO</span> ';
@@ -900,7 +940,7 @@ window.addEventListener("error", function (ev) {
     html += '<p style="margin:0 0 9px;font-family:var(--font-display);font-size:17px;font-weight:700">'
       + esc(m.name) + "</p>";
     html += '<dl class="kv">'
-      + (m.isNatural
+      + (m.isQuery || m.isNatural
           ? "<dt>Built from</dt><dd>" + esc(m.formula) + "</dd>"
           : "<dt>Formula</dt><dd>" + esc(m.formula) + "</dd>"
             + "<dt>SMILES</dt><dd>" + esc(m.smiles) + "</dd>"
@@ -924,6 +964,37 @@ window.addEventListener("error", function (ev) {
     // tell apart from it. Sweet orange and tangerine both sit exactly on
     // D-Limonene, because what separates them is a material the library has
     // no entry for.
+    if (m.isQuery) {
+      var ing = (m.queryIngredients || []).map(function (q) {
+        return esc(q.name) + " " + q.pct.toFixed(1) + "%"
+          + (q.oil ? " (EO)" : "");
+      }).join(", ");
+      var place = m.queryPlacement || "union";
+      var how = (place === "union")
+        ? "a noisy-OR of its ingredients' receptor vectors: a receptor fires"
+          + " if any ingredient fires it. That is a union, not an average, so"
+          + " a blend of many ingredients is pushed to the rim of the cloud"
+          + " however ordinary it smells — the distance measures ingredient"
+          + " count as much as character."
+        : (place === "mean")
+        ? "a weighted mean of its ingredients' receptor probabilities, which"
+          + " lands on a flat vector no single molecule resembles."
+        : "a weighted mean of its ingredients' receptor logits — an average"
+          + " taken in the same space this picture is reduced from, so the"
+          + " blend sits among the materials rather than outside them.";
+      html += '<p class="t-meta">This is a formula, not a material. It is'
+        + " placed by " + how + "</p>";
+      if (ing) {
+        html += '<p class="t-meta"><strong>Ingredients read</strong> ('
+          + ((m.queryCoverage || 0) * 100).toFixed(0) + "% of the neat weight): "
+          + ing + "</p>";
+      }
+      if ((m.queryDropped || []).length) {
+        html += '<p class="t-meta" style="color:var(--warn,#c9803a)">'
+          + "<strong>Dropped</strong>, so nothing here accounts for them: "
+          + m.queryDropped.map(esc).join(", ") + "</p>";
+      }
+    }
     if (m.isNatural && m.collapsedOnto) {
       html += '<p class="t-meta" style="color:var(--warn,#c9803a)">'
         + "Not a distinguishable oil: this build sits on top of "

@@ -170,11 +170,12 @@ def main() -> int:
         # information -- lemongrass at 0.992 from Citral tells you what Citral
         # tells you. The composition stays in the data file with its source,
         # so raising the threshold brings it back without redoing the work.
-        if sim[top] >= args.max_nearest_cosine:
+        atlas = sim[top] < args.max_nearest_cosine
+        if not atlas:
             trimmed.append((oil, float(sim[top]), names[top]))
             print(f"  TRIM {oil}: cosine {sim[top]:.3f} to {names[top]}, "
-                  f"carries nothing the material does not")
-            continue
+                  f"carries nothing the material does not -- off-atlas, "
+                  f"still available to a formula")
 
         word = self_word(oil)
         check = None
@@ -198,6 +199,13 @@ def main() -> int:
             "nearest_cosine": round(float(sim[int(np.argmax(sim))]), 4),
             "collapsed_onto": collapsed,
             "self_check": check,
+            # Whether this oil earns a point on the atlas. A trimmed oil is
+            # still built and still written here, because those are different
+            # questions: lemon oil is useless as a point beside D-Limonene and
+            # necessary as an ingredient when a formula calls for lemon oil.
+            # Leaving it out of the file made any formula that says "Lemon EO"
+            # lose that weight, which is the worse error of the two.
+            "atlas": bool(atlas),
         }
 
         tag = (f"{check['descriptor']} rank {check['rank']}/{check['of']}, "
@@ -220,7 +228,9 @@ def main() -> int:
     passed = [k for k, v in out["naturals"].items()
               if v["self_check"] and v["self_check"]["rank"] <= 5]
     scored = [k for k, v in out["naturals"].items() if v["self_check"]]
-    print(f"\n[nat] {len(out['naturals'])} kept, {len(trimmed)} trimmed, {len(scored)} self-checkable, "
+    on_atlas = [k for k, v in out["naturals"].items() if v["atlas"]]
+    print(f"\n[nat] {len(out['naturals'])} built, {len(on_atlas)} on the atlas, {len(trimmed)} trimmed from it but still available to formulas, "
+          f"{len(scored)} self-checkable, "
           f"{len(passed)} put their own name in the top 5 of {len(desc)}")
     print(f"[nat] wrote {args.out}")
     return 0

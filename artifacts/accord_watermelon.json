@@ -1,0 +1,146 @@
+{
+  "target": "melon=1,cucumber=0.7,green=0.6,juicy=0.6,fresh=0.5,ozone=0.4,fruit skin=0.4,sweet=0.3",
+  "size": 6,
+  "owned_only": false,
+  "match": 0.6084,
+  "accord": [
+    {
+      "name": "Trans-2-Octenal",
+      "proportion": 0.2027
+    },
+    {
+      "name": "Helional",
+      "proportion": 0.2027
+    },
+    {
+      "name": "Hexyl Acetate",
+      "proportion": 0.2027
+    },
+    {
+      "name": "Dihydrocarvyl Acetate",
+      "proportion": 0.2027
+    },
+    {
+      "name": "Isobutyl Salicylate",
+      "proportion": 0.0946
+    },
+    {
+      "name": "Methyl Octine Carbonate",
+      "proportion": 0.0946
+    }
+  ],
+  "trace": [
+    {
+      "step": 1,
+      "added": "Trans-2-Octenal",
+      "score": 0.5093
+    },
+    {
+      "step": 2,
+      "added": "Helional",
+      "score": 0.5635
+    },
+    {
+      "step": 3,
+      "added": "Hexyl Acetate",
+      "score": 0.5892
+    },
+    {
+      "step": 4,
+      "added": "Isobutyl Salicylate",
+      "score": 0.5988
+    },
+    {
+      "step": 5,
+      "added": "Methyl Octine Carbonate",
+      "score": 0.6139
+    },
+    {
+      "step": 6,
+      "added": "Dihydrocarvyl Acetate",
+      "score": 0.6203
+    }
+  ],
+  "profile": [
+    {
+      "name": "melon",
+      "z": 3.602
+    },
+    {
+      "name": "cucumber",
+      "z": 3.37
+    },
+    {
+      "name": "green",
+      "z": 3.26
+    },
+    {
+      "name": "cortex",
+      "z": 2.75
+    },
+    {
+      "name": "fruit skin",
+      "z": 2.489
+    },
+    {
+      "name": "leafy",
+      "z": 2.436
+    },
+    {
+      "name": "fresh",
+      "z": 2.394
+    },
+    {
+      "name": "aldehydic",
+      "z": 2.393
+    },
+    {
+      "name": "grassy",
+      "z": 2.277
+    },
+    {
+      "name": "ozone",
+      "z": 2.22
+    },
+    {
+      "name": "violet",
+      "z": 2.139
+    },
+    {
+      "name": "vegetable",
+      "z": 2.127
+    },
+    {
+      "name": "orange",
+      "z": 2.036
+    },
+    {
+      "name": "lily",
+      "z": 1.998
+    },
+    {
+      "name": "pear",
+      "z": 1.692
+    },
+    {
+      "name": "juicy",
+      "z": 1.599
+    },
+    {
+      "name": "metallic",
+      "z": 1.59
+    },
+    {
+      "name": "mushroom",
+      "z": 1.439
+    },
+    {
+      "name": "weedy",
+      "z": 1.433
+    },
+    {
+      "name": "fruity",
+      "z": 1.397
+    }
+  ]
+}

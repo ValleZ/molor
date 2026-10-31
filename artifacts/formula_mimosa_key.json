@@ -1,0 +1,303 @@
+{
+  "formula": "untitled-10.csv",
+  "rule": "noisy-or",
+  "coverage": 1.0,
+  "ingredients": [
+    {
+      "name": "Pharone",
+      "resolved": "Pharaone",
+      "parts_per_1000": 0.52
+    },
+    {
+      "name": "Heliotropine",
+      "resolved": "Heliotropin",
+      "parts_per_1000": 5.18
+    },
+    {
+      "name": "Viridine",
+      "resolved": "Viridine",
+      "parts_per_1000": 20.71
+    },
+    {
+      "name": "Nonadienal",
+      "resolved": "Trans-2,Cis-6-Nonadienal",
+      "parts_per_1000": 0.31
+    },
+    {
+      "name": "Benzyl Acetate",
+      "resolved": "Benzyl Acetate",
+      "parts_per_1000": 41.42
+    },
+    {
+      "name": "Terpineol",
+      "resolved": "Terpineol Alpha",
+      "parts_per_1000": 103.54
+    },
+    {
+      "name": "Anisic Aldehyde",
+      "resolved": "Anisaldehyde",
+      "parts_per_1000": 207.08
+    },
+    {
+      "name": "Dihydro Ionone Beta",
+      "resolved": "Dihydro Beta Ionone",
+      "parts_per_1000": 207.08
+    },
+    {
+      "name": "Peonile",
+      "resolved": "Peonile",
+      "parts_per_1000": 207.08
+    },
+    {
+      "name": "Florhydral",
+      "resolved": "Florhydral",
+      "parts_per_1000": 207.08
+    }
+  ],
+  "descriptors": [
+    {
+      "name": "floral",
+      "p": 0.9975
+    },
+    {
+      "name": "sweet",
+      "p": 0.9806
+    },
+    {
+      "name": "green",
+      "p": 0.9739
+    },
+    {
+      "name": "woody",
+      "p": 0.9366
+    },
+    {
+      "name": "fruity",
+      "p": 0.8959
+    },
+    {
+      "name": "fresh",
+      "p": 0.8133
+    },
+    {
+      "name": "anisic",
+      "p": 0.7824
+    },
+    {
+      "name": "herbal",
+      "p": 0.7389
+    },
+    {
+      "name": "vanilla",
+      "p": 0.7053
+    },
+    {
+      "name": "spicy",
+      "p": 0.6688
+    },
+    {
+      "name": "cherry",
+      "p": 0.5557
+    },
+    {
+      "name": "citrus",
+      "p": 0.5073
+    },
+    {
+      "name": "balsamic",
+      "p": 0.4788
+    },
+    {
+      "name": "almond",
+      "p": 0.4738
+    },
+    {
+      "name": "powdery",
+      "p": 0.4721
+    },
+    {
+      "name": "muguet",
+      "p": 0.4696
+    },
+    {
+      "name": "lily",
+      "p": 0.4317
+    },
+    {
+      "name": "dry",
+      "p": 0.4104
+    },
+    {
+      "name": "tobacco",
+      "p": 0.3984
+    },
+    {
+      "name": "hawthorn",
+      "p": 0.3876
+    },
+    {
+      "name": "orris",
+      "p": 0.3544
+    },
+    {
+      "name": "rose",
+      "p": 0.3496
+    },
+    {
+      "name": "berry",
+      "p": 0.3336
+    },
+    {
+      "name": "lemon",
+      "p": 0.3268
+    },
+    {
+      "name": "amber",
+      "p": 0.3237
+    },
+    {
+      "name": "phenolic",
+      "p": 0.2748
+    },
+    {
+      "name": "earthy",
+      "p": 0.2698
+    },
+    {
+      "name": "geranium",
+      "p": 0.2451
+    },
+    {
+      "name": "hay",
+      "p": 0.2387
+    },
+    {
+      "name": "aldehydic",
+      "p": 0.2321
+    }
+  ],
+  "percept_neighbours": [
+    {
+      "name": "Anisaldehyde",
+      "cos": 0.4734
+    },
+    {
+      "name": "Helional",
+      "cos": 0.4695
+    },
+    {
+      "name": "Damascenone Total",
+      "cos": 0.4628
+    },
+    {
+      "name": "Theaspirane",
+      "cos": 0.4188
+    },
+    {
+      "name": "Damascone Alpha",
+      "cos": 0.4101
+    },
+    {
+      "name": "Damascone Gamma",
+      "cos": 0.3984
+    },
+    {
+      "name": "Dimethyl Benzyl Carbinyl Acetate",
+      "cos": 0.3923
+    },
+    {
+      "name": "Terpineol Alpha",
+      "cos": 0.3866
+    },
+    {
+      "name": "Verdox HC",
+      "cos": 0.3779
+    },
+    {
+      "name": "Citronellol",
+      "cos": 0.3767
+    },
+    {
+      "name": "Citronellyl Formate",
+      "cos": 0.3756
+    },
+    {
+      "name": "Linalool",
+      "cos": 0.3676
+    },
+    {
+      "name": "Damascone Delta",
+      "cos": 0.3593
+    },
+    {
+      "name": "Ocimene",
+      "cos": 0.3555
+    },
+    {
+      "name": "Linalyl Formate",
+      "cos": 0.3551
+    }
+  ],
+  "receptor_neighbours": [
+    {
+      "name": "Anethole ex Star Anise",
+      "d": 8.84
+    },
+    {
+      "name": "Cinnamaldehyde",
+      "d": 9.232
+    },
+    {
+      "name": "Cyclamen Aldehyde",
+      "d": 9.693
+    },
+    {
+      "name": "Benzyl Isoeugenol",
+      "d": 9.774
+    },
+    {
+      "name": "Phenethyl Acetate",
+      "d": 10.377
+    },
+    {
+      "name": "Cinnamyl Cinnamate",
+      "d": 10.954
+    },
+    {
+      "name": "Isoeugenol",
+      "d": 11.092
+    },
+    {
+      "name": "Terpinolene, Rectified",
+      "d": 11.203
+    },
+    {
+      "name": "Methyl Cinnamate",
+      "d": 11.341
+    },
+    {
+      "name": "Nopyl Acetate",
+      "d": 11.384
+    },
+    {
+      "name": "Caryophyllene Beta",
+      "d": 11.804
+    },
+    {
+      "name": "Benzyl Cinnamate",
+      "d": 12.554
+    },
+    {
+      "name": "Methyl Isoeugenol",
+      "d": 13.113
+    },
+    {
+      "name": "Oranger Crystals",
+      "d": 13.578
+    },
+    {
+      "name": "Nootkatone",
+      "d": 14.483
+    }
+  ]
+}

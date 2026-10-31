@@ -146,6 +146,13 @@ def main() -> int:
     ap.add_argument("--size", type=int, default=6)
     ap.add_argument("--owned", action="store_true",
                     help="restrict to materials the perfumer already has")
+    ap.add_argument("--match", default=None,
+                    help="a material or built oil to reproduce from a few "
+                         "others: the target is its own lift profile against "
+                         "the library of single materials. When the target is "
+                         "an oil whose composition is known, the proposal is "
+                         "scored against that composition, which is the only "
+                         "ground truth this direction has")
     ap.add_argument("--recover", default=None,
                     help="a formula CSV: search its target, report recall")
     ap.add_argument("--seed", type=int, default=0)
@@ -163,11 +170,89 @@ def main() -> int:
     LM = np.stack([np.asarray(r, float) for r in pj["probs"]])
     rng = np.random.default_rng(args.seed)
 
+    # Built oils join the material pool and the set of possible targets.
+    # Reproducing petitgrain oil from four molecules is a question with a
+    # known answer, which is worth more than any number of accords for
+    # descriptor targets nobody can check.
+    import predict_formula as _pf
+    oils = _pf.load_oils("library")
+    if oils:
+        names = names + list(oils)
+        LM = np.vstack([LM] + [np.asarray(v["percept"], float)[None, :]
+                               for v in oils.values()])
+
     pool = list(range(len(names)))
     if args.owned:
         own = owned_names(set(names))
         pool = [i for i, n in enumerate(names) if n in own]
         print(f"[reverse] pool restricted to {len(pool)} materials on hand")
+
+    if args.match:
+        if args.match not in names:
+            hits = [n for n in names if args.match.lower() in n.lower()]
+            if len(hits) != 1:
+                raise SystemExit(f"--match {args.match!r} is not a material; "
+                                 f"candidates: {hits[:6] or 'none'}")
+            args.match = hits[0]
+        ti = names.index(args.match)
+        # The target is what this material is unusually high in, measured
+        # against every single material rather than against blends: that is
+        # the sense in which it is "a petitgrain-like smell" rather than "a
+        # smell with some linalool in it". Common labels are therefore not
+        # free, which is the whole lesson of the forward direction.
+        mu0, sd0 = LM.mean(0), np.maximum(LM.std(0), 1e-9)
+        zt = (LM[ti] - mu0) / sd0
+        keep = np.argsort(-zt)[:6]
+        target = np.zeros(len(desc))
+        target[keep] = zt[keep]
+        target /= np.linalg.norm(target)
+        # The target itself is removed from the pool, or the search returns it
+        # and claims victory.
+        pool = [i for i in pool if i != ti]
+        print(f"[reverse] reproducing {args.match} from {args.size} of "
+              f"{len(pool)} materials")
+        print("  target, from what it is unusually high in among single "
+              "materials: " + ", ".join(f"{desc[i]}({zt[i]:+.1f})"
+                                        for i in keep))
+        chosen, w, s, trace, (mu, sd) = search(LM, names, target,
+                                               size=args.size, pool=pool,
+                                               rng=rng)
+        order = np.argsort(-w)
+        tot = w.sum()
+        print("")
+        print(f"proposal (match {s:+.3f}; proportions, NOT doses):")
+        for k in order:
+            print(f"    {100 * w[k] / tot:5.1f}%  {names[chosen[k]]}")
+        truth = {}
+        if args.match in oils:
+            truth = oils[args.match]["composition_used"]
+            got = {names[i] for i in chosen}
+            hit = got & set(truth)
+            share = sum(v for k, v in truth.items() if k in hit)
+            print("")
+            print(f"the real composition of {args.match}: "
+                  + ", ".join(f"{k} {100 * v:.0f}%" for k, v in
+                              sorted(truth.items(), key=lambda kv: -kv[1])))
+            print(f"  recovered {len(hit)}/{len(truth)} of its constituents"
+                  + (f": {', '.join(sorted(hit))}" if hit else "")
+                  + f", which are {share:.0%} of the oil")
+            base = args.size / len(pool)
+            print(f"  chance would give {len(truth) * base:.2f} hits")
+        # Cosine of the proposal to the target material itself, which is the
+        # question a blotter would ask.
+        mix = blend(LM[chosen], w)
+        c = LM - LM.mean(0)
+        a = mix - LM.mean(0)
+        cos = float(c[ti] @ a / max(np.linalg.norm(c[ti]) * np.linalg.norm(a),
+                                    1e-12))
+        near = np.argsort(-(c / np.maximum(np.linalg.norm(c, axis=1,
+                                                          keepdims=True),
+                                           1e-12)) @ (a / np.linalg.norm(a)))
+        print("")
+        print(f"centred cosine of the proposal to {args.match}: {cos:+.3f}")
+        print("  but its nearest materials are: "
+              + ", ".join(names[i] for i in near[:5]))
+        return 0
 
     if args.recover:
         from parse_formulas import classify

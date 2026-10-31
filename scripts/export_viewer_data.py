@@ -55,7 +55,7 @@ EDGE_K = 2  # mutual-kNN depth for the true-neighbour links
 #: earlier reading that put the MPNN first. Six measures have not separated
 #: them, so the viewer now offers both and lets the nose decide.
 MODELS = [
-    ("mpnn", "library_mpnn_s6", "MPNN encoder (bond features reach it, then saturate away)"),
+    ("mpnn", "library_mpnn_clean", "MPNN encoder (bond features reach it, then saturate away)"),
     ("gcn", "library", "GCN encoder (no bond features)"),
 ]
 
@@ -99,6 +99,11 @@ def load_naturals(store: str):
     blob = json.loads(path.read_text(encoding="utf-8"))
     ents, percept, rec = [], {}, {}
     for oil, v in blob["naturals"].items():
+        # Oils that repeat one of their own constituents are built but kept
+        # off the atlas: the point would say nothing the molecule beside it
+        # already says. They stay in the file for formula prediction.
+        if not v.get("atlas", True):
+            continue
         e = NaturalEntry(oil, v["composition_used"])
         # Carried through to the card: an oil that sits on top of one of its
         # own constituents is not a distinguishable oil, and saying so is more
@@ -111,16 +116,73 @@ def load_naturals(store: str):
     return ents, percept, rec
 
 
+class QueryEntry:
+    """One blend being tried out, placed on the atlas but not of the library.
+
+    This is the temporary-experiment path. A formula is not a material and has
+    no business in the library store or in a published build, but the only
+    question worth asking of a 30-ingredient formula is *where does it land*,
+    and that needs it laid out with everything else rather than compared to it
+    afterwards. So it is injected at export time from a file that
+    predict_formula.py writes, carried through every name-keyed lookup like an
+    oil, and marked so the viewer can draw it as what it is.
+    """
+
+    is_query = True
+    is_natural = False
+    cls = ""
+    inchikey = ""
+    n_atoms = 0
+
+    def __init__(self, name: str, built_from: str, coverage: float):
+        self.name = name
+        self.canonical_smiles = ""
+        self.formula = built_from
+        self.coverage = coverage
+
+
+def load_queries(path: Path, store: str):
+    """Return (entries, percept rows, receptor rows) for the injected blends.
+
+    A blend's receptor vector is per encoder, exactly as an oil's is, so the
+    file carries one per store and a store it has no vector for is a hard
+    error rather than a silent omission: half a query set would place the
+    blend on one layout and not the other, and the two layouts would then be
+    showing different molecule sets under the same name.
+    """
+    blob = json.loads(path.read_text(encoding="utf-8"))
+    ents, percept, rec = [], {}, {}
+    for q in blob["queries"]:
+        name = q["name"]
+        if store not in q["receptors"]:
+            raise ValueError(
+                f"query {name!r} has no receptor vector for store {store!r} "
+                f"(it has {sorted(q['receptors'])}); re-run "
+                f"predict_formula.py --viewer-point with --stores covering it")
+        e = QueryEntry(name, q.get("built_from", ""), q.get("coverage", 0.0))
+        e.ingredients = q.get("ingredients", [])
+        e.placement = q.get("placement", "union")
+        e.dropped = q.get("dropped", [])
+        ents.append(e)
+        percept[name] = np.asarray(q["percept"], dtype=float)
+        rec[name] = np.asarray(q["receptors"][store], dtype=float)
+    return ents, percept, rec
+
+
 def _logit(p):
     q = np.clip(np.asarray(p, dtype=float), 1e-6, 1 - 1e-6)
     return np.log(q / (1 - q))
 
 
-def build_model_block(paths, name, genes_ref, names_ref):
+def build_model_block(paths, name, genes_ref, names_ref, query=None):
     """Score matrix, distances, links and projections for one encoder."""
     lib = Library(paths, name=name)
     entries, logits, scores = lib.load()
     nat_ents, _, nat_rec = load_naturals(name)
+    if query is not None:
+        q_ents, _, q_rec = load_queries(query, name)
+        nat_ents = list(nat_ents) + q_ents
+        nat_rec = {**nat_rec, **q_rec}
     if nat_ents:
         entries = list(entries) + nat_ents
         extra = np.stack([nat_rec[e.name] for e in nat_ents])
@@ -224,6 +286,11 @@ def main() -> int:
                     help="comma-separated key=library pairs; first is the reference set")
     ap.add_argument("--out", default="artifacts/viewer_data.json")
     ap.add_argument("--percepts", default="artifacts/percepts_baseline.json")
+    ap.add_argument("--query", default=None,
+                    help="a file written by predict_formula.py --viewer-point: "
+                         "its blends are laid out with the library and marked "
+                         "as queries. For a local experiment; never passed for "
+                         "a published build")
     ap.add_argument("--no-notes", action="store_true",
                     help="omit the perfumer's private smelling notes (use for public builds)")
     args = ap.parse_args()
@@ -255,6 +322,13 @@ def main() -> int:
     if nat_ents:
         entries = list(entries) + nat_ents
         print(f"  {len(nat_ents)} essential oils built from GC composition")
+    query_path = (ROOT / args.query) if args.query else None
+    if query_path is not None:
+        q_ents, q_percept, _ = load_queries(query_path, MODELS[0][1])
+        entries = list(entries) + q_ents
+        nat_percept = {**nat_percept, **q_percept}
+        print(f"  {len(q_ents)} query blend(s) injected from {args.query}: "
+              + ", ".join(e.name for e in q_ents))
     names_ref = [e.name for e in entries]
 
     import matplotlib
@@ -475,7 +549,8 @@ def main() -> int:
     models = {}
     for key, libname, label in MODELS:
         try:
-            models[key] = build_model_block(paths, libname, genes, names_ref)
+            models[key] = build_model_block(paths, libname, genes, names_ref,
+                                            query=query_path)
             models[key]["label"] = label
             print(f"  model {key:5s} <- artifacts/{libname}")
         except Exception as exc:
@@ -514,6 +589,11 @@ def main() -> int:
              # similarity cannot.
              "perceptAll": percept_row.get(e.name, []),
              "isNatural": int(getattr(e, "is_natural", False)),
+             "isQuery": int(getattr(e, "is_query", False)),
+             "queryCoverage": getattr(e, "coverage", None),
+             "queryIngredients": getattr(e, "ingredients", None),
+             "queryPlacement": getattr(e, "placement", None),
+             "queryDropped": getattr(e, "dropped", None),
              "collapsedOnto": getattr(e, "collapsed_onto", None),
              "inTrain": int(e.name in in_train),
              "intensity": intensity.get(e.name, [None, None])[0],

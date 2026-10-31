@@ -29,3 +29,7 @@ artifacts/molor_public*.html
 artifacts/maps*/
 # The deployed copy of the atlas is versioned in the valkon.us repo, which is
 # how the site is published; keeping a second copy here only doubles the churn.
+
+# Throwaway formula experiments: scripts/try_formula.py writes here and
+# nothing in it is a result worth keeping.
+artifacts/temp/

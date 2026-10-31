@@ -1,8 +1,8 @@
 {
   "why": "A natural is a known mixture of mostly common materials, so it can be built from its GC composition and scored as a sub-mixture instead of being dropped. This matters for coverage: across the 22 published patent formulas, naturals are 6316 g of the 13362 g the library could not resolve, and bergamot alone is 2084 g of it.",
   "caveat": "A composition is a chemotype or a lot, not a substance. The four lavenders below share a name and differ enough to smell like different materials, and the model ranks them accordingly. Any formula that says only 'lavender oil' is therefore underspecified, and picking a profile for it is an assumption the prediction inherits silently. Every figure here is a single published analysis, not a specification; where a source gave a range the midpoint is used and the range is recorded.",
-  "unbuildable": "Treemoss, patchouli, vetiver and the resinoids stay out of reach: their character sits in atranol-type phenolics, patchoulol and sesquiterpene alcohols the library does not hold, so building them from the fraction that is available would misrepresent them more than dropping them does.",
-  "wanted": "Lemon and neroli were searched for and no usable GC table came back, so they are deliberately absent rather than estimated. Spearmint is buildable now that l-Carvone is in the library but needs a sourced figure.",
+  "unbuildable": "This used to say patchouli and vetiver were out of reach. That was wrong, and wrong in a way worth recording: the limit was never the model, it was that the library held none of their sesquiterpenoids. Adding thirteen of them as reference molecules -- structures from PubChem, not materials anyone stocks -- makes patchouli buildable at 82% of its oil and vetiver buildable from its identified fraction. What stays out of reach is different in kind: treemoss needs atranol-type phenolics, and labdanum is C20 labdane acids plus an unassigned resin fraction, so under 6% of a published labdanum composition resolves even now and the volatiles that carry its smell are mostly unidentified. Sandalwood is now one addition away -- alpha-santalol is in the percept model's training set labelled sandalwood -- and ginger needs zingiberene and ar-curcumene.",
+  "wanted": "Lemon and neroli now have sourced tables and are built. Spearmint is buildable now that l-Carvone is in the library but needs a sourced figure. Jasmine absolute is the most mixture-like candidate left and still needs GC data. Patchouli, vetiver, ginger and labdanum remain unbuildable, which is why a formula leaning on them loses that weight.",
   "naturals": {
     "Lavender EO (French, L. angustifolia)": {
       "source": "GC-MS of commercial market samples: linalyl acetate 37.8, linalool 33.1, eucalyptol 4.9, camphor 4.1; minor terpenes from the same literature range.",
@@ -157,6 +157,83 @@
         "Cinnamyl Acetate": 7.48, "Caryophyllene Beta": 6.88,
         "Linalool": 6.31, "Eucalyptol": 2.57
       }
+    },
+    "Lemon EO (Sicilian, cold-pressed)": {
+      "source": "GC-MS of a Sicilian cold-pressed peel oil: limonene 63.34, beta-pinene 13.55, gamma-terpinene 9.95, citral 1.88; myrcene and alpha-pinene from the same literature range (limonene across sources spans 43-66%).",
+      "note": "Peel oil, not leaf oil: the leaf is a citral oil and a different material. Expect this to sit on D-Limonene, because at 63% it is one.",
+      "composition": {
+        "D-Limonene": 63.34, "Beta Pinene": 13.55, "Terpinene Gamma": 9.95,
+        "Alpha Pinene": 2.0, "Citral": 1.88, "Myrcene": 1.5,
+        "Geranyl Acetate": 0.4, "Nerol": 0.2
+      },
+      "omitted": "sabinene (~2%), bergamotene, the coumarins of the cold-pressed fraction"
+    },
+    "Grapefruit EO (cold-pressed)": {
+      "source": "Cold-pressed peel oils across three varieties: d-limonene 87-90, beta-myrcene 2-4, gamma-terpinene 0.05-2; nootkatone 0.1 from commercial GC-MS batch data (reported values span 0.1-5.5% depending on cultivar and extraction).",
+      "note": "Nootkatone is the grapefruit note and it is a tenth of a percent of the oil, so a mass-weighted build cannot see it. This oil is a test of exactly that failure, not a demonstration of it working.",
+      "composition": {
+        "D-Limonene": 90.0, "Myrcene": 2.3, "Terpinene Gamma": 0.8,
+        "Alpha Pinene": 0.5, "Nootkatone": 0.1
+      },
+      "omitted": "octanal, decanal, alpha- and beta-sinensal, methyl N-methylanthranilate"
+    },
+    "Mandarin EO (Italian, cold-pressed)": {
+      "source": "Italian peel oil (Shiota and Ito 1991): limonene 74.52, gamma-terpinene 15.5; minor terpenes from the ISO 3528 batch range, which averages limonene 65.6, gamma-terpinene 21.9, methyl N-methylanthranilate 1.0.",
+      "note": "Methyl N-methylanthranilate is what makes a mandarin a mandarin rather than an orange, and the library holds only Methyl Anthranilate, a different molecule. It is recorded as omitted rather than substituted, the same decision taken for tangerine.",
+      "composition": {
+        "D-Limonene": 74.52, "Terpinene Gamma": 15.5, "Alpha Pinene": 2.0,
+        "Myrcene": 1.7, "Beta Pinene": 1.6
+      },
+      "omitted": "methyl N-methylanthranilate (~0.3-1.0%), thymol"
+    },
+    "Neroli EO (Egyptian)": {
+      "source": "Commercial Egyptian GC-MS batch (lot 13198 and a 2023 batch report): linalool 44.95-44.99, linalyl acetate 6.18-16.27, d-limonene 8.40-11.53, beta-pinene 4.93-5.93, nerolidol 2.21; peer-reviewed Egyptian survey puts linalool at 44-53% and linalyl acetate at 2-15%, so the midpoint of the acetate range is used.",
+      "note": "The formula's ingredient is a neroli *accord*, not the oil, so this stands in for it on the assumption that the accord is built towards the oil. The indole and methyl anthranilate traces are what make it read as a flower rather than as linalool with company.",
+      "composition": {
+        "Linalool": 45.0, "Linalyl Acetate": 11.0, "D-Limonene": 9.5,
+        "Beta Pinene": 5.4, "Nerolidol": 2.2, "Geraniol 95": 2.0,
+        "Terpineol Alpha": 1.5, "Farnesol": 1.0, "Nerol": 0.8,
+        "Methyl Anthranilate": 0.3, "Indolene 50": 0.1
+      },
+      "omitted": "sabinene (~2%), trans-nerolidol isomers, the nitrogenous traces beyond methyl anthranilate"
+    },
+    "Rosewood EO (Aniba rosaeodora)": {
+      "source": "Amazonian wood oil: linalool 93.60 in one analysis and 89.34 in another of the same species; alpha-terpineol 3.54 from a commercial reference profile (2-5% across sources).",
+      "note": "A linalool oil with a few percent of everything else, so it should land on Linalool. Ho wood is the commercial substitute and is the same shape.",
+      "composition": {
+        "Linalool": 88.0, "Terpineol Alpha": 3.5, "Nerol": 0.8,
+        "Geraniol 95": 0.8, "Caryophyllene Beta": 0.5, "Myrcene": 0.5
+      },
+      "omitted": "cis- and trans-linalool oxides, benzyl benzoate traces"
+    },
+    "Litsea Cubeba EO (Chinese, fruit)": {
+      "source": "Eight Chinese production regions (Cui et al., Molecules 2012): neral plus geranial 78.7-87.4 of the oil, d-limonene 0.7-5.3 in fruit oils; a Taiwanese fruit oil instead gives geranial 37.16, neral 28.29, d-limonene 22.90.",
+      "note": "The library has one Citral entry rather than separate neral and geranial, so the two are summed into it. The Chinese profile is used; the Taiwanese one is a different oil in practice, four times the limonene.",
+      "composition": {
+        "Citral": 85.0, "D-Limonene": 5.0, "Linalool": 1.5,
+        "Methyl Heptenone": 1.2, "Citronellal": 1.0, "Geraniol 95": 0.5
+      },
+      "omitted": "sabinene, beta-caryophyllene traces"
+    },
+    "Patchouli EO (Javanese)": {
+      "source": "Javanese oil (Lawrence 1990): patchouli alcohol 29.7, alpha-bulnesene 16.7, alpha-guaiene 13.5, seychellene 8.8, norpatchoulenol 0.8; beta-patchoulene 4.56 and trans-caryophyllene 7.96 from an Indonesian GC-MS of leaf oil. West Indian and Sumatran oils from the same compilation agree within a few points on every figure.",
+      "note": "Buildable only because its principal sesquiterpenoids were added to the library as reference molecules; they are not materials anyone stocks. Patchoulol is in the percept model's training set labelled camphoreous, earthy, powdery and woody, so the build is partly recall for a third of the oil and extrapolation for the rest. Norpatchoulenol is held to be the key odorant and is under 1% of the oil, so a mass-weighted build cannot see it -- the grapefruit problem again.",
+      "composition": {
+        "Patchoulol": 29.7, "Bulnesene Alpha": 16.7, "Guaiene Alpha": 13.5,
+        "Seychellene": 8.8, "Caryophyllene Beta": 7.96,
+        "Patchoulene Beta": 4.56, "Norpatchoulenol": 0.8
+      },
+      "omitted": "pogostol, alpha- and beta-patchoulene isomers beyond the one listed, the unassigned sesquiterpene fraction"
+    },
+    "Vetiver EO (Haiti)": {
+      "source": "Champagnat et al. 2006, nine commercial origins: khusimol 3.4-13.7, vetiselinenol 1.3-7.8, alpha-vetivone 2.5-6.3, beta-vetispirene 1.6-4.5, and no meaningful difference between origins. One organic Haitian batch certificate gives khusimol 15.06, trans-isovalencenol 13.04, alpha-vetivone 4.04, khusimone 2.57; the certificate's figures are used where the study gives only a range.",
+      "note": "Vetiver has no majority constituent: it is roughly 150 sesquiterpenoids, and the named ones here total under half the oil. So this is a build from the identified fraction, renormalised, and it is the weakest build in this file for that reason. Four of its seven constituents are absent from the percept model's training set, which makes their descriptor vectors extrapolations; khusimone is in it, labelled vetiver and woody. beta-vetispirene is omitted because PubChem returned the same structure for it and for beta-vetivenene, and a wrong structure is worse than a missing one.",
+      "composition": {
+        "Khusimol": 15.06, "Isovalencenol": 13.04, "Vetiselinenol": 5.0,
+        "Vetivone Alpha": 4.04, "Vetivone Beta": 3.0, "Khusimone": 2.57,
+        "Zizanoic Acid": 2.0, "Nootkatone": 0.5, "Caryophyllene Beta": 0.5
+      },
+      "omitted": "beta-vetispirene (~3%), khusinol, bicyclovetivenol, eudesmol, cyclocopacamphene, and the large unassigned sesquiterpene fraction"
     }
   }
 }
