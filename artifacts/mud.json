@@ -1,0 +1,48 @@
+{
+  "yardstick": 0.5248702696857577,
+  "owned_only": true,
+  "blends": [
+    {
+      "k": 1,
+      "residual": 0.52378858783267,
+      "names": [
+        "Undecavertol"
+      ],
+      "weights": [
+        1.0
+      ],
+      "nearest": "Undecavertol",
+      "nearest_d": 0.0
+    },
+    {
+      "k": 2,
+      "residual": 0.27536931214343685,
+      "names": [
+        "Methyl Benzoate",
+        "Undecavertol"
+      ],
+      "weights": [
+        0.4154,
+        0.5846
+      ],
+      "nearest": "Undecavertol",
+      "nearest_d": 0.44556282012011844
+    },
+    {
+      "k": 3,
+      "residual": 0.1968181328487974,
+      "names": [
+        "Undecavertol",
+        "Methyl Benzoate",
+        "Rhuboflor"
+      ],
+      "weights": [
+        0.4947,
+        0.3346,
+        0.1707
+      ],
+      "nearest": "Pharaone",
+      "nearest_d": 0.46619355261269274
+    }
+  ]
+}
