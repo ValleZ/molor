@@ -351,3 +351,18 @@ p-Cresyl Methyl Ether,CC1=CC=C(C=C1)OC,natural constituent and sandalwood refere
 Elemol,CC(=C)C1CC(CCC1(C)C=C)C(C)(C)O,natural constituent and sandalwood reference
 Elemicin,COC1=CC(=CC(=C1OC)OC)CC=C,natural constituent and sandalwood reference
 Alpha Phellandrene,CC1=CCC(C=C1)C(C)C,natural constituent and sandalwood reference
+Fructalate,CCOC(=O)C1CCC(CC1)C(=O)OCC,fruit and floral palette
+Amyl Cinnamic Aldehyde,CCCCCC(=CC1=CC=CC=C1)C=O,fruit and floral palette
+Hexyl 2-Methyl Butyrate,CCCCCCOC(=O)C(C)CC,fruit and floral palette
+3-Octen-2-One,CCCCC=CC(=O)C,fruit and floral palette
+2-Octen-4-One,CCCCC(=O)C=CC,fruit and floral palette
+Isobutyl Isovalerate,CC(C)CC(=O)OCC(C)C,fruit and floral palette
+Delta Octalactone,CCCC1CCCC(=O)O1,fruit and floral palette
+Dimethyl Benzyl Carbinyl Butyrate,CCCC(=O)OC(C)(C)CC1=CC=CC=C1,fruit and floral palette
+Magnolan,CC1C2CC3=CC=CC=C3C2OC(O1)C,fruit and floral palette
+Isobutavan,CC(C)C(=O)OC1=C(C=C(C=C1)C=O)OC,fruit and floral palette
+Alpha Santalol,CC(=CCCC1(C2CC3C1(C3C2)C)C)CO,sandalwood and jasmine constituents
+Beta Santalol,CC(=CCCC1(C2CCC(C2)C1=C)C)CO,sandalwood and jasmine constituents
+Alpha Santalene,CC(=CCCC1(C2CC3C1(C3C2)C)C)C,sandalwood and jasmine constituents
+Phytol,CC(C)CCCC(C)CCCC(C)CCCC(=CCO)C,sandalwood and jasmine constituents
+Methyl Jasmonate,CCC=CCC1C(CCC1=O)CC(=O)OC,sandalwood and jasmine constituents

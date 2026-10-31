@@ -155,6 +155,26 @@ def load_oils(store: str):
     return {k: v for k, v in blob["naturals"].items()}
 
 
+def oil_defaults() -> dict:
+    """Which oil to take when several chemotypes of one plant tie.
+
+    "Lavender Maillette France" matched three lavenders equally well and was
+    dropped, which is the right behaviour for a genuine ambiguity and the
+    wrong one here: the French angustifolia entry has said in prose from the
+    start that it is the default for an unqualified lavender. The data file
+    now says so in a field, so the code can act on it.
+    """
+    path = ROOT / "data" / "naturals" / "compositions.json"
+    out: dict[str, str] = {}
+    if not path.is_file():
+        return out
+    blob = json.loads(path.read_text(encoding="utf-8"))
+    for oil, meta in blob.get("naturals", {}).items():
+        for word in meta.get("default_for", []):
+            out[word.lower()] = oil
+    return out
+
+
 def match_oil(name: str, oils: list[str]):
     """Resolve "Bergamot EO" to "Bergamot EO (Turkish)", or report ambiguity.
 
@@ -177,6 +197,11 @@ def match_oil(name: str, oils: list[str]):
     # carried "Lemon EO" to "Lemongrass EO" and then declared the pair
     # ambiguous, losing the ingredient. An exact head word beats a prefix of
     # one, so exact matches are taken alone whenever any exist.
+    #
+    # Both sides of a prefix comparison must be at least three characters.
+    # Without that, "Aldehyde C-16" tokenises to include a bare "c", which is
+    # a prefix of cedarwood, clary, clove and cinnamon, so an aldehyde was
+    # reported as matching four essential oils equally well and dropped.
     for exact in (True, False):
         scored = []
         for oil in oils:
@@ -187,7 +212,8 @@ def match_oil(name: str, oils: list[str]):
             if exact:
                 if head not in want:
                     continue
-            elif not any(w.startswith(head) or head.startswith(w)
+            elif not any(len(w) >= 3 and len(head) >= 3
+                         and (w.startswith(head) or head.startswith(w))
                          for w in want):
                 continue
             overlap = sum(1 for w in toks[1:] if w in want)
@@ -195,6 +221,11 @@ def match_oil(name: str, oils: list[str]):
         if scored:
             best = max(s for s, _ in scored)
             hits = [o for s, o in scored if s == best]
+            if len(hits) > 1:
+                dflt = oil_defaults()
+                for w in want:
+                    if w in dflt and dflt[w] in hits:
+                        return dflt[w], hits
             return (hits[0] if len(hits) == 1 else None), hits
     return None, []
 
@@ -283,6 +314,12 @@ def main() -> int:
     for r in rows:
         kind, name = classify(r["name"], lib_set)
         r["is_oil"] = False
+        if kind == "solvent":
+            r["resolved"] = None
+            r["threshold"] = None
+            r["why"] = "solvent"
+            missing.append(r)
+            continue
         if kind == "material" and name in P:
             r["resolved"] = name
             r["threshold"] = thr.get(block.get(name, ""))
@@ -303,7 +340,13 @@ def main() -> int:
         r["threshold"] = None
         missing.append(r)
 
-    cov = sum(r["neat"] for r in resolved) / total_neat
+    # Coverage of the odorous weight, not of the bottle: a formula for skin
+    # application is mostly carrier, and one was 88% MCT oil, which made a
+    # fully resolved formula read as 11% covered.
+    solvent_neat = sum(r["neat"] for r in missing
+                       if r.get("why") == "solvent")
+    odorous = max(total_neat - solvent_neat, 1e-9)
+    cov = sum(r["neat"] for r in resolved) / odorous
     print(f"[formula] {fpath.name}: {len(rows)} ingredients, "
           f"{total_neat:.2f} g neat material")
     print(f"  resolved {len(resolved)}, covering {cov:.1%} of the neat weight\n")

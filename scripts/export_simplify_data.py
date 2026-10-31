@@ -126,6 +126,10 @@ def main() -> int:
         "materials": mats,
         "aliases": {k: v for k, v in ALIAS.items()},
         "solvents": sorted(SOLVENT),
+        # Which oil to take when several chemotypes of one plant tie. Without
+        # it the page drops "Lavender Maillette France" for matching three
+        # lavenders equally well.
+        "oil_defaults": pf.oil_defaults(),
         "yardstick": round(yardstick, 4),
         "mean": [round(float(v), 4) for v in X.mean(0)],
         "meta": {

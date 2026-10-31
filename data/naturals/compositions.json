@@ -2,7 +2,7 @@
   "why": "A natural is a known mixture of mostly common materials, so it can be built from its GC composition and scored as a sub-mixture instead of being dropped. This matters for coverage: across the 22 published patent formulas, naturals are 6316 g of the 13362 g the library could not resolve, and bergamot alone is 2084 g of it.",
   "caveat": "A composition is a chemotype or a lot, not a substance. The four lavenders below share a name and differ enough to smell like different materials, and the model ranks them accordingly. Any formula that says only 'lavender oil' is therefore underspecified, and picking a profile for it is an assumption the prediction inherits silently. Every figure here is a single published analysis, not a specification; where a source gave a range the midpoint is used and the range is recorded.",
   "unbuildable": "This used to say patchouli and vetiver were out of reach. That was wrong, and wrong in a way worth recording: the limit was never the model, it was that the library held none of their sesquiterpenoids. Adding thirteen of them as reference molecules -- structures from PubChem, not materials anyone stocks -- makes patchouli buildable at 82% of its oil and vetiver buildable from its identified fraction. What stays out of reach is different in kind: treemoss needs atranol-type phenolics, and labdanum is C20 labdane acids plus an unassigned resin fraction, so under 6% of a published labdanum composition resolves even now and the volatiles that carry its smell are mostly unidentified. Sandalwood is now one addition away -- alpha-santalol is in the percept model's training set labelled sandalwood -- and ginger needs zingiberene and ar-curcumene.",
-  "wanted": "Lemon, neroli and petitgrain now have sourced tables. Spearmint is buildable since l-Carvone was added but needs a sourced figure. Jasmine absolute is the most mixture-like candidate left and still needs GC data. Sandalwood is one addition away: alpha-santalol is in the percept model's training set labelled sandalwood. Ginger needs zingiberene and ar-curcumene. Labdanum stays unbuildable for a different reason: under 6% of a published composition resolves even now, because the volatiles that carry its smell are mostly unidentified in the literature.",
+  "wanted": "Sandalwood and jasmine are now built, which clears the two most-requested gaps. Spearmint is buildable since l-Carvone was added but needs a sourced figure. Common sage, elemi's beta-phellandrene, and Australian sandalwood as its own chemotype are the next additions. Labdanum stays unbuildable: under 6% of a published composition resolves, because the volatiles that carry its smell are mostly unidentified. Treemoss needs atranol-type phenolics. Romandolide, Hindinol, Cyclosia, Tonkarome, Aquaflor, Sakura Salicylate, Sultanen, Marine Carbonitrile and Tropical Thiazole are captives for which no source gives a structure.",
   "naturals": {
     "Lavender EO (French, L. angustifolia)": {
       "source": "GC-MS of commercial market samples: linalyl acetate 37.8, linalool 33.1, eucalyptol 4.9, camphor 4.1; terpinen-4-ol ~2 and lavandulyl acetate ~2 from the same literature range.",
@@ -18,7 +18,10 @@
         "Lavandulyl Acetate": 2.0,
         "Borneol": 1.5
       },
-      "omitted": ""
+      "omitted": "",
+      "default_for": [
+        "lavender"
+      ]
     },
     "Lavender EO (Spanish, var. pyrenaica)": {
       "source": "linalool 38.0, borneol 19.7, camphor 8.1, cineole ~3, linalyl acetate ~1.1",
@@ -91,7 +94,10 @@
         "Terpinene Gamma": 4.7,
         "Beta Pinene": 3.0,
         "Myrcene": 2.0
-      }
+      },
+      "default_for": [
+        "bergamot"
+      ]
     },
     "Geranium EO (Bourbon, Madagascar)": {
       "source": "Bourbon geranium: citronellol ~30, geraniol ~16, isomenthone 8.2, citronellyl formate ~7.",
@@ -281,7 +287,10 @@
         "Geranyl Acetate": 0.4,
         "Nerol": 0.2
       },
-      "omitted": "bergamotene, the coumarins of the cold-pressed fraction"
+      "omitted": "bergamotene, the coumarins of the cold-pressed fraction",
+      "default_for": [
+        "lemon"
+      ]
     },
     "Grapefruit EO (cold-pressed)": {
       "source": "Cold-pressed peel oils across three varieties: d-limonene 87-90, beta-myrcene 2-4; nootkatone 0.1 and the aldehydes at a few tenths from commercial batch data.",
@@ -415,6 +424,34 @@
         "Elemicin": 2.4
       },
       "omitted": "beta-phellandrene (3.3%), which the library does not hold"
+    },
+    "Sandalwood EO (East Indian)": {
+      "source": "The ISO specification for East Indian sandalwood requires alpha-santalol at or above 41% and beta-santalol at or above 16%; commercial oil typically runs alpha 50 and beta 21, with alpha-santalene and farnesol minor. The figures used are the typical commercial values rather than the floor of the spec.",
+      "note": "Unbuildable until now for one reason: the library held no santalol, and this oil is two thirds santalol. Alpha-santalol is in the percept model's training set labelled sandalwood and woody, so the build is partly recall for half the oil. Note the species: this is Santalum album. Australian sandalwood, S. spicatum, is a different material -- roughly half the santalol and much more farnesol -- and a formula saying only 'sandalwood' is therefore underspecified.",
+      "composition": {
+        "Alpha Santalol": 50.0,
+        "Beta Santalol": 21.0,
+        "Alpha Santalene": 5.0,
+        "Farnesol": 1.0
+      },
+      "omitted": "epi-beta-santalol, the bergamotol and santalene isomers"
+    },
+    "Jasmine Absolute (grandiflorum)": {
+      "source": "Compiled GC profiles of absolutes from five origins, which disagree widely: benzyl acetate 16.8-26.9, benzyl benzoate 2.8-19.5, phytol 9-18.7, linalool 3-6.5, indole 1.2-3.7, methyl jasmonate 0.9-3.9, cis-jasmone up to 2.9. Midpoints of the Italian and Indian profiles are used, those two being the most complete.",
+      "note": "The most mixture-like candidate in this file and the one asked for most often. The spread between origins is the largest here: benzyl benzoate varies sevenfold between a Turkish and an Indian absolute, so this is a plausible jasmine rather than any particular bottle. Indole enters as Indolene 50, which is the molecule at half strength in a carrier -- the library has no neat indole -- so its share is the molecule's share.",
+      "composition": {
+        "Benzyl Acetate": 23.0,
+        "Benzyl Benzoate": 15.0,
+        "Phytol": 10.0,
+        "Linalool": 5.0,
+        "Cis Jasmone": 2.5,
+        "Indolene 50": 2.0,
+        "Methyl Jasmonate": 2.0,
+        "Benzyl Alcohol": 1.5,
+        "Phenethyl Alcohol": 1.0,
+        "Farnesol": 0.5
+      },
+      "omitted": "eugenol, isophytol, the jasmolactones and the waxes an absolute carries"
     }
   }
 }

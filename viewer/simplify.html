@@ -361,6 +361,11 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
           ok = want.indexOf(head) >= 0;
         } else {
           for (var w = 0; w < want.length && !ok; w++) {
+            // Both sides at least three characters: a bare "c" from
+            // "Aldehyde C-16" is a prefix of cedarwood, clary, clove and
+            // cinnamon, and that aldehyde was being reported as matching
+            // four oils equally well and dropped.
+            if (want[w].length < 3 || head.length < 3) continue;
             ok = want[w].indexOf(head) === 0 || head.indexOf(want[w]) === 0;
           }
         }
@@ -375,10 +380,38 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
         var best = Math.max.apply(null, scored.map(function (s) { return s[0]; }));
         var hits = scored.filter(function (s) { return s[0] === best; })
           .map(function (s) { return s[1]; });
+        if (hits.length > 1 && D.oil_defaults) {
+          // Several chemotypes of one plant tying is not a real ambiguity
+          // when the data file names a default: "Lavender Maillette France"
+          // was being dropped for matching three lavenders equally well.
+          for (var wi = 0; wi < want.length; wi++) {
+            var dname = D.oil_defaults[want[wi]];
+            if (dname === undefined) continue;
+            var di = byLower[dname.toLowerCase()];
+            if (di !== undefined && hits.indexOf(di) >= 0) {
+              return { hit: di, cands: hits };
+            }
+          }
+        }
         return { hit: hits.length === 1 ? hits[0] : -1, cands: hits };
       }
     }
     return { hit: -1, cands: [] };
+  }
+
+  // Words this library puts after the name rather than before it, so "Beta
+  // Ionone" can find "Ionone Beta". A closed list, tried only as a second
+  // attempt, so it cannot invent a match.
+  var GREEK = ["alpha", "beta", "gamma", "delta", "epsilon", "iso", "cis",
+               "trans", "laevo", "levo", "dextro", "para", "ortho", "meta"];
+
+  function lookup(low) {
+    if (D.aliases[low] !== undefined) {
+      var t0 = D.aliases[low].toLowerCase();
+      if (byLower[t0] !== undefined) return byLower[t0];
+    }
+    if (byLower[low] !== undefined) return byLower[low];
+    return -1;
   }
 
   function resolve(rows) {
@@ -386,13 +419,17 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
     rows.forEach(function (r) {
       var low = r.name.toLowerCase().replace(/\s+/g, " ").trim()
         .replace(/,?\s*(undiluted|neat|crystals?|natural|total)\s*$/, "").trim();
+      // "Aldehyde C14" and "Aldehyde C-14" are one material written two ways,
+      // and this library uses the hyphen.
+      low = low.replace(/aldehyde\s+c\s*-?\s*(\d+)/, "aldehyde c-$1");
       if (SOLV[low]) { r.why = "solvent"; missing.push(r); return; }
-      var idx = -1;
-      if (D.aliases[low] !== undefined) {
-        var t = D.aliases[low].toLowerCase();
-        if (byLower[t] !== undefined) idx = byLower[t];
+      var idx = lookup(low);
+      if (idx < 0) {
+        var parts = low.split(" ");
+        if (parts.length > 1 && GREEK.indexOf(parts[0]) >= 0) {
+          idx = lookup(parts.slice(1).concat([parts[0]]).join(" "));
+        }
       }
-      if (idx < 0 && byLower[low] !== undefined) idx = byLower[low];
       if (idx < 0) {
         var mo = matchOil(r.name);
         if (mo.hit >= 0) idx = mo.hit;
@@ -704,11 +741,26 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
           + pct(x.neat / totalNeat) + "</td><td>" + tag + "</td></tr>";
       });
     el("resolved").innerHTML = html;
+    // Coverage is of the odorous weight, not of everything in the bottle. A
+    // formula for skin is mostly carrier -- one was 88% MCT oil -- and
+    // reporting that as 11% coverage made a fully resolved formula look
+    // broken.
+    var solvNeat = r.missing.reduce(function (a, x) {
+      return a + (x.why === "solvent" ? x.neat : 0);
+    }, 0);
+    var odorous = Math.max(totalNeat - solvNeat, 1e-9);
+    var solvNote = solvNeat > 0
+      ? " Carrier and solvent set aside: " + (100 * solvNeat / totalNeat).toFixed(1)
+        + "% of the bottle."
+      : "";
     el("coverage").textContent =
       r.res.length + " of " + rows.length + " ingredients resolved, covering "
-      + (100 * resNeat / totalNeat).toFixed(1) + "% of the neat weight."
-      + (r.missing.length ? " Dropped: "
-          + r.missing.map(function (x) { return x.name; }).join(", ") + "." : "");
+      + (100 * resNeat / odorous).toFixed(1) + "% of the odorous weight."
+      + solvNote
+      + (r.missing.filter(function (x) { return x.why !== "solvent"; }).length
+          ? " Dropped: " + r.missing.filter(function (x) {
+              return x.why !== "solvent";
+            }).map(function (x) { return x.name; }).join(", ") + "." : "");
 
     // character
     var z = lift(target, idxs.length, w);

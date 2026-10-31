@@ -1,0 +1,11 @@
+name,smiles,source
+Fructalate,CCOC(=O)C1CCC(CC1)C(=O)OCC,PubChem (CAS 72903-27-6 diethyl cyclohexane-1;4-dicarboxylate)
+Amyl Cinnamic Aldehyde,CCCCCC(=CC1=CC=CC=C1)C=O,PubChem (CAS 122-40-7 2-benzylideneheptanal)
+Hexyl 2-Methyl Butyrate,CCCCCCOC(=O)C(C)CC,PubChem
+3-Octen-2-One,CCCCC=CC(=O)C,PubChem
+2-Octen-4-One,CCCCC(=O)C=CC,PubChem
+Isobutyl Isovalerate,CC(C)CC(=O)OCC(C)C,PubChem
+Delta Octalactone,CCCC1CCCC(=O)O1,PubChem
+Dimethyl Benzyl Carbinyl Butyrate,CCCC(=O)OC(C)(C)CC1=CC=CC=C1,PubChem
+Magnolan,CC1C2CC3=CC=CC=C3C2OC(O1)C,PubChem
+Isobutavan,CC(C)C(=O)OC1=C(C=C(C=C1)C=O)OC,PubChem (vanillin isobutyrate)

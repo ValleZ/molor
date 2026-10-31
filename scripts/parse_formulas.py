@@ -52,6 +52,22 @@ ALIAS = {
     "pea": "Phenethyl Alcohol",
     "phenylethyl alcohol": "Phenethyl Alcohol",
     "phenyl ethyl alcohol": "Phenethyl Alcohol",
+    # Aldehyde C-16 and C-14 are perfumery names for molecules this
+    # library holds under their own: the strawberry glycidate and the
+    # peach lactone. Neither is an aldehyde.
+    "aldehyde c-16": "Strawberry Glycidate",
+    "aldehyde c-14": "Gamma Undecalactone",
+    "aldehyde c-18": "Gamma Nonalactone",
+    "trans-2-hexenal": "(E)-2-Hexenal",
+    # Ribes is the blackcurrant genus, so this is the same thiol the
+    # library already holds under the English name.
+    "ribes mercaptan": "Blackcurrant mercaptan",
+    "cassis mercaptan": "Blackcurrant mercaptan",
+    "amyl cinnamic aldehyde": "Amyl Cinnamic Aldehyde",
+    "alpha-amyl cinnamaldehyde": "Amyl Cinnamic Aldehyde",
+    "amyl cinnamaldehyde": "Amyl Cinnamic Aldehyde",
+    "trans 2 hexenal": "(E)-2-Hexenal",
+    "cis-3-hexenal": "(Z)-3-Hexenal",
     "galaxolide 50": "Galaxolide",
     "galaxolide 50 ipm": "Galaxolide",
     "galaxolide 50 dep": "Galaxolide",
@@ -261,6 +277,12 @@ NOT_INGREDIENT = re.compile(
     r"ifra|trial(?:,\s*mg)?)$", re.I)
 
 SOLVENT = {"dpg", "dipg", "dipropylene glycol", "ethanol", "etoh",
+           # Carrier oils. A formula built for skin application is mostly
+           # carrier, and reporting 88% of it as "not in the library" told
+           # the reader nothing: it is not meant to smell.
+           "mct oil", "mct", "fractionated coconut oil", "coconut oil",
+           "jojoba", "jojoba oil", "sweet almond oil", "grapeseed oil",
+           "caprylic capric triglyceride", "cyclomethicone",
            "benzyl benzoate", "perfumer's alcohol", "witch hazel",
            "glycerin", "peg-7", "allantoin", "bisabolol", "ipm",
            "isopropyl myristate", "diethyl phthalate", "dep",
@@ -323,12 +345,33 @@ def classify(name: str, library: set[str]):
                  r"(?:dep|dpg|ipm|tec|bb|dowanol|triethyl citrate|"
                  r"benzyl benzoate|ethanol|alcohol)\s*$", "", low).strip()
     low = re.sub(r"\s+", " ", low).strip(" ,-—")
+    # "Aldehyde C14" and "Aldehyde C-14" are the same material written two
+    # ways, and the library uses the hyphen. Without this the unhyphenated
+    # form was dropped.
+    low = re.sub(r"\baldehyde\s+c\s*-?\s*(\d+)", r"aldehyde c-\1", low)
     if not low:
         return "unknown", raw
     if low in SOLVENT:
         return "solvent", raw
     if low in ALIAS:
         return "material", ALIAS[low]
+    # A stereo or isomer word at the front, where this library puts it at the
+    # back: "Beta Ionone" against "Ionone Beta", "Alpha Ionone", "Delta
+    # Octalactone". Reordering is tried before any fuzzy matching, and only
+    # for this closed list of words, so it cannot invent a match.
+    GREEK = ("alpha", "beta", "gamma", "delta", "epsilon", "iso", "cis",
+             "trans", "laevo", "levo", "dextro", "para", "ortho", "meta")
+    parts = low.split()
+    if len(parts) > 1 and parts[0] in GREEK:
+        moved = " ".join(parts[1:] + [parts[0]])
+        if moved in ALIAS:
+            return "material", ALIAS[moved]
+        for cand in (moved.title(), moved.capitalize()):
+            if cand in library:
+                return "material", cand
+        hit = [m for m in library if m.lower() == moved]
+        if hit:
+            return "material", hit[0]
     cleaned = clean_name(raw)
     if cleaned in library:
         return "material", cleaned

@@ -1,0 +1,6 @@
+name,smiles,source
+Alpha Santalol,CC(=CCCC1(C2CC3C1(C3C2)C)C)CO,PubChem (sandalwood; in GS-LF labelled sandalwood woody)
+Beta Santalol,CC(=CCCC1(C2CCC(C2)C1=C)C)CO,PubChem (sandalwood)
+Alpha Santalene,CC(=CCCC1(C2CC3C1(C3C2)C)C)C,PubChem (sandalwood)
+Phytol,CC(C)CCCC(C)CCCC(C)CCCC(=CCO)C,PubChem (a major peak in jasmine absolute)
+Methyl Jasmonate,CCC=CCC1C(CCC1=O)CC(=O)OC,PubChem (jasmine)
