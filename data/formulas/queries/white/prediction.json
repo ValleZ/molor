@@ -1,0 +1,67 @@
+{
+  "rule": "weighted-mean",
+  "n": 20,
+  "yardstick": 0.5248702696857577,
+  "pair_gap": 0.28832042006712505,
+  "shared_ingredients": 0,
+  "control_n": 3,
+  "control_gap": 1.0141386082122437,
+  "claim": "the two white blends should be hard to tell apart; the two control blends should be obviously different",
+  "caveat": "equal weights stand in for equal perceived intensity, which this model cannot compute",
+  "blends": {
+    "white_20_a": [
+      "Terpineol Alpha",
+      "Delta Decalactone",
+      "Dimethyl Sulfide",
+      "Ethyl Butyrate",
+      "Ethyl Vanillin",
+      "Hedione",
+      "Isobornyl Acetate",
+      "Iso E Super",
+      "Methyl Cinnamate",
+      "Aldehyde C-8",
+      "Damascone Beta",
+      "Habanolide",
+      "Methyl Anthranilate",
+      "Maltol Isobutyrate",
+      "Doremox",
+      "Anisaldehyde",
+      "Oxane",
+      "Hydroxycitronellal",
+      "Linalyl Acetate",
+      "Triplal"
+    ],
+    "white_20_b": [
+      "Florol",
+      "Gamma Nonalactone",
+      "Hexenyl-3-CIS Acetate",
+      "Strawberry Furanone",
+      "Eugenol ex Clove",
+      "Ambroxan",
+      "Ionone Alpha",
+      "Ethyl Acetate",
+      "Benzaldehyde",
+      "Blackcurrant mercaptan",
+      "Aldehyde C-10",
+      "Citronellyl Acetate",
+      "Exaltolide Total",
+      "Neobergamate Forte",
+      "Isobutyl Phenyl Acetate",
+      "Benzyl Isoeugenol",
+      "Verdox HC",
+      "Vanillin",
+      "Edenolide",
+      "Trans-2,Cis-6-Nonadienal"
+    ],
+    "control_3_a": [
+      "Kephalis",
+      "Galaxolide",
+      "D-Limonene"
+    ],
+    "control_3_b": [
+      "Hedione",
+      "Iso E Super",
+      "Phenethyl Alcohol"
+    ]
+  }
+}
