@@ -508,6 +508,29 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
   function fitSimplex(idxs, target) {
     var g = gram(), k = idxs.length, i, j;
     if (k === 1) return [1];
+    // Try the unconstrained solution first. When the target genuinely lies in
+    // the positive span of these materials -- which it does exactly when the
+    // chosen set is the formula's own ingredients -- that solution is already
+    // non-negative and is the answer to machine precision, where projected
+    // gradient only approaches it. Without this, asking for as many materials
+    // as the formula has returned it visibly re-dosed: one ingredient at 44%
+    // came back at 33% because the fit had not converged.
+    var Au = [], bu = [];
+    for (i = 0; i < k; i++) {
+      var ru = new Array(k);
+      for (j = 0; j < k; j++) ru[j] = g[idxs[i]][idxs[j]] + (i === j ? 1e-10 : 0);
+      Au.push(ru);
+      bu.push(dot(MAT[idxs[i]].p, target));
+    }
+    var wu = solve(Au, bu);
+    var oku = true, su = 0;
+    for (i = 0; i < k; i++) {
+      if (!(wu[i] > -1e-9) || !isFinite(wu[i])) { oku = false; break; }
+      su += wu[i];
+    }
+    if (oku && su > 1e-9 && Math.abs(su - 1) < 0.02) {
+      return wu.map(function (x) { return Math.max(x, 0) / su; });
+    }
     var A = [], b = [];
     for (i = 0; i < k; i++) {
       var row = new Array(k);
@@ -593,6 +616,11 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
   // without it the ladder bottomed out and asked for a tenth of a part of a
   // 1% stock, which nobody can weigh.
   var LADDER = [100, 10, 1, 0.1];
+  // The exponent on the threshold, used identically in both directions. 1.0
+  // is straight odour-activity dosing; the bench preferred a little more
+  // than that on one blend, which is one observation and is why this is a
+  // named constant rather than a tuned parameter.
+  var DOSE_EXP = 0.6;
   function doses(idxs, w, useOav) {
     var m = w.slice(), i;
     if (useOav) {
@@ -601,7 +629,7 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
         // mass = activity share x threshold, so a material detectable at a
         // tenth of the level needs a tenth of the mass to say as much.
         m = idxs.map(function (i2, j) {
-          return w[j] * Math.pow(MAT[i2].thr, 0.6);
+          return w[j] * Math.pow(MAT[i2].thr, DOSE_EXP);
         });
       }
     }
@@ -723,8 +751,30 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
     }
     var totalNeat = rows.reduce(function (a, x) { return a + x.neat; }, 0);
     var resNeat = r.res.reduce(function (a, x) { return a + x.neat; }, 0);
-    var w = r.res.map(function (x) { return x.neat / resNeat; });
     var idxs = r.res.map(function (x) { return x.idx; });
+    // The combination rule takes perceptual weights, so mass has to be
+    // converted on the way in and converted back on the way out. Until now
+    // only the second half happened: the target was built straight from mass
+    // fractions and the sheet then treated the answer as odour activity and
+    // multiplied by threshold. The same vector meant two different things at
+    // the two ends, so asking for as many materials as the formula already
+    // has returned the formula re-dosed instead of the formula -- one input
+    // at 44% of the weight came back at 10%. With both halves in place the
+    // round trip is the identity.
+    //
+    // It needs a threshold for every ingredient, and only 125 of the
+    // materials have one, so the decision is taken once on the input and the
+    // candidate pool is then restricted to materials that can be converted.
+    var useOav = r.res.every(function (x) { return !!MAT[x.idx].thr; });
+    var mass = r.res.map(function (x) { return x.neat / resNeat; });
+    var w = mass;
+    if (useOav) {
+      w = r.res.map(function (x, j) {
+        return mass[j] / Math.pow(MAT[x.idx].thr, DOSE_EXP);
+      });
+      var ws = w.reduce(function (a, x) { return a + x; }, 0) || 1;
+      w = w.map(function (x) { return x / ws; });
+    }
     var target = blend(idxs, w);
 
     // resolution table
@@ -783,11 +833,16 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
     idxs.forEach(function (i2) { inFormula[i2] = 1; });
     var pool = [];
     for (var i = 0; i < N; i++) {
-      if (inFormula[i] || MAT[i].own) pool.push(i);
+      if (inFormula[i]) { pool.push(i); continue; }
+      if (!MAT[i].own) continue;
+      // With activity semantics on, a candidate with no threshold figure
+      // cannot be dosed, so it cannot be proposed.
+      if (useOav && !MAT[i].thr) continue;
+      pool.push(i);
     }
     el("k").max = Math.min(12, Math.max(2, idxs.length));
     STATE = { target: target, pool: pool, idxs: idxs, w: w, rows: rows,
-              inFormula: inFormula, cache: {} };
+              inFormula: inFormula, useOav: useOav, cache: {} };
 
     // fidelity curve over every k, computed once
     var nn = Infinity, nnName = "";
@@ -811,10 +866,21 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
     });
 
     var curve = [];
+    var STATE_prev = {};
     var kmax = parseInt(el("k").max, 10);
     for (var kk = 1; kk <= kmax; kk++) {
       var cands = [search(target, pool, kk),
                    search(target, pool, kk, byWeight)];
+      // Grow from the previous size as well, so the curve cannot go up: a
+      // greedy search is not monotone in k, and at one point nine materials
+      // fitted worse than eight, which makes the curve a lie.
+      if (curve.length) {
+        var prev = STATE_prev[kk - 1];
+        if (prev && prev.idxs.length < kk) {
+          cands.push(search(target, pool, kk, prev.idxs));
+        }
+        if (prev) cands.push(prev);
+      }
       if (kk === 1) {
         // One material is a scan, not a search, and the greedy step ranks by
         // an unconstrained residual that is not the same ordering -- which
@@ -837,6 +903,7 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
         if (d2 < sd - 1e-12) { s = cands[ci]; sd = d2; }
       }
       STATE.cache[kk] = s;
+      STATE_prev[kk] = s;
       var got = blend(s.idxs, s.w);
       var base = randomBaseline(target, pool, kk, 40);
       curve.push({ k: kk, cos: centredCos(got, target), d: dist(got, target),
@@ -897,7 +964,7 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
       + ". This proposal beats roughly " + beat.toFixed(0)
       + "% of random blends of its size.";
 
-    var useOav = true;
+    var useOav = !!STATE.useOav;
     var ds = doses(s.idxs, s.w, useOav);
     var html = "<tr><th>material</th><th class=num>stock</th>"
       + "<th class=num>parts to weigh</th><th class=num>% neat</th>"
