@@ -1,0 +1,773 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Formula simplifier</title>
+<meta name="description" content="Paste a perfume formula and find the smallest blend with the same predicted character.">
+__MIXPANEL_SNIPPET__
+<style>
+  :root {
+    --bg: #faf8f5; --surface: #ffffff; --surface-2: #f1ece6;
+    --fg: #1b1917; --muted: #6d655c; --line: #ded6cc;
+    --accent: #9c5b2e; --warn: #c9803a; --good: #3f7a52;
+    --font-display: "Archivo", system-ui, -apple-system, sans-serif;
+    --font-body: ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17161a; --surface: #201f25; --surface-2: #2a2931;
+      --fg: #ece9e4; --muted: #9c958c; --line: #3a3842;
+      --accent: #d08a52; --warn: #d79a5c; --good: #6aa87f;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17161a; --surface: #201f25; --surface-2: #2a2931;
+    --fg: #ece9e4; --muted: #9c958c; --line: #3a3842;
+    --accent: #d08a52; --warn: #d79a5c; --good: #6aa87f;
+  }
+  [hidden] { display: none !important; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--fg);
+    font-family: var(--font-body); font-size: 15px; line-height: 1.5;
+  }
+  .wrap { max-width: 1060px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 {
+    font-family: var(--font-display); font-size: 26px; font-weight: 800;
+    margin: 0 0 6px; letter-spacing: -0.015em;
+  }
+  h2 {
+    font-family: var(--font-display); font-size: 16px; font-weight: 700;
+    margin: 28px 0 10px; letter-spacing: -0.01em;
+  }
+  .lede { color: var(--muted); margin: 0 0 20px; max-width: 70ch; }
+  .card {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 10px; padding: 16px; margin: 0 0 16px;
+  }
+  textarea {
+    width: 100%; min-height: 190px; resize: vertical; padding: 12px;
+    font-family: var(--font-mono); font-size: 13px; line-height: 1.45;
+    background: var(--bg); color: var(--fg);
+    border: 1px solid var(--line); border-radius: 8px;
+  }
+  .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  button {
+    font: inherit; font-weight: 600; padding: 9px 16px; cursor: pointer;
+    background: var(--accent); color: #fff; border: 0; border-radius: 8px;
+  }
+  button.ghost {
+    background: var(--surface-2); color: var(--fg);
+    border: 1px solid var(--line); font-weight: 500;
+  }
+  label.opt { display: inline-flex; gap: 6px; align-items: center; color: var(--muted); }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    text-align: left; font-weight: 600; color: var(--muted);
+    padding: 4px 8px 6px; border-bottom: 1px solid var(--line);
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  td { padding: 5px 8px; border-bottom: 1px solid var(--surface-2); }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--font-mono); }
+  .mono { font-family: var(--font-mono); }
+  .dim { color: var(--muted); }
+  .warn { color: var(--warn); }
+  .good { color: var(--good); }
+  .pill {
+    display: inline-block; padding: 1px 7px; border-radius: 999px;
+    font-size: 11.5px; background: var(--surface-2); color: var(--muted);
+  }
+  .pill.eo { background: var(--accent); color: #fff; }
+  .bar { height: 9px; border-radius: 5px; background: var(--accent); }
+  .barrow { display: grid; grid-template-columns: 120px 1fr 56px; gap: 8px; align-items: center; margin: 3px 0; }
+  .barrow .lbl { font-size: 13px; }
+  .barrow .val { font-family: var(--font-mono); font-size: 12px; color: var(--muted); text-align: right; }
+  input[type=range] { width: 100%; }
+  .big { font-family: var(--font-display); font-size: 30px; font-weight: 800; letter-spacing: -0.02em; }
+  .kv { display: grid; grid-template-columns: auto 1fr; gap: 2px 12px; margin: 0; font-size: 13.5px; }
+  .kv dt { color: var(--muted); }
+  .kv dd { margin: 0; font-variant-numeric: tabular-nums; }
+  .note { font-size: 12.5px; color: var(--muted); margin: 8px 0 0; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 760px) { .grid2 { grid-template-columns: 1fr; } }
+  a { color: var(--accent); }
+</style>
+
+<div class="wrap">
+  <h1>Formula simplifier</h1>
+  <p class="lede">
+    Paste a formula. This finds the smallest blend of materials whose
+    <em>predicted</em> character is closest to it, and tells you how close that
+    is on a scale where <strong id="yard">0.52</strong> is roughly the smallest
+    difference a nose can detect between two materials.
+    It runs entirely in this page — nothing is uploaded.
+  </p>
+
+  <div class="card">
+    <textarea id="input" spellcheck="false" placeholder="Hedione&#9;300
+Dihydromyrcenol&#9;120
+Iso E Super&#9;100
+Galaxolide 50%&#9;100
+Bergamot&#9;150
+
+One ingredient per line, name first and amount last. Tabs, spaces or pipes.
+A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
+    <div class="row" style="margin-top:12px">
+      <button id="go" type="button">Simplify</button>
+      <button id="demo" class="ghost" type="button">Load an example</button>
+      <label class="opt"><input type="checkbox" id="ownedOnly" checked> only materials in the inventory</label>
+      <label class="opt"><input type="checkbox" id="quiet"> prefer materials that blend away</label>
+      <label class="opt"><input type="checkbox" id="oavDose" checked> dose by odour activity</label>
+    </div>
+    <p class="note" id="meta"></p>
+  </div>
+
+  <div id="out" hidden>
+    <h2>What it read</h2>
+    <div class="card">
+      <table id="resolved"></table>
+      <p class="note" id="coverage"></p>
+    </div>
+
+    <div class="grid2">
+      <div>
+        <h2>What the formula is, by lift</h2>
+        <div class="card">
+          <div id="lift"></div>
+          <p class="note">
+            Standardised against 2000 random blends of the same size, because
+            the raw values are dominated by how common each word is in the
+            training labels. A random ten-material blend already scores floral
+            0.90.
+          </p>
+        </div>
+      </div>
+      <div>
+        <h2>How small can it go</h2>
+        <div class="card">
+          <div class="row" style="justify-content:space-between">
+            <span class="big" id="kVal">5</span>
+            <span id="fid" class="mono dim"></span>
+          </div>
+          <input type="range" id="k" min="1" max="12" value="5">
+          <div id="curve" style="margin-top:10px"></div>
+        </div>
+      </div>
+    </div>
+
+    <h2>The simplified formula</h2>
+    <div class="card">
+      <table id="proposal"></table>
+      <p class="note" id="kept"></p>
+      <p class="note" id="doseNote"></p>
+      <p class="note warn" id="overUse" hidden></p>
+    </div>
+
+    <div class="grid2">
+      <div>
+        <h2>What it loses</h2>
+        <div class="card">
+          <div id="residual"></div>
+        </div>
+      </div>
+      <div>
+        <h2>What nothing here can tell you</h2>
+        <div class="card">
+          <ul id="caveats" style="margin:0;padding-left:20px;font-size:13.5px"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="note" style="margin-top:28px">
+    Part of the <a href="./">receptor atlas</a>. The predicted character comes
+    from a fingerprint model trained on the GS-LF descriptor set; it reads a
+    blend's bulk and is blind to traces, which is the failure that recurs most
+    in this project. Doses derived from detection thresholds use a compilation
+    from published and web sources, some converted from air-phase figures, which
+    may be out by a factor of ten.
+  </p>
+</div>
+
+<script id="data" type="application/json">__SIMPLIFY_DATA__</script>
+<script>
+(function () {
+  "use strict";
+  var D = JSON.parse(document.getElementById("data").textContent);
+  var MAT = D.materials, DESC = D.descriptors, YARD = D.yardstick;
+  var N = MAT.length, ND = DESC.length;
+  var MEAN = D.mean;
+  var byLower = {};
+  MAT.forEach(function (m, i) { byLower[m.n.toLowerCase()] = i; });
+  var SOLV = {};
+  D.solvents.forEach(function (s) { SOLV[s] = 1; });
+
+  document.getElementById("yard").textContent = YARD.toFixed(2);
+  document.getElementById("meta").textContent =
+    D.meta.n_materials + " materials (" + D.meta.n_oils + " built from GC "
+    + "compositions), " + D.meta.n_owned + " in the inventory, "
+    + D.meta.n_thresholds + " with a threshold figure. Descriptor model "
+    + "out-of-fold AUC " + (D.meta.percept_auc || 0).toFixed(4) + ".";
+
+  // ---------- small linear algebra ----------
+  function dot(a, b) {
+    var s = 0;
+    for (var i = 0; i < a.length; i++) s += a[i] * b[i];
+    return s;
+  }
+  function solve(A, b) {
+    // Gaussian elimination with partial pivoting; A is k x k, small.
+    var k = b.length, i, j, r, p, t;
+    var M = [];
+    for (i = 0; i < k; i++) M.push(A[i].slice().concat([b[i]]));
+    for (i = 0; i < k; i++) {
+      p = i;
+      for (r = i + 1; r < k; r++) if (Math.abs(M[r][i]) > Math.abs(M[p][i])) p = r;
+      t = M[i]; M[i] = M[p]; M[p] = t;
+      if (Math.abs(M[i][i]) < 1e-12) M[i][i] = 1e-12;
+      for (r = i + 1; r < k; r++) {
+        var f = M[r][i] / M[i][i];
+        if (!f) continue;
+        for (j = i; j <= k; j++) M[r][j] -= f * M[i][j];
+      }
+    }
+    var x = new Array(k).fill(0);
+    for (i = k - 1; i >= 0; i--) {
+      var s = M[i][k];
+      for (j = i + 1; j < k; j++) s -= M[i][j] * x[j];
+      x[i] = s / M[i][i];
+    }
+    return x;
+  }
+  function simplexProject(v) {
+    // Euclidean projection onto {w >= 0, sum w = 1}.
+    var k = v.length, u = v.slice().sort(function (a, b) { return b - a; });
+    var css = 0, rho = 0, theta = 0, i;
+    for (i = 0; i < k; i++) {
+      css += u[i];
+      if (u[i] - (css - 1) / (i + 1) > 0) { rho = i + 1; theta = (css - 1) / (i + 1); }
+    }
+    var w = new Array(k);
+    for (i = 0; i < k; i++) w[i] = Math.max(0, v[i] - theta);
+    return w;
+  }
+
+  // Gram matrix over all materials, computed once. 368 x 368 at 138 dims is
+  // about 9 million multiplies, which is a one-off of a few tens of ms, and it
+  // makes the subset search a sequence of tiny linear solves instead of a
+  // sequence of 138-dimensional fits.
+  var G = null;
+  function gram() {
+    if (G) return G;
+    G = [];
+    var i, j;
+    for (i = 0; i < N; i++) G.push(new Float64Array(N));
+    for (i = 0; i < N; i++) {
+      for (j = i; j < N; j++) {
+        var v = dot(MAT[i].p, MAT[j].p);
+        G[i][j] = v; G[j][i] = v;
+      }
+    }
+    return G;
+  }
+
+  // ---------- parsing ----------
+  var STOCK = /[\s(@]+(?:at\s*)?(\d+(?:\.\d+)?)\s*%?\s*(?:in\s+\w+)?\)?\s*$/i;
+  var NOISE = {
+    eo: 1, oil: 1, essential: 1, absolute: 1, abs: 1, accord: 1, resinoid: 1,
+    concrete: 1, extract: 1, co2: 1, root: 1, seed: 1, leaf: 1, leaves: 1,
+    bark: 1, wood: 1, berry: 1, berries: 1, flower: 1, peel: 1, fruit: 1,
+    expressed: 1, distilled: 1, natural: 1, pure: 1
+  };
+  function tokens(s) {
+    return s.toLowerCase().replace(/[^a-z0-9]+/g, " ").split(" ")
+      .filter(function (w) { return w && !NOISE[w]; });
+  }
+  function parse(text) {
+    var rows = [];
+    text.split(/\r?\n/).forEach(function (raw) {
+      var s = raw.trim().replace(/^\|+|\|+$/g, "").trim();
+      if (!s || s.charAt(0) === "#") return;
+      var m = s.match(/^(.*?)[\s|]+(\d+(?:[.,]\d+)?)\s*%?\s*$/);
+      if (!m) return;
+      var name = m[1].replace(/[\s|\t]+$/, "").trim();
+      var amount = parseFloat(m[2].replace(",", "."));
+      var dil = 100, hit = STOCK.exec(name);
+      if (hit) {
+        var tail = name.slice(hit.index);
+        if (tail.indexOf("%") >= 0 || /\bin\s+\w+/i.test(tail)) {
+          dil = parseFloat(hit[1]);
+          name = name.slice(0, hit.index).replace(/[\s,\-(]+$/, "").trim();
+        }
+      }
+      if (name && amount > 0) {
+        rows.push({ name: name, dil: dil, amount: amount,
+                    neat: amount * dil / 100 });
+      }
+    });
+    return rows;
+  }
+
+  function matchOil(name) {
+    // Two passes: an exact head word beats a prefix of one, which is what
+    // keeps "Lemon EO" off Lemongrass while letting "Cedar Virginia" reach
+    // "Cedarwood EO (Virginia)".
+    var want = tokens(name);
+    if (!want.length) return { hit: -1, cands: [] };
+    for (var exact = 1; exact >= 0; exact--) {
+      var scored = [];
+      for (var i = 0; i < N; i++) {
+        if (!MAT[i].oil) continue;
+        var toks = tokens(MAT[i].n);
+        if (!toks.length) continue;
+        var head = toks[0], ok = false;
+        if (exact) {
+          ok = want.indexOf(head) >= 0;
+        } else {
+          for (var w = 0; w < want.length && !ok; w++) {
+            ok = want[w].indexOf(head) === 0 || head.indexOf(want[w]) === 0;
+          }
+        }
+        if (!ok) continue;
+        var overlap = 0;
+        for (var q = 1; q < toks.length; q++) {
+          if (want.indexOf(toks[q]) >= 0) overlap++;
+        }
+        scored.push([overlap, i]);
+      }
+      if (scored.length) {
+        var best = Math.max.apply(null, scored.map(function (s) { return s[0]; }));
+        var hits = scored.filter(function (s) { return s[0] === best; })
+          .map(function (s) { return s[1]; });
+        return { hit: hits.length === 1 ? hits[0] : -1, cands: hits };
+      }
+    }
+    return { hit: -1, cands: [] };
+  }
+
+  function resolve(rows) {
+    var res = [], missing = [], ambiguous = [];
+    rows.forEach(function (r) {
+      var low = r.name.toLowerCase().replace(/\s+/g, " ").trim()
+        .replace(/,?\s*(undiluted|neat|crystals?|natural|total)\s*$/, "").trim();
+      if (SOLV[low]) { r.why = "solvent"; missing.push(r); return; }
+      var idx = -1;
+      if (D.aliases[low] !== undefined) {
+        var t = D.aliases[low].toLowerCase();
+        if (byLower[t] !== undefined) idx = byLower[t];
+      }
+      if (idx < 0 && byLower[low] !== undefined) idx = byLower[low];
+      if (idx < 0) {
+        var mo = matchOil(r.name);
+        if (mo.hit >= 0) idx = mo.hit;
+        else if (mo.cands.length > 1) {
+          r.why = "matches " + mo.cands.length + " oils equally well: "
+            + mo.cands.map(function (i) { return MAT[i].n; }).join(", ");
+          ambiguous.push(r);
+          missing.push(r);
+          return;
+        }
+      }
+      if (idx < 0) { r.why = "not in the library"; missing.push(r); return; }
+      r.idx = idx;
+      res.push(r);
+    });
+    return { res: res, missing: missing, ambiguous: ambiguous };
+  }
+
+  // ---------- the blend, and its character ----------
+  function blend(idxs, w) {
+    var v = new Float64Array(ND);
+    for (var i = 0; i < idxs.length; i++) {
+      var p = MAT[idxs[i]].p, wi = w[i];
+      for (var j = 0; j < ND; j++) v[j] += wi * p[j];
+    }
+    return v;
+  }
+  function centredCos(a, b) {
+    var na = 0, nb = 0, s = 0;
+    for (var j = 0; j < ND; j++) {
+      var x = a[j] - MEAN[j], y = b[j] - MEAN[j];
+      s += x * y; na += x * x; nb += y * y;
+    }
+    return s / Math.max(Math.sqrt(na) * Math.sqrt(nb), 1e-12);
+  }
+  function dist(a, b) {
+    var s = 0;
+    for (var j = 0; j < ND; j++) { var d = a[j] - b[j]; s += d * d; }
+    return Math.sqrt(s);
+  }
+  function lift(target, size, w, seed) {
+    // z against random blends of the same size at the same weights.
+    var draws = 2000, i, j, t, s = seed || 12345;
+    function rnd() { s = (s * 1103515245 + 12345) & 0x7fffffff; return s / 0x7fffffff; }
+    var sum = new Float64Array(ND), sq = new Float64Array(ND);
+    var tmp = new Float64Array(ND);
+    for (t = 0; t < draws; t++) {
+      tmp.fill(0);
+      for (i = 0; i < size; i++) {
+        var p = MAT[Math.floor(rnd() * N)].p, wi = w[i];
+        for (j = 0; j < ND; j++) tmp[j] += wi * p[j];
+      }
+      for (j = 0; j < ND; j++) { sum[j] += tmp[j]; sq[j] += tmp[j] * tmp[j]; }
+    }
+    var z = new Array(ND);
+    for (j = 0; j < ND; j++) {
+      var mu = sum[j] / draws;
+      var sd = Math.sqrt(Math.max(sq[j] / draws - mu * mu, 1e-18));
+      z[j] = (target[j] - mu) / Math.max(sd, 1e-9);
+    }
+    return z;
+  }
+
+  // ---------- the search ----------
+  function fitUnconstrained(idxs, b, tt) {
+    var g = gram(), k = idxs.length, A = [], bv = [], i, j;
+    for (i = 0; i < k; i++) {
+      var row = new Array(k);
+      for (j = 0; j < k; j++) row[j] = g[idxs[i]][idxs[j]] + (i === j ? 1e-9 : 0);
+      A.push(row); bv.push(b[idxs[i]]);
+    }
+    var w = solve(A, bv), r = tt;
+    for (i = 0; i < k; i++) r -= w[i] * bv[i];
+    return Math.max(r, 0);
+  }
+  function fitSimplex(idxs, target) {
+    var g = gram(), k = idxs.length, i, j;
+    if (k === 1) return [1];
+    var A = [], b = [];
+    for (i = 0; i < k; i++) {
+      var row = new Array(k);
+      for (j = 0; j < k; j++) row[j] = g[idxs[i]][idxs[j]];
+      A.push(row);
+      b.push(dot(MAT[idxs[i]].p, target));
+    }
+    var L = 0;
+    for (i = 0; i < k; i++) L += A[i][i];
+    L = Math.max(L, 1e-9);
+    var w = new Array(k).fill(1 / k);
+    for (var it = 0; it < 500; it++) {
+      var gr = new Array(k).fill(0);
+      for (i = 0; i < k; i++) {
+        var s = -b[i];
+        for (j = 0; j < k; j++) s += A[i][j] * w[j];
+        gr[i] = 2 * s;
+      }
+      var nw = new Array(k);
+      for (i = 0; i < k; i++) nw[i] = w[i] - gr[i] / (2 * L);
+      w = simplexProject(nw);
+    }
+    return w;
+  }
+  function search(target, pool, k) {
+    var b = new Float64Array(N), i;
+    for (i = 0; i < N; i++) b[i] = dot(MAT[i].p, target);
+    var tt = dot(target, target);
+    var chosen = [];
+    while (chosen.length < k) {
+      var best = -1, bestR = Infinity;
+      for (var c = 0; c < pool.length; c++) {
+        var cand = pool[c];
+        if (chosen.indexOf(cand) >= 0) continue;
+        var r = fitUnconstrained(chosen.concat([cand]), b, tt);
+        if (r < bestR) { bestR = r; best = cand; }
+      }
+      if (best < 0) break;
+      chosen.push(best);
+    }
+    // One swap pass: cheap, and it matters most at small k where the greedy
+    // first pick is often wrong once the others are known.
+    for (var slot = 0; slot < chosen.length; slot++) {
+      var cur = fitUnconstrained(chosen, b, tt), keep = chosen[slot];
+      for (var c2 = 0; c2 < pool.length; c2++) {
+        var alt = pool[c2];
+        if (chosen.indexOf(alt) >= 0) continue;
+        chosen[slot] = alt;
+        var r2 = fitUnconstrained(chosen, b, tt);
+        if (r2 < cur - 1e-12) { cur = r2; keep = alt; }
+      }
+      chosen[slot] = keep;
+    }
+    var w = fitSimplex(chosen, target);
+    // Drop anything the fit zeroed out, so "5 materials" means five.
+    var kept = [], kw = [];
+    for (i = 0; i < chosen.length; i++) {
+      if (w[i] > 1e-4) { kept.push(chosen[i]); kw.push(w[i]); }
+    }
+    var sum = kw.reduce(function (a, x) { return a + x; }, 0) || 1;
+    kw = kw.map(function (x) { return x / sum; });
+    return { idxs: kept, w: kw };
+  }
+
+  // ---------- doses ----------
+  var LADDER = [100, 10, 1];
+  function doses(idxs, w, useOav) {
+    var m = w.slice(), i;
+    if (useOav) {
+      var ok = idxs.every(function (i2) { return MAT[i2].thr; });
+      if (ok) {
+        // mass = activity share x threshold, so a material detectable at a
+        // tenth of the level needs a tenth of the mass to say as much.
+        m = idxs.map(function (i2, j) {
+          return w[j] * Math.pow(MAT[i2].thr, 0.6);
+        });
+      }
+    }
+    var s = m.reduce(function (a, x) { return a + x; }, 0) || 1;
+    m = m.map(function (x) { return x / s; });
+    var mx = Math.max.apply(null, m);
+    var scale = 50 / Math.max(mx, 1e-12);
+    return idxs.map(function (idx, j) {
+      var neat = m[j] * scale, d = LADDER[0];
+      for (var L = 0; L < LADDER.length; L++) {
+        d = LADDER[L];
+        if (neat * 100 / d >= 1) break;
+      }
+      // share is mass, act is the share of the smell the solver asked for.
+      // They differ by orders of magnitude for a potent material, and showing
+      // only the first makes a correct sheet look like a mistake.
+      return { idx: idx, share: m[j], act: w[j], dil: d,
+               parts: neat * 100 / d };
+    });
+  }
+
+  // ---------- rendering ----------
+  function el(id) { return document.getElementById(id); }
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+  }
+  function bars(container, items, max) {
+    var m = max || Math.max.apply(null, items.map(function (x) { return Math.abs(x[1]); })) || 1;
+    container.innerHTML = items.map(function (x) {
+      var pct = Math.min(100, 100 * Math.abs(x[1]) / m);
+      var col = x[1] < 0 ? "var(--muted)" : "var(--accent)";
+      return '<div class="barrow"><span class="lbl">' + esc(x[0])
+        + '</span><span><span class="bar" style="width:' + pct.toFixed(1)
+        + '%;background:' + col + '"></span></span><span class="val">'
+        + (x[2] !== undefined ? x[2] : x[1].toFixed(2)) + "</span></div>";
+    }).join("");
+  }
+
+  var STATE = null;
+
+  function run() {
+    var rows = parse(el("input").value);
+    if (rows.length < 2) {
+      alert("Read " + rows.length + " ingredients. Expected one per line, "
+            + "name first and amount last.");
+      return;
+    }
+    var r = resolve(rows);
+    if (r.res.length < 2) {
+      alert("Only " + r.res.length + " ingredient(s) could be resolved against "
+            + "the library, so there is nothing to simplify.");
+      return;
+    }
+    var totalNeat = rows.reduce(function (a, x) { return a + x.neat; }, 0);
+    var resNeat = r.res.reduce(function (a, x) { return a + x.neat; }, 0);
+    var w = r.res.map(function (x) { return x.neat / resNeat; });
+    var idxs = r.res.map(function (x) { return x.idx; });
+    var target = blend(idxs, w);
+
+    // resolution table
+    var html = "<tr><th>ingredient</th><th class=num>stock</th>"
+      + "<th class=num>amount</th><th class=num>neat %</th><th>resolved to</th></tr>";
+    rows.slice().sort(function (a, b) { return b.neat - a.neat; })
+      .forEach(function (x) {
+        var tag = x.idx !== undefined
+          ? esc(MAT[x.idx].n) + (MAT[x.idx].oil ? ' <span class="pill eo">EO</span>' : "")
+          : '<span class="dim">dropped — ' + esc(x.why || "unknown") + "</span>";
+        html += "<tr><td>" + esc(x.name) + "</td><td class=num>"
+          + (x.dil === 100 ? "neat" : x.dil + "%") + "</td><td class=num>"
+          + x.amount + "</td><td class=num>"
+          + (100 * x.neat / totalNeat).toFixed(2) + "</td><td>" + tag + "</td></tr>";
+      });
+    el("resolved").innerHTML = html;
+    el("coverage").textContent =
+      r.res.length + " of " + rows.length + " ingredients resolved, covering "
+      + (100 * resNeat / totalNeat).toFixed(1) + "% of the neat weight."
+      + (r.missing.length ? " Dropped: "
+          + r.missing.map(function (x) { return x.name; }).join(", ") + "." : "");
+
+    // character
+    var z = lift(target, idxs.length, w);
+    var order = DESC.map(function (d, i) { return [d, z[i], i]; })
+      .sort(function (a, b) { return b[1] - a[1]; }).slice(0, 10);
+    bars(el("lift"), order.map(function (x) {
+      return [x[0], x[1], (x[1] >= 0 ? "+" : "") + x[1].toFixed(1)];
+    }));
+
+    // pool
+    // An ingredient already in the formula is always a candidate, whatever
+    // the filters say. The isolation filter exists for building a neutral
+    // blend, where an ingredient that reads as itself is a problem; when the
+    // job is to match a character, the distinctive materials are often the
+    // whole point. Unfiltered, it was excluding Hedione at the 91st
+    // percentile of isolation from the simplification of a formula that is
+    // 35% Hedione.
+    var inFormula = {};
+    idxs.forEach(function (i2) { inFormula[i2] = 1; });
+    var pool = [];
+    for (var i = 0; i < N; i++) {
+      if (!inFormula[i]) {
+        if (el("ownedOnly").checked && !MAT[i].own) continue;
+        if (el("quiet").checked && MAT[i].iso > 60) continue;
+      }
+      pool.push(i);
+    }
+    el("k").max = Math.min(12, Math.max(2, idxs.length));
+    STATE = { target: target, pool: pool, idxs: idxs, w: w, rows: rows,
+              inFormula: inFormula, cache: {} };
+
+    // fidelity curve over every k, computed once
+    var curve = [];
+    for (var kk = 1; kk <= parseInt(el("k").max, 10); kk++) {
+      var s = search(target, pool, kk);
+      STATE.cache[kk] = s;
+      var got = blend(s.idxs, s.w);
+      curve.push([kk, centredCos(got, target), dist(got, target)]);
+    }
+    STATE.curve = curve;
+    bars(el("curve"), curve.map(function (c) {
+      return ["" + c[0] + (c[0] === 1 ? " material" : " materials"),
+              Math.max(0, c[1]),
+              c[1].toFixed(3) + (c[2] <= YARD ? " ✓" : "")];
+    }), 1);
+    el("out").hidden = false;
+    if (parseInt(el("k").value, 10) > parseInt(el("k").max, 10)) {
+      el("k").value = el("k").max;
+    }
+    renderK();
+  }
+
+  function renderK() {
+    if (!STATE) return;
+    var k = parseInt(el("k").value, 10);
+    el("kVal").textContent = k + (k === 1 ? " material" : " materials");
+    var s = STATE.cache[k];
+    if (!s) return;
+    var got = blend(s.idxs, s.w);
+    var cos = centredCos(got, STATE.target), dd = dist(got, STATE.target);
+    var within = dd <= YARD;
+    el("fid").innerHTML = "cosine " + cos.toFixed(3) + " · distance "
+      + dd.toFixed(3) + " · <span class=\"" + (within ? "good" : "warn")
+      + "\">" + (within ? "inside" : "outside")
+      + " the just-noticeable scale of " + YARD.toFixed(2) + "</span>";
+
+    var useOav = el("oavDose").checked;
+    var ds = doses(s.idxs, s.w, useOav);
+    var html = "<tr><th>material</th><th class=num>stock</th>"
+      + "<th class=num>parts</th><th class=num>neat %</th>"
+      + (useOav ? "<th class=num>of the smell</th>" : "")
+      + "<th>note</th></tr>";
+    var over = [];
+    ds.slice().sort(function (a, b) { return b.share - a.share; })
+      .forEach(function (x) {
+        var m = MAT[x.idx];
+        var note = [];
+        if (m.oil) note.push('<span class="pill eo">EO</span> ' + esc(m.built || ""));
+        if (STATE.inFormula[x.idx]) {
+          note.push('<span class="pill">yours</span>');
+        } else if (m.iso > 60) {
+          // Only worth saying about a substitution. On an ingredient the
+          // formula already contains it is not a choice anyone is making.
+          note.push('<span class="warn">distinctive — may read as itself</span>');
+        }
+        if (m.use && 100 * x.share > m.use * 1.02 + 0.02) {
+          over.push(m.n + " at " + (100 * x.share).toFixed(1) + "% against your "
+                    + m.use + "%");
+        }
+        html += "<tr><td>" + esc(m.n) + "</td><td class=num>"
+          + (x.dil === 100 ? "neat" : x.dil + "%") + "</td><td class=num>"
+          + x.parts.toFixed(1) + "</td><td class=num>"
+          + (100 * x.share).toFixed(2) + "</td>"
+          + (useOav ? "<td class=num>" + (100 * x.act).toFixed(0) + "%</td>" : "")
+          + "<td>" + note.join(" ") + "</td></tr>";
+      });
+    el("proposal").innerHTML = html;
+    var kept = s.idxs.filter(function (i2) { return STATE.inFormula[i2]; }).length;
+    el("kept").textContent = "Keeps " + kept + " of your "
+      + STATE.idxs.length + " ingredients and substitutes "
+      + (s.idxs.length - kept) + ".";
+    el("doseNote").textContent = useOav
+      ? "Doses are shares of odour activity converted to mass with a "
+        + "compiled threshold figure, raised to the 0.6 power because a "
+        + "straight conversion overshot on the bench. Weigh the parts shown "
+        + "at the stock strength shown."
+      : "Doses are mass fractions, which is what the solver matched. A "
+        + "powerful material will dominate this more than the numbers suggest.";
+    if (over.length) {
+      el("overUse").hidden = false;
+      el("overUse").textContent = "Above your own maximum use level: "
+        + over.join("; ") + ". Smell it diluted.";
+    } else {
+      el("overUse").hidden = true;
+    }
+
+    // residual
+    var diff = [];
+    for (var j = 0; j < ND; j++) diff.push([DESC[j], STATE.target[j] - got[j]]);
+    diff.sort(function (a, b) { return Math.abs(b[1]) - Math.abs(a[1]); });
+    bars(el("residual"), diff.slice(0, 8).map(function (x) {
+      return [x[0] + (x[1] > 0 ? " (missing)" : " (added)"), x[1],
+              (x[1] >= 0 ? "+" : "") + x[1].toFixed(3)];
+    }));
+
+    // caveats, the specific ones first
+    var cav = [];
+    var traces = STATE.rows.filter(function (x) {
+      return x.idx !== undefined
+        && 100 * x.neat / STATE.rows.reduce(function (a, y) { return a + y.neat; }, 0) < 1;
+    });
+    if (traces.length) {
+      cav.push("<strong>Traces.</strong> " + traces.map(function (x) {
+        return esc(x.name);
+      }).join(", ") + " sit below 1% of the weight. This model reads a blend's "
+        + "bulk and has repeatedly been blind to exactly such ingredients — "
+        + "nootkatone is 0.1% of grapefruit oil and is the whole grapefruit "
+        + "note. Nothing here can tell you whether their character survives "
+        + "the simplification.");
+    }
+    cav.push("<strong>Time.</strong> There is no volatility axis anywhere in "
+      + "this model. A match here is a match on a strip for the first minutes, "
+      + "and says nothing about how either version behaves over hours.");
+    cav.push("<strong>Dose.</strong> Threshold figures may be out by a factor "
+      + "of ten, and a tenfold error moves a five-material blend further than "
+      + "the just-noticeable scale. Treat the doses as a starting point to "
+      + "adjust by nose.");
+    cav.push("<strong>Suppression.</strong> Components mask each other and "
+      + "nothing here models that; the blend is a weighted mean of its parts.");
+    el("caveats").innerHTML = cav.map(function (c) {
+      return "<li style='margin-bottom:6px'>" + c + "</li>";
+    }).join("");
+  }
+
+  el("go").addEventListener("click", run);
+  el("k").addEventListener("input", renderK);
+  ["ownedOnly", "quiet", "oavDose"].forEach(function (id) {
+    el(id).addEventListener("change", function () {
+      if (STATE) run();
+    });
+  });
+  el("demo").addEventListener("click", function () {
+    el("input").value = "Hedione\t300\nDihydromyrcenol\t120\n"
+      + "Iso E Super\t100\nGalaxolide 50%\t100\nEthylene Brassylate\t60\n"
+      + "Ambroxan 10%\t60\nCalone 10%\t40\nBergamot\t150\nLemon FCF\t40\n"
+      + "Helional\t15\nCyclamen Aldehyde\t10\nFlorhydral\t5";
+    run();
+  });
+  // A shareable deep link to the worked example, which also makes the page
+  // checkable headlessly: chrome --headless --dump-dom on simplify.html#demo
+  // renders the whole result into the DOM, so the arithmetic can be verified
+  // without a human clicking anything.
+  if (location.hash === "#demo") el("demo").click();
+
+  window.addEventListener("error", function (e) {
+    var p = document.createElement("p");
+    p.className = "note warn";
+    p.textContent = "Something broke: " + (e.message || e);
+    document.querySelector(".wrap").appendChild(p);
+  });
+})();
+</script>
