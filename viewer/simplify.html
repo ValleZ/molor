@@ -168,6 +168,7 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
     <h2>The simplified formula</h2>
     <div class="card">
       <table id="proposal"></table>
+      <p class="note" id="cols"></p>
       <p class="note" id="against"></p>
       <p class="note" id="kept"></p>
       <p class="note" id="doseNote"></p>
@@ -532,7 +533,10 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
   }
 
   // ---------- doses ----------
-  var LADDER = [100, 10, 1];
+  // Stock strengths a bench is likely to keep. 0.1% is on the list because
+  // without it the ladder bottomed out and asked for a tenth of a part of a
+  // 1% stock, which nobody can weigh.
+  var LADDER = [100, 10, 1, 0.1];
   function doses(idxs, w, useOav) {
     var m = w.slice(), i;
     if (useOav) {
@@ -547,24 +551,64 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
     }
     var s = m.reduce(function (a, x) { return a + x; }, 0) || 1;
     m = m.map(function (x) { return x / s; });
+    // The sheet is scaled so the parts sum to 100, which is the ordinary
+    // convention and has a useful property: when nothing needs diluting, a
+    // part IS a percent of the neat material, so the two columns agree
+    // instead of being the same number at two arbitrary scales. They diverge
+    // only where a dilution is involved, which is the one case where they
+    // genuinely mean different things -- ten parts of a 10% stock deliver one
+    // part of material.
     var mx = Math.max.apply(null, m);
-    var scale = 50 / Math.max(mx, 1e-12);
-    return idxs.map(function (idx, j) {
-      var neat = m[j] * scale, d = LADDER[0];
+    var dil = idxs.map(function (idx, j) {
+      var rel = m[j] / Math.max(mx, 1e-12), d = LADDER[0];
       for (var L = 0; L < LADDER.length; L++) {
         d = LADDER[L];
-        if (neat * 100 / d >= 1) break;
+        if (rel * 50 * 100 / d >= 1) break;
       }
-      // share is mass, act is the share of the smell the solver asked for.
-      // They differ by orders of magnitude for a potent material, and showing
-      // only the first makes a correct sheet look like a mistake.
-      return { idx: idx, share: m[j], act: w[j], dil: d,
-               parts: neat * 100 / d };
+      return d;
+    });
+    for (var pass = 0; pass < 3; pass++) {
+      var tot = 0;
+      for (var j2 = 0; j2 < m.length; j2++) tot += m[j2] * 100 / dil[j2];
+      var s2 = tot > 0 ? 100 / tot : 1;
+      var bumped = false;
+      for (var j3 = 0; j3 < m.length; j3++) {
+        var pr = m[j3] * 100 / dil[j3] * s2;
+        // Anything under half a part cannot be weighed on a bench balance, so
+        // it moves to a weaker stock and the sheet is rescaled.
+        if (pr < 0.5) {
+          var at = LADDER.indexOf(dil[j3]);
+          if (at >= 0 && at < LADDER.length - 1) {
+            dil[j3] = LADDER[at + 1];
+            bumped = true;
+          }
+        }
+      }
+      if (!bumped) break;
+    }
+    var total = 0;
+    for (var j4 = 0; j4 < m.length; j4++) total += m[j4] * 100 / dil[j4];
+    var S = total > 0 ? 100 / total : 1;
+    return idxs.map(function (idx, j) {
+      // share is mass of material, act is the share of the smell the solver
+      // asked for. They differ by orders of magnitude for a potent material,
+      // and showing only the first makes a correct sheet look like a mistake.
+      return { idx: idx, share: m[j], act: w[j], dil: dil[j],
+               parts: m[j] * 100 / dil[j] * S };
     });
   }
 
   // ---------- rendering ----------
   function el(id) { return document.getElementById(id); }
+  function pct(v) {
+    // v is a fraction. Two decimals for ordinary amounts, more for a trace,
+    // because 0.004% printed as 0.00 reads as nothing at all.
+    var x = 100 * v;
+    if (x >= 1) return x.toFixed(2);
+    if (x >= 0.01) return x.toFixed(3);
+    if (x > 0) return x.toPrecision(2);
+    return "0";
+  }
   function esc(s) {
     return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;")
       .replace(/>/g, "&gt;");
@@ -613,7 +657,7 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
         html += "<tr><td>" + esc(x.name) + "</td><td class=num>"
           + (x.dil === 100 ? "neat" : x.dil + "%") + "</td><td class=num>"
           + x.amount + "</td><td class=num>"
-          + (100 * x.neat / totalNeat).toFixed(2) + "</td><td>" + tag + "</td></tr>";
+          + pct(x.neat / totalNeat) + "</td><td>" + tag + "</td></tr>";
       });
     el("resolved").innerHTML = html;
     el("coverage").textContent =
@@ -760,7 +804,7 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
     var useOav = true;
     var ds = doses(s.idxs, s.w, useOav);
     var html = "<tr><th>material</th><th class=num>stock</th>"
-      + "<th class=num>parts</th><th class=num>neat %</th>"
+      + "<th class=num>parts to weigh</th><th class=num>% neat</th>"
       + (useOav ? "<th class=num>of the smell</th>" : "")
       + "<th>note</th></tr>";
     var over = [];
@@ -780,12 +824,23 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
         }
         html += "<tr><td>" + esc(m.n) + "</td><td class=num>"
           + (x.dil === 100 ? "neat" : x.dil + "%") + "</td><td class=num>"
-          + x.parts.toFixed(1) + "</td><td class=num>"
-          + (100 * x.share).toFixed(2) + "</td>"
-          + (useOav ? "<td class=num>" + (100 * x.act).toFixed(0) + "%</td>" : "")
+          + (x.parts >= 1 ? x.parts.toFixed(1) : x.parts.toPrecision(2))
+          + "</td><td class=num>" + pct(x.share) + "</td>"
+          + (useOav ? "<td class=num>" + pct(x.act) + "%</td>" : "")
           + "<td>" + note.join(" ") + "</td></tr>";
       });
+    var sumParts = ds.reduce(function (a, x) { return a + x.parts; }, 0);
+    var anyDil = ds.some(function (x) { return x.dil < 100; });
+    html += '<tr><td class="dim">total</td><td></td><td class="num dim">'
+      + sumParts.toFixed(1) + '</td><td class="num dim">100.00</td>'
+      + (useOav ? '<td class="num dim">100%</td>' : "") + "<td></td></tr>";
     el("proposal").innerHTML = html;
+    el("cols").textContent = anyDil
+      ? "Weigh the parts column at the stock strength beside it. It differs "
+        + "from the neat column because a 10% stock needs ten times the "
+        + "weight to deliver the same amount of material."
+      : "Nothing here needs diluting, so a part is a percent: the two columns "
+        + "are the same number.";
     var kept = s.idxs.filter(function (i2) { return STATE.inFormula[i2]; }).length;
     el("kept").textContent = "Keeps " + kept + " of your "
       + STATE.idxs.length + " ingredients and substitutes "
