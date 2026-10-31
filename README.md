@@ -868,6 +868,36 @@ plus an unassigned resin fraction: **5.7%** of a published composition resolves
 even now, and the volatiles that carry its smell are mostly unidentified in the
 literature. Adding molecules cannot fix a composition nobody has written down.
 
+### The citrus cluster: the ordering is right, the scale is 15x too small
+
+Asked to compare the three points the model cannot separate, the perfumer
+reported that tangerine, orange and D-Limonene are indeed very similar, with
+tangerine "milder and more silent", orange "more bright and rich", and
+D-Limonene standing to orange oil as this project's six-constituent petitgrain
+stood to real petitgrain -- a skeleton of it.
+
+That names an axis of completeness rather than of character, and the model has
+it. By amplitude -- the norm of the predicted percept vector, which centred
+cosine discards -- the ordering is D-Limonene 2.023, tangerine 2.030, orange
+2.048. Exactly the reported ordering, unprompted.
+
+The magnitudes are the problem. Those differences are 0.010 and 0.035 in
+absolute distance, against a just-noticeable yardstick of 0.525: the model has
+the sign right and is fifteen to fifty times short on the scale, so by its own
+reckoning it would call all three indistinguishable. Switching the trim
+criterion from cosine to absolute distance would not rescue them either, for
+the same reason.
+
+What the model does separate, at near-yardstick scale, is the oils whose
+composition genuinely diverges from limonene: mandarin sits 0.199 from orange
+and lemon 0.449, because they carry 15% gamma-terpinene and 14% beta-pinene
+respectively. The oils it cannot separate are the ones whose difference is
+carried entirely in traces -- the sinensals, valencene, methyl
+N-methylanthranilate -- which is the same wall as nootkatone in grapefruit,
+Calone in the Acqua di Gio formula, ethyl maltol in the mojito, and the spice
+in petitgrain. Four of those were found on a bench and one in the data; none
+was found by a metric.
+
 ### Read lift against a null, never the raw values
 
 The raw combined descriptor values are dominated by GS-LF label frequency. A
