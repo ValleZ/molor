@@ -72,117 +72,117 @@
     },
     {
       "k": 3,
-      "residual": 0.30092762622164904,
+      "residual": 0.28771088472971407,
       "names": [
         "Hexyl Acetate",
         "Paradisamide",
-        "Dihydro Eugenol"
+        "Toscanol"
       ],
-      "profile_mean": 0.04758857498430806,
-      "profile_sd": 0.07871892087763235,
+      "profile_mean": 0.04365068320502581,
+      "profile_sd": 0.07829365874608052,
       "top": [
         [
           "fruity",
-          0.486
+          0.444
         ],
         [
           "floral",
-          0.404
+          0.43
         ],
         [
           "sweet",
-          0.402
+          0.419
         ],
         [
-          "woody",
-          0.341
+          "green",
+          0.309
         ]
       ],
       "weights": [
-        0.4057,
-        0.4544,
-        0.1399
+        0.3649,
+        0.4207,
+        0.2144
       ],
       "nearest": "Pharaone",
-      "nearest_d": 0.4766559749203277
+      "nearest_d": 0.44864604270025277
     },
     {
       "k": 4,
-      "residual": 0.23208451935258623,
+      "residual": 0.23986032488558628,
       "names": [
-        "Benzyl Acetate",
-        "Aldehyde C-11 Undecylenic",
-        "Coumarin",
-        "Verdox HC"
+        "Calone 1951",
+        "Anethole ex Star Anise",
+        "Paradisamide",
+        "Hexyl Acetate"
       ],
-      "profile_mean": 0.044853505017664136,
-      "profile_sd": 0.08293189463283857,
+      "profile_mean": 0.04422358639008795,
+      "profile_sd": 0.07492999231324887,
       "top": [
         [
           "sweet",
-          0.54
+          0.44
         ],
         [
           "fruity",
-          0.437
+          0.42
         ],
         [
           "floral",
-          0.378
+          0.402
         ],
         [
           "green",
-          0.332
+          0.324
         ]
       ],
       "weights": [
-        0.2049,
-        0.2073,
-        0.3116,
-        0.2762
+        0.1703,
+        0.1488,
+        0.3463,
+        0.3347
       ],
       "nearest": "Pharaone",
-      "nearest_d": 0.5139741483956167
+      "nearest_d": 0.4574574152227064
     },
     {
       "k": 5,
-      "residual": 0.20733315559214605,
+      "residual": 0.19711652377202804,
       "names": [
+        "Methyl Cinnamate",
+        "Rose Oxide",
+        "Gamma Undecalactone",
         "Hexyl Acetate",
-        "Cinnamaldehyde",
-        "Paradisamide",
-        "Calone 1951",
-        "Isobornyl Acetate"
+        "Paradisamide"
       ],
-      "profile_mean": 0.04827071435793605,
-      "profile_sd": 0.0759538472137252,
+      "profile_mean": 0.047697669275485646,
+      "profile_sd": 0.07666550395980942,
       "top": [
         [
           "fruity",
-          0.448
-        ],
-        [
-          "sweet",
-          0.409
+          0.488
         ],
         [
           "floral",
-          0.381
+          0.417
+        ],
+        [
+          "sweet",
+          0.404
         ],
         [
           "green",
-          0.351
+          0.286
         ]
       ],
       "weights": [
-        0.3186,
-        0.0927,
-        0.3171,
-        0.2115,
-        0.0602
+        0.1356,
+        0.1777,
+        0.0827,
+        0.2561,
+        0.3479
       ],
       "nearest": "Pharaone",
-      "nearest_d": 0.47460936505343115
+      "nearest_d": 0.41179494092437907
     }
   ]
 }
