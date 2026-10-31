@@ -1,0 +1,185 @@
+{
+  "owned_only": false,
+  "targets": "oils",
+  "palette": [
+    "Ocimene",
+    "Alpha Pinene",
+    "Linalyl Acetate",
+    "Eugenol ex Clove",
+    "Cedrol",
+    "D-Limonene",
+    "Citronellol",
+    "Cinnamaldehyde",
+    "Citral",
+    "Thymol",
+    "Linalool",
+    "Menthone",
+    "Patchoulol",
+    "Laevo Menthol"
+  ],
+  "curve": [
+    {
+      "k": 1,
+      "added": "Ocimene",
+      "median_cos": 0.603125799964039,
+      "frac90": 0.0,
+      "frac95": 0.0,
+      "worst_cos": -0.00583465480631966,
+      "median_resid": 1.3053589372696552
+    },
+    {
+      "k": 2,
+      "added": "Alpha Pinene",
+      "median_cos": 0.7130973505455183,
+      "frac90": 0.21428571428571427,
+      "frac95": 0.03571428571428571,
+      "worst_cos": 0.029747627907314615,
+      "median_resid": 1.0452720435192735
+    },
+    {
+      "k": 3,
+      "added": "Linalyl Acetate",
+      "median_cos": 0.8922117712773452,
+      "frac90": 0.42857142857142855,
+      "frac95": 0.10714285714285714,
+      "worst_cos": 0.018321569547742913,
+      "median_resid": 0.8076557539525862
+    },
+    {
+      "k": 4,
+      "added": "Eugenol ex Clove",
+      "median_cos": 0.9011611682977315,
+      "frac90": 0.5714285714285714,
+      "frac95": 0.14285714285714285,
+      "worst_cos": 0.36863666921219057,
+      "median_resid": 0.7774158087456093
+    },
+    {
+      "k": 6,
+      "added": "D-Limonene",
+      "median_cos": 0.9109488796823745,
+      "frac90": 0.6428571428571429,
+      "frac95": 0.35714285714285715,
+      "worst_cos": 0.497624846011057,
+      "median_resid": 0.6765361017777158
+    },
+    {
+      "k": 8,
+      "added": "Cinnamaldehyde",
+      "median_cos": 0.9336176743249311,
+      "frac90": 0.8571428571428571,
+      "frac95": 0.4642857142857143,
+      "worst_cos": 0.7859847611047844,
+      "median_resid": 0.6199425752858099
+    },
+    {
+      "k": 10,
+      "added": "Thymol",
+      "median_cos": 0.9658304016364272,
+      "frac90": 0.9642857142857143,
+      "frac95": 0.5714285714285714,
+      "worst_cos": 0.8846845143807395,
+      "median_resid": 0.4654948281519838
+    },
+    {
+      "k": 12,
+      "added": "Menthone",
+      "median_cos": 0.975617361850438,
+      "frac90": 0.9642857142857143,
+      "frac95": 0.6785714285714286,
+      "worst_cos": 0.8846845143807395,
+      "median_resid": 0.38343799320829575
+    },
+    {
+      "k": 14,
+      "added": "Laevo Menthol",
+      "median_cos": 0.977297661734476,
+      "frac90": 1.0,
+      "frac95": 0.7142857142857143,
+      "worst_cos": 0.9073760142954329,
+      "median_resid": 0.38343799320829575
+    }
+  ],
+  "worst": [
+    {
+      "name": "Vetiver EO (Haiti)",
+      "cos": 0.9073760142954329
+    },
+    {
+      "name": "Cedarwood EO (Virginia)",
+      "cos": 0.9109760248480808
+    },
+    {
+      "name": "Patchouli EO (Javanese)",
+      "cos": 0.920311710916826
+    },
+    {
+      "name": "Bergamot EO (Turkish)",
+      "cos": 0.9305467465271806
+    },
+    {
+      "name": "Lavender EO (Spanish, var. pyrenaica)",
+      "cos": 0.9311111943748911
+    },
+    {
+      "name": "Lavandin EO (Grosso)",
+      "cos": 0.9311205406490062
+    },
+    {
+      "name": "Lavender EO (French, L. angustifolia)",
+      "cos": 0.9361148080008561
+    },
+    {
+      "name": "Spike Lavender EO (L. latifolia)",
+      "cos": 0.940992422935655
+    },
+    {
+      "name": "Geranium EO (Bourbon, Madagascar)",
+      "cos": 0.951565882448457
+    },
+    {
+      "name": "Lavender EO (South African)",
+      "cos": 0.9600903590708199
+    },
+    {
+      "name": "Peppermint EO (Michigan)",
+      "cos": 0.9643612987547582
+    },
+    {
+      "name": "Neroli EO (Egyptian)",
+      "cos": 0.971695233760169
+    },
+    {
+      "name": "Cinnamon Bark EO (commercial)",
+      "cos": 0.9717391351335731
+    },
+    {
+      "name": "Rosemary EO (cineole type)",
+      "cos": 0.9761849456438576
+    },
+    {
+      "name": "Lime EO (Persian, expressed)",
+      "cos": 0.9784103778250944
+    },
+    {
+      "name": "Thyme EO (thymol type)",
+      "cos": 0.9829441295170525
+    },
+    {
+      "name": "Lemon EO (Sicilian, cold-pressed)",
+      "cos": 0.9840505667621886
+    },
+    {
+      "name": "Petitgrain EO (bigarade)",
+      "cos": 0.9842568466651347
+    },
+    {
+      "name": "Clary Sage EO",
+      "cos": 0.9941592829152099
+    },
+    {
+      "name": "Mandarin EO (Italian, cold-pressed)",
+      "cos": 0.9946190789111741
+    }
+  ]
+}

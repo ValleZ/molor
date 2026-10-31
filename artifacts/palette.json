@@ -1,0 +1,360 @@
+{
+  "owned_only": false,
+  "targets": "materials",
+  "palette": [
+    "Undecavertol",
+    "Methyl Benzoate",
+    "Zizanoic Acid",
+    "Ethyl Caproate",
+    "Gamma Dodecalactone",
+    "Citronellyl Acetate",
+    "Beta Pinene",
+    "Dihydro Eugenol",
+    "Cis-3-Hexenyl Salicylate",
+    "Aldehyde C-8",
+    "Muscone",
+    "Dihydro Myrcenol",
+    "Benzyl Cinnamate",
+    "Diacetyl",
+    "Edenolide",
+    "Ethyl Laurate",
+    "Nympheal",
+    "Ionone Beta",
+    "Benzophenone",
+    "Cis-3-Hexenyl Butyrate",
+    "Damascone Gamma",
+    "Oxane",
+    "Methyl Acetate",
+    "Para Cresol",
+    "Piperitone",
+    "Anisaldehyde",
+    "Iso E Super",
+    "Gamma Octalactone",
+    "Methyl Heptine Carbonate",
+    "Thymol",
+    "Maltol",
+    "Terpinyl Acetate",
+    "Isobutyl Phenyl Acetate",
+    "2-Acetyl Thiazole",
+    "Borneol",
+    "Helvetolide",
+    "Veloutone",
+    "Anethole ex Star Anise",
+    "Methyl Octine Carbonate",
+    "Methyl Anthranilate",
+    "Dimethyl Sulfide",
+    "Musk Xylene",
+    "Vanillin Acetate",
+    "Linalyl Formate",
+    "Caprylic Acid"
+  ],
+  "curve": [
+    {
+      "k": 1,
+      "added": "Undecavertol",
+      "median_cos": -0.10215279222563314,
+      "frac90": 0.0,
+      "frac95": 0.0,
+      "worst_cos": -0.5675426795680588,
+      "median_resid": 1.3418496549320222
+    },
+    {
+      "k": 2,
+      "added": "Methyl Benzoate",
+      "median_cos": 0.20951255348628878,
+      "frac90": 0.0,
+      "frac95": 0.0,
+      "worst_cos": -0.549381183623214,
+      "median_resid": 1.193141412863805
+    },
+    {
+      "k": 3,
+      "added": "Zizanoic Acid",
+      "median_cos": 0.37513642138046777,
+      "frac90": 0.018867924528301886,
+      "frac95": 0.006289308176100629,
+      "worst_cos": -0.23463596519348898,
+      "median_resid": 1.1247003826162216
+    },
+    {
+      "k": 4,
+      "added": "Ethyl Caproate",
+      "median_cos": 0.47185159746748623,
+      "frac90": 0.0473186119873817,
+      "frac95": 0.015772870662460567,
+      "worst_cos": -0.03162553156405861,
+      "median_resid": 1.0421302479214096
+    },
+    {
+      "k": 6,
+      "added": "Citronellyl Acetate",
+      "median_cos": 0.6361992302878607,
+      "frac90": 0.09841269841269841,
+      "frac95": 0.03492063492063492,
+      "worst_cos": 0.03662804700134811,
+      "median_resid": 0.91970209777019
+    },
+    {
+      "k": 8,
+      "added": "Dihydro Eugenol",
+      "median_cos": 0.69494215899314,
+      "frac90": 0.12460063897763578,
+      "frac95": 0.04153354632587859,
+      "worst_cos": 0.10349134133739343,
+      "median_resid": 0.8513244822512135
+    },
+    {
+      "k": 10,
+      "added": "Aldehyde C-8",
+      "median_cos": 0.7351159207423664,
+      "frac90": 0.17684887459807075,
+      "frac95": 0.07717041800643087,
+      "worst_cos": 0.17600983974137105,
+      "median_resid": 0.786305601827096
+    },
+    {
+      "k": 12,
+      "added": "Dihydro Myrcenol",
+      "median_cos": 0.7761913707848563,
+      "frac90": 0.20064724919093851,
+      "frac95": 0.07766990291262135,
+      "worst_cos": 0.1923097956757745,
+      "median_resid": 0.7403015149338451
+    },
+    {
+      "k": 14,
+      "added": "Diacetyl",
+      "median_cos": 0.8008174428439768,
+      "frac90": 0.23127035830618892,
+      "frac95": 0.08469055374592833,
+      "worst_cos": 0.2798329638188967,
+      "median_resid": 0.716207517722287
+    },
+    {
+      "k": 16,
+      "added": "Ethyl Laurate",
+      "median_cos": 0.8234642276985803,
+      "frac90": 0.26557377049180325,
+      "frac95": 0.10163934426229508,
+      "worst_cos": 0.32062705799880153,
+      "median_resid": 0.685531155719156
+    },
+    {
+      "k": 18,
+      "added": "Ionone Beta",
+      "median_cos": 0.8338102061362105,
+      "frac90": 0.2871287128712871,
+      "frac95": 0.10231023102310231,
+      "worst_cos": 0.3275082574013361,
+      "median_resid": 0.6524208768325066
+    },
+    {
+      "k": 20,
+      "added": "Cis-3-Hexenyl Butyrate",
+      "median_cos": 0.8429483704274873,
+      "frac90": 0.32558139534883723,
+      "frac95": 0.12624584717607973,
+      "worst_cos": 0.3493612157830578,
+      "median_resid": 0.6326339924930374
+    },
+    {
+      "k": 22,
+      "added": "Oxane",
+      "median_cos": 0.8529274498982851,
+      "frac90": 0.3377926421404682,
+      "frac95": 0.13043478260869565,
+      "worst_cos": 0.5104658715119452,
+      "median_resid": 0.6301959624699793
+    },
+    {
+      "k": 24,
+      "added": "Para Cresol",
+      "median_cos": 0.8645344625935069,
+      "frac90": 0.3838383838383838,
+      "frac95": 0.1447811447811448,
+      "worst_cos": 0.5195792449455768,
+      "median_resid": 0.6026396784121464
+    },
+    {
+      "k": 26,
+      "added": "Anisaldehyde",
+      "median_cos": 0.8764063796719525,
+      "frac90": 0.4101694915254237,
+      "frac95": 0.14576271186440679,
+      "worst_cos": 0.5435187783510256,
+      "median_resid": 0.5866712744131929
+    },
+    {
+      "k": 28,
+      "added": "Gamma Octalactone",
+      "median_cos": 0.885115699064679,
+      "frac90": 0.45051194539249145,
+      "frac95": 0.16723549488054607,
+      "worst_cos": 0.5435187783510256,
+      "median_resid": 0.5780741677710248
+    },
+    {
+      "k": 30,
+      "added": "Thymol",
+      "median_cos": 0.8884977511984209,
+      "frac90": 0.4639175257731959,
+      "frac95": 0.17869415807560138,
+      "worst_cos": 0.5435187783510256,
+      "median_resid": 0.5648074040308868
+    },
+    {
+      "k": 32,
+      "added": "Terpinyl Acetate",
+      "median_cos": 0.8968656093395064,
+      "frac90": 0.49480968858131485,
+      "frac95": 0.18685121107266436,
+      "worst_cos": 0.5435187783510256,
+      "median_resid": 0.543701186478401
+    },
+    {
+      "k": 34,
+      "added": "2-Acetyl Thiazole",
+      "median_cos": 0.9030685499699974,
+      "frac90": 0.5226480836236934,
+      "frac95": 0.1951219512195122,
+      "worst_cos": 0.546044221695149,
+      "median_resid": 0.5369608558755756
+    },
+    {
+      "k": 36,
+      "added": "Helvetolide",
+      "median_cos": 0.9040790940942133,
+      "frac90": 0.5333333333333333,
+      "frac95": 0.20350877192982456,
+      "worst_cos": 0.546044221695149,
+      "median_resid": 0.5324273507395808
+    },
+    {
+      "k": 38,
+      "added": "Anethole ex Star Anise",
+      "median_cos": 0.9056855877811696,
+      "frac90": 0.5512367491166078,
+      "frac95": 0.2049469964664311,
+      "worst_cos": 0.546044221695149,
+      "median_resid": 0.5248352876494115
+    },
+    {
+      "k": 40,
+      "added": "Methyl Anthranilate",
+      "median_cos": 0.9065596205942522,
+      "frac90": 0.5551601423487544,
+      "frac95": 0.2099644128113879,
+      "worst_cos": 0.6186195323312249,
+      "median_resid": 0.5223747972088166
+    },
+    {
+      "k": 42,
+      "added": "Musk Xylene",
+      "median_cos": 0.909343468951121,
+      "frac90": 0.5698924731182796,
+      "frac95": 0.21505376344086022,
+      "worst_cos": 0.6186195323312249,
+      "median_resid": 0.5183883846099075
+    },
+    {
+      "k": 44,
+      "added": "Linalyl Formate",
+      "median_cos": 0.9132369995032019,
+      "frac90": 0.6028880866425993,
+      "frac95": 0.22382671480144403,
+      "worst_cos": 0.6186195323312249,
+      "median_resid": 0.5125389122201056
+    },
+    {
+      "k": 45,
+      "added": "Caprylic Acid",
+      "median_cos": 0.9138643709426283,
+      "frac90": 0.6195652173913043,
+      "frac95": 0.2246376811594203,
+      "worst_cos": 0.6186195323312249,
+      "median_resid": 0.5102325668455256
+    }
+  ],
+  "worst": [
+    {
+      "name": "2-Isobutyl Quinoline",
+      "cos": 0.6186195323312249
+    },
+    {
+      "name": "6-Methyl Quinoline",
+      "cos": 0.6714535737310454
+    },
+    {
+      "name": "Methyl Nicotinate",
+      "cos": 0.7027291017120504
+    },
+    {
+      "name": "Lemonile",
+      "cos": 0.7173580464709927
+    },
+    {
+      "name": "Phenyl Acetaldehyde",
+      "cos": 0.7242784110340427
+    },
+    {
+      "name": "Matsutake Alcohol",
+      "cos": 0.7244822523715224
+    },
+    {
+      "name": "Geosmin",
+      "cos": 0.7298233200648117
+    },
+    {
+      "name": "Stemone",
+      "cos": 0.7300514560274965
+    },
+    {
+      "name": "Nootkatone",
+      "cos": 0.7316953699838918
+    },
+    {
+      "name": "Triplal",
+      "cos": 0.7448086001099803
+    },
+    {
+      "name": "Heptan-2-one",
+      "cos": 0.7594314907691097
+    },
+    {
+      "name": "Aurantiol",
+      "cos": 0.7597142184701962
+    },
+    {
+      "name": "Indolene 50",
+      "cos": 0.7633156507892956
+    },
+    {
+      "name": "Helional",
+      "cos": 0.7642454903162919
+    },
+    {
+      "name": "Hedione",
+      "cos": 0.7768693920236649
+    },
+    {
+      "name": "Tonalide",
+      "cos": 0.7825377340765145
+    },
+    {
+      "name": "Doremox",
+      "cos": 0.7832486252075299
+    },
+    {
+      "name": "Damascenone Total",
+      "cos": 0.7882437926953539
+    },
+    {
+      "name": "Scentenal",
+      "cos": 0.793586910063412
+    },
+    {
+      "name": "Hydratropic Aldehyde",
+      "cos": 0.7936301490902294
+    }
+  ]
+}

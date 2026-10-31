@@ -23,6 +23,8 @@ reader does not act on a retracted claim:
 | predicted odour thresholds are usable for dosing | **withdrawn** — Spearman 0.14 against the perfumer's use levels in-domain, −0.17 outside it |
 | patchouli and vetiver cannot be built from their GC compositions | **false** — a shelf limit, not a model limit; thirteen sesquiterpenoids added as reference molecules and vetiver now puts `vetiver` 3rd of 138 by lift |
 | a blend's position on the atlas means something | **only under the right rule** — noisy-OR is a union, so it placed a 28-ingredient formula 62 from the cloud's centre where materials sit 14.6; the distance was measuring ingredient count |
+| noisy-OR lets a trace ingredient through where a mean buries it | **false** — it scales by `w / w.max()`, so 3% of a four-material blend enters at ~9% strength; in 40,000 random blends it never once carried a descriptor the mean did not |
+| a fixed palette of ~25 materials could reach any smell | **false for single molecules** — the reachable set is the palette's convex hull: 25 materials capture 95% of the space's energy and still reproduce only 45% of the library to cosine 0.90 |
 
 The pattern is worth stating: every number that looked good on its own
 cross-validation failed when checked against something it had not been fitted
@@ -1013,6 +1015,122 @@ cedar / amber, because Iso E Super and Ambroxan have very low thresholds and
 both citrus oils were dropped for having no measured threshold at all. That is
 the third formula on which OAV weighting has failed to generalise, against one
 on which it helped.
+
+### Could one fixed palette reproduce everything? No, and the reason is geometric
+
+Choosing materials per target is one claim; a *fixed* palette that reaches any
+smell is a much stronger one, and it is the olfactory version of asking whether
+three phosphors make every colour. The answer transfers: under any averaging
+rule a blend of a fixed palette is a convex combination of its members, so the
+reachable set is the **convex hull** of the palette. A hull cannot reach outside
+itself, needs at least d + 1 members to have volume in d dimensions, and is
+spanned by its *extreme* members rather than its typical ones. Noisy-OR has a
+gamut too, pointing the other way: mixing only raises each coordinate, so
+nothing below the palette's own minimum on an axis is reachable -- you cannot
+make a blend less floral than your least floral primary.
+
+`scripts/palette.py` measures it. Palettes are grown greedily, and targets are
+scored by the best blend of the palette that can be made (NNLS with the weights
+constrained to a simplex), excluding palette members from their own statistics.
+
+Targets = the 321 single materials:
+
+| palette size | best possible k directions | those k materials, free weights | as an actual blend |
+|---|---|---|---|
+| 3 | 63.9% of the energy | 57.3% | median cosine 0.380, 3% within 0.90 |
+| 10 | 85.4% | 80.1% | 0.739, 20% within 0.90 |
+| 14 | 89.6% | 85.1% | 0.809, 26% within 0.90 |
+| 25 | 95.0% | 92.3% | 0.886, **45%** within 0.90, 21% within 0.95 |
+| 45 | — | — | 0.914, 62% within 0.90, **22%** within 0.95 |
+
+Twenty-five materials capture 95% of the energy in the space and still
+reproduce fewer than half the library to a cosine of 0.90. The gap between
+those two numbers is exactly what non-negativity costs: a subspace is not a
+hull. Doubling the palette to 45 moves the strict criterion from 21% to 22%.
+
+The gamut's edge is chemically coherent -- phenyl acetaldehyde, methyl
+anthranilate, 2-isobutyl quinoline, 2-acetyl thiazole, 2-acetyl pyridine,
+veloutone. Nitrogen and sulfur heterocycles occupy descriptor combinations
+nothing else approaches, so like a saturated spectral colour they can only be
+reached by being in the palette.
+
+And then the opposite result. Targets = the 28 built oils, which are mixtures:
+
+| palette size | median cosine | within 0.90 | worst |
+|---|---|---|---|
+| 6 | 0.911 | 64% | 0.498 |
+| 10 | 0.966 | 96% | 0.885 |
+| 14 | 0.977 | **100%** | 0.907 |
+
+Fourteen fixed materials reach every oil. The palette the search chose is
+D-Limonene, Linalyl Acetate, α-Pinene, Linalool, Citronellol, Citral, Cedrol,
+Menthone, Cinnamaldehyde, Eugenol, Thymol, Patchoulol and l-Menthol -- which is
+very nearly the list of major essential-oil constituents, arrived at without
+being told that.
+
+**That result is partly circular and must not be quoted without the caveat.**
+The oils' vectors were *built* from library molecules, so reproducing them from
+a palette of library molecules is close to tautological. What it does show is
+the structural asymmetry, which is not circular: single molecules are the
+*vertices* of the cloud and a hull can only reach a vertex by containing it,
+whereas mixtures are *interior* points -- measurably so, since blends collapse
+toward the centroid -- and interiors are exactly what a hull covers. Since
+"any scent" in a perfumer's sense means accords and finished formulas rather
+than single chemicals, the strong claim may well hold for the things people
+actually want to make, while being provably false for the things the library is
+made of. Testing that properly needs target vectors for real perfumes that were
+not built out of the palette, which this project does not have.
+
+### The mixture rule cannot be chosen from any data here
+
+`scripts/rule_bakeoff.py` scores five rules on the 19 oils whose own name is in
+the model's vocabulary -- a blind question with outside ground truth, where each
+rule is standardised against a null combined by that same rule.
+
+| rule | median rank of the oil's own name (of 138) | mean | top-5 | worst |
+|---|---|---|---|---|
+| noisy-OR | 2.0 | 5.0 | 14/19 | 34 |
+| weighted mean | 2.0 | 5.1 | 14/19 | 34 |
+| logit mean | 2.0 | 5.8 | 13/19 | 38 |
+| max | 3.0 | 4.9 | 14/19 | **18** |
+| **dominant ingredient** | **2.0** | 6.1 | **14/19** | 34 |
+
+Nothing separates. Paired sign tests against noisy-OR give p = 0.057 for max
+and p > 0.2 for everything else. The finding that matters is the last row:
+**taking the single biggest ingredient and ignoring the rest does as well as
+every mixture rule.** That is not a point in favour of simplicity, it is a
+verdict on the test set -- these oils are one or two constituents plus
+decoration, so no rule can distinguish itself, and it explains why the earlier
+comparison on 30 formulas also produced a margin that depended on which
+formulas were included.
+
+Where the rules *do* differ is instructive: `max` wins exactly on the two oils
+whose identity sits in minor constituents (grapefruit, rank 1 against 9;
+neroli, 2 against 34) and loses on the bulk-carried ones.
+
+Weighting by potency does not fix it. Odour-activity weighting generalises as a
+one-parameter family, `w ∝ (share / threshold)^n`, with n = 0 equal weights and
+n = 1 full OAV. On the five oils with measured thresholds for most of their
+constituents the self-check rank degrades monotonically with n (median 2 → 10),
+and **equal weights beats mass weighting** (5/5 in the top five against 3/5,
+mean rank 2.6 against 8.8) because it is the crudest possible way of
+up-weighting a trace. Five oils is a hint, not a result.
+
+One correction to an assumption that was load-bearing for a while: **noisy-OR
+as implemented is not trace-sensitive.** It scales each ingredient by
+`w / w.max()`, so an ingredient at 3% of a four-material blend enters at about
+9% of its own probability. Across 40,000 random blends there was not a single
+case where noisy-OR carried a minority descriptor that the weighted mean
+buried. The only trace-sensitive rule here is `max`.
+
+So the fork worth taking to a bench is max against the weighted mean, and it is
+the same question every trace failure in this project turns on: does three
+percent of something with a strong character impose that character?
+`scripts/discriminating_blends.py` searches the owned shelf for blends where the
+two rules disagree about a descriptor a perfumer would name unprompted, guards
+the proportions against the perfumer's own maximum use levels so the sheet is
+makeable, writes one CSV per blend, and records every prediction to
+`predictions.json` **before** anything is smelled.
 
 ### What is missing, in order of how soon it bites
 

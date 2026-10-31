@@ -1,0 +1,84 @@
+{
+  "size": 4,
+  "minor_weight": 0.03,
+  "blends": [
+    {
+      "n": 1,
+      "disputed": "jasmin",
+      "ingredients": [
+        "Strawberry Furanone",
+        "Edenolide",
+        "Tetrahydro Linalool",
+        "Hedione"
+      ],
+      "z_noisy_or": -0.12,
+      "z_weighted_mean": -0.11,
+      "z_max": 7.14
+    },
+    {
+      "n": 2,
+      "disputed": "lavender",
+      "ingredients": [
+        "Methyl Diantilis",
+        "Anisaldehyde",
+        "Hedione",
+        "Neobergamate Forte"
+      ],
+      "z_noisy_or": -0.12,
+      "z_weighted_mean": -0.14,
+      "z_max": 6.51
+    },
+    {
+      "n": 3,
+      "disputed": "clove",
+      "ingredients": [
+        "Hedione",
+        "Strawberry Furanone",
+        "Helvetolide",
+        "Eugenol ex Clove"
+      ],
+      "z_noisy_or": 0.07,
+      "z_weighted_mean": 0.1,
+      "z_max": 6.48
+    },
+    {
+      "n": 4,
+      "disputed": "sandalwood",
+      "ingredients": [
+        "Strawberry Furanone",
+        "Heliotropin",
+        "Methyl Diantilis",
+        "Sandalore"
+      ],
+      "z_noisy_or": -0.11,
+      "z_weighted_mean": -0.06,
+      "z_max": 5.86
+    },
+    {
+      "n": 5,
+      "disputed": "grapefruit",
+      "ingredients": [
+        "Methyl Diantilis",
+        "Cinnamaldehyde",
+        "Anisaldehyde",
+        "Nootkatone"
+      ],
+      "z_noisy_or": -0.27,
+      "z_weighted_mean": -0.3,
+      "z_max": 4.93
+    },
+    {
+      "n": 6,
+      "disputed": "bergamot",
+      "ingredients": [
+        "Strawberry Furanone",
+        "Ethylene Brassylate",
+        "Maltol Isobutyrate",
+        "Linalyl Acetate"
+      ],
+      "z_noisy_or": -0.06,
+      "z_weighted_mean": -0.05,
+      "z_max": 5.14
+    }
+  ]
+}

@@ -103,6 +103,16 @@ def combine(rule: str, V: np.ndarray, w: np.ndarray) -> np.ndarray:
         return V.max(axis=0)
     if rule == "dominant":
         return V[int(np.argmax(w))]
+    if rule == "logit-mean":
+        # A weighted mean taken in logit space, which is a weighted geometric
+        # mean of the odds. Unlike the arithmetic mean it does not flatten
+        # towards the middle of the probability range, and unlike noisy-OR it
+        # does not saturate as ingredients are added, so blends of different
+        # sizes stay comparable. It is also the rule the atlas places a blend
+        # by, so scoring it here keeps one rule for smell and position.
+        q = np.clip(V, EPS, 1 - EPS)
+        z = (w[:, None] * np.log(q / (1 - q))).sum(axis=0)
+        return 1.0 / (1.0 + np.exp(-z))
     raise ValueError(rule)
 
 
