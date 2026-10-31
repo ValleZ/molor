@@ -55,16 +55,9 @@ def main() -> int:
     path = Path(args.sheet)
     path = path if path.is_absolute() else ROOT / path
     rows = list(csv.DictReader(io.open(path, encoding="utf-8-sig")))
-    # The sheet is nameless so it can sit on the bench; the names are in the
-    # key file beside it.
-    keypath = path.with_name(path.stem + "_key.csv")
-    if not keypath.is_file():
-        raise SystemExit(f"{keypath.name} is missing: it maps strip numbers "
-                         f"to materials and is written beside the sheet.")
-    names = {r["strip"]: r["material"]
-             for r in csv.DictReader(io.open(keypath, encoding="utf-8-sig"))}
-    for r in rows:
-        r["material"] = names.get(str(r.get("strip", "")).strip(), "")
+    # The sheet carries the material names, because preparing a blotter
+    # requires knowing what goes on it: the separate key file that an earlier
+    # version wrote was unusable theatre.
     seen = defaultdict(list)
     blank = 0
     for r in rows:
@@ -73,8 +66,8 @@ def main() -> int:
             blank += 1
             continue
         if b not in BINS:
-            raise SystemExit(f"strip {r.get('strip')}: {b!r} is not one of "
-                             f"-- - 0 + ++")
+            raise SystemExit(f"blotter {r.get('blotter')}: {b!r} is not one "
+                             f"of -- - 0 + ++")
         seen[r["material"].strip()].append(BINS[b])
 
     print(f"[strength] {len(rows)} strips, {blank} not filled in, "
