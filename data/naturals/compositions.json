@@ -385,6 +385,36 @@
         "Caryophyllene Beta": 0.5
       },
       "omitted": "beta-vetispirene (~3%), khusinol, bicyclovetivenol, eudesmol, cyclocopacamphene, and the large unassigned sesquiterpene fraction"
+    },
+    "Ylang Ylang EO (extra)": {
+      "source": "Range midpoints for the Extra fraction from two independent compilations that agree: benzyl acetate 15-30, linalool 7-24, p-cresyl methyl ether 7-13 (5-16 in the second), methyl benzoate 4-9, geranyl acetate 2-14. Germacrene D 4.6-8.7 and benzyl benzoate 1.6 from single-batch GC-MS certificates of Madagascan Extra lots.",
+      "note": "Left out of this file until now because the library had no p-cresyl methyl ether, which is the molecule that makes ylang smell of ylang, and a build without it would have passed inspection while misrepresenting the oil. Extra is the first fraction and the one perfumery usually means; later fractions carry more sesquiterpene and less ester, so a formula saying only 'ylang' is underspecified. These are range midpoints, not one analysis, and the batch certificates disagree with each other on linalool by a factor of two.",
+      "composition": {
+        "Benzyl Acetate": 22.0,
+        "Linalool": 15.0,
+        "p-Cresyl Methyl Ether": 10.0,
+        "Geranyl Acetate": 8.0,
+        "Methyl Benzoate": 6.5,
+        "Germacrene D": 6.0,
+        "Caryophyllene Beta": 3.0,
+        "Farnesene Alpha": 3.0,
+        "Benzyl Benzoate": 1.6,
+        "Linalyl Acetate": 1.0
+      },
+      "omitted": "farnesyl acetate, isoeugenol and the remaining sesquiterpene fraction"
+    },
+    "Elemi EO (Manila)": {
+      "source": "Quantitative Manila elemi: limonene 56.0, alpha-phellandrene 17.6, elemol 6.3, sabinene 5.7, beta-phellandrene 3.3, terpinolene 2.8, elemicin 2.4. Villanueva et al. 1993 identified 39 compounds making up 99.2% of the oil with limonene most abundant at 56%, which agrees. A 1984 analysis instead gives limonene 26.9, elemol 17.3 and elemicin 10.6, so batch variation here is large.",
+      "note": "Buildable because elemol, elemicin and alpha-phellandrene were added for it. Beta-phellandrene is still missing and is the only constituent above 3% that is.",
+      "composition": {
+        "D-Limonene": 56.0,
+        "Alpha Phellandrene": 17.6,
+        "Elemol": 6.3,
+        "Sabinene": 5.7,
+        "Terpinolene, Rectified": 2.8,
+        "Elemicin": 2.4
+      },
+      "omitted": "beta-phellandrene (3.3%), which the library does not hold"
     }
   }
 }

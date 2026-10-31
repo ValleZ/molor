@@ -1,0 +1,7 @@
+name,smiles,source
+Bacdanol,CCC(=CCC1CC=C(C1(C)C)C)CO,PubChem (sandalwood-type; IFF)
+Mayol,CC(C)C1CCC(CC1)CO,PubChem (CAS 13828-37-0; 4-isopropylcyclohexylmethanol)
+p-Cresyl Methyl Ether,CC1=CC=C(C=C1)OC,PubChem (the signature of ylang ylang)
+Elemol,CC(=C)C1CC(CCC1(C)C=C)C(C)(C)O,PubChem (elemi)
+Elemicin,COC1=CC(=CC(=C1OC)OC)CC=C,PubChem (elemi)
+Alpha Phellandrene,CC1=CCC(C=C1)C(C)C,PubChem (elemi; also pepper and dill)

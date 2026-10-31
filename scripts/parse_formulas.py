@@ -47,6 +47,15 @@ ALIAS = {
     "dmbca": "Dimethyl Benzyl Carbinyl Acetate",
     "pea": "Phenethyl Alcohol",
     "phenylethyl alcohol": "Phenethyl Alcohol",
+    "phenyl ethyl alcohol": "Phenethyl Alcohol",
+    "galaxolide 50": "Galaxolide",
+    "galaxolide 50 ipm": "Galaxolide",
+    "galaxolide 50 dep": "Galaxolide",
+    "beta phenylethyl alcohol": "Phenethyl Alcohol",
+    "phenylethanol": "Phenethyl Alcohol",
+    "p-cresyl methyl ether": "p-Cresyl Methyl Ether",
+    "para cresyl methyl ether": "p-Cresyl Methyl Ether",
+    "cresyl methyl ether": "p-Cresyl Methyl Ether",
     "cis-3-hexenyl acetate": "Hexenyl-3-CIS Acetate",
     "hexenyl-3-cis acetate": "Hexenyl-3-CIS Acetate",
     "cis-3-hexenol": "Hexenol-3-CIS",
@@ -153,6 +162,10 @@ ALIAS = {
     # The grades do not smell the same on a blotter; nothing here can tell
     # them apart, and pretending otherwise by dropping the ingredient is worse.
     "hedione hc": "Hedione",
+    "hedione high cis": "Hedione",
+    "hedione hc high cis": "Hedione",
+    "veramoss": "Evernyl",
+    "methyl atrarate": "Evernyl",
     # Sylvamber and Timbersilk are both the OTNE isomer family, CAS
     # 54464-57-2, which is what Iso E Super is. Sylvamber is an enriched
     # fraction of it and is perceptibly different on the bench; constitutionally
@@ -296,6 +309,15 @@ def classify(name: str, library: set[str]):
     # strip a stock strength out of the name itself
     low = re.sub(r"\b\d+(?:\.\d+)?\s*%\s*(?:in\s+)?"
                  r"(?:dpg|pg|ipm|tec|benzyl alcohol|alcohol)?\b", "", low).strip()
+    # A strength written with its solvent and no percent sign, as in
+    # "Galaxolide 50 DEP" or "Hedione 10 DPG", which dropped the whole
+    # ingredient -- a tenth of one formula's weight. The solvent token is what
+    # makes it unambiguous. A bare "Galaxolide 50" is a trade name rather
+    # than a dilution and is aliased explicitly instead, and "Aldehyde
+    # C-12" has no solvent after the number and must not be touched.
+    low = re.sub(r"\s+\d+(?:\.\d+)?\s*%?\s*"
+                 r"(?:dep|dpg|ipm|tec|bb|dowanol|triethyl citrate|"
+                 r"benzyl benzoate|ethanol|alcohol)\s*$", "", low).strip()
     low = re.sub(r"\s+", " ", low).strip(" ,-—")
     if not low:
         return "unknown", raw

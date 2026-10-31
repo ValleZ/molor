@@ -1,0 +1,7 @@
+name,smiles,source
+Evernyl,CC1=CC(=C(C(=C1C(=O)OC)O)C)O,PubChem (CAS 4707-47-5 methyl 2;4-dihydroxy-3;6-dimethylbenzoate; = Veramoss)
+Oceanol,CC1=C(C=CC(=C1O)C(=O)OC)O,PubChem (methyl 2;4-dihydroxy-3-methylbenzoate; the identity IFF publishes)
+Cascalone,CC(C)C1=CC2=C(C=C1)OCC(=O)CO2,PubChem (CAS 950919-28-5; the isopropyl analogue of Calone)
+Melafleur,CC1(CCCC2=C1CC(CC2)C=O)C,PubChem (CAS 68991-97-9)
+Ambrinol,CC1(CCC=C2C1CCC(C2)(C)O)C,PubChem (CAS 41199-19-3)
+Ambrocenide,CC1CCC2C13CC(C2(C)C)C4(C(C3)OC(O4)(C)C)C,PubChem (cedrane spiroacetal)
