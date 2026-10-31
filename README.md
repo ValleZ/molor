@@ -1029,6 +1029,38 @@ So the conclusion is about where effort belongs. A better solver cannot help.
 Either the thresholds get measured, or dosing stays an ordering heuristic and
 blends are chosen for insensitivity to it.
 
+A fourth blend, the robust one, came back with the same base again and two new
+facets: "calone and raspberry characters slightly sticking out". That separates
+two mechanisms which had been conflated. Gamma undecalactone, which stuck out of
+the previous blend, sits in the **1st percentile** of isolation -- the mean
+distance from a material to its five nearest neighbours -- so it has plenty of
+near-equivalents and should blend away; it was the second most
+threshold-sensitive ingredient in that blend, so it was mis-dosed. Calone, rose
+oxide and raspberry ketone sit at the **74th, 75th and 59th** percentiles of
+isolation. They were not mis-dosed; they have no near-equivalents in this
+library, so they read as themselves at any dose. A blend can fail either way and
+the two want different fixes.
+
+`--max-isolation` refuses materials above a chosen percentile. At the 60th with
+seven materials the blend reaches 0.642 against the unconstrained robust
+blend's 0.592, so insisting on ingredients that blend away costs about 0.05 --
+cheap. Its masses also span 5% to 27% with no traces at all. The caveat is that
+isolation measures this library's coverage as much as the molecule: with twenty
+more marine materials, Calone would not be isolated.
+
+And the perfumer named the shared base: it "suspiciously reminds of Dihydro
+Myrcenol". By distance the model disagrees flatly -- Dihydro Myrcenol sits 1.37
+from the average point, rank 233 of 340, and 1.33 from Undecavertol, which is
+the 2nd nearest material to it. By **direction** it agrees: for the blend they
+had just made, the centred cosine ranks Dihydro Myrcenol **9th of 340**. The
+two measures answer different questions and this project had been mixing them.
+Absolute distance from the centroid asks "is this neutral", and penalises
+amplitude; centred cosine asks "what does this remind me of", and ignores it.
+Dihydro Myrcenol has almost exactly Undecavertol's profile at two to two and a
+half times the magnitude -- floral 0.90 against 0.34, citrus 0.81 against 0.37 --
+so it is the loud archetype of the quiet region these blends sit in, which is
+precisely what a nose would reach for a name with.
+
 ### Oversimplification works in the model's space, and is untested on a nose
 
 Effective dimensionality of the two spaces, measured on this library:

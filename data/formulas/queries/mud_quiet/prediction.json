@@ -1,0 +1,274 @@
+{
+  "target": "library average point in percept space",
+  "yardstick": 0.5259372681223494,
+  "owned_only": true,
+  "claim": "these blends should smell of nothing in particular, and the k=3 one should be about as characterless as a blend of thirty random materials",
+  "blends": [
+    {
+      "k": 1,
+      "residual": 0.8105811283657648,
+      "names": [
+        "Ethyl Benzoate"
+      ],
+      "profile_mean": 0.040980434782608696,
+      "profile_sd": 0.11075928060614458,
+      "top": [
+        [
+          "fruity",
+          0.718
+        ],
+        [
+          "sweet",
+          0.68
+        ],
+        [
+          "floral",
+          0.642
+        ],
+        [
+          "balsamic",
+          0.535
+        ]
+      ],
+      "weights": [
+        1.0
+      ],
+      "nearest": "Ethyl Benzoate",
+      "nearest_d": 0.0
+    },
+    {
+      "k": 2,
+      "residual": 0.3990796571918424,
+      "names": [
+        "Benzyl Acetate",
+        "Thiocineole"
+      ],
+      "profile_mean": 0.04099953724008709,
+      "profile_sd": 0.08032723894392214,
+      "top": [
+        [
+          "fruity",
+          0.458
+        ],
+        [
+          "sweet",
+          0.434
+        ],
+        [
+          "green",
+          0.431
+        ],
+        [
+          "floral",
+          0.401
+        ]
+      ],
+      "weights": [
+        0.4664,
+        0.5336
+      ],
+      "nearest": "Pharaone",
+      "nearest_d": 0.5309334289576029
+    },
+    {
+      "k": 3,
+      "residual": 0.7766091621045201,
+      "names": [
+        "Terpineol Alpha",
+        "Ethyl Benzoate",
+        "Florol"
+      ],
+      "profile_mean": 0.04420092850488542,
+      "profile_sd": 0.09132746769254478,
+      "top": [
+        [
+          "floral",
+          0.665
+        ],
+        [
+          "sweet",
+          0.51
+        ],
+        [
+          "fruity",
+          0.405
+        ],
+        [
+          "balsamic",
+          0.297
+        ]
+      ],
+      "weights": [
+        0.1678,
+        0.4883,
+        0.3439
+      ],
+      "nearest": "Pharaone",
+      "nearest_d": 0.5407165082993403
+    },
+    {
+      "k": 4,
+      "residual": 0.7185695097060784,
+      "names": [
+        "Helvetolide",
+        "Ethyl Benzoate",
+        "Toscanol",
+        "Florol"
+      ],
+      "profile_mean": 0.034703717969880754,
+      "profile_sd": 0.07840836105976703,
+      "top": [
+        [
+          "floral",
+          0.531
+        ],
+        [
+          "fruity",
+          0.421
+        ],
+        [
+          "sweet",
+          0.415
+        ],
+        [
+          "woody",
+          0.287
+        ]
+      ],
+      "weights": [
+        0.2883,
+        0.2463,
+        0.2149,
+        0.2506
+      ],
+      "nearest": "Pharaone",
+      "nearest_d": 0.4038099038728198
+    },
+    {
+      "k": 5,
+      "residual": 0.6955676446046977,
+      "names": [
+        "Helvetolide",
+        "Toscanol",
+        "Florol",
+        "Ethyl Benzoate",
+        "Edenolide"
+      ],
+      "profile_mean": 0.03291269086525874,
+      "profile_sd": 0.0754328995455346,
+      "top": [
+        [
+          "floral",
+          0.506
+        ],
+        [
+          "fruity",
+          0.442
+        ],
+        [
+          "sweet",
+          0.39
+        ],
+        [
+          "herbal",
+          0.249
+        ]
+      ],
+      "weights": [
+        0.2118,
+        0.2111,
+        0.2578,
+        0.2097,
+        0.1095
+      ],
+      "nearest": "Pharaone",
+      "nearest_d": 0.3721672995836474
+    },
+    {
+      "k": 6,
+      "residual": 0.6534906651086475,
+      "names": [
+        "Ethylene Brassylate",
+        "Toscanol",
+        "Florol",
+        "Ethyl Benzoate",
+        "Edenolide",
+        "Helvetolide"
+      ],
+      "profile_mean": 0.03347125634084805,
+      "profile_sd": 0.07338035587275732,
+      "top": [
+        [
+          "floral",
+          0.492
+        ],
+        [
+          "fruity",
+          0.423
+        ],
+        [
+          "sweet",
+          0.41
+        ],
+        [
+          "herbal",
+          0.228
+        ]
+      ],
+      "weights": [
+        0.0843,
+        0.1821,
+        0.2505,
+        0.2039,
+        0.1047,
+        0.1745
+      ],
+      "nearest": "Pharaone",
+      "nearest_d": 0.37540675397110124
+    },
+    {
+      "k": 7,
+      "residual": 0.642181145656236,
+      "names": [
+        "Ethylene Brassylate",
+        "Methyl Ionone Gamma Coeur",
+        "Cyclamen Aldehyde",
+        "Toscanol",
+        "Ethyl Benzoate",
+        "Citronellol",
+        "Edenolide"
+      ],
+      "profile_mean": 0.03913287856491448,
+      "profile_sd": 0.07661012700725767,
+      "top": [
+        [
+          "floral",
+          0.508
+        ],
+        [
+          "fruity",
+          0.419
+        ],
+        [
+          "sweet",
+          0.39
+        ],
+        [
+          "green",
+          0.305
+        ]
+      ],
+      "weights": [
+        0.1232,
+        0.1512,
+        0.1445,
+        0.1528,
+        0.1493,
+        0.1021,
+        0.1769
+      ],
+      "nearest": "Pharaone",
+      "nearest_d": 0.3371615055102233
+    }
+  ]
+}

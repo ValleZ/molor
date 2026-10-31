@@ -240,6 +240,18 @@ def main() -> int:
                          "asked to sit at. The default is the centroid's own "
                          "mean, 0.05, so the two whites are the same "
                          "brightness and differ only in shape")
+    ap.add_argument("--max-isolation", type=float, default=None,
+                    help="percentile of isolation above which a material is "
+                         "refused, where isolation is its mean distance to its "
+                         "five nearest neighbours. A material with a crowded "
+                         "neighbourhood has many near-equivalents and tends to "
+                         "read as generic; an isolated one reads as itself and "
+                         "shows through a blend. Calone, rose oxide and "
+                         "raspberry ketone -- the three facets the perfumer "
+                         "reported sticking out -- sit at the 74th, 75th and "
+                         "59th percentiles. Note this measures the library's "
+                         "coverage as much as the molecule: with twenty more "
+                         "marine materials Calone would not be isolated")
     ap.add_argument("--exclude", action="append", default=None,
                     help="a material to keep out; repeatable")
     ap.add_argument("--potency", default="mass",
@@ -300,6 +312,16 @@ def main() -> int:
     pool = list(range(len(names)))
     if args.owned:
         pool = [i for i, n in enumerate(names) if n in lv]
+    if args.max_isolation is not None:
+        Dall = np.linalg.norm(X[:, None, :] - X[None, :, :], axis=2)
+        np.fill_diagonal(Dall, np.inf)
+        iso = np.sort(Dall, axis=1)[:, :5].mean(1)
+        cut = float(np.percentile(iso, args.max_isolation))
+        before = len(pool)
+        pool = [i for i in pool if iso[i] <= cut]
+        print(f"[mud] isolation cut at the {args.max_isolation:g}th percentile "
+              f"({cut:.3f}): {len(pool)} of {before} materials have a crowded "
+              f"enough neighbourhood to blend away")
     if args.exclude:
         drop = {e.strip().lower() for e in args.exclude}
         before = len(pool)
