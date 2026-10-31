@@ -30,19 +30,37 @@
     },
     {
       "k": 3,
-      "residual": 0.1968181328487974,
+      "residual": 0.20245569924600892,
       "names": [
         "Undecavertol",
         "Methyl Benzoate",
-        "Rhuboflor"
+        "Cassifix"
       ],
       "weights": [
-        0.4947,
-        0.3346,
-        0.1707
+        0.5098,
+        0.334,
+        0.1562
       ],
       "nearest": "Pharaone",
-      "nearest_d": 0.46619355261269274
+      "nearest_d": 0.44316014248710633
+    },
+    {
+      "k": 4,
+      "residual": 0.17761175086048658,
+      "names": [
+        "Undecavertol",
+        "Methyl Benzoate",
+        "Ebanol",
+        "Manzanate"
+      ],
+      "weights": [
+        0.4461,
+        0.3348,
+        0.147,
+        0.072
+      ],
+      "nearest": "Pharaone",
+      "nearest_d": 0.4328307642228581
     }
   ]
 }

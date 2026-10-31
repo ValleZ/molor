@@ -47,6 +47,27 @@ sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "scripts"))
 
 
+def thresholds() -> dict[str, float]:
+    """Measured water-phase detection thresholds in ppb, by material name.
+
+    Only measured values: the predicted ones were withdrawn from this project
+    after validating at Spearman 0.14 against the perfumer's own use levels.
+    """
+    path = ROOT / "data" / "inventory" / "inventory.csv"
+    out: dict[str, float] = {}
+    if not path.is_file():
+        return out
+    for r in csv.DictReader(io.open(path, encoding="utf-8-sig")):
+        n = (r.get("name") or r.get("material") or "").strip()
+        v = (r.get("water_threshold_ppb") or "").strip()
+        if n and v:
+            try:
+                out[n] = float(v)
+            except ValueError:
+                pass
+    return out
+
+
 def use_levels() -> dict[str, float]:
     path = ROOT / "data" / "inventory" / "inventory.csv"
     out: dict[str, float] = {}
@@ -142,6 +163,15 @@ def main() -> int:
     ap.add_argument("--percepts", default="artifacts/percepts_fp3.json")
     ap.add_argument("--max-k", type=int, default=8)
     ap.add_argument("--owned", action="store_true")
+    ap.add_argument("--potency", default="mass",
+                    choices=["mass", "threshold"],
+                    help="mass: the solved weights are mass fractions, which "
+                         "is what the first attempt assumed and what the "
+                         "bench refuted. threshold: the solved weights are "
+                         "odour-activity shares and the sheet converts them "
+                         "to masses by multiplying each by its measured "
+                         "detection threshold, so a powerful material is "
+                         "dosed down")
     ap.add_argument("--restarts", type=int, default=8)
     ap.add_argument("--emit", action="store_true")
     ap.add_argument("--emit-k", type=int, action="append", default=None)
@@ -160,9 +190,18 @@ def main() -> int:
     mu = X.mean(0)
     lv = use_levels()
 
+    thr = thresholds()
     pool = list(range(len(names)))
     if args.owned:
         pool = [i for i, n in enumerate(names) if n in lv]
+    if args.potency == "threshold":
+        # A material with no measured threshold cannot be dosed by one, and
+        # the predicted thresholds are not trustworthy enough to stand in --
+        # so the pool shrinks rather than the method being fudged.
+        before = len(pool)
+        pool = [i for i in pool if names[i] in thr]
+        print(f"[mud] odour-activity dosing: {len(pool)} of {before} "
+              f"materials have a measured threshold")
     rng = np.random.default_rng(args.seed)
 
     D = np.linalg.norm(X[:, None, :] - X[None, :, :], axis=2)
@@ -210,16 +249,34 @@ def main() -> int:
         outdir.mkdir(parents=True, exist_ok=True)
         for k in (args.emit_k or [3, args.max_k]):
             row = next(r for r in rows if r["k"] == k)
-            path = outdir / f"mud_{k}.csv"
+            suffix = "_oav" if args.potency == "threshold" else ""
+            path = outdir / f"mud_{k}{suffix}.csv"
             over = []
             with open(path, "w", encoding="utf-8", newline="") as fh:
                 cw = csv.writer(fh)
                 cw.writerow(["material", "dilution", "weight"])
-                for n_, x in zip(row["names"], row["weights"]):
-                    cw.writerow([n_, 100, round(100 * x, 2)])
+                shares = np.asarray(row["weights"], float)
+                if args.potency == "threshold":
+                    # The solved weights are shares of odour activity. Mass is
+                    # activity times threshold: to contribute the same amount
+                    # of smell, a material detectable at 0.5 ppb needs six
+                    # times less mass than one detectable at 3 ppb. This is
+                    # the correction the first mud blend lacked, where methyl
+                    # benzoate at a third of the mass had six times the
+                    # threshold advantage and took the blend over.
+                    m = shares * np.array([thr[n_] for n_ in row["names"]])
+                    shares = m / m.sum()
+                for n_, x in zip(row["names"], shares):
+                    cw.writerow([n_, 100, round(100 * float(x), 2)])
                     cap = lv.get(n_, float("nan"))
                     if cap == cap and 100 * x > cap * 1.02 + 0.02:
-                        over.append((n_, 100 * x, cap))
+                        over.append((n_, 100 * float(x), cap))
+            if args.potency == "threshold":
+                print("      doses are odour-activity corrected: "
+                      + ", ".join(f"{n_} {100 * s:.1f}% (activity share "
+                                  f"{100 * w_:.0f}%)"
+                                  for n_, s, w_ in zip(row["names"], shares,
+                                                       row["weights"])))
             print(f"[mud] wrote {path.relative_to(ROOT)}  "
                   f"(distance {row['residual']:.3f})")
             if over:
