@@ -44,6 +44,7 @@ import argparse
 import csv
 import io
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -57,8 +58,12 @@ sys.path.insert(0, str(ROOT / "scripts"))
 #: tenth of a gram, which any bench balance reads to two decimals, and so that
 #: 26 blotters need about 55 g of DPG in total.
 DILUENT_G = 2.00
-#: Below this the balance is guessing, so a weaker stock is used instead.
-MIN_WEIGHABLE_G = 0.03
+#: Below this a 0.01 g balance quantises badly -- 0.04 g is plus or minus 12%
+#: -- and neat aldehydes are unpleasant to handle in such amounts. A weaker
+#: stock is used instead, which makes the weighed mass larger.
+MIN_WEIGHABLE_G = 0.10
+#: The weighed mass this aims for when it has a choice.
+TARGET_G = 0.35
 
 
 def inventory():
@@ -81,6 +86,40 @@ def inventory():
     return out
 
 
+def stocked_dilutions():
+    """Which dilutions of each material the perfumer actually keeps.
+
+    The inventory sheet has a free-text column for this -- "1%, 0.1%",
+    "10% out fridge", "R-6.6 10%" -- and reading it matters: without it this
+    sheet asked for neat methyl benzoate and neat Undecavertol where a 10%
+    stock is on the shelf, and for a 10% aldehyde C-10 where only 1% and 0.1%
+    exist. That sheet could not be followed.
+
+    The file holding this column is the perfumer's own writing and is not in
+    the repository, so its absence is normal and simply means every decade is
+    assumed available.
+    """
+    path = ROOT / "data" / "inventory" / "perfumery_inventory.csv"
+    if not path.is_file():
+        return {}, False
+    out = {}
+    for r in csv.DictReader(io.open(path, encoding="utf-8-sig")):
+        n = (r.get("material") or "").strip()
+        if not n:
+            continue
+        pcts = []
+        for m in re.finditer(r"(\d+(?:\.\d+)?)\s*%", r.get("dilutions") or ""):
+            try:
+                v = float(m.group(1))
+            except ValueError:
+                continue
+            if 0 < v < 100:
+                pcts.append(v)
+        if pcts:
+            out[n] = sorted(set(pcts), reverse=True)
+    return out, True
+
+
 def measured_anchors():
     path = ROOT / "artifacts" / "threshold.json"
     if not path.is_file():
@@ -89,30 +128,44 @@ def measured_anchors():
     return {n for n, s in zip(tj["molecules"], tj["source"]) if s == "measured"}
 
 
-def weigh_plan(use_pct: float):
+def weigh_plan(use_pct: float, available):
     """Grams of which stock, into DILUENT_G of DPG, to reach the use level.
 
     m grams of an s% stock in d grams of diluent gives s * m / (m + d), so
-    m = d * c / (s - c). The strongest stock that still needs a weighable
-    amount wins, because fewer dilution steps means less compounding error.
+    m = d * c / (s - c). Among the stocks that exist on the shelf and give a
+    weighable amount, the one landing nearest TARGET_G wins: a larger weighed
+    mass is a smaller relative error on a 0.01 g balance, and it keeps neat
+    aldehydes out of the session whenever a dilution of them exists.
     """
-    best = None
-    for stock in (100.0, 10.0, 1.0, 0.1):
+    options = []
+    for stock in available:
         if stock <= use_pct:
             continue
-        m = DILUENT_G * use_pct / (stock - use_pct)
-        g = round(m, 2)
-        if g < MIN_WEIGHABLE_G:
+        g = round(DILUENT_G * use_pct / (stock - use_pct), 2)
+        if g < MIN_WEIGHABLE_G or g > 5.0:
             continue
         got = stock * g / (g + DILUENT_G)
-        if best is None:
-            best = (stock, g, got)
-    if best is None:
-        # Nothing weighable: use the weakest stock and say what it gives.
-        stock = 0.1
-        g = MIN_WEIGHABLE_G
-        best = (stock, g, stock * g / (g + DILUENT_G))
-    return best
+        options.append((abs(g - TARGET_G), stock, g, got))
+    if options:
+        _, stock, g, got = min(options)
+        return stock, g, got, None
+    # Nothing on the shelf reaches it in one step. Dropping the material is
+    # the wrong answer -- ethyl butyrate is third on the influence list and
+    # vanished from one draft of this sheet -- so make an intermediate first,
+    # which is what a bench would do anyway.
+    for mid in (10.0, 1.0, 0.1):
+        if mid <= use_pct:
+            continue
+        g = round(DILUENT_G * use_pct / (mid - use_pct), 2)
+        if g < MIN_WEIGHABLE_G or g > 5.0:
+            continue
+        # The intermediate itself: 2 g of it, from neat.
+        mid_g = round(2.0 * mid / 100.0, 2)
+        if mid_g < MIN_WEIGHABLE_G:
+            continue
+        got = mid * g / (g + DILUENT_G)
+        return mid, g, got, (mid, mid_g, round(2.0 - mid_g, 2))
+    return None, None, None, None
 
 
 def spread_order(strips, rng, tries=5000):
@@ -151,6 +204,7 @@ def main() -> int:
 
     inv = inventory()
     anchors = measured_anchors()
+    stocked, have_sheet = stocked_dilutions()
     wl_path = ROOT / args.worklist
     if not wl_path.is_file():
         raise SystemExit(f"{args.worklist} is missing; run "
@@ -187,16 +241,27 @@ def main() -> int:
         judge_order, _ = spread_order(strips, rng)
 
     number = {}
-    rows = []
+    rows, unreachable = [], []
     for pos, k in enumerate(mix_order, 1):
         n = strips[k]
         use = inv[n]["use"]
-        stock, grams, got = weigh_plan(use)
+        # Neat plus whatever dilutions the inventory records. With no sheet to
+        # read, assume the usual decades.
+        avail = [100.0] + (stocked.get(n, []) if have_sheet
+                           else [10.0, 1.0, 0.1])
+        stock, grams, got, premix = weigh_plan(
+            use, sorted(set(avail), reverse=True))
+        if stock is None:
+            unreachable.append(n)
+            continue
         number[k] = pos
         rows.append({"blotter": pos, "material": n, "stock_pct": stock,
                      "grams_of_stock": grams, "grams_of_diluent": DILUENT_G,
                      "gives_pct": round(got, 4),
                      "your_use_level_pct": round(use, 4),
+                     "premix_pct": premix[0] if premix else "",
+                     "premix_neat_g": premix[1] if premix else "",
+                     "premix_dpg_g": premix[2] if premix else "",
                      "anchor": int(n in anchors), "bin": "", "notes": ""})
 
     out = ROOT / args.out
@@ -206,6 +271,14 @@ def main() -> int:
         w.writeheader()
         w.writerows(rows)
 
+    # Renumber contiguously: the filter above can leave gaps, and a sheet
+    # that skips from 11 to 14 while table B still lists 12 is unusable.
+    renum = {}
+    for newno, r in enumerate(rows, 1):
+        renum[r["blotter"]] = newno
+        r["blotter"] = newno
+    number = {k: renum[v] for k, v in number.items() if v in renum}
+    judge_order = [k for k in judge_order if k in number]
     by_num = {r["blotter"]: r for r in rows}
     total_dil = DILUENT_G * len(rows)
     print("=" * 76)
@@ -282,8 +355,19 @@ WHY THESE {args.top} MATERIALS
     print(f"  {'no.':>4s}  {'weigh':>7s}  {'of stock':>9s}  "
           f"{'into':>6s}  material")
     print("  " + "-" * 72)
+    premixed = {}
     for r in rows:
         star = " *" if r["anchor"] else "  "
+        if r["premix_pct"] and r["material"] in premixed:
+            # A repeated material needs its intermediate made once, not twice.
+            print(f"  {r['blotter']:4d}  use the {r['premix_pct']:g}% of "
+                  f"{r['material']} you made at {premixed[r['material']]}")
+        elif r["premix_pct"]:
+            premixed[r["material"]] = r["blotter"]
+        if r["premix_pct"] and r["blotter"] == premixed.get(r["material"]):
+            print(f"  {r['blotter']:4d}  first make {r['premix_pct']:g}% of "
+                  f"{r['material']}: {r['premix_neat_g']:.2f} g neat + "
+                  f"{r['premix_dpg_g']:.2f} g {args.diluent}")
         print(f"  {r['blotter']:4d}  {r['grams_of_stock']:7.2f} g  "
               f"{r['stock_pct']:>8g}%  {DILUENT_G:5.2f} g  "
               f"{r['material']}{star}")
