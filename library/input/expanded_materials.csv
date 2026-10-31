@@ -320,3 +320,22 @@ Bulnesene Alpha,CC1CCC2=C(CCC(CC12)C(=C)C)C,GC constituent reference
 Seychellene,CC1CCC2(C(=C)C3CCC2(C1C3)C)C,GC constituent reference
 Patchoulene Beta,CC1CCC2=C1CC3CCC2(C3(C)C)C,GC constituent reference
 Norpatchoulenol,CC1(C2CCC3(C1(CC=CC3C2)O)C)C,GC constituent reference
+Thujopsene,CC1=CCC2(CCCC(C23C1C3)(C)C)C,natural constituent reference
+Cedrene Beta,CC1CCC2C13CCC(=C)C(C3)C2(C)C,natural constituent reference
+Widdrol,CC1(CCCC2(C1=CCC(CC2)(C)O)C)C,natural constituent reference
+Cuparene,CC1=CC=C(C=C1)C2(CCCC2(C)C)C,natural constituent reference
+p-Cymene,CC1=CC=C(C=C1)C(C)C,PubChem (thyme 18.6%,natural constituent reference
+Sabinene,CC(C)C12CCC(=C)C1C2,PubChem (juniper ~8%, neroli,natural constituent reference
+Camphene,CC1(C2CCC(C2)C1=C)C,natural constituent reference
+Verbenone,CC1=CC(=O)C2CC1C2(C)C,natural constituent reference
+Terpinen-4-ol,CC1=CCC(CC1)(C(C)C)O,PubChem (lavender ~2%,natural constituent reference
+Isomenthone,CC1CCC(C(=O)C1)C(C)C,natural constituent reference
+Eugenyl Acetate,CC(=O)OC1=C(C=C(C=C1)CC=C)OC,natural constituent reference
+Menthyl Acetate,CC1CCC(C(C1)OC(=O)C)C(C)C,natural constituent reference
+Menthofuran,CC1CCC2=C(C1)OC=C2C,natural constituent reference
+Germacrene D,CC1=CCCC(=C)C=CC(CC1)C(C)C,natural constituent reference
+Neryl Acetate,CC(=CCCC(=CCOC(=O)C)C)C,natural constituent reference
+Lavandulyl Acetate,CC(=CCC(COC(=O)C)C(=C)C)C,natural constituent reference
+Methyl N-Methylanthranilate,CNC1=CC=CC=C1C(=O)OC,natural constituent reference
+Pogostol,CC1CCC2C1CC(CCC2(C)O)C(=C)C,natural constituent reference
+Sclareol,CC1(CCCC2(C1CCC(C2CCC(C)(C=C)O)(C)O)C)C,natural constituent reference
