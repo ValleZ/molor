@@ -46,6 +46,11 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from clean_library import clean_name  # noqa: E402
 
 SRC = ROOT / "data" / "inventory" / "perfumery_inventory.csv"
+#: The raw inventory sheet carries an "impression" column of written notes, so
+#: it is not in this repository. Its output, data/inventory/inventory.csv, is:
+#: that file holds the use levels, threshold figures, families and volatility
+#: classes with no prose, which is the part cleared for publication. So this
+#: script cannot be re-run from a fresh clone, and does not need to be.
 OUT = ROOT / "data" / "inventory" / "inventory.csv"
 
 #: Sheet column -> output column.

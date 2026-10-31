@@ -41,6 +41,10 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from clean_library import clean_name  # noqa: E402
 
 DOC = ROOT / "data" / "formulas" / "recipes.md"
+#: recipes.md is the perfumer's own formula book, with their written verdict on
+#: each one. It is deliberately not in this repository: it was the input to the
+#: mixture-rule comparison and is nobody else's business. The published
+#: formulas it was compared against are in data/formulas/published/.
 
 #: The perfumer's shorthand -> the library's name.
 ALIAS = {

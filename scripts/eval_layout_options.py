@@ -40,6 +40,21 @@ from eval_similarity_graded import graded_truth, spearman_profile_matrix  # noqa
 from orvector.project import preprocess  # noqa: E402
 from orvector.store import Library  # noqa: E402
 
+
+def _require_notes(path):
+    """Exit with an explanation rather than a traceback when the notes are absent.
+
+    These are the perfumer's own written notes and are deliberately not in this repository; see .gitignore. Everything derived from them that was cleared for publication is in data/inventory/inventory.csv.
+    """
+    if not path.is_file():
+        raise SystemExit(
+            f"{path.name} is not in this repository: it is the perfumer's own "
+            f"written smelling notes. Everything derived from them that was "
+            f"cleared for publication is in data/inventory/inventory.csv. "
+            f"This script measures something against those notes and cannot "
+            f"run without them.")
+    return path
+
 PERCEPTS = {
     "FP v3": "artifacts/percepts_fp3.json",
     "FP v1": "artifacts/percepts_fp.json",
