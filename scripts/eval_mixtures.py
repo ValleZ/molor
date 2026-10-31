@@ -52,10 +52,15 @@ EPS = 1e-6
 
 
 def thresholds() -> dict[str, float]:
-    """Measured water-phase detection thresholds in ppb, by InChIKey block.
+"""Water-phase detection thresholds in ppb.
 
-    Defined here rather than imported, because predict_formula.py imports
-    ``combine`` from this module and the dependency would be circular.
+    These were described as "measured" throughout this project and that was
+    wrong. The perfumer compiled them from published and web sources and
+    approximated some from air-phase figures, so an individual value may be out
+    by a factor of ten or more. At that uncertainty the doses derived from them
+    are not calibrated: perturbing one threshold by 10x moves a five-material
+    blend by 0.4 to 0.7 in percept space, where the just-noticeable yardstick
+    is 0.525. Use them for ordering, not for dosing precision.
     """
     path = ROOT / "data" / "inventory" / "inventory.csv"
     out: dict[str, float] = {}

@@ -48,10 +48,20 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 
 def thresholds() -> dict[str, float]:
-    """Measured water-phase detection thresholds in ppb, by material name.
+    """Water-phase detection thresholds in ppb, by material name.
 
-    Only measured values: the predicted ones were withdrawn from this project
-    after validating at Spearman 0.14 against the perfumer's own use levels.
+    These were called "measured" throughout this project and that was wrong.
+    The perfumer compiled them from published and web sources, and some were
+    converted from air-phase figures, so an individual value may be out by a
+    factor of ten or more. They are a compilation, not a measurement, and
+    nothing here should be read as if the doses were calibrated.
+
+    That uncertainty is not a footnote at this scale. Perturbing one
+    threshold by 10x moves a five-material blend's percept vector by 0.4 to
+    0.7, while the whole dose optimisation works at a scale of about 0.2 and
+    the just-noticeable yardstick is 0.525. So threshold-derived doses are
+    dominated by the error in the thresholds rather than by the solver, which
+    is why --robust exists.
     """
     path = ROOT / "data" / "inventory" / "inventory.csv"
     out: dict[str, float] = {}
@@ -160,7 +170,7 @@ def best_pair(X: np.ndarray, pool: list[int], target: np.ndarray):
 
 
 def search(X: np.ndarray, pool: list[int], target: np.ndarray, k: int,
-           rng, restarts: int = 8, feasible=None):
+           rng, restarts: int = 8, feasible=None, cost=None):
     """Greedy then swap-until-stable, from several random starts.
 
     ``feasible`` rejects a subset whose implied doses cannot be weighed. Without
@@ -173,6 +183,12 @@ def search(X: np.ndarray, pool: list[int], target: np.ndarray, k: int,
         w, res = fit(X[idx], target)
         if feasible is not None and not feasible(idx, w):
             return w, np.inf
+        # The weights are still solved against the nominal target, because
+        # that is what the perfumer would be aiming at; only the choice of
+        # materials is made robust. Optimising the weights against the noise
+        # as well would be fitting the noise.
+        if cost is not None:
+            return w, cost(idx, w)
         return w, res
 
     best = (np.inf, None, None)
@@ -239,6 +255,13 @@ def main() -> int:
     ap.add_argument("--emit", action="store_true")
     ap.add_argument("--emit-k", type=int, action="append", default=None)
     ap.add_argument("--out", default="data/formulas/queries/mud")
+    ap.add_argument("--robust", type=int, default=0,
+                    help="draws of threshold noise to optimise against. The "
+                         "objective becomes the 90th-percentile distance when "
+                         "every threshold is multiplied by a random factor "
+                         "spanning a decade either way, which is roughly how "
+                         "wrong the compiled table may be. 0 disables it and "
+                         "optimises the nominal doses, which is optimistic")
     ap.add_argument("--dose-variants", default=None,
                     help="comma-separated odour-activity exponents. One sheet "
                          "per exponent for the SAME chosen materials, so the "
@@ -321,6 +344,24 @@ def main() -> int:
     # What can be weighed. Only applies when doses are derived from
     # thresholds, since mass weighting puts every ingredient where the solver
     # put it by definition.
+    # Threshold noise, drawn once so every candidate is judged against the
+    # same perturbations -- otherwise the search would chase lucky draws.
+    noise = None
+    if args.robust:
+        noise = 10.0 ** rng.uniform(-1, 1, size=(args.robust, 64))
+
+    def robust_cost(idx, w):
+        """90th-percentile distance to target when the thresholds are wrong."""
+        th = np.array([thr[names[i]] for i in idx])
+        m = masses(np.asarray(w, float), th, args.oav_exponent)
+        V = X[idx]
+        f = noise[:, : len(idx)]
+        act = m[None, :] / (th[None, :] * f)
+        act = act / act.sum(1, keepdims=True)
+        mix = act @ V
+        d = np.linalg.norm(mix - target[None, :], axis=1)
+        return float(np.percentile(d, 90))
+
     feasible = None
     if args.potency == "threshold":
         def feasible(idx, w):
@@ -344,7 +385,8 @@ def main() -> int:
             res, chosen, w = best_pair(X, pool, target)
         else:
             res, chosen, w = search(X, pool, target, k, rng, args.restarts,
-                                    feasible=feasible)
+                                    feasible=feasible,
+                                    cost=(robust_cost if args.robust else None))
         mix = w @ X[chosen]
         # What single material is nearest the blend? If the answer is "nothing
         # close", the blend is somewhere no material is, which is the point.

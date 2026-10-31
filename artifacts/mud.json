@@ -70,117 +70,117 @@
     },
     {
       "k": 3,
-      "residual": 0.28771088472971407,
+      "residual": 0.649324884859226,
       "names": [
-        "Hexyl Acetate",
-        "Paradisamide",
-        "Toscanol"
+        "Raspberry Ketone",
+        "Nympheal",
+        "Veloutone"
       ],
-      "profile_mean": 0.04365068320502581,
-      "profile_sd": 0.07829365874608052,
+      "profile_mean": 0.040415624626388036,
+      "profile_sd": 0.08368111052815565,
       "top": [
         [
-          "fruity",
-          0.444
+          "floral",
+          0.574
         ],
         [
-          "floral",
-          0.43
+          "fruity",
+          0.53
         ],
         [
           "sweet",
-          0.419
+          0.36
         ],
         [
           "green",
-          0.309
+          0.345
         ]
       ],
       "weights": [
-        0.3649,
-        0.4207,
-        0.2144
+        0.2712,
+        0.4528,
+        0.276
       ],
       "nearest": "Pharaone",
-      "nearest_d": 0.44864604270025277
+      "nearest_d": 0.32792036543245573
     },
     {
       "k": 4,
-      "residual": 0.23986032488558628,
+      "residual": 0.6189823871322891,
       "names": [
+        "Nympheal",
         "Calone 1951",
-        "Anethole ex Star Anise",
-        "Paradisamide",
-        "Hexyl Acetate"
+        "Veloutone",
+        "Helvetolide"
       ],
-      "profile_mean": 0.04422358639008795,
-      "profile_sd": 0.07492999231324887,
-      "top": [
-        [
-          "sweet",
-          0.44
-        ],
-        [
-          "fruity",
-          0.42
-        ],
-        [
-          "floral",
-          0.402
-        ],
-        [
-          "green",
-          0.324
-        ]
-      ],
-      "weights": [
-        0.1703,
-        0.1488,
-        0.3463,
-        0.3347
-      ],
-      "nearest": "Pharaone",
-      "nearest_d": 0.4574574152227064
-    },
-    {
-      "k": 5,
-      "residual": 0.19711652377202804,
-      "names": [
-        "Methyl Cinnamate",
-        "Rose Oxide",
-        "Gamma Undecalactone",
-        "Hexyl Acetate",
-        "Paradisamide"
-      ],
-      "profile_mean": 0.047697669275485646,
-      "profile_sd": 0.07666550395980942,
+      "profile_mean": 0.03883641388414709,
+      "profile_sd": 0.069378184503589,
       "top": [
         [
           "fruity",
-          0.488
+          0.407
         ],
         [
           "floral",
-          0.417
-        ],
-        [
-          "sweet",
           0.404
         ],
         [
           "green",
-          0.286
+          0.337
+        ],
+        [
+          "sweet",
+          0.266
         ]
       ],
       "weights": [
-        0.1356,
-        0.1777,
-        0.0827,
-        0.2561,
-        0.3479
+        0.2479,
+        0.3071,
+        0.2501,
+        0.1949
       ],
       "nearest": "Pharaone",
-      "nearest_d": 0.41179494092437907
+      "nearest_d": 0.40118825773083455
+    },
+    {
+      "k": 5,
+      "residual": 0.587578404775329,
+      "names": [
+        "Calone 1951",
+        "Raspberry Ketone",
+        "Veloutone",
+        "Ethyl Linalool",
+        "Nympheal"
+      ],
+      "profile_mean": 0.04163543262786477,
+      "profile_sd": 0.07651946839256858,
+      "top": [
+        [
+          "floral",
+          0.483
+        ],
+        [
+          "fruity",
+          0.413
+        ],
+        [
+          "sweet",
+          0.397
+        ],
+        [
+          "green",
+          0.319
+        ]
+      ],
+      "weights": [
+        0.2452,
+        0.1928,
+        0.2431,
+        0.1516,
+        0.1672
+      ],
+      "nearest": "Pharaone",
+      "nearest_d": 0.39498042576036585
     }
   ]
 }
