@@ -48,6 +48,28 @@ DOC = ROOT / "data" / "formulas" / "recipes.md"
 
 #: The perfumer's shorthand -> the library's name.
 ALIAS = {
+    # Requested by name, and most of them were already in the
+    # library under another house's spelling.
+    'homofuronol': 'Ethyl Furaneol',
+    'homofuraneol': 'Ethyl Furaneol',
+    'homofuronol plus': 'Ethyl Furaneol',
+    'maltyl isobutyrate': 'Maltol Isobutyrate',
+    'ethyl methyl-2-butyrate': 'Ethyl 2-methyl butyrate',
+    'ethyl 2-methylbutyrate': 'Ethyl 2-methyl butyrate',
+    'ethyl methyl 2 butyrate': 'Ethyl 2-methyl butyrate',
+    'acetyl-2 pyridine': '2-Acetyl Pyridine',
+    'acetyl 2 pyridine': '2-Acetyl Pyridine',
+    '2-acetylpyridine': '2-Acetyl Pyridine',
+    'dimethyl sulphide': 'Dimethyl Sulfide',
+    'dimethylsulfide': 'Dimethyl Sulfide',
+    'dimethylsulphide': 'Dimethyl Sulfide',
+    'dimethyl disulphide': 'Dimethyl Disulfide',
+    'dimethyl trisulphide': 'Dimethyl Trisulfide',
+    'cosmone': 'Cosmone',
+    'methyl corylone': 'Methyl Corylone',
+    'methyl cyclopentenolone': 'Corylone',
+    'dimethyl cyclopentenolone': 'Methyl Corylone',
+
     'isovaleraldehyde': '3-Methylbutanal',
     'isovaleric aldehyde': '3-Methylbutanal',
     '3-methyl butanal': '3-Methylbutanal',

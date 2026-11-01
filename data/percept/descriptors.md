@@ -25,11 +25,11 @@ with no label, and the nearest available words are `ozone`, `fishy`,
 | alliaceous | 126 | 5 | Dimethyl Trisulfide (z +11.3) |
 | almond | 87 | 16 | Benzaldehyde (z +7.9) |
 | amber | 101 | 16 | Ambroxan (z +7.8) |
-| animal | 124 | 16 | 6-Methyl Quinoline (z +7.5) |
-| anisic | 87 | 12 | Anisaldehyde (z +8.3) |
-| apple | 308 | 29 | Cis-3-Hexenyl Isovalerate (z +4.1) |
+| animal | 124 | 17 | 6-Methyl Quinoline (z +7.4) |
+| anisic | 87 | 12 | Anisaldehyde (z +8.4) |
+| apple | 308 | 30 | Cis-3-Hexenyl Isovalerate (z +4.1) |
 | apricot ⚠ | 78 | 19 | Benzyl Butyrate (z +8.3) |
-| aromatic ⚠ | 76 | 24 | Heliotropin (z +6.5) |
+| aromatic ⚠ | 76 | 24 | Heliotropin (z +6.6) |
 | balsamic | 298 | 32 | Cinnamyl Cinnamate (z +4.2) |
 | banana | 128 | 28 | Ethyl Butyrate (z +4.4) |
 | beefy ⚠ | 43 | 9 | Furfuryl Mercaptan (z +14.3) |
@@ -38,25 +38,25 @@ with no label, and the nearest available words are `ozone`, `fishy`,
 | bitter ⚠ | 64 | 10 | Benzaldehyde (z +10.2) |
 | black currant ⚠ | 43 | 6 | Blackcurrant mercaptan (z +11.9) |
 | brandy ⚠ | 42 | 21 | Ethyl Acetoacetate (z +8.4) |
-| burnt | 186 | 14 | Strawberry Furanone (z +8.3) |
+| burnt | 186 | 14 | Strawberry Furanone (z +8.1) |
 | buttery | 139 | 17 | Delta Decalactone (z +6.2) |
-| cabbage ⚠ | 46 | 5 | Dimethyl Sulfide (z +12.6) |
-| camphoreous | 132 | 21 | Fenchone Alpha (z +5.1) |
-| caramellic | 234 | 14 | Strawberry Furanone (z +6.7) |
+| cabbage ⚠ | 46 | 5 | Dimethyl Sulfide (z +12.7) |
+| camphoreous | 132 | 22 | Fenchone Alpha (z +5.1) |
+| caramellic | 234 | 15 | Strawberry Furanone (z +6.4) |
 | cedar ⚠ | 49 | 18 | Cedryl Acetate (z +6.3) |
 | celery ⚠ | 42 | 14 | Whiskey Lactone (z +11.0) |
 | chamomile ⚠ | 31 | 12 | Ethyl Tiglate (z +11.6) |
-| cheesy | 187 | 13 | Caprylic Acid (z +9.0) |
+| cheesy | 187 | 13 | Caprylic Acid (z +9.1) |
 | cherry | 82 | 16 | Para Tolyl Aldehyde (z +6.1) |
 | chocolate ⚠ | 69 | 13 | 2-Methyl Pyrazine (z +7.9) |
 | cinnamon ⚠ | 66 | 10 | Cinnamaldehyde (z +9.0) |
 | citrus | 491 | 41 | Neobergamate Forte (z +3.1) |
 | clean | 97 | 21 | Florol (z +5.1) |
-| clove ⚠ | 34 | 8 | Eugenyl Acetate (z +9.6) |
-| cocoa | 118 | 9 | 2-Ethyl-3,5-Dimethylpyrazine (z +8.6) |
+| clove ⚠ | 34 | 8 | Eugenyl Acetate (z +9.7) |
+| cocoa | 118 | 9 | 2-Ethyl-3,5-Dimethylpyrazine (z +8.7) |
 | coconut | 91 | 14 | Gamma Heptalactone (z +6.2) |
 | coffee | 110 | 8 | Furfuryl Mercaptan (z +11.3) |
-| cognac | 112 | 12 | Ethyl Octanoate (z +7.2) |
+| cognac | 112 | 12 | Ethyl Octanoate (z +7.3) |
 | cooked | 87 | 7 | Dimethyl Trisulfide (z +12.2) |
 | cooling | 81 | 16 | Laevo Menthol (z +6.4) |
 | cortex ⚠ | 56 | 15 | Triplal (z +9.6) |
@@ -64,10 +64,10 @@ with no label, and the nearest available words are `ozone`, `fishy`,
 | creamy | 190 | 17 | Delta Decalactone (z +5.4) |
 | cucumber ⚠ | 46 | 16 | Trans-2,Cis-6-Nonadienal (z +7.6) |
 | dairy | 275 | 20 | Delta Decalactone (z +6.8) |
-| dry | 166 | 21 | Ambroxan (z +6.2) |
+| dry | 166 | 22 | Ambroxan (z +6.2) |
 | earthy | 328 | 26 | 2-Isobutyl Quinoline (z +5.7) |
 | ethereal | 287 | 20 | Ethyl Formate (z +6.4) |
-| fatty | 598 | 36 | (E,E)-2,4-Decadienal (z +3.4) |
+| fatty | 598 | 36 | (E,E)-2,4-Decadienal (z +3.5) |
 | fermented | 147 | 15 | Ethyl Formate (z +8.6) |
 | fishy ⚠ | 78 | 19 | 2-Methyl Pyrazine (z +8.3) |
 | floral | 1266 | 0 | Rhodinyl Acetate (z +2.0) |
@@ -79,19 +79,19 @@ with no label, and the nearest available words are `ozone`, `fishy`,
 | geranium ⚠ | 61 | 14 | Rhodinyl Acetate (z +7.4) |
 | grape | 91 | 4 | Methyl Anthranilate (z +11.3) |
 | grapefruit ⚠ | 74 | 10 | Nootkatone (z +9.2) |
-| grassy ⚠ | 64 | 17 | Hexenol-3-CIS (z +7.5) |
+| grassy ⚠ | 64 | 17 | Hexenol-3-CIS (z +7.6) |
 | green | 1475 | 15 | Liffarome (z +2.2) |
 | hawthorn ⚠ | 34 | 10 | Acetanisole (z +10.8) |
 | hay ⚠ | 74 | 13 | Acetanisole (z +8.6) |
 | hazelnut ⚠ | 52 | 7 | 2-Ethyl-3,5-Dimethylpyrazine (z +8.8) |
-| herbal | 756 | 27 | Menthone (z +2.8) |
+| herbal | 756 | 28 | Menthone (z +2.8) |
 | honey | 157 | 12 | Phenyl Ethyl Phenyl Acetate (z +8.0) |
 | hyacinth ⚠ | 58 | 16 | Phenyl Acetaldehyde (z +7.8) |
 | jasmin | 103 | 9 | Hedione (z +9.7) |
-| juicy ⚠ | 51 | 28 | Cis-3-Hexenyl Butyrate (z +5.0) |
+| juicy ⚠ | 51 | 29 | Cis-3-Hexenyl Butyrate (z +5.0) |
 | ketonic ⚠ | 48 | 5 | Heptan-2-one (z +12.8) |
 | lactonic ⚠ | 67 | 14 | Methyl Laitone (z +7.4) |
-| lavender ⚠ | 44 | 12 | Neobergamate Forte (z +12.3) |
+| lavender ⚠ | 44 | 13 | Neobergamate Forte (z +12.3) |
 | leafy | 139 | 20 | Triplal (z +6.5) |
 | leathery ⚠ | 54 | 8 | 6-Methyl Quinoline (z +12.1) |
 | lemon | 81 | 19 | Terpineol Alpha (z +5.3) |
@@ -101,17 +101,17 @@ with no label, and the nearest available words are `ozone`, `fishy`,
 | medicinal ⚠ | 71 | 13 | 2-Isopropyl Phenol (z +7.6) |
 | melon | 132 | 23 | Hexenol-3-CIS (z +6.3) |
 | metallic | 134 | 15 | Matsutake Alcohol (z +8.2) |
-| milky | 87 | 15 | Delta Decalactone (z +7.5) |
+| milky | 87 | 15 | Delta Decalactone (z +7.6) |
 | mint | 226 | 23 | Menthone (z +4.6) |
 | muguet ⚠ | 56 | 19 | Hydroxycitronellal (z +7.4) |
 | mushroom | 99 | 14 | Matsutake Alcohol (z +12.9) |
-| musk | 98 | 16 | Ambrettolide (z +5.6) |
+| musk | 98 | 17 | Ambrettolide (z +5.5) |
 | musty | 200 | 14 | 2-Methyl Pyrazine (z +6.6) |
-| natural ⚠ | 77 | 12 | Damascenone Total (z +9.2) |
-| nutty | 431 | 14 | 2-Acetyl Pyrazine (z +6.5) |
+| natural ⚠ | 77 | 13 | Damascenone Total (z +9.1) |
+| nutty | 431 | 14 | 2-Acetyl Pyrazine (z +6.6) |
 | odorless | 200 | 14 | Triethyl Citrate (z +8.4) |
 | oily | 388 | 19 | Isopropyl Myristate (z +5.4) |
-| onion | 177 | 5 | Dimethyl Trisulfide (z +11.3) |
+| onion | 177 | 5 | Dimethyl Trisulfide (z +11.4) |
 | orange | 98 | 17 | Aldehyde C-9 (z +5.9) |
 | orangeflower ⚠ | 33 | 6 | Methyl Anthranilate (z +11.5) |
 | orris ⚠ | 59 | 6 | Ionone Alpha (z +10.9) |
@@ -119,44 +119,44 @@ with no label, and the nearest available words are `ozone`, `fishy`,
 | peach | 95 | 16 | Delta Decalactone (z +6.5) |
 | pear | 130 | 22 | Pear Ester (z +6.7) |
 | phenolic | 180 | 20 | Guaiacol (z +5.9) |
-| pine ⚠ | 78 | 15 | Fenchone Alpha (z +6.3) |
+| pine ⚠ | 78 | 15 | Fenchone Alpha (z +6.4) |
 | pineapple | 205 | 25 | Allyl Hexanoate (z +5.8) |
 | plum ⚠ | 61 | 14 | Damascenone Total (z +8.4) |
 | popcorn ⚠ | 36 | 7 | 2-Acetyl Pyrazine (z +13.1) |
-| potato ⚠ | 56 | 7 | 2-Ethyl-3,5-Dimethylpyrazine (z +10.1) |
-| powdery | 167 | 26 | Musk Ketone (z +6.1) |
-| pungent | 198 | 21 | Dimethyl Sulfide (z +6.5) |
+| potato ⚠ | 56 | 7 | 2-Ethyl-3,5-Dimethylpyrazine (z +10.2) |
+| powdery | 167 | 25 | Musk Ketone (z +6.1) |
+| pungent | 198 | 21 | Dimethyl Sulfide (z +6.6) |
 | radish ⚠ | 55 | 8 | 2-Octen-4-One (z +10.0) |
 | raspberry ⚠ | 43 | 10 | Dihydro Alpha Ionone (z +9.1) |
 | ripe | 87 | 24 | Isoamyl Isovalerate (z +6.9) |
-| roasted | 372 | 10 | Furfuryl Mercaptan (z +7.3) |
+| roasted | 372 | 10 | Furfuryl Mercaptan (z +7.4) |
 | rose | 332 | 25 | Rhodinyl Acetate (z +4.2) |
 | rummy | 89 | 12 | Ethyl Acetate (z +7.3) |
 | sandalwood ⚠ | 36 | 13 | Sandalore (z +10.2) |
 | savory | 128 | 7 | Furfuryl Mercaptan (z +14.4) |
 | sharp | 104 | 19 | Ethyl Acetate (z +7.4) |
-| smoky ⚠ | 72 | 10 | Guaiacol (z +9.0) |
+| smoky ⚠ | 72 | 10 | Guaiacol (z +9.1) |
 | soapy ⚠ | 50 | 18 | Musk Xylene (z +9.0) |
-| solvent ⚠ | 59 | 16 | Methyl Acetate (z +8.3) |
+| solvent ⚠ | 59 | 16 | Methyl Acetate (z +8.4) |
 | sour ⚠ | 72 | 9 | Caprylic Acid (z +11.9) |
-| spicy | 488 | 31 | Isoeugenol (z +3.5) |
+| spicy | 488 | 31 | Isoeugenol (z +3.6) |
 | strawberry ⚠ | 49 | 9 | Maltol (z +11.3) |
 | sulfurous | 486 | 8 | Dimethyl Trisulfide (z +8.3) |
 | sweaty ⚠ | 38 | 16 | Caprylic Acid (z +12.6) |
 | sweet | 1429 | 1 | Anisyl Acetate (z +2.0) |
 | tea ⚠ | 56 | 14 | Damascenone Total (z +9.1) |
 | terpenic ⚠ | 49 | 19 | Fenchone Alpha (z +5.8) |
-| tobacco | 102 | 15 | Damascone Beta (z +6.2) |
-| tomato ⚠ | 37 | 13 | Dimethyl Sulfide (z +11.0) |
+| tobacco | 102 | 16 | Damascone Beta (z +6.1) |
+| tomato ⚠ | 37 | 13 | Dimethyl Sulfide (z +11.1) |
 | tropical | 386 | 25 | Oxane (z +5.4) |
 | vanilla | 111 | 17 | Vanillin (z +6.4) |
-| vegetable | 287 | 21 | Trans-2,Cis-6-Nonadienal (z +6.2) |
+| vegetable | 287 | 22 | Trans-2,Cis-6-Nonadienal (z +6.2) |
 | vetiver ⚠ | 38 | 10 | Cedryl Acetate (z +10.9) |
-| violet ⚠ | 66 | 10 | Methyl Octine Carbonate (z +8.4) |
+| violet ⚠ | 66 | 10 | Methyl Octine Carbonate (z +8.5) |
 | warm | 96 | 10 | Eugenyl Acetate (z +10.1) |
 | waxy | 488 | 33 | Methyl Palmitate (z +3.2) |
-| weedy ⚠ | 44 | 20 | Stemone (z +7.1) |
+| weedy ⚠ | 44 | 20 | Stemone (z +7.2) |
 | winey | 221 | 23 | Diethyl Succinate (z +5.5) |
-| woody | 692 | 24 | Sclareol (z +2.3) |
+| woody | 692 | 25 | Sclareol (z +2.3) |
 
 ⚠ = fewer than 80 training molecules.
