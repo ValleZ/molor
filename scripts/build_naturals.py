@@ -97,6 +97,9 @@ def main() -> int:
     ap.add_argument("--percepts", default="artifacts/percepts_fp3.json")
     ap.add_argument("--store", default="library")
     ap.add_argument("--out", default="artifacts/naturals.json")
+    ap.add_argument("--force-out", action="store_true",
+                    help="write --out even when it is not the file this "
+                         "--store feeds; for one-off analysis only")
     ap.add_argument("--min-coverage", type=float, default=0.6,
                     help="fraction of the stated composition that must resolve")
     ap.add_argument("--max-nearest-cosine", type=float, default=0.98,
@@ -113,6 +116,20 @@ def main() -> int:
     names = list(pj["molecules"])
     P = {n: np.asarray(r, float) for n, r in zip(names, pj["probs"])}
     LM = np.stack([P[n] for n in names])
+
+    # --store and --out are independent, and getting them out of step writes
+    # one encoder's receptor vectors into another encoder's naturals file.
+    # That happened: the GCN atlas spent a deploy plotting its oils with MPNN
+    # coordinates, which drew them as a tight clump apart from everything
+    # else, correctly ordered inside the clump and meaningless beside it.
+    expect = ("artifacts/naturals.json" if args.store == "library"
+              else f"artifacts/naturals_{args.store}.json")
+    if args.out != expect and not args.force_out:
+        raise SystemExit(
+            f"--store {args.store} writes {expect}, not {args.out}.\n"
+            f"export_viewer_data.py reads one naturals file per store by that "
+            f"name, so a mismatch puts one encoder's vectors in another's "
+            f"space. Pass --out {expect}, or --force-out to override.")
 
     entries, _, scores = Library(name=args.store).load()
     S = {e.name: s for e, s in zip(entries, scores)}
