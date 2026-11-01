@@ -39,8 +39,9 @@ artifacts/maps*/
 artifacts/temp/
 
 # The perfumer's own writing, kept out of this repository deliberately. These
-# are the written smelling impressions and the formula book with its verdicts;
-# they were the inputs to several results here and are nobody else's business.
+# are the written smelling impressions, the formula book with its verdicts, and
+# the mix log with its shelf slots and its own per-mix verdicts; they were the
+# inputs to several results here and are nobody else's business.
 # What stays is derived and was explicitly cleared for publication:
 # data/inventory/inventory.csv carries the use levels, threshold figures,
 # families and volatility classes with no prose at all.
@@ -48,3 +49,4 @@ library/input/impressions.tsv
 data/inventory/perfumery_inventory.csv
 data/formulas/recipes.md
 data/formulas/parsed.json
+data/formulas/mixes.csv
