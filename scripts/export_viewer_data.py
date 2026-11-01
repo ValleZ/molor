@@ -327,7 +327,10 @@ def main() -> int:
     ap.add_argument("--models", default=None,
                     help="comma-separated key=library pairs; first is the reference set")
     ap.add_argument("--out", default="artifacts/viewer_data.json")
-    ap.add_argument("--percepts", default="artifacts/percepts_baseline.json")
+    ap.add_argument("--percepts", default="artifacts/percepts_fp3.json",
+                    help="the percept model that colours the points. The "
+                         "baseline file covers 128 molecules of a 410-material "
+                         "library, which left two thirds of the atlas grey.")
     ap.add_argument("--no-white-point", action="store_true",
                     help="omit the average-of-everything reference point")
     ap.add_argument("--query", default=None,
@@ -544,6 +547,15 @@ def main() -> int:
                                     r.get("volatility_class", ""))
         print(f"  inventory: {len(usage)} materials with a use level")
 
+    # Measured relative strength, where a blotter session has one. A
+    # multiplier above 1 means the material delivers more smell per gram than
+    # its own use level implies. This is the only measured quantity on the
+    # card other than the 28 real thresholds.
+    from strength import load_strength
+    strength = load_strength()
+    if strength:
+        print(f"  strength: {len(strength)} materials measured on a blotter")
+
     # Predicted GS-LF odour descriptors, from whichever model --percepts names.
     percept_path = ROOT / args.percepts
     percept_tags, percept_list, percept_colour, percept_top = {}, [], {}, {}
@@ -623,6 +635,7 @@ def main() -> int:
             "percept_model": percept_meta,
             "intensity_model": intensity_meta,
             "threshold_model": thresh_meta,
+            "n_strength": sum(1 for e in entries if e.name in strength),
         },
         "receptors": [{"gene": g, "family": f} for g, f in zip(genes, families)],
         "classes": classes,
@@ -660,6 +673,13 @@ def main() -> int:
              # table's data to be included. --no-notes withholds the written
              # smelling impressions and the tags derived from them, and nothing
              # else.
+             "strength": (round(strength[e.name]["mult"], 2)
+                          if e.name in strength else None),
+             "strengthN": (strength[e.name]["n"]
+                           if e.name in strength else None),
+             "strengthSE": (round(strength[e.name]["se"], 2)
+                            if e.name in strength
+                            and strength[e.name]["se"] is not None else None),
              "topPct": usage.get(e.name, [None, None, None])[0],
              "family": usage.get(e.name, [None, None, None])[1],
              "volatility": usage.get(e.name, [None, None, None])[2],

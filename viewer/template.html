@@ -1117,7 +1117,8 @@ window.addEventListener("error", function (ev) {
     // the wrong way, despite scoring 0.82 in cross-validation on the training
     // set's own chemical space.
     if ((m.odt !== null && m.odt !== undefined)
-        || (m.topPct !== null && m.topPct !== undefined)) {
+        || (m.topPct !== null && m.topPct !== undefined)
+        || (m.strength !== null && m.strength !== undefined)) {
       html += '<h2 style="margin-top:14px">Dosing</h2>';
       if (m.odt !== null && m.odt !== undefined) {
         html += '<div class="bars"><div class="rrow">'
@@ -1140,6 +1141,33 @@ window.addEventListener("error", function (ev) {
           + '<p class="note">Use level is the perfumer\'s own working ceiling, '
           + "which also reflects IFRA limits, cost and how much of the character "
           + "is wanted &mdash; not potency alone.</p>";
+      }
+      // Measured relative strength. Unlike the threshold figures this was
+      // measured on this bench, by preparing every material at its own use
+      // level and judging which smelled stronger than the rest. It is the
+      // quantity the dose conversion actually needs, and it corrects the
+      // compiled threshold wherever it exists.
+      if (m.strength !== null && m.strength !== undefined) {
+        var str = m.strength;
+        var dir = str > 1.05 ? "stronger" : str < 0.95 ? "weaker" : "about right";
+        var col = str > 1.05 ? "warn" : str < 0.95 ? "good" : "";
+        html += '<dl class="kv"><dt>Measured strength</dt><dd>'
+          + '<span class="' + col + '">&times;' + str.toFixed(2) + "</span>"
+          + "</dd></dl>"
+          + '<p class="note">Measured on a blotter against '
+          + "the rest of a 26-material session, each prepared at its own use "
+          + "level"
+          + (m.strengthN ? " (" + m.strengthN + " judgement"
+             + (m.strengthN === 1 ? "" : "s") : "")
+          + (m.strengthN && m.strengthSE ? ", standard error "
+             + m.strengthSE.toFixed(2) + " bins" : "")
+          + (m.strengthN ? ")" : "")
+          + ". The use level implied this material would smell "
+          + (str > 1.05 ? "weaker than it does, so it is dosed down"
+             : str < 0.95 ? "stronger than it does, so it is dosed up"
+             : "about as strong as it does")
+          + ". One factor of three is one judging bin, and the estimate is "
+          + "shrunk toward no correction in proportion to its own noise.</p>";
       }
       if (m.odt === null || m.odt === undefined) {
         html += '<p class="note">No measured threshold for this material. '
@@ -1273,6 +1301,12 @@ window.addEventListener("error", function (ev) {
       + ", trained on GoodScents + Leffingwell (4983 molecules). "
       + "Selected by ablation to keep similarity structure that per-label accuracy "
       + "tuning destroys."
+      + ((D.meta && D.meta.n_strength)
+          ? "<br><strong>Strength</strong>: " + D.meta.n_strength
+            + " materials were measured on a blotter at their own use levels, "
+            + "and that correction is what the dose conversion uses in place "
+            + "of their compiled threshold."
+          : "")
       + ((D.meta && D.meta.threshold_model && D.meta.threshold_model.n_measured)
           ? "<br><strong>Dosing</strong>: measured odour detection thresholds "
             + "from Abraham 2012 for "
