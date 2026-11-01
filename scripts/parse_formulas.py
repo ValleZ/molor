@@ -432,6 +432,10 @@ def classify(name: str, library: set[str], _inner: bool = False):
     low = re.sub(r"\s+\d+(?:\.\d+)?\s*%?\s*"
                  r"(?:dep|dpg|ipm|tec|bb|dowanol|triethyl citrate|"
                  r"benzyl benzoate|ethanol|alcohol)\s*$", "", low).strip()
+    # A trailing percentage with no solvent named: "Calone 1%",
+    # "2-Acetylpyrazine 1%". Only at the end of the string, so
+    # "Galaxolide 50" and "Aldehyde C-12" are untouched.
+    low = re.sub(r"[\s,]+\d+(?:\.\d+)?\s*%\s*$", "", low)
     low = re.sub(r"\s+", " ", low).strip(" ,-—")
     # "Aldehyde C14" and "Aldehyde C-14" are the same material written two
     # ways, and the library uses the hyphen. Without this the unhyphenated

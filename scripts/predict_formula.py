@@ -215,7 +215,14 @@ def match_oil(name: str, oils: list[str]):
             if exact:
                 if head not in want:
                     continue
+            # A prefix match is for inflections -- mandarin/mandarine,
+            # petitgrain/petitgrains -- so the two words may differ by a
+            # couple of characters and no more. Without the length bound,
+            # "pepper" matched "peppermint" and black pepper oil silently
+            # became peppermint: a swap rather than a drop, and a swap is
+            # invisible to whoever reads the result.
             elif not any(len(w) >= 3 and len(head) >= 3
+                         and abs(len(w) - len(head)) <= 2
                          and (w.startswith(head) or head.startswith(w))
                          for w in want):
                 continue
