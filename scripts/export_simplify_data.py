@@ -85,23 +85,51 @@ NEVER_PROPOSE = {
 #: the same way an inventory row is.
 FORMULA_SOURCED = ("add_supplier_names.csv", "add_coffee_roast.csv")
 
-#: Provenance strings that mark a library entry as having arrived for the
-#: model's sake rather than from a formulating palette. Most are the GS-LF
-#: training set.
+#: Provenance strings that mark a library entry as a structure added so an
+#: essential oil could be built from its constituents, rather than a material
+#: anyone formulates with. Thujopsene, khusimol, the santalols and the rest
+#: came from PubChem for that purpose.
 #:
-#: This is a label, not a filter, and the distinction was paid for. Excluding
-#: them from proposals looked safe and was wrong: 2-isobutyl quinoline is
-#: Pyralone and geosmin is sold by the gram, and both arrived here through the
-#: training set, so both were being silently withheld. Nothing available here
-#: can tell a perfumery material from a food volatile across 169 molecules,
-#: and an inventory cannot stand in for it either -- that is one shelf, and
-#: matching the inventory's own names through the alias table recovers only
-#: three more, because the rest of its unmatched rows are naturals and bases.
-#:
-#: So they are offered and marked. The reader decides, which is the honest
-#: place for a judgement this file cannot make.
-REFERENCE_SOURCES = ("gs-lf", "constituent reference", "gc constituent",
+#: "GS-LF" is deliberately NOT in this list, and that mistake cost a day. The
+#: source column records where a *structure* came from, not where the material
+#: came from, and most of the GS-LF-sourced entries are a supplier's catalogue
+#: with their SMILES looked up in the GS-LF dataset. Treating that column as
+#: material provenance labelled 155 materials "unverified as a perfumery
+#: material" -- Aldehyde C-7, Allyl Hexanoate, Acetophenone, Pyralone,
+#: prenyl acetate -- and withheld or warned about every one of them.
+REFERENCE_SOURCES = ("constituent reference", "gc constituent",
                      "natural constituent")
+
+#: A supplier's own catalogue, already in this repository: 371 product names
+#: from a house that sells to hobbyists and small studios. This is the
+#: commonality signal that does not depend on one person's shelf or on which
+#: formulas happen to be checked in here -- somebody sells it.
+SUPPLIER_CATALOGUES = ("fraterworks_raw.txt", "fraterworks_resolved.csv")
+
+
+def supplier_catalogue():
+    """Normalised names a supplier lists as products."""
+    import re as _re
+
+    def norm(x):
+        return " ".join(_re.sub(r"[^a-z0-9]+", " ", x.lower()).split())
+
+    out = set()
+    for fn in SUPPLIER_CATALOGUES:
+        path = ROOT / "library" / "input" / fn
+        if not path.is_file():
+            continue
+        if path.suffix == ".csv":
+            for r in csv.DictReader(io.open(path, encoding="utf-8")):
+                n = (r.get("name") or "").strip()
+                if n:
+                    out.add(norm(n))
+        else:
+            for line in io.open(path, encoding="utf-8"):
+                t = line.strip()
+                if t:
+                    out.add(norm(t))
+    return out
 
 
 def provenance():
@@ -239,6 +267,12 @@ def main() -> int:
     prov = provenance()
     used = formula_usage()
     from_formula = formula_sourced()
+    catalogue = supplier_catalogue()
+
+    import re as _re
+
+    def _norm(x):
+        return " ".join(_re.sub(r"[^a-z0-9]+", " ", x.lower()).split())
     strength = load_strength()
     n_blocked = 0
     n_unverified = 0
@@ -269,13 +303,16 @@ def main() -> int:
             # be an excellent material or it may be a food volatile; nothing
             # here knows which, so the page says so and offers it anyway.
             "unver": unverified or None,
-            # Commonly used, on the evidence available: stocked by a working
-            # perfumer, built from a GC composition, or named in a formula
-            # here. Without one of those nobody in this project has been seen
-            # using it, and a proposal is a guess about availability as well
-            # as about smell.
-            "com": bool(n in inv or o or used.get(n) or n in from_formula),
+            # How widely a material is used is NOT recorded here, and three
+            # attempts to infer it all failed in the same way. An inventory
+            # is one shelf. The formulas checked in here are a handful. A
+            # supplier's catalogue is one house's range: built on it, camphor,
+            # borneol, thymol, evernyl, bacdanol and methyl jasmonate all came
+            # out "rarely used". Each attempt mislabelled obviously common
+            # materials, so no commonality claim is published. What is
+            # published is where the entry came from, which is a fact.
             "nf": used.get(n) or None,
+            "cat": bool(_norm(n) in catalogue) or None,
             "p": [round(float(v), 3) for v in X[i]],
             "iso": round(float(iso_pct[i]), 1),
             "use": lvl,
@@ -326,7 +363,7 @@ def main() -> int:
             "n_strength_measured": n_measured,
             "n_not_for_use": n_blocked,
             "n_unverified": n_unverified,
-            "n_common": sum(1 for m in mats if m["com"]),
+            "n_catalogue": sum(1 for m in mats if m.get("cat")),
             "n_strength": len(strength),
             "percept_model": pj.get("checkpoint", Path(args.percepts).stem),
             "percept_auc": pj.get("oof_mean_auc"),
@@ -346,9 +383,8 @@ def main() -> int:
               f"to a compiled threshold")
     print(f"  {n_blocked} materials may never be proposed; "
           f"{n_unverified} are offered but unverified as perfumery materials")
-    print(f"  {sum(1 for m in mats if m['com'])} are commonly used "
-          f"(stocked, built from GC, or named in one of "
-          f"{len(set(used))} materials' worth of formulas here)")
+    print(f"  {sum(1 for m in mats if m.get('cat'))} appear in a supplier "
+          f"catalogue in this repository")
     return 0
 
 
