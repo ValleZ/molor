@@ -15,7 +15,7 @@ is checked on the code outside strings and comments.
 
 Run it on every built page before publishing:
 
-    python scripts/check_viewer_js.py artifacts/molor_public_fp3.html
+    python scripts/check_viewer_js.py artifacts/receptor_atlas.html
 """
 
 from __future__ import annotations
