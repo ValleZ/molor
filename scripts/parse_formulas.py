@@ -48,6 +48,17 @@ DOC = ROOT / "data" / "formulas" / "recipes.md"
 
 #: The perfumer's shorthand -> the library's name.
 ALIAS = {
+    'isovaleraldehyde': '3-Methylbutanal',
+    'isovaleric aldehyde': '3-Methylbutanal',
+    '3-methyl butanal': '3-Methylbutanal',
+    'aldehyde c-5 iso': '3-Methylbutanal',
+    '2-furfurylthiol': 'Furfuryl Mercaptan',
+    'furfuryl thiol': 'Furfuryl Mercaptan',
+    '2-furanmethanethiol': 'Furfuryl Mercaptan',
+    'beta-ionone': 'Ionone Beta',
+    'beta ionone': 'Ionone Beta',
+    '2,3,5,6-tetramethylpyrazine': 'Tetramethyl Pyrazine',
+
     # The pyrazines, whose trade names say roasted and whose
     # structures differ. A bare "dimethyl pyrazine" is deliberately
     # NOT aliased: the 2,5- and 2,6- isomers are both sold and are
