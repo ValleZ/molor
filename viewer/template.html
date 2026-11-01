@@ -1117,7 +1117,6 @@ window.addEventListener("error", function (ev) {
     // the wrong way, despite scoring 0.82 in cross-validation on the training
     // set's own chemical space.
     if ((m.odt !== null && m.odt !== undefined)
-        || (m.topPct !== null && m.topPct !== undefined)
         || (m.strength !== null && m.strength !== undefined)) {
       html += '<h2 style="margin-top:14px">Dosing</h2>';
       if (m.odt !== null && m.odt !== undefined) {
@@ -1130,17 +1129,6 @@ window.addEventListener("error", function (ev) {
           + "(Abraham 2012), " + m.odtPct.toFixed(0)
           + "th percentile of the materials that have one. Higher means a lower "
           + "threshold, so a more potent material.</p>";
-      }
-      if (m.topPct !== null && m.topPct !== undefined) {
-        html += '<dl class="kv"><dt>Max use level</dt><dd>'
-          + m.topPct + "%</dd>"
-          + (m.volatility ? "<dt>Volatility</dt><dd>" + esc(m.volatility)
-             + "</dd>" : "")
-          + (m.family ? "<dt>Family</dt><dd>" + esc(m.family) + "</dd>" : "")
-          + "</dl>"
-          + '<p class="note">Use level is the perfumer\'s own working ceiling, '
-          + "which also reflects IFRA limits, cost and how much of the character "
-          + "is wanted &mdash; not potency alone.</p>";
       }
       // Measured relative strength. Unlike the threshold figures this was
       // measured on this bench, by preparing every material at its own use
@@ -1168,11 +1156,6 @@ window.addEventListener("error", function (ev) {
              : "about as strong as it does")
           + ". One factor of three is one judging bin, and the estimate is "
           + "shrunk toward no correction in proportion to its own noise.</p>";
-      }
-      if (m.odt === null || m.odt === undefined) {
-        html += '<p class="note">No measured threshold for this material. '
-          + "A predicted one is not shown: those predictions did not track "
-          + "practice on this library.</p>";
       }
     }
 
@@ -1311,7 +1294,7 @@ window.addEventListener("error", function (ev) {
           ? "<br><strong>Dosing</strong>: measured odour detection thresholds "
             + "from Abraham 2012 for "
             + D.meta.threshold_model.n_measured
-            + " materials, and the perfumer's own maximum use levels. "
+            + " materials. "
             + "Predicted thresholds are withheld: a model scoring r 0.82 in "
             + "cross-validation on Abraham's chemical space reached only "
             + "Spearman 0.14 against those use levels on this library, and "

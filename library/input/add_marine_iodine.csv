@@ -1,0 +1,5 @@
+name,smiles,source
+"2,6-Dibromophenol",Oc1c(Br)cccc1Br,"PubChem CID 11313; the bromophenol that gives shellfish their iodine/sea-water taste. Reference molecule, not a perfumery material."
+Dimethyl Disulfide,CSSC,"PubChem CID 12232; cooked-sea and seaweed sulfur"
+Dimethyl Trisulfide,CSSSC,"PubChem CID 19310; the oyster and nori note"
+"(E,E)-2,4-Decadienal",CCCCC/C=C/C=C/C=O,"PubChem CID 5283349; fatty-fishy, fried fish and sea"

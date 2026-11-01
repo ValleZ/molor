@@ -48,6 +48,29 @@ DOC = ROOT / "data" / "formulas" / "recipes.md"
 
 #: The perfumer's shorthand -> the library's name.
 ALIAS = {
+    # The roast and coffee materials, under the names a flavour
+    # supplier prints rather than the ones this library uses.
+    'civetone': 'Civettone',
+    'cyclohexadecenone': 'Civettone',
+    '2-acetylpyrazine': '2-Acetyl Pyrazine',
+    'acetyl pyrazine': '2-Acetyl Pyrazine',
+    '2-methylpyrazine': '2-Methyl Pyrazine',
+    'methyl pyrazine': '2-Methyl Pyrazine',
+    'ethyl dimethyl pyrazine': '2-Ethyl-3,5-Dimethylpyrazine',
+    '2-ethyl-3,5-dimethylpyrazine': '2-Ethyl-3,5-Dimethylpyrazine',
+    'ethyl dimethylpyrazine': '2-Ethyl-3,5-Dimethylpyrazine',
+    'furfuryl thiol': 'Furfuryl Mercaptan',
+    '2-furfurylthiol': 'Furfuryl Mercaptan',
+    'furfurylmercaptan': 'Furfuryl Mercaptan',
+    'coffee mercaptan': 'Furfuryl Mercaptan',
+    'methyl cyclopentenolone': 'Corylone',
+    'cyclotene': 'Corylone',
+    'methylcyclopentenolone': 'Corylone',
+    '3-methyl-1,2-cyclopentanedione': 'Corylone',
+    'isoeugenol acetate': 'Isoeugenyl Acetate',
+    '3,3-dimethyl-1-indanone': '3,3-Dimethyl-1-Indanone',
+    'dimethyl indanone': '3,3-Dimethyl-1-Indanone',
+
     # Supplier names for the twelve molecules added from pasted
     # formulas. Isoraldeine and Irisone are one molecule under two
     # houses' names, and 'Cetone Alpha' is its grade.
