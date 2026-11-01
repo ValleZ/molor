@@ -428,21 +428,80 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
     return -1;
   }
 
+  // Every step here was paid for by an ingredient a real supplier sheet
+  // dropped. parse_formulas.classify does the same work for the CLI; the two
+  // have to agree, or one formula resolves differently in the page than it
+  // does on the command line.
+  var GRADE = /[\s,]+(?:signature|superior|luxe|super premium|multi-origin|wild|extra|total)\b/g;
+  var DILUENT = /\s*\d+(?:\.\d+)?\s*%?\s*(?:dep|dpg|dipg|ipm|pg|tec|bb|dowanol|triethyl citrate|benzyl benzoate|ethanol|alcohol|mct)\s*$/;
+
+  function normalise(name) {
+    var low = name
+      // Typographic quotes and dashes, as pasted from a supplier's sheet.
+      .replace(/[\u201c\u201d]/g, '"').replace(/[\u2018\u2019]/g, "'")
+      .replace(/[\u2013\u2014]/g, "-")
+      .toLowerCase().replace(/\s+/g, " ").trim()
+      .replace(/,?\s*(undiluted|neat|crystals?|natural|total)\s*$/, "").trim();
+    // "Aldehyde C14" and "Aldehyde C-14" are one material written two ways,
+    // and this library uses the hyphen.
+    low = low.replace(/\baldehyde\s+c\s*-?\s*(\d+)/, "aldehyde c-$1");
+    // A marketing grade in quotes never names the material.
+    low = low.replace(/"[^"]*"/g, " ");
+    // A stock strength written into the name: "Galaxolide 50% IPM",
+    // "Vanillin 10% PG". The solvent token is what makes it unambiguous, so a
+    // bare "Galaxolide 50" trade name is left alone.
+    low = low.replace(DILUENT, "");
+    low = low.replace(/\b\d+(?:\.\d+)?\s*%\s*(?:in\s+)?(?:dpg|pg|ipm|tec|alcohol)?\b/, "");
+    low = low.replace(GRADE, " ");
+    // A bare grade number: "Citronellol 98", "Ambrinol 95".
+    low = low.replace(/\s+\d{2,3}\s*$/, "");
+    return low.replace(/\s+/g, " ").replace(/^[\s,-]+|[\s,-]+$/g, "");
+  }
+
+  function lookupAll(low) {
+    var idx = lookup(low);
+    if (idx >= 0) return idx;
+    var parts = low.replace(/-/g, " ").split(" ");
+    // This library puts the isomer word last -- "Ionone Alpha", "Damascone
+    // Alpha" -- and sheets write it at either end.
+    if (parts.length > 1 && GREEK.indexOf(parts[0]) >= 0) {
+      idx = lookup(parts.slice(1).concat([parts[0]]).join(" "));
+      if (idx >= 0) return idx;
+    }
+    if (parts.length > 1 && GREEK.indexOf(parts[parts.length - 1]) >= 0) {
+      idx = lookup([parts[parts.length - 1]].concat(parts.slice(0, -1)).join(" "));
+      if (idx >= 0) return idx;
+    }
+    if (low.indexOf("-") >= 0) {
+      idx = lookup(low.replace(/-/g, " "));
+      if (idx >= 0) return idx;
+    }
+    return -1;
+  }
+
   function resolve(rows) {
     var res = [], missing = [], ambiguous = [];
     rows.forEach(function (r) {
-      var low = r.name.toLowerCase().replace(/\s+/g, " ").trim()
-        .replace(/,?\s*(undiluted|neat|crystals?|natural|total)\s*$/, "").trim();
-      // "Aldehyde C14" and "Aldehyde C-14" are one material written two ways,
-      // and this library uses the hyphen.
-      low = low.replace(/aldehyde\s+c\s*-?\s*(\d+)/, "aldehyde c-$1");
+      var low = normalise(r.name);
       if (SOLV[low]) { r.why = "solvent"; missing.push(r); return; }
-      var idx = lookup(low);
+      var idx = lookupAll(low);
+      // A supplier often puts the chemical name in brackets after their own
+      // trade name: "Ambrofix (Ambroxan)", "Pyralone (Isobutyl Quinoline)".
       if (idx < 0) {
-        var parts = low.split(" ");
-        if (parts.length > 1 && GREEK.indexOf(parts[0]) >= 0) {
-          idx = lookup(parts.slice(1).concat([parts[0]]).join(" "));
+        var inner = r.name.match(/\(([^()]*)\)/g) || [];
+        for (var q = 0; q < inner.length && idx < 0; q++) {
+          var cand = normalise(inner[q].replace(/[()]/g, ""));
+          if (!cand) continue;
+          if (SOLV[cand]) { r.why = "solvent"; missing.push(r); return; }
+          idx = lookupAll(cand);
         }
+      }
+      // Or the brackets are a grade and the name is what is left of them:
+      // "Guaiacol (Natural)", "Dipropylene Glycol (DPG)".
+      if (idx < 0 && r.name.indexOf("(") >= 0) {
+        var bare = normalise(r.name.replace(/\([^()]*\)/g, " "));
+        if (SOLV[bare]) { r.why = "solvent"; missing.push(r); return; }
+        idx = lookupAll(bare);
       }
       if (idx < 0) {
         var mo = matchOil(r.name);

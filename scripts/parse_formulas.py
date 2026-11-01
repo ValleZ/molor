@@ -48,6 +48,29 @@ DOC = ROOT / "data" / "formulas" / "recipes.md"
 
 #: The perfumer's shorthand -> the library's name.
 ALIAS = {
+    'ambrofix': 'Ambroxan',
+    'ambrofix (ambroxan)': 'Ambroxan',
+    # Trade and chemical synonyms for molecules already in the
+    # library, each checked against it rather than inferred from a
+    # near neighbour.
+    'decanal': 'Aldehyde C-10',
+    'aldehyde c-10 decanal': 'Aldehyde C-10',
+    'allyl caproate': 'Allyl Hexanoate',
+    'aldehyde c-18': 'Gamma Nonalactone',
+    'aldehyde c-18 coconut': 'Gamma Nonalactone',
+    'coconut aldehyde': 'Gamma Nonalactone',
+    'aldehyde c-16 strawberry': 'Strawberry Glycidate',
+    'aldehyde c-14 peach': 'Gamma Undecalactone',
+    'exaltolide': 'Exaltolide Total',
+    'pentadecanolide': 'Exaltolide Total',
+    'dextro limonene': 'D-Limonene',
+    'dextro-limonene': 'D-Limonene',
+    'd limonene': 'D-Limonene',
+    'orange terpenes': 'D-Limonene',
+    'pyralone': '2-Isobutyl Quinoline',
+    'isobutyl quinoline': '2-Isobutyl Quinoline',
+    'iso butyl quinoline': '2-Isobutyl Quinoline',
+
     "dmbca": "Dimethyl Benzyl Carbinyl Acetate",
     "pea": "Phenethyl Alcohol",
     "phenylethyl alcohol": "Phenethyl Alcohol",
@@ -317,15 +340,33 @@ def norm(name: str) -> str:
     # stray escapes and tildes come from the markdown export.
     n = re.sub(r"^[?\s]+", "", n)
     n = n.replace("\\~", "").replace("~", "")
+    # Suppliers' sheets arrive with typographic quotes around a marketing
+    # grade -- Vanillin "Signature" -- and those dropped the ingredient.
+    n = (n.replace("\u201c", '"').replace("\u201d", '"')
+          .replace("\u2018", "'").replace("\u2019", "'")
+          .replace("\u2013", "-").replace("\u2014", "-"))
     n = re.sub(r"\s+", " ", n)
     n = re.sub(r"\s*\((?:[^()]*)\)\s*$", "", n)       # trailing parenthetical
     n = re.sub(r"[,—\-–]\s*$", "", n).strip()
     return n
 
 
-def classify(name: str, library: set[str]):
-    """Return (kind, resolved_name). kind is material|solvent|natural|base|unknown."""
+def classify(name: str, library: set[str], _inner: bool = False):
+    """Return (kind, resolved_name). kind is material|solvent|natural|base|unknown.
+
+    A supplier often puts the chemical name in brackets after their own trade
+    name -- "Ambrofix (Ambroxan)", "Pyralone (Isobutyl Quinoline)" -- so when
+    the outer name is unknown, what is inside the brackets is tried as a name
+    in its own right. `_inner` stops that recursing.
+    """
     raw = norm(name)
+    if not _inner:
+        for inner in re.findall(r"\(([^()]*)\)", name):
+            if not inner.strip():
+                continue
+            kind, res = classify(inner, library, _inner=True)
+            if kind in ("material", "solvent"):
+                return kind, res
     # strip trailing qualifiers that describe the stock, not the material
     raw = re.sub(r",?\s*(undiluted|neat|crystals?|natural|total)\s*$", "", raw,
                  flags=re.I).strip() or raw
@@ -349,6 +390,17 @@ def classify(name: str, library: set[str]):
     # ways, and the library uses the hyphen. Without this the unhyphenated
     # form was dropped.
     low = re.sub(r"\baldehyde\s+c\s*-?\s*(\d+)", r"aldehyde c-\1", low)
+    # A marketing grade in quotes: Vanillin "Signature", Peru Balsam
+    # "Signature" Resinoid, Tonka Bean "Luxe" Absolute. The quotes survive
+    # norm(); what is inside them never names the material.
+    low = re.sub(r'"[^"]*"', " ", low)
+    # A grade or origin written as a bare suffix. Closed list, so it cannot
+    # eat a real name: "Geraniol Extra", "Guaiacol (Natural)" once the
+    # bracket is gone, "Ambrinol 95", "Citronellol 98".
+    low = re.sub(r"[\s,]+(?:signature|superior|luxe|super premium|"
+                 r"multi-origin|wild|extra|total)\b", " ", low)
+    low = re.sub(r"\s+\d{2,3}\s*$", "", low)
+    low = re.sub(r"\s+", " ", low).strip(" ,-")
     if not low:
         return "unknown", raw
     if low in SOLVENT:
@@ -361,7 +413,7 @@ def classify(name: str, library: set[str]):
     # for this closed list of words, so it cannot invent a match.
     GREEK = ("alpha", "beta", "gamma", "delta", "epsilon", "iso", "cis",
              "trans", "laevo", "levo", "dextro", "para", "ortho", "meta")
-    parts = low.split()
+    parts = low.replace("-", " ").split()
     if len(parts) > 1 and parts[0] in GREEK:
         moved = " ".join(parts[1:] + [parts[0]])
         if moved in ALIAS:
@@ -370,6 +422,21 @@ def classify(name: str, library: set[str]):
             if cand in library:
                 return "material", cand
         hit = [m for m in library if m.lower() == moved]
+        if hit:
+            return "material", hit[0]
+    if len(parts) > 1 and parts[-1] in GREEK:
+        moved = " ".join([parts[-1]] + parts[:-1])
+        if moved in ALIAS:
+            return "material", ALIAS[moved]
+        hit = [m for m in library if m.lower() == moved]
+        if hit:
+            return "material", hit[0]
+    # "Gamma-Undecalactone" against "Gamma Undecalactone".
+    dehyphen = low.replace("-", " ")
+    if dehyphen != low:
+        if dehyphen in ALIAS:
+            return "material", ALIAS[dehyphen]
+        hit = [m for m in library if m.lower() == dehyphen]
         if hit:
             return "material", hit[0]
     cleaned = clean_name(raw)
