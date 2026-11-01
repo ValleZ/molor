@@ -1,0 +1,13 @@
+blotter,material,stock_pct,grams_of_stock,grams_of_diluent,gives_pct,your_use_level_pct,premix_pct,premix_neat_g,premix_dpg_g,anchor,bin,notes
+1,Geranyl Acetate,100.0,0.11,2.0,5.2133,5.0,,,,0,,
+2,Anisaldehyde,100.0,0.11,2.0,5.2133,5.0,,,,0,,
+3,Hedione,100.0,0.86,2.0,30.0699,30.0,,,,0,,
+4,Linalyl Acetate,100.0,0.35,2.0,14.8936,15.0,,,,0,,
+5,Cinnamaldehyde,10.0,0.0,0.0,10.0,10.0,,,,0,,
+6,Geranyl Acetate,100.0,0.11,2.0,5.2133,5.0,,,,0,,
+7,Undecavertol,10.0,0.5,2.0,2.0,2.0,,,,0,,
+8,Ethylene Brassylate,100.0,0.35,2.0,14.8936,15.0,,,,0,,
+9,Anisaldehyde,100.0,0.11,2.0,5.2133,5.0,,,,0,,
+10,Hedione,100.0,0.86,2.0,30.0699,30.0,,,,0,,
+11,Aldehyde C-8,10.0,0.11,2.0,0.5213,0.5,,,,1,,
+12,Ethylene Brassylate,100.0,0.35,2.0,14.8936,15.0,,,,0,,

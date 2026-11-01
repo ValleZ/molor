@@ -225,6 +225,13 @@ def main() -> int:
     ap.add_argument("--diluent", default="DPG")
     ap.add_argument("--worklist", default="artifacts/threshold_worklist.json")
     ap.add_argument("--out", default="data/inventory/strength_session1.csv")
+    ap.add_argument("--only", nargs="+", default=None,
+                    help="re-test just these materials, ignoring the "
+                         "worklist; every one of them gets a duplicate")
+    ap.add_argument("--also", nargs="+", default=None,
+                    help="extra materials on one blotter each, to hold the "
+                         "scale: a re-test of four quiet materials has no "
+                         "reference to judge against otherwise")
     args = ap.parse_args()
 
     try:
@@ -242,7 +249,27 @@ def main() -> int:
     wl = json.loads(wl_path.read_text(encoding="utf-8"))
 
     picked, seen = [], set()
-    for r in wl:
+    if args.only:
+        # A short re-test session. apply_strength.py holds back any material
+        # whose own judgements span two bins, and those are exactly the ones
+        # worth smelling again: four materials and their duplicates is eight
+        # blotters, not twenty-six.
+        for n in args.only:
+            if n not in inv:
+                raise SystemExit(f"{n!r} is not in inventory.csv")
+            if not inv[n]["use"]:
+                raise SystemExit(f"{n!r} has no use level to prepare it at")
+            seen.add(n)
+            picked.append(n)
+        # Every re-tested material is duplicated: resolving it is the point.
+        forced_dups = list(picked)
+        for n in (args.also or []):
+            if n not in inv or not inv[n]["use"]:
+                raise SystemExit(f"{n!r} has no use level in inventory.csv")
+            if n not in seen:
+                seen.add(n)
+                picked.append(n)
+    for r in [] if args.only else wl:
         n = r["name"]
         if n in seen or n not in inv or not inv[n]["use"]:
             continue
@@ -250,7 +277,7 @@ def main() -> int:
         picked.append(n)
         if len(picked) >= args.top:
             break
-    for n in sorted(anchors):
+    for n in [] if args.only else sorted(anchors):
         if len(picked) >= args.top + args.anchors:
             break
         if n in inv and inv[n]["use"] and n not in seen:
@@ -258,9 +285,12 @@ def main() -> int:
             picked.append(n)
 
     rng = np.random.default_rng(args.seed)
-    dups = [str(x) for x in rng.choice(picked,
-                                       min(args.duplicates, len(picked)),
-                                       replace=False)]
+    if args.only:
+        dups = forced_dups
+    else:
+        dups = [str(x) for x in rng.choice(picked,
+                                           min(args.duplicates, len(picked)),
+                                           replace=False)]
     strips = picked + dups
     mix_order, gap = spread_order(strips, rng)
     # A second, different order for the judging pass. Preparation cannot be
@@ -374,12 +404,25 @@ ABOUT THE REPEATS
   the session cannot resolve one bin and apply_strength.py will refuse to
   write the numbers.
 
-WHY THESE {args.top} MATERIALS
+{"WHY THESE MATERIALS" if args.only else f"WHY THESE {args.top} MATERIALS"}
 
-  A tenfold error in their strength moves your formulas further than the
+{"""  These are the ones your own judgements disagreed about by two bins or more,
+  so the first session could not resolve them. Everything else it measured is
+  already written to data/inventory/strength.csv and is not being redone.
+
+  Two blotters of each, far apart in both tables. If a material lands two bins
+  from itself again, it is not a bad session: it means that material's loudness
+  genuinely does not hold still on a blotter, and its compiled figure should
+  stand.
+
+  The single blotters are there to hold the scale. They are materials the first
+  session was sure about, spread across the range, so "stronger or weaker than
+  most" still has something to mean in a session this short. If they come back
+  near their first answers, the re-test is on the same scale as session one and
+  can be pooled with it.""" if args.only else """  A tenfold error in their strength moves your formulas further than the
   smallest difference a nose can detect. They carry about two thirds of
   everything the dose conversion rests on. The other 137 figures in the
-  inventory can keep their compiled values indefinitely.
+  inventory can keep their compiled values indefinitely."""}
 """)
     print("=" * 76)
     print("TABLE A — MIX IN THIS ORDER")
