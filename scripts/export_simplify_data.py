@@ -52,6 +52,48 @@ from parse_formulas import ALIAS, SOLVENT  # noqa: E402
 from strength import load_strength  # noqa: E402
 
 
+#: Materials that must never be proposed for a fragrance, whoever owns them.
+#: The bar for this list is a regulatory prohibition or a supplier saying so
+#: in as many words -- not an opinion about how hard something is to dose.
+#:
+#: An earlier version of this list also held blackcurrant mercaptan, furfuryl
+#: mercaptan, geosmin and the dimethyl sulfides, on the reasoning that a
+#: material used at parts per billion cannot be dosed from a percept vector.
+#: That reasoning was wrong twice over. It confuses "needs a small dose" with
+#: "is not a material": blackcurrant mercaptan is in this perfumer's own
+#: inventory at a 2% use level and is one of the most useful things on the
+#: shelf. And the dosing worry was already handled better elsewhere -- a
+#: candidate with no threshold figure is skipped when activity semantics are
+#: on, which is the precise rule rather than a blanket one.
+NEVER_PROPOSE = {
+    "Musk Ambrette": "IFRA prohibited",
+    "Musk Xylene": "IFRA prohibited",
+    "2,6-Dibromophenol": "not for fragrance use per the supplier data; it is "
+                         "here as a reference molecule for the iodine note "
+                         "of shellfish",
+}
+
+#: Provenance strings that mark a library entry as having arrived for the
+#: model's sake rather than from a perfumer's shelf. Most are the GS-LF
+#: training set. This says where an entry came from, not whether the molecule
+#: is any good.
+REFERENCE_SOURCES = ("gs-lf", "constituent reference", "gc constituent",
+                     "natural constituent")
+
+
+def provenance():
+    """name -> the source string recorded when the molecule was added."""
+    path = ROOT / "library" / "input" / "expanded_materials.csv"
+    out = {}
+    if not path.is_file():
+        return out
+    for r in csv.DictReader(io.open(path, encoding="utf-8")):
+        n = (r.get("name") or "").strip()
+        if n:
+            out[n] = (r.get("source") or "").strip()
+    return out
+
+
 def inventory():
     """name -> (use level %, threshold ppb). Both may be None."""
     path = ROOT / "data" / "inventory" / "inventory.csv"
@@ -108,7 +150,9 @@ def main() -> int:
     yardstick = float(np.median(D.min(1)))
 
     inv = inventory()
+    prov = provenance()
     strength = load_strength()
+    n_blocked = 0
     mats = []
     n_measured = 0
     for i, n in enumerate(names):
@@ -122,8 +166,23 @@ def main() -> int:
         if st and thr:
             thr = round(thr / st["mult"], 6)
             n_measured += 1
+        # Why a material may not be proposed. Being a reference molecule is
+        # a soft reason; the named list is a hard one.
+        why_not = NEVER_PROPOSE.get(n)
+        if not why_not and not o and n not in inv:
+            src = prov.get(n, "").lower()
+            if any(k in src for k in REFERENCE_SOURCES):
+                # A statement about this library, not about the molecule.
+                # Geosmin and furfuryl mercaptan are both things you can buy;
+                # they are here because the percept model's training set
+                # needed populating, and they are not in the inventory.
+                why_not = ("in the library as a percept-model reference and "
+                           "not in the inventory")
+        if why_not:
+            n_blocked += 1
         mats.append({
             "n": n,
+            "noUse": why_not,
             "p": [round(float(v), 3) for v in X[i]],
             "iso": round(float(iso_pct[i]), 1),
             "use": lvl,
@@ -155,6 +214,7 @@ def main() -> int:
             "n_owned": sum(1 for m in mats if m["own"]),
             "n_thresholds": sum(1 for m in mats if m["thr"]),
             "n_strength_measured": n_measured,
+            "n_not_for_use": n_blocked,
             "n_strength": len(strength),
             "percept_model": pj.get("checkpoint", Path(args.percepts).stem),
             "percept_auc": pj.get("oof_mean_auc"),
@@ -172,6 +232,8 @@ def main() -> int:
     if strength:
         print(f"  {n_measured} of {len(strength)} measured strengths applied "
               f"to a compiled threshold")
+    print(f"  {n_blocked} materials marked never-propose "
+          f"({len(NEVER_PROPOSE)} by name, the rest reference molecules)")
     return 0
 
 

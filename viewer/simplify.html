@@ -921,7 +921,21 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
     var pool = [];
     for (var i = 0; i < N; i++) {
       if (inFormula[i]) { pool.push(i); continue; }
+      // Two separate reasons to keep a material out of a proposal, and they
+      // are not the same reason.
+      //
+      // Not owned: 262 of the 429 entries here are reference molecules, in
+      // the library so the percept model's space is populated or so an
+      // essential oil can be built from its constituents. Most are from the
+      // GS-LF training set and were never perfumery materials.
       if (!MAT[i].own) continue;
+      // Never propose: a harder rule that holds even for something owned.
+      // Musk ambrette and musk xylene are IFRA-prohibited; 2,6-dibromophenol
+      // is marked not for fragrance use; a thiol dosed at parts per billion
+      // cannot be dosed from a percept vector at all. The first filter
+      // already catches all of these today, and this one is here so that
+      // widening the pool later cannot quietly undo it.
+      if (MAT[i].noUse) continue;
       // With activity semantics on, a candidate with no threshold figure
       // cannot be dosed, so it cannot be proposed.
       if (useOav && !MAT[i].thr) continue;
@@ -1137,6 +1151,11 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
             : "")
       : "Doses are mass fractions, which is what the solver matched. A "
         + "powerful material will dominate this more than the numbers suggest.";
+    var flagged = s.idxs.filter(function (i2) { return MAT[i2].noUse; })
+      .map(function (i2) { return MAT[i2].n + " (" + MAT[i2].noUse + ")"; });
+    if (flagged.length) {
+      over = over.concat(flagged);
+    }
     if (over.length) {
       el("overUse").hidden = false;
       el("overUse").textContent = "Above your own maximum use level: "
