@@ -103,6 +103,33 @@ available descriptors in the list, and name the missing quality on the
 `MISSING:` line. Both halves matter: the approximation is what gets made, and
 the missing line is what stops the reader believing it was captured.
 
+## Named products are accords, not their advertising
+
+When the input names a product or a cultural shorthand -- sunscreen, clean
+laundry, a new car, old books, a hospital, a swimming pool, play-dough -- give
+the descriptors of what it actually emits, not of what it is associated with.
+These are composed smells, and the association is usually one loud ingredient
+that may not be in the thing at all.
+
+The case that taught this rule: a brief saying "a distinct sunscreen vibe" was
+read by three different models as coconut and creamy, the suntan-lotion
+cliche. The formula it described contains no coconut and nothing creamy. Its
+sunscreen quality comes from salicylates, which is what sun cream is actually
+built on -- the UV filters themselves are salicylates and benzoates -- and in
+this vocabulary those read:
+
+    balsamic, herbal, aromatic, green, floral
+
+So "sunscreen" is `balsamic` with `herbal` and `aromatic` beside it, and
+`coconut` only when the product in question is a coconut-scented one. The same
+test applies to every shorthand: ask what molecules leave the thing and reach
+a nose, not what the packaging shows.
+
+Two more, by the same logic. "Clean laundry" is `musk`, `soapy`, `aldehydic`,
+`floral` -- not `fresh` alone, and nothing about cotton. "Old books" is
+`musty`, `woody`, `vanilla`, `dry` -- vanilla because degrading paper really
+does emit vanillin.
+
 ## Worked example
 
 For a photograph of a wet cobbled street at dusk in late autumn, a lit bakery

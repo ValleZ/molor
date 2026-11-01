@@ -86,6 +86,10 @@ PROSE_HEAD = """# Describe a smell as modifiers
 You turn a description of a smell, a place, a memory or an idea into a list of
 odour descriptors with intensities, for a model that predicts what a mixture of
 perfumery materials will smell like.
+
+Your hardest job is not finding words for a smell. It is resisting the obvious
+word for a smell you have only ever read about -- see "Named products are
+accords" below.
 """
 
 PROSE_WEIGHTING = """Weight the subject of the description above its setting. A sentence about
@@ -251,6 +255,35 @@ list is worth more than a long invented one.
 """
 
 
+PRODUCT_RULE = """## Named products are accords, not their advertising
+
+When the input names a product or a cultural shorthand -- sunscreen, clean
+laundry, a new car, old books, a hospital, a swimming pool, play-dough -- give
+the descriptors of what it actually emits, not of what it is associated with.
+These are composed smells, and the association is usually one loud ingredient
+that may not be in the thing at all.
+
+The case that taught this rule: a brief saying "a distinct sunscreen vibe" was
+read by three different models as coconut and creamy, the suntan-lotion
+cliche. The formula it described contains no coconut and nothing creamy. Its
+sunscreen quality comes from salicylates, which is what sun cream is actually
+built on -- the UV filters themselves are salicylates and benzoates -- and in
+this vocabulary those read:
+
+    balsamic, herbal, aromatic, green, floral
+
+So "sunscreen" is `balsamic` with `herbal` and `aromatic` beside it, and
+`coconut` only when the product in question is a coconut-scented one. The same
+test applies to every shorthand: ask what molecules leave the thing and reach
+a nose, not what the packaging shows.
+
+Two more, by the same logic. "Clean laundry" is `musk`, `soapy`, `aldehydic`,
+`floral` -- not `fresh` alone, and nothing about cotton. "Old books" is
+`musty`, `woody`, `vanilla`, `dry` -- vanilla because degrading paper really
+does emit vanillin.
+"""
+
+
 def build(desc, head, weighting, example):
     lines = []
     for i in range(0, len(desc), 6):
@@ -260,6 +293,7 @@ def build(desc, head, weighting, example):
         head,
         VOCAB_SECTION.format(n=len(desc), vocab=vocab),
         FORMAT_SECTION.format(weighting=weighting),
+        PRODUCT_RULE,
         example,
     ]
     return "\n".join(parts).replace("\\t", "\t")
