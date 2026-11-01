@@ -147,8 +147,10 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
     <div class="row" style="margin-top:12px">
       <button id="go" type="button">Simplify</button>
       <button id="demo" class="ghost" type="button">Load an example</button>
-      <span class="note" style="margin:0">Substitutions come from the
-      inventory; doses are odour-activity corrected.</span>
+      <span class="note" style="margin:0">Substitutions are drawn from the
+      whole library bar three materials that may not be used; the ones no
+      palette here vouches for are marked. Doses are odour-activity
+      corrected.</span>
     </div>
     <p class="note" id="meta"></p>
   </div>
@@ -251,7 +253,8 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
 
   document.getElementById("meta").textContent =
     D.meta.n_materials + " materials (" + D.meta.n_oils + " built from GC "
-    + "compositions), " + D.meta.n_owned + " in the inventory, "
+    + "compositions), " + (D.meta.n_materials - (D.meta.n_not_for_use || 0))
+    + " offered as substitutions, "
     + D.meta.n_thresholds + " with a threshold figure"
     + (D.meta.n_strength_measured
         ? ", " + D.meta.n_strength_measured + " of those corrected by a "
@@ -908,7 +911,7 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
     }));
 
     // pool
-    // Candidates are the inventory plus whatever the formula already
+    // Candidates are the formulating materials plus whatever the formula
     // contains, since an ingredient you are already using is always available
     // whether or not it is on the inventory sheet. The isolation filter that
     // used to be offered here is gone: it was built for assembling a neutral
@@ -921,20 +924,12 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
     var pool = [];
     for (var i = 0; i < N; i++) {
       if (inFormula[i]) { pool.push(i); continue; }
-      // Two separate reasons to keep a material out of a proposal, and they
-      // are not the same reason.
-      //
-      // Not owned: 262 of the 429 entries here are reference molecules, in
-      // the library so the percept model's space is populated or so an
-      // essential oil can be built from its constituents. Most are from the
-      // GS-LF training set and were never perfumery materials.
-      if (!MAT[i].own) continue;
-      // Never propose: a harder rule that holds even for something owned.
-      // Musk ambrette and musk xylene are IFRA-prohibited; 2,6-dibromophenol
-      // is marked not for fragrance use; a thiol dosed at parts per billion
-      // cannot be dosed from a percept vector at all. The first filter
-      // already catches all of these today, and this one is here so that
-      // widening the pool later cannot quietly undo it.
+      // Reference molecules are out: a good part of this library exists so
+      // the percept model's space is populated, or so an essential oil can
+      // be built from its constituents, and those are not things to
+      // formulate with. This used to be a test of one perfumer's inventory
+      // instead, which excluded real materials for the accident of not being
+      // on one shelf, and included nothing a stranger could check.
       if (MAT[i].noUse) continue;
       // With activity semantics on, a candidate with no threshold figure
       // cannot be dosed, so it cannot be proposed.
@@ -1091,14 +1086,21 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
         var m = MAT[x.idx];
         var note = [];
         if (m.oil) note.push('<span class="pill eo">EO</span> ' + esc(m.built || ""));
+        // Offered, but nothing here has checked it is a perfumery material.
+        // Only worth saying about a substitution: if the formula already
+        // contains it, the choice has been made.
+        if (!STATE.inFormula[x.idx] && m.unver) {
+          note.push('<span class="warn">unverified as a perfumery '
+            + 'material</span>');
+        }
         if (!STATE.inFormula[x.idx] && m.iso > 60) {
           // Only worth saying about a substitution. On an ingredient the
           // formula already contains it is not a choice anyone is making.
           note.push('<span class="warn">distinctive — may read as itself</span>');
         }
         if (m.use && 100 * x.share > m.use * 1.02 + 0.02) {
-          over.push(m.n + " at " + (100 * x.share).toFixed(1) + "% against your "
-                    + m.use + "%");
+          over.push(m.n + " at " + (100 * x.share).toFixed(1)
+                    + "% against a recorded working maximum of " + m.use + "%");
         }
         html += "<tr><td>" + esc(m.n) + "</td><td class=num>"
           + (x.dil === 100 ? "neat" : x.dil + "%") + "</td><td class=num>"
@@ -1128,7 +1130,7 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
       : "Nothing here needs diluting, so a part is a percent: the two columns "
         + "are the same number.";
     var kept = s.idxs.filter(function (i2) { return STATE.inFormula[i2]; }).length;
-    el("kept").textContent = "Keeps " + kept + " of your "
+    el("kept").textContent = "Keeps " + kept + " of the "
       + STATE.idxs.length + " ingredients and substitutes "
       + (s.idxs.length - kept) + ".";
     // Which of the proposed materials rest on a measurement rather than on
@@ -1158,7 +1160,7 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
     }
     if (over.length) {
       el("overUse").hidden = false;
-      el("overUse").textContent = "Above your own maximum use level: "
+      el("overUse").textContent = "Above a recorded working maximum: "
         + over.join("; ") + ". Smell it diluted.";
     } else {
       el("overUse").hidden = true;

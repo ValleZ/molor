@@ -74,9 +74,20 @@ NEVER_PROPOSE = {
 }
 
 #: Provenance strings that mark a library entry as having arrived for the
-#: model's sake rather than from a perfumer's shelf. Most are the GS-LF
-#: training set. This says where an entry came from, not whether the molecule
-#: is any good.
+#: model's sake rather than from a formulating palette. Most are the GS-LF
+#: training set.
+#:
+#: This is a label, not a filter, and the distinction was paid for. Excluding
+#: them from proposals looked safe and was wrong: 2-isobutyl quinoline is
+#: Pyralone and geosmin is sold by the gram, and both arrived here through the
+#: training set, so both were being silently withheld. Nothing available here
+#: can tell a perfumery material from a food volatile across 169 molecules,
+#: and an inventory cannot stand in for it either -- that is one shelf, and
+#: matching the inventory's own names through the alias table recovers only
+#: three more, because the rest of its unmatched rows are naturals and bases.
+#:
+#: So they are offered and marked. The reader decides, which is the honest
+#: place for a judgement this file cannot make.
 REFERENCE_SOURCES = ("gs-lf", "constituent reference", "gc constituent",
                      "natural constituent")
 
@@ -153,6 +164,7 @@ def main() -> int:
     prov = provenance()
     strength = load_strength()
     n_blocked = 0
+    n_unverified = 0
     mats = []
     n_measured = 0
     for i, n in enumerate(names):
@@ -169,20 +181,22 @@ def main() -> int:
         # Why a material may not be proposed. Being a reference molecule is
         # a soft reason; the named list is a hard one.
         why_not = NEVER_PROPOSE.get(n)
+        unverified = False
         if not why_not and not o and n not in inv:
             src = prov.get(n, "").lower()
-            if any(k in src for k in REFERENCE_SOURCES):
-                # A statement about this library, not about the molecule.
-                # Geosmin and furfuryl mercaptan are both things you can buy;
-                # they are here because the percept model's training set
-                # needed populating, and they are not in the inventory.
-                why_not = ("in the library as a percept-model reference and "
-                           "not in the inventory")
+            unverified = any(k in src for k in REFERENCE_SOURCES)
         if why_not:
             n_blocked += 1
+        if unverified:
+            n_unverified += 1
         mats.append({
             "n": n,
             "noUse": why_not,
+            # True when the molecule reached this library through the percept
+            # model's training set rather than a formulating palette. It may
+            # be an excellent material or it may be a food volatile; nothing
+            # here knows which, so the page says so and offers it anyway.
+            "unver": unverified or None,
             "p": [round(float(v), 3) for v in X[i]],
             "iso": round(float(iso_pct[i]), 1),
             "use": lvl,
@@ -215,6 +229,7 @@ def main() -> int:
             "n_thresholds": sum(1 for m in mats if m["thr"]),
             "n_strength_measured": n_measured,
             "n_not_for_use": n_blocked,
+            "n_unverified": n_unverified,
             "n_strength": len(strength),
             "percept_model": pj.get("checkpoint", Path(args.percepts).stem),
             "percept_auc": pj.get("oof_mean_auc"),
@@ -232,8 +247,8 @@ def main() -> int:
     if strength:
         print(f"  {n_measured} of {len(strength)} measured strengths applied "
               f"to a compiled threshold")
-    print(f"  {n_blocked} materials marked never-propose "
-          f"({len(NEVER_PROPOSE)} by name, the rest reference molecules)")
+    print(f"  {n_blocked} materials may never be proposed; "
+          f"{n_unverified} are offered but unverified as perfumery materials")
     return 0
 
 
