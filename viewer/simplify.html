@@ -147,9 +147,11 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
     <div class="row" style="margin-top:12px">
       <button id="go" type="button">Simplify</button>
       <button id="demo" class="ghost" type="button">Load an example</button>
-      <span class="note" style="margin:0">Substitutions are drawn from the
-      whole library bar three materials that may not be used; the ones no
-      palette here vouches for are marked. Doses are odour-activity
+      <label class="note" style="margin:0;display:flex;gap:6px;
+        align-items:center;cursor:pointer">
+        <input type="checkbox" id="commonOnly" checked>
+        common materials only</label>
+      <span class="note" style="margin:0">Doses are odour-activity
       corrected.</span>
     </div>
     <p class="note" id="meta"></p>
@@ -194,6 +196,7 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
       <p class="note" id="cols"></p>
       <p class="note" id="against"></p>
       <p class="note" id="kept"></p>
+      <p class="note" id="poolNote"></p>
       <p class="note" id="doseNote"></p>
       <p class="note warn" id="overUse" hidden></p>
     </div>
@@ -903,7 +906,18 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
       + (r.missing.filter(function (x) { return x.why !== "solvent"; }).length
           ? " Dropped: " + r.missing.filter(function (x) {
               return x.why !== "solvent";
-            }).map(function (x) { return x.name; }).join(", ") + "." : "");
+            }).map(function (x) { return x.name; }).join(", ") + "." : "")
+      // A material that may not be used is reported because the formula
+      // contains it, not only when a proposal would have chosen it. The
+      // formula is what it is; the reader should still be told.
+      + (function () {
+          var bad = r.res.filter(function (x) { return MAT[x.idx].noUse; });
+          return bad.length
+            ? " ⚠ " + bad.map(function (x) {
+                return MAT[x.idx].n + ": " + MAT[x.idx].noUse;
+              }).join("; ") + "."
+            : "";
+        })();
 
     // character
     var z = lift(target, idxs.length, w);
@@ -922,6 +936,7 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
     // the job is to match a character the distinctive materials are usually
     // the point -- it was excluding Hedione, at the 91st percentile of
     // isolation, from a formula that is 35% Hedione.
+    var commonOnly = el("commonOnly") ? el("commonOnly").checked : true;
     var inFormula = {};
     idxs.forEach(function (i2) { inFormula[i2] = 1; });
     var pool = [];
@@ -934,6 +949,13 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
       // instead, which excluded real materials for the accident of not being
       // on one shelf, and included nothing a stranger could check.
       if (MAT[i].noUse) continue;
+      // Commonly used, on the evidence this project has: stocked by a
+      // working perfumer, built from a GC composition, or named in a formula
+      // here. Without the filter the pool is 425 materials and proposals
+      // reach for things nobody can buy -- prenyl acetate and
+      // 2-isopropyl phenol turned up in real answers. With it the pool is
+      // the 195 that someone has been seen using.
+      if (commonOnly && !MAT[i].com) continue;
       // With activity semantics on, a candidate with no threshold figure
       // cannot be dosed, so it cannot be proposed.
       if (useOav && !MAT[i].thr) continue;
@@ -941,7 +963,8 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
     }
     el("k").max = Math.min(12, Math.max(2, idxs.length));
     STATE = { target: target, pool: pool, idxs: idxs, w: w, rows: rows,
-              inFormula: inFormula, useOav: useOav, cache: {} };
+              inFormula: inFormula, useOav: useOav, cache: {},
+              commonOnly: commonOnly };
 
     // fidelity curve over every k, computed once
     var nn = Infinity, nnName = "";
@@ -1092,6 +1115,10 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
         // Offered, but nothing here has checked it is a perfumery material.
         // Only worth saying about a substitution: if the formula already
         // contains it, the choice has been made.
+        if (!STATE.inFormula[x.idx] && !m.com) {
+          note.push('<span class="warn">rarely used &mdash; may be hard to '
+            + 'buy</span>');
+        }
         if (useOav && m.thrSrc === "imputed") {
           note.push('<span class="warn">threshold imputed</span>');
         }
@@ -1136,6 +1163,14 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
       : "Nothing here needs diluting, so a part is a percent: the two columns "
         + "are the same number.";
     var kept = s.idxs.filter(function (i2) { return STATE.inFormula[i2]; }).length;
+    el("poolNote").textContent = "Chosen from " + STATE.pool.length
+      + " candidates" + (STATE.commonOnly
+          ? ", limited to materials someone in this project has been seen "
+            + "using. Uncheck to search all "
+            + ((D.meta.n_materials - (D.meta.n_not_for_use || 0)))
+            + ", which finds closer matches out of less obtainable things."
+          : ", the whole library bar the ones that may not be used. Some of "
+            + "these are hard to buy; tick the box to keep to common ones.");
     el("kept").textContent = "Keeps " + kept + " of the "
       + STATE.idxs.length + " ingredients and substitutes "
       + (s.idxs.length - kept) + ".";
@@ -1238,6 +1273,9 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
   }
 
   el("go").addEventListener("click", run);
+  el("commonOnly").addEventListener("change", function () {
+    if (STATE) run();
+  });
   el("k").addEventListener("input", renderK);
 
   el("demo").addEventListener("click", function () {

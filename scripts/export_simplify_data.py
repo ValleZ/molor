@@ -72,7 +72,18 @@ NEVER_PROPOSE = {
     "2,6-Dibromophenol": "not for fragrance use per the supplier data; it is "
                          "here as a reference molecule for the iodine note "
                          "of shellfish",
+    # Butylphenyl methylpropional. Prohibited in EU cosmetics from 1 March
+    # 2022 as reprotoxic 1B, and prohibited by IFRA. It is still in older
+    # formulas and in literature accords, so a pasted formula containing it
+    # resolves and is flagged rather than refused -- what changes is that it
+    # is never proposed as a substitution.
+    "Lilial": "prohibited in EU cosmetics since March 2022 and by IFRA",
 }
+
+#: Files whose entries were added because a real formula asked for them by
+#: name. A material someone put in a formula is evidence of availability in
+#: the same way an inventory row is.
+FORMULA_SOURCED = ("add_supplier_names.csv", "add_coffee_roast.csv")
 
 #: Provenance strings that mark a library entry as having arrived for the
 #: model's sake rather than from a formulating palette. Most are the GS-LF
@@ -103,6 +114,69 @@ def provenance():
         n = (r.get("name") or "").strip()
         if n:
             out[n] = (r.get("source") or "").strip()
+    return out
+
+
+def formula_usage():
+    """name -> how many formulas in this repository use it.
+
+    Commonality has to come from evidence rather than from one shelf, and
+    this is the evidence available: the repository's own query formulas and
+    the published accords it benchmarks against. A material nobody here has
+    been seen using is one to propose with a warning, not with confidence.
+    """
+    import glob
+
+    from parse_formulas import classify as _classify
+
+    lib = set()
+    counts: dict[str, int] = {}
+    pj = ROOT / "artifacts" / "percepts_fp3.json"
+    if pj.is_file():
+        lib = set(json.loads(pj.read_text(encoding="utf-8"))["molecules"])
+
+    def bump(names):
+        for n in set(names):
+            counts[n] = counts.get(n, 0) + 1
+
+    for cf in glob.glob(str(ROOT / "data/formulas/queries/**/*.csv"),
+                        recursive=True):
+        got = []
+        for r in csv.DictReader(io.open(cf, encoding="utf-8-sig")):
+            nm = (r.get("name") or r.get("material") or "").strip()
+            if nm:
+                kind, res = _classify(nm, lib)
+                if kind == "material" and res in lib:
+                    got.append(res)
+        bump(got)
+
+    for jf in glob.glob(str(ROOT / "data/formulas/published/*.json")):
+        blob = json.loads(Path(jf).read_text(encoding="utf-8"))
+        for fm in blob.get("formulas", []):
+            got = []
+            for r in (fm.get("ingredients") or []):
+                if not isinstance(r, dict):
+                    continue
+                nm = (r.get("material") or r.get("name") or "").strip()
+                if nm:
+                    kind, res = _classify(nm, lib)
+                    if kind == "material" and res in lib:
+                        got.append(res)
+            bump(got)
+    return counts
+
+
+def formula_sourced():
+    """Names added to the library because a pasted formula named them."""
+    out = set()
+    for fn in FORMULA_SOURCED:
+        path = ROOT / "library" / "input" / fn
+        if not path.is_file():
+            continue
+        for r in csv.DictReader(io.open(path, encoding="utf-8")):
+            n = (r.get("name") or "").strip()
+            if n:
+                out.add(n)
     return out
 
 
@@ -163,6 +237,8 @@ def main() -> int:
 
     inv = inventory()
     prov = provenance()
+    used = formula_usage()
+    from_formula = formula_sourced()
     strength = load_strength()
     n_blocked = 0
     n_unverified = 0
@@ -193,6 +269,13 @@ def main() -> int:
             # be an excellent material or it may be a food volatile; nothing
             # here knows which, so the page says so and offers it anyway.
             "unver": unverified or None,
+            # Commonly used, on the evidence available: stocked by a working
+            # perfumer, built from a GC composition, or named in a formula
+            # here. Without one of those nobody in this project has been seen
+            # using it, and a proposal is a guess about availability as well
+            # as about smell.
+            "com": bool(n in inv or o or used.get(n) or n in from_formula),
+            "nf": used.get(n) or None,
             "p": [round(float(v), 3) for v in X[i]],
             "iso": round(float(iso_pct[i]), 1),
             "use": lvl,
@@ -243,6 +326,7 @@ def main() -> int:
             "n_strength_measured": n_measured,
             "n_not_for_use": n_blocked,
             "n_unverified": n_unverified,
+            "n_common": sum(1 for m in mats if m["com"]),
             "n_strength": len(strength),
             "percept_model": pj.get("checkpoint", Path(args.percepts).stem),
             "percept_auc": pj.get("oof_mean_auc"),
@@ -262,6 +346,9 @@ def main() -> int:
               f"to a compiled threshold")
     print(f"  {n_blocked} materials may never be proposed; "
           f"{n_unverified} are offered but unverified as perfumery materials")
+    print(f"  {sum(1 for m in mats if m['com'])} are commonly used "
+          f"(stocked, built from GC, or named in one of "
+          f"{len(set(used))} materials' worth of formulas here)")
     return 0
 
 
