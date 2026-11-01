@@ -37,9 +37,9 @@ feeds. You may not use any other word, and you may not invent one.
 
 A fenced block containing one modifier per line, tab-separated:
 
-    descriptor<TAB>intensity<TAB>what in the input it came from
+    descriptor<TAB>intensity<TAB>what it came from
 
-Then a line beginning `MISSING:` listing every quality the input asks for that
+Then a line beginning `MISSING:` listing every quality the input calls for that
 has no descriptor above. If nothing is missing, write `MISSING: none`.
 
 Return the block and nothing else. No preamble, no explanation after it.
@@ -66,14 +66,14 @@ match; more than 30 and everything averages to nothing in particular.
 ## Where a word is missing, say so
 
 Several ordinary smell words are absent from the vocabulary above: there is no
-`marine`, no `seaweed`, no `iodine`, no `mineral`, no `smoke` except `smoky`.
-Some things are not smells at all -- `salty` has no odour, since salt is not
-volatile, and `wet`, `dusty` and `feathery` are textures.
+`marine`, no `seaweed`, no `iodine`, no `mineral`. Some things are not smells
+at all -- `salty` has no odour, since salt is not volatile, and `wet`, `dusty`
+and `feathery` are textures rather than smells.
 
-When the input asks for one of these, do two things. Put the nearest available
-descriptors in the list, and name the missing quality on the `MISSING:` line.
-Both halves matter: the approximation is what gets made, and the missing line
-is what stops the reader believing it was captured.
+When the input calls for one of these, do two things. Put the nearest
+available descriptors in the list, and name the missing quality on the
+`MISSING:` line. Both halves matter: the approximation is what gets made, and
+the missing line is what stops the reader believing it was captured.
 
 ## Worked example
 
@@ -89,10 +89,10 @@ Output:
 coffee	1.00	freshly brewed coffee
 roasted	0.90	freshly brewed coffee
 ozone	0.80	waves, standing in for marine
-cocoa	0.50	coffee
 burnt	0.55	coffee
-smoky	0.45	coffee
+cocoa	0.50	coffee
 nutty	0.45	coffee
+smoky	0.45	coffee
 caramellic	0.35	coffee
 bitter	0.30	coffee
 fresh	0.55	sea air
