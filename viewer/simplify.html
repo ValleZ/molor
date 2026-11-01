@@ -114,6 +114,7 @@ __MIXPANEL_SNIPPET__
   .kv dt { color: var(--muted); }
   .kv dd { margin: 0; font-variant-numeric: tabular-nums; }
   .note { font-size: 12.5px; color: var(--muted); margin: 8px 0 0; }
+  .meas { color: var(--fg); font-weight: 600; white-space: nowrap; }
   .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   @media (max-width: 760px) { .grid2 { grid-template-columns: 1fr; } }
   a { color: var(--accent); }
@@ -221,7 +222,11 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
     blend's bulk and is blind to traces, which is the failure that recurs most
     in this project. Doses derived from detection thresholds use a compilation
     from published and web sources, some converted from air-phase figures, which
-    may be out by a factor of ten.
+    may be out by a factor of ten. For the materials marked
+    <span class="meas">measured</span> that compilation has been corrected by a
+    blotter session: each was prepared at its own maximum use level and judged
+    against the others, so what is measured is how much smell it delivers per
+    gram rather than a detection threshold.
   </p>
 </div>
 
@@ -242,8 +247,13 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
   document.getElementById("meta").textContent =
     D.meta.n_materials + " materials (" + D.meta.n_oils + " built from GC "
     + "compositions), " + D.meta.n_owned + " in the inventory, "
-    + D.meta.n_thresholds + " with a threshold figure. Descriptor model "
-    + "out-of-fold AUC " + (D.meta.percept_auc || 0).toFixed(4) + ".";
+    + D.meta.n_thresholds + " with a threshold figure"
+    + (D.meta.n_strength_measured
+        ? ", " + D.meta.n_strength_measured + " of those corrected by a "
+          + "blotter measurement"
+        : "")
+    + ". Descriptor model out-of-fold AUC "
+    + (D.meta.percept_auc || 0).toFixed(4) + ".";
 
   // ---------- small linear algebra ----------
   function dot(a, b) {
@@ -1008,11 +1018,24 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
     el("kept").textContent = "Keeps " + kept + " of your "
       + STATE.idxs.length + " ingredients and substitutes "
       + (s.idxs.length - kept) + ".";
+    // Which of the proposed materials rest on a measurement rather than on
+    // the compilation. Naming them is the point: it is the difference between
+    // a dose the bench has checked and one derived from a figure that may be
+    // out by a factor of ten.
+    var meas = s.idxs.filter(function (i2) { return MAT[i2].str; })
+                     .map(function (i2) {
+                       return MAT[i2].n + " x" + MAT[i2].str.toFixed(2);
+                     });
     el("doseNote").textContent = useOav
       ? "Doses are shares of odour activity converted to mass with a "
         + "compiled threshold figure, raised to the 0.6 power because a "
         + "straight conversion overshot on the bench. Weigh the parts shown "
         + "at the stock strength shown."
+        + (meas.length
+            ? " Measured on a blotter, so corrected: " + meas.join(", ")
+              + " (above 1 means stronger than its use level implies, so it "
+              + "is dosed down)."
+            : "")
       : "Doses are mass fractions, which is what the solver matched. A "
         + "powerful material will dominate this more than the numbers suggest.";
     if (over.length) {

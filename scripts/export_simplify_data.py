@@ -15,7 +15,11 @@ formula and reading a quarter of it. 157 aliases and 19 solvents, which is 4 KB.
 
 *Thresholds.* To turn shares of odour activity back into masses. These are a
 compilation from published and web sources with some converted from air-phase
-figures, not measurements, and the page says so where it uses them.
+figures, not measurements, and the page says so where it uses them. Where a
+blotter session has measured a material's relative strength, the compiled
+figure is divided by that multiplier before it goes in the payload, so the
+page and the CLI dose a formula identically without the page needing to know
+anything about bins or standard errors.
 
 *Use levels.* To keep a proposal inside what the perfumer would actually dose,
 and to warn when it does not.
@@ -45,6 +49,7 @@ sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from parse_formulas import ALIAS, SOLVENT  # noqa: E402
+from strength import load_strength  # noqa: E402
 
 
 def inventory():
@@ -103,16 +108,28 @@ def main() -> int:
     yardstick = float(np.median(D.min(1)))
 
     inv = inventory()
+    strength = load_strength()
     mats = []
+    n_measured = 0
     for i, n in enumerate(names):
         lvl, thr = inv.get(n, (None, None))
         o = oils.get(n)
+        st = strength.get(n)
+        # Odour activity is mass over threshold, so "delivers more smell per
+        # gram than its use level implies" is the same statement as "has a
+        # lower effective threshold". Correcting the threshold here means
+        # every dose calculation downstream picks it up for free.
+        if st and thr:
+            thr = round(thr / st["mult"], 6)
+            n_measured += 1
         mats.append({
             "n": n,
             "p": [round(float(v), 3) for v in X[i]],
             "iso": round(float(iso_pct[i]), 1),
             "use": lvl,
             "thr": thr,
+            "str": round(st["mult"], 3) if st else None,
+            "strN": st["n"] if st else None,
             "own": bool(n in inv),
             "oil": bool(o),
             "built": (", ".join(
@@ -137,6 +154,8 @@ def main() -> int:
             "n_oils": len(oil_names),
             "n_owned": sum(1 for m in mats if m["own"]),
             "n_thresholds": sum(1 for m in mats if m["thr"]),
+            "n_strength_measured": n_measured,
+            "n_strength": len(strength),
             "percept_model": pj.get("checkpoint", Path(args.percepts).stem),
             "percept_auc": pj.get("oof_mean_auc"),
         },
@@ -150,6 +169,9 @@ def main() -> int:
           f"{payload['meta']['n_thresholds']} with a threshold")
     print(f"  {len(desc)} descriptors, {len(ALIAS)} aliases, "
           f"yardstick {yardstick:.3f}")
+    if strength:
+        print(f"  {n_measured} of {len(strength)} measured strengths applied "
+              f"to a compiled threshold")
     return 0
 
 

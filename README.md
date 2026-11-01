@@ -21,7 +21,9 @@ formula, get the smallest blend of materials whose predicted character is
 closest to it. Runs entirely in the page. Closeness is reported against what
 a random blend of the same size achieves, against the nearest single
 material, and against the floor the largest allowed blend reaches, because a
-distance on its own means nothing.
+distance on its own means nothing. For 23 materials its doses now rest on a
+blotter measurement rather than on a compiled threshold figure, and it names
+which ones.
 
 Both are single self-contained HTML files built from the library store by
 `scripts/export_viewer_data.py` + `scripts/build_viewer.py` and
@@ -52,6 +54,8 @@ reader does not act on a retracted claim:
 | a blend's position on the atlas means something | **only under the right rule** — noisy-OR is a union, so it placed a 28-ingredient formula 62 from the cloud's centre where materials sit 14.6; the distance was measuring ingredient count |
 | noisy-OR lets a trace ingredient through where a mean buries it | **false** — it scales by `w / w.max()`, so 3% of a four-material blend enters at ~9% strength; in 40,000 random blends it never once carried a descriptor the mean did not |
 | the inventory's water-phase thresholds are measured values | **false** — the perfumer compiled them from published and web sources and approximated some from air-phase figures, so a value may be out by 10x or more. Every script that called them "measured" has been corrected. At that uncertainty a 10x error moves a five-material blend 0.4–0.7 in percept space, against a just-noticeable yardstick of 0.525, so threshold-derived doses are dominated by the input error rather than by the solver |
+| a material whose judgements span two bins cannot be used | **false** -- the span of a set of numbers grows with its size, so that rule flagged the four materials a re-test had just resolved. Replaced by shrinkage against a measured per-judgement noise of 0.89 bins |
+| Calone sticks out of blends because it is powerful | **false** -- measured at x0.24 strength, among the weakest per gram in the set. It sticks out because it is isolated (74th percentile), not because it is strong; the two had been conflated |
 | a fixed palette of ~25 materials could reach any smell | **false for single molecules** — the reachable set is the palette's convex hull: 25 materials capture 95% of the space's energy and still reproduce only 45% of the library to cosine 0.90 |
 | the centroid of percept space is the olfactory white point, the "mud" | **false, and the perfumer caught it on the bench** — the centroid is the *average* smell, not a flat one: sweet 0.45, fruity 0.44, floral 0.38, green 0.35, sd 0.075 across descriptors. It has character by construction. Their description was "bright and sharp, like bright light", which is a better name for it |
 
@@ -1086,6 +1090,10 @@ So the conclusion is about where effort belongs. A better solver cannot help.
 Either the thresholds get measured, or dosing stays an ordering heuristic and
 blends are chosen for insensitivity to it.
 
+**The thresholds now have been, for the materials that matter** -- not as
+thresholds, which was the wrong target. See "Measuring strength instead of
+thresholds" below.
+
 A fourth blend, the robust one, came back with the same base again and two new
 facets: "calone and raspberry characters slightly sticking out". That separates
 two mechanisms which had been conflated. Gamma undecalactone, which stuck out of
@@ -1329,6 +1337,114 @@ makeable, writes one CSV per blend, and records every prediction to
    dozens of components below any weight the model notices -- is precisely the
    blind spot above.
 
+## Measuring strength instead of thresholds
+
+A detection threshold is the wrong thing to measure for this project, and
+measuring one properly is an ascending forced-choice staircase per material:
+157 figures, an afternoon each, and nobody does 157 afternoons. What the dose
+conversion needs is not a threshold but **relative strength at working
+concentration** -- how much smell a material delivers per unit of mass -- and
+there is a much cheaper way to get it.
+
+The perfumer's own maximum use levels are already an inverse strength estimate
+made by a nose. If those levels were right, a blotter of each material
+prepared *at its own use level* would smell about equally strong. They are not
+right, so the blotters do not match, and the mismatch is exactly the correction
+wanted. That turns an eight-order-of-magnitude measurement into a small one:
+every judgement compares blotters already within a factor of a few of each
+other, which is the range a nose compares well in.
+
+`scripts/threshold_worklist.py` chose the materials by influence rather than by
+suspicion: for every formula in the repository, each ingredient's threshold was
+perturbed tenfold and the resulting shift in the blend's percept vector
+measured. The top 20 carry about two thirds of everything the dose conversion
+rests on. `scripts/strength_worksheet.py` turns that list into a bench sheet,
+`scripts/apply_strength.py` turns the filled sheet into multipliers, and
+`scripts/strength.py` applies them.
+
+### What came back
+
+Three sessions, 62 judgements, 23 materials. One bin is a factor of three.
+
+| | |
+|---|---|
+| per-judgement sd, from 10 duplicate pairs | **0.89 bins**, i.e. one judgement alone is worth a factor of 2.7 |
+| the same blotter judged again a day later | 46% identical, **88% within one bin**, r = +0.65 |
+| of the spread between materials | **68% is real**, the rest is judging noise |
+
+The largest corrections, after shrinkage:
+
+| material | x strength | |
+|---|---|---|
+| Aldehyde C-8 | 3.81 | dose less |
+| Cinnamaldehyde | 2.91 | dose less |
+| Aldehyde C-10, Methyl Benzoate, Strawberry Furanone | 2.03 | dose less |
+| Calone 1951, Undecavertol | 0.24 | dose more |
+| Hedione, Ethylene Brassylate | 0.28 | dose more |
+
+**Two of these confirm bench notes written months earlier, before anything was
+measured.** Methyl benzoate came back at x2.03, and it is the material that
+overpowered the third mud blend and forced that experiment to be reframed.
+Cinnamaldehyde came back at x2.91, and the perfumer had written "I have
+cinnamaldehyde only in 10% and it's already fairly strong". Neither note was in
+front of the nose during the session. That is the closest thing to external
+validation this measurement can get.
+
+**Calone at x0.24 separates two things the project had been conflating.**
+Calone stuck out of a blend, and the natural reading was that it is powerful.
+It is not: it is *distinctive*. It sits at the 74th percentile of isolation,
+with no near-equivalents in the library, so it reads as itself at any dose
+while delivering little smell per gram. Sticking out of a blend and being
+strong are different properties, and until this was measured the dose
+conversion had no way to tell them apart.
+
+### Two statistics that were wrong on the way
+
+*Comparing sessions by blotter number.* Blotter 3 is Isobornyl Acetate on the
+first sheet and Hedione on the re-test sheet, which renumbers. The
+"same blotter judged again" table was comparing different materials and
+reporting 1.20 bins of invented disagreement. Sheets are now matched on the
+material name as well as the number.
+
+*Vetoing a material whose judgements spanned two bins.* The span of a set of
+numbers grows with how many of them there are, so this rule punished a material
+for being measured more often. Four materials were re-tested, came back
+repeating themselves exactly within the new session -- Hedione twice at `--`,
+Ethylene Brassylate twice at `--`, Anisaldehyde twice at `0` -- and the extra
+evidence made all four look *worse* by that rule. A statistic that degrades as
+evidence accumulates is the wrong statistic.
+
+It was replaced by the standard treatment: the duplicate pairs give a pooled
+per-judgement noise, each material gets a standard error from its own count of
+judgements, and each estimate is shrunk toward no-correction in proportion to
+that error. A consistent pair keeps most of its correction; a contradictory one
+is pulled back toward its compiled figure, which is the honest thing to do with
+a measurement that did not converge. Nothing is discarded and no single noisy
+pair can move a formula.
+
+### How it enters a dose
+
+Odour activity is mass over threshold, so "delivers more smell per gram than
+its use level implies" is the same statement as "has a lower effective
+threshold":
+
+    effective threshold = compiled threshold / strength multiplier
+
+That is the only place the measurement is used. It does not replace the
+compiled figures; it corrects the 23 a nose has now checked, and the other 102
+stand unchanged. `scripts/strength.py` is shared by the CLI and by the exporter
+that builds the browser page, so a formula dosed in one and dosed in the other
+get the same answer. The simplifier names the corrected materials under its
+dose table, and the atlas is unaffected: it displays measured thresholds on the
+material card but never uses them to place a point.
+
+### What is still missing
+
+The sheet measures strength at one concentration on a blotter in still air.
+It says nothing about volatility, so nothing here knows that a blend will smell
+different in an hour. The three remaining materials on the influence list with
+no measurement are the ones whose use levels the inventory does not record.
+
 ## Layout
 
 ```
@@ -1359,7 +1475,8 @@ scripts/          everything measured in this document, one script per claim
 
 viewer/           template.html (atlas), simplify.html (simplifier)
 data/
-  inventory/      the perfumer's materials, use levels, threshold figures
+  inventory/      the perfumer's materials, use levels, threshold figures,
+                  and strength.csv, the measured corrections to them
   naturals/       sourced GC compositions, with what each omits and why
   formulas/       published formulas, and the queries run against them
   percept/        GS-LF and Keller label sets, which nothing here is fitted to

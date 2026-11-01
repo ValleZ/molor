@@ -52,6 +52,7 @@ from eval_mixtures import combine  # noqa: E402
 from orvector.project import preprocess  # noqa: E402
 from orvector.store import Library  # noqa: E402
 from parse_formulas import classify  # noqa: E402
+from strength import load_strength  # noqa: E402
 
 
 def read_formula(path: Path):
@@ -86,7 +87,9 @@ def thresholds() -> dict[str, float]:
     by a factor of ten or more. At that uncertainty the doses derived from them
     are not calibrated: perturbing one threshold by 10x moves a five-material
     blend by 0.4 to 0.7 in percept space, where the just-noticeable yardstick
-    is 0.525. Use them for ordering, not for dosing precision.
+    is 0.525. Use them for ordering, not for dosing precision -- except where
+    a blotter session has measured the material's relative strength, which is
+    applied on top of this figure through scripts/strength.py.
     """
     path = ROOT / "data" / "inventory" / "inventory.csv"
     out: dict[str, float] = {}
@@ -309,6 +312,8 @@ def main() -> int:
     total_neat = sum(r["neat"] for r in rows)
 
     thr = thresholds()
+    strength_meas = load_strength()
+    strength_used = []
     block = {e.name: e.inchikey[:14] for e in entries}
     resolved, missing, ambiguous = [], [], []
     for r in rows:
@@ -323,6 +328,13 @@ def main() -> int:
         if kind == "material" and name in P:
             r["resolved"] = name
             r["threshold"] = thr.get(block.get(name, ""))
+            # A measured strength corrects the compiled figure: more smell per
+            # gram is the same as a lower effective threshold. Materials with
+            # no measurement keep their compiled value untouched.
+            st = strength_meas.get(name)
+            if st and r["threshold"]:
+                r["threshold"] /= st["mult"]
+                strength_used.append((name, st["mult"], st["n"]))
             resolved.append(r)
             continue
         hit, cands = match_oil(r["name"], oil_names)
@@ -383,6 +395,14 @@ def main() -> int:
         # threshold is not perceived contribution at the dose used, which is
         # what the rule actually wants. Ethyl Maltol shows the gap: a weak
         # threshold, yet a few percent of it is plainly sweet on the bench.
+        if strength_used:
+            print(f"\n  [strength] measured on a blotter, so the compiled "
+                  f"threshold is corrected for {len(strength_used)} "
+                  f"ingredient(s):")
+            for nm, mult, cnt in sorted(strength_used, key=lambda t: -t[1]):
+                print(f"    {nm:28s} x{mult:5.2f} strength "
+                      f"({cnt} judgement{'s' if cnt != 1 else ''})"
+                      f"{'  dose less' if mult > 1 else '  dose more'}")
         have = [r for r in resolved if r["threshold"] is not None]
         if len(have) < len(resolved):
             lost = [r["resolved"] for r in resolved if r["threshold"] is None]
