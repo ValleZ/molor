@@ -50,6 +50,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 from parse_formulas import ALIAS, SOLVENT  # noqa: E402
 from strength import load_strength  # noqa: E402
+from thresholds import describe as describe_thr, impute  # noqa: E402
 
 
 #: Materials that must never be proposed for a fragrance, whoever owns them.
@@ -171,12 +172,7 @@ def main() -> int:
         lvl, thr = inv.get(n, (None, None))
         o = oils.get(n)
         st = strength.get(n)
-        # Odour activity is mass over threshold, so "delivers more smell per
-        # gram than its use level implies" is the same statement as "has a
-        # lower effective threshold". Correcting the threshold here means
-        # every dose calculation downstream picks it up for free.
-        if st and thr:
-            thr = round(thr / st["mult"], 6)
+        if st:
             n_measured += 1
         # Why a material may not be proposed. Being a reference molecule is
         # a soft reason; the named list is a hard one.
@@ -211,6 +207,20 @@ def main() -> int:
                 if o else None),
         })
 
+    # Thresholds, filled and labelled. A material with no figure could not be
+    # dosed and so could not be proposed at all, which is a worse answer than
+    # a figure that is a factor of three out.
+    raw_thr = [m["thr"] for m in mats]
+    filled, tsrc, treport = impute(X, raw_thr)
+    for m, v, srcv in zip(mats, filled, tsrc):
+        st = strength.get(m["n"])
+        # The measured correction still applies on top of an imputed figure:
+        # it is a statement about the material, not about the figure.
+        m["thr"] = (round(v / st["mult"], 6) if (st and v) else
+                    (round(v, 6) if v else None))
+        m["thrSrc"] = srcv
+    print("  " + describe_thr(treport))
+
     payload = {
         "descriptors": desc,
         "materials": mats,
@@ -227,6 +237,9 @@ def main() -> int:
             "n_oils": len(oil_names),
             "n_owned": sum(1 for m in mats if m["own"]),
             "n_thresholds": sum(1 for m in mats if m["thr"]),
+            "n_thresholds_compiled": treport["compiled"],
+            "n_thresholds_imputed": treport["imputed"],
+            "threshold_imputation": treport,
             "n_strength_measured": n_measured,
             "n_not_for_use": n_blocked,
             "n_unverified": n_unverified,

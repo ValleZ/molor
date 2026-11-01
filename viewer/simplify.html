@@ -255,7 +255,10 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
     D.meta.n_materials + " materials (" + D.meta.n_oils + " built from GC "
     + "compositions), " + (D.meta.n_materials - (D.meta.n_not_for_use || 0))
     + " offered as substitutions, "
-    + D.meta.n_thresholds + " with a threshold figure"
+    + (D.meta.n_thresholds_compiled || D.meta.n_thresholds)
+    + " with a published threshold figure and "
+    + (D.meta.n_thresholds_imputed || 0) + " with one imputed from "
+    + "neighbours"
     + (D.meta.n_strength_measured
         ? ", " + D.meta.n_strength_measured + " of those corrected by a "
           + "blotter measurement"
@@ -1089,6 +1092,9 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
         // Offered, but nothing here has checked it is a perfumery material.
         // Only worth saying about a substitution: if the formula already
         // contains it, the choice has been made.
+        if (useOav && m.thrSrc === "imputed") {
+          note.push('<span class="warn">threshold imputed</span>');
+        }
         if (!STATE.inFormula[x.idx] && m.unver) {
           note.push('<span class="warn">unverified as a perfumery '
             + 'material</span>');
@@ -1137,15 +1143,32 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
     // the compilation. Naming them is the point: it is the difference between
     // a dose the bench has checked and one derived from a figure that may be
     // out by a factor of ten.
+    var imp = useOav
+      ? s.idxs.filter(function (i2) { return MAT[i2].thrSrc === "imputed"; })
+              .map(function (i2) { return MAT[i2].n; })
+      : [];
     var meas = s.idxs.filter(function (i2) { return MAT[i2].str; })
                      .map(function (i2) {
                        return MAT[i2].n + " x" + MAT[i2].str.toFixed(2);
                      });
     el("doseNote").textContent = useOav
       ? "Doses are shares of odour activity converted to mass with a "
-        + "compiled threshold figure, raised to the 0.6 power because a "
-        + "straight conversion overshot on the bench. Weigh the parts shown "
-        + "at the stock strength shown."
+        + "threshold figure, raised to the 0.6 power because a straight "
+        + "conversion overshot on the bench. Weigh the parts shown at the "
+        + "stock strength shown."
+        + (imp.length
+            ? " " + (imp.length === 1
+                ? "One of these rests on an imputed threshold ("
+                : imp.length + " of these rest on imputed thresholds (")
+              + imp.join(", ") + "): no figure was published for them, so one "
+              + "was taken from their five nearest neighbours in this space. "
+              + "That is accurate to about a factor of three in the middle of "
+              + "the range and much worse at the ends, and it cannot reach an "
+              + "extreme because an average of neighbours never does. A very "
+              + "potent material will therefore read as weaker than it is and "
+              + "be dosed too high. Treat these as an ordering and smell "
+              + "before you trust the weight."
+            : "")
         + (meas.length
             ? " Measured on a blotter, so corrected: " + meas.join(", ")
               + " (above 1 means stronger than its use level implies, so it "
