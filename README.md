@@ -676,6 +676,40 @@ other.
 its checkpoints were trained on all of GS-LF, so it cannot be scored on a
 held-out part of it. See `scripts/eval_fp_percept.py`.
 
+### Adding a label does not fix a molecule
+
+Twenty-two library molecules carry no GS-LF label and are predicted from
+structure alone. Five have well-established published descriptions, so those
+were reduced to the 138-word vocabulary and added as training rows
+(`scripts/augment_labels.py`, which writes `data/percept/gslf_plus_bench.csv`
+and leaves the vendored GS-LF file untouched). The question was whether a
+label, once added, makes the model say it.
+
+Mostly not. Over the 378 library molecules that carry a human label, the model
+puts a labelled descriptor in its own top 5 of 138 about 45% of the time and
+its top 20 about 87% of the time; the median rank is 6. The five new rows land
+in the same place as the upstream ones — median rank 10 — so they are not
+being ignored, they are being treated exactly like every other label. Rose
+oxide, given `rose, geranium, green, metallic, fresh, floral`, still reads
+celery, malty, mint, with `rose` itself at 106 of 138. Thiocineole took
+cleanly: `grapefruit` first, `black currant` fifth.
+
+The size of the effect is also below the noise floor. Three retrains differing
+by one or two of these rows gave mean ROC-AUC 0.8659, 0.8670 and 0.8675, and
+label-grounded ρ +0.474, +0.538 and +0.497. That spread is re-initialisation,
+not data — which means **the fourth decimal of every AUC in the table above is
+not a real digit**, and one row among 4988 cannot outvote a structural
+neighbourhood.
+
+A corollary worth the trouble: where a label and a structure disagree loudly,
+suspect the label. Cassifix is sold as a fruity-green cassis note, and
+labelling it that way put `green` dead last of 138 in its own prediction. Its
+stored SMILES carries the campholenic cyclopentene of the sandalwood
+synthetics, the model reads amber, woody, cedar, sandalwood, and a blotter
+agreed with the structure. Supplier copy for a specialty often describes the
+effect it is sold for in an accord rather than the smell of the molecule. It
+is left unlabelled.
+
 ### Correction: the similarity column above is measured against the training labels
 
 The ρ column in that table is agreement with GS-LF label overlap — the same
