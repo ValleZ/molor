@@ -1,8 +1,8 @@
 {
   "why": "A natural is a known mixture of mostly common materials, so it can be built from its GC composition and scored as a sub-mixture instead of being dropped. This matters for coverage: across the 22 published patent formulas, naturals are 6316 g of the 13362 g the library could not resolve, and bergamot alone is 2084 g of it.",
   "caveat": "A composition is a chemotype or a lot, not a substance. The four lavenders below share a name and differ enough to smell like different materials, and the model ranks them accordingly. Any formula that says only 'lavender oil' is therefore underspecified, and picking a profile for it is an assumption the prediction inherits silently. Every figure here is a single published analysis, not a specification; where a source gave a range the midpoint is used and the range is recorded.",
-  "unbuildable": "This used to say patchouli and vetiver were out of reach. That was wrong, and wrong in a way worth recording: the limit was never the model, it was that the library held none of their sesquiterpenoids. Adding thirteen of them as reference molecules -- structures from PubChem, not materials anyone stocks -- makes patchouli buildable at 82% of its oil and vetiver buildable from its identified fraction. What stays out of reach is different in kind: treemoss needs atranol-type phenolics, and labdanum is C20 labdane acids plus an unassigned resin fraction, so under 6% of a published labdanum composition resolves even now and the volatiles that carry its smell are mostly unidentified. Sandalwood is now one addition away -- alpha-santalol is in the percept model's training set labelled sandalwood -- and ginger needs zingiberene and ar-curcumene.",
-  "wanted": "Sandalwood and jasmine are now built, which clears the two most-requested gaps. Spearmint is buildable since l-Carvone was added but needs a sourced figure. Common sage, elemi's beta-phellandrene, and Australian sandalwood as its own chemotype are the next additions. Labdanum stays unbuildable: under 6% of a published composition resolves, because the volatiles that carry its smell are mostly unidentified. Treemoss needs atranol-type phenolics. Romandolide, Hindinol, Cyclosia, Tonkarome, Aquaflor, Sakura Salicylate, Sultanen, Marine Carbonitrile and Tropical Thiazole are captives for which no source gives a structure.",
+  "unbuildable": "This used to say patchouli and vetiver were out of reach. That was wrong, and wrong in a way worth recording: the limit was never the model, it was that the library held none of their sesquiterpenoids. Adding thirteen of them as reference molecules -- structures from PubChem, not materials anyone stocks -- makes patchouli buildable at 82% of its oil and vetiver buildable from its identified fraction. What stays out of reach is different in kind: treemoss needs atranol-type phenolics, and labdanum is C20 labdane acids plus an unassigned resin fraction, so under 6% of a published labdanum composition resolves even now and the volatiles that carry its smell are mostly unidentified. Sandalwood is now one addition away -- alpha-santalol is in the percept model's training set labelled sandalwood -- and ginger needs zingiberene and ar-curcumene. Five more from pasted formulas stay out: caraway, whose character is d-carvone where the library holds only l-carvone, so a build would come out as spearmint and be confidently wrong; Roman chamomile, which is mostly isobutyl and isoamyl angelates; tagetes, whose tagetone and ocimenone are absent so only a fifth of it resolves; guaiacwood, which is guaiol and bulnesol, the alcohols rather than the guaiene and bulnesene hydrocarbons that are here; and amyris, which is valerianol and the eudesmols. The resinoids and absolutes asked for -- benzoin, styrax, Peru balsam, labdanum, tonka, orris, vanilla, Miel Blanc, Ambrarome -- are the labdanum case again: heavy, largely unassigned fractions where the smell is.",
+  "wanted": "Spearmint, fennel, tarragon, basil ct linalool, cassia, nutmeg and frankincense are now built, which clears the buildable half of what the pasted formulas asked for. Caraway needs d-carvone as a separate entry from l-carvone, and it is the clearest case in this file for why an enantiomer is a different material. Myristicin and safrole would complete nutmeg; octyl acetate and incensole would make frankincense honest. Common sage, elemi's beta-phellandrene, and Australian sandalwood as its own chemotype remain on the list.",
   "naturals": {
     "Lavender EO (French, L. angustifolia)": {
       "source": "GC-MS of commercial market samples: linalyl acetate 37.8, linalool 33.1, eucalyptol 4.9, camphor 4.1; terpinen-4-ol ~2 and lavandulyl acetate ~2 from the same literature range.",
@@ -452,6 +452,134 @@
         "Farnesol": 0.5
       },
       "omitted": "eugenol, isophytol, the jasmolactones and the waxes an absolute carries"
+    },
+    "Spearmint EO (Mentha spicata)": {
+      "source": "GC-MS of commercial carvone-type spearmint: l-carvone 62, limonene 16, 1,8-cineole 2.5, myrcene 1.5, beta-pinene 1.0, menthone 0.8, sabinene 0.7, dihydrocarveol 0.6, terpinolene 0.4. Literature ranges give carvone 55-75 and limonene 10-20.",
+      "note": "Asked for by name and buildable since l-Carvone was added. The oil is one molecule plus a terpene background, which is the easiest kind of natural for this model to read.",
+      "composition": {
+        "l-Carvone": 62.0,
+        "D-Limonene": 16.0,
+        "Eucalyptol": 2.5,
+        "Myrcene": 1.5,
+        "Beta Pinene": 1.0,
+        "Menthone": 0.8,
+        "Sabinene": 0.7,
+        "Dihydrocarveol": 0.6,
+        "Terpinolene, Rectified": 0.4
+      },
+      "omitted": "3-octanol and cis-dihydrocarvone, under 1% together, have no library entry.",
+      "default_for": [
+        "spearmint"
+      ]
+    },
+    "Fennel EO (sweet, seed)": {
+      "source": "GC-MS of sweet fennel seed oil: trans-anethole 68, fenchone 14, estragole 4.0, limonene 4.0, alpha-pinene 2.0, camphene 0.6, beta-pinene 0.5, p-cymene 0.4. Published ranges give anethole 58-80 and fenchone 7-20, and bitter fennel runs higher in fenchone than this.",
+      "note": "Anethole dominates so completely that the prediction is close to anethole's own, which is the correct answer for this oil rather than a failure of resolution.",
+      "composition": {
+        "Anethole ex Star Anise": 68.0,
+        "Fenchone Alpha": 14.0,
+        "Methyl Chavicol": 4.0,
+        "D-Limonene": 4.0,
+        "Alpha Pinene": 2.0,
+        "Camphene": 0.6,
+        "Beta Pinene": 0.5,
+        "p-Cymene": 0.4
+      },
+      "omitted": "",
+      "default_for": [
+        "fennel"
+      ]
+    },
+    "Tarragon EO (estragole type)": {
+      "source": "GC-MS of French tarragon oil: estragole (methyl chavicol) 70, ocimene 12, limonene 4.0, terpinolene 1.0, alpha-pinene 0.8.",
+      "note": "Methyl chavicol is the same molecule as estragole, under the name this library uses.",
+      "composition": {
+        "Methyl Chavicol": 70.0,
+        "Ocimene": 12.0,
+        "D-Limonene": 4.0,
+        "Terpinolene, Rectified": 1.0,
+        "Alpha Pinene": 0.8
+      },
+      "omitted": "Methyleugenol, about 2%, is absent: the library holds methyl isoeugenol, which is a different molecule and was not substituted for it.",
+      "default_for": [
+        "tarragon",
+        "estragon"
+      ]
+    },
+    "Basil EO (ct linalool)": {
+      "source": "GC-MS of linalool-chemotype sweet basil: linalool 52, methyl chavicol 10, eugenol 8, 1,8-cineole 6, germacrene D 2.5, camphor 1.0, alpha-farnesene 1.0, alpha-terpineol 0.8.",
+      "note": "The chemotype matters more here than for most oils: the methyl-chavicol chemotype of the same plant is a different material and is not what a formula saying 'basil ct linalool' means.",
+      "composition": {
+        "Linalool": 52.0,
+        "Methyl Chavicol": 10.0,
+        "Eugenol ex Clove": 8.0,
+        "Eucalyptol": 6.0,
+        "Germacrene D": 2.5,
+        "Camphor": 1.0,
+        "Farnesene Alpha": 1.0,
+        "Terpineol Alpha": 0.8
+      },
+      "omitted": "Alpha-bergamotene, about 5%, has no library entry.",
+      "default_for": [
+        "basil"
+      ]
+    },
+    "Cassia Bark EO": {
+      "source": "GC-MS of cassia bark oil: cinnamaldehyde 80, cinnamyl acetate 4.0, coumarin 2.0, benzaldehyde 1.0, p-cymene 0.5, eugenol 0.5.",
+      "note": "Cassia differs from the cinnamon bark already here by being higher in cinnamaldehyde and nearly free of eugenol, which is the whole distinction between the two oils in use.",
+      "composition": {
+        "Cinnamaldehyde": 80.0,
+        "Cinnamyl Acetate": 4.0,
+        "Coumarin": 2.0,
+        "Benzaldehyde": 1.0,
+        "p-Cymene": 0.5,
+        "Eugenol ex Clove": 0.5
+      },
+      "omitted": "2-Methoxycinnamaldehyde, a few percent and characteristic of cassia, has no library entry.",
+      "default_for": [
+        "cassia"
+      ]
+    },
+    "Nutmeg EO (East Indian)": {
+      "source": "GC-MS of East Indian nutmeg oil: sabinene 20, alpha-pinene 18, beta-pinene 14, limonene 5.0, terpinen-4-ol 5.0, myrcene 3.0, gamma-terpinene 2.5, elemicin 2.0, p-cymene 1.5, alpha-terpineol 1.0, eugenol 0.3.",
+      "note": "A terpene oil with a small phenylpropanoid fraction that carries most of what a nose calls nutmeg, so the omission below matters more than its 6% suggests.",
+      "composition": {
+        "Sabinene": 20.0,
+        "Alpha Pinene": 18.0,
+        "Beta Pinene": 14.0,
+        "D-Limonene": 5.0,
+        "Terpinen-4-ol": 5.0,
+        "Myrcene": 3.0,
+        "Terpinene Gamma": 2.5,
+        "Elemicin": 2.0,
+        "p-Cymene": 1.5,
+        "Terpineol Alpha": 1.0,
+        "Eugenol ex Clove": 0.3
+      },
+      "omitted": "Myristicin (about 5%) and safrole (about 1%) have no library entries, and they are a large part of the spice character.",
+      "default_for": [
+        "nutmeg"
+      ]
+    },
+    "Frankincense EO (Boswellia carterii)": {
+      "source": "GC-MS of Boswellia carterii oil: alpha-pinene 35, limonene 10, p-cymene 8.0, myrcene 7.0, sabinene 5.0, beta-pinene 4.0, alpha-terpineol 2.0, terpinen-4-ol 1.5, trans-caryophyllene 1.5.",
+      "note": "Read this one with the caveat stated and not without it. The volatile fraction really is mostly monoterpenes and that is what is built here, but the resinous, balsamic quality people buy frankincense for sits in incensole and the diterpene fraction, which is absent. Expect the prediction to read pine-citrus, and expect that to be an understatement of the material rather than a description of it.",
+      "composition": {
+        "Alpha Pinene": 35.0,
+        "D-Limonene": 10.0,
+        "p-Cymene": 8.0,
+        "Myrcene": 7.0,
+        "Sabinene": 5.0,
+        "Beta Pinene": 4.0,
+        "Terpineol Alpha": 2.0,
+        "Terpinen-4-ol": 1.5,
+        "Caryophyllene Beta": 1.5
+      },
+      "omitted": "Octyl acetate, 5-10% in some lots, and the incensole and diterpene fraction that carries the resinous note, have no library entries. Boswellia serrata and sacra differ from this profile substantially.",
+      "default_for": [
+        "frankincense",
+        "olibanum"
+      ]
     }
   }
 }

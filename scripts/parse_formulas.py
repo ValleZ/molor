@@ -48,6 +48,30 @@ DOC = ROOT / "data" / "formulas" / "recipes.md"
 
 #: The perfumer's shorthand -> the library's name.
 ALIAS = {
+    # Supplier names for the twelve molecules added from pasted
+    # formulas. Isoraldeine and Irisone are one molecule under two
+    # houses' names, and 'Cetone Alpha' is its grade.
+    'isopropyl methyl-2-butyrate': 'Isopropyl 2-Methylbutyrate',
+    'isopropyl methyl 2 butyrate': 'Isopropyl 2-Methylbutyrate',
+    'isopropyl 2 methylbutyrate': 'Isopropyl 2-Methylbutyrate',
+    'isoraldeine': 'Isomethyl Ionone Alpha',
+    'isoraldeine 70': 'Isomethyl Ionone Alpha',
+    'isoraldeine cetone alpha': 'Isomethyl Ionone Alpha',
+    'irisone': 'Isomethyl Ionone Alpha',
+    'irisone alpha': 'Isomethyl Ionone Alpha',
+    'alpha isomethyl ionone': 'Isomethyl Ionone Alpha',
+    'isomethyl ionone': 'Isomethyl Ionone Alpha',
+    'methyl ionone alpha iso': 'Isomethyl Ionone Alpha',
+    'butylphenyl methylpropional': 'Lilial',
+    'lysmeral': 'Lilial',
+    'cuminaldehyde': 'Cuminic Aldehyde',
+    'cumin aldehyde': 'Cuminic Aldehyde',
+    'p-isopropyl benzaldehyde': 'Cuminic Aldehyde',
+    '4-methoxyacetophenone': 'Acetanisole',
+    'cyclopentadecanone': 'Exaltone',
+    'phenirat': 'Phenoxyethyl Isobutyrate',
+    'anisyl acetate (4-methoxybenzyl acetate)': 'Anisyl Acetate',
+
     'ambrofix': 'Ambroxan',
     'ambrofix (ambroxan)': 'Ambroxan',
     # Trade and chemical synonyms for molecules already in the
