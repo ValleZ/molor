@@ -922,6 +922,22 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
       // A material that may not be used is reported because the formula
       // contains it, not only when a proposal would have chosen it. The
       // formula is what it is; the reader should still be told.
+      // A dropped ingredient written at a dilution was put there for its
+      // character, not its bulk, so weight coverage understates what is
+      // missing. A coffee accord read 96% covered with all three of its
+      // coffee materials dropped, because they were 10% stocks.
+      + (function () {
+          var dil = r.missing.filter(function (x) {
+            return x.why !== "solvent" && x.dil < 100;
+          });
+          if (!dil.length) return "";
+          return " " + (dil.length === 1 ? "One dropped ingredient was"
+                        : dil.length + " dropped ingredients were")
+            + " listed at a dilution ("
+            + dil.map(function (x) { return x.name; }).join(", ")
+            + "), so they were there for character rather than bulk and the "
+            + "coverage above understates what is missing.";
+        })()
       + (function () {
           var bad = r.res.filter(function (x) { return MAT[x.idx].noUse; });
           return bad.length

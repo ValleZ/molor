@@ -48,6 +48,22 @@ DOC = ROOT / "data" / "formulas" / "recipes.md"
 
 #: The perfumer's shorthand -> the library's name.
 ALIAS = {
+    # The pyrazines, whose trade names say roasted and whose
+    # structures differ. A bare "dimethyl pyrazine" is deliberately
+    # NOT aliased: the 2,5- and 2,6- isomers are both sold and are
+    # not the same molecule.
+    'torref pyrazine': '2,6-Dimethylpyrazine',
+    'torrefie pyrazine': '2,6-Dimethylpyrazine',
+    '2,6-dimethyl pyrazine': '2,6-Dimethylpyrazine',
+    '2,6-dimethylpyrazine': '2,6-Dimethylpyrazine',
+    'ligustrazine': 'Tetramethyl Pyrazine',
+    '2,3,5,6-tetramethylpyrazine': 'Tetramethyl Pyrazine',
+    'tetramethylpyrazine': 'Tetramethyl Pyrazine',
+    '2,3,5-trimethyl pyrazine': '2,3,5-Trimethylpyrazine',
+    '2,3,5-trimethylpyrazine': '2,3,5-Trimethylpyrazine',
+    'trimethyl pyrazine': '2,3,5-Trimethylpyrazine',
+    'trimethylpyrazine': '2,3,5-Trimethylpyrazine',
+
     # The roast and coffee materials, under the names a flavour
     # supplier prints rather than the ones this library uses.
     'civetone': 'Civettone',

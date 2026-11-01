@@ -1,139 +1,139 @@
 descriptor,training_molecules,library_carriers,strongest_carrier,strongest_z,mean_probability
 alcoholic,105,5,Ethyl Formate,14.4,0.0075
-aldehydic,144,25,Citronellal,5.1,0.0617
-alliaceous,126,5,Dimethyl Trisulfide,11.3,0.0084
-almond,87,15,Benzaldehyde,8.0,0.0268
-amber,101,16,Ambroxan,7.7,0.0434
-animal,124,16,6-Methyl Quinoline,7.5,0.0417
-anisic,87,12,Anisaldehyde,8.3,0.0324
-apple,308,29,Cis-3-Hexenyl Isovalerate,4.0,0.0954
-apricot,78,19,Benzyl Butyrate,8.2,0.0264
-aromatic,76,24,Heliotropin,6.5,0.0239
-balsamic,298,30,Cinnamyl Cinnamate,4.2,0.1257
-banana,128,28,Ethyl Butyrate,4.4,0.0436
-beefy,43,9,Furfuryl Mercaptan,16.9,0.0035
-bergamot,32,10,Linalyl Acetate,10.1,0.0181
-berry,156,19,Damascone Beta,5.9,0.0576
-bitter,64,10,Benzaldehyde,10.2,0.021
+aldehydic,144,25,Citronellal,5.1,0.0613
+alliaceous,126,5,Dimethyl Trisulfide,11.3,0.0085
+almond,87,16,Benzaldehyde,7.9,0.028
+amber,101,16,Ambroxan,7.8,0.0431
+animal,124,16,6-Methyl Quinoline,7.5,0.042
+anisic,87,12,Anisaldehyde,8.3,0.0322
+apple,308,29,Cis-3-Hexenyl Isovalerate,4.1,0.0947
+apricot,78,19,Benzyl Butyrate,8.3,0.0262
+aromatic,76,24,Heliotropin,6.5,0.024
+balsamic,298,31,Cinnamyl Cinnamate,4.2,0.1248
+banana,128,28,Ethyl Butyrate,4.4,0.0433
+beefy,43,9,Furfuryl Mercaptan,14.3,0.0042
+bergamot,32,10,Linalyl Acetate,10.1,0.018
+berry,156,19,Damascone Beta,6.0,0.0572
+bitter,64,10,Benzaldehyde,10.2,0.0211
 black currant,43,6,Blackcurrant mercaptan,11.8,0.0096
-brandy,42,19,Ethyl Acetoacetate,8.4,0.0116
-burnt,186,11,Strawberry Furanone,9.1,0.0264
-buttery,139,17,Delta Decalactone,6.2,0.0372
-cabbage,46,5,Dimethyl Sulfide,12.6,0.0038
-camphoreous,132,21,Fenchone Alpha,5.1,0.0647
-caramellic,234,14,Strawberry Furanone,6.6,0.0489
-cedar,49,18,Cedryl Acetate,6.3,0.0466
+brandy,42,21,Ethyl Acetoacetate,8.4,0.0115
+burnt,186,14,Strawberry Furanone,8.3,0.0296
+buttery,139,17,Delta Decalactone,6.2,0.0371
+cabbage,46,5,Dimethyl Sulfide,12.6,0.0039
+camphoreous,132,21,Fenchone Alpha,5.1,0.0642
+caramellic,234,14,Strawberry Furanone,6.6,0.0495
+cedar,49,18,Cedryl Acetate,6.3,0.0463
 celery,42,14,Whiskey Lactone,10.9,0.015
 chamomile,31,12,Ethyl Tiglate,11.6,0.0095
-cheesy,187,12,Caprylic Acid,9.6,0.0247
-cherry,82,16,Para Tolyl Aldehyde,6.0,0.0349
-chocolate,69,10,2-Methyl Pyrazine,9.2,0.0171
-cinnamon,66,10,Cinnamaldehyde,8.9,0.0238
-citrus,491,40,Neobergamate Forte,3.1,0.1515
-clean,97,21,Florol,5.0,0.0418
-clove,34,8,Eugenyl Acetate,9.6,0.0149
-cocoa,118,5,"2-Ethyl-3,5-Dimethylpyrazine",11.4,0.019
-coconut,91,14,Gamma Heptalactone,6.1,0.0356
-coffee,110,5,Furfuryl Mercaptan,14.3,0.0109
-cognac,112,12,Ethyl Octanoate,7.2,0.0189
-cooked,87,6,Dimethyl Trisulfide,12.3,0.0067
-cooling,81,16,Laevo Menthol,6.4,0.0397
-cortex,56,15,Triplal,9.6,0.0219
-coumarinic,60,12,Gamma Heptalactone,8.6,0.0209
-creamy,190,17,Delta Decalactone,5.4,0.0541
-cucumber,46,16,"Trans-2,Cis-6-Nonadienal",7.5,0.0206
-dairy,275,20,Delta Decalactone,6.8,0.0227
-dry,166,21,Ambroxan,6.2,0.0717
-earthy,328,23,2-Isobutyl Quinoline,5.9,0.0751
-ethereal,287,19,Ethyl Formate,6.4,0.0538
-fatty,598,36,"(E,E)-2,4-Decadienal",3.4,0.1268
+cheesy,187,12,Caprylic Acid,9.7,0.0247
+cherry,82,16,Para Tolyl Aldehyde,6.1,0.0347
+chocolate,69,12,2-Methyl Pyrazine,8.0,0.0194
+cinnamon,66,10,Cinnamaldehyde,9.0,0.0236
+citrus,491,41,Neobergamate Forte,3.1,0.1504
+clean,97,21,Florol,5.1,0.0415
+clove,34,8,Eugenyl Acetate,9.6,0.0148
+cocoa,118,8,"2-Ethyl-3,5-Dimethylpyrazine",8.9,0.023
+coconut,91,14,Gamma Heptalactone,6.2,0.0353
+coffee,110,8,Furfuryl Mercaptan,11.3,0.0149
+cognac,112,12,Ethyl Octanoate,7.2,0.0187
+cooked,87,7,Dimethyl Trisulfide,12.2,0.007
+cooling,81,16,Laevo Menthol,6.4,0.0394
+cortex,56,15,Triplal,9.6,0.0218
+coumarinic,60,12,Gamma Heptalactone,8.7,0.0208
+creamy,190,17,Delta Decalactone,5.4,0.0539
+cucumber,46,16,"Trans-2,Cis-6-Nonadienal",7.6,0.0205
+dairy,275,20,Delta Decalactone,6.8,0.0225
+dry,166,21,Ambroxan,6.2,0.0714
+earthy,328,26,2-Isobutyl Quinoline,5.7,0.0777
+ethereal,287,19,Ethyl Formate,6.4,0.0537
+fatty,598,36,"(E,E)-2,4-Decadienal",3.5,0.1261
 fermented,147,15,Ethyl Formate,9.0,0.0189
-fishy,78,20,2-Methyl Pyrazine,9.4,0.0096
-floral,1266,0,Rhodinyl Acetate,2.0,0.3644
-fresh,533,24,Neobergamate Forte,3.3,0.1945
-fruit skin,52,16,Trans-2-Nonenal,5.9,0.0182
-fruity,2141,0,Ethyl Isobutyrate,1.7,0.4196
-garlic,120,5,Dimethyl Trisulfide,12.6,0.0085
-gassy,35,17,Dimethyl Sulfide,9.7,0.007
-geranium,61,14,Rhodinyl Acetate,7.4,0.0256
-grape,91,4,Methyl Anthranilate,11.2,0.0244
-grapefruit,74,10,Nootkatone,9.1,0.0202
-grassy,64,16,Hexenol-3-CIS,7.6,0.021
-green,1475,15,Liffarome,2.2,0.3413
+fishy,78,18,2-Methyl Pyrazine,8.4,0.0103
+floral,1266,0,Rhodinyl Acetate,2.0,0.3617
+fresh,533,24,Neobergamate Forte,3.3,0.193
+fruit skin,52,16,Trans-2-Nonenal,5.9,0.018
+fruity,2141,0,Ethyl Isobutyrate,1.7,0.4165
+garlic,120,5,Dimethyl Trisulfide,12.7,0.0085
+gassy,35,17,Dimethyl Sulfide,9.8,0.007
+geranium,61,14,Rhodinyl Acetate,7.4,0.0255
+grape,91,4,Methyl Anthranilate,11.3,0.0242
+grapefruit,74,10,Nootkatone,9.2,0.02
+grassy,64,16,Hexenol-3-CIS,7.7,0.0209
+green,1475,16,Liffarome,2.2,0.3399
 hawthorn,34,10,Acetanisole,10.8,0.0143
 hay,74,13,Acetanisole,8.6,0.022
-hazelnut,52,5,"2-Ethyl-3,5-Dimethylpyrazine",11.3,0.0063
-herbal,756,26,Menthone,2.8,0.2507
-honey,157,12,Phenyl Ethyl Phenyl Acetate,8.0,0.0489
-hyacinth,58,16,Phenyl Acetaldehyde,7.7,0.0242
-jasmin,103,9,Hedione,9.6,0.0303
-juicy,51,28,Cis-3-Hexenyl Butyrate,5.0,0.0178
+hazelnut,52,7,"2-Ethyl-3,5-Dimethylpyrazine",8.8,0.0097
+herbal,756,27,Menthone,2.8,0.249
+honey,157,12,Phenyl Ethyl Phenyl Acetate,8.0,0.0486
+hyacinth,58,16,Phenyl Acetaldehyde,7.8,0.024
+jasmin,103,9,Hedione,9.6,0.0301
+juicy,51,28,Cis-3-Hexenyl Butyrate,5.0,0.0177
 ketonic,48,5,Heptan-2-one,12.8,0.0095
-lactonic,67,14,Methyl Laitone,7.3,0.023
-lavender,44,12,Neobergamate Forte,12.2,0.0211
-leafy,139,20,Triplal,6.5,0.0463
-leathery,54,8,6-Methyl Quinoline,12.1,0.02
-lemon,81,19,Terpineol Alpha,5.3,0.0434
-lily,71,16,Hydroxycitronellal,8.2,0.0314
-malty,33,9,Ethyl Formate,14.9,0.0028
-meaty,299,8,Furfuryl Mercaptan,15.6,0.0123
-medicinal,71,13,2-Isopropyl Phenol,7.6,0.0348
-melon,132,23,Hexenol-3-CIS,6.3,0.0456
-metallic,134,15,Matsutake Alcohol,8.1,0.0369
-milky,87,15,Delta Decalactone,7.5,0.0223
-mint,226,23,Menthone,4.6,0.0892
-muguet,56,19,Hydroxycitronellal,7.3,0.0243
-mushroom,99,14,Matsutake Alcohol,12.8,0.0209
-musk,98,16,Ambrettolide,5.6,0.0474
-musty,200,14,2-Methyl Pyrazine,7.4,0.0399
-natural,77,12,Damascenone Total,9.2,0.0276
-nutty,431,13,2-Acetyl Pyrazine,7.7,0.051
+lactonic,67,14,Methyl Laitone,7.3,0.0229
+lavender,44,12,Neobergamate Forte,12.3,0.021
+leafy,139,20,Triplal,6.5,0.046
+leathery,54,8,6-Methyl Quinoline,12.1,0.0201
+lemon,81,19,Terpineol Alpha,5.3,0.0431
+lily,71,16,Hydroxycitronellal,8.3,0.0312
+malty,33,10,Ethyl Formate,14.7,0.0028
+meaty,299,10,Furfuryl Mercaptan,14.8,0.0135
+medicinal,71,13,2-Isopropyl Phenol,7.6,0.0349
+melon,132,23,Hexenol-3-CIS,6.3,0.0452
+metallic,134,15,Matsutake Alcohol,8.2,0.0368
+milky,87,15,Delta Decalactone,7.5,0.0222
+mint,226,23,Menthone,4.6,0.0888
+muguet,56,19,Hydroxycitronellal,7.4,0.0241
+mushroom,99,14,Matsutake Alcohol,12.9,0.0208
+musk,98,16,Ambrettolide,5.6,0.0471
+musty,200,14,2-Methyl Pyrazine,6.6,0.0423
+natural,77,12,Damascenone Total,9.2,0.0274
+nutty,431,14,2-Acetyl Pyrazine,6.5,0.0571
 odorless,200,14,Triethyl Citrate,8.4,0.006
-oily,388,19,Isopropyl Myristate,5.4,0.0683
+oily,388,19,Isopropyl Myristate,5.4,0.0679
 onion,177,5,Dimethyl Trisulfide,11.3,0.0102
-orange,98,17,Aldehyde C-9,5.9,0.033
-orangeflower,33,6,Methyl Anthranilate,11.4,0.0102
-orris,59,6,Ionone Alpha,10.8,0.0236
-ozone,39,13,Floralozone,10.1,0.0174
-peach,95,16,Delta Decalactone,6.5,0.0337
-pear,130,22,Pear Ester,6.7,0.0383
-phenolic,180,20,Guaiacol,5.9,0.058
-pine,78,15,Fenchone Alpha,6.3,0.0451
-pineapple,205,25,Allyl Hexanoate,5.7,0.0578
-plum,61,14,Damascenone Total,8.4,0.0225
-popcorn,36,5,2-Acetyl Pyrazine,13.8,0.0057
-potato,56,5,"2-Ethyl-3,5-Dimethylpyrazine",12.4,0.0062
-powdery,167,25,Musk Ketone,6.1,0.0586
+orange,98,17,Aldehyde C-9,5.9,0.0328
+orangeflower,33,6,Methyl Anthranilate,11.5,0.0101
+orris,59,6,Ionone Alpha,10.8,0.0234
+ozone,39,13,Floralozone,10.2,0.0173
+peach,95,16,Delta Decalactone,6.5,0.0335
+pear,130,22,Pear Ester,6.7,0.038
+phenolic,180,20,Guaiacol,5.9,0.0579
+pine,78,15,Fenchone Alpha,6.3,0.0447
+pineapple,205,25,Allyl Hexanoate,5.8,0.0574
+plum,61,14,Damascenone Total,8.4,0.0224
+popcorn,36,7,2-Acetyl Pyrazine,13.1,0.0071
+potato,56,7,"2-Ethyl-3,5-Dimethylpyrazine",10.1,0.0085
+powdery,167,25,Musk Ketone,6.1,0.0584
 pungent,198,20,Dimethyl Sulfide,6.8,0.0317
 radish,55,8,2-Octen-4-One,10.0,0.0047
-raspberry,43,9,Dihydro Alpha Ionone,9.0,0.0199
-ripe,87,24,Isoamyl Isovalerate,6.9,0.02
-roasted,372,8,Furfuryl Mercaptan,9.1,0.0194
-rose,332,25,Rhodinyl Acetate,4.2,0.1205
-rummy,89,12,Ethyl Acetate,7.3,0.0267
-sandalwood,36,13,Sandalore,10.1,0.0135
-savory,128,7,Furfuryl Mercaptan,14.3,0.0081
-sharp,104,18,Ethyl Acetate,7.4,0.0332
-smoky,72,10,Guaiacol,9.0,0.0219
-soapy,50,16,Musk Xylene,9.0,0.0174
-solvent,59,16,Methyl Acetate,8.3,0.0102
+raspberry,43,10,Dihydro Alpha Ionone,9.1,0.0198
+ripe,87,24,Isoamyl Isovalerate,6.9,0.0199
+roasted,372,10,Furfuryl Mercaptan,7.3,0.0254
+rose,332,25,Rhodinyl Acetate,4.2,0.1196
+rummy,89,12,Ethyl Acetate,7.3,0.0265
+sandalwood,36,13,Sandalore,10.2,0.0134
+savory,128,7,Furfuryl Mercaptan,14.4,0.0082
+sharp,104,18,Ethyl Acetate,7.4,0.0331
+smoky,72,10,Guaiacol,9.0,0.0222
+soapy,50,18,Musk Xylene,9.0,0.0173
+solvent,59,16,Methyl Acetate,8.4,0.0102
 sour,72,8,Caprylic Acid,11.9,0.0118
-spicy,488,31,Isoeugenol,3.5,0.1721
-strawberry,49,8,Maltol,11.2,0.0176
-sulfurous,486,8,Dimethyl Trisulfide,8.2,0.0189
+spicy,488,31,Isoeugenol,3.5,0.1709
+strawberry,49,9,Maltol,11.3,0.0175
+sulfurous,486,8,Dimethyl Trisulfide,8.2,0.019
 sweaty,38,16,Caprylic Acid,13.2,0.0078
-sweet,1429,1,Anisyl Acetate,2.0,0.4339
-tea,56,14,Damascenone Total,9.1,0.0252
-terpenic,49,19,Fenchone Alpha,5.8,0.0358
-tobacco,102,15,Damascone Beta,6.1,0.0441
-tomato,37,12,Dimethyl Sulfide,11.6,0.0044
-tropical,386,25,Oxane,5.3,0.0782
-vanilla,111,17,Vanillin,6.4,0.0419
-vegetable,287,22,"Trans-2,Cis-6-Nonadienal",6.3,0.0412
-vetiver,38,10,Cedryl Acetate,10.8,0.0174
-violet,66,10,Methyl Octine Carbonate,8.4,0.0335
-warm,96,10,Eugenyl Acetate,10.1,0.0301
-waxy,488,33,Methyl Palmitate,3.2,0.1316
-weedy,44,20,Stemone,7.1,0.0202
-winey,221,23,Diethyl Succinate,5.5,0.0477
-woody,692,23,Sclareol,2.3,0.2691
+sweet,1429,1,Anisyl Acetate,2.0,0.4312
+tea,56,14,Damascenone Total,9.1,0.025
+terpenic,49,19,Fenchone Alpha,5.8,0.0355
+tobacco,102,15,Damascone Beta,6.1,0.0442
+tomato,37,12,Dimethyl Sulfide,11.6,0.0045
+tropical,386,25,Oxane,5.3,0.0777
+vanilla,111,17,Vanillin,6.4,0.0417
+vegetable,287,22,"Trans-2,Cis-6-Nonadienal",6.3,0.0417
+vetiver,38,10,Cedryl Acetate,10.9,0.0173
+violet,66,10,Methyl Octine Carbonate,8.4,0.0333
+warm,96,10,Eugenyl Acetate,10.1,0.0299
+waxy,488,33,Methyl Palmitate,3.2,0.1306
+weedy,44,20,Stemone,7.1,0.0201
+winey,221,23,Diethyl Succinate,5.5,0.0473
+woody,692,23,Sclareol,2.3,0.2675

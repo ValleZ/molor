@@ -687,43 +687,43 @@
       "lift_top": [
         {
           "name": "bergamot",
-          "z": 8.26
+          "z": 8.34
         },
         {
           "name": "lavender",
-          "z": 6.47
-        },
-        {
-          "name": "natural",
-          "z": 2.63
+          "z": 6.73
         },
         {
           "name": "weedy",
-          "z": 2.63
+          "z": 2.72
+        },
+        {
+          "name": "natural",
+          "z": 2.54
         },
         {
           "name": "citrus",
-          "z": 2.41
+          "z": 2.47
         },
         {
           "name": "fresh",
-          "z": 2.21
+          "z": 2.24
         },
         {
           "name": "lemon",
-          "z": 2.18
+          "z": 2.23
         },
         {
           "name": "pear",
-          "z": 1.73
+          "z": 1.69
         },
         {
           "name": "rose",
-          "z": 1.66
+          "z": 1.56
         },
         {
           "name": "floral",
-          "z": 1.38
+          "z": 1.37
         }
       ],
       "nearest_materials": [
@@ -733,13 +733,13 @@
         "Linalyl Propionate",
         "Neobergamate Forte"
       ],
-      "nearest_cosine": 0.8718,
+      "nearest_cosine": 0.8727,
       "collapsed_onto": null,
       "self_check": {
         "descriptor": "lavender",
         "rank": 2,
         "of": 138,
-        "z": 6.47,
+        "z": 6.73,
         "p": 0.45
       },
       "atlas": true
@@ -1287,43 +1287,43 @@
       "lift_top": [
         {
           "name": "lavender",
-          "z": 3.71
-        },
-        {
-          "name": "weedy",
-          "z": 2.69
+          "z": 3.57
         },
         {
           "name": "camphoreous",
-          "z": 2.68
+          "z": 2.7
         },
         {
           "name": "pine",
-          "z": 2.6
+          "z": 2.61
+        },
+        {
+          "name": "weedy",
+          "z": 2.61
         },
         {
           "name": "citrus",
-          "z": 2.31
+          "z": 2.3
         },
         {
           "name": "lemon",
-          "z": 2.2
-        },
-        {
-          "name": "natural",
-          "z": 2.17
+          "z": 2.25
         },
         {
           "name": "bergamot",
-          "z": 2.08
+          "z": 2.19
+        },
+        {
+          "name": "natural",
+          "z": 2.13
         },
         {
           "name": "cooling",
-          "z": 1.95
+          "z": 2.0
         },
         {
-          "name": "earthy",
-          "z": 1.69
+          "name": "mint",
+          "z": 1.68
         }
       ],
       "nearest_materials": [
@@ -1333,13 +1333,13 @@
         "Ocimene",
         "Farnesene Alpha"
       ],
-      "nearest_cosine": 0.7517,
+      "nearest_cosine": 0.7531,
       "collapsed_onto": null,
       "self_check": {
         "descriptor": "lavender",
         "rank": 1,
         "of": 138,
-        "z": 3.71,
+        "z": 3.57,
         "p": 0.247
       },
       "atlas": true
@@ -1885,43 +1885,43 @@
       "lift_top": [
         {
           "name": "lavender",
-          "z": 3.31
+          "z": 2.96
+        },
+        {
+          "name": "cooling",
+          "z": 2.91
         },
         {
           "name": "camphoreous",
           "z": 2.84
         },
         {
-          "name": "cooling",
-          "z": 2.8
-        },
-        {
           "name": "mint",
-          "z": 2.29
-        },
-        {
-          "name": "fresh",
-          "z": 2.14
+          "z": 2.33
         },
         {
           "name": "weedy",
-          "z": 2.05
+          "z": 2.11
+        },
+        {
+          "name": "fresh",
+          "z": 2.09
         },
         {
           "name": "citrus",
-          "z": 1.87
+          "z": 1.91
         },
         {
           "name": "lemon",
-          "z": 1.83
-        },
-        {
-          "name": "bergamot",
-          "z": 1.8
+          "z": 1.91
         },
         {
           "name": "natural",
-          "z": 1.78
+          "z": 1.73
+        },
+        {
+          "name": "bergamot",
+          "z": 1.64
         }
       ],
       "nearest_materials": [
@@ -1931,13 +1931,13 @@
         "Dihydrocarveol",
         "Fenchol"
       ],
-      "nearest_cosine": 0.7208,
+      "nearest_cosine": 0.7226,
       "collapsed_onto": null,
       "self_check": {
         "descriptor": "lavender",
         "rank": 1,
         "of": 138,
-        "z": 3.31,
+        "z": 2.96,
         "p": 0.244
       },
       "atlas": true
@@ -2485,43 +2485,43 @@
       "lift_top": [
         {
           "name": "camphoreous",
-          "z": 3.66
+          "z": 3.68
         },
         {
           "name": "cooling",
-          "z": 3.47
+          "z": 3.42
         },
         {
           "name": "mint",
-          "z": 2.9
+          "z": 2.85
         },
         {
           "name": "fresh",
-          "z": 2.42
+          "z": 2.47
         },
         {
           "name": "medicinal",
-          "z": 2.12
+          "z": 2.04
         },
         {
           "name": "herbal",
-          "z": 1.79
+          "z": 1.76
         },
         {
           "name": "pine",
-          "z": 1.49
+          "z": 1.51
         },
         {
           "name": "lavender",
-          "z": 1.37
+          "z": 1.38
         },
         {
           "name": "bergamot",
-          "z": 1.12
+          "z": 1.26
         },
         {
           "name": "terpenic",
-          "z": 0.93
+          "z": 0.98
         }
       ],
       "nearest_materials": [
@@ -2531,13 +2531,13 @@
         "Isomenthone",
         "Menthone"
       ],
-      "nearest_cosine": 0.8998,
+      "nearest_cosine": 0.8997,
       "collapsed_onto": null,
       "self_check": {
         "descriptor": "lavender",
         "rank": 8,
         "of": 138,
-        "z": 1.37,
+        "z": 1.38,
         "p": 0.11
       },
       "atlas": true
@@ -3092,31 +3092,31 @@
       "lift_top": [
         {
           "name": "bergamot",
-          "z": 9.89
+          "z": 9.38
         },
         {
           "name": "lavender",
-          "z": 7.12
+          "z": 7.32
         },
         {
           "name": "citrus",
-          "z": 2.8
+          "z": 2.81
         },
         {
           "name": "pear",
-          "z": 2.71
-        },
-        {
-          "name": "weedy",
-          "z": 2.52
-        },
-        {
-          "name": "fresh",
-          "z": 2.49
+          "z": 2.61
         },
         {
           "name": "natural",
-          "z": 2.31
+          "z": 2.53
+        },
+        {
+          "name": "weedy",
+          "z": 2.46
+        },
+        {
+          "name": "fresh",
+          "z": 2.45
         },
         {
           "name": "lemon",
@@ -3124,11 +3124,11 @@
         },
         {
           "name": "rose",
-          "z": 1.76
+          "z": 1.87
         },
         {
           "name": "floral",
-          "z": 1.67
+          "z": 1.65
         }
       ],
       "nearest_materials": [
@@ -3138,7 +3138,7 @@
         "Linalool",
         "Farnesene Alpha"
       ],
-      "nearest_cosine": 0.9304,
+      "nearest_cosine": 0.9309,
       "collapsed_onto": null,
       "self_check": null,
       "atlas": true
@@ -3687,23 +3687,23 @@
       "lift_top": [
         {
           "name": "dry",
-          "z": 4.44
+          "z": 4.4
         },
         {
           "name": "cedar",
-          "z": 4.27
+          "z": 4.22
         },
         {
           "name": "vetiver",
-          "z": 3.61
+          "z": 3.59
         },
         {
           "name": "amber",
-          "z": 2.77
+          "z": 2.65
         },
         {
           "name": "sandalwood",
-          "z": 2.37
+          "z": 2.48
         },
         {
           "name": "woody",
@@ -3711,19 +3711,19 @@
         },
         {
           "name": "tobacco",
-          "z": 1.22
+          "z": 1.24
         },
         {
           "name": "leathery",
-          "z": 0.8
+          "z": 0.81
         },
         {
           "name": "earthy",
-          "z": 0.79
+          "z": 0.75
         },
         {
           "name": "spicy",
-          "z": 0.49
+          "z": 0.55
         }
       ],
       "nearest_materials": [
@@ -3739,7 +3739,7 @@
         "descriptor": "cedar",
         "rank": 2,
         "of": 138,
-        "z": 4.27,
+        "z": 4.22,
         "p": 0.921
       },
       "atlas": true
@@ -4288,43 +4288,43 @@
       "lift_top": [
         {
           "name": "bergamot",
-          "z": 8.29
+          "z": 8.78
         },
         {
           "name": "lavender",
-          "z": 6.03
+          "z": 6.51
         },
         {
           "name": "lemon",
-          "z": 3.23
+          "z": 3.52
         },
         {
           "name": "terpenic",
-          "z": 3.18
+          "z": 3.08
         },
         {
           "name": "weedy",
-          "z": 2.76
+          "z": 2.84
         },
         {
           "name": "citrus",
-          "z": 2.57
+          "z": 2.68
         },
         {
           "name": "fresh",
-          "z": 2.31
+          "z": 2.28
         },
         {
           "name": "natural",
-          "z": 2.18
+          "z": 2.15
         },
         {
           "name": "pear",
-          "z": 2.07
+          "z": 2.0
         },
         {
           "name": "grapefruit",
-          "z": 1.58
+          "z": 1.44
         }
       ],
       "nearest_materials": [
@@ -4334,13 +4334,13 @@
         "Farnesene Alpha",
         "Terpinyl Acetate"
       ],
-      "nearest_cosine": 0.8017,
+      "nearest_cosine": 0.8029,
       "collapsed_onto": null,
       "self_check": {
         "descriptor": "bergamot",
         "rank": 1,
         "of": 138,
-        "z": 8.29,
+        "z": 8.78,
         "p": 0.641
       },
       "atlas": true
@@ -4890,59 +4890,59 @@
       "lift_top": [
         {
           "name": "geranium",
-          "z": 5.8
+          "z": 6.09
         },
         {
           "name": "lily",
-          "z": 4.09
+          "z": 4.48
         },
         {
           "name": "muguet",
-          "z": 4.09
+          "z": 4.25
         },
         {
           "name": "lemon",
-          "z": 3.86
+          "z": 3.81
         },
         {
           "name": "rose",
-          "z": 3.49
+          "z": 3.6
         },
         {
           "name": "weedy",
-          "z": 3.31
-        },
-        {
-          "name": "metallic",
-          "z": 2.95
+          "z": 3.28
         },
         {
           "name": "clean",
-          "z": 2.84
+          "z": 2.8
         },
         {
-          "name": "citrus",
-          "z": 2.56
+          "name": "metallic",
+          "z": 2.79
         },
         {
           "name": "leafy",
-          "z": 2.55
+          "z": 2.78
+        },
+        {
+          "name": "natural",
+          "z": 2.61
         }
       ],
       "nearest_materials": [
         "Citronellol",
         "Citronellyl Formate",
         "Citronellyl Acetate",
-        "Nerol",
-        "Geraniol 95"
+        "Geraniol 95",
+        "Nerol"
       ],
-      "nearest_cosine": 0.9043,
+      "nearest_cosine": 0.9049,
       "collapsed_onto": null,
       "self_check": {
         "descriptor": "geranium",
         "rank": 1,
         "of": 138,
-        "z": 5.8,
+        "z": 6.09,
         "p": 0.425
       },
       "atlas": true
@@ -5492,43 +5492,43 @@
       "lift_top": [
         {
           "name": "cooling",
-          "z": 6.17
-        },
-        {
-          "name": "musty",
-          "z": 5.61
+          "z": 6.38
         },
         {
           "name": "solvent",
-          "z": 5.06
+          "z": 5.03
+        },
+        {
+          "name": "musty",
+          "z": 4.65
         },
         {
           "name": "mint",
-          "z": 3.9
+          "z": 4.07
         },
         {
           "name": "camphoreous",
-          "z": 3.8
-        },
-        {
-          "name": "earthy",
-          "z": 3.29
+          "z": 3.98
         },
         {
           "name": "pine",
-          "z": 2.96
+          "z": 3.18
         },
         {
-          "name": "hay",
-          "z": 2.62
+          "name": "earthy",
+          "z": 3.08
         },
         {
           "name": "herbal",
-          "z": 2.5
+          "z": 2.54
         },
         {
-          "name": "tea",
-          "z": 2.36
+          "name": "medicinal",
+          "z": 2.39
+        },
+        {
+          "name": "hay",
+          "z": 2.37
         }
       ],
       "nearest_materials": [
@@ -5538,13 +5538,13 @@
         "Dihydrocarveol",
         "Fenchone Alpha"
       ],
-      "nearest_cosine": 0.946,
+      "nearest_cosine": 0.9462,
       "collapsed_onto": null,
       "self_check": {
         "descriptor": "mint",
         "rank": 4,
         "of": 138,
-        "z": 3.9,
+        "z": 4.07,
         "p": 0.978
       },
       "atlas": true
@@ -6091,39 +6091,39 @@
       "lift_top": [
         {
           "name": "lemon",
-          "z": 4.56
+          "z": 4.62
         },
         {
           "name": "citrus",
-          "z": 2.9
-        },
-        {
-          "name": "fresh",
-          "z": 1.58
+          "z": 2.91
         },
         {
           "name": "aldehydic",
-          "z": 1.53
+          "z": 1.54
+        },
+        {
+          "name": "fresh",
+          "z": 1.52
         },
         {
           "name": "herbal",
-          "z": 1.27
+          "z": 1.2
         },
         {
           "name": "sharp",
-          "z": 0.93
+          "z": 0.96
         },
         {
           "name": "fruity",
-          "z": 0.79
-        },
-        {
-          "name": "weedy",
-          "z": 0.77
+          "z": 0.8
         },
         {
           "name": "lavender",
-          "z": 0.76
+          "z": 0.74
+        },
+        {
+          "name": "weedy",
+          "z": 0.72
         },
         {
           "name": "floral",
@@ -6137,13 +6137,13 @@
         "Dihydroterpinyl Acetate",
         "Linalyl Formate"
       ],
-      "nearest_cosine": 0.9927,
+      "nearest_cosine": 0.9928,
       "collapsed_onto": null,
       "self_check": {
         "descriptor": "lemon",
         "rank": 1,
         "of": 138,
-        "z": 4.56,
+        "z": 4.62,
         "p": 0.481
       },
       "atlas": false
@@ -6695,43 +6695,43 @@
       "lift_top": [
         {
           "name": "bergamot",
-          "z": 7.31
+          "z": 7.42
         },
         {
           "name": "lavender",
-          "z": 6.29
+          "z": 5.92
         },
         {
           "name": "weedy",
-          "z": 2.89
+          "z": 2.72
         },
         {
           "name": "natural",
-          "z": 2.54
-        },
-        {
-          "name": "lemon",
-          "z": 2.35
+          "z": 2.46
         },
         {
           "name": "citrus",
-          "z": 2.32
+          "z": 2.3
+        },
+        {
+          "name": "lemon",
+          "z": 2.23
         },
         {
           "name": "fresh",
-          "z": 2.13
+          "z": 2.14
         },
         {
           "name": "rose",
-          "z": 1.62
+          "z": 1.61
         },
         {
           "name": "pear",
-          "z": 1.54
+          "z": 1.52
         },
         {
           "name": "woody",
-          "z": 1.31
+          "z": 1.33
         }
       ],
       "nearest_materials": [
@@ -6741,13 +6741,13 @@
         "Neobergamate Forte",
         "Farnesene Alpha"
       ],
-      "nearest_cosine": 0.7909,
+      "nearest_cosine": 0.7923,
       "collapsed_onto": null,
       "self_check": {
         "descriptor": "lavender",
         "rank": 2,
         "of": 138,
-        "z": 6.29,
+        "z": 5.92,
         "p": 0.455
       },
       "atlas": true
@@ -7296,43 +7296,43 @@
       "lift_top": [
         {
           "name": "bergamot",
-          "z": 10.15
+          "z": 9.23
         },
         {
           "name": "lavender",
-          "z": 6.41
-        },
-        {
-          "name": "pear",
-          "z": 2.74
+          "z": 6.66
         },
         {
           "name": "citrus",
-          "z": 2.73
+          "z": 2.84
+        },
+        {
+          "name": "pear",
+          "z": 2.62
         },
         {
           "name": "fresh",
-          "z": 2.35
+          "z": 2.42
         },
         {
           "name": "natural",
-          "z": 1.96
+          "z": 1.85
         },
         {
           "name": "floral",
           "z": 1.64
         },
         {
-          "name": "rose",
-          "z": 1.47
-        },
-        {
           "name": "weedy",
-          "z": 1.37
+          "z": 1.55
         },
         {
-          "name": "woody",
-          "z": 1.29
+          "name": "rose",
+          "z": 1.49
+        },
+        {
+          "name": "lemon",
+          "z": 1.35
         }
       ],
       "nearest_materials": [
@@ -7342,7 +7342,7 @@
         "Linalool",
         "Neobergamate Forte"
       ],
-      "nearest_cosine": 0.9737,
+      "nearest_cosine": 0.9739,
       "collapsed_onto": null,
       "self_check": null,
       "atlas": true
@@ -7893,43 +7893,43 @@
       "lift_top": [
         {
           "name": "cooling",
-          "z": 4.44
+          "z": 4.51
         },
         {
           "name": "camphoreous",
-          "z": 4.05
+          "z": 4.26
         },
         {
           "name": "mint",
-          "z": 3.36
+          "z": 3.44
         },
         {
           "name": "pine",
-          "z": 3.06
+          "z": 3.29
         },
         {
           "name": "terpenic",
-          "z": 2.57
+          "z": 2.82
         },
         {
           "name": "fresh",
-          "z": 2.37
+          "z": 2.41
         },
         {
           "name": "medicinal",
-          "z": 2.17
+          "z": 2.39
         },
         {
           "name": "herbal",
-          "z": 2.03
+          "z": 2.1
         },
         {
           "name": "celery",
-          "z": 1.68
+          "z": 1.65
         },
         {
           "name": "solvent",
-          "z": 1.25
+          "z": 1.32
         }
       ],
       "nearest_materials": [
@@ -7939,7 +7939,7 @@
         "Fenchone Alpha",
         "Camphene"
       ],
-      "nearest_cosine": 0.9601,
+      "nearest_cosine": 0.9602,
       "collapsed_onto": null,
       "self_check": null,
       "atlas": true
@@ -8489,39 +8489,39 @@
       "lift_top": [
         {
           "name": "terpenic",
-          "z": 5.8
+          "z": 5.78
         },
         {
           "name": "pine",
-          "z": 5.54
+          "z": 5.74
         },
         {
           "name": "cooling",
-          "z": 5.18
+          "z": 5.14
         },
         {
           "name": "camphoreous",
-          "z": 4.61
+          "z": 4.64
         },
         {
           "name": "mint",
-          "z": 3.84
-        },
-        {
-          "name": "celery",
-          "z": 2.75
+          "z": 3.82
         },
         {
           "name": "herbal",
-          "z": 2.65
+          "z": 2.7
         },
         {
           "name": "solvent",
-          "z": 2.55
+          "z": 2.52
+        },
+        {
+          "name": "celery",
+          "z": 2.48
         },
         {
           "name": "spicy",
-          "z": 2.29
+          "z": 2.3
         },
         {
           "name": "medicinal",
@@ -8535,7 +8535,7 @@
         "Fenchone Alpha",
         "Fenchol"
       ],
-      "nearest_cosine": 0.9769,
+      "nearest_cosine": 0.977,
       "collapsed_onto": null,
       "self_check": null,
       "atlas": true
@@ -9086,43 +9086,43 @@
       "lift_top": [
         {
           "name": "medicinal",
-          "z": 5.93
+          "z": 5.95
         },
         {
           "name": "smoky",
-          "z": 5.23
+          "z": 5.37
         },
         {
           "name": "phenolic",
-          "z": 4.89
+          "z": 5.17
         },
         {
           "name": "spicy",
-          "z": 2.37
+          "z": 2.48
         },
         {
           "name": "leathery",
-          "z": 2.36
+          "z": 2.34
         },
         {
           "name": "herbal",
-          "z": 1.69
+          "z": 1.71
         },
         {
           "name": "terpenic",
-          "z": 1.46
+          "z": 1.59
         },
         {
           "name": "camphoreous",
-          "z": 1.04
+          "z": 1.13
         },
         {
           "name": "lemon",
-          "z": 0.68
+          "z": 0.74
         },
         {
           "name": "burnt",
-          "z": 0.66
+          "z": 0.53
         }
       ],
       "nearest_materials": [
@@ -9132,7 +9132,7 @@
         "Safranal",
         "Guaiacol"
       ],
-      "nearest_cosine": 0.9098,
+      "nearest_cosine": 0.9097,
       "collapsed_onto": null,
       "self_check": null,
       "atlas": true
@@ -9678,23 +9678,23 @@
       "lift_top": [
         {
           "name": "clove",
-          "z": 9.26
+          "z": 9.79
         },
         {
           "name": "warm",
-          "z": 8.7
+          "z": 8.46
         },
         {
           "name": "smoky",
-          "z": 6.06
+          "z": 6.75
         },
         {
           "name": "phenolic",
-          "z": 4.24
+          "z": 4.56
         },
         {
           "name": "aromatic",
-          "z": 3.89
+          "z": 3.79
         },
         {
           "name": "spicy",
@@ -9702,19 +9702,19 @@
         },
         {
           "name": "medicinal",
-          "z": 3.16
+          "z": 3.41
         },
         {
           "name": "vanilla",
-          "z": 2.65
+          "z": 2.8
         },
         {
           "name": "pungent",
-          "z": 2.02
+          "z": 2.08
         },
         {
           "name": "burnt",
-          "z": 1.88
+          "z": 1.9
         }
       ],
       "nearest_materials": [
@@ -9730,7 +9730,7 @@
         "descriptor": "clove",
         "rank": 1,
         "of": 138,
-        "z": 9.26,
+        "z": 9.79,
         "p": 0.544
       },
       "atlas": false
@@ -10280,43 +10280,43 @@
       "lift_top": [
         {
           "name": "terpenic",
-          "z": 5.54
+          "z": 5.65
         },
         {
           "name": "lemon",
-          "z": 4.45
+          "z": 4.84
         },
         {
           "name": "citrus",
-          "z": 2.72
+          "z": 2.83
         },
         {
           "name": "weedy",
-          "z": 2.66
+          "z": 2.71
         },
         {
           "name": "herbal",
-          "z": 2.56
+          "z": 2.62
         },
         {
           "name": "spicy",
-          "z": 2.3
+          "z": 2.42
         },
         {
           "name": "pine",
-          "z": 2.18
+          "z": 2.23
         },
         {
           "name": "mint",
-          "z": 2.02
+          "z": 2.0
         },
         {
           "name": "grapefruit",
-          "z": 1.53
+          "z": 1.8
         },
         {
           "name": "orange",
-          "z": 1.5
+          "z": 1.53
         }
       ],
       "nearest_materials": [
@@ -10332,7 +10332,7 @@
         "descriptor": "orange",
         "rank": 10,
         "of": 138,
-        "z": 1.5,
+        "z": 1.53,
         "p": 0.154
       },
       "atlas": false
@@ -10883,43 +10883,43 @@
       "lift_top": [
         {
           "name": "terpenic",
-          "z": 6.55
+          "z": 6.42
         },
         {
           "name": "lemon",
-          "z": 4.98
+          "z": 4.97
         },
         {
           "name": "pine",
-          "z": 3.67
+          "z": 3.66
         },
         {
           "name": "weedy",
-          "z": 3.27
+          "z": 3.23
         },
         {
           "name": "citrus",
-          "z": 2.8
-        },
-        {
-          "name": "mint",
-          "z": 2.74
+          "z": 2.75
         },
         {
           "name": "herbal",
-          "z": 2.68
+          "z": 2.67
+        },
+        {
+          "name": "mint",
+          "z": 2.63
         },
         {
           "name": "spicy",
-          "z": 2.51
+          "z": 2.44
         },
         {
           "name": "cooling",
-          "z": 2.48
+          "z": 2.39
         },
         {
-          "name": "grapefruit",
-          "z": 1.96
+          "name": "camphoreous",
+          "z": 1.92
         }
       ],
       "nearest_materials": [
@@ -10929,13 +10929,13 @@
         "Myrcene",
         "Ocimene"
       ],
-      "nearest_cosine": 0.9485,
+      "nearest_cosine": 0.9487,
       "collapsed_onto": null,
       "self_check": {
         "descriptor": "lemon",
         "rank": 2,
         "of": 138,
-        "z": 4.98,
+        "z": 4.97,
         "p": 0.565
       },
       "atlas": true
@@ -11483,43 +11483,43 @@
       "lift_top": [
         {
           "name": "terpenic",
-          "z": 5.66
+          "z": 6.02
         },
         {
           "name": "lemon",
-          "z": 4.46
+          "z": 4.82
         },
         {
           "name": "citrus",
-          "z": 2.83
-        },
-        {
-          "name": "herbal",
-          "z": 2.67
+          "z": 2.92
         },
         {
           "name": "weedy",
-          "z": 2.62
+          "z": 2.66
+        },
+        {
+          "name": "herbal",
+          "z": 2.6
         },
         {
           "name": "pine",
-          "z": 2.44
+          "z": 2.39
         },
         {
           "name": "spicy",
-          "z": 2.13
+          "z": 2.23
         },
         {
           "name": "mint",
-          "z": 2.11
+          "z": 1.9
         },
         {
           "name": "grapefruit",
-          "z": 1.85
+          "z": 1.78
         },
         {
           "name": "orange",
-          "z": 1.74
+          "z": 1.72
         }
       ],
       "nearest_materials": [
@@ -11535,7 +11535,7 @@
         "descriptor": "orange",
         "rank": 10,
         "of": 138,
-        "z": 1.74,
+        "z": 1.72,
         "p": 0.152
       },
       "atlas": false
@@ -12084,43 +12084,43 @@
       "lift_top": [
         {
           "name": "cinnamon",
-          "z": 9.08
+          "z": 9.13
         },
         {
           "name": "warm",
-          "z": 5.54
+          "z": 5.93
         },
         {
           "name": "spicy",
-          "z": 3.31
+          "z": 3.34
         },
         {
           "name": "balsamic",
-          "z": 3.28
-        },
-        {
-          "name": "aromatic",
-          "z": 3.2
+          "z": 3.27
         },
         {
           "name": "bitter",
-          "z": 3.08
+          "z": 3.09
         },
         {
-          "name": "cherry",
-          "z": 2.51
+          "name": "aromatic",
+          "z": 3.06
         },
         {
           "name": "almond",
-          "z": 2.47
+          "z": 2.43
+        },
+        {
+          "name": "cherry",
+          "z": 2.43
         },
         {
           "name": "clove",
-          "z": 1.87
+          "z": 2.06
         },
         {
           "name": "powdery",
-          "z": 1.81
+          "z": 1.68
         }
       ],
       "nearest_materials": [
@@ -12130,13 +12130,13 @@
         "Cinnamyl Cinnamate",
         "Methyl Cinnamate"
       ],
-      "nearest_cosine": 0.9626,
+      "nearest_cosine": 0.9627,
       "collapsed_onto": null,
       "self_check": {
         "descriptor": "cinnamon",
         "rank": 1,
         "of": 138,
-        "z": 9.08,
+        "z": 9.13,
         "p": 0.736
       },
       "atlas": true
@@ -12689,43 +12689,43 @@
       "lift_top": [
         {
           "name": "terpenic",
-          "z": 6.21
+          "z": 5.82
         },
         {
           "name": "lemon",
-          "z": 4.67
+          "z": 4.75
         },
         {
           "name": "pine",
-          "z": 3.27
+          "z": 3.13
         },
         {
           "name": "weedy",
-          "z": 3.11
+          "z": 3.01
         },
         {
           "name": "citrus",
-          "z": 2.74
+          "z": 2.68
         },
         {
           "name": "herbal",
-          "z": 2.66
-        },
-        {
-          "name": "mint",
-          "z": 2.58
+          "z": 2.59
         },
         {
           "name": "spicy",
-          "z": 2.46
+          "z": 2.44
+        },
+        {
+          "name": "mint",
+          "z": 2.4
         },
         {
           "name": "cooling",
-          "z": 2.03
+          "z": 1.85
         },
         {
           "name": "grapefruit",
-          "z": 2.0
+          "z": 1.78
         }
       ],
       "nearest_materials": [
@@ -12735,13 +12735,13 @@
         "Myrcene",
         "Ocimene"
       ],
-      "nearest_cosine": 0.9718,
+      "nearest_cosine": 0.9719,
       "collapsed_onto": null,
       "self_check": {
         "descriptor": "lemon",
         "rank": 2,
         "of": 138,
-        "z": 4.67,
+        "z": 4.75,
         "p": 0.522
       },
       "atlas": true
@@ -13291,31 +13291,31 @@
       "lift_top": [
         {
           "name": "terpenic",
-          "z": 5.8
+          "z": 6.0
         },
         {
           "name": "lemon",
-          "z": 4.54
+          "z": 4.42
         },
         {
           "name": "citrus",
-          "z": 2.76
+          "z": 2.69
         },
         {
           "name": "weedy",
-          "z": 2.72
+          "z": 2.66
         },
         {
           "name": "herbal",
-          "z": 2.61
-        },
-        {
-          "name": "spicy",
-          "z": 2.34
+          "z": 2.56
         },
         {
           "name": "pine",
-          "z": 2.2
+          "z": 2.32
+        },
+        {
+          "name": "spicy",
+          "z": 2.25
         },
         {
           "name": "mint",
@@ -13323,11 +13323,11 @@
         },
         {
           "name": "grapefruit",
-          "z": 1.71
+          "z": 1.59
         },
         {
           "name": "orange",
-          "z": 1.61
+          "z": 1.56
         }
       ],
       "nearest_materials": [
@@ -13343,7 +13343,7 @@
         "descriptor": "grapefruit",
         "rank": 9,
         "of": 138,
-        "z": 1.71,
+        "z": 1.59,
         "p": 0.098
       },
       "atlas": false
@@ -13893,43 +13893,43 @@
       "lift_top": [
         {
           "name": "terpenic",
-          "z": 6.21
+          "z": 5.57
         },
         {
           "name": "lemon",
-          "z": 4.99
+          "z": 4.81
         },
         {
           "name": "weedy",
-          "z": 3.06
+          "z": 3.03
         },
         {
           "name": "citrus",
-          "z": 2.84
+          "z": 2.73
         },
         {
           "name": "pine",
-          "z": 2.76
+          "z": 2.63
         },
         {
           "name": "herbal",
-          "z": 2.72
+          "z": 2.62
         },
         {
           "name": "spicy",
-          "z": 2.33
+          "z": 2.38
         },
         {
           "name": "mint",
-          "z": 2.19
-        },
-        {
-          "name": "grapefruit",
-          "z": 1.91
+          "z": 2.15
         },
         {
           "name": "lavender",
-          "z": 1.62
+          "z": 1.83
+        },
+        {
+          "name": "grapefruit",
+          "z": 1.65
         }
       ],
       "nearest_materials": [
@@ -14493,43 +14493,43 @@
       "lift_top": [
         {
           "name": "lavender",
-          "z": 6.09
+          "z": 5.45
         },
         {
           "name": "bergamot",
-          "z": 4.99
+          "z": 4.46
         },
         {
           "name": "lemon",
-          "z": 3.58
+          "z": 3.57
         },
         {
           "name": "weedy",
-          "z": 3.46
+          "z": 3.53
         },
         {
           "name": "natural",
-          "z": 3.08
+          "z": 2.97
         },
         {
           "name": "citrus",
-          "z": 2.93
+          "z": 2.92
         },
         {
           "name": "rose",
-          "z": 2.1
+          "z": 2.06
         },
         {
           "name": "fresh",
-          "z": 2.0
+          "z": 1.94
         },
         {
           "name": "lily",
-          "z": 1.77
+          "z": 1.76
         },
         {
-          "name": "floral",
-          "z": 1.65
+          "name": "terpenic",
+          "z": 1.7
         }
       ],
       "nearest_materials": [
@@ -14539,13 +14539,13 @@
         "Linalyl Formate",
         "Linalyl Acetate"
       ],
-      "nearest_cosine": 0.9085,
+      "nearest_cosine": 0.9093,
       "collapsed_onto": null,
       "self_check": {
         "descriptor": "orangeflower",
-        "rank": 32,
+        "rank": 33,
         "of": 138,
-        "z": -0.0,
+        "z": -0.02,
         "p": 0.017
       },
       "atlas": true
@@ -15102,35 +15102,35 @@
         },
         {
           "name": "lemon",
-          "z": 2.95
-        },
-        {
-          "name": "citrus",
-          "z": 2.68
+          "z": 2.88
         },
         {
           "name": "natural",
-          "z": 2.59
+          "z": 2.78
+        },
+        {
+          "name": "citrus",
+          "z": 2.71
         },
         {
           "name": "bergamot",
-          "z": 2.35
+          "z": 2.53
         },
         {
           "name": "rose",
-          "z": 1.79
+          "z": 1.83
         },
         {
           "name": "floral",
-          "z": 1.56
-        },
-        {
-          "name": "lily",
-          "z": 1.45
+          "z": 1.6
         },
         {
           "name": "fresh",
-          "z": 1.43
+          "z": 1.52
+        },
+        {
+          "name": "lily",
+          "z": 1.44
         }
       ],
       "nearest_materials": [
@@ -15689,43 +15689,43 @@
       "lift_top": [
         {
           "name": "lemon",
-          "z": 4.57
+          "z": 4.48
         },
         {
           "name": "citrus",
-          "z": 2.71
+          "z": 2.81
         },
         {
           "name": "fresh",
-          "z": 1.49
+          "z": 1.51
         },
         {
           "name": "aldehydic",
-          "z": 1.36
+          "z": 1.49
         },
         {
           "name": "herbal",
-          "z": 1.28
+          "z": 1.19
         },
         {
           "name": "sharp",
-          "z": 1.09
+          "z": 0.94
         },
         {
           "name": "weedy",
-          "z": 0.83
+          "z": 0.8
         },
         {
           "name": "fruity",
-          "z": 0.78
+          "z": 0.76
         },
         {
           "name": "floral",
-          "z": 0.65
+          "z": 0.67
         },
         {
-          "name": "lavender",
-          "z": 0.61
+          "name": "sweet",
+          "z": 0.63
         }
       ],
       "nearest_materials": [
@@ -16286,43 +16286,43 @@
       "lift_top": [
         {
           "name": "earthy",
-          "z": 2.74
+          "z": 2.64
         },
         {
           "name": "camphoreous",
-          "z": 2.55
+          "z": 2.58
         },
         {
           "name": "sandalwood",
-          "z": 2.14
+          "z": 2.21
         },
         {
           "name": "woody",
-          "z": 1.77
+          "z": 1.79
         },
         {
           "name": "cedar",
-          "z": 1.68
+          "z": 1.71
         },
         {
           "name": "pine",
-          "z": 1.63
+          "z": 1.65
         },
         {
           "name": "balsamic",
-          "z": 1.31
+          "z": 1.32
         },
         {
           "name": "spicy",
-          "z": 1.19
+          "z": 1.16
         },
         {
           "name": "dry",
-          "z": 1.12
+          "z": 1.1
         },
         {
           "name": "terpenic",
-          "z": 0.89
+          "z": 0.93
         }
       ],
       "nearest_materials": [
@@ -16332,7 +16332,7 @@
         "Patchoulol",
         "Fenchone Alpha"
       ],
-      "nearest_cosine": 0.8373,
+      "nearest_cosine": 0.8375,
       "collapsed_onto": null,
       "self_check": null,
       "atlas": true
@@ -16884,43 +16884,43 @@
       "lift_top": [
         {
           "name": "cedar",
-          "z": 2.24
+          "z": 2.32
         },
         {
           "name": "sandalwood",
-          "z": 2.22
+          "z": 2.29
         },
         {
           "name": "vetiver",
-          "z": 2.12
+          "z": 2.26
         },
         {
           "name": "woody",
-          "z": 1.65
-        },
-        {
-          "name": "grapefruit",
-          "z": 1.56
+          "z": 1.63
         },
         {
           "name": "dry",
-          "z": 1.45
+          "z": 1.5
         },
         {
-          "name": "camphoreous",
-          "z": 1.08
+          "name": "grapefruit",
+          "z": 1.4
         },
         {
           "name": "amber",
+          "z": 1.09
+        },
+        {
+          "name": "camphoreous",
           "z": 1.05
         },
         {
           "name": "pine",
-          "z": 0.86
+          "z": 0.87
         },
         {
           "name": "leathery",
-          "z": 0.66
+          "z": 0.64
         }
       ],
       "nearest_materials": [
@@ -16930,13 +16930,13 @@
         "Zizanoic Acid",
         "Caryophyllene Beta"
       ],
-      "nearest_cosine": 0.7579,
+      "nearest_cosine": 0.7578,
       "collapsed_onto": null,
       "self_check": {
         "descriptor": "vetiver",
         "rank": 3,
         "of": 138,
-        "z": 2.12,
+        "z": 2.26,
         "p": 0.188
       },
       "atlas": true
@@ -17489,43 +17489,43 @@
       "lift_top": [
         {
           "name": "cherry",
-          "z": 2.98
+          "z": 3.07
         },
         {
           "name": "lavender",
-          "z": 2.47
+          "z": 2.2
         },
         {
           "name": "anisic",
-          "z": 2.22
+          "z": 2.19
         },
         {
           "name": "bergamot",
-          "z": 1.88
+          "z": 1.64
         },
         {
           "name": "rose",
-          "z": 1.65
+          "z": 1.62
         },
         {
           "name": "weedy",
-          "z": 1.59
+          "z": 1.6
         },
         {
           "name": "sweet",
-          "z": 1.58
+          "z": 1.55
         },
         {
           "name": "floral",
-          "z": 1.37
-        },
-        {
-          "name": "hyacinth",
-          "z": 1.34
+          "z": 1.35
         },
         {
           "name": "hawthorn",
-          "z": 1.27
+          "z": 1.35
+        },
+        {
+          "name": "lemon",
+          "z": 1.33
         }
       ],
       "nearest_materials": [
@@ -17535,7 +17535,7 @@
         "Citronellyl Formate",
         "Citronellyl Acetate"
       ],
-      "nearest_cosine": 0.6543,
+      "nearest_cosine": 0.6565,
       "collapsed_onto": null,
       "self_check": null,
       "atlas": true
@@ -18084,19 +18084,19 @@
       "lift_top": [
         {
           "name": "terpenic",
-          "z": 5.79
+          "z": 5.96
         },
         {
           "name": "lemon",
-          "z": 4.51
+          "z": 4.57
         },
         {
           "name": "weedy",
-          "z": 3.09
+          "z": 3.11
         },
         {
           "name": "citrus",
-          "z": 2.76
+          "z": 2.81
         },
         {
           "name": "herbal",
@@ -18104,23 +18104,23 @@
         },
         {
           "name": "spicy",
-          "z": 2.53
-        },
-        {
-          "name": "pine",
-          "z": 2.5
+          "z": 2.58
         },
         {
           "name": "mint",
-          "z": 2.4
+          "z": 2.5
+        },
+        {
+          "name": "pine",
+          "z": 2.48
         },
         {
           "name": "grapefruit",
-          "z": 1.9
+          "z": 1.88
         },
         {
           "name": "celery",
-          "z": 1.55
+          "z": 1.69
         }
       ],
       "nearest_materials": [
@@ -18130,7 +18130,7 @@
         "Myrcene",
         "Ocimene"
       ],
-      "nearest_cosine": 0.9753,
+      "nearest_cosine": 0.9754,
       "collapsed_onto": null,
       "self_check": null,
       "atlas": true
@@ -18677,43 +18677,43 @@
       "lift_top": [
         {
           "name": "sandalwood",
-          "z": 7.07
+          "z": 7.36
         },
         {
           "name": "woody",
-          "z": 1.75
+          "z": 1.76
         },
         {
           "name": "animal",
-          "z": 0.88
+          "z": 0.76
         },
         {
           "name": "clean",
-          "z": 0.5
+          "z": 0.55
         },
         {
           "name": "amber",
-          "z": 0.26
+          "z": 0.27
         },
         {
           "name": "cedar",
-          "z": 0.19
+          "z": 0.21
         },
         {
           "name": "vetiver",
-          "z": 0.07
+          "z": 0.08
         },
         {
           "name": "dry",
-          "z": -0.13
+          "z": -0.12
         },
         {
-          "name": "popcorn",
-          "z": -0.16
+          "name": "garlic",
+          "z": -0.18
         },
         {
-          "name": "hazelnut",
-          "z": -0.17
+          "name": "onion",
+          "z": -0.2
         }
       ],
       "nearest_materials": [
@@ -18723,13 +18723,13 @@
         "Ebanol",
         "Alpha Santalene"
       ],
-      "nearest_cosine": 0.9766,
+      "nearest_cosine": 0.9764,
       "collapsed_onto": null,
       "self_check": {
         "descriptor": "sandalwood",
         "rank": 1,
         "of": 138,
-        "z": 7.07,
+        "z": 7.36,
         "p": 0.296
       },
       "atlas": true
@@ -19282,43 +19282,43 @@
       "lift_top": [
         {
           "name": "cherry",
-          "z": 3.0
+          "z": 2.93
         },
         {
           "name": "jasmin",
-          "z": 2.43
+          "z": 2.59
         },
         {
           "name": "balsamic",
-          "z": 2.04
+          "z": 2.16
         },
         {
           "name": "sweet",
-          "z": 1.58
+          "z": 1.57
         },
         {
           "name": "floral",
-          "z": 1.46
+          "z": 1.47
         },
         {
           "name": "hyacinth",
-          "z": 1.33
-        },
-        {
-          "name": "fruity",
-          "z": 1.22
-        },
-        {
-          "name": "honey",
-          "z": 1.19
+          "z": 1.41
         },
         {
           "name": "rose",
-          "z": 1.18
+          "z": 1.29
+        },
+        {
+          "name": "honey",
+          "z": 1.29
+        },
+        {
+          "name": "fruity",
+          "z": 1.23
         },
         {
           "name": "plum",
-          "z": 0.88
+          "z": 0.91
         }
       ],
       "nearest_materials": [
@@ -19328,13 +19328,13 @@
         "Isobutyl Benzoate",
         "Styrallyl Acetate"
       ],
-      "nearest_cosine": 0.7309,
+      "nearest_cosine": 0.7333,
       "collapsed_onto": null,
       "self_check": {
         "descriptor": "jasmin",
         "rank": 2,
         "of": 138,
-        "z": 2.43,
+        "z": 2.59,
         "p": 0.3
       },
       "atlas": true
@@ -19886,23 +19886,23 @@
       "lift_top": [
         {
           "name": "mint",
-          "z": 4.0
+          "z": 3.91
         },
         {
           "name": "herbal",
-          "z": 2.46
+          "z": 2.51
         },
         {
           "name": "spicy",
-          "z": 1.89
+          "z": 1.96
         },
         {
           "name": "terpenic",
-          "z": 1.62
+          "z": 1.65
         },
         {
           "name": "lemon",
-          "z": 0.82
+          "z": 0.87
         },
         {
           "name": "cooling",
@@ -19910,19 +19910,19 @@
         },
         {
           "name": "celery",
-          "z": 0.59
+          "z": 0.73
         },
         {
           "name": "pine",
-          "z": 0.58
+          "z": 0.62
         },
         {
           "name": "camphoreous",
-          "z": 0.5
+          "z": 0.51
         },
         {
           "name": "sweet",
-          "z": 0.46
+          "z": 0.49
         }
       ],
       "nearest_materials": [
@@ -19938,7 +19938,7 @@
         "descriptor": "mint",
         "rank": 1,
         "of": 138,
-        "z": 4.0,
+        "z": 3.91,
         "p": 0.856
       },
       "atlas": true
@@ -20489,39 +20489,39 @@
       "lift_top": [
         {
           "name": "anisic",
-          "z": 4.97
+          "z": 5.8
         },
         {
           "name": "spicy",
-          "z": 2.81
+          "z": 2.74
         },
         {
           "name": "sweet",
-          "z": 1.66
+          "z": 1.69
         },
         {
           "name": "terpenic",
-          "z": 1.34
+          "z": 1.39
         },
         {
           "name": "pine",
-          "z": 1.27
-        },
-        {
-          "name": "herbal",
-          "z": 1.26
-        },
-        {
-          "name": "cooling",
-          "z": 1.2
+          "z": 1.36
         },
         {
           "name": "aromatic",
-          "z": 1.12
+          "z": 1.28
+        },
+        {
+          "name": "herbal",
+          "z": 1.21
+        },
+        {
+          "name": "cooling",
+          "z": 1.07
         },
         {
           "name": "camphoreous",
-          "z": 0.9
+          "z": 0.91
         },
         {
           "name": "cinnamon",
@@ -20535,7 +20535,7 @@
         "Methyl Isoeugenol",
         "Anisaldehyde"
       ],
-      "nearest_cosine": 0.8391,
+      "nearest_cosine": 0.8394,
       "collapsed_onto": null,
       "self_check": null,
       "atlas": true
@@ -21083,43 +21083,43 @@
       "lift_top": [
         {
           "name": "anisic",
-          "z": 6.85
+          "z": 6.41
         },
         {
           "name": "aromatic",
-          "z": 3.12
+          "z": 3.04
+        },
+        {
+          "name": "phenolic",
+          "z": 2.79
         },
         {
           "name": "spicy",
           "z": 2.71
         },
         {
-          "name": "phenolic",
-          "z": 2.47
+          "name": "warm",
+          "z": 2.25
         },
         {
           "name": "hay",
-          "z": 1.95
+          "z": 2.02
         },
         {
-          "name": "warm",
-          "z": 1.92
+          "name": "medicinal",
+          "z": 1.74
         },
         {
           "name": "hawthorn",
-          "z": 1.67
+          "z": 1.62
         },
         {
           "name": "herbal",
           "z": 1.61
         },
         {
-          "name": "medicinal",
-          "z": 1.59
-        },
-        {
           "name": "sweet",
-          "z": 1.37
+          "z": 1.36
         }
       ],
       "nearest_materials": [
@@ -21680,43 +21680,43 @@
       "lift_top": [
         {
           "name": "lavender",
-          "z": 3.99
+          "z": 3.87
         },
         {
           "name": "weedy",
-          "z": 2.82
+          "z": 2.81
         },
         {
           "name": "citrus",
-          "z": 2.56
+          "z": 2.55
         },
         {
           "name": "lemon",
           "z": 2.53
         },
         {
-          "name": "bergamot",
-          "z": 2.48
+          "name": "natural",
+          "z": 2.43
         },
         {
-          "name": "natural",
-          "z": 2.29
+          "name": "bergamot",
+          "z": 2.13
         },
         {
           "name": "rose",
-          "z": 1.75
+          "z": 1.85
         },
         {
           "name": "floral",
-          "z": 1.55
+          "z": 1.57
         },
         {
           "name": "fresh",
-          "z": 1.45
+          "z": 1.44
         },
         {
-          "name": "lily",
-          "z": 1.45
+          "name": "woody",
+          "z": 1.31
         }
       ],
       "nearest_materials": [
@@ -21726,7 +21726,7 @@
         "Elemol",
         "Ethyl Linalool"
       ],
-      "nearest_cosine": 0.9083,
+      "nearest_cosine": 0.9089,
       "collapsed_onto": null,
       "self_check": null,
       "atlas": true
@@ -22275,43 +22275,43 @@
       "lift_top": [
         {
           "name": "cinnamon",
-          "z": 10.14
+          "z": 9.95
         },
         {
           "name": "warm",
-          "z": 5.73
+          "z": 5.13
         },
         {
           "name": "balsamic",
-          "z": 3.51
+          "z": 3.45
         },
         {
           "name": "spicy",
-          "z": 3.3
+          "z": 3.25
         },
         {
           "name": "bitter",
-          "z": 2.92
+          "z": 2.97
         },
         {
           "name": "aromatic",
-          "z": 2.82
+          "z": 2.77
         },
         {
           "name": "cherry",
-          "z": 2.45
+          "z": 2.39
         },
         {
           "name": "almond",
-          "z": 2.4
+          "z": 2.37
         },
         {
           "name": "powdery",
-          "z": 1.83
+          "z": 1.75
         },
         {
           "name": "sweet",
-          "z": 1.6
+          "z": 1.59
         }
       ],
       "nearest_materials": [
@@ -22875,43 +22875,43 @@
       "lift_top": [
         {
           "name": "terpenic",
-          "z": 5.26
+          "z": 5.4
         },
         {
           "name": "pine",
-          "z": 4.62
+          "z": 4.81
         },
         {
           "name": "cooling",
-          "z": 4.32
+          "z": 4.42
         },
         {
           "name": "camphoreous",
-          "z": 3.47
+          "z": 3.64
         },
         {
           "name": "mint",
-          "z": 2.8
+          "z": 2.86
+        },
+        {
+          "name": "lemon",
+          "z": 2.69
         },
         {
           "name": "celery",
-          "z": 2.75
+          "z": 2.69
         },
         {
           "name": "weedy",
           "z": 2.66
         },
         {
-          "name": "lemon",
-          "z": 2.58
-        },
-        {
           "name": "spicy",
-          "z": 2.1
+          "z": 2.08
         },
         {
-          "name": "earthy",
-          "z": 2.01
+          "name": "solvent",
+          "z": 1.98
         }
       ],
       "nearest_materials": [
@@ -22921,7 +22921,7 @@
         "Camphene",
         "Fenchone Alpha"
       ],
-      "nearest_cosine": 0.8985,
+      "nearest_cosine": 0.8988,
       "collapsed_onto": null,
       "self_check": null,
       "atlas": true
@@ -23473,43 +23473,43 @@
       "lift_top": [
         {
           "name": "terpenic",
-          "z": 6.05
+          "z": 6.42
         },
         {
           "name": "pine",
-          "z": 5.94
+          "z": 6.01
         },
         {
           "name": "cooling",
-          "z": 5.53
+          "z": 5.49
         },
         {
           "name": "camphoreous",
-          "z": 4.68
+          "z": 4.55
         },
         {
           "name": "mint",
-          "z": 3.86
+          "z": 3.97
         },
         {
           "name": "celery",
-          "z": 3.31
+          "z": 3.03
         },
         {
           "name": "solvent",
-          "z": 2.72
+          "z": 2.82
         },
         {
           "name": "herbal",
-          "z": 2.67
+          "z": 2.7
         },
         {
           "name": "medicinal",
-          "z": 2.48
+          "z": 2.62
         },
         {
           "name": "weedy",
-          "z": 2.48
+          "z": 2.54
         }
       ],
       "nearest_materials": [
@@ -23519,7 +23519,7 @@
         "Fenchone Alpha",
         "Fenchol"
       ],
-      "nearest_cosine": 0.9607,
+      "nearest_cosine": 0.9608,
       "collapsed_onto": null,
       "self_check": null,
       "atlas": true
@@ -23528,7 +23528,7 @@
   "trimmed": [
     {
       "name": "Lemongrass EO",
-      "nearest_cosine": 0.9927,
+      "nearest_cosine": 0.9928,
       "nearest": "Citral"
     },
     {

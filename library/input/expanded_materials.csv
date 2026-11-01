@@ -389,3 +389,6 @@ Isoeugenyl Acetate,CC(=O)Oc1ccc(/C=C/C)cc1OC,PubChem CID 1549176 isoeugenol acet
 Dimethyl Disulfide,CSSC,PubChem CID 12232; cooked-sea and seaweed sulfur
 Dimethyl Trisulfide,CSSSC,PubChem CID 19310; the oyster and nori note
 "(E,E)-2,4-Decadienal",CCCCC/C=C/C=C/C=O,"PubChem CID 5283349; fatty-fishy, fried fish and sea"
+"2,3,5-Trimethylpyrazine",Cc1c(C)nc(C)cn1,PubChem CID 26808 analogue; roast/nutty pyrazine named in a pasted coffee formula
+Tetramethyl Pyrazine,Cc1nc(C)c(C)nc1C,"PubChem CID 1125 2,3,5,6-tetramethylpyrazine (ligustrazine); roasted/coffee pyrazine, listed in the supplier catalogue in this repository"
+"2,6-Dimethylpyrazine",Cc1cncc(C)n1,"CAS 108-50-9; sold as Torref Pyrazine, the roasted pyrazine on this bench"
