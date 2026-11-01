@@ -95,29 +95,49 @@ def stocked_dilutions():
     stock is on the shelf, and for a 10% aldehyde C-10 where only 1% and 0.1%
     exist. That sheet could not be followed.
 
-    The file holding this column is the perfumer's own writing and is not in
-    the repository, so its absence is normal and simply means every decade is
+    Two materials are stocked *only* as a dilution, and that is recorded in the
+    material's own name -- "Cinnamaldehyde, 10% DPG" -- not in the dilutions
+    column. Reading only the column asked for neat cinnamaldehyde and neat
+    strawberry furanone from a bench that has neither. So the name is parsed
+    too, and a material whose every row carries a strength is marked as having
+    no neat stock at all.
+
+    Returns ({name: [pcts]}, {names with no neat stock}, have_sheet).
+
+    The file holding this is the perfumer's own writing and is not in the
+    repository, so its absence is normal and simply means every decade is
     assumed available.
     """
     path = ROOT / "data" / "inventory" / "perfumery_inventory.csv"
     if not path.is_file():
-        return {}, False
-    out = {}
-    for r in csv.DictReader(io.open(path, encoding="utf-8-sig")):
-        n = (r.get("material") or "").strip()
-        if not n:
-            continue
-        pcts = []
-        for m in re.finditer(r"(\d+(?:\.\d+)?)\s*%", r.get("dilutions") or ""):
+        return {}, set(), False
+
+    def pcts_in(text):
+        found = []
+        for m in re.finditer(r"(\d+(?:\.\d+)?)\s*%", text or ""):
             try:
                 v = float(m.group(1))
             except ValueError:
                 continue
             if 0 < v < 100:
-                pcts.append(v)
-        if pcts:
-            out[n] = sorted(set(pcts), reverse=True)
-    return out, True
+                found.append(v)
+        return found
+
+    out, has_neat, known = {}, set(), set()
+    for r in csv.DictReader(io.open(path, encoding="utf-8-sig")):
+        raw = (r.get("material") or "").strip()
+        if not raw:
+            continue
+        # "Cinnamaldehyde, 10% DPG" is one shelf item: the base name, stocked
+        # at 10%. "Anisaldehyde, Natural" is a qualifier, not a strength.
+        name_pcts = pcts_in(raw)
+        n = re.split(r",", raw)[0].strip() if name_pcts else raw
+        known.add(n)
+        if not name_pcts:
+            has_neat.add(n)
+        out.setdefault(n, []).extend(name_pcts + pcts_in(r.get("dilutions")))
+    out = {n: sorted(set(v), reverse=True) for n, v in out.items() if v}
+    return out, (known - has_neat), True
 
 
 def measured_anchors():
@@ -128,7 +148,7 @@ def measured_anchors():
     return {n for n, s in zip(tj["molecules"], tj["source"]) if s == "measured"}
 
 
-def weigh_plan(use_pct: float, available):
+def weigh_plan(use_pct: float, available, has_neat=True):
     """Grams of which stock, into DILUENT_G of DPG, to reach the use level.
 
     m grams of an s% stock in d grams of diluent gives s * m / (m + d), so
@@ -136,7 +156,14 @@ def weigh_plan(use_pct: float, available):
     weighable amount, the one landing nearest TARGET_G wins: a larger weighed
     mass is a smaller relative error on a 0.01 g balance, and it keeps neat
     aldehydes out of the session whenever a dilution of them exists.
+
+    A stock that already sits at the use level needs no vial: the blotter goes
+    straight into it. Cinnamaldehyde is stocked at 10% and used at 10%, and
+    without this case it fell through every branch and was dropped.
     """
+    for stock in available:
+        if abs(stock - use_pct) <= 0.02 * use_pct:
+            return stock, 0.0, stock, None
     options = []
     for stock in available:
         if stock <= use_pct:
@@ -153,6 +180,9 @@ def weigh_plan(use_pct: float, available):
     # the wrong answer -- ethyl butyrate is third on the influence list and
     # vanished from one draft of this sheet -- so make an intermediate first,
     # which is what a bench would do anyway.
+    if not has_neat:
+        # No neat material to make an intermediate from.
+        return None, None, None, None
     for mid in (10.0, 1.0, 0.1):
         if mid <= use_pct:
             continue
@@ -204,7 +234,7 @@ def main() -> int:
 
     inv = inventory()
     anchors = measured_anchors()
-    stocked, have_sheet = stocked_dilutions()
+    stocked, no_neat, have_sheet = stocked_dilutions()
     wl_path = ROOT / args.worklist
     if not wl_path.is_file():
         raise SystemExit(f"{args.worklist} is missing; run "
@@ -247,16 +277,18 @@ def main() -> int:
         use = inv[n]["use"]
         # Neat plus whatever dilutions the inventory records. With no sheet to
         # read, assume the usual decades.
-        avail = [100.0] + (stocked.get(n, []) if have_sheet
-                           else [10.0, 1.0, 0.1])
+        has_neat = n not in no_neat
+        avail = ([100.0] if has_neat else []) + (
+            stocked.get(n, []) if have_sheet else [10.0, 1.0, 0.1])
         stock, grams, got, premix = weigh_plan(
-            use, sorted(set(avail), reverse=True))
+            use, sorted(set(avail), reverse=True), has_neat)
         if stock is None:
             unreachable.append(n)
             continue
         number[k] = pos
         rows.append({"blotter": pos, "material": n, "stock_pct": stock,
-                     "grams_of_stock": grams, "grams_of_diluent": DILUENT_G,
+                     "grams_of_stock": grams,
+                     "grams_of_diluent": DILUENT_G if grams else 0.0,
                      "gives_pct": round(got, 4),
                      "your_use_level_pct": round(use, 4),
                      "premix_pct": premix[0] if premix else "",
@@ -280,7 +312,7 @@ def main() -> int:
     number = {k: renum[v] for k, v in number.items() if v in renum}
     judge_order = [k for k in judge_order if k in number]
     by_num = {r["blotter"]: r for r in rows}
-    total_dil = DILUENT_G * len(rows)
+    total_dil = sum(r["grams_of_diluent"] for r in rows)
     print("=" * 76)
     print(f"STRENGTH SESSION 1 — {len(rows)} blotters, "
           f"{len(picked)} materials".center(76))
@@ -368,6 +400,11 @@ WHY THESE {args.top} MATERIALS
             print(f"  {r['blotter']:4d}  first make {r['premix_pct']:g}% of "
                   f"{r['material']}: {r['premix_neat_g']:.2f} g neat + "
                   f"{r['premix_dpg_g']:.2f} g {args.diluent}")
+        if not r["grams_of_stock"]:
+            print(f"  {r['blotter']:4d}  {'--':>7s}    "
+                  f"{r['stock_pct']:>8g}%  {'no DPG':>6s}  "
+                  f"{r['material']}{star}  <- dip straight into the stock")
+            continue
         print(f"  {r['blotter']:4d}  {r['grams_of_stock']:7.2f} g  "
               f"{r['stock_pct']:>8g}%  {DILUENT_G:5.2f} g  "
               f"{r['material']}{star}")
