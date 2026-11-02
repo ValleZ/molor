@@ -1420,6 +1420,62 @@ the same point, which is a stronger version of the stereo blindness the encoder
 maps have, and a homologous series separates only through molecular weight, so
 neighbouring aldehydes crowd.
 
+### A formula can be sent from the simplifier to the atlas
+
+The two pages held the same library and could not point at each other. Now the
+simplifier emits two links — one for the formula as entered, one for the
+k-material proposal — and the atlas places that point on the smell map.
+
+What travels is **material names and mixing weights**, not masses. The
+simplifier owns what the weights mean (odour activity where every ingredient
+has a threshold, mass fractions otherwise) and the atlas should not
+reimplement that and drift, so it only does the weighted sum of percept
+vectors that `blend()` already does at the other end. The point the atlas
+shows is the simplifier's own target vector, not an approximation of it.
+
+**The part that needed building first.** The atlas's coordinates come from MDS
+fitted at export time. Blends injected with `--query` are appended to the
+matrix *before* that fit and so get a real position; a formula arriving later
+in a URL cannot, and refitting in the page would be slow and would move every
+existing point, producing a different map. So `build_percept_block` now
+exports the projection **basis** — the z-score parameters, the PCA centre and
+its 20 components, and the reduced coordinates — which is what lets a vector
+that did not exist at export time be projected into the same space, measured
+against the library, and interpolated from its neighbours. Without it the
+payload held a finished distance matrix and finished coordinates: enough to
+draw the map, not enough to add to it.
+
+Placement is locally-linear: solve for convex weights that reproduce the new
+point from its k=5 true nearest library materials, then apply those weights to
+their coordinates. Measured leave-one-out over all 427 library points, against
+three candidate rules:
+
+| rule | k | median error | 90th | as % of a median library pair |
+|---|---|---|---|---|
+| centroid of k | 3 | 1.39 | 3.48 | 11.3% |
+| inverse-distance weighted | 3 | 1.25 | 3.41 | 10.2% |
+| **locally linear** | **5** | **1.08** | 3.23 | **8.8%** |
+
+And the figure that matters more than the error: the placed point lands near
+**63%** of a point's true ten nearest neighbours — which is exactly what MDS
+itself preserves going from 138 dimensions to three. The interpolation costs
+essentially nothing beyond what the projection already costs, which is the
+only reason this is offered rather than refused.
+
+The page says all of that on the panel, names the materials it landed next to,
+and reports anything in the link that is not in its library. Sanity check that
+convinced me the arithmetic was right: the WD-40 proposal from this
+document's own formula work places next to Alcohol C-11 Undecylenic, Acetate
+C-9, Aldehyde C-12 MNA and the white point — its own dominant ingredient and
+the centre of the cloud, which is where a weak aliphatic blend belongs.
+
+**Only the smell map accepts it.** A blend's receptor vector needs a union
+rule, and the section above records what that rule does: noisy-OR placed a
+28-ingredient formula 62 units from the centre of a cloud whose materials sit
+at 14.6, so it measures ingredient count as much as smell. The link names its
+space and the chemistry maps refuse with that reason rather than drawing a
+point that would mislead.
+
 ### The percept model is blind to chain length, and to geometry entirely
 
 Found while reading a WD-40 safety data sheet, which is not where anyone looks

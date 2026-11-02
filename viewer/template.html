@@ -436,6 +436,108 @@ window.addEventListener("error", function (ev) {
   function P() { return M().projections[state.proj]; }
   function is3D() { return Array.isArray(P().z); }
 
+  // ---- placing a formula that was not in the layout ----
+  // The 3D coordinates come from MDS fitted when the page was built, so a
+  // formula arriving in a link cannot join that fit: refitting here would be
+  // slow and would move every existing point, which is a different map. It is
+  // placed out of sample instead, and the basis the exporter ships is what
+  // makes that possible -- z-score, project into the same 20 components, find
+  // the true nearest library materials, and interpolate their coordinates.
+  //
+  // Leave-one-out over all 427 library points: median error 1.08 against a
+  // median library pair of 12.24, and the placed point lands near 63% of a
+  // point's true ten nearest neighbours -- the same 63% MDS itself preserves
+  // going 138 dimensions to three. So the interpolation costs almost nothing
+  // beyond what the projection already costs, which is the only reason this
+  // is offered at all.
+  function reduceVec(v) {
+    var b = M().basis;
+    if (!b) return null;
+    var z = [], j;
+    for (j = 0; j < v.length; j++) {
+      if (!b.keep[j]) continue;
+      z.push((v[j] - b.mean[j]) / (b.sd[j] || 1));
+    }
+    // PCA centres on its own mean, which is not zero after z-scoring on a
+    // different axis set, so subtract it before projecting.
+    var out = [];
+    for (var c = 0; c < b.components.length; c++) {
+      var row = b.components[c], acc = 0, t = 0;
+      for (j = 0; j < row.length; j++) {
+        acc += row[j] * (z[j] - b.centre[j]);
+        t++;
+      }
+      out.push(acc);
+    }
+    return out;
+  }
+  function placeVec(v) {
+    var b = M().basis;
+    if (!b) return null;
+    var r = reduceVec(v);
+    if (!r) return null;
+    var pr = P(), has3 = Array.isArray(pr.z);
+    var d = [], i, c, acc;
+    for (i = 0; i < b.reduced.length; i++) {
+      var row = b.reduced[i]; acc = 0;
+      for (c = 0; c < r.length; c++) { var t = row[c] - r[c]; acc += t * t; }
+      d.push([i, Math.sqrt(acc)]);
+    }
+    d.sort(function (a, z) { return a[1] - z[1]; });
+    var k = Math.min(b.k || 5, d.length), nb = d.slice(0, k);
+    // Locally linear weights: solve G w = 1 for the Gram matrix of the
+    // neighbours' offsets from the new point, clamp to non-negative and
+    // normalise. Ridge term keeps it stable when neighbours are collinear.
+    var A = [], tr = 0;
+    for (i = 0; i < k; i++) {
+      var off = [];
+      for (c = 0; c < r.length; c++) off.push(b.reduced[nb[i][0]][c] - r[c]);
+      A.push(off);
+    }
+    var G = [];
+    for (i = 0; i < k; i++) {
+      G.push([]);
+      for (var j2 = 0; j2 < k; j2++) {
+        acc = 0;
+        for (c = 0; c < r.length; c++) acc += A[i][c] * A[j2][c];
+        G[i].push(acc);
+        if (i === j2) tr += acc;
+      }
+    }
+    for (i = 0; i < k; i++) G[i][i] += 1e-3 * tr / k;
+    var w = solveSym(G, k);
+    if (!w) { w = []; for (i = 0; i < k; i++) w.push(1 / k); }
+    var sum = 0;
+    for (i = 0; i < k; i++) { if (w[i] < 0) w[i] = 0; sum += w[i]; }
+    if (!(sum > 1e-12)) { w = []; for (i = 0; i < k; i++) w.push(1 / k); sum = 1; }
+    var x = 0, y = 0, z3 = 0;
+    for (i = 0; i < k; i++) {
+      var ww = w[i] / sum, id = nb[i][0];
+      x += ww * pr.x[id]; y += ww * pr.y[id];
+      if (has3) z3 += ww * pr.z[id];
+    }
+    return { x: x, y: y, z: has3 ? z3 : 0, near: nb, reduced: r };
+  }
+  // Gauss-Jordan on a small symmetric system, solving G w = 1.
+  function solveSym(G, k) {
+    var m = [], i, j, r;
+    for (i = 0; i < k; i++) m.push(G[i].slice().concat([1]));
+    for (i = 0; i < k; i++) {
+      var piv = i;
+      for (r = i + 1; r < k; r++) if (Math.abs(m[r][i]) > Math.abs(m[piv][i])) piv = r;
+      if (Math.abs(m[piv][i]) < 1e-12) return null;
+      var tmp = m[i]; m[i] = m[piv]; m[piv] = tmp;
+      for (r = 0; r < k; r++) {
+        if (r === i) continue;
+        var f = m[r][i] / m[i][i];
+        for (j = i; j <= k; j++) m[r][j] -= f * m[i][j];
+      }
+    }
+    var out = [];
+    for (i = 0; i < k; i++) out.push(m[i][k] / m[i][i]);
+    return out;
+  }
+
   //  Orthographic orbit. 128 points, so a painter's algorithm is plenty and
   //  keeps the page free of any 3D library.
   var _rot = {x: [], y: [], d: []};
@@ -529,6 +631,62 @@ window.addEventListener("error", function (ev) {
   }
 
   // ---- drawing ----
+  // ---- a formula arriving from the simplifier ----
+  // The link carries material names and mixing weights, and the simplifier
+  // owns what those weights mean (odour activity where it can, mass
+  // otherwise), so all that happens here is the same weighted sum of percept
+  // vectors it computes at its end, then an out-of-sample placement.
+  var LINKED = null;
+  function readLinkedBlend() {
+    var h = (location.hash || "").replace(/^#/, "");
+    if (!h) return null;
+    var want = {}, parts = h.split("&");
+    for (var i = 0; i < parts.length; i++) {
+      var kv = parts[i].split("=");
+      if (kv.length === 2) want[kv[0]] = decodeURIComponent(kv[1]);
+    }
+    if (!want.blend) return null;
+    var byName = {};
+    for (i = 0; i < D.molecules.length; i++) {
+      byName[D.molecules[i].name.toLowerCase()] = i;
+    }
+    var items = [], missing = [], tot = 0;
+    want.blend.split(",").forEach(function (tok) {
+      var c = tok.lastIndexOf(":");
+      if (c < 0) return;
+      var nm = decodeURIComponent(tok.slice(0, c));
+      var w = parseFloat(tok.slice(c + 1));
+      if (!isFinite(w) || w <= 0) return;
+      var id = byName[nm.toLowerCase()];
+      if (id === undefined) { missing.push(nm); return; }
+      items.push([id, w]); tot += w;
+    });
+    if (!items.length) return null;
+    for (i = 0; i < items.length; i++) items[i][1] /= tot;
+    return {
+      items: items, missing: missing,
+      label: want.label || "linked formula",
+      space: want.space || "percept"
+    };
+  }
+  // Recomputed per space, because the vector and the basis are per space and
+  // only the smell map has a basis to place into.
+  function linkedPoint() {
+    if (!LINKED) return null;
+    var m = M();
+    if (!m.basis) return { unsupported: true };
+    var v = [], j;
+    for (j = 0; j < m.scores[0].length; j++) v.push(0);
+    for (var i = 0; i < LINKED.items.length; i++) {
+      var row = m.scores[LINKED.items[i][0]], w = LINKED.items[i][1];
+      for (j = 0; j < v.length; j++) v[j] += w * row[j];
+    }
+    var p = placeVec(v);
+    if (!p) return { unsupported: true };
+    p.vec = v;
+    return p;
+  }
+
   function draw() {
     if (!W || !H) resize();
     if (!state.fitted) fit(); else rotateAll();
@@ -694,6 +852,34 @@ window.addEventListener("error", function (ev) {
       ctx.globalAlpha = 1;
       ctx.fillStyle = isW ? muted : accent;
       ctx.fillText(qnm, qcx, qcy);
+    }
+
+    // The linked formula, drawn last so it sits above the cloud. A ring
+    // rather than a filled dot, because it is not a material and should not
+    // be mistaken for one, and its placement is interpolated rather than
+    // fitted like every other point here.
+    var lp = linkedPoint();
+    if (lp && !lp.unsupported) {
+      var cy2 = Math.cos(state.yaw), sy2b = Math.sin(state.yaw);
+      var cp2 = Math.cos(state.pitch), sp2 = Math.sin(state.pitch);
+      var rx2 = cy2 * lp.x + sy2b * lp.z;
+      var rz2 = -sy2b * lp.x + cy2 * lp.z;
+      var ry2 = cp2 * lp.y - sp2 * rz2;
+      var px = rx2 * state.k + state.tx, py = -ry2 * state.k + state.ty;
+      ctx.save();
+      ctx.strokeStyle = accent; ctx.lineWidth = 2.5;
+      ctx.beginPath(); ctx.arc(px, py, 11, 0, 6.2832); ctx.stroke();
+      ctx.lineWidth = 1; ctx.globalAlpha = 0.6;
+      ctx.beginPath(); ctx.arc(px, py, 17, 0, 6.2832); ctx.stroke();
+      ctx.globalAlpha = 1;
+      ctx.font = '700 12px "Archivo", system-ui, sans-serif';
+      var lw = ctx.measureText(LINKED.label).width;
+      ctx.fillStyle = surface; ctx.globalAlpha = 0.88;
+      ctx.fillRect(px + 20, py - 9, lw + 10, 18);
+      ctx.globalAlpha = 1;
+      ctx.fillStyle = accent;
+      ctx.fillText(LINKED.label, px + 25, py + 4);
+      ctx.restore();
     }
 
     var hiddenCount = groupList().filter(function (c) { return state.hidden[c]; }).length;
@@ -998,15 +1184,56 @@ window.addEventListener("error", function (ev) {
     return html;
   }
 
+  // A panel for the linked formula: what it is, where it sits, what it sits
+  // next to, and the one thing that is different about it -- its position is
+  // interpolated from its neighbours rather than fitted with everything else,
+  // so the error is quoted rather than left for the reader to wonder about.
+  function linkedHtml() {
+    if (!LINKED) return "";
+    var p = linkedPoint();
+    var h = '<h2>' + esc(LINKED.label) + '</h2>';
+    if (!p || p.unsupported) {
+      return h + '<p class="empty">This formula can only be placed on the '
+        + "<strong>Smell</strong> map. A blend receptor vector needs a union "
+        + "rule, and on this library that rule tracks how many "
+        + 'ingredients a formula has as much as what it smells like, so the '
+        + 'point would be misleading. Switch the Space selector back.</p>';
+    }
+    var b = M().basis || {};
+    var names = p.near.slice(0, 5).map(function (n) {
+      return '<button type="button" data-go="' + n[0] + '">'
+        + esc(D.molecules[n[0]].name) + '</button>';
+    }).join(", ");
+    h += '<p class="note">' + LINKED.items.length + ' materials, mixed by the '
+      + 'weights the simplifier sent'
+      + (LINKED.missing.length
+          ? ' — <span class="warn">' + LINKED.missing.length
+            + ' not in this library and dropped: '
+            + esc(LINKED.missing.slice(0, 3).join(", ")) + '</span>'
+          : '')
+      + '.</p>';
+    h += '<p class="note">Nearest materials here: ' + names + '</p>';
+    h += '<p class="note">Its position is <strong>interpolated</strong>, not '
+      + 'fitted: the layout was solved before this formula existed, so it is '
+      + 'placed from its ' + (b.k || 5) + ' nearest library materials. Held-out '
+      + 'median error ' + (b.looMedianError || "?") + ' against a median '
+      + 'library pair of ' + (b.mapMedianPair || "?") + ', and it lands near '
+      + Math.round(100 * (b.looNeighbourKeep || 0)) + "% of the true nearest "
+      + "neighbours of a point — which is what this projection manages "
+      + "for its own points anyway.</p>";
+    return h;
+  }
+
   function renderDetail() {
     var el = document.getElementById("detail");
     var rank = rankingHtml();
+    var linked = linkedHtml();
     if (state.sel === null) {
-      el.innerHTML = rank
+      el.innerHTML = linked + (rank
         || ('<h2>Inspector</h2><p class="empty">Click a point to inspect it. '
             + 'Shift-click a second point to compare two materials. '
             + 'Type an odour descriptor in the search box to rank the library '
-            + 'on it.</p>');
+            + 'on it.</p>'));
       bindGo(el);
       return;
     }
@@ -1424,6 +1651,19 @@ window.addEventListener("error", function (ev) {
     });
   }());
 
+  LINKED = readLinkedBlend();
+  if (LINKED && LINKED.space && D.models[LINKED.space]) {
+    state.model = LINKED.space;
+    var pk = Object.keys(D.models[state.model].projections);
+    if (pk.indexOf(state.proj) < 0) {
+      var three = pk.filter(function (k) {
+        return Array.isArray(D.models[state.model].projections[k].z);
+      });
+      state.proj = three.length ? three[0] : pk[0];
+    }
+    var msel = document.getElementById("model");
+    if (msel) msel.value = state.model;
+  }
   resize(); chooseView(); draw(); renderDetail(); renderFoot();
 })();
 </script>
