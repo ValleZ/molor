@@ -753,8 +753,73 @@ knowledge is present, in the right receptor, at the top of the panel. It is
 destroyed on the way out, by reading a 386-dimensional panel through an
 unweighted global distance. Unlike a hole in someone else's dataset, that is
 ours, and it suggests the obvious experiment: a receptor-weighted or
-receptor-selected distance, which would also change what "chemistry, not
-smell" below is entitled to claim. Nothing here has tried it yet.
+receptor-selected distance. That experiment has now been run, and it does not
+work — see immediately below.
+
+#### The reweighting was tried, and it failed its own pass condition
+
+`scripts/receptor_metric.py`. If one informative receptor is drowned by 385
+others, weight the columns. The reason this might not work is that choosing
+weights needs odour supervision, and a weighting fitted to odour labels may
+just be the labels doing the work — the same circularity that produced the
+retracted 7.7-vs-52.8 result below. So the design was fixed before the first
+run:
+
+- weights learned **only** from GS-LF label overlap, which is human binary tags;
+- judged **only** by graded human panels nothing here was fitted on —
+  Dravnieks 1985 (146 descriptors, 46 molecules in common) and Keller 2016
+  (20 descriptors, ~57 subjects, 115 in common);
+- split **on materials**, not on pairs, and scored only on pairs where *both*
+  materials were held out, because a material's weight contribution would
+  otherwise be learned from its own other pairs;
+- **pass condition, registered in the script's docstring before running it:
+  beat the unweighted baseline on *both* panels.** One of two is not a result.
+
+Two weightings were fitted — a cheap per-receptor correlation weighting, and a
+diagonal metric learned by gradient descent — over 40 random half splits of
+the materials. Spearman against the panel, signed so larger is better:
+
+| | Dravnieks | Keller |
+|---|---|---|
+| unweighted (the current pipeline) | +0.017 | +0.011 |
+| correlation weighting | +0.018 | +0.013 |
+| learned diagonal metric | **+0.057** | +0.009 |
+| ECFP4 Tanimoto (structure only) | +0.064 | +0.017 |
+
+Paired per split against the baseline, the learned metric wins 85% of splits
+on Dravnieks (mean Δ +0.032) and **25%** on Keller (mean Δ −0.006). Every
+confidence interval spans zero. So it fails the pass condition, and it fails it
+in precisely the way the pass condition was written to catch: had only
+Dravnieks been reported, this would read as a modest success.
+
+The more useful observation is the size of the whole table. Nothing in it is
+distinguishable from nothing. The unweighted receptor distance predicts
+independent panel similarity at +0.017 and +0.011; structure itself manages
++0.064 and +0.017. At this magnitude the methods are being compared inside the
+noise, and the comparison is not capable of resolving receptors from structure,
+let alone one weighting from another.
+
+What that does and does not establish. It does **not** exclude a small effect:
+46 and 115 molecules, and 20 coarse descriptors in Keller's case, are weak
+instruments. It does exclude a *large* one — and a large one is what the musk
+case needs, since uniting nitro with macrocyclic musks means moving a pair from
+the 85th percentile to somewhere near the 10th. That move is not available from
+reweighting this panel.
+
+So the correction above stands as a correction — the knowledge is in OR5AN1 and
+the global distance discards it — without licensing the repair it suggested.
+The honest summary is that the panel contains at least one genuinely
+odour-relevant axis and not enough of them to build a metric on, which is a
+sharper version of the same conclusion the next section reaches by a different
+route.
+
+One bug found and fixed on the way, recorded because the first run of this
+script reported a clean null that was an artefact: the learned metric
+parameterised its weights as `w = a²` and initialised `a` at zero, where the
+gradient of `w` is also exactly zero. The optimiser never moved, the "learned"
+metric stayed uniform, and it reported a difference from the baseline of
+exactly +0.0000 on both panels. A null result that is *too* clean is a bug
+report.
 
 Two honest limits on this correction. OR5AN1 unites nitro and macrocyclic
 musks and does *not* pick up the polycyclic or alicyclic ones — Tonalide,
@@ -1832,6 +1897,7 @@ scripts/          everything measured in this document, one script per claim
   mud.py / olfactory_white.py   the white point, and how few materials reach it
   musk_test.py              do the four musk chemotypes recognise each other
   musk_receptor.py          OR5AN1 does; the global distance discards it
+  receptor_metric.py        can reweighting get it back? pre-registered, no
   bench_simplify.py         the simplifier against the hand heuristic
   discriminating_blends.py  blends whose smell would decide the mixture rule
   export_viewer_data.py / build_viewer.py          the atlas
