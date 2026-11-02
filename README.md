@@ -1476,6 +1476,60 @@ at 14.6, so it measures ingredient count as much as smell. The link names its
 space and the chemistry maps refuse with that reason rather than drawing a
 point that would mislead.
 
+### A fourth threshold tier, from the KFO-Atlas
+
+The KFO-Atlas (Leibniz-LSB; 2282 aroma profiles, 896 key food odorants)
+publishes an odour threshold per compound keyed by PubChem CID. 179 of this
+library's 396 molecules match it by InChIKey, and 125 of those were carrying a
+k-nearest-neighbour guess.
+
+**Whether these are water thresholds was tested, because my first reading
+assumed they were food-matrix values needing conversion and that was wrong.**
+
+*The variation across foods is not a matrix effect.* Of 331 compounds
+appearing in three or more food categories, only 50 have one value per
+category — what a matrix effect looks like — while **281 vary within a single
+category**. All wines, different numbers. That is different papers citing
+different literature thresholds. 389 of 890 compounds use one value across
+every food they appear in.
+
+*There is no systematic offset, so there is nothing to convert.* Against this
+inventory's compiled water thresholds the median ratio is **1.13×**, and the
+ratio tracks cLogP at only **Spearman +0.285**. A fat-matrix effect would be
+strongly logP-dependent and biased high. This is neither.
+
+*And it is as accurate as the column it joins:*
+
+| | median error vs compiled | within a decade |
+|---|---|---|
+| KFO-Atlas median | **2.4×** | 81% |
+| this project's k-NN imputation | 3.0× | 77% |
+
+So `kfo` ranks above `imputed` and below `compiled`. 125 materials move from
+guessed to published; the tiers are now 125 compiled, 125 kfo, 185 imputed.
+
+**Compiled is never overridden**, because on the 13 matched compounds at or
+below 1 ppb KFO's error rises to 3.8× and misses *upward*: damascenone 0.002
+against 0.05, β-ionone 0.007 against 0.09, trans-4-decenal 0.1 against **25**.
+Food-chemistry papers report thresholds near the concentrations compounds
+occur at, not at their detection limit, and a threshold 250× too high
+over-doses a material detectable at a tenth of a part per billion.
+
+**Order of operations cost accuracy before it showed up as anything.** Feeding
+the KFO values into `impute()` as anchors moved its leave-one-out error from
+3.0× to **4.76×** — k-nearest-neighbour interpolation is only as good as the
+points it interpolates from, and KFO carries 2.4× of its own. Averaged over
+the column that was a net loss: 125 materials gained a 2.4× figure while 185
+others had their anchors degraded. The imputation now keeps the compiled
+column as its only anchors and KFO is applied over the top, which restores
+3.0×.
+
+Each KFO value carries its row count and full spread, and 68 of the 125 span
+more than 100×, so the page prints "median of 696 published values spanning
+0.001–16510 ppb" rather than a bare number. 215 air-phase rows were dropped
+rather than converted, as were 441 rows in units with no exact aqueous
+conversion.
+
 ### Oils do get a tier, and the inheritance needed a floor first
 
 An essential oil has no boiling point -- a distillate boils over a range --

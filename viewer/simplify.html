@@ -584,6 +584,12 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
     return '<a href="' + u + '" target="_blank" rel="noopener" '
       + 'style="color:var(--accent)">' + text + ' →</a>';
   }
+  function fmtThr(v) {
+    if (!(v > 0)) return "0";
+    if (v >= 100) return Math.round(v).toString();
+    if (v >= 1) return v.toFixed(1);
+    return v.toPrecision(2);
+  }
   function centredCos(a, b) {
     var na = 0, nb = 0, s = 0;
     for (var j = 0; j < ND; j++) {
@@ -1278,6 +1284,17 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
         // contains it, the choice has been made.
         if (useOav && m.thrSrc === "imputed") {
           note.push('<span class="warn">threshold imputed</span>');
+        }
+        // A published figure, but a median over papers that disagree. The
+        // spread travels with it so a median of 882 values spanning six
+        // orders of magnitude cannot read as a measurement.
+        if (useOav && m.thrSrc === "kfo") {
+          note.push('<span class="' + (m.thrWide ? "warn" : "dim") + '">'
+            + "threshold from KFO-Atlas, median of " + m.thrN
+            + (m.thrN === 1 ? " value" : " published values")
+            + (m.thrWide ? " spanning " + fmtThr(m.thrLo) + "–"
+                 + fmtThr(m.thrHi) + " ppb" : "")
+            + "</span>");
         }
         if (!STATE.inFormula[x.idx] && m.unver) {
           note.push('<span class="warn">a constituent structure, not a '
