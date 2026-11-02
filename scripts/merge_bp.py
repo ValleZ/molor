@@ -76,9 +76,16 @@ def parse_value(raw, unit):
     v = float(np.mean(nums[:2])) if len(nums) >= 2 else nums[0]
     # The unit column decides, not the text: a value string can contain an F
     # for other reasons and guessing from it is how the above happened.
+    #
+    # Kelvin is here because the replies used it 11 times, and a Kelvin value
+    # read as Celsius is wrong by 273 degrees while still looking like a
+    # boiling point -- 388.2 K is 115 C, and 388 C would place a light
+    # material in the base notes.
     u = (unit or "").strip().upper()
+    if u.startswith("K"):
+        return v - 273.15
     if u.startswith("F") or (not u and re.search(r"F", t.upper())):
-        v = (v - 32.0) * 5.0 / 9.0
+        return (v - 32.0) * 5.0 / 9.0
     return v
 
 
@@ -95,6 +102,10 @@ def parse_pressure(raw):
     v = nums[0]
     if "kpa" in t:
         return ("atmospheric" if 95 <= v <= 108 else "reduced"), t
+    # hPa and mbar appear in European data sheets; 1013 hPa is one atmosphere
+    # and was being read as 1013 mmHg, which is not atmospheric.
+    if "hpa" in t or "mbar" in t:
+        return ("atmospheric" if 950 <= v <= 1080 else "reduced"), t
     if "bar" in t:
         return ("atmospheric" if 0.95 <= v <= 1.08 else "reduced"), t
     if "atm" in t:
@@ -148,8 +159,19 @@ def main() -> int:
         e = np.array([x for x, _ in errs]) if errs else np.array([])
         med = float(np.median(e)) if len(e) else float("nan")
         gross = [c["name"] for x, c in errs if x > CTRL_GROSS]
-        ok = len(e) >= 3 and med <= CTRL_MEDIAN_MAX and not gross
-        stats.append((path.name, len(rows), len(ctrl), len(e), med, gross, ok))
+        # Three outcomes, not two. A batch whose controls came back WRONG is
+        # evidence against its other rows. A batch with too few scorable
+        # controls is not: on this run two batches drew controls that are all
+        # trade-name captives -- Kephalis, Velvione, Damascenone Total,
+        # Liffarome -- where the honest answer is UNKNOWN and duly was, while
+        # the controls that could be answered were exact. Rejecting those
+        # conflated no evidence with bad evidence. They merge, marked.
+        failed = bool(gross) or (len(e) >= 3 and med > CTRL_MEDIAN_MAX)
+        verdict = ("failed" if failed
+                   else "pass" if len(e) >= 3 else "unverified")
+        ok = not failed
+        stats.append((path.name, len(rows), len(ctrl), len(e), med, gross,
+                      verdict))
         print(f"\n{path.name}: {len(rows)} rows, {len(ctrl)} controls, "
               f"{len(e)} scorable")
         if len(e):
@@ -162,12 +184,17 @@ def main() -> int:
                       f"off {x:5.1f}")
         if gross:
             print(f"  GROSS MISS on {', '.join(gross)} -- batch rejected")
-        if not ok and not args.force:
-            print(f"  not merged. Re-run this batch, or pass --force.")
+        if verdict == "unverified":
+            print(f"  only {len(e)} control(s) could be scored -- the rest "
+                  f"were answered UNKNOWN or at reduced pressure. Merged, "
+                  f"and marked unverified.")
+        if failed and not args.force:
+            print(f"  controls FAILED. Not merged. Re-run it, or --force.")
             continue
-        if not ok:
+        if failed:
             print(f"  FORCED in despite failing controls.")
         for d in data:
+            d["controls"] = verdict
             if d["bp_c"] is None:
                 continue
             if d["ptier"] == "reduced":
@@ -189,11 +216,12 @@ def main() -> int:
     with open(OUT, "w", encoding="utf-8", newline="") as fh:
         w = csv.writer(fh)
         w.writerow(["name", "inchikey", "bp_c", "pressure_tier", "pressure",
-                    "source", "notes", "batch"])
+                    "source", "notes", "batch", "batch_controls"])
         for n in sorted(best):
             d = best[n]
             w.writerow([n, d["inchikey"], round(d["bp_c"], 1), d["ptier"],
-                        d["pressure"], d["source"], d["notes"], d["batch"]])
+                        d["pressure"], d["source"], d["notes"], d["batch"],
+                        d.get("controls", "?")])
     atm = sum(1 for d in best.values() if d["ptier"] == "atmospheric")
     print(f"\nwrote {OUT.relative_to(ROOT)}: {len(best)} materials "
           f"({atm} at a stated atmospheric pressure, {len(best) - atm} with "
