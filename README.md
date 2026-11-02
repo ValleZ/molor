@@ -59,6 +59,7 @@ reader does not act on a retracted claim:
 | coverage by odorous weight says how much of a formula was understood | **misleading when the drops were dilutions** -- a coffee accord read 96% covered with all three of its coffee materials dropped, because they were 10% and 1% stocks worth 2 neat parts of 70. The page now names dropped dilutions and says the figure understates what is missing |
 | a material whose judgements span two bins cannot be used | **false** -- the span of a set of numbers grows with its size, so that rule flagged the four materials a re-test had just resolved. Replaced by shrinkage against a measured per-judgement noise of 0.89 bins |
 | Calone sticks out of blends because it is powerful | **false** -- measured at x0.24 strength, among the weakest per gram in the set. It sticks out because it is isolated (74th percentile), not because it is strong; the two had been conflated |
+| musks do not cluster because OR5AN1's learned signal is weak, so "musk" was never in the training data | **false, and the opposite** — OR5AN1's logit spread is the 97th percentile of the panel, the three nitro musks are the top three materials in the library on it, and of all 386 receptors it ranks **first** on size-controlled musk preference. Deleting it from the panel changes every pairwise distance by 0.09% (Spearman +1.0000). The knowledge is there, in the right receptor; an unweighted global distance over 386 columns discards it. `scripts/musk_receptor.py` |
 | a fixed palette of ~25 materials could reach any smell | **false for single molecules** — the reachable set is the palette's convex hull: 25 materials capture 95% of the space's energy and still reproduce only 45% of the library to cosine 0.90 |
 | the centroid of percept space is the olfactory white point, the "mud" | **false, and the perfumer caught it on the bench** — the centroid is the *average* smell, not a flat one: sweet 0.45, fruity 0.44, floral 0.38, green 0.35, sd 0.075 across descriptors. It has character by construction. Their description was "bright and sharp, like bright light", which is a better name for it |
 
@@ -697,9 +698,71 @@ Musks are the textbook case: four unrelated scaffolds, one odour class.
 
 Musk Xylene and Galaxolide — both unmistakably musks — sit at the **96th
 percentile** of all 45,150 pairs. The model holds a tight, correct cluster per
-chemotype and has no concept uniting them. Expected, given the deorphanization
-gap: OR5AN1 is the known musk receptor and its learned signal is weak, so there
-is no training data from which "musk" could be learned as one thing.
+chemotype and has no concept uniting them.
+
+#### Correction: it is not a gap in the training data. The musk receptor works, and the metric discards it
+
+This section used to explain the result by blaming the data: "OR5AN1 is the
+known musk receptor and its learned signal is weak, so there is no training
+data from which `musk` could be learned as one thing." That was never
+measured. Measured now, with `scripts/musk_receptor.py`, every part of it is
+wrong.
+
+**The receptor is not weak.** OR5AN1 is column 12 of the panel, and its logit
+spread is the **97th percentile** of all 386 receptors — one of the panel's
+most discriminating columns, not a dead one.
+
+**It responds to musks, across unrelated scaffolds.** The three nitro musks
+are the top three materials in the entire library on it, and five macrocyclics
+are in its top forty:
+
+| | OR5AN1 z | rank in the library |
+|---|---|---|
+| Musk Xylene (nitro) | +4.95 | **1** of 396 |
+| Musk Ketone (nitro) | +4.24 | **2** |
+| Musk Ambrette (nitro) | +4.12 | **3** |
+| Civettone (macrocyclic) | +2.27 | 6 |
+| Ambrettolide (macrocyclic) | +2.11 | 8 |
+| Velvione (macrocyclic) | +2.06 | 9 |
+| Habanolide (macrocyclic) | +1.90 | 14 |
+| Muscone (macrocyclic) | +1.24 | 39 |
+| Tonalide (polycyclic) | −0.41 | 271 |
+| Cashmeran (polycyclic) | −1.34 | 366 |
+
+A nitroarene and a C15 macrolactone share no scaffold. On this one receptor
+they agree. Mean z over the 14 musks is +1.54 against −0.06 for the other 382,
+one-sided p = 0.0012.
+
+**It is not merely a size detector**, which is the obvious objection since
+musks are large and the response correlates +0.45 with molecular weight.
+Regress the response on rank molecular weight and compare musks to everything
+else on the residual: +0.79 against −0.03, one-sided p = 0.057 — marginal on
+14 musks. So the right comparison is not against zero but against the panel.
+Computing that same size-controlled musk preference for all 386 receptors puts
+OR5AN1 **first of 386** (effect +0.824, which is the panel maximum; next are
+OR2T27, OR2W5, OR13C9). Of all the receptors the model could have made the
+musk receptor, it made the right one.
+
+**And it makes no difference, because of the metric.** Delete OR5AN1 from the
+panel entirely and relayout: every pairwise distance agrees with the original
+at Spearman **+1.0000**, median change 0.09%. One column of 386 inside a
+Euclidean norm over PCA-20 cannot move anything, however correct it is.
+
+So the musk failure is not a deficiency of M2OR or of the checkpoint. The
+knowledge is present, in the right receptor, at the top of the panel. It is
+destroyed on the way out, by reading a 386-dimensional panel through an
+unweighted global distance. Unlike a hole in someone else's dataset, that is
+ours, and it suggests the obvious experiment: a receptor-weighted or
+receptor-selected distance, which would also change what "chemistry, not
+smell" below is entitled to claim. Nothing here has tried it yet.
+
+Two honest limits on this correction. OR5AN1 unites nitro and macrocyclic
+musks and does *not* pick up the polycyclic or alicyclic ones — Tonalide,
+Celestolide, Cashmeran and Helvetolide all sit at or below the library mean —
+so even the right receptor accounts for two of four chemotypes, which is what
+the receptor literature would predict rather than a failure. And 14 musks is a
+small sample; the rank-1-of-386 result is what carries the claim, not the
+p-value.
 
 ### A validation that looked like a pass, and was not
 
@@ -1767,6 +1830,8 @@ scripts/          everything measured in this document, one script per claim
   palette.py                the gamut of a fixed palette
   rule_bakeoff.py           five mixture rules against the oils
   mud.py / olfactory_white.py   the white point, and how few materials reach it
+  musk_test.py              do the four musk chemotypes recognise each other
+  musk_receptor.py          OR5AN1 does; the global distance discards it
   bench_simplify.py         the simplifier against the hand heuristic
   discriminating_blends.py  blends whose smell would decide the mixture rule
   export_viewer_data.py / build_viewer.py          the atlas
