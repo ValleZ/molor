@@ -933,6 +933,24 @@ positives, and on agreement with the two human panels — the same external
 yardstick as the reweighting experiment above, so the numbers sit beside each
 other.
 
+Two pieces of shorthand, since the verdict below turns on them.
+**"fingerprint"** is 2257 numbers computed by rules with nothing learned: a
+2048-bit ECFP4 vector, which hashes every atom's circular neighbourhood out to
+two bonds and sets that bit, plus RDKit's 209 molecular descriptors.
+**"ridge"** is ridge regression — one linear layer, no nonlinearity, least
+squares with an L2 penalty, fitted in closed form. So "fingerprint ridge" is a
+straight linear map from structural bits to odour words, about 208k
+coefficients, and the penalty it chose was the top of the grid in every fold,
+meaning heavily regularised. It is the least sophisticated thing in this
+section, which is the point: a 25 MB cross-attention model over a 650M-parameter
+protein language model loses to it.
+
+It is **not** the deployed percept model, which is an MLP 2257 → 512 → 256 → 138
+over 4987 molecules as a five-seed ensemble, at AUC 0.866. The ridge here is
+deliberately held to the same 374 molecules as the receptor block, because the
+comparison being made is receptors against fingerprints and not either against
+production.
+
 Scored on the MPNN store first, which turned out to be the wrong choice; both
 stores are compared further down.
 
