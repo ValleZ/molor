@@ -1149,6 +1149,17 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
           note.push('<span class="warn">a constituent structure, not a '
             + 'material anyone stocks</span>');
         }
+        // Two materials the percept model scores identically. It cannot
+        // tell an E/Z or stereo pair apart -- geraniol and nerol come back
+        // as the same array -- so a swap between them costs nothing HERE
+        // and costs something on a blotter. Said on the ingredient as well
+        // as on the substitution, because it is a limit of the model rather
+        // than a property of the choice.
+        if (m.twin && m.twin.length) {
+          note.push('<span class="warn">indistinguishable here from '
+            + esc(m.twin.join(", ")) + ' — the model cannot see the '
+            + 'difference, a nose can</span>');
+        }
         if (!STATE.inFormula[x.idx] && m.iso > 60) {
           // Only worth saying about a substitution. On an ingredient the
           // formula already contains it is not a choice anyone is making.

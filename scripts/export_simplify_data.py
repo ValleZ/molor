@@ -327,6 +327,29 @@ def main() -> int:
                 if o else None),
         })
 
+    # Materials whose percept vectors are bit-identical. ECFP4 radius 2 plus
+    # constitutional descriptors cannot separate an E/Z or stereo pair, so
+    # geraniol and nerol come out as the same array -- and a substitution
+    # engine scored on percept distance would then offer either as a perfect
+    # swap for the other at a reported cost of zero. The page says so instead.
+    # Equality is tested on the vector rather than on the fingerprint, since
+    # it is identical OUTPUT that misleads, whatever produced it.
+    twins = {}
+    seen = {}
+    for i, n in enumerate(names):
+        key = X[i].tobytes()
+        seen.setdefault(key, []).append(n)
+    for group in seen.values():
+        if len(group) > 1:
+            for n in group:
+                twins[n] = [o for o in group if o != n]
+    if twins:
+        print(f"  {len(twins)} materials share a percept vector with another: "
+              + "; ".join(sorted(f"{a} = {'/'.join(b)}"
+                                 for a, b in twins.items())[:3]))
+    for m in mats:
+        m["twin"] = twins.get(m["n"]) or None
+
     # Thresholds, filled and labelled. A material with no figure could not be
     # dosed and so could not be proposed at all, which is a worse answer than
     # a figure that is a factor of three out.

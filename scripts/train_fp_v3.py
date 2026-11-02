@@ -199,16 +199,31 @@ def main() -> int:
     keys = material_keys()
     scorable = {n: truth[k] for n, k in keys.items() if k in truth}
     idx = [i for i, n in enumerate(names) if n in scorable]
-    J = jaccard_matrix(np.stack([scorable[names[i]] for i in idx]))
-    iu = np.triu_indices(len(idx), k=1)
-    rho = float(spearmanr(centred_cosine(P[idx])[iu], J[iu]).statistic)
-    print(f"\n[v3] label-grounded similarity over {len(iu[0])} pairs: rho {rho:+.4f}")
-    print(f"     v1 +0.5505   v2 +0.3731   OpenPOM +0.4476   Uni-Mol +0.1508")
+    # The similarity check needs prediction-set molecules that carry human
+    # labels, and a --predict-csv of novel structures may have none: scoring
+    # petroleum alkanes against GS-LF crashed here on an empty stack. The
+    # model and its output are unaffected, so the right behaviour is to say
+    # the check could not run and still write the file.
+    if len(idx) >= 3:
+        J = jaccard_matrix(np.stack([scorable[names[i]] for i in idx]))
+        iu = np.triu_indices(len(idx), k=1)
+        rho = float(spearmanr(centred_cosine(P[idx])[iu], J[iu]).statistic)
+        print(f"\n[v3] label-grounded similarity over {len(iu[0])} pairs: "
+              f"rho {rho:+.4f}")
+        print(f"     v1 +0.5505   v2 +0.3731   OpenPOM +0.4476   "
+              f"Uni-Mol +0.1508")
+    else:
+        rho = float("nan")
+        print(f"\n[v3] label-grounded similarity not computed: only "
+              f"{len(idx)} of {len(names)} prediction molecules carry a "
+              f"GS-LF label")
+        print(f"     the out-of-fold AUC above is unaffected; it is measured "
+              f"on the training set")
 
     (ROOT / args.out).write_text(json.dumps({
         "checkpoint": f"fingerprint MLP v3 (ablation-selected, {args.ensemble}x ensemble)",
         "oof_mean_auc": round(float(aucs.mean()), 4),
-        "similarity_spearman": round(rho, 4),
+        "similarity_spearman": (round(rho, 4) if rho == rho else None),
         "config": {"hidden": list(HIDDEN), "batchnorm": BATCHNORM,
                    "dropout": DROPOUT, "pos_weight": POS_WEIGHT,
                    "scale_all": SCALE_ALL, "ensemble": args.ensemble},

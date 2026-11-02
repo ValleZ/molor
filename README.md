@@ -63,6 +63,7 @@ reader does not act on a retracted claim:
 | the receptor panel's odour signal can be recovered with a learned readout | **partly true, and not enough** — a ridge readout 386 → 138 descriptors roughly triples what the raw distance gets from the panel (ρ +0.024 → +0.094 on Dravnieks, +0.027 → +0.069 on Keller), so the geometry really was losing it. But a plain fingerprint reaches +0.201 and +0.084 on the same molecules and folds, and adding the panel to it changes nothing (AUC +0.002). The panel holds about a third of what structure gives and nothing structure does not. `scripts/receptor_readout.py` |
 | 229 library materials are covered by GS-LF, over 26 106 pairs | **false** — 374 and 69 751. The library was keyed on its own stereo InChIKey against GS-LF's flat `nonStereoSMILES` column, so every chiral or E/Z molecule silently failed to match: citral, limonene, cinnamaldehyde, the ionones, the cis-3-hexenyl esters. Third appearance of this same mistake, now one function, `eval_similarity.flat_key` |
 | upweighting OR5AN1 would therefore make musks cluster | **false, and backwards** — nitro musks sit at +4.4 z on it and macrocyclics at +1.8, so the axis that detects the class also separates its members; sweeping the weight to 10,000x moves those pairs from the 84th to the 94th percentile. A class detector is not a similarity axis. Against Keller's own MUSKY rating over 135 molecules OR5AN1 ranks 267 of 386, which does not confirm the identification either. What does hold: single receptors predict individual panel descriptors at median |rho| 0.37, an order of magnitude better than the whole 386-dim distance predicts similarity (+0.02) — but 54 different receptors are best for 146 descriptors, so importance is per question, not per receptor, and no single reweighting can use it. `scripts/receptor_importance.py` |
+| the percept model distinguishes the materials in the library | **not all of them** — ECFP4 radius 2 gives every n-alkane from C7 to C28 the identical eight on-bits, so chain length is invisible to it. 10 groups covering 29 of 396 library materials share one fingerprint. Geraniol/Nerol, Geranyl/Neryl Acetate and Isomenthone/Menthone get **bit-identical** percept vectors, so the simplifier offers either as a perfect substitute for the other at zero cost. `scripts/percept_blind_spots.py` |
 | a fixed palette of ~25 materials could reach any smell | **false for single molecules** — the reachable set is the palette's convex hull: 25 materials capture 95% of the space's energy and still reproduce only 45% of the library to cosine 0.90 |
 | the centroid of percept space is the olfactory white point, the "mud" | **false, and the perfumer caught it on the bench** — the centroid is the *average* smell, not a flat one: sweet 0.45, fruity 0.44, floral 0.38, green 0.35, sd 0.075 across descriptors. It has character by construction. Their description was "bright and sharp, like bright light", which is a better name for it |
 
@@ -1357,6 +1358,64 @@ them is cheap and has not been done. The next subsection is the reason it is
 not urgent: the whole column is agreement with the training labels, and it does
 not survive contact with independent panel data either way.
 
+### The percept model is blind to chain length, and to geometry entirely
+
+Found while reading a WD-40 safety data sheet, which is not where anyone looks
+for a model defect. Every n-alkane from C7 to C28 has the *same* ECFP4
+fingerprint — the identical eight on-bits of 2048. A circular fingerprint of
+radius 2 sees a chain of CH2 groups as the same small set of substructures
+however long the chain is, so chain length is invisible to it. The percept
+model's only remaining handle on such a molecule is the 209-descriptor block:
+molecular weight, cLogP and the rest.
+
+`scripts/percept_blind_spots.py` groups the library by exact fingerprint. **10
+groups collide, covering 29 of 396 materials**, and they divide into two kinds
+that are not equally bad.
+
+**Chain-length collisions, separated only by molecular weight.** The six
+aliphatic aldehydes C-7 to C-12 share one fingerprint; so do five ethyl esters,
+three fatty acids, and the gamma and delta lactones. The descriptor block does
+pull them apart, and at the extremes convincingly — Aldehyde C-7 to C-12 is
+0.92, two just-noticeable steps, and the model does move `soapy` and `waxy` up
+the list as the chain grows, which is right. But *neighbouring* members land
+below the 0.439 yardstick: C-7 against C-8 is 0.19. Three groups fall entirely
+below it — the gamma lactones (0.13–0.29), the delta lactones (0.14), and
+trans-2-nonenal against trans-2-decenal (0.16) — so for those the model's
+separation is nominal.
+
+**Geometric and stereo collisions, with no separation at all.** Three pairs get
+a **bit-identical** percept vector, 0.0000 apart:
+
+| pair | both read as |
+|---|---|
+| Geraniol 95 / Nerol | rose, citrus, lemon, clean |
+| Geranyl Acetate / Neryl Acetate | rose, geranium, fruit skin, tropical |
+| Isomenthone / Menthone | cooling, mint, solvent, camphoreous |
+
+Not approximately equal — the same array. These are E/Z and stereo isomers, so
+the fingerprint is identical and so are molecular weight and essentially every
+constitutional descriptor. The model has no channel through which to say they
+differ, and they do differ: geraniol is the sweeter, rosier of the pair and
+nerol the fresher, and a perfumer buys one rather than the other on purpose.
+
+**This one has a consequence, not just an interest.** The simplifier scores
+substitutions by percept distance, so it will offer either member of these
+pairs as a *perfect* substitute for the other, at a reported cost of zero. That
+is wrong and the page now says so where it can. It is also the sharpest
+statement of a limit the rest of this document reaches by other routes: this is
+a 2D-constitutional model of smell, and the two encoders that could carry
+geometry either discard bond features by design (the GCN) or annihilate them in
+their trained weights (the MPNN).
+
+Three honest notes. 29 of 396 is 7% of the library, so this is a bounded defect
+rather than a pervasive one. The 0.439 yardstick is a median nearest-neighbour
+distance and not a measured perceptual threshold, so "below the yardstick"
+means "closer than typical neighbours", not "provably indistinguishable to a
+nose". And the chain-length groups are separated by a real signal — molecular
+weight genuinely tracks the shift from fruity-citrus to soapy-waxy in an
+aldehyde series — it is just a thin channel to carry a whole homologous series
+on.
+
 ### Adding a label does not fix a molecule
 
 Twenty-two library molecules carry no GS-LF label and are predicted from
@@ -2186,6 +2245,7 @@ scripts/          everything measured in this document, one script per claim
   rule_bakeoff.py           five mixture rules against the oils
   mud.py / olfactory_white.py   the white point, and how few materials reach it
   musk_test.py              do the four musk chemotypes recognise each other
+  percept_blind_spots.py    materials the percept model cannot tell apart
   musk_receptor.py          OR5AN1 does; the global distance discards it
   encoder_panel_test.py     GCN vs MPNN on human panels, paired; still a tie
   receptor_metric.py        can reweighting get it back? pre-registered, no
