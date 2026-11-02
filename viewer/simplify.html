@@ -1187,7 +1187,11 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
       + row("your formula", an) + row("this proposal", bn) + "</table>"
       + '<p class="note">Shares are of the part that has a tier; the last '
       + "column is how much does not, and is excluded from the comparison "
-      + "rather than counted as zero everywhere.</p>";
+      + "rather than counted as zero everywhere. An oil has no boiling point, "
+      + "so its tier is inherited from its constituents where enough of the "
+      + "oil is accounted for — cedarwood, patchouli, sandalwood and "
+      + "vetiver have none, which is why a formula built on them can be "
+      + "mostly untiered.</p>";
     if (cover < ARC_MIN_COVER) {
       h += '<p class="note">Too little of this is classified to compare the '
         + "arc: " + (100 - cover).toFixed(0) + "% of one side has no "
@@ -1261,6 +1265,14 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
         var m = MAT[x.idx];
         var note = [];
         if (m.oil) note.push('<span class="pill eo">EO</span> ' + esc(m.built || ""));
+        // An oil's tier is inherited from its constituents, so say from how
+        // much of the oil. Vetiver was being given one from 1% of its weight
+        // before a coverage floor went in, and anything below 60% now gets
+        // none at all rather than a confident guess.
+        if (m.oil && m.vol && m.volSrc === "inherited") {
+          note.push('<span class="dim">' + esc(m.vol)
+            + " tier, inherited from " + m.volCov + "% of the oil</span>");
+        }
         // Offered, but nothing here has checked it is a perfumery material.
         // Only worth saying about a substitution: if the formula already
         // contains it, the choice has been made.

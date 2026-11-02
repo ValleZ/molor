@@ -1476,6 +1476,49 @@ at 14.6, so it measures ingredient count as much as smell. The link names its
 space and the chemistry maps refuse with that reason rather than drawing a
 point that would mislead.
 
+### Oils do get a tier, and the inheritance needed a floor first
+
+An essential oil has no boiling point -- a distillate boils over a range --
+so the 39 oils had no volatility tier at all. A reader pointed out that
+suppliers classify them anyway: Fraterworks files rosewood as a heart note
+with substantivity over 12 hours, and publishes a GC composition to go with
+it. So classification is possible in principle, and this repository already
+had the machinery: `oil_classes()` averages the constituents' tiers weighted
+by GC share, written for `volatility_profile.py` and never wired into either
+page.
+
+Wiring it in unmodified would have been worse than leaving the oils blank. It
+reported **30 tops, 6 middles and no bases**, which is a description of its
+own coverage rather than of the oils:
+
+| oil | tier assigned | from this much of its weight |
+|---|---|---|
+| Cedarwood, Patchouli, Sandalwood | *none* | **0%** |
+| Vetiver | Mid | **1%** |
+| Peppermint | Top | 3% |
+| Thyme | Top-Mid | 5% |
+| Jasmine Absolute | Top-Mid | 50% |
+| Rosewood | Top-Mid | 98% |
+
+Vetiver is the archetypal base note and was being tiered from one per cent of
+itself. The bias is systematic rather than random: the constituents that carry
+tiers are the ones a perfumer stocks, which are the light ones, so partial
+coverage pushes every oil upward. The three oils with no tiered constituent at
+all are exactly the three obvious bases, because their sesquiterpenoids
+entered this library as reference structures.
+
+So `MIN_OIL_COVER = 0.60`. 25 of 39 oils clear it and the other 14 stay
+blank, which is the same discipline as the threshold tiers: a figure that
+cannot say what it rests on does not get published. Each oil carries the
+covered share, and the simplifier prints it on the row -- "top tier, inherited
+from 71% of the oil" rather than an unqualified label.
+
+**And it is still approximate at full coverage.** Rosewood is 98% accounted
+for and comes out Top-Mid, where its supplier calls it a heart note lasting
+over 12 hours. Linalool is 77% of the oil and is tiered Top-Mid, but a
+linalool-dominated oil does not behave like linalool. A supplier
+classification would be better evidence than an inheritance, where one exists.
+
 ### The simplifier reports the volatility arc it might have broken
 
 The percept vector this project matches is one snapshot, and the section on

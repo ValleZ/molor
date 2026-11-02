@@ -246,7 +246,7 @@ def volatility():
     completely different arc. Tiers are carried here so the page can say when
     that has happened.
     """
-    from volatility_profile import GROUP
+    from volatility_profile import GROUP, oil_classes, volatility_classes
 
     rec, bps = {}, {}
     ip = ROOT / "data" / "inventory" / "inventory.csv"
@@ -270,7 +270,15 @@ def volatility():
             continue
         out[n] = (("top" if v < BP_TOP else
                    "middle" if v < BP_BASE else "base"), "derived")
-    return out
+    # Oils inherit a tier from their constituents weighted by GC share, where
+    # enough of the oil is accounted for. An oil has no boiling point -- a
+    # distillate boils over a range -- so this is the only route, and the
+    # coverage floor is what stops it inventing one: vetiver was coming out
+    # Mid on 1% of its weight.
+    oil_t, oil_cov = oil_classes(volatility_classes(), with_cover=True)
+    for n, t in oil_t.items():
+        out.setdefault(n, (GROUP[t], "inherited"))
+    return out, oil_cov
 
 
 def main() -> int:
@@ -317,7 +325,7 @@ def main() -> int:
     def _norm(x):
         return " ".join(_re.sub(r"[^a-z0-9]+", " ", x.lower()).split())
     strength = load_strength()
-    vol = volatility()
+    vol, oil_cov = volatility()
     n_blocked = 0
     n_unverified = 0
     mats = []
@@ -366,6 +374,10 @@ def main() -> int:
             "own": bool(n in inv),
             "vol": vol.get(n, (None, None))[0],
             "volSrc": vol.get(n, (None, None))[1],
+            # How much of an oil's GC weight the tier rests on, so the page
+            # can say "inherited from 71% of the oil" instead of implying a
+            # measurement.
+            "volCov": (round(100 * oil_cov[n]) if n in oil_cov else None),
             "oil": bool(o),
             "built": (", ".join(
                 f"{k} {100 * v:.0f}%" for k, v in
@@ -422,6 +434,7 @@ def main() -> int:
         "volMeta": {
             "recorded": sum(1 for v in vol.values() if v[1] == "recorded"),
             "derived": sum(1 for v in vol.values() if v[1] == "derived"),
+            "inherited": sum(1 for v in vol.values() if v[1] == "inherited"),
             "agreement": 0.74, "bpTop": BP_TOP, "bpBase": BP_BASE,
         },
         "yardstick": round(yardstick, 4),

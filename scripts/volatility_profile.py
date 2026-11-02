@@ -69,30 +69,56 @@ def volatility_classes():
     return out
 
 
-def oil_classes(vol, naturals_path="artifacts/naturals.json"):
+#: An oil needs this much of its GC weight sitting on tiered constituents
+#: before it gets a tier at all. Without a floor the inheritance was
+#: confidently wrong: vetiver came out Mid on 1% of its weight, peppermint Top
+#: on 3%, thyme Top-Mid on 5%. The constituents that carry tiers are the ones
+#: a perfumer stocks, which are the light ones, so partial coverage does not
+#: merely add noise -- it biases every oil upward. 13 of 39 oils fall below
+#: half and are better left unclassified than guessed.
+MIN_OIL_COVER = 0.60
+
+
+def oil_classes(vol, naturals_path="artifacts/naturals.json",
+                min_cover=MIN_OIL_COVER, with_cover=False):
     """An oil inherits a tier from its constituents, weighted by GC share.
 
     Petitgrain is mostly linalyl acetate and linalool, both Top-Mid, so it
     behaves as a top note; vetiver is sesquiterpenoids and behaves as a base.
     Without this every oil would be unclassified, and oils are often most of
     a formula's weight.
+
+    Only where enough of the oil is accounted for -- see MIN_OIL_COVER. The
+    three oils with no tiered constituent at all, cedarwood, patchouli and
+    sandalwood, are the obvious base notes, because their sesquiterpenoids
+    entered this library as reference structures and never got a tier. An
+    inheritance that silently skips them and then reports 30 tops and no
+    bases is describing its own coverage, not the oils.
+
+    Even at full coverage it is approximate. Rosewood is 98% accounted for
+    and comes out Top-Mid, where its supplier classifies it a heart note with
+    substantivity over 12 hours: linalool is 77% of the oil and is tiered
+    Top-Mid, but a linalool-dominated oil does not behave like linalool.
     """
     path = ROOT / naturals_path
     if not path.is_file():
         return {}
     blob = json.loads(path.read_text(encoding="utf-8"))
     rank = {t: i for i, t in enumerate(TIERS)}
-    out = {}
+    out, cover = {}, {}
     for oil, v in blob.get("naturals", {}).items():
         comp = v.get("composition_used") or {}
+        tot = sum(comp.values())
         num = den = 0.0
         for con, share in comp.items():
             if con in vol:
                 num += share * rank[vol[con]]
                 den += share
-        if den > 0:
+        frac = (den / tot) if tot > 0 else 0.0
+        cover[oil] = frac
+        if den > 0 and frac >= min_cover:
             out[oil] = TIERS[int(round(num / den))]
-    return out
+    return (out, cover) if with_cover else out
 
 
 def main() -> int:

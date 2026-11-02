@@ -739,16 +739,29 @@ def main() -> int:
                 pass
         print(f"  boiling points: {len(bps)} fetched values available")
 
+    # Oils have no boiling point -- a distillate boils over a range -- so an
+    # oil inherits its tier from its constituents weighted by GC share, where
+    # enough of it is accounted for. Without the floor that inheritance
+    # reported 30 tops, 6 middles and no bases at all, which described its own
+    # coverage rather than the oils: vetiver scored Mid on 1% of its weight
+    # and cedarwood, patchouli and sandalwood had no tiered constituent.
+    from volatility_profile import oil_classes, volatility_classes
+    oil_t, oil_cov = oil_classes(volatility_classes(), with_cover=True)
+    print(f"  oils: {len(oil_t)} of {len(oil_cov)} inherit a volatility tier "
+          f"from their composition")
+
     def tier_of(name):
-        """(group, provenance) -- recorded beats derived, derived beats none."""
+        """(group, provenance) -- recorded, then derived, then inherited."""
         rec = VOL_GROUP.get(usage.get(name, [None, None, None])[2])
         if rec:
             return rec, "recorded"
         bp = bps.get(name)
-        if bp is None:
-            return None, None
-        g = "top" if bp < BP_TOP else "middle" if bp < BP_BASE else "base"
-        return g, "derived"
+        if bp is not None:
+            g = "top" if bp < BP_TOP else "middle" if bp < BP_BASE else "base"
+            return g, "derived"
+        if name in oil_t:
+            return VOL_GROUP[oil_t[name]], "inherited"
+        return None, None
 
     # Measured relative strength, where a blotter session has one. A
     # multiplier above 1 means the material delivers more smell per gram than
@@ -914,6 +927,8 @@ def main() -> int:
              # split fragments exactly where the comment warns.
              "vol": tier_of(e.name)[0],
              "volSrc": tier_of(e.name)[1],
+             "volCov": (round(100 * oil_cov[e.name])
+                        if e.name in oil_cov else None),
              "note": "" if args.no_notes else notes.get(e.name, "")}
             for e in entries
         ],
