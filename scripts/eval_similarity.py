@@ -35,10 +35,36 @@ GSLF = "vendor/openpom/openpom/data/curated_datasets/curated_GS_LF_merged_4983.c
 MATERIALS = "library/input/expanded_materials.csv"
 
 
+def flat_key(smiles: str) -> str | None:
+    """A stereochemistry-independent InChIKey for matching against GS-LF.
+
+    The training file's key column is ``nonStereoSMILES`` -- flat by name and
+    by construction. A full InChIKey carries stereochemistry in its second
+    block, so keying the library on ``Chem.MolToInchiKey`` of its own
+    (stereo-bearing) SMILES failed to match every chiral or E/Z molecule:
+    citral, limonene, cinnamaldehyde, the cis-3-hexenyl esters, the ionones.
+    It reported 302 of 396 library molecules as GS-LF-covered where 374 is
+    true, and the same mistake once reported 94 unlabelled molecules against a
+    real figure of 22.
+
+    Stereochemistry is removed before the key is taken, so a stereoisomer
+    matches the flat training row that describes it. That is the right
+    behaviour here precisely because the labels themselves are non-stereo:
+    GS-LF does not claim to tell (R)- from (S)-carvone.
+    """
+    from rdkit import Chem
+
+    m = Chem.MolFromSmiles(smiles)
+    if m is None:
+        return None
+    Chem.RemoveStereochemistry(m)
+    return Chem.MolToInchiKey(m)
+
+
 def gslf_truth() -> tuple[dict[str, np.ndarray], list[str]]:
-    """InChIKey -> ground-truth label vector, from the human-annotated set."""
+    """Flat InChIKey -> ground-truth label vector, from the annotated set."""
     import pandas as pd
-    from rdkit import Chem, RDLogger
+    from rdkit import RDLogger
 
     RDLogger.DisableLog("rdApp.*")
     df = pd.read_csv(ROOT / GSLF)
@@ -47,22 +73,20 @@ def gslf_truth() -> tuple[dict[str, np.ndarray], list[str]]:
     Y = df[tasks].to_numpy(dtype=float)
     truth = {}
     for i, s in enumerate(df[smi_col].astype(str)):
-        m = Chem.MolFromSmiles(s)
-        if m is not None:
-            truth.setdefault(Chem.MolToInchiKey(m), Y[i])
+        k = flat_key(s)
+        if k is not None:
+            truth.setdefault(k, Y[i])
     return truth, tasks
 
 
 def material_keys() -> dict[str, str]:
-    """Library material name -> InChIKey."""
-    from rdkit import Chem
-
+    """Library material name -> flat InChIKey, matching :func:`gslf_truth`."""
     out = {}
     with open(ROOT / MATERIALS, newline="", encoding="utf-8-sig") as fh:
         for r in csv.DictReader(fh):
-            m = Chem.MolFromSmiles(r["smiles"])
-            if m is not None:
-                out[r["name"]] = Chem.MolToInchiKey(m)
+            k = flat_key(r["smiles"])
+            if k is not None:
+                out[r["name"]] = k
     return out
 
 

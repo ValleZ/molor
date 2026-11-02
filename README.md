@@ -60,7 +60,9 @@ reader does not act on a retracted claim:
 | a material whose judgements span two bins cannot be used | **false** -- the span of a set of numbers grows with its size, so that rule flagged the four materials a re-test had just resolved. Replaced by shrinkage against a measured per-judgement noise of 0.89 bins |
 | Calone sticks out of blends because it is powerful | **false** -- measured at x0.24 strength, among the weakest per gram in the set. It sticks out because it is isolated (74th percentile), not because it is strong; the two had been conflated |
 | musks do not cluster because OR5AN1's learned signal is weak, so "musk" was never in the training data | **false, and the opposite** — OR5AN1's logit spread is the 97th percentile of the panel, the three nitro musks are the top three materials in the library on it, and of all 386 receptors it ranks **first** on size-controlled musk preference. Deleting it from the panel changes every pairwise distance by 0.09% (Spearman +1.0000), so the global distance cannot see it. **But see the row below: this one overclaims too.** `scripts/musk_receptor.py` |
-| upweighting OR5AN1 would therefore make musks cluster | **false, and backwards** — nitro musks sit at +4.4 z on it and macrocyclics at +1.8, so the axis that detects the class also separates its members; sweeping the weight to 10,000x moves those pairs from the 84th to the 94th percentile. A class detector is not a similarity axis. Against Keller's own MUSKY rating over 115 molecules OR5AN1 ranks 228 of 386, which does not confirm the identification either. What does hold: single receptors predict individual panel descriptors at median |rho| 0.38, an order of magnitude better than the whole 386-dim distance predicts similarity (+0.03) — but 50 different receptors are best for 146 descriptors, so importance is per question, not per receptor, and no single reweighting can use it. `scripts/receptor_importance.py` |
+| the receptor panel's odour signal can be recovered with a learned readout | **partly true, and not enough** — a ridge readout 386 → 138 descriptors triples what the raw distance gets from the panel (ρ +0.024 → +0.094 on Dravnieks, +0.027 → +0.069 on Keller), so the geometry really was losing it. But a plain fingerprint reaches +0.201 and +0.084 on the same molecules and folds, and adding the panel to it changes nothing (AUC +0.002). The panel holds about a third of what structure gives and nothing structure does not. `scripts/receptor_readout.py` |
+| 229 library materials are covered by GS-LF, over 26 106 pairs | **false** — 374 and 69 751. The library was keyed on its own stereo InChIKey against GS-LF's flat `nonStereoSMILES` column, so every chiral or E/Z molecule silently failed to match: citral, limonene, cinnamaldehyde, the ionones, the cis-3-hexenyl esters. Third appearance of this same mistake, now one function, `eval_similarity.flat_key` |
+| upweighting OR5AN1 would therefore make musks cluster | **false, and backwards** — nitro musks sit at +4.4 z on it and macrocyclics at +1.8, so the axis that detects the class also separates its members; sweeping the weight to 10,000x moves those pairs from the 84th to the 94th percentile. A class detector is not a similarity axis. Against Keller's own MUSKY rating over 135 molecules OR5AN1 ranks 267 of 386, which does not confirm the identification either. What does hold: single receptors predict individual panel descriptors at median |rho| 0.37, an order of magnitude better than the whole 386-dim distance predicts similarity (+0.02) — but 54 different receptors are best for 146 descriptors, so importance is per question, not per receptor, and no single reweighting can use it. `scripts/receptor_importance.py` |
 | a fixed palette of ~25 materials could reach any smell | **false for single molecules** — the reachable set is the palette's convex hull: 25 materials capture 95% of the space's energy and still reproduce only 45% of the library to cosine 0.90 |
 | the centroid of percept space is the olfactory white point, the "mud" | **false, and the perfumer caught it on the bench** — the centroid is the *average* smell, not a flat one: sweet 0.45, fruity 0.44, floral 0.38, green 0.35, sd 0.075 across descriptors. It has character by construction. Their description was "bright and sharp, like bright light", which is a better name for it |
 
@@ -768,8 +770,8 @@ run:
 
 - weights learned **only** from GS-LF label overlap, which is human binary tags;
 - judged **only** by graded human panels nothing here was fitted on —
-  Dravnieks 1985 (146 descriptors, 46 molecules in common) and Keller 2016
-  (20 descriptors, ~57 subjects, 115 in common);
+  Dravnieks 1985 (146 descriptors, 50 molecules in common) and Keller 2016
+  (20 descriptors, ~57 subjects, 135 in common);
 - split **on materials**, not on pairs, and scored only on pairs where *both*
   materials were held out, because a material's weight contribution would
   otherwise be learned from its own other pairs;
@@ -782,26 +784,26 @@ the materials. Spearman against the panel, signed so larger is better:
 
 | | Dravnieks | Keller |
 |---|---|---|
-| unweighted (the current pipeline) | +0.017 | +0.011 |
-| correlation weighting | +0.018 | +0.013 |
-| learned diagonal metric | **+0.057** | +0.009 |
-| ECFP4 Tanimoto (structure only) | +0.064 | +0.017 |
+| unweighted (the current pipeline) | +0.016 | +0.022 |
+| correlation weighting | +0.015 | +0.024 |
+| learned diagonal metric | **+0.047** | +0.021 |
+| ECFP4 Tanimoto (structure only) | +0.082 | +0.025 |
 
-Paired per split against the baseline, the learned metric wins 85% of splits
-on Dravnieks (mean Δ +0.032) and **25%** on Keller (mean Δ −0.006). Every
+Paired per split against the baseline, the learned metric wins 88% of splits
+on Dravnieks (mean Δ +0.040) and **32%** on Keller (mean Δ −0.006). Every
 confidence interval spans zero. So it fails the pass condition, and it fails it
 in precisely the way the pass condition was written to catch: had only
 Dravnieks been reported, this would read as a modest success.
 
 The more useful observation is the size of the whole table. Nothing in it is
 distinguishable from nothing. The unweighted receptor distance predicts
-independent panel similarity at +0.017 and +0.011; structure itself manages
-+0.064 and +0.017. At this magnitude the methods are being compared inside the
+independent panel similarity at +0.016 and +0.022; structure itself manages
++0.082 and +0.025. At this magnitude the methods are being compared inside the
 noise, and the comparison is not capable of resolving receptors from structure,
 let alone one weighting from another.
 
 What that does and does not establish. It does **not** exclude a small effect:
-46 and 115 molecules, and 20 coarse descriptors in Keller's case, are weak
+50 and 135 molecules, and 20 coarse descriptors in Keller's case, are weak
 instruments. It does exclude a *large* one — and a large one is what the musk
 case needs, since uniting nitro with macrocyclic musks means moving a pair from
 the 85th percentile to somewhere near the 10th. That move is not available from
@@ -843,10 +845,10 @@ and watching where nitro-vs-macrocyclic musk pairs sit:
 
 | weight on OR5AN1 | musk pair percentile | ρ vs Dravnieks | ρ vs Keller |
 |---|---|---|---|
-| 1 (unweighted) | 84% | +0.032 | +0.022 |
-| 10 | 85% | +0.032 | +0.022 |
-| 100 | 89% | +0.031 | +0.019 |
-| 10 000 | 94% | +0.024 | +0.013 |
+| 1 (unweighted) | 84% | +0.024 | +0.027 |
+| 10 | 85% | +0.024 | +0.026 |
+| 100 | 89% | +0.023 | +0.024 |
+| 10 000 | 94% | +0.010 | +0.013 |
 
 Monotonically worse on the thing it was supposed to fix, and slightly worse on
 both panels as well. The reason is in the numbers the section above reported
@@ -859,11 +861,11 @@ Upweighting an axis on which two materials differ pushes them apart. A class
 the first while the section above implied the second.
 
 **An external check does not confirm the musk claim either.** Against Keller's
-own MUSKY rating over 115 molecules, OR5AN1 ranks **228 of 386** (|ρ| 0.050);
-the best are OR2T11 at 0.346, OR2T35 at 0.298, OR2T2 at 0.294.
+own MUSKY rating over 135 molecules, OR5AN1 ranks **267 of 386** (|ρ| 0.034);
+the best is OR2T11 at 0.378.
 `musk_receptor.py` asked a narrower question — are *this library's* 14 musks
 elevated on it with size controlled — and got rank 1 of 386. Both can be true,
-but 115 molecules of external panel data outweigh 14 in-library contrasts, and
+but 135 molecules of external panel data outweigh 14 in-library contrasts, and
 the honest reading is that the musk-receptor identification is weaker than that
 section claims.
 
@@ -874,16 +876,16 @@ receptor:
 
 | | median best-single-receptor \|ρ\| | max | distinct receptors |
 |---|---|---|---|
-| Dravnieks, 146 descriptors | **0.378** | 0.590 (MINTY → OR2T11) | 50 |
-| Keller, 20 descriptors | **0.298** | 0.409 (AMMONIA → OR9A4) | 16 |
+| Dravnieks, 146 descriptors | **0.370** | 0.585 (PERFUMERY → OR14C36) | 54 |
+| Keller, 20 descriptors | **0.306** | 0.425 (AMMONIA → OR9A4) | 17 |
 
-Compare those with +0.032 and +0.022 for the whole 386-dimensional distance
+Compare those with +0.024 and +0.027 for the whole 386-dimensional distance
 against panel similarity. **One receptor predicts a descriptor an order of
 magnitude better than the entire panel predicts similarity.** The information
 is there in quantity; the global distance is what loses it.
 
 And this is why the reweighting experiment above could not have worked. The
-receptor that serves one descriptor is not the one that serves the next — 50
+receptor that serves one descriptor is not the one that serves the next — 54
 distinct receptors for 146 Dravnieks descriptors. A single weight per receptor,
 applied to every comparison, would have to be right for "is this minty?" and
 "is this musky?" at once, and those want different receptors. The rod analogy
@@ -907,6 +909,78 @@ distance at all: **learn a supervised readout per descriptor from the receptor
 vector**, and see whether it beats the fingerprint the percept model currently
 uses. The table above is a one-receptor lower bound on what that could reach.
 Untried.
+
+#### A learned readout out of receptor space: right about the mechanism, still beaten by structure
+
+The suggestion, from the same reader: stop measuring distance in receptor space
+and put a dense network on top of it, mapping the 386 responses into a space
+that encodes smell rather than classes. `scripts/receptor_readout.py`. The
+target is the 138 GS-LF descriptors, so the output space has odour words for
+axes and distance in it means odour similarity by construction.
+
+**The constraint that shapes the experiment.** Receptor vectors exist for the
+396 library molecules only; GS-LF's 4983 would need MolOR run over 4983 × 386
+pairs, which is the compute this project has not spent. So this cannot be
+compared with the deployed percept model, which saw 4987 molecules. What it can
+settle is whether that expense is worth it: on the same 374 molecules, the same
+labels, the same folds and the same ridge, do receptor features carry odour
+information that fingerprints do not?
+
+Ridge rather than a deep net, with the penalty chosen inside each training fold,
+because 374 molecules against 386 and 2257 features is a regime where a network
+fits anything. Scored on out-of-fold AUC over 92 descriptors with at least 8
+positives, and on agreement with the two human panels — the same external
+yardstick as the reweighting experiment above, so the numbers sit beside each
+other.
+
+| features | OOF AUC | ρ Dravnieks | ρ Keller |
+|---|---|---|---|
+| raw 386-dim **distance**, no readout | — | +0.024 | +0.027 |
+| receptors → 138 | 0.752 | **+0.094** | **+0.069** |
+| fingerprint → 138 | 0.793 | **+0.201** | +0.084 |
+| both, one shared penalty | 0.784 | +0.102 | +0.061 |
+| both, blocks scale-balanced | **0.795** | +0.142 | +0.079 |
+
+**The idea is right about the mechanism.** A readout roughly triples what can be
+got out of the panel — +0.024 to +0.094 on Dravnieks, +0.027 to +0.069 on
+Keller (the Keller gain is the smaller claim of the two). The information really was there and the geometry really was losing it,
+which is what the single-receptor table predicted and what the reweighting
+experiment could not exploit.
+
+**And it does not close the gap.** Structure alone reaches +0.201 and +0.084
+with a higher AUC. Nor does the panel add to structure: balanced concatenation
+gives AUC +0.002 and panel ρ −0.059 and −0.005 against fingerprint alone, which
+is indistinguishable from not using it. A small MLP agrees — receptors +0.105
+and +0.061, fingerprint +0.162 and +0.075, concatenation +0.016 AUC with mixed
+ρ — so this is not a matter of the readout being too simple.
+
+So the decision this was run to inform: **computing receptor vectors for the
+4983 is not justified by this evidence.** The honest summary of the whole thread
+is that the receptor panel contains real, extractable odour information, about
+a third of what a plain fingerprint gives, and nothing that the fingerprint does
+not already have.
+
+Three limits worth keeping. 374 molecules and a 50-molecule Dravnieks overlap
+are small. A readout trained on 4983 receptor vectors could behave differently
+from one trained on 374, and that is exactly the experiment the cost forbids,
+so this is evidence against paying rather than proof the answer would not
+change. And one row above is an artefact rather than a result: under the MLP,
+`both balanced` collapses to AUC 0.575, because dividing each block by the
+square root of its own width shrinks the fingerprint inputs about 48-fold and
+starves a fixed-learning-rate network. The balancing is a fair correction for
+ridge, where the penalty is what needed balancing, and it is simply wrong for
+an unnormalised network.
+
+A bug this experiment surfaced, which mattered more than the experiment: the
+first run reported 302 of 396 library molecules as GS-LF-covered. The true
+figure is 374. `eval_similarity.gslf_truth` keyed GS-LF on the InChIKey of its
+flat `nonStereoSMILES` column while the library was keyed on its own
+stereo-bearing InChIKey, whose second block differs — so citral, limonene,
+cinnamaldehyde, the ionones and every cis-3-hexenyl ester silently failed to
+match. This is the third appearance of the same mistake in this repository,
+after it once reported 94 unlabelled library molecules against a true 22. It is
+now one function, `eval_similarity.flat_key`, and the similarity figures above
+moved from 26 106 pairs to 69 751 as a result.
 
 ### A validation that looked like a pass, and was not
 
@@ -1128,12 +1202,15 @@ other.
   **across all descriptors**. This is what the viewer's layout, the
   nearest-neighbour suggestions and the accord substitution work all rely on.
   Measured as the Spearman correlation between predicted cosine similarity and
-  the Jaccard overlap of human descriptor sets, over the 26 106 pairs of the 229
-  library materials GS-LF covers (`scripts/eval_similarity.py`).
+  the Jaccard overlap of human descriptor sets, over the 69 751 pairs of the 374
+  library materials GS-LF covers (`scripts/eval_similarity.py`). That count was
+  26 106 over 229 materials until the matching was fixed — the library was keyed
+  on its own stereo InChIKey against a flat training column, which dropped every
+  chiral and E/Z molecule. The ρ figures below move by about 0.015 as a result.
 
 | model | OOF AUC | similarity ρ |
 |---|---|---|
-| fingerprint **v3** (ablation-selected) | 0.8672 | **+0.4894** |
+| fingerprint **v3** (ablation-selected) | 0.8659 | **+0.4749** |
 | fingerprint v2 (`pos_weight`, ensemble) | **0.8818** | +0.3731 |
 | fingerprint v1 (first attempt) | 0.7912 | **+0.5505** |
 | OpenPOM (published checkpoints) | 0.8872\* | +0.4476 |
@@ -1145,6 +1222,13 @@ other.
 \* OpenPOM's own published figure under a similar protocol, not a head-to-head:
 its checkpoints were trained on all of GS-LF, so it cannot be scored on a
 held-out part of it. See `scripts/eval_fp_percept.py`.
+
+**The ρ column mixes two protocols and should not be read as a ranking.** Only
+the v3 row was measured after the matching fix, over 69 751 pairs; every other
+row is the older 26 106-pair figure and has not been recomputed. Re-running
+them is cheap and has not been done. The next subsection is the reason it is
+not urgent: the whole column is agreement with the training labels, and it does
+not survive contact with independent panel data either way.
 
 ### Adding a label does not fix a molecule
 
@@ -1978,6 +2062,7 @@ scripts/          everything measured in this document, one script per claim
   musk_receptor.py          OR5AN1 does; the global distance discards it
   receptor_metric.py        can reweighting get it back? pre-registered, no
   receptor_importance.py    a class detector is not a similarity axis
+  receptor_readout.py       386 -> 138 descriptors; a 3x gain, still beaten
   bench_simplify.py         the simplifier against the hand heuristic
   discriminating_blends.py  blends whose smell would decide the mixture rule
   export_viewer_data.py / build_viewer.py          the atlas

@@ -155,6 +155,24 @@ def weighted_dist(Z: np.ndarray, w: np.ndarray) -> np.ndarray:
     return np.sqrt(np.maximum(D, 0.0))
 
 
+def flat_keys(entries, smiles_by_name):
+    """Stereochemistry-free InChIKeys, matching GS-LF and the panel files.
+
+    Both the GS-LF key column and the ``inchikey`` column of the Dravnieks and
+    Keller files are flat -- their second block is the standard no-stereo hash
+    ``UHFFFAOYSA``. A store entry's own ``inchikey`` carries stereochemistry,
+    so matching on it silently drops every chiral or E/Z molecule: it found
+    302 of 396 library molecules in GS-LF where 374 is the true figure, and
+    the panel overlaps were understated the same way.
+    """
+    from eval_similarity import flat_key
+
+    out = []
+    for e in entries:
+        k = flat_key(smiles_by_name.get(e.name, "") or "")
+        out.append(k if k else e.inchikey)
+    return out
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--store", default="library_mpnn_clean")
@@ -180,16 +198,16 @@ def main() -> int:
     paths = resolve_paths()
     entries, logits, _ = Library(paths, name=args.store).load()
     names = [e.name for e in entries]
-    keys = [e.inchikey for e in entries]
+    smiles = {r["name"].strip(): (r.get("smiles") or "").strip()
+              for r in csv.DictReader(io.open(
+                  ROOT / "library" / "input" / "expanded_materials.csv",
+                  encoding="utf-8"))}
+    keys = flat_keys(entries, smiles)
     Zall = (logits - logits.mean(0)) / (logits.std(0) + 1e-12)
     print(f"[metric] {args.store}: {len(names)} materials x "
           f"{logits.shape[1]} receptors")
 
     truth, _ = gslf_truth()
-    smiles = {r["name"].strip(): (r.get("smiles") or "").strip()
-              for r in csv.DictReader(io.open(
-                  ROOT / "library" / "input" / "expanded_materials.csv",
-                  encoding="utf-8"))}
     gen = rdFingerprintGenerator.GetMorganGenerator(radius=2, fpSize=2048)
 
     for panel_name, rel in PANELS.items():
