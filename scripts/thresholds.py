@@ -1,6 +1,6 @@
 """Fill the missing detection thresholds, and say where every value came from.
 
-304 of the library's 429 materials have no threshold figure, and the dose
+310 of the library's 435 materials have no threshold figure, and the dose
 conversion skips a material that has none: it cannot turn a share of odour
 activity into a mass without one. So the materials with no number were not
 merely dosed badly, they were excluded from being proposed at all. A figure
@@ -13,7 +13,7 @@ on the 125 materials that have a figure:
 
     k=1    median error 0.70 log units   (5.0x)   66% within 10x
     k=3    median error 0.63             (4.2x)   71%
-    k=5    median error 0.48             (3.0x)   74%   <- used
+    k=5    median error 0.48             (3.0x)   77%   <- used
     k=10   median error 0.58             (3.8x)   74%
     null, predict the median for all:    0.70     (5.0x)
 
@@ -35,7 +35,7 @@ Hence the source label. Every value carries one, and anything downstream that
 prints a weighable mass has to be able to say which tier it rests on.
 
     compiled   a figure from the inventory's own column         125
-    imputed    k=5 neighbours in percept space                  304
+    imputed    k=5 neighbours in percept space                  310
 """
 
 from __future__ import annotations

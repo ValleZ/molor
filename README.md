@@ -85,6 +85,269 @@ upstream checkout rather than reimplemented, so they cannot silently diverge
 from the trained weights. `scripts/generate_OR_predictions_pseudogenes.py` is
 used as a reference, not invoked.
 
+## How it works, end to end
+
+Everything below this section is a finding — something that was measured and
+sometimes corrected. This section is the plumbing those findings sit on, in
+order, with the widths of every array, because nothing else here explains it
+from the start.
+
+### Two models, and only one of them is trained here
+
+This is the answer to "why are there checkpoints if you train a model
+yourself". There are two models. They share a library of molecules and nothing
+else.
+
+|  | **receptor model** | **percept model** |
+|---|---|---|
+| the question it answers | does olfactory receptor OR1A1 respond to this molecule? | what does this molecule smell like? |
+| where it comes from | a pretrained checkpoint, Zenodo 13765978, published with the MolOR paper | trained here, `scripts/train_fp_v3.py`, about five minutes on a GPU |
+| what it was fitted on | M2OR, a database of receptor assays | GS-LF, 4983 molecules with human odour descriptors |
+| input | one (molecule, receptor) pair | one molecule |
+| output | **one** number: a responsiveness logit | **138** numbers: one per odour descriptor |
+| used for | **where** a point sits on the atlas | **what colour** it is, and everything the simplifier does |
+
+So the atlas is two models at once: position from receptors, colour from
+percepts. They are never averaged into one vector, and the distances quoted in
+either space mean different things. `artifacts/library/` holds the receptor
+vectors; `artifacts/percepts_fp3.json` holds the percept vectors.
+
+Nothing here retrains the receptor model. It is run in inference mode against
+frozen weights, which is why the checkpoint's md5 is checked on every load: a
+different checkpoint would not match the architecture, and a silently different
+architecture would produce plausible numbers that mean nothing.
+
+### What "encoder" means
+
+A molecule has a variable number of atoms; a protein has a variable number of
+residues. A neural network needs a fixed-size input. An encoder is the learned
+function that closes that gap — variable-sized structured object in, fixed-size
+vector out — and it is trained jointly with whatever consumes its output rather
+than designed by hand. A fingerprint is the hand-designed alternative: fixed
+rules, no training. Both appear in this project, the fingerprint in the percept
+model and two learned encoders in the receptor model.
+
+### Pipeline 1 — one SMILES to 386 receptor responses
+
+`orvector predict` (`src/orvector/inference.py`). Widths are from
+`src/orvector/config.py`, where each one is frozen with its reason.
+
+1. **Parse.** RDKit reads the SMILES. Hydrogens are normalised, because
+   chirality written in brackets (`[C@H]`) makes RDKit record that atom's
+   hydrogens as explicit, which zeroes its implicit valence — and implicit
+   valence is a feature block. Without this step the same molecule featurises
+   differently depending only on how it was typed. The InChIKey is compared
+   before and after, so the compound cannot be altered silently.
+2. **Atom features.** `CanonicalAtomFeaturizer` gives each atom **74** numbers
+   (element one-hot, degree, formal charge, hybridisation, aromaticity, total
+   hydrogens). Molecules are padded to **98** atom slots — the largest molecule
+   in GS-LF. This budget is not cosmetic: padded slots are zeroed only *after*
+   `mol_norm`, and `LayerNorm` maps a zero vector to its own bias, so the pad
+   leaks into the protein-side attention. Widening it moves the logits, which
+   is why it is frozen and tested.
+3. **Molecular encoder.** 74 per atom → **256** per atom. This is the GCN or
+   the MPNN; see below.
+4. **Receptor encoder.** A receptor enters the model as nothing but its
+   amino-acid sequence. ESM-2 650M (`esm2_t33_650M_UR50D`, layer 33) turns one
+   sequence into **443 × 1280** — one 1280-vector per residue position, padded
+   to 443. This is the one genuinely expensive step, so it runs once for the
+   whole panel and is cached as `artifacts/panel_embeddings.npy`, 386 × 443 ×
+   1280 float32 ≈ 0.9 GB, memmapped and never loaded whole.
+5. **Cross-attention.** Atoms attend over residues and residues over atoms
+   (`OdorantReceptorCrossAttention`). The two sides are pooled and
+   concatenated: 1280 + 256 = **1536**.
+6. **Head.** An MLP, 1536 → 128 → **1**. One logit, meaning *this molecule
+   against this receptor*.
+7. **The panel.** Repeat for all **386** functional human receptors and stack
+   the logits. That vector is what the atlas lays out.
+
+#### Why a protein encoder at all
+
+Because the model's unit of prediction is a *pair*, not a molecule. The obvious
+alternative design is one output head per receptor — 386 outputs, molecule in,
+386 numbers out, and no protein encoder anywhere. That architecture works and
+is simpler.
+
+What it cannot do is score a receptor that was not in its training set. Head
+number 387 does not exist and cannot be created without retraining. Feeding the
+receptor in as a sequence instead buys three things:
+
+- **A receptor the model never saw can still be scored**, because the sequence
+  is input rather than an index. This is the whole point: assay coverage is
+  thin and uneven, and the 386-receptor human panel scored here is not the
+  set the checkpoint was fitted on.
+- **The panel is swappable.** Changing which receptors are scored is a change
+  of input data, not of architecture — which is also why `panel.py` can
+  recompute the functional/pseudogene split and assert it against upstream's.
+- **Similarity between receptors is learned rather than assumed.** Two
+  receptors with similar sequences get similar embeddings for free, so an assay
+  on one is evidence about the other.
+
+The cost is that a receptor is represented *only* by its sequence. No structure,
+no binding pocket, no conformation. Which is the honest frame for the whole
+receptor model: it is a sequence-conditioned statistical model of assay
+outcomes, not physics. That claim is taken apart properly under "Why this is a
+learned model and not a physics simulation".
+
+#### The two molecular encoders, in one sentence each
+
+Upstream ships two, as two separate Zenodo checkpoints, and this repository
+keeps both stores so they can be compared.
+
+- **GCN** (`m2or_MolOR_esm_650m_unweighted.pth`, 25 MB): each atom replaces its
+  own feature vector with a normalised average of its neighbours', twice, 256
+  wide, with residual connections. Bonds appear only as the adjacency used for
+  the averaging — `edge_featurizer=None` — so the encoder is blind to bond
+  order and to E/Z.
+- **MPNN** (`m2or_MolOR_MPNN_esm_650m_unweighted.pth`, 60 MB): each bond
+  carries a *message*, computed by a small network from that bond's own 13
+  features (6 of which are stereo), and a shared GRU accumulates the messages
+  over several passes. It is handed the bond information the GCN discards.
+
+That difference ought to settle which is better, and does not. The MPNN
+checkpoint's encoder is numerically saturated to the point that zeroing every
+bond feature changes its output by exactly zero, and six attempts to separate
+the two spaces perceptually came out mixed. The atlas therefore ships both and
+defaults to the MPNN, for reasons given in full under "GCN vs MPNN".
+
+### Pipeline 2 — 386 dimensions down to three
+
+`src/orvector/project.py` and `build_model_block` in
+`scripts/export_viewer_data.py`. The naive version of this step — PCA the raw
+vectors to three axes — produces a picture of the wrong thing, because every
+molecule correlates about 0.95 with the panel mean and that shared component is
+essentially *how hard does this molecule hit receptors at all*. Projected raw,
+the map draws potency and buries chemistry.
+
+So:
+
+1. **Logits, not sigmoid scores.** The scores are saturated near zero, so a
+   distance computed on them is decided by a handful of receptors.
+2. **Z-score each receptor** across the library, removing the per-receptor
+   baseline so that broadly-tuned generalists stop dominating every distance.
+3. **Optionally drop the first principal component** — the potency axis. This
+   is the atlas's "potency removed" view; both are exported, neither is
+   privileged.
+4. **PCA to 20 components.** With 386 receptors and a few hundred molecules
+   this is firmly the n < p regime, so a nonlinear step on the full width would
+   be fitting noise.
+5. **Euclidean distance matrix** over those 20 components. This matrix is what
+   the viewer's "distance to" numbers come from, and its median is the
+   `medianDistance` the page quotes against. (The simplifier's separate
+   yardstick, 0.439, is a percept-space figure and not this one.)
+6. **Metric MDS to 3 axes** on the precomputed distances (`n_init=6`,
+   `max_iter=800`, fixed seed). MDS minimises the disagreement between the 3D
+   distances and the 20-D ones directly, which is what we want; PCA maximises
+   retained variance, which is not the same objective. Both are exported.
+7. **Axis-align.** MDS returns an arbitrary orientation and these clouds are
+   about three to one elongated, so an SVD rotates the widest spread onto x and
+   the next onto y, with a fixed sign convention so repeated builds do not
+   mirror. A rotation preserves every pairwise distance, so this costs nothing.
+8. **Report the distortion.** Every projection carries a **Shepard rank
+   correlation** between its own pairwise distances and the 20-D ones, and the
+   page prints it. 3D reaches 0.99 against 0.98 for 2D on global distances, and
+   the gap on *local* neighbourhoods is much larger — 0.70 against 0.51 on
+   top-10 overlap — which is why the atlas is 3D. Each point also carries its
+   own neighbour-preservation score, so a point that landed in the wrong
+   neighbourhood can say so.
+
+### Pipeline 3 — one SMILES to 138 descriptors
+
+`scripts/train_fp_v3.py`. This model is small and entirely conventional; the
+interesting part is what it is scored on, not how it is built.
+
+- **Input: a fingerprint, not a learned encoder.** 2048-bit Morgan radius 2
+  (ECFP4: a hash of every atom's circular neighbourhood out to two bonds) plus
+  all 209 RDKit molecular descriptors, standardised — **2257** numbers.
+- **Model:** an MLP, 2257 → 512 → 256 → 138, no batchnorm, no dropout.
+- **Fitting:** 5-fold cross-validation for an honest out-of-fold score, then a
+  refit on everything as an ensemble of 5 seeds. 180 epochs, cosine schedule.
+- **Output:** 138 probabilities, one per GS-LF descriptor (`fruity`, `woody`,
+  `black currant`, …).
+
+Two things about reading that output. First, **always as lift against the
+library mean, never raw**: base rates dominate, `floral` and `fruity` score on
+almost everything, and the z-scored lift is the only readable signal — see
+"Read lift against a null, never the raw values". Second, the model is scored
+on *two* axes that pull against each other, per-descriptor ranking accuracy and
+whether two molecules that smell alike land near each other; optimising either
+one damages the other, which is the subject of "Predicting smell directly".
+
+### Pipeline 4 — the simplifier
+
+`scripts/export_simplify_data.py` builds a payload; `viewer/simplify.html`
+does the arithmetic in the page with no server. Given a formula or a
+description, it answers: what are the fewest materials that smell like this?
+
+**The target.** A pasted formula's lines are resolved to library materials
+(272 aliases, dilution and solvent parsing, oils matched separately), and the
+target percept vector is the ingredient vectors mixed by weight. A pasted
+*description* instead scores only the descriptors actually named, weighted —
+a formula is matched on all 138, a description on the words it used.
+
+**The pool — which materials may be proposed.** 435 entries, 39 of them
+essential oils. Three exclusions, in descending order of how well they are
+justified:
+
+- **4 are never proposed at all**, because they are regulatory prohibitions or
+  restrictions: Musk Ambrette, Musk Xylene, 2,6-Dibromophenol, Lilial. This
+  list was once longer and included materials excluded on my judgement of
+  whether they were dosable. That was wrong and they were put back; it is now
+  only things that are actually prohibited.
+- **34 are flagged "unverified"** and hidden behind a checkbox, because their
+  provenance says they entered the library as constituent structures so an
+  essential oil could be built from them — khusimol, the vetivones,
+  patchoulol. This rests on a recorded fact about where the entry came from,
+  not on a guess about availability.
+- **Materials with no threshold** are excluded when dosing is on, because a
+  material with no threshold cannot be converted to a mass. This is why the
+  thresholds are imputed rather than left blank.
+
+What is deliberately *not* in the pool logic is how commonly a material is
+used. Three attempts to infer that — one perfumer's inventory, the formulas in
+this repository, a supplier's catalogue — each confidently mislabelled obvious
+staples, and the claim was withdrawn. See "Read lift against a null".
+
+**The search.** For every k from 1 up, two candidate subsets are built: a
+greedy-plus-swap search over the pool, and the plain heuristic of keeping the
+k heaviest ingredients of the original. Whichever lands closer wins, which
+makes the proposal no worse than the obvious thing by construction — the
+search alone lost to the heuristic on 64% of oils. Weights are then fitted by
+simplex-constrained least squares (unconstrained solve, then projected
+gradient). The fidelity curve over all k is computed once and is forced
+monotone, because a greedy search is not monotone in k and at one point nine
+materials fitted worse than eight, which made the curve a lie.
+
+**Thresholds, and the dose.** A detection threshold is the concentration at
+which a material becomes smellable; materials differ over eight orders of
+magnitude, so equal weights do not mean equal loudness.
+
+- 125 of 435 materials have a **compiled** figure, assembled from published
+  sources.
+- The other 310 are **imputed**: k=5 nearest neighbours in the percept model's
+  own 138-dimensional space, regressing log10(threshold). Leave-one-out median
+  error 3.0x, 77% within a decade, against a spread of 1.29 log units.
+  Better than nothing, and not much better — and because imputation
+  regresses to the mean, a genuinely potent outlier comes out *over*-dosed.
+- Every figure carries its tier, and the page says which it used. A number that
+  will be put on a scale has to be able to say what it rests on.
+- 23 materials additionally carry a **measured strength correction** from a
+  blotter session, applied as `effective threshold = threshold / multiplier` —
+  on top of an imputed figure as readily as a compiled one, since it is a
+  statement about the material and not about the figure. See "Measuring
+  strength instead of thresholds".
+
+The weights the solver returns are shares of *odour activity*. Converting them
+to mass multiplies by `threshold ^ 0.6`. The exponent is 1.0 for straight
+odour-activity dosing; 0.6 is where one bench comparison preferred it, which is
+a single observation and is why it is a named constant rather than a tuned
+parameter. Then the sheet is scaled so parts sum to 100 and each material is
+assigned a stock strength from the ladder 100 / 10 / 1 / 0.1%.
+
+The honest limit on all of this: the dose error is larger than the thing being
+optimised. That has its own section, and it is the reason the simplifier
+reports an ordering rather than a weighing.
+
 ## Setup
 
 Requires Python 3.10–3.12. **Python 3.13 will not work**: DGL publishes no
