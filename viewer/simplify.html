@@ -1424,9 +1424,20 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
         + "note. Nothing here can tell you whether their character survives "
         + "the simplification.");
     }
-    cav.push("<strong>Time.</strong> There is no volatility axis anywhere in "
-      + "this model. A match here is a match on a strip for the first minutes, "
-      + "and says nothing about how either version behaves over hours.");
+    // This caveat used to read "there is no volatility axis anywhere in this
+    // model. A match here is a match on a strip for the first minutes." Both
+    // halves were wrong. There is a volatility axis now -- the table above
+    // splits both sides by tier -- and the second half was wrong before that
+    // was built: a single percept vector weights a blend by bulk, so on a
+    // base-heavy formula it describes the DRYDOWN rather than the opening. A
+    // tomato-leaf accord of five green materials read cedar, amber, dry
+    // because it is 44% Iso E Super. The limitation that remains is narrower
+    // and is stated as such.
+    cav.push("<strong>Time.</strong> The vector being matched has no time in "
+      + "it, so two formulas with the same character and different arcs look "
+      + "identical to the fit. The volatility table above is the only guard "
+      + "against that, and it is a coarse one: tiers agree with recorded "
+      + "labels 74% of the time.");
     cav.push("<strong>Dose.</strong> Threshold figures may be out by a factor "
       + "of ten, and a tenfold error moves a five-material blend further than "
       + "the just-noticeable scale. Treat the doses as a starting point to "
