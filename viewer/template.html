@@ -264,6 +264,11 @@ footer strong { color: var(--fg); font-weight: 600; }
           <button class="btn mini" id="selNone" type="button">Deselect all</button>
         </div>
         <div class="legend" id="legend"></div>
+      </div>
+      <div class="panel">
+        <h2 id="volTitle">Volatility</h2>
+        <div class="legend" id="volLegend"></div>
+        <p class="note" id="volNote"></p>
         <p class="note">Click a class to show or hide it.</p>
       </div>
     </div>
@@ -338,7 +343,8 @@ window.addEventListener("error", function (ev) {
     model: D.modelOrder[0],
     proj: proj3d.length ? proj3d[0] : Object.keys(D.models[D.modelOrder[0]].projections)[0],
     sel: null, pin: null, hover: null,
-    hidden: Object.create(null), links: true, labels: true, sizeByPotency: false,
+    hidden: Object.create(null), volHidden: Object.create(null),
+    links: true, labels: true, sizeByPotency: false,
     k: 1, tx: 0, ty: 0, fitted: false, query: "", yaw: 0.6, pitch: 0.35
   };
 
@@ -397,7 +403,67 @@ window.addEventListener("error", function (ev) {
   });
   }
   buildLegend();
+  // buildVolLegend() is called with the rest of init further down, not here:
+  // VOL_ROWS is declared below this point, so a `var` hoist makes it
+  // undefined at this line and .forEach throws. The function itself hoists,
+  // which is what made the failure silent -- an empty legend, no error.
 
+
+  // ---- volatility filter ----
+  // A second, independent filter rather than another colour scheme: the map
+  // is coloured by predicted odour and that is the point of it. Three tiers
+  // plus an explicit "not recorded", because that last group is 153 of 427
+  // and a filter that hid it silently would hide more than it showed. No
+  // select-all buttons: with four rows they would be furniture.
+  var VOL_ROWS = [
+    ["top", "top note", "#e8b84b"],
+    ["middle", "middle", "#7fb069"],
+    ["base", "base note", "#5b7fa6"],
+    ["none", "not recorded", "#8b94a0"]
+  ];
+  function volOf(i) { return D.molecules[i].vol || "none"; }
+  function buildVolLegend() {
+    var box = document.getElementById("volLegend");
+    if (!box) return;
+    var counts = {}, nRec = 0, nDer = 0, i;
+    for (i = 0; i < N; i++) {
+      var v = volOf(i);
+      counts[v] = (counts[v] || 0) + 1;
+      if (D.molecules[i].volSrc === "recorded") nRec++;
+      else if (D.molecules[i].volSrc === "derived") nDer++;
+    }
+    box.innerHTML = "";
+    VOL_ROWS.forEach(function (row) {
+      var key = row[0];
+      if (!counts[key]) return;
+      var el = document.createElement("span");
+      el.className = "lg" + (state.volHidden[key] ? " off" : "");
+      el.innerHTML = '<i style="background:' + row[2] + '"></i>'
+        + row[1] + ' <span class="dim">' + counts[key] + "</span>";
+      el.setAttribute("role", "button");
+      el.tabIndex = 0;
+      function toggle() {
+        state.volHidden[key] = !state.volHidden[key];
+        el.classList.toggle("off", !!state.volHidden[key]);
+        draw();
+      }
+      el.addEventListener("click", toggle);
+      el.addEventListener("keydown", function (ev) {
+        if (ev.key === "Enter" || ev.key === " ") {
+          ev.preventDefault(); toggle();
+        }
+      });
+      box.appendChild(el);
+    });
+    var note = document.getElementById("volNote");
+    if (note) {
+      note.innerHTML = nRec + " tiers come from the inventory and " + nDer
+        + " are derived from a published boiling point, with the cut-points "
+        + "fitted to the recorded ones — they reproduce 74% of them. "
+        + "A tier is perceived tenacity and a boiling point is not: Hedione "
+        + "boils at 300 °C and is used as a middle note.";
+    }
+  }
 
   function visible(i) {
     // An injected blend is always visible. It is not a library material and
@@ -405,6 +471,7 @@ window.addEventListener("error", function (ev) {
     // the whole reason it is on the page is to see where it sits.
     if (D.molecules[i].isQuery) return true;
     if (D.molecules[i].isWhite) return true;
+    if (state.volHidden[volOf(i)]) return false;
     var g = groupsOf(i);
     for (var k = 0; k < g.length; k++) if (!state.hidden[g[k]]) return true;
     return false;
@@ -1651,6 +1718,7 @@ window.addEventListener("error", function (ev) {
     });
   }());
 
+  buildVolLegend();
   LINKED = readLinkedBlend();
   if (LINKED && LINKED.space && D.models[LINKED.space]) {
     state.model = LINKED.space;

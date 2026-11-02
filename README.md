@@ -1476,6 +1476,43 @@ at 14.6, so it measures ingredient count as much as smell. The link names its
 space and the chemistry maps refuse with that reason rather than drawing a
 point that would mislead.
 
+### Volatility, as a second filter rather than another colour
+
+A reader asked to filter the atlas by molecular weight, since heavier
+generally means more substantive. Measured on the 159 materials that carry
+both a boiling point and a tier, weight is a proxy for boiling point and
+nothing more: boiling point predicts the tier at rho +0.774, weight at
++0.544, and **weight adds nothing once boiling point is known** — partial
++0.001 against +0.655 the other way. The counterexample is Citral at MW 152.2
+and Vanillin at MW 152.1, 0.1 g/mol apart and at opposite ends of the scale,
+because vanillin hydrogen-bonds to itself and rose oxide does not. There are
+183 pairs in the inventory within 4 g/mol that sit two or more tiers apart.
+
+So the filter is on volatility, not weight. Three tiers using the same 5-to-3
+collapse `volatility_profile.py` uses, plus an explicit **not recorded**,
+because that group is 153 of 427 and a filter that hid it silently would hide
+more than it showed. No select-all buttons; with four rows they are furniture.
+It is a second independent filter rather than another colour scheme, since the
+map is coloured by predicted odour and that is the point of it.
+
+**Coverage, and where the cut-points came from.** 232 of 358 proposable
+molecules had no boiling point. `make_bp_request.py` writes pasteable batches
+and `merge_bp.py` reads the answers back, each batch carrying unlabelled
+controls whose answers this repository already holds; 146 values merged, taking
+coverage to 272 of 358. The derived tiers then use cut-points **fitted to the
+owner's own 159 assignments** by grid search — top below 216 °C, middle below
+276 °C, base above — rather than chosen here. They reproduce 74% of those
+labels, which is three in four and not a rule: the misses are systematic
+because a tier encodes perceived tenacity and a boiling point does not.
+Hedione boils at 300 °C and is used as a middle note. A derived tier is marked
+as derived and never overwrites a recorded one, and the page says which it is.
+
+**Two errors in the existing column, found by the controls.** They are there to
+check fetched values against the inventory, and twice they caught the inventory
+instead. Benzaldehyde is recorded at 200 °C and boils at 179. Ambroxan is
+recorded at 78 °C, which is its *melting* point — it is a crystalline solid.
+Neither is altered here: that column is the owner's, and this is a note.
+
 ### The percept model is blind to chain length, and to geometry entirely
 
 Found while reading a WD-40 safety data sheet, which is not where anyone looks

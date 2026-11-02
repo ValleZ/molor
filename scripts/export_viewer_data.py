@@ -714,6 +714,42 @@ def main() -> int:
                                     r.get("volatility_class", ""))
         print(f"  inventory: {len(usage)} materials with a use level")
 
+    # Boiling points, and a volatility tier derived from them where the
+    # inventory never assigned one. The cut-points are not chosen here: they
+    # are fitted to the owner's own 159 tier assignments by grid search, which
+    # lands on top below 216 C, middle below 276 C, base above, and reproduces
+    # 74% of those labels. That is three in four, not a rule -- the misses are
+    # systematic, because a tier encodes perceived tenacity and a boiling
+    # point does not. Hedione boils at 300 and is used as a middle note.
+    #
+    # So a derived tier is marked as derived and never overwrites a recorded
+    # one. That also keeps two bad source values out: Ambroxan is listed at
+    # 78 C, which is its melting point rather than its boiling point, and
+    # Benzaldehyde at 200 where it boils at 179. Both already carry a tier,
+    # so neither is used here.
+    BP_TOP, BP_BASE = 216.0, 276.0
+    bps = {}
+    bpath = ROOT / "data" / "inventory" / "boiling_points.csv"
+    if bpath.is_file():
+        import csv as _c2
+        for r in _c2.DictReader(open(bpath, encoding="utf-8-sig")):
+            try:
+                bps[r["name"].strip()] = float(r["bp_c"])
+            except (ValueError, KeyError):
+                pass
+        print(f"  boiling points: {len(bps)} fetched values available")
+
+    def tier_of(name):
+        """(group, provenance) -- recorded beats derived, derived beats none."""
+        rec = VOL_GROUP.get(usage.get(name, [None, None, None])[2])
+        if rec:
+            return rec, "recorded"
+        bp = bps.get(name)
+        if bp is None:
+            return None, None
+        g = "top" if bp < BP_TOP else "middle" if bp < BP_BASE else "base"
+        return g, "derived"
+
     # Measured relative strength, where a blotter session has one. A
     # multiplier above 1 means the material delivers more smell per gram than
     # its own use level implies. This is the only measured quantity on the
@@ -876,8 +912,8 @@ def main() -> int:
              # a small set leaves tiers holding one material. On this atlas
              # Top-Mid is 18 points and Mid-Base is 12, so the five-way
              # split fragments exactly where the comment warns.
-             "vol": VOL_GROUP.get(
-                 usage.get(e.name, [None, None, None])[2]),
+             "vol": tier_of(e.name)[0],
+             "volSrc": tier_of(e.name)[1],
              "note": "" if args.no_notes else notes.get(e.name, "")}
             for e in entries
         ],
