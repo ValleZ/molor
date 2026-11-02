@@ -566,7 +566,7 @@ distinct values, and it responds to perturbation (Δ 526 from zeroing one atom's
 features). It is blind to E/Z, but legitimately so, having no bond features to
 lose.
 
-**Which encoder lays the library out better is unresolved after six attempts:**
+**Which encoder lays the library out better is unresolved after seven attempts:**
 
 | measure | favours | strength |
 |---|---|---|
@@ -594,6 +594,60 @@ different molecule sets (128 against 302), so they were never comparable.
 Re-measured on the same cleaned 301 with the perfumer's own family labels:
 GCN 0.271, MPNN 0.262, chance 0.047 — both far above chance, neither
 distinguishable from the other.
+
+### Seventh attempt, with a judge the first six did not have: still unresolved
+
+Every one of the six measures above used either GS-LF-derived labels or one
+perfumer's notes. The two graded panels in `data/percept/` were built
+afterwards and had never been pointed at this question, so they are a genuinely
+new instrument: Dravnieks 1985 and Keller 2016, ~57-subject psychophysics that
+nothing in this repository is fitted on.
+
+`scripts/encoder_panel_test.py`. Both stores hold the same 396 molecules in the
+same order, so each encoder can be scored on *exactly the same pairs* and the
+difference bootstrapped over molecules — paired, which is where the power is.
+Two probes, with the primary one named before running: a **readout** (ridge
+386 → 92 descriptors, fitted out-of-fold on all 374 labelled molecules, then
+cosine between predicted descriptor vectors), which measures how much odour
+information a store *contains*; and the **distance** probe (PCA-20 of the
+z-scored logits, Euclidean), which is the deployed atlas pipeline exactly and
+measures what a viewer is actually shown. Pass condition, registered in the
+script: one encoder wins only if the paired difference excludes zero on *both*
+panels for the primary probe.
+
+| probe | panel | MPNN | GCN | GCN − MPNN | paired 95% |
+|---|---|---|---|---|---|
+| readout | Dravnieks (50 mol) | +0.098 | +0.114 | +0.016 | [−0.083, +0.113] |
+| readout | Keller (135 mol) | +0.071 | +0.064 | −0.007 | [−0.051, +0.036] |
+| distance | Dravnieks | +0.024 | +0.019 | −0.005 | [−0.097, +0.100] |
+| distance | Keller | +0.027 | +0.025 | −0.002 | [−0.046, +0.048] |
+
+**Unresolved, and that makes seven.** Every interval spans zero, and the two
+panels point opposite ways on the primary probe. On the distance probe — what
+the atlas shows — the two encoders are indistinguishable to three decimal
+places on both panels.
+
+This also disposes of a hint from the readout experiment above, which found
+receptor-only agreement with Dravnieks higher from the GCN store at every
+network width (+0.114 against +0.094 for ridge). Measured paired, with the same
+labels and folds, that margin is +0.016 with an interval eleven times its own
+width. It was noise, as flagged at the time, and this quantifies it.
+
+The useful part is the power statement rather than the null. Keller's paired
+interval is about ±0.044 wide either side of zero, while the whole quantity
+being measured is +0.06 to +0.07. So these panels can only detect a difference
+between the encoders larger than roughly **60% of the total signal either
+encoder carries**. A real but ordinary difference — one encoder 20% better than
+the other — is invisible to this instrument and would stay invisible if the
+bootstrap were run a million times, because the limit is 50 and 135 molecules,
+not resampling.
+
+Which is the honest end of the question: it is not that the two encoders have
+been shown equivalent. It is that nothing available here can tell them apart,
+and the deployment's choice of the MPNN remains what it always was — not a
+finding, just the side the coin landed on. The GCN is the healthier encoder on
+mechanism (no saturation, 490–626 distinct values against 82–100), and that
+remains the only non-circular reason to prefer either.
 
 Two implementation notes. `num_step_message_passing` cannot be recovered from
 the weights (one layer is reused each step, the GRU is shared), and the shipped
@@ -2122,6 +2176,7 @@ scripts/          everything measured in this document, one script per claim
   mud.py / olfactory_white.py   the white point, and how few materials reach it
   musk_test.py              do the four musk chemotypes recognise each other
   musk_receptor.py          OR5AN1 does; the global distance discards it
+  encoder_panel_test.py     GCN vs MPNN on human panels, paired; still a tie
   receptor_metric.py        can reweighting get it back? pre-registered, no
   receptor_importance.py    a class detector is not a similarity axis
   receptor_readout.py       386 -> 138 descriptors; a 3x gain, still beaten
