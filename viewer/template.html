@@ -902,6 +902,25 @@ window.addEventListener("error", function (ev) {
   }
 
   // ---- inspector ----
+  // The score columns are receptors for the two encoder maps and odour
+  // descriptors for the percept map, so the panels ask the model rather than
+  // assuming. Older payloads carry no axes field; fall back to the receptor
+  // list so a stale data file still renders.
+  function axes() {
+    var m = M();
+    if (m && m.axes) return m.axes;
+    return D.receptors.map(function (r) { return r.gene; });
+  }
+  function axisWord() { var m = M(); return (m && m.axisWord) || "receptor"; }
+  function axisScaleNote() {
+    var m = M();
+    if (m && m.axisWord === "descriptor") {
+      return "Scores are the percept model's per-descriptor probabilities, "
+        + "and are dominated by base rates — read them as lift against "
+        + "the library, which is what the colouring does.";
+    }
+    return "Scores are sigmoid outputs: P(receptor responds), not intensity.";
+  }
   function topReceptors(i, n) {
     var row = M().scores[i], out = [];
     for (var r = 0; r < row.length; r++) out.push([r, row[r]]);
@@ -1171,15 +1190,18 @@ window.addEventListener("error", function (ev) {
         + "</dd><dt>Percentile</dt><dd>" + pct(d).toFixed(1)
         + "th of all pairs</dd><dt>Library median</dt><dd>" + M().medianDistance + "</dd></dl>";
       var diffs = [];
-      for (var r2 = 0; r2 < D.receptors.length; r2++) {
+      var AX = axes();
+      for (var r2 = 0; r2 < AX.length; r2++) {
         diffs.push([r2, M().scores[i][r2] - M().scores[j][r2]]);
       }
       diffs.sort(function (a2, b2) { return Math.abs(b2[1]) - Math.abs(a2[1]); });
-      html += '<p class="note" style="margin:8px 0 5px">Receptors that separate them</p><div class="bars">';
+      html += '<p class="note" style="margin:8px 0 5px">'
+        + (axisWord() === "descriptor" ? "Descriptors" : "Receptors")
+        + ' that separate them</p><div class="bars">';
       for (var q2 = 0; q2 < 6; q2++) {
         var rr = diffs[q2];
         var sign = rr[1] > 0 ? esc(m.name) : esc(D.molecules[j].name);
-        html += '<div class="rrow"><span class="g">' + esc(D.receptors[rr[0]].gene) + "</span>"
+        html += '<div class="rrow"><span class="g">' + esc(AX[rr[0]]) + "</span>"
           + '<span class="v" style="text-align:left;color:var(--muted)">' + sign.slice(0, 20) + "</span>"
           + '<span class="v">' + (rr[1] >= 0 ? "+" : "") + rr[1].toFixed(2) + "</span></div>";
       }
@@ -1188,21 +1210,26 @@ window.addEventListener("error", function (ev) {
 
     // Neighbours first: they are what the map is read for, and the per-receptor
     // profile is reference material underneath it.
-    html += '<h2 style="margin-top:14px">Nearest in receptor space</h2><ul class="nn">';
+    html += '<h2 style="margin-top:14px">Nearest in '
+      + (axisWord() === "descriptor" ? "percept" : "receptor")
+      + ' space</h2><ul class="nn">';
     neighbours(i, 8).forEach(function (t) {
       html += '<li><button type="button" data-go="' + t[0] + '">' + esc(D.molecules[t[0]].name)
         + '</button><span class="d">' + t[1].toFixed(1) + "</span></li>";
     });
     html += "</ul>";
 
-    html += '<h2 style="margin-top:14px">Receptor profile</h2><div class="bars">';
+    html += '<h2 style="margin-top:14px">'
+      + (axisWord() === "descriptor" ? "Descriptor" : "Receptor")
+      + ' profile</h2><div class="bars">';
+    var AX2 = axes();
     topReceptors(i, 12).forEach(function (t) {
-      html += '<div class="rrow"><span class="g">' + esc(D.receptors[t[0]].gene) + "</span>"
+      html += '<div class="rrow"><span class="g">' + esc(AX2[t[0]]) + "</span>"
         + '<span class="track"><span class="fill" style="width:' + (t[1] * 100).toFixed(1) + '%"></span></span>'
         + '<span class="v">' + t[1].toFixed(3) + "</span></div>";
     });
     html += "</div>";
-    html += '<p class="note">Scores are sigmoid outputs: P(receptor responds), not intensity.</p>';
+    html += '<p class="note">' + axisScaleNote() + "</p>";
 
     el.innerHTML = rank ? rank + html : html;
     bindGo(el);
@@ -1250,23 +1277,52 @@ window.addEventListener("error", function (ev) {
     // is built from more than one, and naming one in prose got it wrong.
     var encoder = (D.models && D.models[state.model]
                    && D.models[state.model].label) || "";
+    // The headline caveat inverts between the two kinds of space, so it is
+    // written per model. On a receptor map the warning is that position is
+    // chemistry and not smell; on the percept map position IS the model's
+    // guess at smell, and the warning becomes that it is a guess, from
+    // binary labels, with base rates it cannot see past.
+    var isPercept = (D.models[state.model] || {}).axisWord === "descriptor";
+    var nAxes = ((D.models[state.model] || {}).axes || []).length;
     document.getElementById("sub").innerHTML =
-      D.meta.n_molecules + " perfumery materials scored against " + D.meta.n_receptors
-      + " functional human olfactory receptors by <strong>MolOR</strong> "
-      + "(" + esc(encoder) + ", ESM-2 650M protein embeddings). <strong>Position is "
-      + "receptor response, not smell</strong> &mdash; " + colourNote
+      (isPercept
+        ? D.meta.n_molecules + " perfumery materials placed by their "
+          + nAxes + " predicted <strong>odour descriptors</strong> ("
+          + esc(pm.name || "percept model") + "). <strong>Position is "
+          + "predicted smell</strong>, so this map answers a different "
+          + "question from the encoder maps — and it is a prediction from "
+          + "binary human labels, not a measurement. "
+        : D.meta.n_molecules + " perfumery materials scored against " + D.meta.n_receptors
+          + " functional human olfactory receptors by <strong>MolOR</strong> "
+          + "(" + esc(encoder) + ", ESM-2 650M protein embeddings). <strong>Position is "
+          + "receptor response, not smell</strong> — ")
+      + colourNote
       + "Drag to rotate, shift-drag to pan, "
       + "scroll to zoom; on a touch screen drag to rotate, pinch to zoom and "
       + "double-tap to re-fit. Click or tap a material to inspect it; "
       + "shift-click a second to compare. "
       + "<br><br>"
       + "Grey links join pairs that are mutual nearest neighbours in the real "
-      + "386-dimensional space, so <strong>trust the links over bare proximity</strong> — "
+      + (isPercept ? nAxes + "-dimensional" : "386-dimensional")
+      + " space, so <strong>trust the links over bare proximity</strong> — "
       + "a dotted outline marks a material whose plotted neighbours are mostly not its true "
       + "ones. This projection reproduces the real distances at Shepard "
-      + p.shepard.toFixed(3) + ". Two limits: enantiomers and E/Z isomers land on the "
-      + "same point, so stereochemistry is effectively invisible; and the vectors encode "
-      + "chemical structure more strongly than smell.";
+      + p.shepard.toFixed(3) + ". "
+      + (isPercept
+        ? "That is lower than the encoder maps manage, for a reason: in "
+          + "receptor space one component dominates so flattening costs "
+          + "little, while here the first three take only a third of the "
+          + "variance and there is more to lose on the way down. Two limits. "
+          + "Geraniol and nerol, geranyl and neryl acetate, menthone and "
+          + "isomenthone sit on <strong>exactly</strong> the same point, "
+          + "because neither the fingerprint behind this model nor its "
+          + "descriptors can see geometry — a stronger version of the "
+          + "stereo blindness the encoder maps have. And a homologous "
+          + "series reaches it only through molecular weight, so "
+          + "neighbouring aldehydes crowd together."
+        : "Two limits: enantiomers and E/Z isomers land on the "
+          + "same point, so stereochemistry is effectively invisible; and the vectors encode "
+          + "chemical structure more strongly than smell.");
     document.getElementById("foot").innerHTML =
       "<strong><a href=\"https://valkon.us/molor/simplify\" "
       + "style=\"color:var(--accent)\">Formula simplifier &#8594;</a></strong>"

@@ -333,6 +333,115 @@ def build_model_block(paths, name, genes_ref, names_ref, query=None,
     }
 
 
+def build_percept_block(entries, pm, desc):
+    """The same projection pipeline, run on percept vectors instead.
+
+    The percept model has its own 138-dimensional space and had no map. It
+    gets one here rather than a separate page, because the atlas already
+    switches between spaces and everything else on the page -- search,
+    neighbour lists, the colouring -- is space-agnostic once the score panel
+    knows what its own columns are called.
+
+    Two differences from receptor space, both measured rather than assumed.
+
+    There is no dominant component to remove. In receptor space every
+    molecule correlates ~0.95 with the panel mean and PC1 is essentially
+    potency, which is why the atlas offers a "potency removed" view. Here PC1
+    takes 14.0% of the variance, PC2 10.2%, PC3 9.0%, and the first twenty
+    together 81.4%; PC1 loads on sweaty, juicy, brandy, fermented and
+    correlates only +0.24 with how many descriptors fire, so it is a
+    fruity-fermented direction and not an intensity axis. The PC1-dropped
+    variant is still exported for comparison and is slightly WORSE
+    (Shepard 0.927 against 0.939), which is the opposite of receptor space,
+    where removing PC1 is what makes the chemistry legible.
+
+    And the projection is less faithful, for the same reason: with no
+    dominant axis there is more to lose on the way down to three dimensions.
+    On the 427 points actually exported, Shepard 0.939 against 0.991 for the
+    GCN atlas, and top-10 neighbour preservation 0.63 against 0.70. Still
+    clearly better than 2D (0.894) and far better than PCA 2D (0.750), so
+    the map is 3D like the other.
+    """
+    import numpy as np
+    from scipy.spatial.distance import squareform as _sq
+    from scipy.stats import spearmanr as _sp
+    from sklearn.manifold import MDS as _MDS
+
+    rows, missing = [], []
+    mean = np.mean([v for v in pm.values()], axis=0)
+    for e in entries:
+        r = pm.get(e.name)
+        if r is None:
+            missing.append(e.name)
+            rows.append(mean)
+        else:
+            rows.append(np.asarray(r, dtype=float))
+    if missing:
+        print(f"  percept: {len(missing)} entries have no percept vector and "
+              f"sit at the mean: {', '.join(missing[:4])}")
+    P = np.vstack(rows)
+
+    def axis_align(coords):
+        c = coords - coords.mean(axis=0, keepdims=True)
+        _, _, vt = np.linalg.svd(c, full_matrices=False)
+        out = c @ vt.T
+        for j in range(out.shape[1]):
+            if out[np.argmax(np.abs(out[:, j])), j] < 0:
+                out[:, j] = -out[:, j]
+        return out
+
+    reduced, _ = preprocess(P, drop_pc1=False, n_components=20)
+    D = squareform(pdist(reduced))
+    projections = {}
+    for drop in (False, True):
+        red, _ = preprocess(P, drop_pc1=drop, n_components=20)
+        d3 = pdist(red)
+        c3 = _MDS(n_components=3, dissimilarity="precomputed", random_state=0,
+                  n_init=6, max_iter=800,
+                  normalized_stress="auto").fit_transform(_sq(d3))
+        c3 = axis_align(c3)
+        tag = "quality" if drop else "full"
+        projections[f"mds3_{tag}"] = {
+            "label": ("MDS 3D - first component removed" if drop
+                      else "MDS 3D - all components"),
+            "x": [round(float(v), 4) for v in c3[:, 0]],
+            "y": [round(float(v), 4) for v in c3[:, 1]],
+            "z": [round(float(v), 4) for v in c3[:, 2]],
+            "shepard": round(float(_sp(d3, pdist(c3)).statistic), 4),
+            "reliability": [round(float(v), 3)
+                            for v in neighbour_preservation(red, c3, k=10)],
+            "explained": None,
+        }
+    for method in ("mds", "pca"):
+        for drop in (False, True):
+            pr = project(P, list(desc), method=method,
+                         drop_pc1=drop, n_components=20)
+            tag = "quality" if drop else "full"
+            projections[f"{method}_{tag}"] = {
+                "label": (f"{method.upper()} 2D - "
+                          + ("first component removed" if drop
+                             else "all components")),
+                "x": [round(float(v), 4) for v in pr.coords[:, 0]],
+                "y": [round(float(v), 4) for v in pr.coords[:, 1]],
+                "shepard": round(float(pr.shepard), 4),
+                "reliability": [round(float(v), 3) for v in pr.reliability],
+                "explained": ([round(float(v), 4) for v in pr.explained]
+                              if pr.explained is not None else None),
+            }
+    return {
+        "scores": [[round(float(v), 4) for v in row] for row in P],
+        "dist": [[round(float(v), 3) for v in row] for row in D],
+        "edges": [[int(a), int(b)]
+                  for a, b in mutual_neighbour_edges(reduced, k=EDGE_K)],
+        "projections": projections,
+        "medianDistance": round(float(np.median(pdist(reduced))), 3),
+        "total": [round(float(v), 3) for v in P.sum(axis=1)],
+        "axes": list(desc),
+        "axisWord": "descriptor",
+        "axisScale": "probability 0-1",
+    }
+
+
 def main() -> int:
     import argparse
 
@@ -632,12 +741,34 @@ def main() -> int:
                                             query=query_path,
                                             white=not args.no_white_point)
             models[key]["label"] = label
+            # Every model says what its own score columns are, so the page
+            # does not have to assume they are receptors.
+            models[key]["axes"] = list(genes)
+            models[key]["axisWord"] = "receptor"
+            models[key]["axisScale"] = "responsiveness 0-1"
             print(f"  model {key:5s} <- artifacts/{libname}")
         except Exception as exc:
             print(f"  model {key:5s} SKIPPED ({exc})")
 
     if not models:
         raise SystemExit("no libraries could be loaded")
+
+    # The percept model's own space, as a third selectable map. It is built
+    # from the same aligned dict the colouring uses, so naturals and the white
+    # point are on it too.
+    if percept_row and percept_path.is_file():
+        try:
+            pj2 = json.loads(percept_path.read_text(encoding="utf-8"))
+            pm2 = {n: np.asarray(r, dtype=float)
+                   for n, r in zip(pj2["molecules"], pj2["probs"])}
+            pm2.update(nat_percept)
+            models["percept"] = build_percept_block(entries, pm2,
+                                                    pj2["descriptors"])
+            models["percept"]["label"] = (
+                "Percept model (138 odour descriptors, not receptors)")
+            print(f"  model percept <- {args.percepts}")
+        except Exception as exc:  # noqa: BLE001
+            print(f"  model percept SKIPPED ({exc})")
 
     prov = json.loads(lib.provenance_json.read_text())
     payload = {
@@ -706,7 +837,9 @@ def main() -> int:
         "perceptAllNames": percept_all_names,
         "perceptColour": percept_colour,
         "models": models,
-        "modelOrder": [k for k, _, _ in MODELS if k in models],
+        # Receptor stores first, in MODELS order, then the percept space.
+        "modelOrder": ([k for k, _, _ in MODELS if k in models]
+                       + (["percept"] if "percept" in models else [])),
     }
 
     out = ROOT / args.out

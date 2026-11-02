@@ -1358,6 +1358,51 @@ them is cheap and has not been done. The next subsection is the reason it is
 not urgent: the whole column is agreement with the training labels, and it does
 not survive contact with independent panel data either way.
 
+### The percept model's own space, as a third map
+
+The percept model had 138 dimensions and no picture of them. It has one now, as
+a third entry in the atlas's model selector rather than a separate page, since
+everything on that page except the score panel is space-agnostic once each
+model says what its own columns are called. `build_percept_block` in
+`scripts/export_viewer_data.py`; the panels read `models[k].axes`, which is
+gene symbols for the encoder maps and descriptor names for this one.
+
+Same pipeline as the encoder maps — column z-score, PCA to 20, metric MDS to
+three axes, SVD alignment, Shepard reported on the page — and two differences,
+both measured rather than assumed.
+
+**There is no dominant component to remove.** In receptor space every molecule
+correlates about 0.95 with the panel mean and PC1 is essentially potency, which
+is the whole reason the atlas offers a "potency removed" view. Here PC1 takes
+**14.0%** of the variance, PC2 10.2%, PC3 9.0%, and the first twenty together
+81.4%. PC1 loads on `sweaty, juicy, brandy, fermented` and correlates only
++0.24 with how many descriptors fire, so it is a fruity-fermented direction and
+not an intensity axis. The PC1-dropped variant is exported for comparison and
+is slightly **worse** (Shepard 0.927 against 0.939) — the opposite of receptor
+space.
+
+**And the projection is less faithful, for the same reason.** With no dominant
+axis there is more to lose on the way down:
+
+| map | Shepard | top-10 neighbours kept |
+|---|---|---|
+| GCN receptor, MDS 3D | 0.991 | 0.70 |
+| percept, MDS 3D | **0.939** | **0.63** |
+| percept, MDS 2D | 0.894 | 0.44 |
+| percept, PCA 2D | 0.750 | — |
+
+Still clearly 3D over 2D, as with the other maps.
+
+The page states a different headline caveat on this map, because the usual one
+inverts. On an encoder map the warning is that position is chemistry rather
+than smell; here position *is* the model's guess at smell, so the warning
+becomes that it is a guess from binary human labels and not a measurement. It
+also names the blind spots found in `scripts/percept_blind_spots.py`: geraniol
+and nerol, geranyl and neryl acetate, menthone and isomenthone sit on exactly
+the same point, which is a stronger version of the stereo blindness the encoder
+maps have, and a homologous series separates only through molecular weight, so
+neighbouring aldehydes crowd.
+
 ### The percept model is blind to chain length, and to geometry entirely
 
 Found while reading a WD-40 safety data sheet, which is not where anyone looks
