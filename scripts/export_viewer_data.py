@@ -68,8 +68,8 @@ EDGE_K = 2  # mutual-kNN depth for the true-neighbour links
 # outputs and 490-626 distinct values. Nothing ever paid for the MPNN; it was
 # simply first.
 MODELS = [
-    ("gcn", "library", "GCN encoder (no bond features, numerically healthy)"),
-    ("mpnn", "library_mpnn_clean", "MPNN encoder (bond features reach it, then saturate away)"),
+    ("gcn", "library", "Chemistry: 386 receptor responses (GCN)"),
+    ("mpnn", "library_mpnn_clean", "Chemistry: 386 receptor responses (MPNN)"),
 ]
 
 
@@ -469,8 +469,8 @@ def main() -> int:
         for part in args.models.split(","):
             k, _, v = part.partition("=")
             MODELS.append((k.strip(), v.strip(),
-                           {"mpnn": "MPNN encoder (bond features reach it, then saturate away)",
-                            "gcn": "GCN encoder (no bond features, numerically healthy)"
+                           {"mpnn": "Chemistry: 386 receptor responses (MPNN)",
+                            "gcn": "Chemistry: 386 receptor responses (GCN)"
                             }.get(k.strip(), k.strip())))
 
     paths = resolve_paths()
@@ -764,8 +764,7 @@ def main() -> int:
             pm2.update(nat_percept)
             models["percept"] = build_percept_block(entries, pm2,
                                                     pj2["descriptors"])
-            models["percept"]["label"] = (
-                "Percept model (138 odour descriptors, not receptors)")
+            models["percept"]["label"] = "Smell: 138 predicted odour words"
             print(f"  model percept <- {args.percepts}")
         except Exception as exc:  # noqa: BLE001
             print(f"  model percept SKIPPED ({exc})")
@@ -837,9 +836,13 @@ def main() -> int:
         "perceptAllNames": percept_all_names,
         "perceptColour": percept_colour,
         "models": models,
-        # Receptor stores first, in MODELS order, then the percept space.
-        "modelOrder": ([k for k, _, _ in MODELS if k in models]
-                       + (["percept"] if "percept" in models else [])),
+        # The smell map leads, because it is the one that answers the
+        # question most people arrive with. The encoder maps follow. The
+        # FIRST entry is what the page opens on; MODELS[0] separately
+        # decides the molecule set and the naturals file, and that stays
+        # the GCN store.
+        "modelOrder": ((["percept"] if "percept" in models else [])
+                       + [k for k, _, _ in MODELS if k in models]),
     }
 
     out = ROOT / args.out

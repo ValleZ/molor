@@ -1358,10 +1358,10 @@ them is cheap and has not been done. The next subsection is the reason it is
 not urgent: the whole column is agreement with the training labels, and it does
 not survive contact with independent panel data either way.
 
-### The percept model's own space, as a third map
+### The percept model's own space, and the atlas now opens on it
 
 The percept model had 138 dimensions and no picture of them. It has one now, as
-a third entry in the atlas's model selector rather than a separate page, since
+an entry in the atlas's space selector rather than a separate page, since
 everything on that page except the score panel is space-agnostic once each
 model says what its own columns are called. `build_percept_block` in
 `scripts/export_viewer_data.py`; the panels read `models[k].axes`, which is
@@ -1392,6 +1392,23 @@ axis there is more to lose on the way down:
 | percept, PCA 2D | 0.750 | — |
 
 Still clearly 3D over 2D, as with the other maps.
+
+**It is now the default view, and the page is renamed accordingly.** The two
+encoder maps place a material by which receptors it triggers; this one places
+it by what it is predicted to smell like, and that is the question most people
+arrive with. So the selector reads `Smell: 138 predicted odour words` against
+`Chemistry: 386 receptor responses (GCN / MPNN)`, the field is labelled
+*Space* rather than *Layout*, and the page is the **Aromachemical Atlas**
+rather than the Receptor Atlas. `modelOrder` decides what loads first;
+`MODELS[0]` separately decides the molecule set and which naturals file
+everything aligns to, and that stays the GCN store.
+
+Both the description and the provenance footer are written per space, because
+both were wrong for a percept layout: the footer credited MolOR and ESM-2 for a
+layout they no longer produce, and the description's warning inverts — on an
+encoder map the caveat is that position is chemistry rather than smell, while
+here position *is* the model's guess at smell and the caveat becomes that it is
+a guess from hand-written labels.
 
 The page states a different headline caveat on this map, because the usual one
 inverts. On an encoder map the warning is that position is chemistry rather

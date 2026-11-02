@@ -1,6 +1,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Aromachemical Receptor Atlas</title>
+<title>Aromachemical Atlas</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -224,7 +224,7 @@ footer strong { color: var(--fg); font-weight: 600; }
 </style>
 
 <div class="wrap">
-  <h1>Aromachemical Receptor Atlas</h1>
+  <h1>Aromachemical Atlas</h1>
   <p class="sub" id="sub"></p>
 
   <div class="bar">
@@ -234,7 +234,7 @@ footer strong { color: var(--fg); font-weight: 600; }
              placeholder="name, formula, odour descriptor, SMILES…" autocomplete="off">
     </div>
     <div class="field" id="modelField" hidden>
-      <label class="lab" for="model">Layout</label>
+      <label class="lab" for="model">Space</label>
       <select id="model"></select>
     </div>
     <button class="btn" id="clearPin" type="button" hidden>Clear comparison</button>
@@ -1286,12 +1286,16 @@ window.addEventListener("error", function (ev) {
     var nAxes = ((D.models[state.model] || {}).axes || []).length;
     document.getElementById("sub").innerHTML =
       (isPercept
-        ? D.meta.n_molecules + " perfumery materials placed by their "
-          + nAxes + " predicted <strong>odour descriptors</strong> ("
-          + esc(pm.name || "percept model") + "). <strong>Position is "
-          + "predicted smell</strong>, so this map answers a different "
-          + "question from the encoder maps — and it is a prediction from "
-          + "binary human labels, not a measurement. "
+        ? D.meta.n_molecules + " perfumery materials arranged by <strong>how "
+          + "they are predicted to smell</strong>: neighbours here share "
+          + "odour words, and the " + nAxes + " axes are descriptors like "
+          + "<em>rose</em>, <em>waxy</em> and <em>black currant</em> rather "
+          + "than anything chemical. The position is a prediction, from a "
+          + "model fitted to 4983 molecules that people described by hand "
+          + "— not a measurement of smell. Use the <strong>Space</strong> "
+          + "selector for the two chemistry maps, where materials are placed "
+          + "by which olfactory receptors they trigger instead; those answer "
+          + "a different question and disagree with this one. "
         : D.meta.n_molecules + " perfumery materials scored against " + D.meta.n_receptors
           + " functional human olfactory receptors by <strong>MolOR</strong> "
           + "(" + esc(encoder) + ", ESM-2 650M protein embeddings). <strong>Position is "
@@ -1328,13 +1332,21 @@ window.addEventListener("error", function (ev) {
       + "style=\"color:var(--accent)\">Formula simplifier &#8594;</a></strong>"
       + " &nbsp;paste a formula and find the smallest blend with the same "
       + "predicted character."
-      + "<br><br><strong>Layout</strong>: MolOR " + esc(encoder) + ", cross-attention over "
-      + "ESM-2 650M receptor embeddings, checkpoint "
-      + esc(D.meta.checkpoint_md5.slice(0, 12))
-      + ", receptor panel " + esc(D.meta.panel_hash)
-      + " (" + D.meta.n_receptors + " functional receptors from HORDE, pseudogenes "
-      + "and fragments excluded). Weights from Zenodo record 13765978, code from "
-      + "microsoft/olfaction."
+      + "<br><br><strong>Layout</strong>: "
+      + (isPercept
+        ? esc(pm.name || "percept model")
+          + ", " + nAxes + " GS-LF odour descriptors, metric MDS over the "
+          + "z-scored space. Unlike the receptor maps this one has no "
+          + "dominant component to remove — the first three take about a "
+          + "third of the variance between them, which is also why it "
+          + "flattens to three axes less cleanly."
+        : "MolOR " + esc(encoder) + ", cross-attention over "
+          + "ESM-2 650M receptor embeddings, checkpoint "
+          + esc(D.meta.checkpoint_md5.slice(0, 12))
+          + ", receptor panel " + esc(D.meta.panel_hash)
+          + " (" + D.meta.n_receptors + " functional receptors from HORDE, "
+          + "pseudogenes and fragments excluded). Weights from Zenodo record "
+          + "13765978, code from microsoft/olfaction.")
       + "<br><strong>Colours</strong>: " + esc(pm.name || "none")
       + (pm.n_descriptors ? ", " + pm.n_descriptors + " descriptors" : "")
       + ", trained on GoodScents + Leffingwell (4983 molecules). "
