@@ -59,7 +59,8 @@ reader does not act on a retracted claim:
 | coverage by odorous weight says how much of a formula was understood | **misleading when the drops were dilutions** -- a coffee accord read 96% covered with all three of its coffee materials dropped, because they were 10% and 1% stocks worth 2 neat parts of 70. The page now names dropped dilutions and says the figure understates what is missing |
 | a material whose judgements span two bins cannot be used | **false** -- the span of a set of numbers grows with its size, so that rule flagged the four materials a re-test had just resolved. Replaced by shrinkage against a measured per-judgement noise of 0.89 bins |
 | Calone sticks out of blends because it is powerful | **false** -- measured at x0.24 strength, among the weakest per gram in the set. It sticks out because it is isolated (74th percentile), not because it is strong; the two had been conflated |
-| musks do not cluster because OR5AN1's learned signal is weak, so "musk" was never in the training data | **false, and the opposite** — OR5AN1's logit spread is the 97th percentile of the panel, the three nitro musks are the top three materials in the library on it, and of all 386 receptors it ranks **first** on size-controlled musk preference. Deleting it from the panel changes every pairwise distance by 0.09% (Spearman +1.0000). The knowledge is there, in the right receptor; an unweighted global distance over 386 columns discards it. `scripts/musk_receptor.py` |
+| musks do not cluster because OR5AN1's learned signal is weak, so "musk" was never in the training data | **false, and the opposite** — OR5AN1's logit spread is the 97th percentile of the panel, the three nitro musks are the top three materials in the library on it, and of all 386 receptors it ranks **first** on size-controlled musk preference. Deleting it from the panel changes every pairwise distance by 0.09% (Spearman +1.0000), so the global distance cannot see it. **But see the row below: this one overclaims too.** `scripts/musk_receptor.py` |
+| upweighting OR5AN1 would therefore make musks cluster | **false, and backwards** — nitro musks sit at +4.4 z on it and macrocyclics at +1.8, so the axis that detects the class also separates its members; sweeping the weight to 10,000x moves those pairs from the 84th to the 94th percentile. A class detector is not a similarity axis. Against Keller's own MUSKY rating over 115 molecules OR5AN1 ranks 228 of 386, which does not confirm the identification either. What does hold: single receptors predict individual panel descriptors at median |rho| 0.38, an order of magnitude better than the whole 386-dim distance predicts similarity (+0.03) — but 50 different receptors are best for 146 descriptors, so importance is per question, not per receptor, and no single reweighting can use it. `scripts/receptor_importance.py` |
 | a fixed palette of ~25 materials could reach any smell | **false for single molecules** — the reachable set is the palette's convex hull: 25 materials capture 95% of the space's energy and still reproduce only 45% of the library to cosine 0.90 |
 | the centroid of percept space is the olfactory white point, the "mud" | **false, and the perfumer caught it on the bench** — the centroid is the *average* smell, not a flat one: sweet 0.45, fruity 0.44, floral 0.38, green 0.35, sd 0.075 across descriptors. It has character by construction. Their description was "bright and sharp, like bright light", which is a better name for it |
 
@@ -828,6 +829,84 @@ so even the right receptor accounts for two of four chemotypes, which is what
 the receptor literature would predict rather than a failure. And 14 musks is a
 small sample; the rank-1-of-386 result is what carries the claim, not the
 p-value.
+
+#### Correction to that correction: a class detector is not a similarity axis, and importance is per descriptor
+
+A reader asked the obvious follow-up. If OR5AN1 is a specific, reliable musk
+receptor the way rods matter more than cones for seeing in the dark, scale the
+important receptors up — and why did training not do that already?
+`scripts/receptor_importance.py` answers all three parts, and the first answer
+corrects what the section above implied.
+
+**Scaling it up makes musks worse, not better.** Sweeping the weight on OR5AN1
+and watching where nitro-vs-macrocyclic musk pairs sit:
+
+| weight on OR5AN1 | musk pair percentile | ρ vs Dravnieks | ρ vs Keller |
+|---|---|---|---|
+| 1 (unweighted) | 84% | +0.032 | +0.022 |
+| 10 | 85% | +0.032 | +0.022 |
+| 100 | 89% | +0.031 | +0.019 |
+| 10 000 | 94% | +0.024 | +0.013 |
+
+Monotonically worse on the thing it was supposed to fix, and slightly worse on
+both panels as well. The reason is in the numbers the section above reported
+without reading them properly: nitro musks sit at +4.44 z on OR5AN1 and
+macrocyclics at +1.83, both far above the library — and **2.60 z apart from
+each other**, while the spread *within* each group is 0.37. So OR5AN1 answers
+"are these musks?" extremely well and "are these two alike?" not at all.
+Upweighting an axis on which two materials differ pushes them apart. A class
+**detector** is not a similarity **axis**, and `musk_receptor.py` measured only
+the first while the section above implied the second.
+
+**An external check does not confirm the musk claim either.** Against Keller's
+own MUSKY rating over 115 molecules, OR5AN1 ranks **228 of 386** (|ρ| 0.050);
+the best are OR2T11 at 0.346, OR2T35 at 0.298, OR2T2 at 0.294.
+`musk_receptor.py` asked a narrower question — are *this library's* 14 musks
+elevated on it with size controlled — and got rank 1 of 386. Both can be true,
+but 115 molecules of external panel data outweigh 14 in-library contrasts, and
+the honest reading is that the musk-receptor identification is weaker than that
+section claims.
+
+**But the reader's underlying intuition is right, and it is the useful finding
+here.** Some receptors do carry much more odour information than others — per
+descriptor. For every descriptor in the two panels, the single best-predicting
+receptor:
+
+| | median best-single-receptor \|ρ\| | max | distinct receptors |
+|---|---|---|---|
+| Dravnieks, 146 descriptors | **0.378** | 0.590 (MINTY → OR2T11) | 50 |
+| Keller, 20 descriptors | **0.298** | 0.409 (AMMONIA → OR9A4) | 16 |
+
+Compare those with +0.032 and +0.022 for the whole 386-dimensional distance
+against panel similarity. **One receptor predicts a descriptor an order of
+magnitude better than the entire panel predicts similarity.** The information
+is there in quantity; the global distance is what loses it.
+
+And this is why the reweighting experiment above could not have worked. The
+receptor that serves one descriptor is not the one that serves the next — 50
+distinct receptors for 146 Dravnieks descriptors. A single weight per receptor,
+applied to every comparison, would have to be right for "is this minty?" and
+"is this musky?" at once, and those want different receptors. The rod analogy
+breaks in exactly the same place: rods beat cones for detection in dim light
+and are useless for telling two hues apart. Importance in a sensory system is
+relative to the question, not a property of the receptor.
+
+**Why training did not produce it.** Because nothing in the checkpoint's loss
+ever compares two molecules. It predicts one binary outcome per (molecule,
+receptor) pair, and the 386-vector is a stack of 386 independent predictions
+assembled afterwards, here, by this project — it is not a learned embedding.
+No term in the objective has any opinion about the geometry of that stack, so
+no importance weighting over it could emerge; it was never asked for. Contrast
+the percept model, whose output dimensions *are* odour descriptors, so
+similarity in its output space is similarity in odour-label terms by
+construction. That is also why the percept model, not the receptor panel,
+drives everything in the simplifier.
+
+Which names the experiment that follows from all of this, and it is not a
+distance at all: **learn a supervised readout per descriptor from the receptor
+vector**, and see whether it beats the fingerprint the percept model currently
+uses. The table above is a one-receptor lower bound on what that could reach.
+Untried.
 
 ### A validation that looked like a pass, and was not
 
@@ -1898,6 +1977,7 @@ scripts/          everything measured in this document, one script per claim
   musk_test.py              do the four musk chemotypes recognise each other
   musk_receptor.py          OR5AN1 does; the global distance discards it
   receptor_metric.py        can reweighting get it back? pre-registered, no
+  receptor_importance.py    a class detector is not a similarity axis
   bench_simplify.py         the simplifier against the hand heuristic
   discriminating_blends.py  blends whose smell would decide the mixture rule
   export_viewer_data.py / build_viewer.py          the atlas
