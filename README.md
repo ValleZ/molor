@@ -578,9 +578,20 @@ lose.
 | encoder health | GCN | mechanism, not perception |
 
 **The two spaces agree only at Spearman 0.255.** Same data, same panel, same
-ESM embeddings, same attention head — only the molecular encoder differs. The
-deployment stays on the MPNN because nothing has shown the GCN clearly better,
-not because the MPNN is sound.
+ESM embeddings, same attention head — only the molecular encoder differs.
+
+**The atlas now defaults to the GCN.** It defaulted to the MPNN for as long as
+this section said the question was open, on the grounds that nothing had shown
+the GCN clearly better. That was the wrong way round: nothing had shown the
+MPNN better either, and it was only the default because it was built first.
+After seven attempts with no perceptual evidence either way — the seventh
+below, paired against two human panels — the tie-break has to be mechanism,
+and on mechanism it is not close. The MPNN's GRU is saturated to 82–100
+distinct values across its whole 2816-cell representation and annihilates the
+bond features that are its only reason to exist; the GCN has no pinned outputs
+and 490–626 distinct values, and is blind to E/Z honestly, having no bond
+features to lose. Both remain on the page and the selector switches between
+them; only which one loads first has changed.
 
 Bench cases point both ways and are worth more than any single statistic. The
 GCN puts Styrallyl Acetate next to Dimethyl Benzyl Carbinyl Acetate where the

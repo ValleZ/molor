@@ -54,9 +54,22 @@ EDGE_K = 2  # mutual-kNN depth for the true-neighbour links
 #: the GCN (0.560, p < 0.0001) over the MPNN (0.474, p = 0.0435), reversing the
 #: earlier reading that put the MPNN first. Six measures have not separated
 #: them, so the viewer now offers both and lets the nose decide.
+# The FIRST entry is the atlas default, and it also defines the molecule set
+# and the naturals file everything else aligns to.
+#
+# The GCN leads as of the seventh GCN-vs-MPNN comparison, which like the six
+# before it could not separate them on any perceptual measure -- paired on
+# identical pairs against two human panels, the difference was +0.016 and
+# -0.007 with intervals an order of magnitude wider. When no perceptual
+# evidence distinguishes two encoders over seven attempts, the tie-break is
+# mechanism, and there it is not close: the MPNN checkpoint's GRU is saturated
+# to 82-100 distinct values across its whole 2816-cell representation and
+# annihilates the bond features it is given, while the GCN shows no pinned
+# outputs and 490-626 distinct values. Nothing ever paid for the MPNN; it was
+# simply first.
 MODELS = [
+    ("gcn", "library", "GCN encoder (no bond features, numerically healthy)"),
     ("mpnn", "library_mpnn_clean", "MPNN encoder (bond features reach it, then saturate away)"),
-    ("gcn", "library", "GCN encoder (no bond features)"),
 ]
 
 
@@ -348,7 +361,8 @@ def main() -> int:
             k, _, v = part.partition("=")
             MODELS.append((k.strip(), v.strip(),
                            {"mpnn": "MPNN encoder (bond features reach it, then saturate away)",
-                            "gcn": "GCN encoder (no bond features)"}.get(k.strip(), k.strip())))
+                            "gcn": "GCN encoder (no bond features, numerically healthy)"
+                            }.get(k.strip(), k.strip())))
 
     paths = resolve_paths()
     # The first model's library defines the molecule set everything aligns to.
