@@ -1127,6 +1127,92 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
     renderK();
   }
 
+  // ---- volatility arc ----
+  // The percept vector this page matches is one snapshot. On a base-heavy
+  // formula that snapshot is the drydown -- a tomato-leaf accord of five
+  // green materials reads cedar, amber, dry because it is 44% Iso E Super --
+  // so a proposal can match the target exactly and have a completely
+  // different arc over time. Nothing else here can see that.
+  //
+  // Split by the SAME weights the solver uses, activity where every
+  // ingredient has a threshold and mass otherwise, because those are the
+  // weights the target vector was built from: the split then says which
+  // tiers the matched character actually comes from.
+  //
+  // Reported as a flag and not a score. The tiers agree with the inventory's
+  // own labels 74% of the time where both exist and 146 of them are derived
+  // from a boiling point rather than recorded, which is enough to catch a
+  // formula that has lost its whole top end and not enough to mean anything
+  // at a few points' difference.
+  var ARC_FLAG = 20;      // percentage points before it is worth saying
+  var ARC_MIN_COVER = 65; // below this much classified, say nothing at all
+  function tierSplit(idxs, w) {
+    var out = { top: 0, middle: 0, base: 0, none: 0 }, tot = 0, i;
+    for (i = 0; i < idxs.length; i++) tot += w[i];
+    if (!(tot > 0)) return null;
+    for (i = 0; i < idxs.length; i++) {
+      var t = MAT[idxs[i]].vol || "none";
+      out[t] += w[i] / tot;
+    }
+    for (var k in out) out[k] = 100 * out[k];
+    return out;
+  }
+  function arcHtml(a, b) {
+    if (!a || !b) return "";
+    var cover = Math.min(100 - a.none, 100 - b.none);
+    // Renormalise over the CLASSIFIED part before comparing. Counting the
+    // unclassified share as zero in every tier biases the comparison hard:
+    // a proposal that is 27% unclassified then looks as though it has lost
+    // mass from top, middle AND base at once, which is arithmetic rather
+    // than a finding. On the first test that produced "loses 24 points of
+    // top notes" where the honest figure, over what is classified on both
+    // sides, was 16 and below the threshold to mention.
+    function norm(x) {
+      var c = x.top + x.middle + x.base;
+      if (!(c > 0)) return { top: 0, middle: 0, base: 0, none: x.none };
+      return { top: 100 * x.top / c, middle: 100 * x.middle / c,
+               base: 100 * x.base / c, none: x.none };
+    }
+    var an = norm(a), bn = norm(b);
+    function row(lbl, x) {
+      return '<tr><td class="dim">' + lbl + "</td>"
+        + "<td class=num>" + x.top.toFixed(0) + "%</td>"
+        + "<td class=num>" + x.middle.toFixed(0) + "%</td>"
+        + "<td class=num>" + x.base.toFixed(0) + "%</td>"
+        + '<td class="num dim">' + x.none.toFixed(0) + "%</td></tr>";
+    }
+    var h = '<table style="margin-top:10px"><tr><th>volatility</th>'
+      + '<th class=num>top</th><th class=num>middle</th>'
+      + '<th class=num>base</th><th class=num>no tier</th></tr>'
+      + row("your formula", an) + row("this proposal", bn) + "</table>"
+      + '<p class="note">Shares are of the part that has a tier; the last '
+      + "column is how much does not, and is excluded from the comparison "
+      + "rather than counted as zero everywhere.</p>";
+    if (cover < ARC_MIN_COVER) {
+      h += '<p class="note">Too little of this is classified to compare the '
+        + "arc: " + (100 - cover).toFixed(0) + "% of one side has no "
+        + "volatility tier.</p>";
+      return h;
+    }
+    var says = [];
+    [["top", "top notes"], ["middle", "middle"], ["base", "base"]]
+      .forEach(function (t) {
+        var d = bn[t[0]] - an[t[0]];
+        if (Math.abs(d) < ARC_FLAG) return;
+        says.push((d < 0 ? "loses " : "gains ") + Math.abs(d).toFixed(0)
+          + " points of " + t[1]);
+      });
+    h += '<p class="note' + (says.length ? " warn" : "") + '">'
+      + (says.length
+        ? "This proposal " + says.join(" and ") + ". It can still match the "
+          + "predicted character, because that is a single snapshot — but "
+          + "it will not follow the same arc on skin."
+        : "The proposal keeps roughly the same balance of top, middle and "
+          + "base as the formula.")
+      + "</p>";
+    return h;
+  }
+
   function renderK() {
     if (!STATE) return;
     var k = parseInt(el("k").value, 10);
@@ -1230,6 +1316,17 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
       + atlasAnchor(s.idxs, s.w, k + "-material proposal",
                     "Show this proposal on the atlas")
       + "</p>";
+    // renderK runs on every move of the k slider, so the box is reused
+    // rather than inserted: insertAdjacentHTML would stack a fresh copy each
+    // time and the panel would grow a table per drag.
+    var arcHTML = arcHtml(tierSplit(STATE.idxs, STATE.w),
+                          tierSplit(s.idxs, s.w));
+    var arcBox = document.getElementById("arcBox");
+    if (!arcBox) {
+      el("proposal").insertAdjacentHTML("afterend", '<div id="arcBox"></div>');
+      arcBox = document.getElementById("arcBox");
+    }
+    arcBox.innerHTML = arcHTML;
     el("cols").textContent = anyDil
       ? "Weigh the parts column at the stock strength beside it. It differs "
         + "from the neat column because a 10% stock needs ten times the "

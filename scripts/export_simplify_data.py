@@ -230,6 +230,49 @@ def inventory():
     return out
 
 
+#: Fitted to the inventory's own 159 tier assignments by grid search, not
+#: chosen here, and reproducing 74% of them. Shared with the atlas, where the
+#: same numbers derive the same tiers; a tier recorded by hand always wins.
+BP_TOP, BP_BASE = 216.0, 276.0
+
+
+def volatility():
+    """name -> (tier, 'recorded' | 'derived'), collapsed to three.
+
+    The simplifier matches a single percept vector, and the README records
+    what that costs: a tomato-leaf accord of five green materials read
+    `cedar, amber, dry` because it is 44% Iso E Super. One vector describes a
+    base-heavy formula's drydown, so a proposal can match on paper and have a
+    completely different arc. Tiers are carried here so the page can say when
+    that has happened.
+    """
+    from volatility_profile import GROUP
+
+    rec, bps = {}, {}
+    ip = ROOT / "data" / "inventory" / "inventory.csv"
+    if ip.is_file():
+        for r in csv.DictReader(io.open(ip, encoding="utf-8-sig")):
+            g = GROUP.get((r.get("volatility_class") or "").strip())
+            if g:
+                rec[(r.get("name") or "").strip()] = g
+    bp = ROOT / "data" / "inventory" / "boiling_points.csv"
+    if bp.is_file():
+        for r in csv.DictReader(io.open(bp, encoding="utf-8-sig")):
+            try:
+                bps[(r.get("name") or "").strip()] = float(r["bp_c"])
+            except (ValueError, KeyError):
+                pass
+    out = {}
+    for n, g in rec.items():
+        out[n] = (g, "recorded")
+    for n, v in bps.items():
+        if n in out:
+            continue
+        out[n] = (("top" if v < BP_TOP else
+                   "middle" if v < BP_BASE else "base"), "derived")
+    return out
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--percepts", default="artifacts/percepts_fp3.json")
@@ -274,6 +317,7 @@ def main() -> int:
     def _norm(x):
         return " ".join(_re.sub(r"[^a-z0-9]+", " ", x.lower()).split())
     strength = load_strength()
+    vol = volatility()
     n_blocked = 0
     n_unverified = 0
     mats = []
@@ -320,6 +364,8 @@ def main() -> int:
             "str": round(st["mult"], 3) if st else None,
             "strN": st["n"] if st else None,
             "own": bool(n in inv),
+            "vol": vol.get(n, (None, None))[0],
+            "volSrc": vol.get(n, (None, None))[1],
             "oil": bool(o),
             "built": (", ".join(
                 f"{k} {100 * v:.0f}%" for k, v in
@@ -373,6 +419,11 @@ def main() -> int:
         # it the page drops "Lavender Maillette France" for matching three
         # lavenders equally well.
         "oil_defaults": pf.oil_defaults(),
+        "volMeta": {
+            "recorded": sum(1 for v in vol.values() if v[1] == "recorded"),
+            "derived": sum(1 for v in vol.values() if v[1] == "derived"),
+            "agreement": 0.74, "bpTop": BP_TOP, "bpBase": BP_BASE,
+        },
         "yardstick": round(yardstick, 4),
         "mean": [round(float(v), 4) for v in X.mean(0)],
         "meta": {

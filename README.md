@@ -1476,6 +1476,46 @@ at 14.6, so it measures ingredient count as much as smell. The link names its
 space and the chemistry maps refuse with that reason rather than drawing a
 point that would mislead.
 
+### The simplifier reports the volatility arc it might have broken
+
+The percept vector this project matches is one snapshot, and the section on
+volatility above records what that costs: a tomato-leaf accord of five green
+materials read `cedar, amber, dry` because it is 44% Iso E Super. So the
+simplifier could hand back a proposal that matches the target exactly and has
+a completely different arc over time, and nothing on the page could see it.
+That is what went wrong in the WD-40 work: the solver chose Methyl Propionate
+at 80 °C to stand in for a fraction starting at 151, for the right reason and
+at the wrong volatility.
+
+The proposal now carries a split of both sides by tier, weighted by the same
+activity-or-mass weights the solver uses, since those are the weights the
+target vector was built from:
+
+```
+volatility      top   middle   base   no tier
+your formula    45%      4%     51%       0%
+this proposal   29%      0%     71%      27%
+```
+
+and a line that fires only on a gross divergence — more than 20 points in a
+tier — saying what was lost or gained, because the tiers agree with the
+inventory's own labels 74% of the time and 146 of them are derived from a
+boiling point. Enough to catch a formula that has lost its top end; not
+enough to mean anything at a few points.
+
+**A bias in the first version, worth recording because it would have read as
+a finding.** The unclassified share was counted as zero in every tier, so any
+proposal containing unclassified materials appeared to have lost mass from
+top, middle and base at once. On the first test that produced "loses 24 points
+of top notes" where the honest figure, computed over what is classified on
+both sides, was 16 — below the threshold to mention at all. Shares are now
+renormalised over the classified part and the unclassified column is shown
+separately rather than silently absorbed.
+
+Coverage is what makes this usable: tiers now cover **129 of 129** materials
+in the inventory and 275 of 435 on the page, after `merge_bp.py` added 146
+boiling points.
+
 ### Volatility, as a second filter rather than another colour
 
 A reader asked to filter the atlas by molecular weight, since heavier
