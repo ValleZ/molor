@@ -50,3 +50,7 @@ data/inventory/perfumery_inventory.csv
 data/formulas/recipes.md
 data/formulas/parsed.json
 data/formulas/mixes.csv
+
+# Web-session answers for boiling points: pasted output, not project data
+# until merge_bp.py has scored its controls and written boiling_points.csv.
+data/inventory/bp_requests/reply_*.csv

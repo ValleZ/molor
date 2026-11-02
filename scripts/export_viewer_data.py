@@ -48,6 +48,10 @@ SEMANTIC_COLOUR = {
 
 EDGE_K = 2  # mutual-kNN depth for the true-neighbour links
 
+#: Imported rather than restated so the atlas and the volatility report
+#: cannot drift apart on what counts as a top note.
+from volatility_profile import GROUP as VOL_GROUP  # noqa: E402
+
 #: First entry is what the viewer opens on, and --models overrides this list.
 #: Which encoder deserves that slot is unsettled: after the notes were matched
 #: to the cleaned material names, nearest-neighbour agreement with them favours
@@ -867,6 +871,13 @@ def main() -> int:
              "topPct": usage.get(e.name, [None, None, None])[0],
              "family": usage.get(e.name, [None, None, None])[1],
              "volatility": usage.get(e.name, [None, None, None])[2],
+             # Collapsed to three, using the same map volatility_profile.py
+             # uses and for the same reason it gives there: five tiers over
+             # a small set leaves tiers holding one material. On this atlas
+             # Top-Mid is 18 points and Mid-Base is 12, so the five-way
+             # split fragments exactly where the comment warns.
+             "vol": VOL_GROUP.get(
+                 usage.get(e.name, [None, None, None])[2]),
              "note": "" if args.no_notes else notes.get(e.name, "")}
             for e in entries
         ],
