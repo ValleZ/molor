@@ -60,7 +60,7 @@ reader does not act on a retracted claim:
 | a material whose judgements span two bins cannot be used | **false** -- the span of a set of numbers grows with its size, so that rule flagged the four materials a re-test had just resolved. Replaced by shrinkage against a measured per-judgement noise of 0.89 bins |
 | Calone sticks out of blends because it is powerful | **false** -- measured at x0.24 strength, among the weakest per gram in the set. It sticks out because it is isolated (74th percentile), not because it is strong; the two had been conflated |
 | musks do not cluster because OR5AN1's learned signal is weak, so "musk" was never in the training data | **false, and the opposite** — OR5AN1's logit spread is the 97th percentile of the panel, the three nitro musks are the top three materials in the library on it, and of all 386 receptors it ranks **first** on size-controlled musk preference. Deleting it from the panel changes every pairwise distance by 0.09% (Spearman +1.0000), so the global distance cannot see it. **But see the row below: this one overclaims too.** `scripts/musk_receptor.py` |
-| the receptor panel's odour signal can be recovered with a learned readout | **partly true, and not enough** — a ridge readout 386 → 138 descriptors triples what the raw distance gets from the panel (ρ +0.024 → +0.094 on Dravnieks, +0.027 → +0.069 on Keller), so the geometry really was losing it. But a plain fingerprint reaches +0.201 and +0.084 on the same molecules and folds, and adding the panel to it changes nothing (AUC +0.002). The panel holds about a third of what structure gives and nothing structure does not. `scripts/receptor_readout.py` |
+| the receptor panel's odour signal can be recovered with a learned readout | **partly true, and not enough** — a ridge readout 386 → 138 descriptors roughly triples what the raw distance gets from the panel (ρ +0.024 → +0.094 on Dravnieks, +0.027 → +0.069 on Keller), so the geometry really was losing it. But a plain fingerprint reaches +0.201 and +0.084 on the same molecules and folds, and adding the panel to it changes nothing (AUC +0.002). The panel holds about a third of what structure gives and nothing structure does not. `scripts/receptor_readout.py` |
 | 229 library materials are covered by GS-LF, over 26 106 pairs | **false** — 374 and 69 751. The library was keyed on its own stereo InChIKey against GS-LF's flat `nonStereoSMILES` column, so every chiral or E/Z molecule silently failed to match: citral, limonene, cinnamaldehyde, the ionones, the cis-3-hexenyl esters. Third appearance of this same mistake, now one function, `eval_similarity.flat_key` |
 | upweighting OR5AN1 would therefore make musks cluster | **false, and backwards** — nitro musks sit at +4.4 z on it and macrocyclics at +1.8, so the axis that detects the class also separates its members; sweeping the weight to 10,000x moves those pairs from the 84th to the 94th percentile. A class detector is not a similarity axis. Against Keller's own MUSKY rating over 135 molecules OR5AN1 ranks 267 of 386, which does not confirm the identification either. What does hold: single receptors predict individual panel descriptors at median |rho| 0.37, an order of magnitude better than the whole 386-dim distance predicts similarity (+0.02) — but 54 different receptors are best for 146 descriptors, so importance is per question, not per receptor, and no single reweighting can use it. `scripts/receptor_importance.py` |
 | a fixed palette of ~25 materials could reach any smell | **false for single molecules** — the reachable set is the palette's convex hull: 25 materials capture 95% of the space's energy and still reproduce only 45% of the library to cosine 0.90 |
@@ -933,6 +933,9 @@ positives, and on agreement with the two human panels — the same external
 yardstick as the reweighting experiment above, so the numbers sit beside each
 other.
 
+Scored on the MPNN store first, which turned out to be the wrong choice; both
+stores are compared further down.
+
 | features | OOF AUC | ρ Dravnieks | ρ Keller |
 |---|---|---|---|
 | raw 386-dim **distance**, no readout | — | +0.024 | +0.027 |
@@ -950,15 +953,56 @@ experiment could not exploit.
 **And it does not close the gap.** Structure alone reaches +0.201 and +0.084
 with a higher AUC. Nor does the panel add to structure: balanced concatenation
 gives AUC +0.002 and panel ρ −0.059 and −0.005 against fingerprint alone, which
-is indistinguishable from not using it. A small MLP agrees — receptors +0.105
-and +0.061, fingerprint +0.162 and +0.075, concatenation +0.016 AUC with mixed
-ρ — so this is not a matter of the readout being too simple.
+is indistinguishable from not using it. MLPs at three hidden widths agree, on both
+encoder stores — see the table below — so this is not a matter of the readout
+being too simple.
 
 So the decision this was run to inform: **computing receptor vectors for the
 4983 is not justified by this evidence.** The honest summary of the whole thread
 is that the receptor panel contains real, extractable odour information, about
 a third of what a plain fingerprint gives, and nothing that the fingerprint does
 not already have.
+
+**Both encoders, and the size of the network.** The first version of this
+experiment ran one store and one hidden width, which a reader rightly queried:
+the store it ran was `library_mpnn_clean`, whose encoder this README elsewhere
+shows to be numerically saturated, and the net was a single hidden layer of
+256. Both are swept now. The readout is `386 → h → 92 descriptors`, one hidden
+layer, ReLU, dropout 0.3, Adam at 1e-3 with weight decay 1e-3, 300 full-batch
+epochs; at h = 256 that is about 99k parameters on 374 molecules, so "the
+network was too small" was never an available reading of the result.
+
+Receptor-only ρ, by store and readout:
+
+| readout | MPNN Dravnieks | GCN Dravnieks | MPNN Keller | GCN Keller |
+|---|---|---|---|---|
+| ridge (linear) | +0.094 | **+0.114** | +0.069 | +0.064 |
+| mlp, h = 64 | +0.081 | **+0.172** | +0.061 | +0.051 |
+| mlp, h = 256 | +0.105 | +0.146 | +0.061 | +0.050 |
+| mlp, h = 1024 | +0.112 | +0.142 | +0.060 | +0.051 |
+
+**The GCN store carries more odour signal than the MPNN one on Dravnieks**, by
+a consistent margin across every readout, and the two are level on Keller. That
+is what this README's encoder-health section would predict and I had not
+checked: the MPNN checkpoint's GRU is saturated to 82–100 distinct values
+across its whole 2816-cell representation, so its receptor vectors are the more
+quantised of the two. The experiment had been run on the worse store.
+
+It does not change the verdict. Fingerprint ridge reaches +0.201 and +0.084 on
+the same molecules and folds, above every cell in that table, and balanced
+concatenation on the GCN store gives AUC +0.002 with ρ −0.037 and −0.004
+against fingerprint alone — the same "no gain" as the MPNN. Widening the
+network does not help either store monotonically, and on the fingerprint block
+the MLP is *worse* than ridge at every width, which is what 374 molecules
+should do to 578k parameters.
+
+One cell deserves naming rather than quoting. GCN receptors with h = 64 reach
++0.172 on Dravnieks against the same network's +0.132 on fingerprints — the one
+configuration where receptors beat structure. It is one of sixteen comparisons,
+chosen after seeing the numbers, on 50 molecules and 1225 pairs where the
+bootstrap spread measured earlier is ±0.05 to ±0.10. It is not evidence of
+anything, and the honest comparison is same-model-class, where fingerprints win
+every time.
 
 Three limits worth keeping. 374 molecules and a 50-molecule Dravnieks overlap
 are small. A readout trained on 4983 receptor vectors could behave differently

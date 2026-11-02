@@ -136,7 +136,9 @@ def main() -> int:
     ap.add_argument("--store", default="library_mpnn_clean")
     ap.add_argument("--folds", type=int, default=5)
     ap.add_argument("--mlp", action="store_true",
-                    help="also run a small MLP, which overfits this n")
+                    help="also run MLPs at each --hidden width")
+    ap.add_argument("--hidden", default="64,256,1024",
+                    help="hidden widths to sweep when --mlp is given")
     args = ap.parse_args()
 
     try:
@@ -207,9 +209,18 @@ def main() -> int:
 
     folds = list(KFold(args.folds, shuffle=True, random_state=0)
                  .split(np.arange(len(use))))
-    fitters = [("ridge", fit_ridge)]
+    fitters = [("ridge (linear, no hidden layer)", fit_ridge)]
     if args.mlp:
-        fitters.append(("mlp", lambda a, b, c: (fit_mlp(a, b, c), None)))
+        # Swept rather than assumed. The first version of this script reported
+        # one hidden width, 256, which on 374 molecules is already about 99k
+        # parameters for the receptor block and 578k for the fingerprint one
+        # -- so "the network was too small" was never a plausible reading of
+        # the result, and the sweep is here to say so with numbers.
+        for h in [int(x) for x in args.hidden.split(",")]:
+            fitters.append(
+                (f"mlp {h} hidden",
+                 (lambda hh: lambda a, b, c: (fit_mlp(a, b, c, hidden=hh),
+                                              None))(h)))
 
     for fname, fitter in fitters:
         print(f"\n=== {fname} ===")
