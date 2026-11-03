@@ -1153,6 +1153,12 @@ window.addEventListener("error", function (ev) {
     draw();
   }, { passive: false });
 
+  function fmtPpb(v) {
+    if (!(v > 0)) return "0";
+    if (v >= 100) return Math.round(v).toString();
+    if (v >= 1) return v.toFixed(1);
+    return v.toPrecision(2);
+  }
   function esc(s) {
     return String(s).replace(/[&<>"]/g, function (c) {
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
@@ -1435,6 +1441,7 @@ window.addEventListener("error", function (ev) {
     // the wrong way, despite scoring 0.82 in cross-validation on the training
     // set's own chemical space.
     if ((m.odt !== null && m.odt !== undefined)
+        || (m.thr !== null && m.thr !== undefined)
         || (m.strength !== null && m.strength !== undefined)) {
       html += '<h2 style="margin-top:14px">Dosing</h2>';
       if (m.odt !== null && m.odt !== undefined) {
@@ -1447,6 +1454,25 @@ window.addEventListener("error", function (ev) {
           + "(Abraham 2012), " + m.odtPct.toFixed(0)
           + "th percentile of the materials that have one. Higher means a lower "
           + "threshold, so a more potent material.</p>";
+      }
+      // The ppb column the simplifier doses from, assembled by the same
+      // function so the two pages cannot disagree. Distinct from the Abraham
+      // figure above, which is a log air-phase threshold for the 28 materials
+      // he measured -- kept because it is the only genuinely measured
+      // threshold data here, and not merged into a column it is not in the
+      // units of.
+      if (m.thr !== null && m.thr !== undefined) {
+        var tsrcTxt = m.thrSrc === "compiled"
+          ? "compiled from published sources"
+          : m.thrSrc === "kfo"
+            ? ("KFO-Atlas, median of " + m.thrN + " published values"
+               + (m.thrLo && m.thrHi
+                  ? " spanning " + fmtPpb(m.thrLo) + "–" + fmtPpb(m.thrHi)
+                  : ""))
+            : "imputed from 5 neighbours in percept space, median error 3x";
+        html += '<dl class="kv"><dt>Detection threshold</dt><dd>'
+          + fmtPpb(m.thr) + " ppb<br><span class=\"note\">" + tsrcTxt
+          + "</span></dd></dl>";
       }
       // Measured relative strength. Unlike the threshold figures this was
       // measured on this bench, by preparing every material at its own use

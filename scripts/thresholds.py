@@ -40,13 +40,17 @@ prints a weighable mass has to be able to say which tier it rests on.
 
 from __future__ import annotations
 
+from pathlib import Path
+
 import numpy as np
+
+ROOT = Path(__file__).resolve().parents[1]
 
 #: Neighbours used, chosen by the leave-one-out check in the docstring.
 K = 5
 
 
-def impute(X: np.ndarray, thr: list) -> tuple[list, list, dict]:
+def impute(X: np.ndarray, thr: list, names=None) -> tuple[list, list, dict]:
     """(values, sources, report) for every row of X.
 
     X is the percept matrix, one row per material. thr holds a figure or None
@@ -62,6 +66,7 @@ def impute(X: np.ndarray, thr: list) -> tuple[list, list, dict]:
 
     P = X[have]
     y = np.array([np.log10(thr[i]) for i in have], float)
+    anchor_names = [names[i] for i in have] if names else None
 
     out = list(thr)
     src = ["compiled" if (t and t > 0) else None for t in thr]
@@ -70,7 +75,17 @@ def impute(X: np.ndarray, thr: list) -> tuple[list, list, dict]:
         if t and t > 0:
             continue
         d = np.linalg.norm(P - X[i], axis=1)
-        near = np.argsort(d)[:K]
+        # Ties break on the anchor's NAME, not its row index. Without that the
+        # answer depends on the order the caller happened to pass: Isomenthone
+        # and Menthone have bit-identical percept vectors, so they sit at
+        # distance exactly 0 from the same neighbours, and the atlas and the
+        # simplifier -- which list materials in different orders -- imputed
+        # different thresholds for three materials from identical inputs.
+        if anchor_names is not None:
+            near = sorted(range(len(d)),
+                          key=lambda j: (d[j], anchor_names[j]))[:K]
+        else:
+            near = np.argsort(d)[:K]
         out[i] = float(10.0 ** y[near].mean())
         src[i] = "imputed"
         n_imp += 1
@@ -100,3 +115,89 @@ def describe(report: dict) -> str:
             f"imputed from {report['k']} neighbours in percept space "
             f"(leave-one-out median error {report['loo_median_factor']}x, "
             f"{100 * report['loo_within_decade']:.0f}% within a decade)")
+
+
+def assemble(names, X, strength=None, not_anchors=()):
+    """The whole threshold column, one place, so two pages cannot disagree.
+
+    The atlas and the simplifier had grown separate notions of "threshold".
+    The simplifier carried ppb in three provenance tiers -- compiled from the
+    inventory, published in the KFO-Atlas, k-nearest-neighbour imputed -- while
+    the atlas carried log(1/ODT) from Abraham's air-phase measurements for 28
+    materials and withheld the rest. Two different quantities under one word,
+    on two pages built from one library. This is the ppb column, and both now
+    read it from here.
+
+    Order is not cosmetic. KFO is applied AFTER imputation rather than as an
+    anchor for it: feeding its values into the k-nearest-neighbour step moved
+    the leave-one-out error from 3.0x to 4.76x, because interpolation is only
+    as good as the points it interpolates from and KFO carries 2.4x of its
+    own. And a compiled figure is never replaced, because on the compounds at
+    or below 1 ppb KFO misses by 3.8x and misses upward -- 250x high on
+    trans-4-decenal -- which is the direction that over-doses.
+
+    Returns (values, sources, extras, report). ``extras`` holds the KFO row
+    count and spread per material, so a median of 696 disagreeing papers
+    cannot present itself as a measurement.
+    """
+    import csv as _csv
+    import io as _io
+
+    inv, kfo = {}, {}
+    ip = ROOT / "data" / "inventory" / "inventory.csv"
+    if ip.is_file():
+        for r in _csv.DictReader(_io.open(ip, encoding="utf-8-sig")):
+            v = (r.get("water_threshold_ppb") or "").strip()
+            if v:
+                try:
+                    inv[(r.get("name") or "").strip()] = float(v)
+                except ValueError:
+                    pass
+    kp = ROOT / "data" / "percept" / "kfo_thresholds.csv"
+    if kp.is_file():
+        for r in _csv.DictReader(_io.open(kp, encoding="utf-8-sig")):
+            try:
+                kfo[r["name"].strip()] = (float(r["ppb"]), int(r["n"]),
+                                          float(r["min_ppb"]),
+                                          float(r["max_ppb"]),
+                                          r.get("wide") == "1")
+            except (ValueError, KeyError):
+                pass
+
+    # A mixture is not an anchor. Tangerine EO carries a recorded threshold,
+    # and because the simplifier lists oils while the atlas does not, it was a
+    # k-nearest-neighbour anchor on one page and absent on the other -- three
+    # molecules then got different imputed thresholds from identical inputs.
+    # An oil's threshold is a property of the blend in any case, so using it
+    # to interpolate a single molecule's is mixing categories. Excluded names
+    # keep their own figure and stop anchoring anyone else's.
+    skip = set(not_anchors)
+    raw = [None if n in skip else inv.get(n) for n in names]
+    vals, src, report = impute(X, raw, names=list(names))
+    for i, n in enumerate(names):
+        if n in skip and inv.get(n):
+            vals[i] = inv[n]
+            src[i] = "compiled"
+    report["compiled"] = sum(1 for s_ in src if s_ == "compiled")
+    extras = {}
+    n_kfo = 0
+    for i, n in enumerate(names):
+        if src[i] == "compiled":
+            continue
+        k = kfo.get(n)
+        if not k:
+            continue
+        vals[i] = k[0]
+        src[i] = "kfo"
+        extras[n] = {"n": k[1], "lo": k[2], "hi": k[3], "wide": k[4]}
+        n_kfo += 1
+    report["kfo"] = n_kfo
+    report["imputed"] = sum(1 for s_ in src if s_ == "imputed")
+    # The bench correction is a statement about the material, not about the
+    # figure, so it applies on top of whichever tier supplied it.
+    if strength:
+        for i, n in enumerate(names):
+            st = strength.get(n)
+            if st and vals[i]:
+                vals[i] = vals[i] / st["mult"]
+    return vals, src, extras, report

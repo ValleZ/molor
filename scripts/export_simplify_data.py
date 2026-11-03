@@ -50,7 +50,8 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 from parse_formulas import ALIAS, SOLVENT  # noqa: E402
 from strength import load_strength  # noqa: E402
-from thresholds import describe as describe_thr, impute  # noqa: E402
+from thresholds import assemble as assemble_thr
+from thresholds import describe as describe_thr  # noqa: E402
 
 
 #: Materials that must never be proposed for a fragrance, whoever owns them.
@@ -411,67 +412,23 @@ def main() -> int:
     # Thresholds, filled and labelled. A material with no figure could not be
     # dosed and so could not be proposed at all, which is a worse answer than
     # a figure that is a factor of three out.
-    raw_thr = [m["thr"] for m in mats]
-
-    # KFO-Atlas published thresholds, slotted between compiled and imputed.
-    # They are the same quantity as the compiled column -- tested, not
-    # assumed, in scripts/import_kfo.py: the variation across foods is
-    # citation scatter rather than a matrix effect, the median ratio to
-    # compiled is 1.13x with only a +0.285 logP dependence, and the median
-    # error is 2.4x against 3.0x for this project's own imputation. So they
-    # beat a guess and do not beat a figure someone looked up: a compiled
-    # value is never overridden, because on the 13 compounds at or below
-    # 1 ppb KFO misses by 3.8x and misses UPWARD -- 250x high on
-    # trans-4-decenal -- which is the direction that over-doses.
-    kfo = {}
-    kpath = ROOT / "data" / "percept" / "kfo_thresholds.csv"
-    if kpath.is_file():
-        for r in csv.DictReader(io.open(kpath, encoding="utf-8-sig")):
-            try:
-                kfo[r["name"].strip()] = (float(r["ppb"]), int(r["n"]),
-                                          float(r["min_ppb"]),
-                                          float(r["max_ppb"]),
-                                          r.get("wide") == "1")
-            except (ValueError, KeyError):
-                pass
-    # Order matters, and getting it wrong cost accuracy rather than showing
-    # up as an error. Feeding the KFO values into impute() as anchors first
-    # moved its leave-one-out error from 3.0x to 4.76x: k-nearest-neighbour
-    # interpolation is only as good as the points it interpolates from, and
-    # KFO carries 2.4x of its own. Averaged over the whole column that was a
-    # net LOSS -- 125 materials gained a 2.4x figure while 185 others had
-    # their anchors degraded.
-    #
-    # So the imputation keeps the compiled column as its only anchors, and
-    # KFO is applied afterwards, over the top of what was imputed.
-    filled, tsrc, treport = impute(X, raw_thr)
-    n_kfo = 0
-    for i, m in enumerate(mats):
-        if tsrc[i] == "compiled":
-            continue            # a figure someone looked up is never replaced
-        k = kfo.get(m["n"])
-        if k:
-            filled[i] = k[0]
-            tsrc[i] = "kfo"
-            m["_kfo"] = k
-            n_kfo += 1
-    print(f"  KFO-Atlas: {len(kfo)} library materials matched, {n_kfo} of them "
-          f"replace an imputed figure with a published one")
-    for m, v, srcv in zip(mats, filled, tsrc):
-        st = strength.get(m["n"])
-        # The measured correction still applies on top of an imputed figure:
-        # it is a statement about the material, not about the figure.
-        m["thr"] = (round(v / st["mult"], 6) if (st and v) else
-                    (round(v, 6) if v else None))
-        k = m.pop("_kfo", None)
+    # One threshold column, assembled in scripts/thresholds.py so the atlas
+    # and this page cannot grow separate notions of the word. Order, tiers and
+    # the reasons for both are documented there.
+    tvals, tsrc, textra, treport = assemble_thr(
+        [m["n"] for m in mats], X, strength=strength,
+        not_anchors=[m["n"] for m in mats if m.get("oil")])
+    for m, v, srcv in zip(mats, tvals, tsrc):
+        m["thr"] = round(v, 6) if v else None
         m["thrSrc"] = srcv
-        if k:
-            # Carry the spread, so a median of 48 disagreeing papers cannot
-            # pass itself off as a measurement.
-            m["thrN"] = k[1]
-            m["thrLo"] = round(k[2], 6)
-            m["thrHi"] = round(k[3], 6)
-            m["thrWide"] = k[4] or None
+        ex = textra.get(m["n"])
+        if ex:
+            m["thrN"] = ex["n"]
+            m["thrLo"] = round(ex["lo"], 6)
+            m["thrHi"] = round(ex["hi"], 6)
+            m["thrWide"] = ex["wide"] or None
+    print(f"  KFO-Atlas supplied {treport.get('kfo', 0)} thresholds that would "
+          f"otherwise have been imputed")
     print("  " + describe_thr(treport))
 
     payload = {

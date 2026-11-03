@@ -1476,6 +1476,45 @@ at 14.6, so it measures ingredient count as much as smell. The link names its
 space and the chemistry maps refuse with that reason rather than drawing a
 point that would mislead.
 
+### One threshold column, because the two pages had grown two
+
+The atlas and the simplifier were both built from this library and had
+separate notions of the word *threshold*. The simplifier carried parts per
+billion in three provenance tiers; the atlas carried Abraham's log(1/ODT) in
+air for the 28 materials he measured, with the model predictions withheld
+because they anticorrelated with practice. Two different quantities under one
+word, on two pages that link to each other.
+
+`thresholds.assemble()` is now the only place the column is built, and both
+exporters call it. Three faults showed up in making them agree, none of which
+would have surfaced as an error:
+
+**The bench correction was applied on one page and not the other.** The
+measured-strength multiplier divides into the threshold, and in the atlas the
+assembly ran *before* `load_strength()`, so 22 materials published uncorrected
+figures there and corrected ones in the simplifier. Aldehyde C-8 read 0.7 ppb
+against 0.18.
+
+**Tie-breaking depended on the order the caller passed.** Isomenthone and
+Menthone have bit-identical percept vectors — see the blind-spots section —
+so they sit at distance exactly 0 from the same neighbours, and the k-nearest
+step resolved the tie by row index. The two pages list materials in different
+orders, so three molecules got different imputed thresholds from identical
+inputs. Ties now break on the anchor's name.
+
+**And a mixture was anchoring molecules.** Tangerine EO has a recorded
+threshold, and because the simplifier lists oils while the atlas does not, it
+was a k-nearest-neighbour anchor on one page and absent on the other. An
+oil's threshold is a property of the blend in any case, so interpolating a
+single molecule's from it is mixing categories. Oils keep their own figure and
+no longer anchor anyone else's.
+
+After all three: **0 value disagreements and 0 tier disagreements across the
+396 materials both pages carry.** The atlas card now shows the ppb figure with
+its tier — "KFO-Atlas, median of 696 published values spanning 0.001–16510" —
+and Abraham's measured log(1/ODT) stays beside it as a separate line rather
+than being merged into a column it is not in the units of.
+
 ### A fourth threshold tier, from the KFO-Atlas
 
 The KFO-Atlas (Leibniz-LSB; 2282 aroma profiles, 896 key food odorants)

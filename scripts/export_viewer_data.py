@@ -769,6 +769,24 @@ def main() -> int:
     # card other than the 28 real thresholds.
     from strength import load_strength
     strength = load_strength()
+    # The simplifier's ppb threshold column, from the shared assembler in
+    # scripts/thresholds.py, so the two pages cannot grow separate notions of
+    # the word. It sits AFTER load_strength() deliberately: the bench
+    # correction is part of the column, and when this ran before the strength
+    # load the atlas published uncorrected figures while the simplifier
+    # published corrected ones -- 22 materials disagreeing, silently, which is
+    # the exact failure this refactor exists to prevent.
+    from thresholds import assemble as _assemble_thr
+    _pj = json.loads((ROOT / args.percepts).read_text(encoding="utf-8"))
+    _pv, _ps, ppb_extra, _pr = _assemble_thr(
+        list(_pj["molecules"]), np.asarray(_pj["probs"], float),
+        strength=strength)
+    ppb = {n: (round(v, 6) if v else None, sv)
+           for n, v, sv in zip(_pj["molecules"], _pv, _ps)}
+    print(f"  thresholds (shared with the simplifier): {_pr['compiled']} "
+          f"compiled, {_pr.get('kfo', 0)} KFO-Atlas, {_pr['imputed']} imputed, "
+          f"bench strength applied to {len(strength)}")
+
     if strength:
         print(f"  strength: {len(strength)} materials measured on a blotter")
 
@@ -905,6 +923,17 @@ def main() -> int:
              "intensityPct": intensity.get(e.name, [None, None])[1],
              "odt": thresh.get(e.name, [None, None, None])[0],
              "odtSrc": thresh.get(e.name, [None, None, None])[1],
+             # The ppb column the simplifier doses from, assembled by the same
+             # function so the two pages cannot disagree about the word
+             # "threshold". Distinct from odt above, which is Abraham's
+             # log(1/ODT) in air for the 28 materials he measured -- a
+             # different quantity, kept because it is the only genuinely
+             # measured threshold data here.
+             "thr": ppb.get(e.name, (None, None))[0],
+             "thrSrc": ppb.get(e.name, (None, None))[1],
+             "thrN": (ppb_extra.get(e.name) or {}).get("n"),
+             "thrLo": (ppb_extra.get(e.name) or {}).get("lo"),
+             "thrHi": (ppb_extra.get(e.name) or {}).get("hi"),
              "odtPct": thresh.get(e.name, [None, None, None])[2],
              # Inventory fields are published: the perfumer asked for the
              # table's data to be included. --no-notes withholds the written
