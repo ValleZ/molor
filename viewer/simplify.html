@@ -212,6 +212,7 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
             difference between two materials you would struggle to tell
             apart, so read it as which way the character drifts rather than
             as how far.</p>
+          <p class="note warn" id="droppedDistinctive" hidden></p>
         </div>
       </div>
       <div>
@@ -248,6 +249,22 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
   var MAT = D.materials, DESC = D.descriptors, YARD = D.yardstick;
   var N = MAT.length, ND = DESC.length;
   var MEAN = D.mean;
+  // Per-descriptor spread, computed once. The payload ships the mean because
+  // centred cosine needs it; a lift in standard deviations needs this too,
+  // and it is cheap over 435 rows.
+  var SD = (function () {
+    var out = new Float64Array(D.descriptors ? D.descriptors.length
+                                             : D.mean.length);
+    for (var j = 0; j < out.length; j++) {
+      var m = D.mean[j], acc = 0;
+      for (var i = 0; i < D.materials.length; i++) {
+        var d = D.materials[i].p[j] - m;
+        acc += d * d;
+      }
+      out[j] = Math.sqrt(acc / Math.max(1, D.materials.length)) || 1;
+    }
+    return out;
+  }());
   var byLower = {};
   MAT.forEach(function (m, i) { byLower[m.n.toLowerCase()] = i; });
   var SOLV = {};
@@ -1447,6 +1464,68 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
 
     // caveats, the specific ones first
     var cav = [];
+
+    // An ingredient the proposal DROPPED that the formula was relying on for
+    // one facet. The page already warns "distinctive -- may read as itself"
+    // about a material it ADDS; this is the mirror, and it was missing.
+    //
+    // Reported from a real miss. A lilac formula lost its anisaldehyde at
+    // both 5 and 7 materials and the anisic character went with it, while
+    // the fit looked perfect: the proposal sat 0.015 from the target against
+    // a 0.439 yardstick. The model had spread `anisic` across ylang ylang
+    // (46% of the signal) and heliotropin (16%), leaving anisaldehyde with
+    // 12% and apparently replaceable -- but ylang reads anisic through
+    // p-cresyl methyl ether, which does not smell anisic to a nose. So the
+    // warning is on isolation, which is a property of the material rather
+    // than of the model's attribution, and on the facet the material leads.
+    var kept = {};
+    s.idxs.forEach(function (i) { kept[i] = 1; });
+    // Per-descriptor totals of the target, so a dropped material's share of
+    // each facet can be read off.
+    var facetTot = new Float64Array(ND), di, dj;
+    for (di = 0; di < STATE.idxs.length; di++) {
+      var pw = STATE.w[di], pp = MAT[STATE.idxs[di]].p;
+      for (dj = 0; dj < ND; dj++) facetTot[dj] += pw * pp[dj];
+    }
+    var lost = [];
+    for (di = 0; di < STATE.idxs.length; di++) {
+      var gi = STATE.idxs[di];
+      if (kept[gi]) continue;
+      var mm = MAT[gi];
+      if (mm.iso === null || mm.iso === undefined || mm.iso < 60) continue;
+      // The facet it leads: highest lift against the library among the
+      // descriptors where it supplies a real share of this formula.
+      var best = null;
+      for (dj = 0; dj < ND; dj++) {
+        if (!(facetTot[dj] > 0)) continue;
+        var share = STATE.w[di] * mm.p[dj] / facetTot[dj];
+        if (share < 0.10) continue;
+        var lift = (mm.p[dj] - MEAN[dj]) / (SD[dj] || 1);
+        if (lift < 2) continue;
+        if (!best || lift > best.lift) {
+          best = { lift: lift, share: share, name: DESC[dj] };
+        }
+      }
+      lost.push({ name: mm.n, iso: mm.iso, facet: best });
+    }
+    var droppedEl = el("droppedDistinctive");
+    droppedEl.hidden = !lost.length;
+    droppedEl.innerHTML = lost.length
+      ? "<strong>Dropped and distinctive.</strong> "
+        + lost.map(function (x) {
+            return esc(x.name) + " (" + x.iso.toFixed(0)
+              + "th percentile for isolation"
+              + (x.facet
+                  ? ", leading this formula on <em>" + esc(x.facet.name)
+                    + "</em> at " + (100 * x.facet.share).toFixed(0) + "% of it"
+                  : "")
+              + ")";
+          }).join(", ")
+        + (lost.length === 1 ? " is" : " are")
+        + " in the formula and not in this proposal. A good fit does not mean "
+        + "the facet survived: the vector can be matched by materials that "
+        + "share the descriptor in the model and not on a blotter."
+      : "";
     var traces = STATE.rows.filter(function (x) {
       return x.idx !== undefined
         && 100 * x.neat / STATE.rows.reduce(function (a, y) { return a + y.neat; }, 0) < 1;

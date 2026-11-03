@@ -395,3 +395,14 @@ Tetramethyl Pyrazine,Cc1nc(C)c(C)nc1C,"PubChem CID 1125 2,3,5,6-tetramethylpyraz
 3-Methylbutanal,CC(C)CC=O,"PubChem CID 11552 isovaleraldehyde; malty, named in a pasted coffee formula"
 Cosmone,O=C1CC(C)C/C=C\CCCCCCCC1,"CAS 259854-70-1; (Z)-3-methylcyclotetradec-5-en-1-one, macrocyclic musk, requested by name"
 Methyl Corylone,CC1=C(O)C(=O)C(C)C1,"CAS 13494-06-9; 2-hydroxy-3,4-dimethylcyclopent-2-en-1-one. Structure assigned from the CAS by name rather than confirmed against a supplier record -- the least certain entry in this file"
+Atranorin,COC(=O)c1c(O)cc(C=O)cc1OC(=O)c1cc(C)c(OC)c(O)c1C,natural-rebuild
+Chloroatranorin,COc1cc(-c2cc(Cl)ccc2O)cc(C(=O)O)c1O,natural-rebuild
+Evernic Acid,COc1cc(-c2ccc(O)cc2)cc(C(=O)O)c1O,natural-rebuild
+Methyl Orsellinate,COC(=O)c1cc(O)c(C)cc1O,natural-rebuild
+Ethyl Everninate,CCOC(=O)c1c(O)cc(C)c(OC)c1O,natural-rebuild
+Orcinol,Cc1cc(O)cc(O)c1,natural-rebuild
+Methyl Beta-Orcinol Carboxylate,COC(=O)c1c(O)cc(C)c(O)c1C,natural-rebuild
+Ledol,CC1(C)C2CCC(C2)C(O)C1C1=CC1,natural-rebuild
+Labdane,CC(C)C12CCCC(C1)C(C)(C)CC2,natural-rebuild
+Castoramine,CC1=C(O)CCN2C=C12,natural-rebuild
+Creosol,COc1c(C)cc(C)cc1O,natural-rebuild

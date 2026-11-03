@@ -23523,6 +23523,62 @@
       "collapsed_onto": null,
       "self_check": null,
       "atlas": true
+    },
+    "Birch Tar Oil (rectified)": {
+      "composition_used": {
+        "Guaiacol": 0.42,
+        "Para Cresol": 0.1,
+        "2-Isopropyl Phenol": 0.28,
+        "Eugenol ex Clove": 0.08,
+        "Acetophenone": 0.12
+      },
+      "coverage": 1.0,
+      "omitted_from_library": [
+        "2,4-/2,5-/2,6-Dimethylphenol (xylenols) â€” not in library; the alkyl-phenol fraction is voiced by 2-Isopropyl Phenol",
+        "Creosol (2-methoxy-4-methylphenol) â€” not in library; nearest kin Eugenol ex Clove voices the methoxy-methylphenol character",
+        "Syringol (2,6-dimethoxyphenol) â€” not in library"
+      ],
+      "source": "Rectified birch tar oil GC profiles (TGSC and pyroligneous-acid literature): guaiacol dominant ~30-40%, xylenols ~15-25%, cresols ~5-10%, creosol ~10%. Only in-library constituents used; alkyl-phenol proxies noted in omitted_from_library. NOT for use as-is: birch tar is IFRA-restricted; carried for percept reconstruction only."
+    },
+    "Oakmoss Absolute": {
+      "composition_used": {
+        "Atranorin": 0.35,
+        "Chloroatranorin": 0.12,
+        "Evernic Acid": 0.15,
+        "Methyl Beta-Orcinol Carboxylate": 0.13,
+        "Methyl Orsellinate": 0.1,
+        "Ethyl Everninate": 0.05,
+        "Orcinol": 0.1
+      },
+      "coverage": 1.0,
+      "omitted_from_library": [],
+      "source": "Evernia prunastri absolute GC profiles (TGSC/literature): atranorin ~30-35%, chloroatranorin ~5-12%, evernic acid ~10-15%, methyl beta-orcinol carboxylate ~10%, orcinol derivatives ~10%. The IFRA 51st amendment caps atranol/chloroatranol in finished product; this is the pre-crop acid profile. Reconstruction only â€” not for use."
+    },
+    "Labdanum Absolute": {
+      "composition_used": {
+        "Ledol": 0.3,
+        "Labdane": 0.3,
+        "Sclareol": 0.2,
+        "Borneol": 0.1,
+        "Alpha Pinene": 0.1
+      },
+      "coverage": 1.0,
+      "omitted_from_library": [],
+      "source": "Cistus ladaniferus absolute: labdane diterpenoids dominate (ledol, ladaniol-type); represented by Ledol/Labdane/Sclareol skeletons. Partial reconstruction: the specific ladaniol and labdane-oxide isomers are not available; the skeleton class is voiced. Reconstruction only."
+    },
+    "Castoreum Absolute": {
+      "composition_used": {
+        "Castoramine": 0.2,
+        "Para Cresol": 0.15,
+        "Acetophenone": 0.15,
+        "Borneol": 0.1,
+        "Creosol": 0.2,
+        "Phenethyl Alcohol": 0.1,
+        "Guaiacol": 0.1
+      },
+      "coverage": 1.0,
+      "omitted_from_library": [],
+      "source": "Castor fiber absolute: castoramine (pyrazine/quinuclidine nucleus), phenols (p-cresol, creosol), acetophenone, borneol. Partial reconstruction: castoreum's full pyridine/pyrazine spectrum is broader; the phenolic-leathery core is voiced. Reconstruction only â€” not for use."
     }
   },
   "trimmed": [
