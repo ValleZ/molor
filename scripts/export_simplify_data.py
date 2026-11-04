@@ -86,6 +86,14 @@ NEVER_PROPOSE = {
     # small sweet/earthy lift; in those accords it is a trace constituent,
     # not a bottle on the shelf.
     "3-Methylbutanal": "trace volatile, not purchasable as a formulating material",
+    # The leaf aldehydes. Volatile green-note trace constituents of
+    # essential oils and fruit (cis-3-hexenal = "the smell of cut grass"),
+    # sold (if at all) as flavor/aroma chemicals in tiny quantities, not
+    # as perfumery formulating materials. Both are fleeting top-notes
+    # with high-impact green/fatty characters that the fit over-weights
+    # in herbal/green briefs.
+    "(E)-2-Hexenal": "trace volatile leaf aldehyde, not a formulating material",
+    "(Z)-3-Hexenal": "trace volatile leaf aldehyde, not a formulating material",
 }
 
 #: Files whose entries were added because a real formula asked for them by
