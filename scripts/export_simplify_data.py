@@ -94,6 +94,11 @@ NEVER_PROPOSE = {
     # in herbal/green briefs.
     "(E)-2-Hexenal": "trace volatile leaf aldehyde, not a formulating material",
     "(Z)-3-Hexenal": "trace volatile leaf aldehyde, not a formulating material",
+    # 2-Heptanone. A banana/crest-malty trace volatile of essential oils,
+    # cheese and fruit -- a flavor/aroma chemical, not a perfumery
+    # formulating material. High-impact fruity/fatty notes that the fit
+    # over-weights wherever a brief asks for fruity lift.
+    "Heptan-2-one": "trace volatile ketone, not a formulating material",
 }
 
 #: Files whose entries were added because a real formula asked for them by
