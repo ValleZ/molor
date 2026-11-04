@@ -116,9 +116,13 @@ NEVER_PROPOSE = {
     "3-Phenylpropyl Cinnamate": "styrax trace constituent, not sold as a formulating material",
     "Coniferyl Benzoate": "benzoin resin carrier (the smell IS the resin), not sold neat",
     "Benzoic Acid": "benzoin constituent and preservative reagent, not a perfumery material",
-    # The guaiacwood rebuild constituents that are not shelf materials.
-    # Guaiol and bulnesol ARE sold as perfumery materials (guaiacwood
-    # protectors) and stay proposable; these two are reference molecules.
+    # The guaiacwood rebuild constituents. Guaiacwood EO IS the shelf
+    # form (the oil is the sold product); the isolated molecules are
+    # obscure reagent/naturals-isolate items a home perfumer cannot
+    # practically buy, and the engine kept dosing Guaiol at 40 parts
+    # (a vector duplicate of the oil) in woody/smoky briefs.
+    "Guaiol": "guaiacwood isolate, sold only as a niche naturals reference — use the EO instead",
+    "Bulnesol": "guaiacwood isolate, sold only as a niche naturals reference — use the EO instead",
     "Guaiene Beta": "guaiacwood trace hydrocarbon constituent, not sold as a formulating material",
     "Eudesmol Beta": "guaiacwood constituent and reagent chemical, not sold as a formulating material",
     # The myrrh rebuild constituents. None is a shelf material: the
