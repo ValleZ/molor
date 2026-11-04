@@ -107,6 +107,15 @@ NEVER_PROPOSE = {
     # not something anyone formulates with, and its solvent/plastic
     # vector is exactly the kind of high-impact note the fit over-weights.
     "Styrene": "trace volatile monomer of styrax, not a formulating material",
+    # The styrax/benzoin rebuild constituents. They enter the library so
+    # the resinoids can be built from their cited GC compositions, but as
+    # bottles they are not sold as perfumery materials: they are balsam
+    # trace constituents / reagent chemicals. Cinnamic alcohol and benzyl
+    # cinnamate ARE shelf materials and stay proposable; these four are not.
+    "Cinnamic Acid": "balsam constituent (styrax), not sold as a formulating material",
+    "3-Phenylpropyl Cinnamate": "styrax trace constituent, not sold as a formulating material",
+    "Coniferyl Benzoate": "benzoin resin carrier (the smell IS the resin), not sold neat",
+    "Benzoic Acid": "benzoin constituent and preservative reagent, not a perfumery material",
 }
 
 #: Files whose entries were added because a real formula asked for them by
