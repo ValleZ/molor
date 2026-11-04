@@ -136,6 +136,15 @@ NEVER_PROPOSE = {
     "Germacrone": "turmeric/geranium sesquiterpene ketone and phytochemical reagent, not a perfumery material",
     "Elemene Beta": "pharmaceutical phytochemical (the Chinese elemene anticancer adjuvant), not a perfumery material",
     "Germacrene B": "reference sesquiterpene hydrocarbon, thermally labile, not sold as a formulating material",
+    # The oakmoss rebuild constituents (af81a65 lichen acids). None is a
+    # shelf material: lichen metabolites exist in commerce as phytochemical
+    # reference standards, and orcinol is a known skin sensitizer. They
+    # enter the library so Oakmoss Absolute can be built from its cited
+    # composition; Oakmoss Absolute itself stays proposable.
+    "Orcinol": "oakmoss lichen metabolite and sensitizer, exists only as a reference standard, not a formulating material",
+    "Methyl Beta-Orcinol Carboxylate": "oakmoss lichen acid, not sold as a formulating material",
+    "Methyl Orsellinate": "oakmoss lichen acid, not sold as a formulating material",
+    "Ethyl Everninate": "oakmoss lichen acid, not sold as a formulating material",
 }
 
 #: Files whose entries were added because a real formula asked for them by
