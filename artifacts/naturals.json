@@ -24461,6 +24461,50 @@
         0.1621
       ],
       "atlas": false
+    },
+    "Guaiacwood EO": {
+      "composition_used": {
+        "Guaiol": 0.399,
+        "Bulnesol": 0.4389,
+        "Eudesmol Beta": 0.1354,
+        "Elemol": 0.0145,
+        "Guaiene Alpha": 0.006,
+        "Guaiene Beta": 0.006
+      },
+      "coverage": 0.827,
+      "omitted_from_library": [
+        "gamma-eudesmol, 8-epi-alpha-eudesmol and 10-epi-gamma-eudesmol (~10% combined in the Nature's Gift batch) - stereoisomeric eudesmols without separate library entries",
+        "alpha-bulnesene and the other bulnesene isomers, hanamyol, and the dihydroagarofuran ethers (~3%) - minor identified constituents without library entries",
+        "lignans and guaiac resin acids of the wood - non-volatile, they carry the antioxidant function of the wood, not the odour of the distilled oil"
+      ],
+      "source": "Bulnesia sarmientoi (guaiacwood / palo santo) distilled oil GC analyses; each figure is the median of the published values. Guaiol: 33.0 (HCMC DPI 2024 GC-MS), 28.58 (Nature's Gift batch PA-58937, Paraguay 2019), 34.2 (Vega et al. 2011, Argentina) - median 33.0. Bulnesol: 45.0 (DPI 2024), 36.27 (NG 2019), 36.3 (Vega 2011) - median 36.3. Beta-eudesmol: 11.2 (NG 2019; the eudesmol stereoisomers together are 8-20% across sources) - 11.2. Elemol: 1.15 (NG 2019), traces (Vega) - 1.2. Alpha-guaiene: 0.8 (DPI 2024), 0.11 (NG 2019) - 0.5. Beta-guaiene: not separately resolved in most analyses; guaiene isomers together 0.2-5% - 0.5 used for the beta isomer. Resolved constituents sum to 82.7% of the chromatogram and are renormalised to 1.0. Guaiol + bulnesol + guaienes = 70-80% of every published analysis, the signature of the oil. Reconstruction only - not for use.",
+      "note": "Percept composed as the composition-weighted mean of the constituents' fp3 rows, the rule the simplifier page itself blends by (composed vector: woody 0.69, spicy 0.35, balsamic 0.21). No receptor vector, so no atlas point; resolvable in pasted formulas and available to the simplifier, reconstruction only. The smoky-rose note of the real oil lives partly in the trace phenol fraction the GC analyses barely resolve; the reconstruction voices the woody-sesquiterpenol body only.",
+      "percept": [
+        0.0000, 0.0036, 0.0000, 0.0003, 0.0424, 0.0338,
+        0.0016, 0.0001, 0.0004, 0.0034, 0.2109, 0.0000,
+        0.0001, 0.0019, 0.0038, 0.0026, 0.0008, 0.0001,
+        0.0019, 0.0002, 0.0000, 0.0188, 0.0003, 0.0315,
+        0.0051, 0.0000, 0.0000, 0.0003, 0.0006, 0.0007,
+        0.0336, 0.0307, 0.0028, 0.0005, 0.0019, 0.0001,
+        0.0000, 0.0002, 0.0094, 0.0015, 0.0013, 0.0013,
+        0.0000, 0.0002, 0.0729, 0.0701, 0.0000, 0.0074,
+        0.0001, 0.0006, 0.2337, 0.0383, 0.0008, 0.0182,
+        0.0000, 0.0000, 0.0064, 0.0003, 0.0055, 0.0008,
+        0.1358, 0.0005, 0.0031, 0.0000, 0.0544, 0.0069,
+        0.0013, 0.0048, 0.0001, 0.0001, 0.0011, 0.0035,
+        0.0045, 0.0163, 0.0117, 0.0152, 0.0000, 0.0008,
+        0.0046, 0.0008, 0.0094, 0.0004, 0.0288, 0.0056,
+        0.0007, 0.0230, 0.0069, 0.0089, 0.0023, 0.0005,
+        0.0072, 0.0000, 0.0007, 0.0015, 0.0178, 0.0081,
+        0.0013, 0.0001, 0.0036, 0.0158, 0.0000, 0.0020,
+        0.0000, 0.0000, 0.0329, 0.0003, 0.0000, 0.0029,
+        0.0001, 0.0005, 0.1699, 0.0000, 0.0197, 0.0003,
+        0.0007, 0.0010, 0.0013, 0.0002, 0.0002, 0.3489,
+        0.0002, 0.0001, 0.0000, 0.1688, 0.0605, 0.0125,
+        0.0207, 0.0000, 0.0034, 0.0004, 0.0004, 0.0149,
+        0.0124, 0.0065, 0.0110, 0.0038, 0.0001, 0.6850
+      ],
+      "atlas": false
     }
   },
   "trimmed": [

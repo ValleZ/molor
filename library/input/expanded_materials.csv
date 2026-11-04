@@ -412,3 +412,8 @@ Cinnamic Acid,O=C(O)/C=C/c1ccccc1,natural-rebuild
 Styrene,C=CC1=CC=CC=C1,natural-rebuild
 Coniferyl Benzoate,COc1cc(/C=C/COC(=O)c2ccccc2)ccc1O,natural-rebuild
 Benzoic Acid,O=C(O)c1ccccc1,natural-rebuild
+Tobacarol,O1C2CCC(C)C3CC(C)(C)C3CCC12C,"CAS 1209-61-6; beta-caryophyllene epoxide (IUPAC 4,9,12,12-tetramethyl-5-oxatricyclo[8.2.0.0^4,6]dodecane), an IFF captive dry woody amber tobacco-cigar-box material; structure from scentsandflavors, RDKit formula C15H26O MW 222.37 matches the published 222.37; stereochemistry unspecified because the percept fingerprint is stereo-blind"
+Guaiol,CC1CCC(CC2=C1CCC2C)C(C)(C)O,"PubChem CID 227829; guaiane sesquiterpene alcohol, the lead odour carrier of guaiacwood oil (Bulnesia sarmientoi); sold as a perfumery material (guaiacwood protector); added for the Guaiacwood EO reconstruction; stereochemistry unspecified"
+Bulnesol,CC1CCC2=C(CCC(CC12)C(C)(C)O)C,"PubChem CID 90785; valencane sesquiterpene alcohol, co-lead of guaiacwood oil; sold as a perfumery material (guaiacwood protector); added for the Guaiacwood EO reconstruction; stereochemistry unspecified"
+Guaiene Beta,CC1CCC(=C(C)C)CC2=C1CCC2C,GC constituent reference
+Eudesmol Beta,CC12CCCC(=C)C1CC(CC2)C(C)(C)O,"PubChem CID 91457; eudesmane sesquiterpene alcohol, ~4-11% of guaiacwood oil; natural-rebuild, not sold as a formulating material; stereochemistry unspecified"

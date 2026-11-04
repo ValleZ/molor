@@ -387,6 +387,23 @@ ALIAS = {
     'otne': 'Iso E Super',
     'ethyl linalool': 'Ethyl Linalool',
     'dihydromyrcenol': 'Dihydro Myrcenol',
+    # Inventory/paste spellings: same material, origin or grade qualifier.
+    # The library's lime is the Persian expressed build; the perfumer's
+    # bottle says "Lime Oil, Distilled" (the usual trade name).
+    'lime oil, distilled': 'Lime EO (Persian, expressed)',
+    'lime oil': 'Lime EO (Persian, expressed)',
+    'lime eo': 'Lime EO (Persian, expressed)',
+    'rosemary tunisia': 'Rosemary EO (cineole type)',
+    'rosemary': 'Rosemary EO (cineole type)',
+    # Tobacarol / Guaiacwood spellings a pasted formula will use.
+    'tobacarol': 'Tobacarol',
+    'caryophyllene epoxide': 'Tobacarol',
+    'beta caryophyllene epoxide': 'Tobacarol',
+    'guaiacwood': 'Guaiacwood EO',
+    'guaiacwood oil': 'Guaiacwood EO',
+    'guaiac wood': 'Guaiacwood EO',
+    'guaiol': 'Guaiol',
+    'bulnesol': 'Bulnesol',
 }
 
 #: Lines that are arithmetic or bookkeeping, not ingredients. A "Total 1000"
