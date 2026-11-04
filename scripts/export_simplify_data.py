@@ -121,6 +121,21 @@ NEVER_PROPOSE = {
     # protectors) and stay proposable; these two are reference molecules.
     "Guaiene Beta": "guaiacwood trace hydrocarbon constituent, not sold as a formulating material",
     "Eudesmol Beta": "guaiacwood constituent and reagent chemical, not sold as a formulating material",
+    # The myrrh rebuild constituents. None is a shelf material: the
+    # furanosesquiterpenes are the smell of myrrh but exist in commerce
+    # only as phytochemical reference standards -- the Fraterworks
+    # catalogue carries no myrrh constituent and no curzerene-type
+    # material either, and the perfumer's inventory holds no myrrh row.
+    # Myrrh is voiced through the "Myrrh EO" reconstruction only.
+    "Furanoeudesma-1,3-diene": "the myrrh smell itself, but exists only as a myrrh constituent; sold as an analytical reference standard, not a formulating material",
+    "Curzerene": "myrrh furanoelemane sold only as a phytochemical reagent, not a formulating material",
+    "Lindestrene": "myrrh furanoeudesmane, exists only as a myrrh constituent, not a formulating material",
+    "Furanodiene": "myrrh/zedoary furanogermacradiene, thermally labile reagent chemical, not a formulating material",
+    "2-Acetoxyfuranodiene": "myrrh resin constituent, not sold as a formulating material",
+    "2-Methoxyfuranodiene": "myrrh trace constituent, not sold as a formulating material",
+    "Germacrone": "turmeric/geranium sesquiterpene ketone and phytochemical reagent, not a perfumery material",
+    "Elemene Beta": "pharmaceutical phytochemical (the Chinese elemene anticancer adjuvant), not a perfumery material",
+    "Germacrene B": "reference sesquiterpene hydrocarbon, thermally labile, not sold as a formulating material",
 }
 
 #: Files whose entries were added because a real formula asked for them by

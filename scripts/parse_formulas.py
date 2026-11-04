@@ -404,6 +404,13 @@ ALIAS = {
     'guaiac wood': 'Guaiacwood EO',
     'guaiol': 'Guaiol',
     'bulnesol': 'Bulnesol',
+    # Myrrh spellings a pasted formula will use. "Myrrh EO", "Myrrh
+    # Resinoid" and "Myrrh Absolute" carry their own natural hint words
+    # and resolve through match_oil on the head word; bare "myrrh" and
+    # "myrrh resin" carry none and need the alias.
+    'myrrh': 'Myrrh EO',
+    'myrrh oil': 'Myrrh EO',
+    'myrrh resin': 'Myrrh EO',
 }
 
 #: Lines that are arithmetic or bookkeeping, not ingredients. A "Total 1000"

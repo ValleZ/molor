@@ -24505,6 +24505,54 @@
         0.0124, 0.0065, 0.0110, 0.0038, 0.0001, 0.6850
       ],
       "atlas": false
+    },
+    "Myrrh EO": {
+      "composition_used": {
+        "Furanoeudesma-1,3-diene": 0.2246,
+        "Curzerene": 0.208,
+        "Furanodiene": 0.1774,
+        "Lindestrene": 0.108,
+        "Elemene Beta": 0.0783,
+        "Germacrene B": 0.074,
+        "2-Acetoxyfuranodiene": 0.0585,
+        "Germacrone": 0.0522,
+        "2-Methoxyfuranodiene": 0.0189
+      },
+      "coverage": 0.641,
+      "omitted_from_library": [
+        "isofuranogermacrene (~2% of the Baser oil) - the (5E,9E) double-bond stereoisomer of furanodiene; the stereo-blind percept fingerprint cannot separate the two, so furanodiene's row carries it",
+        "furanoeudesma-1,4-diene (~1.2% of the Baser oil) and the remaining trace furanosesquiterpenes - minor identified constituents without library entries",
+        "the curzerenone-type lactones (germacra-1(10),7,11-trien-15-oic acid, 8,12-epoxy-6-hydroxy-gamma-lactone, 14.4% of Madia's commercial SFE oil; absent from Baser's authentic Ethiopian C. myrrha) - resin-side furanosesquiterpene acids that barely distil; they belong to a resinoid, not to the oil",
+        "the non-volatile resin and gum of the oleo-gum-resin - the commiphoric and commiphorinic acids, the heerabomyrrhols and the sterol/sterane fraction (the bitter principle: myrrh is Arabic murr, bitter), plus the arabinogalactan gums - 60-90% of the raw resin by weight, none of it reaches a distilled oil"
+      ],
+      "source": "Commiphora myrrha (Nees) Engl. (syn. C. molmol) myrrh oleo-gum-resin, distilled and SFE oils; each figure is the median of the published values. Furanoeudesma-1,3-diene: 34.0 (Baser et al. 2003, Ethiopian resin, GC-MS), 34.9 (Marongiu et al. 2005, SFE CO2; hydro- and steam-distilled oils of the same resin were very similar), 15.0 (Morteza-Semnani & Saeedi 2003, Iranian market resin), 17.65 (Ljaljevic Grbic et al. 2018, commercial oil), 31.1 (Madia et al. 2021, SFE oil), 18.8 (Perveen 2018) - median 24.95. Curzerene: 8.5 (Marongiu 2005), 40.1 (Morteza-Semnani & Saeedi 2003), 12.97 (Ljaljevic Grbic 2018), 23.1 (Madia 2021), 41.81 (Perveen 2018) - median 23.1. Lindestrene: 12.0 (Baser 2003), 12.9 (Marongiu 2005), 11.9 (Madia 2021) - median 12.0. Furanodiene: 19.7 (Baser 2003, the only analysis reporting the pre-rearrangement form; the others carry the same material as curzerene) - 19.7. Beta-elemene: 8.7 (Baser 2003), 8.4 (Morteza-Semnani & Saeedi 2003), 12.70 (Ljaljevic Grbic 2018) - median 8.7. Germacrene B: 4.3 (Baser 2003), 12.15 (Ljaljevic Grbic 2018) - median 8.2. Germacrone: 5.8 (Marongiu 2005) - 5.8. 2-Acetoxyfuranodiene: 6.5 (Morteza-Semnani & Saeedi 2003, as 2-O-acetyl-8,12-epoxygermacra-1(10),4,7,11-tetraene) - 6.5. 2-Methoxyfuranodiene: 2.1 (Baser 2003) - 2.1. Curzerene is the Cope-rearrangement product of furanodiene, and beta-elemene of germacrene B; each analysis reports each pair in whichever form its still and injector left it in, so the per-constituent medians sum past a whole chromatogram (~111%); the working weights are those medians renormalised, and coverage is the median fraction of a single analysis these nine resolve (55-81%, median 64%). The furanosesquiterpenes - furanoeudesma-1,3-diene + curzerene + lindestrene + furanodiene + the furanodiene ethers - are 50-70% of every published oil, the signature of true C. myrrha and the smell of myrrh. Reconstruction only - not for use.",
+      "note": "Percept composed as the composition-weighted mean of the constituents' fp3 rows, the rule the simplifier page itself blends by (composed vector: woody 0.49, spicy 0.31, herbal 0.30, sweet 0.22, earthy 0.20). No receptor vector, so no atlas point; resolvable in pasted formulas and available to the simplifier, reconstruction only. Every constituent exists only as a myrrh (or other Commiphora/Curcuma) constituent - sold, at most, as a phytochemical reference standard; none is a formulating material, all nine are blocked from proposal, and myrrh is voiced only through this entry. The bitter-medicinal, mushroom-like edge of the real oil is only faintly in these rows (the furanosesquiterpenes read woody-herbal-earthy to the model), and part of it lives in the non-volatile resin fraction distillation leaves behind; the reconstruction voices the woody-spicy-herbal body.",
+      "percept": [
+        0.0004, 0.0131, 0.0008, 0.0030, 0.0275, 0.0447,
+        0.0058, 0.0012, 0.0015, 0.0118, 0.0533, 0.0003,
+        0.0027, 0.0038, 0.0159, 0.0092, 0.0042, 0.0006,
+        0.0131, 0.0036, 0.0003, 0.0669, 0.0044, 0.0363,
+        0.0164, 0.0006, 0.0011, 0.0017, 0.0044, 0.0030,
+        0.1013, 0.0239, 0.0065, 0.0038, 0.0128, 0.0052,
+        0.0002, 0.0025, 0.0262, 0.0043, 0.0077, 0.0122,
+        0.0008, 0.0028, 0.0630, 0.2021, 0.0011, 0.0949,
+        0.0007, 0.0060, 0.0719, 0.0940, 0.0032, 0.0909,
+        0.0003, 0.0016, 0.0074, 0.0018, 0.0162, 0.0048,
+        0.1406, 0.0019, 0.0255, 0.0010, 0.3035, 0.0099,
+        0.0026, 0.0065, 0.0012, 0.0026, 0.0063, 0.0082,
+        0.0143, 0.0247, 0.0267, 0.0067, 0.0004, 0.0086,
+        0.0168, 0.0030, 0.0194, 0.0033, 0.1021, 0.0047,
+        0.0068, 0.0247, 0.0531, 0.0173, 0.0580, 0.0027,
+        0.0316, 0.0005, 0.0041, 0.0024, 0.0194, 0.0094,
+        0.0053, 0.0011, 0.0169, 0.0440, 0.0011, 0.0029,
+        0.0012, 0.0012, 0.0217, 0.0033, 0.0011, 0.0058,
+        0.0012, 0.0229, 0.0162, 0.0007, 0.0190, 0.0056,
+        0.0067, 0.0111, 0.0035, 0.0026, 0.0020, 0.3114,
+        0.0017, 0.0026, 0.0009, 0.2229, 0.0255, 0.0613,
+        0.0632, 0.0006, 0.0192, 0.0024, 0.0064, 0.0188,
+        0.0159, 0.0193, 0.0297, 0.0121, 0.0009, 0.4942
+      ],
+      "atlas": false
     }
   },
   "trimmed": [
