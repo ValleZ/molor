@@ -79,6 +79,13 @@ NEVER_PROPOSE = {
     # resolves and is flagged rather than refused -- what changes is that it
     # is never proposed as a substitution.
     "Lilial": "prohibited in EU cosmetics since March 2022 and by IFRA",
+    # Isovaleraldehyde. A malt/apple-scented trace volatile of fermentation
+    # and of essential-oil constituents -- sold (if at all) as a flavor or
+    # analytical reagent, not as a perfumery formulating material. The
+    # formula engine kept picking it for dark-rose/leather briefs on a
+    # small sweet/earthy lift; in those accords it is a trace constituent,
+    # not a bottle on the shelf.
+    "3-Methylbutanal": "trace volatile, not purchasable as a formulating material",
 }
 
 #: Files whose entries were added because a real formula asked for them by
