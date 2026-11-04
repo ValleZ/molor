@@ -406,3 +406,9 @@ Ledol,CC1(C)C2CCC(C2)C(O)C1C1=CC1,natural-rebuild
 Labdane,CC(C)C12CCCC(C1)C(C)(C)CC2,natural-rebuild
 Castoramine,CC1=C(O)CCN2C=C12,natural-rebuild
 Creosol,COc1c(C)cc(C)cc1O,natural-rebuild
+Vertofix Coeur,CC1CCC2C13CC(C2(C)C)C(=C(C3)C(=O)C)C,"CAS 32388-55-9; methyl cedryl ketone (acetylcedrene), the skeleton the IFF grade is mostly an isomer mix of; in the perfumer's inventory; structure from PubChem CID 107065, stereochemistry unspecified because the percept fingerprint is stereo-blind"
+Cinnamic Acid,O=C(O)/C=C/c1ccccc1,natural-rebuild
+3-Phenylpropyl Cinnamate,O=C(/C=C/c1ccccc1)OCCCc1ccccc1,natural-rebuild
+Styrene,C=CC1=CC=CC=C1,natural-rebuild
+Coniferyl Benzoate,COc1cc(/C=C/COC(=O)c2ccccc2)ccc1O,natural-rebuild
+Benzoic Acid,O=C(O)c1ccccc1,natural-rebuild

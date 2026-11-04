@@ -326,6 +326,11 @@ ALIAS = {
     "methyl diantilis": "Methyl Diantilis",
     "undecavertol": "Undecavertol",
     "florhydral": "Florhydral",
+    # Vertofix Coeur is IFF's grade name for acetylcedrene; supplier sheets
+    # and GC tables write the chemical name, methyl cedryl ketone, and both
+    # spellings have to reach this library's one entry for the skeleton.
+    "vertofix coeur": "Vertofix Coeur",
+    "methyl cedryl ketone": "Vertofix Coeur",
     "indolene 50": "Indolene 50",
     "cyclamen aldehyde": "Cyclamen Aldehyde",
     "d-limonene": "D-Limonene",

@@ -99,6 +99,14 @@ NEVER_PROPOSE = {
     # formulating material. High-impact fruity/fatty notes that the fit
     # over-weights wherever a brief asks for fruity lift.
     "Heptan-2-one": "trace volatile ketone, not a formulating material",
+    # Styrene. A trace constituent of styrax balsam (0.5% in Hafioglu's
+    # direct GC; the distilled oil is 70-93% of it, but that is a
+    # different material and the resinoid keeps only traces). It enters
+    # the library so Styrax Resinoid can be built from its cited GC
+    # composition; as a bottle it is a plastics monomer, flammable and
+    # not something anyone formulates with, and its solvent/plastic
+    # vector is exactly the kind of high-impact note the fit over-weights.
+    "Styrene": "trace volatile monomer of styrax, not a formulating material",
 }
 
 #: Files whose entries were added because a real formula asked for them by
