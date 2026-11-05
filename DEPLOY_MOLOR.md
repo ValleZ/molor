@@ -160,18 +160,21 @@ fresh one.
 
 **The naturals store is generated, never written.** `data/naturals/
 compositions.json` is the spec (47 oils); `build_naturals.py` composes every
-entry from it — percept by noisy-OR over the constituents' fp3 rows, receptor
-vector by noisy-OR over their MolOR scores — and writes one file per space.
-`load_naturals` reads `v["receptors"]` for each oil it places, so an entry
-without that key cannot be on the atlas at all.
+entry from it — percept as the weighted mean of the constituents' fp3 rows,
+receptor vector as the weighted mean of their MolOR scores — and writes one
+file per space. `--compose` selects the rule; `weighted-mean` is the default
+and the adopted one, `noisy-or` reproduces the pre-November builds, and
+`logit-mean` matches the atlas's placement rule. `load_naturals` reads
+`v["receptors"]` for each oil it places, so an entry without that key cannot
+be on the atlas at all.
 
 Eight oils used to be written by hand instead, and that is the defect this gate
-exists to catch: they were composed with a *composition-weighted mean* while
-the other 39 used noisy-OR, so the file held two rules for one vector, and
-nothing compared them. Their note said "No receptor vector, so no atlas point",
-which was true only while the store was missing their constituents. They are in
-the spec now; myrrh's descriptor row moved 0.48 when it was recomputed by the
-rule everyone else uses, and castoreum's 0.57.
+exists to catch: they were written straight into the file, composed by hand,
+while the other 39 went through `build_naturals.py`, and nothing compared them.
+Their note said "No receptor vector, so no atlas point", which was true only
+while the store was missing their constituents. They are in the spec now and
+all 47 go through one path; myrrh's descriptor row moved 0.48 and castoreum's
+0.57 when the hand composition was replaced by the generator's.
 
 If the spec or the stores changed, rebuild both files:
 
@@ -364,9 +367,9 @@ thresholds (shared with the simplifier): 126 compiled, 124 KFO-Atlas, 177 impute
 full descriptor matrix: 475 molecules x 138
 wrote artifacts/viewer_data_deploy.json  (8.19 MB)
   molecules 475  receptors 386  models ['gcn', 'mpnn', 'percept']
-  gcn   mds3_full      shepard 0.990
-  mpnn  mds3_full      shepard 0.994
-  percept mds3_full    shepard 0.943
+  gcn   mds3_full      shepard 0.989
+  mpnn  mds3_full      shepard 0.993
+  percept mds3_full    shepard 0.940
 ```
 
 `475 = 427 molecules + 47 oils + the white point`; the two receptor stores hold
@@ -384,14 +387,16 @@ vectors, hence preprocess → PCA-20 → MDS).
 ```
 compiled 142, KFO-Atlas 124, imputed 208 (leave-one-out median error 3.12x)
 474 materials (47 of them oils), 148 owned, 474 with a threshold
-138 descriptors, 289 aliases, yardstick 0.488
+138 descriptors, 289 aliases, yardstick 0.451
 30 may never be proposed; 34 offered but unverified
 ```
 
-`yardstick 0.488` is what a random blend of the same size achieves — measured,
-not set — and the page reports closeness against it. It read 0.470 before this
-run: regenerating the oils from the spec moved their vectors, and with them the
-scale everything is reported against.
+`yardstick 0.451` is what a random blend of the same size achieves — measured,
+not set — and the page reports closeness against it. It has moved twice: 0.470
+originally, 0.488 when the oils were regenerated from the spec, and 0.451 when
+they were recomposed by the weighted mean. Every move is a real change in the
+material set or in how an oil's vector is built; the number is a property of
+the data, so a silent shift here means the inputs moved under you.
 
 If `compiled` looks small and `owned` looks low, the inventory join is not
 resolving: both counts are the sheet meeting the library by name, and that join
@@ -399,7 +404,7 @@ is `parse_formulas.library_name` (alias table + head-word match). It was exact
 string equality once, and the visible cost was 15 materials carrying an imputed
 threshold while a published one was in the sheet.
 
-**Built pages**: atlas 8.27 MB, simplifier 0.57 MB (593,073 bytes). The atlas
+**Built pages**: atlas 8.28 MB, simplifier 0.57 MB. The atlas
 carries three spaces × six projections × 475 points plus a 475 × 138 descriptor
 matrix, so it is a large page by design and 8 MB is the expected size, not a
 mistake.

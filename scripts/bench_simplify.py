@@ -22,19 +22,21 @@ constituents appear in the proposal.
 Both numbers are reported per target and in aggregate, with a random baseline
 underneath so the scale is visible.
 
-**Two mixture rules, and the benchmark now scores both.** This benchmark and
-`viewer/simplify.html` have always mixed a blend as `sum(w_i * p_i)` — a
-weighted mean — because that is linear and therefore has a closed-form fit,
-which is what makes a search over subsets cheap. `predict_formula.py` and
-`build_naturals.py` mix by **noisy-OR**, which is what `eval_mixtures.py`
-measured against the perfumer's own verdicts on 30 formulas, and which the oils
-are now composed by. On a real blend's character the two rules land a median
-0.616 apart, 1.26x this repository's own yardstick, so "the search beats the
-hand heuristic" is a claim that has to be made under the rule the rest of the
-project uses as well as under the one the page uses. Both are reported; nothing
-is re-tuned. The second table re-fits each choice of materials under noisy-OR
-(`fit_noisy`) because scoring linear weights against a noisy-OR target would
-measure the wrong thing.
+**Two mixture rules, and the benchmark scores both.** The page mixes a blend by
+the **mean of logits** (`logit(mix) = sum_i w_i logit(p_i)`); the first table
+validates that rule, because a benchmark that scores something the page does
+not do is worthless. The second table re-fits every choice of materials under
+**noisy-OR**, the union, which is the alternative the atlas and the oils used
+before November 2026 and which stays reachable in both.
+
+Neither rule is the accurate one, and that is a result, not a hedge:
+`rule_bakeoff.py` scores five rules on 19 oils against the model's own
+vocabulary and cannot separate them (p > 0.2). The mean of logits was adopted
+because mixing in log-odds is linear, so the weight fit is exact and a formula
+reproduced at its own size comes back exactly; because it is the rule the atlas
+places a blend by, so the page and the map agree; and because it does not
+saturate with ingredient count. It does dilute a one-sided character by 1/N,
+which the union does not -- see the page's own caveats.
 
     python scripts/bench_simplify.py --max-k 5
 """
@@ -57,31 +59,35 @@ from eval_mixtures import combine  # noqa: E402
 from parse_formulas import classify  # noqa: E402
 
 
+def _logit(p):
+    q = np.clip(np.asarray(p, float), 1e-6, 1 - 1e-6)
+    return np.log(q / (1 - q))
+
+
 def fit_simplex(X, idx, t, iters=400):
-    """Best convex combination of X[idx] for target t."""
-    B = X[idx]
+    """Weights for the mean-of-logits rule, by the same closed-form solve the
+    page uses: mixing is additive in log-odds, so this is least squares there
+    with the answer projected onto the simplex."""
     if len(idx) == 1:
         return np.ones(1)
-    G = B @ B.T
-    b = B @ t
-    L = max(float(np.trace(G)), 1e-9)
-    w = np.full(len(idx), 1.0 / len(idx))
-    for _ in range(iters):
-        v = w - (G @ w - b) / L
-        u = np.sort(v)[::-1]
-        css = np.cumsum(u)
-        k = np.arange(1, len(u) + 1)
-        rho = np.nonzero(u - (css - 1) / k > 0)[0]
-        th = (css[rho[-1]] - 1) / (rho[-1] + 1) if len(rho) else 0.0
-        w = np.maximum(v - th, 0.0)
-        s = w.sum()
-        w = w / s if s > 0 else np.full(len(idx), 1.0 / len(idx))
-    return w
+    Q = _logit(X[idx])
+    tq = _logit(t)
+    A = Q @ Q.T + 1e-10 * np.eye(len(idx))
+    try:
+        w = np.linalg.solve(A, Q @ tq)
+    except np.linalg.LinAlgError:
+        return np.full(len(idx), 1.0 / len(idx))
+    w = np.clip(w, 0, None)
+    s = w.sum()
+    return w / s if s > 0 else np.full(len(idx), 1.0 / len(idx))
 
 
 def err(X, idx, t):
+    """Distance of the best log-odds blend of X[idx] from t, in probability
+    space -- the number the page reports."""
     w = fit_simplex(X, idx, t)
-    return float(np.linalg.norm(w @ X[idx] - t)), w
+    mix = 1.0 / (1.0 + np.exp(-(w @ _logit(X[idx]))))
+    return float(np.linalg.norm(mix - t)), w
 
 
 def fit_noisy(X, idx, t, sweeps=24):
@@ -120,8 +126,8 @@ def fit_noisy(X, idx, t, sweeps=24):
     return w, best
 
 
-def greedy(X, pool, t, k, G, b, tt, seed=None):
-    """Greedy on the unconstrained residual, then one swap pass.
+def greedy(X, Q, pool, t, k, seed=None):
+    """Greedy on the unconstrained log-odds residual, then one swap pass.
 
     ``seed`` starts the swap pass from a given subset instead of from the
     greedy pick. The benchmark is the reason this exists: greedy selection
@@ -132,13 +138,15 @@ def greedy(X, pool, t, k, G, b, tt, seed=None):
     from the heuristic as well, and keeping whichever ends up closer, makes
     the search no worse than the obvious thing by construction.
     """
+    tq = _logit(t)
+
     def resid(S):
-        A = G[np.ix_(S, S)] + 1e-9 * np.eye(len(S))
+        A = Q[S] @ Q[S].T + 1e-10 * np.eye(len(S))
         try:
-            w = np.linalg.solve(A, b[S])
+            w = np.linalg.solve(A, Q[S] @ tq)
         except np.linalg.LinAlgError:
             return np.inf
-        return max(float(tt - w @ b[S]), 0.0)
+        return max(float(tq @ tq - w @ (Q[S] @ tq)), 0.0)
 
     chosen: list[int] = list(seed) if seed else []
     while len(chosen) < k:
@@ -251,32 +259,28 @@ def main() -> int:
     rng = np.random.default_rng(0)
     rows = []
     rule_gap: list[float] = []
+    Q = _logit(X)          # every material in log-odds, once
     for tgt in targets:
         ing = tgt["ing"]
         idx_all = [at[n] for n, _ in ing]
         w_all = np.array([w for _, w in ing], float)
         w_all = w_all / w_all.sum()
-        t = combine("weighted-mean", X[idx_all], w_all)
-        # The same blend under the rule the CLI and the oils use. Everything
-        # below is reported twice because these two targets are different
-        # points: the page has been answering a question about the linear one.
+        # The page's rule, and the one this table validates.
+        t = combine("logit-mean", X[idx_all], w_all)
+        # The union, which the atlas and the oils used before November 2026.
+        # Reported so the two can be compared; the gap is in log-odds because
+        # that is where the page's rule is linear.
         t_no = combine("noisy-or", X[idx_all], w_all)
-        rule_gap.append(float(np.linalg.norm(t - t_no)))
+        rule_gap.append(float(np.linalg.norm(_logit(t) - _logit(t_no))))
         pool = [i for i in range(len(X)) if i not in set(tgt["exclude"])]
-        G = X[pool] @ X[pool].T
-        # G and b indexed in pool space for the greedy
-        Gp = np.zeros((len(X), len(X)))
-        Gp[np.ix_(pool, pool)] = G
-        b = X @ t
-        tt = float(t @ t)
         for k in range(2, args.max_k + 1):
             if k >= len(ing):
                 continue
             # the hand heuristic: the k biggest, given their best weights
             topk = idx_all[:k]
             e_top, _ = err(X, topk, t)
-            cands = [greedy(X, pool, t, k, Gp, b, tt),
-                     greedy(X, pool, t, k, Gp, b, tt, seed=topk),
+            cands = [greedy(X, Q, pool, t, k),
+                     greedy(X, Q, pool, t, k, seed=topk),
                      topk]
             scored = [(err(X, c, t)[0], c) for c in cands]
             e_ours, ours = min(scored, key=lambda z: z[0])
@@ -349,7 +353,7 @@ def main() -> int:
                   f"{a['greedy_beats_topk']:.0%} of the time)")
         print("")
 
-    print("=== the same choices, scored under the rule the CLI uses (noisy-OR)")
+    print("=== the same choices, scored under the union (noisy-OR)")
     print("    weights re-fitted under noisy-OR; only the rule differs")
     print(f"  {'k':>2s} {'n':>4s} {'ours':>8s} {'biggest k':>10s} "
           f"{'random':>8s} {'ours/random':>12s} {'better/not worse':>17s}")
@@ -362,7 +366,7 @@ def main() -> int:
                   f"{a['random_no']:8.3f} {a['random_ratio_no']:11.2f}x "
                   f"{a['beats_topk_no']:4.0%}/{a['never_worse_no']:.0%}   ({kind})")
     print("")
-    print("=== linear rule, for comparison (ours/random at the same k)")
+    print("=== the page's rule (mean of logits), ours/random at the same k")
     for kind in ("oil", "formula"):
         for k in range(2, args.max_k + 1):
             a = agg(kind, k)

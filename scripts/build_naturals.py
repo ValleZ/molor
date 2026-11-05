@@ -5,12 +5,26 @@ anything else: across the published patent formulas they are 6316 g of the
 13362 g the library could not resolve. But a natural is a known mixture of
 mostly common materials, so it can be built rather than dropped.
 
-Each oil is combined by the same noisy-OR used for a formula, in both spaces.
-Percept space gives a predicted descriptor profile. Receptor space assumes a
-receptor fires if any constituent fires it, which is right at low occupancy and
-wrong once ligands compete for one pocket -- the same caveat that applies to
-any mixture here, and the reason the receptor vector is for placing the oil on
-the atlas rather than for arguing about it.
+Each oil is composed from its constituents by ONE rule, in both spaces, and
+--compose selects it. The default is the composition-weighted mean: an oil is a
+thing you can buy, so its vector should describe the thing, and it then sits
+among its own constituents on the map instead of outside them.
+
+That is a change, and the reason is worth keeping. The rule used to be noisy-OR
+-- a union, `1 - prod(1 - w_i p_i)` -- justified as "a receptor fires if any
+constituent fires it", which is right at low occupancy and wrong once ligands
+compete for one pocket. It also pushes a mixture outward by construction, and
+an oil of five to eight constituents is a mixture: Cedarwood EO came out the
+single most extreme point on the published atlas (percept sum 9.84 against a
+material median near 5) with Myrrh beside it, reading as a "super wood" that no
+perfumer recognises. Recomposed by the mean, cedarwood reads 4.18 and sits with
+cedrol and cedrene.
+
+Nothing in the data picks between the rules -- rule_bakeoff.py cannot separate
+the mean from the union or from the dominant ingredient -- so the rendered map
+decided it. The union remains reachable for the comparison, and the atlas's
+white point is unaffected either way: it is the mean of logits, because it is
+the map's origin rather than a material.
 
 The validation is built in and is close to free: the model's own vocabulary
 contains the words bergamot, lavender, geranium, mint, clove, cinnamon, rose,
@@ -104,6 +118,17 @@ def main() -> int:
                     help="fraction of the stated composition that must resolve")
     ap.add_argument("--max-nearest-cosine", type=float, default=0.98,
                     help="drop an oil this close to a single library material")
+    ap.add_argument("--compose", default="weighted-mean",
+                    choices=("weighted-mean", "logit-mean", "noisy-or"),
+                    help="how an oil's vectors are composed from its "
+                         "constituents, in BOTH spaces. weighted-mean is the "
+                         "rule chosen on the perfumer's judgement of the "
+                         "published atlas: oils placed among their own "
+                         "constituents instead of outside them, cedarwood's "
+                         "percept sum 9.84 -> 4.18. noisy-or keeps an oil equal "
+                         "to the union of its parts, which read as the union's "
+                         "super-wood extreme. logit-mean is the atlas's "
+                         "placement rule for injected blends")
     args = ap.parse_args()
 
     try:
@@ -159,11 +184,20 @@ def main() -> int:
         w = np.array([v for _, v in res], float)
         w = w / w.sum()
         V = np.stack([P[n] for n, _ in res])
-        mix = combine("noisy-or", V, w)
-        rec = combine("noisy-or", np.stack([S[n] for n, _ in res]), w)
+        # One rule for both spaces, and it is the same rule the null uses:
+        # --compose weighted-mean by default. The union was measured to work
+        # against itself here -- an oil composed by union is pushed outside its
+        # own constituents, and cedarwood became the most extreme point on the
+        # published atlas (percept sum 9.84 against a material median ~5). The
+        # perfumer's judgement on the rendered maps was unambiguous, so the
+        # composition changed; the union stays reachable by flag for the
+        # comparison, and the white point is unaffected either way (it is the
+        # mean of logits, because it is the map's origin, not a material).
+        mix = combine(args.compose, V, w)
+        rec = combine(args.compose, np.stack([S[n] for n, _ in res]), w)
 
         null = np.stack([
-            combine("noisy-or", LM[rng.choice(len(LM), len(res), replace=False)], w)
+            combine(args.compose, LM[rng.choice(len(LM), len(res), replace=False)], w)
             for _ in range(NULL_DRAWS)])
         z = (mix - null.mean(0)) / np.maximum(null.std(0), 1e-9)
         order = list(np.argsort(-z))

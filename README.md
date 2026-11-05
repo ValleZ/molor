@@ -325,37 +325,50 @@ gradient). The fidelity curve over all k is computed once and is forced
 monotone, because a greedy search is not monotone in k and at one point nine
 materials fitted worse than eight, which made the curve a lie.
 
-**One mixture rule here, another everywhere else — and no evidence picks
-between them.** Everything above mixes a blend as `sum(w_i * p_i)`, a weighted
-mean, because that is linear and has a closed-form weight fit, which is what
-makes a search over subsets cheap at all. `predict_formula.py` and
-`build_naturals.py` mix by **noisy-OR** instead, which is also the rule every
-oil is now composed by: an oil's stored vector then equals the union of its own
-constituents. The two targets for one blend sit a median **0.70** apart (max
-3.05) against this page's 0.488 yardstick, so they are not two implementations
-of one question.
+**The blend is mixed by the mean of logits**, `logit(mix) = sum_i w_i
+logit(p_i)`. The page used a probability-weighted mean until this changed; the
+reason for the move is not accuracy, because accuracy cannot pick a winner
+here, and it is worth being blunt about that: `rule_bakeoff.py` scored five
+rules on the 19 oils whose own name is in the model's vocabulary — a blind
+question with outside ground truth — and **nothing separated**. noisy-OR and
+the weighted mean both put the oil's own name at median rank 2.0 of 138, mean
+5.0 against 5.1, 14/19 in the top five, p > 0.2 on a paired sign test.
 
-They are not two *answers* either, and it is worth being blunt about which way
-that cuts. `rule_bakeoff.py` scored five mixture rules on the 19 oils whose own
-name is in the model's vocabulary — a blind question with outside ground truth
-— and **nothing separated**: noisy-OR and the weighted mean both put the oil's
-own name at median rank 2.0 of 138, mean 5.0 against 5.1, 14/19 in the top five,
-p > 0.2 on a paired sign test. So the choice between these two rules cannot be
-made from the data in this repository, and *neither is the more accurate one*.
-What can be said is narrower: this page's answer is fitted, selected and scored
-inside the linear model, so its guarantee of never being worse than the obvious
-thing holds only there.
+What did decide it is a set of properties, and they are checkable rather than
+rhetorical:
 
-`bench_simplify.py` now says how far that goes. It scores every proposal under
-both rules, re-fitting the weights under each (`fit_noisy`, since scoring
-linear weights against a noisy-OR target would measure the fit rather than the
-rule). Relative to each rule's own random baseline the search is equally good —
-0.02–0.10x under the linear rule, 0.03–0.11x under noisy-OR — and the materials
-it picks are the same, so recovery of an oil's true constituents (76–86%) is
-identical. What moves is the guarantee: never worse than keeping the biggest k
-is 100% by construction under the linear rule and 85–91% under noisy-OR, with
-the search losing outright on three of the four formulas at k=2. That is a
-statement about the solver being tuned to one rule, not a verdict on either.
+* **the fit is exact.** Mixing in log-odds is linear, so the weights are a
+  normal-equation solve; asked for as many materials as the formula has, the
+  page returns the formula itself (residual 5e-13, against 4e-11 in
+  probability space, because log-odds does not clip at the ceiling).
+* **one rule with the map.** `--place logit-mean` is how the atlas places an
+  injected blend, so the page and the atlas now compute the same target. Under
+  the old rule the two targets for one blend sat a median 0.70 apart, against a
+  yardstick of 0.49.
+* **no saturation.** Noisy-OR is a union: `1 − Π(1 − wᵢpᵢ)` only ever adds, so a
+  blend is pushed outwards and its position measures ingredient count. A
+  log-odds mean keeps a blend among its materials, and by construction it is
+  the union divided by the number of ingredients.
+
+One property is *lost* by the move and should be stated with it: **a trace no
+longer survives.** Logit-mean dilutes a one-sided character by 1/N — a 50/50
+menthol/geraniol reads 0.42 minty against 0.94 under the union — and 1% of a
+strong material barely moves the profile under either rule (that is the
+documented `w / w.max()` scaling, not a property of the mean). `max` is the
+only trace-sensitive rule here, and the preserving option is `noisy-or`.
+
+`bench_simplify.py` scores every proposal under both the page's rule and the
+union, re-fitting the weights under each (`fit_noisy`, since scoring log-odds
+weights against a union target would measure the fit rather than the rule).
+Under the page's rule the search sits 0.04–0.15x of the random baseline and
+recovers 63–71% of an oil's true constituents; the search alone beats keeping
+the biggest k on 53–65% of oils, and the proposal is never worse than the
+heuristic by construction because the heuristic is one of the candidates.
+Scored under the union the same proposals look much worse — 0% better than the
+heuristic on the formulas at k=2 and 3 — which is the cross-rule penalty and
+not a ranking: a choice of materials made for one rule is not being scored
+under its own. Read the union column as "what the other rule would think of
+this", never as a comparison of the two rules' accuracy.
 
 **Thresholds, and the dose.** A detection threshold is the concentration at
 which a material becomes smellable; materials differ over eight orders of
@@ -2104,10 +2117,20 @@ centre was measuring ingredient count, not character.
 The atlas is built by taking logits and reducing them, so averaging in that
 space is averaging in the space the picture is drawn in. `--place logit-mean`
 is now the default for an injected blend, and the inspector card states which
-rule placed the star. The oils are mostly unharmed by the union rule -- with
-five to eight constituents the inflation is small -- with one exception worth
-knowing: **Cedarwood EO is the single most extreme point on the published
-atlas** at 152.8 total activation against a library median of 5.5.
+rule placed the star.
+
+The oils were composed by the union too, and that is where the rule showed its
+cost most plainly: **Cedarwood EO was the single most extreme point on the
+published atlas** at 152.8 total activation against a library median of 5.5,
+and Myrrh sat beside it, because a union pushes a mixture outward and an oil of
+five to eight constituents is a mixture. They are now composed by the weighted
+mean (`build_naturals.py --compose weighted-mean`, the default), which puts each
+oil among its own constituents: cedarwood's percept sum fell 9.84 to 4.18 and it
+reads beside cedrol and cedrene. The choice was made on the rendered maps, not
+by a metric -- `rule_bakeoff.py` cannot separate the rules on character -- and
+the white point stayed on the mean of logits, because it is the map's origin
+rather than a material: it sits 0.3 to 1.1 from the cloud's centre that way,
+against 5 to 14 under a probability mean.
 
 ### Olfactory white sits at the centroid
 

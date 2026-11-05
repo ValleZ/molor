@@ -249,6 +249,12 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
   var MAT = D.materials, DESC = D.descriptors, YARD = D.yardstick;
   var N = MAT.length, ND = DESC.length;
   var MEAN = D.mean;
+  // log-odds of every material, once: the blend rule and the weight fit are
+  // both linear in this space.
+  for (var _li = 0; _li < N; _li++) {
+    if (!MAT[_li].p) continue;
+    MAT[_li].q = logOdds(MAT[_li].p, new Float64Array(ND));
+  }
   // Per-descriptor spread, computed once. The payload ships the mean because
   // centred cosine needs it; a lift in standard deviations needs this too,
   // and it is cheap over 435 rows.
@@ -329,24 +335,9 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
     return w;
   }
 
-  // Gram matrix over all materials, computed once. 368 x 368 at 138 dims is
-  // about 9 million multiplies, which is a one-off of a few tens of ms, and it
-  // makes the subset search a sequence of tiny linear solves instead of a
-  // sequence of 138-dimensional fits.
-  var G = null;
-  function gram() {
-    if (G) return G;
-    G = [];
-    var i, j;
-    for (i = 0; i < N; i++) G.push(new Float64Array(N));
-    for (i = 0; i < N; i++) {
-      for (j = i; j < N; j++) {
-        var v = dot(MAT[i].p, MAT[j].p);
-        G[i][j] = v; G[j][i] = v;
-      }
-    }
-    return G;
-  }
+  // No all-materials Gram matrix any more. It existed to make a subset fit a
+  // sequence of tiny solves on w_i * p_i; the fit now lives in log-odds, where
+  // the k x k matrix is built per subset and k never exceeds the slider.
 
   // ---------- parsing ----------
   var STOCK = /[\s(@]+(?:at\s*)?(\d+(?:\.\d+)?)\s*%?\s*(?:in\s+\w+)?\)?\s*$/i;
@@ -561,12 +552,28 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
   }
 
   // ---------- the blend, and its character ----------
-  function blend(idxs, w) {
-    var v = new Float64Array(ND);
-    for (var i = 0; i < idxs.length; i++) {
-      var p = MAT[idxs[i]].p, wi = w[i];
-      for (var j = 0; j < ND; j++) v[j] += wi * p[j];
+  // A blend is mixed by the MEAN OF LOGITS: logit(mix) = sum_i w_i logit(p_i).
+  // Chosen over the two alternatives on properties, not on a score --
+  // bench_simplify.py shows the mean-family rules are indistinguishable on
+  // character. Mixing in log-odds makes the weight fit linear and therefore
+  // exact, keeps a blend among its materials instead of saturating towards the
+  // ceiling the way noisy-OR does, and is the rule the atlas places a blend by,
+  // so the page and the map compute the same target.
+  function logOdds(p, out) {
+    for (var j = 0; j < ND; j++) {
+      var v = Math.min(Math.max(p[j], 1e-6), 1 - 1e-6);
+      out[j] = Math.log(v / (1 - v));
     }
+    return out;
+  }
+  function lg(t) { return logOdds(t, new Float64Array(ND)); }
+  function blend(idxs, w) {
+    var v = new Float64Array(ND), i, j;
+    for (i = 0; i < idxs.length; i++) {
+      var q = MAT[idxs[i]].q, wi = w[i];
+      for (j = 0; j < ND; j++) v[j] += wi * q[j];
+    }
+    for (j = 0; j < ND; j++) v[j] = 1 / (1 + Math.exp(-v[j]));
     return v;
   }
   // A link that puts this exact blend on the atlas. What travels is the
@@ -644,36 +651,38 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
   }
 
   // ---------- the search ----------
-  function fitUnconstrained(idxs, b, tt) {
-    var g = gram(), k = idxs.length, A = [], bv = [], i, j;
+  // The fit is taken in log-odds, because that is the space the blend rule is
+  // additive in: logit(mix) = sum_i w_i logit(p_i). Two consequences worth
+  // knowing, both checked: the k x k system is built over the chosen subset
+  // rather than over all materials, and the unconstrained solve is exact when
+  // the subset is the formula's own ingredients -- which is why asking for as
+  // many materials as the formula has returns the formula.
+  function logitGram(idxs) {
+    var k = idxs.length, A = [], i, j;
     for (i = 0; i < k; i++) {
       var row = new Array(k);
-      for (j = 0; j < k; j++) row[j] = g[idxs[i]][idxs[j]] + (i === j ? 1e-9 : 0);
-      A.push(row); bv.push(b[idxs[i]]);
+      for (j = 0; j < k; j++) {
+        row[j] = dot(MAT[idxs[i]].q, MAT[idxs[j]].q) + (i === j ? 1e-10 : 0);
+      }
+      A.push(row);
     }
-    var w = solve(A, bv), r = tt;
+    return A;
+  }
+  function fitUnconstrained(idxs, target) {
+    var k = idxs.length, tq = lg(target), A = logitGram(idxs), bv = [], i;
+    for (i = 0; i < k; i++) bv.push(dot(MAT[idxs[i]].q, tq));
+    var w = solve(A, bv), r = dot(tq, tq);
     for (i = 0; i < k; i++) r -= w[i] * bv[i];
     return Math.max(r, 0);
   }
   function fitSimplex(idxs, target) {
-    var g = gram(), k = idxs.length, i, j;
+    var k = idxs.length, i, j;
     if (k === 1) return [1];
-    // Try the unconstrained solution first. When the target genuinely lies in
-    // the positive span of these materials -- which it does exactly when the
-    // chosen set is the formula's own ingredients -- that solution is already
-    // non-negative and is the answer to machine precision, where projected
-    // gradient only approaches it. Without this, asking for as many materials
-    // as the formula has returned it visibly re-dosed: one ingredient at 44%
-    // came back at 33% because the fit had not converged.
-    var Au = [], bu = [];
-    for (i = 0; i < k; i++) {
-      var ru = new Array(k);
-      for (j = 0; j < k; j++) ru[j] = g[idxs[i]][idxs[j]] + (i === j ? 1e-10 : 0);
-      Au.push(ru);
-      bu.push(dot(MAT[idxs[i]].p, target));
-    }
-    var wu = solve(Au, bu);
-    var oku = true, su = 0;
+    var tq = lg(target), A = logitGram(idxs), bv = [];
+    for (i = 0; i < k; i++) bv.push(dot(MAT[idxs[i]].q, tq));
+    // Unconstrained first: exact when the target is in the span of these
+    // materials, which it is when they are the formula's own.
+    var wu = solve(A, bv), oku = true, su = 0;
     for (i = 0; i < k; i++) {
       if (!(wu[i] > -1e-9) || !isFinite(wu[i])) { oku = false; break; }
       su += wu[i];
@@ -681,13 +690,7 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
     if (oku && su > 1e-9 && Math.abs(su - 1) < 0.02) {
       return wu.map(function (x) { return Math.max(x, 0) / su; });
     }
-    var A = [], b = [];
-    for (i = 0; i < k; i++) {
-      var row = new Array(k);
-      for (j = 0; j < k; j++) row[j] = g[idxs[i]][idxs[j]];
-      A.push(row);
-      b.push(dot(MAT[idxs[i]].p, target));
-    }
+    // Otherwise the same projected gradient as before, on the log-odds system.
     var L = 0;
     for (i = 0; i < k; i++) L += A[i][i];
     L = Math.max(L, 1e-9);
@@ -695,7 +698,7 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
     for (var it = 0; it < 500; it++) {
       var gr = new Array(k).fill(0);
       for (i = 0; i < k; i++) {
-        var s = -b[i];
+        var s = -bv[i];
         for (j = 0; j < k; j++) s += A[i][j] * w[j];
         gr[i] = 2 * s;
       }
@@ -722,16 +725,14 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
   }
 
   function search(target, pool, k, seedIdx) {
-    var b = new Float64Array(N), i;
-    for (i = 0; i < N; i++) b[i] = dot(MAT[i].p, target);
-    var tt = dot(target, target);
+    var i;
     var chosen = seedIdx ? seedIdx.slice(0, k) : [];
     while (chosen.length < k) {
       var best = -1, bestR = Infinity;
       for (var c = 0; c < pool.length; c++) {
         var cand = pool[c];
         if (chosen.indexOf(cand) >= 0) continue;
-        var r = fitUnconstrained(chosen.concat([cand]), b, tt);
+        var r = fitUnconstrained(chosen.concat([cand]), target);
         if (r < bestR) { bestR = r; best = cand; }
       }
       if (best < 0) break;
@@ -740,12 +741,12 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
     // One swap pass: cheap, and it matters most at small k where the greedy
     // first pick is often wrong once the others are known.
     for (var slot = 0; slot < chosen.length; slot++) {
-      var cur = fitUnconstrained(chosen, b, tt), keep = chosen[slot];
+      var cur = fitUnconstrained(chosen, target), keep = chosen[slot];
       for (var c2 = 0; c2 < pool.length; c2++) {
         var alt = pool[c2];
         if (chosen.indexOf(alt) >= 0) continue;
         chosen[slot] = alt;
-        var r2 = fitUnconstrained(chosen, b, tt);
+        var r2 = fitUnconstrained(chosen, target);
         if (r2 < cur - 1e-12) { cur = r2; keep = alt; }
       }
       chosen[slot] = keep;
@@ -1557,8 +1558,12 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
       + "of ten, and a tenfold error moves a five-material blend further than "
       + "the just-noticeable scale. Treat the doses as a starting point to "
       + "adjust by nose.");
-    cav.push("<strong>Suppression.</strong> Components mask each other and "
-      + "nothing here models that; the blend is a weighted mean of its parts.");
+    cav.push("<strong>How the blend is mixed.</strong> By the mean of logits, "
+      + "logit(mix) = sum of w_i * logit(p_i) — the same rule the atlas places "
+      + "a blend by. A trace ingredient therefore does not impose its "
+      + "character: 1% of a strong material barely moves the profile. "
+      + "<strong>Suppression.</strong> Components mask each other and nothing "
+      + "here models that.");
     cav.push("<strong>Whether it smells the same.</strong> This page can say "
       + "that nothing simpler gets closer in the model's descriptor space. It "
       + "cannot say the two smell alike. The one case tested on a bench — two "

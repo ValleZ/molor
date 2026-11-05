@@ -206,20 +206,30 @@ esters) in `omitted` as prose. Cite by author and year; name the material you
 analysed (balsam vs distilled oil is a 70% styrene difference); say
 "reconstruction only — not for use" in `source`.
 
-**Both vectors are noisy-OR over the constituents, in both spaces, and there
-is no second rule.** `build_naturals.py` applies
-`combine("noisy-or", ...)` to the constituents' `percepts_fp3.json` rows for
-the percept and to their MolOR scores for the receptor vector. That is the rule
-`eval_mixtures.py` measured against the perfumer's own written verdicts on 30
-formulas, and the rule `predict_formula.py` applies to any blend: an oil is a
-blend, so it gets the blend's arithmetic.
+**Both vectors are the composition-weighted mean over the constituents**, in
+both spaces, and that is `--compose weighted-mean`, the default.
+`build_naturals.py` takes the constituents' `percepts_fp3.json` rows for the
+percept and their MolOR scores for the receptor vector, and averages them by
+the stated fractions. An oil therefore *sits among its own constituents* rather
+than outside them.
 
-It is **not** the composition-weighted mean. That sentence was true of the
-eight hand entries and of the simplifier page's internal solver, which answers
-a different question — which candidate materials best match a target blend —
-and quoting it here is how two rules for one vector ended up in one file. If a
-note or a comment says "composition-weighted mean", it predates the migration
-and is wrong.
+The rule was not chosen on a score, and it is worth saying so plainly. On
+character, `rule_bakeoff.py` cannot separate the mean from the union or even
+from the dominant ingredient (p > 0.2). What decided it was the rendered map:
+under the union an oil is pushed outwards by construction, and Cedarwood EO was
+the single most extreme point on the published atlas (percept sum 9.84 against
+a material median near 5, 152.8 total receptor activation against 5.5).
+Recomposed by the mean it reads 4.18 and sits with cedrol and cedrene, which is
+what a perfumer looking at the map expects. The union stays reachable as
+`--compose noisy-or` for the comparison.
+
+Two rules remain, and they answer different questions rather than disagreeing:
+
+| object | rule | why |
+|---|---|---|
+| an **oil** (a material you can buy) | weighted mean of its parts | it is a thing, and its vector should describe the thing |
+| a **blend's position** on the map | mean of logits | the map is drawn in log-odds, so the centre and the placement must be computed there |
+| the **white point** | mean of logits | it is the map's origin, not a material: 0.3–1.1 from the cloud's centre, against 5–14 for the probability mean |
 
 **Then build the stores**, once per space:
 
@@ -243,7 +253,9 @@ with the same `percept` and `atlas` flag (the receptor vectors differ — the tw
 encoders are different spaces). Verify the composed vectors still say the
 material's name: styrax came out balsamic 0.94 / cinnamon 0.43, benzoin
 balsamic 0.76 / vanilla 0.39, and a vector that does not is a composition
-error, not a model quirk.
+error, not a model quirk. Under the mean these numbers are lower than they were
+under the union — that is the rule doing its job, not the composition breaking;
+check the *ranking* of the descriptors, not the absolute value.
 
 When you add one oil, the other 46 are recomputed too — the build is a pure
 function of the spec, the percept model and the receptor stores. Compare the
@@ -268,7 +280,7 @@ prints its own summary; the numbers to read are:
 ```
 142 compiled thresholds, 208 imputed (leave-one-out median error 3.12x)
 474 materials (47 of them oils), 148 owned, 474 with a threshold
-138 descriptors, 289 aliases, yardstick 0.488
+138 descriptors, 289 aliases, yardstick 0.451
 30 materials may never be proposed; 34 are offered but unverified
 ```
 
@@ -277,8 +289,10 @@ every oil in the naturals file — 427 + 47 today — because that is what the
 perfumer's `materials.db` will hold. `compiled` is the inventory meeting the
 library by name (§6); if it drops, the join is failing, not the data.
 `yardstick` is what a random blend of the same size achieves — measured, not
-set — and it moved 0.470 → 0.488 when the oils were regenerated from the spec,
-because the oil vectors moved with them.
+set — so it moves whenever the material set or an oil's composition rule moves:
+0.470, then 0.488 when the oils were regenerated from the spec, then 0.451 when
+they were recomposed by the weighted mean. A shift here is a fact about the
+data, not a tuning knob.
 
 If the export crashes on `oils[o]["percept"]`, a naturals entry is missing
 its composed vector — see §4.
