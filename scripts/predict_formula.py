@@ -250,8 +250,18 @@ def main() -> int:
     ap.add_argument("formula", help="CSV with material,dilution,weight")
     ap.add_argument("--percepts", default="artifacts/percepts_fp3.json")
     ap.add_argument("--store", default="library")
-    ap.add_argument("--rule", default="noisy-or",
-                    choices=["noisy-or", "weighted-mean", "max", "dominant"])
+    ap.add_argument("--rule", default="logit-mean",
+                    choices=["logit-mean", "noisy-or", "weighted-mean", "max",
+                             "dominant"],
+                    help="how the ingredients' percept vectors are combined. "
+                         "logit-mean is the project's rule for a blend's "
+                         "character: the simplifier mixes by it, the atlas "
+                         "places a blend by it, and the engine mixes its "
+                         "proposals by it. noisy-or (the union) and "
+                         "weighted-mean are kept for comparison -- the union "
+                         "preserves a one-sided character but saturates and "
+                         "measures ingredient count; the probability mean is "
+                         "not what any published surface uses")
     ap.add_argument("--weight", default="mass", choices=["mass", "oav"],
                     help="mass: neat share. oav: neat share / measured "
                          "detection threshold, so traces of strong materials "
