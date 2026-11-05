@@ -300,6 +300,33 @@ from fp3 no longer land. Adopting fp4 is therefore a product decision, not a
 data refresh: it means re-selecting the samples against fp4, re-tuning the
 engine, and re-running the whole suite against the new database.
 
+## Publishing the atlas and the simplifier
+
+Neither is a JSON file on the site: both are **self-contained HTML** with the
+payload inlined, so exporting `viewer_data.json` / `simplify_data.json` never
+changes what a visitor sees. Two builders publish them, and both live upstream:
+
+```powershell
+build_naturals      --percepts artifacts/percepts_fp4.json   # oils have no structure
+scripts/export_simplify_data.py --percepts artifacts/percepts_fp4.json
+export_viewer_data  --percepts artifacts/percepts_fp4.json
+build_simplify.py simplify_data.json C:/Valle/dev/valkon.us/molor/simplify/index.html --mixpanel <token>
+build_viewer.py   viewer_data.json   C:/Valle/dev/valkon.us/molor/index.html          --mixpanel <token>
+```
+
+The `--mixpanel` token is the one value a builder cannot derive; pass nothing and
+the published page silently ships with analytics stripped.
+
+Two rules learned the hard way:
+
+* **Recompose the oils on the same model.** Oils have no molecular structure, so
+their vectors are composed from their constituents; leaving them on the old model
+makes 47 of 474 materials inconsistent with the model the database advertises.
+* **No atlas trimming (perfumer's ruling).** `build_naturals` used to hide an oil
+whose vector collapsed onto a single constituent — Orange EO at 0.9998 to
+D-Limonene — which kept 13 of 47 off the map. `--max-nearest-cosine` now defaults
+to 1.01 so every oil earns a point; the trim survives as an explicit flag.
+
 ## Status
 
 Script: `scripts/merge_percept_evidence.py`. Candidate artifacts:
