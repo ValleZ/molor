@@ -235,11 +235,42 @@ def _logit(p):
     return np.log(q / (1 - q))
 
 
+def drop_never_proposable(entries, logits, scores, quiet=False):
+    """Remove materials the dataset says may never be proposed.
+
+    A prohibited or unbuyable substance drawn beside real ones reads as an
+    option, and the atlas is the surface a reader browses *for* options -- so
+    it should show what can be used, not everything that was ever catalogued.
+    The list is imported from export_simplify_data rather than restated here,
+    so the map and the simplifier cannot disagree about what exists; that is
+    the whole reason the perfumer's exclusions moved out of the service and
+    into NEVER_PROPOSE.
+
+    Applied to the reference set in main() *and* to each model's own set:
+    the models are aligned by material name, so filtering one side only would
+    trip the row-order guard in build_model_block.
+    """
+    from export_simplify_data import NEVER_PROPOSE
+
+    keep = np.asarray([e.name not in NEVER_PROPOSE for e in entries],
+                      dtype=bool)
+    if keep.all():
+        return entries, logits, scores, []
+    withheld = sorted(e.name for e, k in zip(entries, keep) if not k)
+    kept_entries = [e for e, k in zip(entries, keep) if k]
+    if not quiet:
+        print(f"  {len(withheld)} withheld, never proposable: "
+              + ", ".join(withheld))
+    return kept_entries, logits[keep], scores[keep], withheld
+
+
 def build_model_block(paths, name, genes_ref, names_ref, query=None,
                       white=True):
     """Score matrix, distances, links and projections for one encoder."""
     lib = Library(paths, name=name)
     entries, logits, scores = lib.load()
+    entries, logits, scores, _ = drop_never_proposable(
+        entries, logits, scores, quiet=True)
     nat_ents, _, nat_rec = load_naturals(name)
     if white:
         # Computed from the molecules only, before the oils and any injected
@@ -531,6 +562,7 @@ def main() -> int:
     # The first model's library defines the molecule set everything aligns to.
     lib = Library(paths, name=MODELS[0][1])
     entries, logits, scores = lib.load()
+    entries, logits, scores, _ = drop_never_proposable(entries, logits, scores)
     blob = np.load(lib.vectors_npz, allow_pickle=True)
     genes = [str(x) for x in blob["genes"]]
 

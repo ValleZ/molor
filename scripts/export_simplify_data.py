@@ -162,6 +162,38 @@ NEVER_PROPOSE = {
     "Methyl Beta-Orcinol Carboxylate": "oakmoss lichen acid, not sold as a formulating material",
     "Methyl Orsellinate": "oakmoss lichen acid, not sold as a formulating material",
     "Ethyl Everninate": "oakmoss lichen acid, not sold as a formulating material",
+    # The perfumer's own do-not-use list, moved here so ONE list decides what
+    # exists on every surface. It used to live only in
+    # perfumer/tools/ifra_limits.csv, which reached the simplifier through
+    # build_db.py but never the atlas -- so prohibited and unbuyable materials
+    # stayed visible on the published map. Curation belongs to the dataset: a
+    # material nobody can buy is not a point on a map of what can be bought.
+    #
+    # The reasons keep the same bar as the rest of this dict (a regulatory
+    # prohibition, or nobody selling it as a perfumery material), which is why
+    # they read alike. They are shown to a user whose formula line is refused,
+    # so they are written to be true rather than tidy.
+    "Lyral": "IFRA prohibited (HICC) from the 49th amendment and banned in EU cosmetics, never a formulating material",
+    "l-Carvone": "not stocked as a perfumery material by any supplier on this perfumer's list",
+    "Evernic Acid": "oakmoss lichen acid, not sold as a formulating material",
+    "Atranorin": "oakmoss lichen acid, not sold as a formulating material",
+    "Chloroatranorin": "oakmoss lichen acid, not sold as a formulating material",
+    "Triethyl Citrate": "carrier and solvent, odourless, so it has no odour to contribute",
+    "3,3-Dimethyl-1-Indanone": "no supplier carries it as a fragrance material",
+    "Alpha Santalene": "sandalwood sesquiterpene hydrocarbon, not sold as a formulating material",
+    "Alpha Santalol": "sandalwood constituent; the pure isomer is a research reference, and the sold products are the oil or an alpha/beta blend",
+    "Castoramine": "castoreum alkaloid, exists only as a reference standard, not a formulating material",
+    "Ledol": "labrador-tea sesquiterpene, not sold as a formulating material",
+    "Nerolidol": "not purchasable as a formulating material",
+    "(E,E)-2,4-Decadienal": "not purchasable as a formulating material",
+    "2,6-Dimethylpyrazine": "not purchasable as a formulating material",
+    "2-Ethyl-3,5-Dimethylpyrazine": "not purchasable as a formulating material",
+    "2-Methyl Pyrazine": "not purchasable as a formulating material",
+    "2-Octen-4-One": "not purchasable as a formulating material",
+    "3-Octen-2-One": "not purchasable as a formulating material",
+    "Dimethyl Disulfide": "not purchasable as a formulating material",
+    "Dimethyl Trisulfide": "not purchasable as a formulating material",
+    "Isopropyl 2-Methylbutyrate": "not purchasable as a formulating material",
 }
 
 #: Files whose entries were added because a real formula asked for them by
