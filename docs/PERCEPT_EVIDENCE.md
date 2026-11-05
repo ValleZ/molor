@@ -43,12 +43,32 @@ the search or the mixture rule.
 
 **Labels first, per cell, raise-only.**
 
-For each descriptor of each matched material:
+Three sources in order of precision, applied **per cell**:
 
-* `label == 1` → raise the value to the descriptor's **P95** over the library's
-  predictions (never lower it, never saturate it),
-* `label == 0` → **leave the model value alone**,
-* no GS-LF row → model value alone.
+| precedence | source | direction | coverage |
+|---|---|---|---|
+| 1 | **Dravnieks 1985** panel rating ÷ 100 | **raises or lowers** | 43 / 474 materials, 80 crosswalk columns |
+| 2 | GS-LF `label == 1` | raise to **0.9** | 262 / 474 materials, 133 of 138 terms |
+| 3 | GS-LF `label == 0` | model value kept | — |
+| 4 | no row | model value kept | oils, captives |
+
+Stage 1 applies **only positive panel ratings**: a blank or 0 in Dravnieks means
+the word was not applied, not that the smell is absent. Where graded evidence
+speaks for a cell, stage 2 skips it.
+
+Stage 1 needs `data/percept/crosswalk_dravnieks_to_vocab.csv`, because the two
+vocabularies barely intersect: Dravnieks speaks ASTM DS61 (`FRUITY,CITRUS`,
+`LEMON`, `WOODY, RESINOUS`, `BURNT,SMOKY`) and matches only **37 of our 138**
+terms by name, ~73 through the crosswalk. Absent from the ASTM list entirely:
+`sandalwood`, `orris`, `ozone`, `clean`, `rummy`, `green`. Those facets are
+label-only, which is why `sandalwood` reaches just 2 carriers.
+
+Measured with the full cascade (43 materials graded, 262 labelled; 2064 cells
+graded up, **672 graded down**, 1796 label-raised): `peach` 0→12 carriers,
+`tobacco` 0→9, `cedar` 0→6, `cucumber` 0→6, `smoky` 0→2, `vanilla` 5→7,
+`floral` 16→111, `woody` 14→56. The panel raises 32 `peach` cells but only 12
+clear 0.7 — graded evidence is more conservative than a flat 0.9, which is the
+precision it was added for.
 
 Why raise-only: a GS-LF `0` means *the panellist did not use that word*, not
 "intensity zero". With base rates of 0.7–2%, absence of the word is the normal
@@ -159,9 +179,12 @@ Script: `scripts/merge_percept_evidence.py`. Candidate artifacts:
 
 | file | rule | verdict |
 |---|---|---|
-| `artifacts/percepts_merged.json` | `--present p95` | rejected (see above) |
-| `artifacts/percepts_merged90.json` | `--present 0.9` | candidate |
+| `artifacts/percepts_merged.json` | labels, `--present p95` | rejected (see above) |
+| `artifacts/percepts_merged90.json` | labels, `--present 0.9` | superseded |
+| **`artifacts/percepts_merged_cascade.json`** | panel → label → model | **candidate** |
 | matching `.manifest.json` each | provenance, hashes, per-facet counts | |
+
+`--no-graded` rebuilds the labels-only variant for comparison.
 
 **No consumer default has been changed.** The candidate is inert until a
 `--percepts artifacts/percepts_merged90.json` flag is passed somewhere, and
