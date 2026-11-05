@@ -534,10 +534,19 @@ def main() -> int:
     ap.add_argument("--models", default=None,
                     help="comma-separated key=library pairs; first is the reference set")
     ap.add_argument("--out", default="artifacts/viewer_data.json")
-    ap.add_argument("--percepts", default="artifacts/percepts_fp3.json",
-                    help="the percept model that colours the points. The "
-                         "baseline file covers 128 molecules of a 410-material "
-                         "library, which left two thirds of the atlas grey.")
+    # fp4, not fp3, and this default is load-bearing rather than a
+    # preference. artifacts/naturals.json composes the 47 oils' percept rows
+    # on v4 (commit 1edbc5d, "recompose the 47 oils on percept v4"), so an
+    # export that reads v3 for the molecules puts the two point sets in
+    # different spaces: the oils' vectors never move, but the cloud they are
+    # drawn against does, and 36 of 47 oils end up outside it. That shipped
+    # once, on 5 November 2026, because the default was fp3 while every other
+    # step had moved to v4. Keep this aligned with
+    # export_simplify_data.py --percepts and with build_naturals.py.
+    ap.add_argument("--percepts", default="artifacts/percepts_fp4.json",
+                    help="the percept model that colours the points, and the "
+                         "space the smell map is projected in. Must match the "
+                         "model naturals.json was composed on (fp4).")
     ap.add_argument("--no-white-point", action="store_true",
                     help="omit the average-of-everything reference point")
     ap.add_argument("--query", default=None,
