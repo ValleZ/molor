@@ -262,6 +262,44 @@ The tools are all in place for that project: `merge_percept_evidence.py`
 (hierarchy), `eval_fp_percept.py` / `eval_similarity.py` / `notes_vs_models.py`
 for model-level scoring, and the seven-brief A/B harness for the engine level.
 
+### Attempt 4: retrain with pos_weight (`percepts_fp4.json`)
+
+The ablations had rejected `pos_weight` on AUC/geometry ("drop pos_weight:
++0.079 Spearman, -0.008 AUC"), but they never measured the predicted
+*distribution*, which is what decides whether a rare facet has any carrier at
+all. Retrained with `train_fp_v3.py --pos-weight` (same recipe otherwise, 5
+folds x 5 ensemble, ~2 min on GPU):
+
+| | fp3 (shipped) | fp4 (pos_weight) |
+|---|---|---|
+| descriptors with >=5 carriers above 0.7 | **25 / 138 (18%)** | **129 / 138 (93%)** |
+| sandalwood / orris / peach / rummy / clean / tobacco | 0 / 0 / 0 / 0 / 0 / 0 | **10 / 18 / 37 / 38 / 37 / 33** |
+| powdery / dry / leafy / fresh | 0 / 1 / 0 / 3 | **81 / 70 / 32 / 100** |
+| out-of-fold mean AUC | 0.8672 | **0.8688** |
+| label-grounded similarity (Spearman) | 0.4999 | 0.3582 |
+
+**This solves the supply problem outright** — every facet now has materials to
+build a formula from, and AUC does not suffer. The cost is the geometry the
+ablation predicted.
+
+Downstream (7-brief A/B on an fp4 scratch database): sandalwood 0.700 -> 0.863
+with the facet voiced at 0.41 and landing 0 -> 2/5; lilac holds 4/5; citrus
+holds 2/5. But cedar & amber 3/6 -> 1/6, cinnamon 5/6 -> 3/6, garden soil
+3/6 -> 2/6.
+
+Re-fitting the engine on fp4 (`_RIDGE_W` 0.15/0.10/0.05/0.02/0.01 x
+`_SEED_CARRIER` 0.6/0.45) does **not** recover them: the best setting keeps
+**2 of 7** briefs at their shipped landing+fit (ridge 0.10: lilac 4/5,
+sandalwood 2/5; ridge 0.05: sandalwood 3/5 but cinnamon 1/6). `cedar` never
+recovers at any setting.
+
+So the conclusion is stronger than "the engine was tuned to the compression":
+**the shipped sample briefs were themselves selected against the fp3 matrix.**
+A better matrix makes different materials win, and the five samples we chose
+from fp3 no longer land. Adopting fp4 is therefore a product decision, not a
+data refresh: it means re-selecting the samples against fp4, re-tuning the
+engine, and re-running the whole suite against the new database.
+
 ## Status
 
 Script: `scripts/merge_percept_evidence.py`. Candidate artifacts:

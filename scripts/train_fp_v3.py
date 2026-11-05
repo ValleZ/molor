@@ -138,7 +138,17 @@ def main() -> int:
                          "gslf_hierarchical.csv is GS-LF with its implied "
                          "hierarchy propagated")
     ap.add_argument("--out", default="artifacts/percepts_fp3.json")
+    ap.add_argument("--pos-weight", action="store_true",
+                    help="enable per-label pos_weight (capped at 50). The "
+                         "ablations dropped it for GEOMETRY (it costs ~+0.08 "
+                         "Spearman) and accepted -0.008 AUC, but they never "
+                         "measured what it does to the predicted "
+                         "distribution -- which is what decides whether a "
+                         "rare facet has any material above 0.7 at all")
     args = ap.parse_args()
+    if args.pos_weight:
+        globals()["POS_WEIGHT"] = True
+        print("[v3] pos_weight ENABLED (per-label neg/pos, capped at 50)")
 
     import csv as _csv
 
