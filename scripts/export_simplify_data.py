@@ -125,6 +125,13 @@ NEVER_PROPOSE = {
     "Bulnesol": "guaiacwood isolate, sold only as a niche naturals reference — use the EO instead",
     "Guaiene Beta": "guaiacwood trace hydrocarbon constituent, not sold as a formulating material",
     "Eudesmol Beta": "guaiacwood constituent and reagent chemical, not sold as a formulating material",
+    # Vetiver. Khusimol is the sesquiterpene alcohol that carries the
+    # vetiver root note, and it entered this library as a vetiver GC
+    # constituent with an IMPUTED threshold and no CAS number or IFRA
+    # figure. The engine kept proposing it for woody/earthy briefs: a
+    # vector duplicate of the oil with none of the dosing data. Flagged
+    # rather than proposed; vetiver is voiced through the EO.
+    "Khusimol": "vetiver constituent with an imputed threshold and no CAS/IFRA data — use the vetiver EO instead",
     # The myrrh rebuild constituents. None is a shelf material: the
     # furanosesquiterpenes are the smell of myrrh but exist in commerce
     # only as phytochemical reference standards -- the Fraterworks
