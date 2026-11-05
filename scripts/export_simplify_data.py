@@ -132,6 +132,12 @@ NEVER_PROPOSE = {
     # vector duplicate of the oil with none of the dosing data. Flagged
     # rather than proposed; vetiver is voiced through the EO.
     "Khusimol": "vetiver constituent with an imputed threshold and no CAS/IFRA data — use the vetiver EO instead",
+    # Labdanum. Labdane is the diterpene skeleton of labdanum resin: it is what
+    # the resin is built from, not a bottle. It reaches the library as a
+    # labdanum GC constituent with an IMPUTED threshold and no CAS or IFRA
+    # figure, and the engine proposed it at 10 parts in a lilac formula on a
+    # small balsamic lift. Labdanum is voiced through the absolute.
+    "Labdane": "labdanum diterpene constituent, sold only as a reference standard — use Labdanum Absolute instead",
     # The myrrh rebuild constituents. None is a shelf material: the
     # furanosesquiterpenes are the smell of myrrh but exist in commerce
     # only as phytochemical reference standards -- the Fraterworks
