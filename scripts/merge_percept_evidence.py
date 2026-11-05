@@ -134,6 +134,16 @@ def main() -> int:
                     help="value a GS-LF label=1 cell is raised to")
     ap.add_argument("--no-graded", action="store_true",
                     help="skip the Dravnieks panel stage (labels only)")
+    ap.add_argument("--only-starved", type=int, default=None, metavar="N",
+                    help="apply evidence ONLY to descriptors with fewer than N "
+                         "carriers above 0.7 in this artifact")
+    ap.add_argument("--max-mean", type=float, default=None, metavar="M",
+                    help="apply evidence ONLY to descriptors whose MEAN "
+                         "prediction is below M -- the signature of label "
+                         "compression. Preferred over --only-starved, whose "
+                         "carrier counts are computed on this artifact alone "
+                         "and so call citrus/spicy starved when their carriers "
+                         "are the oils the database adds.")
     args = ap.parse_args()
 
     pj = json.loads((ROOT / args.percepts).read_text(encoding="utf-8"))
@@ -154,6 +164,18 @@ def main() -> int:
 
     before = {d: sum(1 for r in range(len(mols)) if probs[r][di[d]] > 0.7)
               for d in common}
+    allow = None
+    if args.only_starved is not None:
+        allow = {d for d in common if before.get(d, 0) < args.only_starved}
+        print("[merge] starved-only: %d of %d descriptors eligible (<%d "
+              "carriers)" % (len(allow), len(common), args.only_starved))
+    if args.max_mean is not None:
+        mean = {d: sum(probs[r][di[d]] for r in range(len(mols))) / len(mols)
+                for d in common}
+        allow = {d for d in common if mean[d] < args.max_mean}
+        print("[merge] compressed-only (mean < %.3f): %d of %d descriptors: "
+              "%s" % (args.max_mean, len(allow), len(common),
+                       sorted(allow)))
     g_up = {d: 0 for d in common}
     g_dn = {d: 0 for d in common}
     lab_up = {d: 0 for d in common}
@@ -166,6 +188,8 @@ def main() -> int:
         if g:
             g_matched += 1
             for d, v in g.items():
+                if allow is not None and d not in allow:
+                    continue
                 j = di[d]
                 if probs[r][j] < v:
                     g_up[d] += 1
@@ -179,6 +203,8 @@ def main() -> int:
         for d in common:
             if g and d in g:
                 continue          # graded evidence already spoke for this cell
+            if allow is not None and d not in allow:
+                continue          # descriptor is healthy; leave it alone
             if str(row.get(d, "0")).strip().lower() not in ("1", "1.0", "true"):
                 continue
             j = di[d]

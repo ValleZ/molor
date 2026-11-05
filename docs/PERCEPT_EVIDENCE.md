@@ -173,6 +173,49 @@ python scripts/export_simplify_data.py --percepts artifacts/percepts_merged.json
    model values — and they are where the model is weakest. The merge helps
    molecules, not oils. Say so in the manifest.
 
+## Validation result (measured 2026-XX-XX) — REJECTED
+
+The A/B was run the way the gate requires: build a scratch `materials.db` from
+the merged artifact (`ab_evidence.py --build`, 266 materials updated, 208 oils
+and captives untouched), then generate the five shipped sample briefs plus two
+previously-impossible ones from both libraries.
+
+| brief | shipped library | merged evidence |
+|---|---|---|
+| sandalwood (impossible before) | fit 0.700, sandalwood 0.10 | **fit 0.924, sandalwood 0.36** |
+| peach (impossible before) | fit 0.897, peach 0.32 | fit 0.926, landing 1→2/5 |
+| garden soil | fit 0.869, 3/6 landed | fit 0.971, 3/6 |
+| cedar & amber | fit 0.894, 3/6 | fit 0.915, **1/6** |
+| cinnamon & clove | fit 0.943, 5/6 | fit 0.874, **3/6, `clove` silent** |
+| lilac & cold cream | fit 0.950, 4/5 | fit 0.896, **2/5** |
+| bitter citrus peel | fit 0.890, citrus 0.61 | fit 0.694, **citrus 0.18** |
+
+**It fails validation item 3** (working briefs must not regress), so the
+shipped library is unchanged and no consumer default moves.
+
+Two lessons worth keeping:
+
+1. **Whole-matrix merging destroys contrast.** Raising 2017 label cells and
+   2736 graded cells lifted `floral` from 16 to 111 carriers; the library became
+   loud on everything, the fit flattened, and every working brief regressed.
+2. **Filtering to the compressed facets is not enough.** Restricting the merge
+   to descriptors whose mean prediction is below 0.06 (`--max-mean`, 119 of 133)
+   left `floral`/`green`/`woody`/`sweet` untouched and recovered *some* briefs,
+   but still broke others — `citrus` itself was never modified, yet it fell from
+   0.61 to 0.18 because `orange`, `grapefruit` and `lemon` were, and the
+   co-facets re-rank the candidate pool. The model's compression is
+   **load-bearing for the current fits**: the engine's ridge, share caps and
+   seed were all tuned against this matrix. Replacing the data without
+   re-benchmarking the engine is not a drop-in change.
+
+What would be needed to ship it: re-tune `_RIDGE_W`, `_MAX_SHARE` and the
+specialist seed **against the merged matrix**, then re-run the whole sample
+benchmark and the test suite — i.e. the merge is a data change that implies an
+engine re-fit, not a data refresh. Not done.
+
+Scratch build `materials_cascade.db` (perfumer repo root, untracked) is left
+for inspection; it is not shipped and no service reads it.
+
 ## Status
 
 Script: `scripts/merge_percept_evidence.py`. Candidate artifacts:
