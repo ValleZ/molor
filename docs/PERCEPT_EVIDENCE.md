@@ -216,6 +216,52 @@ engine re-fit, not a data refresh. Not done.
 Scratch build `materials_cascade.db` (perfumer repo root, untracked) is left
 for inspection; it is not shipped and no service reads it.
 
+### Correction: production is fp3, not the GCN baseline
+
+`materials.db` records `percept_model = fingerprint MLP v3 (ablation-selected,
+5x ensemble)`, built from `artifacts/percepts_fp3.json`. The first A/B merged
+evidence into `percepts_expanded.json` (the GCN baseline), so it compared
+"baseline + evidence" against an fp3 library — a confounded result. Every
+measurement below after that point was redone on fp3.
+
+fp3 is **more compressed than the baseline**, not less: of 138 descriptors,
+`fresh` has 3 materials above 0.7, `powdery` 0, `dry` 1, `earthy` 1, `leafy` 0.
+108 of 138 qualify as starved. That is why a "starved-only" filter barely
+filters anything on this model.
+
+### Attempt 3: monotone prior calibration on fp3 (`calibrate_percepts.py`)
+
+Per-descriptor monotone transform (the m-th largest prediction maps to 0.72,
+the max to 0.95, everything below scales proportionally), with m taken from the
+label prevalence among matched library materials — so within-descriptor
+ordering is preserved and a facet gets exactly as many carriers as the labels
+warrant. 108 descriptors calibrated.
+
+| brief | shipped fp3 | fp3h (hierarchy) | evidence merge | calibrate |
+|---|---|---|---|---|
+| sandalwood | 0.700, sw 0.10 | 0.825, sw 0.22 | 0.941, sw 0.44 | 0.937, sw 0.42 |
+| peach | 0.897, 1/5 | 0.880, 3/5 | 0.890, 1/5 | 0.895, 1/5 |
+| lilac | 0.950, 4/5 | 0.892, 3/5 | 0.937, 3/5 | 0.978, 3/5 |
+| citrus | 0.890, 2/5 | 0.902, 1/5 | 0.797, 1/5 | 0.836, 3/5 |
+| garden soil | 0.869, 3/6 | 0.869, 3/6 | 0.791, 3/6 | 0.962, 3/6 |
+| cedar & amber | 0.894, 3/6 | 0.902, 2/6 | 0.884, 3/6 | 0.913, 2/6 |
+| cinnamon & clove | 0.943, 5/6 | 0.900, 2/6 | 0.824, 2/6 | 0.884, 2/6 |
+
+**All three data-side attempts fail the same gate: the working briefs lose
+facets.** The conclusion is now well supported rather than assumed:
+
+> The engine's parameters (`_RIDGE_W`, `_MAX_SHARE`, the specialist seed) were
+tuned *against this matrix's compression*. No data-side change — more evidence,
+hierarchy labels, or prior calibration — passes the sample gate on its own.
+Making rare facets voiceable requires re-fitting the engine to the new matrix,
+which means a full re-benchmark (five samples, the reference formula, the
+identity round trip, the suite), not a swap.
+
+The tools are all in place for that project: `merge_percept_evidence.py`
+(evidence cascade), `calibrate_percepts.py` (prior calibration), `percepts_fp3h`
+(hierarchy), `eval_fp_percept.py` / `eval_similarity.py` / `notes_vs_models.py`
+for model-level scoring, and the seven-brief A/B harness for the engine level.
+
 ## Status
 
 Script: `scripts/merge_percept_evidence.py`. Candidate artifacts:
