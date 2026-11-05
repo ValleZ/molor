@@ -6146,7 +6146,7 @@
         "z": 3.41,
         "p": 0.978
       },
-      "atlas": false
+      "atlas": true
     },
     "Lavandin EO (Grosso)": {
       "composition_used": {
@@ -9733,7 +9733,7 @@
         "z": 5.57,
         "p": 0.987
       },
-      "atlas": false
+      "atlas": true
     },
     "Orange EO (sweet, Florida)": {
       "composition_used": {
@@ -10335,7 +10335,7 @@
         "z": 2.6,
         "p": 0.873
       },
-      "atlas": false
+      "atlas": true
     },
     "Lime EO (Persian, expressed)": {
       "composition_used": {
@@ -11538,7 +11538,7 @@
         "z": 2.76,
         "p": 0.893
       },
-      "atlas": false
+      "atlas": true
     },
     "Cinnamon Bark EO (commercial)": {
       "composition_used": {
@@ -12139,7 +12139,7 @@
         "z": 4.74,
         "p": 0.819
       },
-      "atlas": false
+      "atlas": true
     },
     "Lemon EO (Sicilian, cold-pressed)": {
       "composition_used": {
@@ -12744,7 +12744,7 @@
         "z": 3.73,
         "p": 0.856
       },
-      "atlas": false
+      "atlas": true
     },
     "Grapefruit EO (cold-pressed)": {
       "composition_used": {
@@ -13346,7 +13346,7 @@
         "z": 2.0,
         "p": 0.433
       },
-      "atlas": false
+      "atlas": true
     },
     "Mandarin EO (Italian, cold-pressed)": {
       "composition_used": {
@@ -13942,7 +13942,7 @@
       "nearest_cosine": 0.9931,
       "collapsed_onto": null,
       "self_check": null,
-      "atlas": false
+      "atlas": true
     },
     "Neroli EO (Egyptian)": {
       "composition_used": {
@@ -15143,7 +15143,7 @@
       "nearest_cosine": 0.9993,
       "collapsed_onto": "Linalool",
       "self_check": null,
-      "atlas": false
+      "atlas": true
     },
     "Litsea Cubeba EO (Chinese, fruit)": {
       "composition_used": {
@@ -15738,7 +15738,7 @@
       "nearest_cosine": 0.9973,
       "collapsed_onto": "Citral",
       "self_check": null,
-      "atlas": false
+      "atlas": true
     },
     "Patchouli EO (Javanese)": {
       "composition_used": {
@@ -18732,7 +18732,7 @@
         "z": 7.87,
         "p": 0.945
       },
-      "atlas": false
+      "atlas": true
     },
     "Jasmine Absolute (grandiflorum)": {
       "composition_used": {
@@ -22324,7 +22324,7 @@
       "nearest_cosine": 0.9994,
       "collapsed_onto": "Cinnamaldehyde",
       "self_check": null,
-      "atlas": false
+      "atlas": true
     },
     "Nutmeg EO (East Indian)": {
       "composition_used": {
@@ -26498,7 +26498,7 @@
       "nearest_cosine": 0.9905,
       "collapsed_onto": null,
       "self_check": null,
-      "atlas": false
+      "atlas": true
     },
     "Benzoin Siam Resinoid": {
       "composition_used": {
@@ -28288,71 +28288,5 @@
       "atlas": true
     }
   },
-  "trimmed": [
-    {
-      "name": "Lemongrass EO",
-      "nearest_cosine": 0.9945,
-      "nearest": "Citral"
-    },
-    {
-      "name": "Clove Bud EO (steam distilled)",
-      "nearest_cosine": 0.9962,
-      "nearest": "Eugenol ex Clove"
-    },
-    {
-      "name": "Orange EO (sweet, Florida)",
-      "nearest_cosine": 0.9998,
-      "nearest": "D-Limonene"
-    },
-    {
-      "name": "Tangerine EO",
-      "nearest_cosine": 1.0,
-      "nearest": "D-Limonene"
-    },
-    {
-      "name": "Cinnamon Bark EO (commercial)",
-      "nearest_cosine": 0.9822,
-      "nearest": "Cinnamaldehyde"
-    },
-    {
-      "name": "Lemon EO (Sicilian, cold-pressed)",
-      "nearest_cosine": 0.9815,
-      "nearest": "D-Limonene"
-    },
-    {
-      "name": "Grapefruit EO (cold-pressed)",
-      "nearest_cosine": 0.9998,
-      "nearest": "D-Limonene"
-    },
-    {
-      "name": "Mandarin EO (Italian, cold-pressed)",
-      "nearest_cosine": 0.9931,
-      "nearest": "D-Limonene"
-    },
-    {
-      "name": "Rosewood EO (Aniba rosaeodora)",
-      "nearest_cosine": 0.9993,
-      "nearest": "Linalool"
-    },
-    {
-      "name": "Litsea Cubeba EO (Chinese, fruit)",
-      "nearest_cosine": 0.9973,
-      "nearest": "Citral"
-    },
-    {
-      "name": "Sandalwood EO (East Indian)",
-      "nearest_cosine": 0.9895,
-      "nearest": "Alpha Santalol"
-    },
-    {
-      "name": "Cassia Bark EO",
-      "nearest_cosine": 0.9994,
-      "nearest": "Cinnamaldehyde"
-    },
-    {
-      "name": "Styrax Resinoid",
-      "nearest_cosine": 0.9905,
-      "nearest": "Cinnamyl Cinnamate"
-    }
-  ]
+  "trimmed": []
 }

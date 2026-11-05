@@ -119,8 +119,14 @@ def main() -> int:
                          "--store feeds; for one-off analysis only")
     ap.add_argument("--min-coverage", type=float, default=0.6,
                     help="fraction of the stated composition that must resolve")
-    ap.add_argument("--max-nearest-cosine", type=float, default=0.98,
-                    help="drop an oil this close to a single library material")
+    # Trimming is OFF by default. It hid 13 of 47 oils from the atlas because
+    # each collapsed onto one constituent (Orange EO 0.9998 to D-Limonene,
+    # clove onto eugenol, ...), and the perfumer's ruling is that both the oil
+    # and the molecule must be visible: an oil is a real shelf material, not a
+    # duplicate point. Pass an explicit threshold to re-enable the trim.
+    ap.add_argument("--max-nearest-cosine", type=float, default=1.01,
+                    help="drop an oil this close to a single library material; "
+                         "default 1.01 keeps every oil (no trimming)")
     ap.add_argument("--compose", default="weighted-mean",
                     choices=("weighted-mean", "logit-mean", "noisy-or"),
                     help="how an oil's vectors are composed from its "
