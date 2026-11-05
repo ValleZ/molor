@@ -580,6 +580,115 @@
         "frankincense",
         "olibanum"
       ]
+    },
+    "Birch Tar Oil (rectified)": {
+      "source": "Rectified birch tar oil GC profiles (TGSC and pyroligneous-acid literature): guaiacol dominant ~30-40%, xylenols ~15-25%, cresols ~5-10%, creosol ~10%. Only in-library constituents used; alkyl-phenol proxies noted in omitted_from_library. NOT for use as-is: birch tar is IFRA-restricted; carried for percept reconstruction only.",
+      "note": "Percept and receptor vectors composed by noisy-OR over the constituents' rows, the rule build_naturals.py uses for every other oil here, so this oil is comparable with the built ones and carries an atlas point. Reconstruction only -- not for use.",
+      "composition": {
+        "Guaiacol": 0.42,
+        "Para Cresol": 0.1,
+        "2-Isopropyl Phenol": 0.28,
+        "Eugenol ex Clove": 0.08,
+        "Acetophenone": 0.12
+      },
+      "omitted": "2,4-/2,5-/2,6-Dimethylphenol (xylenols) â€” not in library; the alkyl-phenol fraction is voiced by 2-Isopropyl Phenol Creosol (2-methoxy-4-methylphenol) â€” not in library; nearest kin Eugenol ex Clove voices the methoxy-methylphenol character Syringol (2,6-dimethoxyphenol) â€” not in library"
+    },
+    "Oakmoss Absolute": {
+      "source": "Evernia prunastri absolute GC profiles (TGSC/literature): atranorin ~30-35%, chloroatranorin ~5-12%, evernic acid ~10-15%, methyl beta-orcinol carboxylate ~10%, orcinol derivatives ~10%. The IFRA 51st amendment caps atranol/chloroatranol in finished product; this is the pre-crop acid profile. Reconstruction only â€” not for use.",
+      "note": "Percept and receptor vectors composed by noisy-OR over the constituents' rows, the rule build_naturals.py uses for every other oil here, so this oil is comparable with the built ones and carries an atlas point. Reconstruction only -- not for use.",
+      "composition": {
+        "Atranorin": 0.35,
+        "Chloroatranorin": 0.12,
+        "Evernic Acid": 0.15,
+        "Methyl Beta-Orcinol Carboxylate": 0.13,
+        "Methyl Orsellinate": 0.1,
+        "Ethyl Everninate": 0.05,
+        "Orcinol": 0.1
+      },
+      "omitted": ""
+    },
+    "Labdanum Absolute": {
+      "source": "Cistus ladaniferus absolute: labdane diterpenoids dominate (ledol, ladaniol-type); represented by Ledol/Labdane/Sclareol skeletons. Partial reconstruction: the specific ladaniol and labdane-oxide isomers are not available; the skeleton class is voiced. Reconstruction only.",
+      "note": "Percept and receptor vectors composed by noisy-OR over the constituents' rows, the rule build_naturals.py uses for every other oil here, so this oil is comparable with the built ones and carries an atlas point. Reconstruction only -- not for use.",
+      "composition": {
+        "Ledol": 0.3,
+        "Labdane": 0.3,
+        "Sclareol": 0.2,
+        "Borneol": 0.1,
+        "Alpha Pinene": 0.1
+      },
+      "omitted": ""
+    },
+    "Castoreum Absolute": {
+      "source": "Castor fiber absolute: castoramine (pyrazine/quinuclidine nucleus), phenols (p-cresol, creosol), acetophenone, borneol. Partial reconstruction: castoreum's full pyridine/pyrazine spectrum is broader; the phenolic-leathery core is voiced. Reconstruction only â€” not for use.",
+      "note": "Percept and receptor vectors composed by noisy-OR over the constituents' rows, the rule build_naturals.py uses for every other oil here, so this oil is comparable with the built ones and carries an atlas point. Reconstruction only -- not for use.",
+      "composition": {
+        "Castoramine": 0.2,
+        "Para Cresol": 0.15,
+        "Acetophenone": 0.15,
+        "Borneol": 0.1,
+        "Creosol": 0.2,
+        "Phenethyl Alcohol": 0.1,
+        "Guaiacol": 0.1
+      },
+      "omitted": ""
+    },
+    "Styrax Resinoid": {
+      "source": "Liquidambar orientalis balsam GC analyses; each figure is the median of the published values. Cinnamyl cinnamate: 21.5 (Hafioglu 1982, direct GC), 49.5-51.4 (Huang et al. 2024, PLoS ONE GC-MS), ~52 by difference (Sun et al., 18 commercial batches), 5-15 (classic pharmacognosy) — median 36. 3-Phenylpropyl cinnamate: 7.5, 29.7-31.8, 14.4-17.9, ~10 — median 13.1. Free cinnamic acid: 4.0, minor by GC-MS (21.9-22.1 total only after alkali hydrolysis, which is ester-bound acid), 5-15, 2-15 (Duke) — median 8.5. Cinnamyl alcohol: 2.0, 2.48-3.28 — median 2.4. Benzyl cinnamate: 2.31-2.46 — 2.4. Styrene: 0.5 in the balsam; the distilled oil is 70-93% styrene (Gurbuz/Baser 2013, Fernandez et al. 2005) but that is a different material and the resinoid keeps only traces. Vanillin: traces, 0.2. The storesin resin-alcohol fraction (~33-50% of the balsam, partly as cinnamates) is the largest constituent no library molecule voices. Reconstruction only — not for use.",
+      "note": "Percept and receptor vectors composed by noisy-OR over the constituents' rows, the rule build_naturals.py uses for every other oil here, so this oil is comparable with the built ones and carries an atlas point. Reconstruction only -- not for use.",
+      "composition": {
+        "Cinnamyl Cinnamate": 0.5703,
+        "3-Phenylpropyl Cinnamate": 0.2072,
+        "Cinnamic Acid": 0.1347,
+        "Cinnamyl Alcohol": 0.0387,
+        "Benzyl Cinnamate": 0.038,
+        "Styrene": 0.0079,
+        "Vanillin": 0.0032
+      },
+      "omitted": "storesin (the resin-alcohol fraction, ~33-50% of the balsam, partly esterified with cinnamic acid) — not in library; the free cinnamate esters are what stand in for it cinnamyl benzoate, 3-phenylpropyl alcohol, ethyl cinnamate, 4-ethylphenol, torreyol, beta-caryophyllene — minor identified constituents without library entries oleanolic and 3-epioleanolic acids — non-odorous triterpenes"
+    },
+    "Benzoin Siam Resinoid": {
+      "source": "Styrax tonkinensis (Siam benzoin) whole-resin analyses; each figure is the median of the published values. Coniferyl benzoate: 60-70% by the classic gravimetric/pharmacognosy figures (up to 80 in some texts), 15-60% in the JECFA 2011 tentative specs, 29-56% by HPLC (Burger et al. 2016) — the textbook and the chromatogram disagree, and the median 42.5 is used. Free benzoic acid: ~10% classic, 15-45% JECFA, 31-36% Burger — median 30. Benzyl benzoate: <2% JECFA, ~1% Burger — 1.25; the 76-80% in Fernandez et al. 2003 is the distilled volatile oil, a different material, and is not used. Vanillin: 1-2%, the vanilla note Siam benzoin is bought for — 1.5. Benzaldehyde: traces — 0.3. Siam carries benzoates where Sumatra carries cinnamates; the cinnamic-acid test that identifies Sumatra is negative here. Reconstruction only — not for use.",
+      "note": "Percept and receptor vectors composed by noisy-OR over the constituents' rows, the rule build_naturals.py uses for every other oil here, so this oil is comparable with the built ones and carries an atlas point. Reconstruction only -- not for use.",
+      "composition": {
+        "Coniferyl Benzoate": 0.5625,
+        "Benzoic Acid": 0.3971,
+        "Benzyl Benzoate": 0.0165,
+        "Vanillin": 0.0199,
+        "Benzaldehyde": 0.004
+      },
+      "omitted": "siaresinolic acid (~6%) and the other triterpene acids — non-odorous coniferyl alcohol ('lubanol') and p-coumaryl benzoate — minor esters without library entries 2-hydroxyacetophenone and the other minor non-volatiles Burger et al. list — not odour carriers"
+    },
+    "Guaiacwood EO": {
+      "source": "Bulnesia sarmientoi (guaiacwood / palo santo) distilled oil GC analyses; each figure is the median of the published values. Guaiol: 33.0 (HCMC DPI 2024 GC-MS), 28.58 (Nature's Gift batch PA-58937, Paraguay 2019), 34.2 (Vega et al. 2011, Argentina) - median 33.0. Bulnesol: 45.0 (DPI 2024), 36.27 (NG 2019), 36.3 (Vega 2011) - median 36.3. Beta-eudesmol: 11.2 (NG 2019; the eudesmol stereoisomers together are 8-20% across sources) - 11.2. Elemol: 1.15 (NG 2019), traces (Vega) - 1.2. Alpha-guaiene: 0.8 (DPI 2024), 0.11 (NG 2019) - 0.5. Beta-guaiene: not separately resolved in most analyses; guaiene isomers together 0.2-5% - 0.5 used for the beta isomer. Resolved constituents sum to 82.7% of the chromatogram and are renormalised to 1.0. Guaiol + bulnesol + guaienes = 70-80% of every published analysis, the signature of the oil. Reconstruction only - not for use.",
+      "note": "Percept and receptor vectors composed by noisy-OR over the constituents' rows, the rule build_naturals.py uses for every other oil here, so this oil is comparable with the built ones and carries an atlas point. Reconstruction only -- not for use. The smoky-rose note of the real oil lives partly in the trace phenol fraction the GC analyses barely resolve; the reconstruction voices the woody-sesquiterpenol body only.",
+      "composition": {
+        "Guaiol": 0.399,
+        "Bulnesol": 0.4389,
+        "Eudesmol Beta": 0.1354,
+        "Elemol": 0.0145,
+        "Guaiene Alpha": 0.006,
+        "Guaiene Beta": 0.006
+      },
+      "omitted": "gamma-eudesmol, 8-epi-alpha-eudesmol and 10-epi-gamma-eudesmol (~10% combined in the Nature's Gift batch) - stereoisomeric eudesmols without separate library entries alpha-bulnesene and the other bulnesene isomers, hanamyol, and the dihydroagarofuran ethers (~3%) - minor identified constituents without library entries lignans and guaiac resin acids of the wood - non-volatile, they carry the antioxidant function of the wood, not the odour of the distilled oil",
+      "coverage": 0.827
+    },
+    "Myrrh EO": {
+      "source": "Commiphora myrrha (Nees) Engl. (syn. C. molmol) myrrh oleo-gum-resin, distilled and SFE oils; each figure is the median of the published values. Furanoeudesma-1,3-diene: 34.0 (Baser et al. 2003, Ethiopian resin, GC-MS), 34.9 (Marongiu et al. 2005, SFE CO2; hydro- and steam-distilled oils of the same resin were very similar), 15.0 (Morteza-Semnani & Saeedi 2003, Iranian market resin), 17.65 (Ljaljevic Grbic et al. 2018, commercial oil), 31.1 (Madia et al. 2021, SFE oil), 18.8 (Perveen 2018) - median 24.95. Curzerene: 8.5 (Marongiu 2005), 40.1 (Morteza-Semnani & Saeedi 2003), 12.97 (Ljaljevic Grbic 2018), 23.1 (Madia 2021), 41.81 (Perveen 2018) - median 23.1. Lindestrene: 12.0 (Baser 2003), 12.9 (Marongiu 2005), 11.9 (Madia 2021) - median 12.0. Furanodiene: 19.7 (Baser 2003, the only analysis reporting the pre-rearrangement form; the others carry the same material as curzerene) - 19.7. Beta-elemene: 8.7 (Baser 2003), 8.4 (Morteza-Semnani & Saeedi 2003), 12.70 (Ljaljevic Grbic 2018) - median 8.7. Germacrene B: 4.3 (Baser 2003), 12.15 (Ljaljevic Grbic 2018) - median 8.2. Germacrone: 5.8 (Marongiu 2005) - 5.8. 2-Acetoxyfuranodiene: 6.5 (Morteza-Semnani & Saeedi 2003, as 2-O-acetyl-8,12-epoxygermacra-1(10),4,7,11-tetraene) - 6.5. 2-Methoxyfuranodiene: 2.1 (Baser 2003) - 2.1. Curzerene is the Cope-rearrangement product of furanodiene, and beta-elemene of germacrene B; each analysis reports each pair in whichever form its still and injector left it in, so the per-constituent medians sum past a whole chromatogram (~111%); the working weights are those medians renormalised, and coverage is the median fraction of a single analysis these nine resolve (55-81%, median 64%). The furanosesquiterpenes - furanoeudesma-1,3-diene + curzerene + lindestrene + furanodiene + the furanodiene ethers - are 50-70% of every published oil, the signature of true C. myrrha and the smell of myrrh. Reconstruction only - not for use.",
+      "note": "Percept and receptor vectors composed by noisy-OR over the constituents' rows, the rule build_naturals.py uses for every other oil here, so this oil is comparable with the built ones and carries an atlas point. Reconstruction only -- not for use. Every constituent exists only as a myrrh (or other Commiphora/Curcuma) constituent - sold, at most, as a phytochemical reference standard; none is a formulating material, all nine are blocked from proposal, and myrrh is voiced only through this entry. The bitter-medicinal, mushroom-like edge of the real oil is only faintly in these rows (the furanosesquiterpenes read woody-herbal-earthy to the model), and part of it lives in the non-volatile resin fraction distillation leaves behind; the reconstruction voices the woody-spicy-herbal body.",
+      "composition": {
+        "Furanoeudesma-1,3-diene": 0.2246,
+        "Curzerene": 0.208,
+        "Furanodiene": 0.1774,
+        "Lindestrene": 0.108,
+        "Elemene Beta": 0.0783,
+        "Germacrene B": 0.074,
+        "2-Acetoxyfuranodiene": 0.0585,
+        "Germacrone": 0.0522,
+        "2-Methoxyfuranodiene": 0.0189
+      },
+      "omitted": "isofuranogermacrene (~2% of the Baser oil) - the (5E,9E) double-bond stereoisomer of furanodiene; the stereo-blind percept fingerprint cannot separate the two, so furanodiene's row carries it furanoeudesma-1,4-diene (~1.2% of the Baser oil) and the remaining trace furanosesquiterpenes - minor identified constituents without library entries the curzerenone-type lactones (germacra-1(10),7,11-trien-15-oic acid, 8,12-epoxy-6-hydroxy-gamma-lactone, 14.4% of Madia's commercial SFE oil; absent from Baser's authentic Ethiopian C. myrrha) - resin-side furanosesquiterpene acids that barely distil; they belong to a resinoid, not to the oil the non-volatile resin and gum of the oleo-gum-resin - the commiphoric and commiphorinic acids, the heerabomyrrhols and the sterol/sterane fraction (the bitter principle: myrrh is Arabic murr, bitter), plus the arabinogalactan gums - 60-90% of the raw resin by weight, none of it reaches a distilled oil",
+      "coverage": 0.641
     }
   }
 }

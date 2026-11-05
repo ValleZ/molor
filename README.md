@@ -30,7 +30,9 @@ Both are single self-contained HTML files built from the library store by
 `scripts/export_simplify_data.py` + `scripts/build_simplify.py`. The deployed
 copies live in a separate site repository; `--no-notes` withholds the
 perfumer's written smelling impressions from any published build, and every
-deploy is checked for that.
+deploy is checked for that. [`DEPLOY_MOLOR.md`](DEPLOY_MOLOR.md) is the whole
+procedure — the four commands, the gates that run on the built pages, and where
+the files are committed.
 
 The rest of this document is the record of what was measured, what was
 retracted, and what is still wrong. The corrections table immediately below
@@ -322,6 +324,38 @@ simplex-constrained least squares (unconstrained solve, then projected
 gradient). The fidelity curve over all k is computed once and is forced
 monotone, because a greedy search is not monotone in k and at one point nine
 materials fitted worse than eight, which made the curve a lie.
+
+**One mixture rule here, another everywhere else — and no evidence picks
+between them.** Everything above mixes a blend as `sum(w_i * p_i)`, a weighted
+mean, because that is linear and has a closed-form weight fit, which is what
+makes a search over subsets cheap at all. `predict_formula.py` and
+`build_naturals.py` mix by **noisy-OR** instead, which is also the rule every
+oil is now composed by: an oil's stored vector then equals the union of its own
+constituents. The two targets for one blend sit a median **0.70** apart (max
+3.05) against this page's 0.488 yardstick, so they are not two implementations
+of one question.
+
+They are not two *answers* either, and it is worth being blunt about which way
+that cuts. `rule_bakeoff.py` scored five mixture rules on the 19 oils whose own
+name is in the model's vocabulary — a blind question with outside ground truth
+— and **nothing separated**: noisy-OR and the weighted mean both put the oil's
+own name at median rank 2.0 of 138, mean 5.0 against 5.1, 14/19 in the top five,
+p > 0.2 on a paired sign test. So the choice between these two rules cannot be
+made from the data in this repository, and *neither is the more accurate one*.
+What can be said is narrower: this page's answer is fitted, selected and scored
+inside the linear model, so its guarantee of never being worse than the obvious
+thing holds only there.
+
+`bench_simplify.py` now says how far that goes. It scores every proposal under
+both rules, re-fitting the weights under each (`fit_noisy`, since scoring
+linear weights against a noisy-OR target would measure the fit rather than the
+rule). Relative to each rule's own random baseline the search is equally good —
+0.02–0.10x under the linear rule, 0.03–0.11x under noisy-OR — and the materials
+it picks are the same, so recovery of an oil's true constituents (76–86%) is
+identical. What moves is the guarantee: never worse than keeping the biggest k
+is 100% by construction under the linear rule and 85–91% under noisy-OR, with
+the search losing outright on three of the four formulas at k=2. That is a
+statement about the solver being tuned to one rule, not a verdict on either.
 
 **Thresholds, and the dose.** A detection threshold is the concentration at
 which a material becomes smellable; materials differ over eight orders of
@@ -2582,7 +2616,7 @@ scripts/          everything measured in this document, one script per claim
   receptor_metric.py        can reweighting get it back? pre-registered, no
   receptor_importance.py    a class detector is not a similarity axis
   receptor_readout.py       386 -> 138 descriptors; a 3x gain, still beaten
-  bench_simplify.py         the simplifier against the hand heuristic
+  bench_simplify.py         the simplifier against the hand heuristic, both rules
   discriminating_blends.py  blends whose smell would decide the mixture rule
   export_viewer_data.py / build_viewer.py          the atlas
   export_simplify_data.py / build_simplify.py      the simplifier

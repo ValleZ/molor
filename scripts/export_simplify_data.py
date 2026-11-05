@@ -48,7 +48,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from parse_formulas import ALIAS, SOLVENT  # noqa: E402
+from parse_formulas import ALIAS, SOLVENT, library_name  # noqa: E402
 from strength import load_strength  # noqa: E402
 from thresholds import assemble as assemble_thr
 from thresholds import describe as describe_thr  # noqa: E402
@@ -279,8 +279,16 @@ def formula_sourced():
     return out
 
 
-def inventory():
-    """name -> (use level %, threshold ppb). Both may be None."""
+def inventory(resolve=lambda n: n):
+    """name -> (use level %, threshold ppb). Both may be None.
+
+    Keyed by the library name the shelf name refers to. `resolve` is
+    `parse_formulas.library_name` bound to this page's own material and oil
+    names: without it the join was exact string equality, and the perfumer's
+    shelf -- which says "Orange Sweet EO", "Oakmoss IFRA43", "Patchouli
+    Dark" -- matched 2 of its 47 oils. Every other oil lost its dosing ceiling
+    (`use`) and its compiled threshold in silence.
+    """
     path = ROOT / "data" / "inventory" / "inventory.csv"
     out: dict[str, tuple] = {}
     if not path.is_file():
@@ -297,7 +305,7 @@ def inventory():
             except ValueError:
                 return None
 
-        out[n] = (num("top_pct"), num("water_threshold_ppb"))
+        out[resolve(n)] = (num("top_pct"), num("water_threshold_ppb"))
     return out
 
 
@@ -307,7 +315,7 @@ def inventory():
 BP_TOP, BP_BASE = 216.0, 276.0
 
 
-def volatility():
+def volatility(resolve=lambda n: n):
     """name -> (tier, 'recorded' | 'derived'), collapsed to three.
 
     The simplifier matches a single percept vector, and the README records
@@ -325,12 +333,12 @@ def volatility():
         for r in csv.DictReader(io.open(ip, encoding="utf-8-sig")):
             g = GROUP.get((r.get("volatility_class") or "").strip())
             if g:
-                rec[(r.get("name") or "").strip()] = g
+                rec[resolve((r.get("name") or "").strip())] = g
     bp = ROOT / "data" / "inventory" / "boiling_points.csv"
     if bp.is_file():
         for r in csv.DictReader(io.open(bp, encoding="utf-8-sig")):
             try:
-                bps[(r.get("name") or "").strip()] = float(r["bp_c"])
+                bps[resolve((r.get("name") or "").strip())] = float(r["bp_c"])
             except (ValueError, KeyError):
                 pass
     out = {}
@@ -385,7 +393,16 @@ def main() -> int:
     # The just-noticeable scale everything is reported against.
     yardstick = float(np.median(D.min(1)))
 
-    inv = inventory()
+    # One resolver for every sheet-vs-library join on this page, so the use
+    # level, the recorded tier and the compiled threshold all agree about which
+    # material a shelf name means -- and about which one a pasted formula
+    # means, since library_name is what the parser uses.
+    lib_set = set(names)
+
+    def resolve(n):
+        return library_name(n, lib_set, oil_names)
+
+    inv = inventory(resolve)
     prov = provenance()
     used = formula_usage()
     from_formula = formula_sourced()
@@ -396,7 +413,7 @@ def main() -> int:
     def _norm(x):
         return " ".join(_re.sub(r"[^a-z0-9]+", " ", x.lower()).split())
     strength = load_strength()
-    vol, oil_cov = volatility()
+    vol, oil_cov = volatility(resolve)
     n_blocked = 0
     n_unverified = 0
     mats = []
@@ -487,7 +504,8 @@ def main() -> int:
     # the reasons for both are documented there.
     tvals, tsrc, textra, treport = assemble_thr(
         [m["n"] for m in mats], X, strength=strength,
-        not_anchors=[m["n"] for m in mats if m.get("oil")])
+        not_anchors=[m["n"] for m in mats if m.get("oil")],
+        oils=[m["n"] for m in mats if m.get("oil")])
     for m, v, srcv in zip(mats, tvals, tsrc):
         m["thr"] = round(v, 6) if v else None
         m["thrSrc"] = srcv

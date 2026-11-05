@@ -124,7 +124,10 @@ def main() -> int:
     # else, correctly ordered inside the clump and meaningless beside it.
     expect = ("artifacts/naturals.json" if args.store == "library"
               else f"artifacts/naturals_{args.store}.json")
-    if args.out != expect and not args.force_out:
+    # Compared as paths, not strings: on Windows "artifacts\\x.json" and
+    # "artifacts/x.json" are the same file, and a string comparison rejected
+    # the correct target with the message telling you to pass it.
+    if Path(args.out) != Path(expect) and not args.force_out:
         raise SystemExit(
             f"--store {args.store} writes {expect}, not {args.out}.\n"
             f"export_viewer_data.py reads one naturals file per store by that "
@@ -204,8 +207,16 @@ def main() -> int:
 
         out["naturals"][oil] = {
             "composition_used": {n: round(float(x), 4) for (n, _), x in zip(res, w)},
-            "coverage": round(cov, 4),
-            "omitted_from_library": missing,
+            # The spec may carry both of these about itself, and its word wins:
+            # `omitted` is the prose about what the reconstruction cannot voice
+            # (the resins and gums left in the still), and a `coverage` given
+            # there is a citation statistic -- the fraction of one published
+            # chromatogram the resolved constituents account for -- where the
+            # derived figure only says how much of the stated composition the
+            # library happened to hold. Myrrh's nine constituents all resolve
+            # and cover 64% of the analysis; 1.0 would be a different claim.
+            "coverage": round(float(meta.get("coverage", cov)), 4),
+            "omitted_from_library": meta.get("omitted") or missing,
             "source": meta.get("source", ""),
             "note": meta.get("note", ""),
             "percept": [round(float(v), 4) for v in mix],

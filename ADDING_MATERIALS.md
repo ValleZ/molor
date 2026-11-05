@@ -2,11 +2,12 @@
 
 The recipe, end to end, from one molecule or one cited natural to a shipped
 `materials.db`. Written after doing it for Vertofix Coeur, Styrax Resinoid and
-Benzoin Siam Resinoid (commit history around November 2026); every command
-below is the one that was actually run. The precedent commit for naturals
-rebuilt from constituents is `af81a65` (oakmoss, labdanum, castoreum).
+Benzoin Siam Resinoid, then for Tobacarol, Guaiacwood EO and Myrrh EO (commit
+history around November 2026); every command below is the one that was actually
+run. The precedent commit for naturals rebuilt from constituents is `af81a65`
+(oakmoss, labdanum, castoreum).
 
-There are two kinds of addition, and they share every step except 3:
+There are two kinds of addition, and they share every step except 4:
 
 * **A single molecule** (Vertofix Coeur): one CSV row, one percept row, done.
 * **A natural rebuilt from a cited composition** (an absolute, resinoid or oil
@@ -23,20 +24,29 @@ two JSON stores and the retrained `percepts_fp3.json`.
 
 ## 0. Before you start
 
-Work in the `olfactory-embeddings` checkout (the `.venv` has torch + rdkit +
-CUDA; the percept retrain below takes about two minutes on a GPU). The
-perfumer service repo (`C:\Valle\dev\perfumer`) reads this checkout
-**read-only** through `tools/build_db.py`; nothing there ever writes back.
+Work in the `olfactory-embeddings` checkout. The `.venv` has torch + rdkit and
+CUDA; the percept retrain in §2 uses the GPU and takes about two minutes there,
+while the receptor stores in §3 run on CPU because DGL is the CPU build — see
+that section. The perfumer service repo (`C:\Valle\dev\perfumer`) reads this
+checkout **read-only** through `tools/build_db.py`; nothing there ever writes
+back.
 
 Check the working tree is clean apart from what you intend to change, and
 check the inventory (`data/inventory/inventory.csv`) for the material's
-shelf name first: a library name that matches an inventory row exactly
+shelf name first: a library name that **resolves** to an inventory row
 inherits its use level, IFRA cells, family, logP, boiling point and
-**compiled** detection threshold for free. "Vertofix Coeur" and
-"Benzoin Siam Resinoid" match; "Styrax Resinoid" does not match the shelf's
-"Styrax Resinoid EAL, Wild", so that row carries an *imputed* threshold and
-no use level — the same situation "Oakmoss Absolute" has been in since
-`af81a65` (the shelf row there is "Oakmoss IFRA43").
+**compiled** detection threshold for free.
+
+The join is `parse_formulas.library_name` — the alias table, the
+normalisation in `classify`, and the head-word match a pasted formula gets —
+so "Styrax Resinoid" reaches the shelf's "Styrax Resinoid EAL, Wild" and
+"Oakmoss Absolute" reaches "Oakmoss IFRA43". **This used to be exact string
+equality**, and the cost was silent: 35 of 166 shelf names matched nothing, so
+every oil except two ("Benzoin Siam Resinoid" and "Tangerine EO", spelled the
+same way in both files) fell back to an imputed threshold with no dosing
+ceiling. If a new material's shelf row still does not attach, add the spelling
+to `ALIAS` in `scripts/parse_formulas.py` — the one alias table there is — and
+not a second one.
 
 ## 1. Molecules: `library/input/expanded_materials.csv`
 
@@ -74,7 +84,7 @@ structure taken from PubChem and checked against its formula.
 ## 2. Retrain the percept ensemble
 
 ```powershell
-.\.venv\Scripts\python.exe scripts\train_fp_v3.py 2>&1 | Tee-Object -FilePath artifacts\fp3_413.log
+.\.venv\Scripts\python.exe scripts\train_fp_v3.py 2>&1 | Tee-Object -FilePath artifacts\fp3_retrain.log
 ```
 
 This is Pipeline 3 in the README: a 2048-bit ECFP4 + RDKit-descriptor MLP,
@@ -84,7 +94,7 @@ the 138 GS-LF descriptors for every CSV row. It writes
 output) and prints the number that gates the step:
 
 ```
-[v3] 4983 training molecules x 138 labels, 413 library materials
+[v3] 4983 training molecules x 138 labels, 427 library materials
 [v3] out-of-fold mean ROC-AUC: 0.8672
 ```
 
@@ -93,88 +103,158 @@ measured on the GS-LF training set, which the library does not touch, so
 adding prediction-set molecules cannot move it by design; 0.8672 has come
 out of every v3 run since the 301-material library, and a materially
 different number means the training data or config changed, not the
-library. Also check the molecule count in the log line — 407 → 413 here —
-because a silent `featurise` drop shows up as a count that did not move.
+library. Also check the molecule count in the log line — it must equal the CSV
+row count, 427 today — because a silent `featurise` drop shows up as a count
+that did not move.
 
 The run takes ~2 minutes on CUDA, ~10x that on CPU.
 
-## 3. Naturals: `artifacts/naturals.json`
+## 3. Receptor vectors: `artifacts/library/` and `artifacts/library_mpnn_clean/`
+
+The atlas places a molecule by its 386 receptor responses, not by its percept.
+A molecule in the CSV and in `percepts_fp3.json` but not in these stores has no
+point on the atlas, and nothing anywhere says so — the page simply draws fewer
+points. Both scorers are append-only, so growing the library costs the new
+molecules rather than all 427 × 386 pairs, and the panel embeddings come from
+`artifacts/panel_embeddings.npy`, so ESM-2 does not re-run.
+
+```powershell
+# GCN store: the reference molecule set, and the atlas's default space
+.\.venv\Scripts\python.exe -m orvector library add --csv library\input\expanded_materials.csv --device cpu
+
+# MPNN store: the second encoder space
+.\.venv\Scripts\python.exe scripts\run_mpnn.py --name library_mpnn_clean --device cpu --csv library\input\expanded_materials.csv
+```
+
+**Gate: the stores must hold every row of the CSV.** Nothing in this
+repository compares them, and the failure is silent. On 4 November 2026 both
+stores were left a day behind the CSV: 31 molecules — Vertofix Coeur,
+Tobacarol, Guaiol, the nine myrrh furanosesquiterpenes — were absent from a
+page that had been built, checked and reviewed, and it looked correct.
+
+```powershell
+.venv/Scripts/python.exe -c "import csv,io,json;n=len(list(csv.DictReader(io.open('library/input/expanded_materials.csv',newline='',encoding='utf-8-sig'))));print('csv',n);print('gcn',json.load(open('artifacts/library/provenance.json'))['n_molecules']);print('mpnn',json.load(open('artifacts/library_mpnn_clean/provenance.json'))['n_molecules'])"
+```
+
+All three must agree — 427 today. 31 new molecules took 129 s (GCN) and 187 s
+(MPNN).
+
+`--device cpu` is not a compromise, it is the only option: DGL in `.venv` is
+the CPU wheel, so any graph moved to the GPU fails with `Device API cuda is not
+enabled` however CUDA-ready torch reports itself. MolOR is a DGL model.
+
+**Landmine: `run_mpnn.py` does not default to the CSV of record.** It defaults
+to `library/input/final_materials.csv`, a legacy 128-row file whose names are
+dilution-qualified (`Ambroxan, 10% in Alcohol`). Without `--csv` it scores that
+file, adds the one or two molecules it happens to be missing, and exits 0 — a
+success message for the wrong set.
+
+## 4. Naturals: `artifacts/naturals.json`
 
 Single molecules skip this step.
 
 A natural is a *composition-weighted reconstruction*: published GC analyses
-give the percentages, the library's own percept rows give the vectors, and
-the entry is honest about both. Two entry kinds live in the same
-`naturals` object:
+give the percentages, the library's own vectors give the rest, and the entry
+is honest about both.
 
-* **Built oils** (39 of them) are generated by `scripts/build_naturals.py`
-  from `data/naturals/compositions.json` and carry percept + receptor
-  vectors, self-checks and lift tables.
-* **Reconstruction-only entries** — Birch Tar, Oakmoss, Labdanum, Castoreum,
-  Styrax, Benzoin — are added by hand, because they are absolutes and
-  resinoids with no receptor vector, no atlas point and no self-check to
-  run. `af81a65` added the first four as metadata only; since the simplifier
-  export began to need a `percept` for every entry they also carry a
-  composed percept vector and `"atlas": false` (the same semantics as a
-  trimmed oil: resolvable in formulas, available to the simplifier, no
-  point on the atlas).
+**The store is generated, one way, for all 47 oils.** `data/naturals/
+compositions.json` is the spec and `scripts/build_naturals.py` writes the
+stores from it — `artifacts/naturals.json` for the GCN space and
+`artifacts/naturals_library_mpnn_clean.json` for the MPNN one. Never edit a
+store: an entry written by hand is an entry nothing regenerates. Eight of them
+had accumulated by November 2026 — Birch Tar, Oakmoss, Labdanum, Castoreum,
+Styrax, Benzoin, Guaiacwood, Myrrh — carrying a percept composed by a
+*different rule* from the other 39, and nothing compared the two. When they
+were moved into the spec and rebuilt, myrrh's descriptor row moved 0.48 and
+castoreum's 0.57. The rule below is the one that survived; there is now one
+code path, one rule, and no hand entries.
 
-The hand-entry format, with the styrax entry as the example:
+The spec entry, with styrax as the example:
 
 ```json
 "Styrax Resinoid": {
-  "composition_used": {
-    "Cinnamyl Cinnamate": 0.5703,
-    "3-Phenylpropyl Cinnamate": 0.2072,
-    "Cinnamic Acid": 0.1347,
-    "Cinnamyl Alcohol": 0.0387,
-    "Benzyl Cinnamate": 0.038,
-    "Styrene": 0.0079,
-    "Vanillin": 0.0032
+  "source": "citations: every published value, and the median used",
+  "note": "which rule composed the vectors, and what the entry may not be used for",
+  "composition": {
+    "Cinnamyl Cinnamate": 57.03,
+    "3-Phenylpropyl Cinnamate": 20.72,
+    "Cinnamic Acid": 13.47,
+    "Cinnamyl Alcohol": 3.87,
+    "Benzyl Cinnamate": 3.8,
+    "Styrene": 0.79,
+    "Vanillin": 0.32
   },
-  "coverage": 1.0,
-  "omitted_from_library": [ "prose notes on what is NOT voiced", ... ],
-  "source": "citations with every published value and the medians used",
-  "note": "how the percept was composed and what the entry may not be used for",
-  "percept": [ 138 values ],
-  "atlas": false
+  "omitted": "prose: what the reconstruction cannot voice, and why"
 }
 ```
 
+`composition` is in the scale the analysis used — percentages, mostly — and
+is renormalised over the constituents the library actually holds. Two optional
+keys: `coverage`, a citation statistic (the fraction of one published
+chromatogram those constituents resolve; without it the build records its own
+resolved fraction, which is a different and less interesting number), and
+`default_for`, the words an unqualified formula means (`["lavender"]`).
+Everything else in the store — `composition_used`, `percept`, `receptors`,
+`lift_top`, `nearest_materials`, `nearest_cosine`, `collapsed_onto`,
+`self_check`, `atlas` — is computed. Do not write it.
+
 **The composition must come from published GC analyses, and where they
-disagree, use the median.** The convention the store uses: list every
-published value (a range contributes its midpoint) per constituent in the
-`source` string, take the median as the working figure, renormalise the
-in-library constituents to sum to 1.0 in `composition_used`, and put the
-unvoiceable fraction (storesin, triterpene acids, minor esters) in
-`omitted_from_library` as prose. Cite by author and year; name the
-material you analysed (balsam vs distilled oil is a 70% styrene
-difference); say "reconstruction only — not for use" in the source string.
+disagree, use the median.** List every published value (a range contributes
+its midpoint) per constituent in `source`, take the median as the working
+figure, and put the unvoiceable fraction (storesin, triterpene acids, minor
+esters) in `omitted` as prose. Cite by author and year; name the material you
+analysed (balsam vs distilled oil is a 70% styrene difference); say
+"reconstruction only — not for use" in `source`.
 
-**The percept is the composition-weighted mean of the constituents' fp3
-rows** — the same rule the simplifier page states for its own blending
-("the blend is a weighted mean of its parts") and the same arithmetic the
-`af81a65` rows were composed with. Compute it after the retrain, from the
-`percepts_fp3.json` you just wrote:
+**Both vectors are noisy-OR over the constituents, in both spaces, and there
+is no second rule.** `build_naturals.py` applies
+`combine("noisy-or", ...)` to the constituents' `percepts_fp3.json` rows for
+the percept and to their MolOR scores for the receptor vector. That is the rule
+`eval_mixtures.py` measured against the perfumer's own written verdicts on 30
+formulas, and the rule `predict_formula.py` applies to any blend: an oil is a
+blend, so it gets the blend's arithmetic.
 
-```python
-w = np.array(list(comp.values()), float); w /= w.sum()
-V = np.stack([P[n] for n in comp])            # P: name -> fp3 row
-percept = [round(float(v), 4) for v in (w[:, None] * V).sum(0)]
+It is **not** the composition-weighted mean. That sentence was true of the
+eight hand entries and of the simplifier page's internal solver, which answers
+a different question — which candidate materials best match a target blend —
+and quoting it here is how two rules for one vector ended up in one file. If a
+note or a comment says "composition-weighted mean", it predates the migration
+and is wrong.
+
+**Then build the stores**, once per space:
+
+```powershell
+.venv/Scripts/python.exe scripts/build_naturals.py --store library --max-nearest-cosine 1.01
+.venv/Scripts/python.exe scripts/build_naturals.py --store library_mpnn_clean `
+    --out artifacts/naturals_library_mpnn_clean.json --max-nearest-cosine 1.01
 ```
 
-Sanity-check the composed vector before committing it: styrax came out
-balsamic 0.94 / cinnamon 0.43, benzoin balsamic 0.76 / vanilla 0.39, and a
-vector that does not say the material's name is a composition error, not a
-model quirk. Verify the file still parses and every entry has a 138-long
-percept before moving on.
+`--max-nearest-cosine 1.01` is the current policy: an oil whose percept sits
+within 0.98 of a single library material used to be trimmed off the atlas as a
+point that repeats one already drawn, which left twelve of them invisible —
+sweet orange at cosine 0.9998 to D-Limonene, and Birch Tar, Oakmoss and Styrax
+with it. A material the perfumer can smell and cannot find on the page is the
+worse of the two failures, so every oil carries a point and the card says when
+a build sits on top of its own constituent.
 
-**Landmine:** `scripts/build_naturals.py` rebuilds this file from
-`compositions.json` from scratch and will wipe every hand entry. Do not run
-it after adding one; if an oil's GC profile genuinely needs rebuilding,
-re-apply the reconstruction-only entries afterwards.
+**Gates.** `47 built, 47 on the atlas`, nothing `TRIM`-ed; every entry carries a
+138-long `percept` and a 386-long `receptors`; the two files list the same oils
+with the same `percept` and `atlas` flag (the receptor vectors differ — the two
+encoders are different spaces). Verify the composed vectors still say the
+material's name: styrax came out balsamic 0.94 / cinnamon 0.43, benzoin
+balsamic 0.76 / vanilla 0.39, and a vector that does not is a composition
+error, not a model quirk.
 
-## 4. The simplifier payload
+When you add one oil, the other 46 are recomputed too — the build is a pure
+function of the spec, the percept model and the receptor stores. Compare the
+file against the previous one and expect movement only if one of those inputs
+moved; on this rebuild all 39 built oils shifted, because their stored vectors
+had been computed while the receptor store was missing 31 molecules, so
+constituents that could not be scored were silently left out of the weights.
+That is the class of drift a generated store catches and a hand-maintained one
+hides. See [`DEPLOY_MOLOR.md`](DEPLOY_MOLOR.md) for the deploy.
+
+## 5. The simplifier payload
 
 ```powershell
 .\.venv\Scripts\python.exe scripts\export_simplify_data.py
@@ -186,13 +266,22 @@ percentiles, the alias table, use levels, and the threshold column. It
 prints its own summary; the numbers to read are:
 
 ```
-458 materials (45 of them oils), 458 with a threshold
-138 descriptors, 279 aliases, yardstick 0.485
-9 materials may never be proposed; 34 are offered but unverified
+142 compiled thresholds, 208 imputed (leave-one-out median error 3.12x)
+474 materials (47 of them oils), 148 owned, 474 with a threshold
+138 descriptors, 289 aliases, yardstick 0.488
+30 materials may never be proposed; 34 are offered but unverified
 ```
 
+The materials count is the one to watch: it must equal the CSV rows plus
+every oil in the naturals file — 427 + 47 today — because that is what the
+perfumer's `materials.db` will hold. `compiled` is the inventory meeting the
+library by name (§6); if it drops, the join is failing, not the data.
+`yardstick` is what a random blend of the same size achieves — measured, not
+set — and it moved 0.470 → 0.488 when the oils were regenerated from the spec,
+because the oil vectors moved with them.
+
 If the export crashes on `oils[o]["percept"]`, a naturals entry is missing
-its composed vector — see step 3.
+its composed vector — see §4.
 
 Aliases: if the material has spellings a pasted formula will use, add them
 to the `ALIAS` dict in `scripts/parse_formulas.py` (lowercase spelling →
@@ -207,7 +296,7 @@ Naturals do not need aliases — `classify` routes resinoid/absolute names to
 `match_oil`, which resolves them (and grade-qualified spellings like
 "Styrax Resinoid EAL, Wild") by head word.
 
-## 5. Thresholds
+## 6. Thresholds
 
 `export_simplify_data.py` calls `scripts/thresholds.py`, which assembles one
 threshold column for everything: **compiled** figures from the inventory's
@@ -215,6 +304,12 @@ threshold column for everything: **compiled** figures from the inventory's
 **k-NN imputation** (5 neighbours in percept space, leave-one-out median
 error ~3x) for the rest. Oils never anchor anyone else's figure. A row
 with no figure at all cannot be dosed, so every row gets one.
+
+The inventory side of that column goes through `parse_formulas.library_name`,
+same as §0. It did not, and the count said so once it was fixed: `compiled`
+went 127 → 142 while `imputed` fell 222 → 208, because 15 materials had a
+published figure in the sheet the exact-match join could not see. A change in
+that pair of numbers is now worth reading; it was previously invisible.
 
 The check for the new rows is that the number is *sensible for the
 material*, and that the provenance label is the honest one:
@@ -226,7 +321,7 @@ material*, and that the provenance label is the honest one:
   genuinely is a weak smeller, and the label says the figure is an
   interpolation, not a measurement.
 
-## 6. NEVER_PROPOSE (blocking a material from being proposed)
+## 7. NEVER_PROPOSE (blocking a material from being proposed)
 
 The `NEVER_PROPOSE` dict in `scripts/export_simplify_data.py` is the hard
 block: a material it names resolves in pasted formulas but is never
@@ -248,7 +343,7 @@ The flow, end to end, because it spans both repos:
    `not_for_use`, and the engine keeps such materials out of its candidate
    pool while still resolving them in user formulas.
 
-## 7. The perfumer database
+## 8. The perfumer database
 
 Commit the upstream changes **first** — `build_db.py` records the source
 commit and dirty flag in the `meta` table, and the db should name the
@@ -263,10 +358,13 @@ python tools/verify_db.py
 ```
 
 `verify_db.py` prints counts, per-column null rates and vector sanity; the
-counts move with the library (435 → 439 with the af81a65 absolutes → 458
-with vertofix, styrax, benzoin and their constituents). The two assertions
-in `tests/test_engine.py` that pin the material count must move with them
-(`== 458` and `z.shape == (458,)` — update the comment too).
+counts move with the library (435 → 439 with the af81a65 absolutes → 458 with
+vertofix, styrax and benzoin → 474 with the myrrh and guaiacwood rebuilds).
+The number to hold it to is the one §5 prints — CSV rows + oils, 474 today;
+this doc cannot check `build_db.py`'s own arithmetic, so confirm the two agree
+before pinning anything. The two assertions in `tests/test_engine.py` that fix
+the material count must move with them (a bare `== N` and
+`z.shape == (N,)` — update the comment too).
 
 **Gate:** `python -m pytest tests/ -q` in the perfumer repo — 66 tests,
 all green, against the real materials.db.
@@ -275,7 +373,12 @@ all green, against the real materials.db.
 commits a library change produces are code ones: the test count assertion
 above, or a tools/ change.
 
-## 8. Deploy (for reference — do not do this without review)
+## 9. Deploy (for reference — do not do this without review)
+
+Two deployments follow a library change, and they are independent: the two
+public pages ([`DEPLOY_MOLOR.md`](DEPLOY_MOLOR.md)), and `materials.db` for
+the perfumer service. Nothing below touches the pages, and `DEPLOY_MOLOR.md`
+never reads `materials.db`.
 
 `materials.db` ships separately from code; see
 [`perfumer/docs/DEPLOYMENT.md`](../perfumer/docs/DEPLOYMENT.md) for the
@@ -297,12 +400,24 @@ file is read by the server.
    retrain log reports the expected molecule count).
 2. OOF ROC-AUC in line with the v3 baseline (0.8672; the number is
    training-set-only, so it should not move).
-3. `naturals.json` parses; every entry has a 138-long percept; composed
-   vectors say the material's name (balsamic/cinnamon for styrax,
-   balsamic/vanilla for benzoin).
-4. `export_simplify_data.py` runs clean and the new rows have thresholds
-   with honest provenance labels.
-5. `tools/verify_db.py` passes in the perfumer repo with the expected
+3. **Both receptor stores hold every CSV row** (§3) — `provenance.json`'s
+   `n_molecules` equals the CSV row count for `library/` and
+   `library_mpnn_clean/`. This is the gate that has actually failed: the
+   percept and the naturals were rebuilt on 4 November 2026 and these two
+   were not, so 31 molecules had no atlas point on a page that passed every
+   other check here.
+4. Both naturals files parse, carry the same oils, and every entry has a
+   138-long percept **and** a 386-long `receptors` array; composed vectors
+   say the material's name (balsamic/cinnamon for styrax, balsamic/vanilla
+   for benzoin); `compose_hand_naturals.py --dry-run` reports nothing left to
+   compose.
+5. `export_viewer_data.py` prints a molecule count equal to CSV rows + oils + 1
+   (475 today) — every oil gets a point, so the count moves with the naturals
+   file — and the two pages build and pass the gates in
+   [`DEPLOY_MOLOR.md`](DEPLOY_MOLOR.md) §5.
+6. `export_simplify_data.py` runs clean, its materials count equals CSV rows +
+   oils, and the new rows have thresholds with honest provenance labels.
+7. `tools/verify_db.py` passes in the perfumer repo with the expected
    counts.
-6. `python -m pytest tests/ -q` green in perfumer (66 tests).
-7. Nothing pushed, nothing deployed, until reviewed.
+8. `python -m pytest tests/ -q` green in perfumer (66 tests).
+9. Nothing pushed, nothing deployed, until reviewed.

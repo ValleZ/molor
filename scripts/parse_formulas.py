@@ -270,7 +270,7 @@ ALIAS = {
     "methyl laitone": "Methyl Laitone",
     "coumarin": "Coumarin",
     "ambroxan": "Ambroxan",
-    "cedarwood virginia": "Cedarwood Virginia",
+    "cedarwood virginia": "Cedarwood EO (Virginia)",
     "hexyl cinnamaldehyde": "Hexyl Cinnamic Aldehyde",
     "hexyl cinnamal": "Hexyl Cinnamic Aldehyde",
     "aldehyde c-8": "Aldehyde C-8",
@@ -295,7 +295,7 @@ ALIAS = {
     "helional": "Helional",
     "hedione": "Hedione",
     "dihydromyrcenol": "Dihydro Myrcenol",
-    "lemon fcf": "Lemon FCF",
+    "lemon fcf": "Lemon EO (Sicilian, cold-pressed)",
     # Hedione HC is the cis-enriched grade of the same molecule, and the
     # percept model's fingerprint is stereo-blind, so it is the same input.
     # The grades do not smell the same on a blotter; nothing here can tell
@@ -361,7 +361,7 @@ ALIAS = {
     'ethyl hexanoate': 'Ethyl Caproate',
     'allyl heptanoate': 'Allyl Heptanoate',
     'hexyl cinnamal': 'Hexyl Cinnamic Aldehyde',
-    'patchouli alcohol': 'Patchouli Dark',
+    'patchouli alcohol': 'Patchoulol',
     'terpineol alpha': 'Terpineol Alpha',
     'heliotropine': 'Heliotropin',
     'methyl latione': 'Methyl Laitone',
@@ -381,7 +381,6 @@ ALIAS = {
     'caryophyllene': 'Caryophyllene Beta',
     'triplal': 'Triplal',
     'myrcene': 'Myrcene',
-    'safrole': 'Safrole',
     'coumarin': 'Coumarin',
     'hexyl salicylate': 'Hexyl Salicylate',
     'otne': 'Iso E Super',
@@ -582,6 +581,40 @@ def classify(name: str, library: set[str], _inner: bool = False):
     if NATURAL_HINT.search(raw):
         return "natural", raw
     return "unknown", raw
+
+
+def library_name(name: str, library: set[str], oils=()) -> str:
+    """The library's name for a written name, or the written name unchanged.
+
+    One resolution, in one place: the alias table and the normalisation above,
+    then `match_oil`'s head-word match for a mixture. Three scripts had already
+    written these four lines by hand -- `bench_simplify.py`,
+    `threshold_worklist.py`, `volatility_profile.py` -- because a name written
+    the way a perfumer writes it is not the name the library stores.
+
+    The join that lacked it is the inventory. `inventory.csv` is keyed by the
+    name on the bottle and the library by the name the chemistry has, and the
+    two were matched by exact string equality, so "Orange Sweet EO" never met
+    "Orange EO (sweet, Florida)": 35 of 166 shelf names matched nothing, and
+    each of those materials silently lost its use level, family, volatility
+    class and **compiled** threshold, falling back to imputation.
+
+    `oils` is the list of mixture names to match against; without it, only the
+    alias table and exact names resolve. The name is returned unchanged when
+    nothing matches, so a caller compares the result with its input rather than
+    testing a sentinel.
+    """
+    kind, res = classify(name, library)
+    if kind == "material" and res in library:
+        return res
+    if oils:
+        # Deferred: predict_formula imports this module for `classify`, and the
+        # head-word matcher lives there because it is a question about mixtures.
+        from predict_formula import match_oil
+        hit, _ = match_oil(name, list(oils))
+        if hit:
+            return hit
+    return name
 
 
 def parse(text: str, library: set[str]):

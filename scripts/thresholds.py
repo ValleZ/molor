@@ -117,7 +117,7 @@ def describe(report: dict) -> str:
             f"{100 * report['loo_within_decade']:.0f}% within a decade)")
 
 
-def assemble(names, X, strength=None, not_anchors=()):
+def assemble(names, X, strength=None, not_anchors=(), oils=()):
     """The whole threshold column, one place, so two pages cannot disagree.
 
     The atlas and the simplifier had grown separate notions of "threshold".
@@ -143,6 +143,14 @@ def assemble(names, X, strength=None, not_anchors=()):
     import csv as _csv
     import io as _io
 
+    from parse_formulas import library_name
+
+    # Shelf names resolve to library names by the alias table and the head-word
+    # match a formula gets (parse_formulas.library_name), not by string
+    # equality: the inventory says "Orange Sweet EO" and the library says
+    # "Orange EO (sweet, Florida)", and an exact join dropped the compiled
+    # figure -- and the use level -- for 35 shelf names without a word.
+    library = set(names)
     inv, kfo = {}, {}
     ip = ROOT / "data" / "inventory" / "inventory.csv"
     if ip.is_file():
@@ -150,7 +158,10 @@ def assemble(names, X, strength=None, not_anchors=()):
             v = (r.get("water_threshold_ppb") or "").strip()
             if v:
                 try:
-                    inv[(r.get("name") or "").strip()] = float(v)
+                    # Keyed by the library name the shelf name refers to; without
+                    # that, every oil and every grade-qualified name falls through
+                    # to imputation while a compiled figure sits in the inventory.
+                    inv[library_name(r.get("name") or "", library, oils)] = float(v)
                 except ValueError:
                     pass
     kp = ROOT / "data" / "percept" / "kfo_thresholds.csv"

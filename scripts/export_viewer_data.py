@@ -21,6 +21,7 @@ from orvector.store import Library
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from check_impressions import tags_for  # noqa: E402
+from parse_formulas import library_name  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -708,11 +709,23 @@ def main() -> int:
     ipath = ROOT / "data" / "inventory" / "inventory.csv"
     if ipath.is_file():
         import csv as _c
+        # Keyed by the library name the shelf name resolves to, through the
+        # alias table and the same head-word match a pasted formula gets, so
+        # "Orange Sweet EO" finds "Orange EO (sweet, Florida)" instead of
+        # dropping the shelf row's use level and family.
+        lib_names = {e.name for e in entries}
+        oil_names = [e.name for e in nat_ents]
         for r in _c.DictReader(open(ipath, encoding="utf-8-sig")):
             if r.get("top_pct"):
-                usage[r["name"]] = (float(r["top_pct"]), r.get("family", ""),
-                                    r.get("volatility_class", ""))
-        print(f"  inventory: {len(usage)} materials with a use level")
+                usage[library_name(r["name"], lib_names, oil_names)] = (
+                    float(r["top_pct"]), r.get("family", ""),
+                    r.get("volatility_class", ""))
+        # Counted against the page's materials, not against the inventory: two
+        # shelf rows can resolve to one material (Bergamot BF and Bergamote
+        # 000136 are one oil), so the size of `usage` understates the coverage
+        # and reads like data loss when it is the opposite.
+        print(f"  inventory: {sum(1 for e in entries if e.name in usage)} "
+              f"of {len(entries)} materials carry a shelf row's use level")
 
     # Boiling points, and a volatility tier derived from them where the
     # inventory never assigned one. The cut-points are not chosen here: they
@@ -734,7 +747,7 @@ def main() -> int:
         import csv as _c2
         for r in _c2.DictReader(open(bpath, encoding="utf-8-sig")):
             try:
-                bps[r["name"].strip()] = float(r["bp_c"])
+                bps[library_name(r["name"], lib_names, oil_names)] = float(r["bp_c"])
             except (ValueError, KeyError):
                 pass
         print(f"  boiling points: {len(bps)} fetched values available")
