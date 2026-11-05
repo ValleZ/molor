@@ -74,7 +74,7 @@ def gene_order(paths) -> list[str]:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--store", default="library_mpnn_clean")
+    ap.add_argument("--store", default="library")
     args = ap.parse_args()
 
     try:

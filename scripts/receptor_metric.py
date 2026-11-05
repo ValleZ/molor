@@ -175,7 +175,7 @@ def flat_keys(entries, smiles_by_name):
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--store", default="library_mpnn_clean")
+    ap.add_argument("--store", default="library")
     ap.add_argument("--reps", type=int, default=40,
                     help="random half splits of the materials")
     args = ap.parse_args()

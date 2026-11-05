@@ -109,45 +109,39 @@ that did not move.
 
 The run takes ~2 minutes on CUDA, ~10x that on CPU.
 
-## 3. Receptor vectors: `artifacts/library/` and `artifacts/library_mpnn_clean/`
+## 3. Receptor vectors: `artifacts/library/`
 
 The atlas places a molecule by its 386 receptor responses, not by its percept.
-A molecule in the CSV and in `percepts_fp3.json` but not in these stores has no
+A molecule in the CSV and in `percepts_fp3.json` but not in the store has no
 point on the atlas, and nothing anywhere says so — the page simply draws fewer
-points. Both scorers are append-only, so growing the library costs the new
+points. The scorer is append-only, so growing the library costs the new
 molecules rather than all 427 × 386 pairs, and the panel embeddings come from
 `artifacts/panel_embeddings.npy`, so ESM-2 does not re-run.
 
-```powershell
-# GCN store: the reference molecule set, and the atlas's default space
-.\.venv\Scripts\python.exe -m orvector library add --csv library\input\expanded_materials.csv --device cpu
-
-# MPNN store: the second encoder space
-.\.venv\Scripts\python.exe scripts\run_mpnn.py --name library_mpnn_clean --device cpu --csv library\input\expanded_materials.csv
-```
-
-**Gate: the stores must hold every row of the CSV.** Nothing in this
-repository compares them, and the failure is silent. On 4 November 2026 both
-stores were left a day behind the CSV: 31 molecules — Vertofix Coeur,
-Tobacarol, Guaiol, the nine myrrh furanosesquiterpenes — were absent from a
-page that had been built, checked and reviewed, and it looked correct.
+One store, one space: the MPNN store was removed in November 2026 and the GCN
+is the atlas's chemistry layout. The removal took no dependency with it —
+`dgl`, `dgllife`, `rdkit` and `torch` are the GCN's dependencies as much as
+they were the MPNN's, and both encoders came from the same MolOR install.
 
 ```powershell
-.venv/Scripts/python.exe -c "import csv,io,json;n=len(list(csv.DictReader(io.open('library/input/expanded_materials.csv',newline='',encoding='utf-8-sig'))));print('csv',n);print('gcn',json.load(open('artifacts/library/provenance.json'))['n_molecules']);print('mpnn',json.load(open('artifacts/library_mpnn_clean/provenance.json'))['n_molecules'])"
+.venv/Scripts/python.exe -m orvector library add --csv library/input/expanded_materials.csv --device cpu
 ```
 
-All three must agree — 427 today. 31 new molecules took 129 s (GCN) and 187 s
-(MPNN).
+**Gate: the store must hold every row of the CSV.** Nothing in this repository
+compares them, and the failure is silent. On 4 November 2026 the stores were
+left a day behind the CSV: 31 molecules — Vertofix Coeur, Tobacarol, Guaiol,
+the nine myrrh furanosesquiterpenes — were absent from a page that had been
+built, checked and reviewed, and it looked correct.
+
+```powershell
+.venv/Scripts/python.exe -c "import csv,io,json;n=len(list(csv.DictReader(io.open('library/input/expanded_materials.csv',newline='',encoding='utf-8-sig'))));print('csv',n);print('store',json.load(open('artifacts/library/provenance.json'))['n_molecules'])"
+```
+
+Both must agree — 427 today. 31 new molecules took 129 s.
 
 `--device cpu` is not a compromise, it is the only option: DGL in `.venv` is
 the CPU wheel, so any graph moved to the GPU fails with `Device API cuda is not
 enabled` however CUDA-ready torch reports itself. MolOR is a DGL model.
-
-**Landmine: `run_mpnn.py` does not default to the CSV of record.** It defaults
-to `library/input/final_materials.csv`, a legacy 128-row file whose names are
-dilution-qualified (`Ambroxan, 10% in Alcohol`). Without `--csv` it scores that
-file, adds the one or two molecules it happens to be missing, and exits 0 — a
-success message for the wrong set.
 
 ## 4. Naturals: `artifacts/naturals.json`
 
@@ -158,10 +152,9 @@ give the percentages, the library's own vectors give the rest, and the entry
 is honest about both.
 
 **The store is generated, one way, for all 47 oils.** `data/naturals/
-compositions.json` is the spec and `scripts/build_naturals.py` writes the
-stores from it — `artifacts/naturals.json` for the GCN space and
-`artifacts/naturals_library_mpnn_clean.json` for the MPNN one. Never edit a
-store: an entry written by hand is an entry nothing regenerates. Eight of them
+compositions.json` is the spec and `scripts/build_naturals.py` writes
+`artifacts/naturals.json` from it. Never edit the store: an entry written by
+hand is an entry nothing regenerates. Eight of them
 had accumulated by November 2026 — Birch Tar, Oakmoss, Labdanum, Castoreum,
 Styrax, Benzoin, Guaiacwood, Myrrh — carrying a percept composed by a
 *different rule* from the other 39, and nothing compared the two. When they
@@ -231,12 +224,10 @@ Two rules remain, and they answer different questions rather than disagreeing:
 | a **blend's position** on the map | mean of logits | the map is drawn in log-odds, so the centre and the placement must be computed there |
 | the **white point** | mean of logits | it is the map's origin, not a material: 0.3–1.1 from the cloud's centre, against 5–14 for the probability mean |
 
-**Then build the stores**, once per space:
+**Then build the store:**
 
 ```powershell
 .venv/Scripts/python.exe scripts/build_naturals.py --store library --max-nearest-cosine 1.01
-.venv/Scripts/python.exe scripts/build_naturals.py --store library_mpnn_clean `
-    --out artifacts/naturals_library_mpnn_clean.json --max-nearest-cosine 1.01
 ```
 
 `--max-nearest-cosine 1.01` is the current policy: an oil whose percept sits
@@ -248,9 +239,7 @@ worse of the two failures, so every oil carries a point and the card says when
 a build sits on top of its own constituent.
 
 **Gates.** `47 built, 47 on the atlas`, nothing `TRIM`-ed; every entry carries a
-138-long `percept` and a 386-long `receptors`; the two files list the same oils
-with the same `percept` and `atlas` flag (the receptor vectors differ — the two
-encoders are different spaces). Verify the composed vectors still say the
+138-long `percept` and a 386-long `receptors`. Verify the composed vectors still say the
 material's name: styrax came out balsamic 0.94 / cinnamon 0.43, benzoin
 balsamic 0.76 / vanilla 0.39, and a vector that does not is a composition
 error, not a model quirk. Under the mean these numbers are lower than they were
@@ -414,11 +403,11 @@ file is read by the server.
    retrain log reports the expected molecule count).
 2. OOF ROC-AUC in line with the v3 baseline (0.8672; the number is
    training-set-only, so it should not move).
-3. **Both receptor stores hold every CSV row** (§3) — `provenance.json`'s
-   `n_molecules` equals the CSV row count for `library/` and
-   `library_mpnn_clean/`. This is the gate that has actually failed: the
-   percept and the naturals were rebuilt on 4 November 2026 and these two
-   were not, so 31 molecules had no atlas point on a page that passed every
+3. **The receptor store holds every CSV row** (§3) — `provenance.json`'s
+   `n_molecules` equals the CSV row count for `library/`. This is the gate that
+   has actually failed: the percept and the naturals were rebuilt on
+   4 November 2026 and the store was not, so 31 molecules had no atlas point on
+   a page that passed every
    other check here.
 4. Both naturals files parse, carry the same oils, and every entry has a
    138-long percept **and** a 386-long `receptors` array; composed vectors

@@ -117,24 +117,23 @@ def main() -> int:
         )
     }
 
-    # Store names are passed in rather than fixed, because the libraries get
-    # rebuilt under new names whenever the featurisation or the material list
+    # The store name is passed in rather than fixed, because the library gets
+    # rebuilt under a new name whenever the featurisation or the material list
     # changes, and silently scoring a stale store is the easy mistake here.
+    # This compared GCN against MPNN until the MPNN store was removed; the
+    # measurement below is unchanged apart from running on the one space.
     gcn_name = "library"
-    mpnn_name = "library_mpnn_clean"
     for i, a in enumerate(sys.argv):
         if a == "--gcn" and i + 1 < len(sys.argv):
             gcn_name = sys.argv[i + 1]
-        if a == "--mpnn" and i + 1 < len(sys.argv):
-            mpnn_name = sys.argv[i + 1]
-    print(f"GCN store: {gcn_name}   MPNN store: {mpnn_name}")
+    print(f"store: {gcn_name}")
 
     models = {}
-    for key, libname in (("GCN", gcn_name), ("MPNN", mpnn_name)):
+    for key, libname in (("GCN", gcn_name),):
         names, idx, D, flat = load(libname)
         models[key] = dict(names=names, idx=idx, D=D, flat=flat)
 
-    names = models["MPNN"]["names"]
+    names = models["GCN"]["names"]
     use_fam = "--flat" not in sys.argv
     tags = {n: tags_for(notes[n], families=use_fam) for n in names if n in notes}
     print("vocabulary: " + ("fine tags + coarse families" if use_fam else "fine tags only"))
@@ -154,7 +153,7 @@ def main() -> int:
     print("DOES SHARED SMELL PREDICT RECEPTOR-SPACE PROXIMITY?")
     print("=" * 86)
     rng = np.random.default_rng(0)
-    for key in ("GCN", "MPNN"):
+    for key in ("GCN",):
         m = models[key]
         for min_shared in (1, 2):
             shared, other = [], []
@@ -183,16 +182,16 @@ def main() -> int:
 
     # ---- spot check A: what the model calls closest ----
     print("\n" + "=" * 86)
-    print("THE MODEL'S 16 CLOSEST PAIRS (MPNN) vs YOUR NOTES")
+    print("THE MODEL'S 16 CLOSEST PAIRS vs YOUR NOTES")
     print("=" * 86)
-    m = models["MPNN"]
+    m = models["GCN"]
     pairs = sorted(
         ((m["D"][m["idx"][a], m["idx"][b]], a, b) for a, b in combinations(names, 2))
     )[:16]
     for d, a, b in pairs:
         share = tags.get(a, set()) & tags.get(b, set())
         mark = "  shared: " + ",".join(sorted(share)) if share else "  NO SHARED DESCRIPTOR"
-        print(f"\n  {d:5.2f} ({pct('MPNN', d):4.1f}%)  {a}  <->  {b}{mark}")
+        print(f"\n  {d:5.2f} ({pct('GCN', d):4.1f}%)  {a}  <->  {b}{mark}")
         print(f"         {notes.get(a, '')[:76]}")
         print(f"         {notes.get(b, '')[:76]}")
 
@@ -206,7 +205,7 @@ def main() -> int:
         if len(sh) < 2:
             continue
         d = m["D"][m["idx"][a], m["idx"][b]]
-        misses.append((pct("MPNN", d), d, a, b, sh))
+        misses.append((pct("GCN", d), d, a, b, sh))
     misses.sort(reverse=True)
     for p_, d, a, b, sh in misses[:8]:
         print(f"\n  {d:5.2f} ({p_:4.1f}%)  {a}  <->  {b}   shared: {','.join(sorted(sh))}")

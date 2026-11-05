@@ -72,9 +72,18 @@ from volatility_profile import GROUP as VOL_GROUP  # noqa: E402
 # annihilates the bond features it is given, while the GCN shows no pinned
 # outputs and 490-626 distinct values. Nothing ever paid for the MPNN; it was
 # simply first.
+# One chemistry space. The MPNN store was carried as a second encoder until it
+# was removed: the panel comparison tied it with the GCN, and the mechanism it
+# got there by was degenerate anyway (the comment above), so it was a second
+# space that never earned its keep and doubled every store, every naturals file
+# and every rebuild. The percept block is unaffected -- it is a separate space
+# with separate vectors, not an encoder of the receptors.
+#
+# Nothing was uninstalled for this. dgl, dgllife, rdkit and torch are the GCN's
+# dependencies as much as the MPNN's (src/orvector/inference.py, run_percept.py);
+# both encoders come from the same MolOR install.
 MODELS = [
     ("gcn", "library", "Chemistry: 386 receptor responses (GCN)"),
-    ("mpnn", "library_mpnn_clean", "Chemistry: 386 receptor responses (MPNN)"),
 ]
 
 

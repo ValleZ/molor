@@ -83,17 +83,16 @@ The four inputs the exports actually open, and how each is rebuilt:
 
 | input | rebuilt by | used for |
 |---|---|---|
-| `artifacts/library/` (vectors + logits) | `python -m orvector library add --csv library/input/expanded_materials.csv --device cpu` | the GCN space, and the reference molecule set |
-| `artifacts/library_mpnn_clean/` | `run_mpnn.py --name library_mpnn_clean --device cpu --csv library/input/expanded_materials.csv` | the MPNN space |
-| `artifacts/naturals.json` and `naturals_library_mpnn_clean.json` | `build_naturals.py --store … --max-nearest-cosine 1.01` from `data/naturals/compositions.json` | the oils, on the atlas and in the simplifier |
+| `artifacts/library/` (vectors + logits) | `python -m orvector library add --csv library/input/expanded_materials.csv --device cpu` | the chemistry space, and the reference molecule set |
+| `artifacts/naturals.json` | `build_naturals.py --store library --max-nearest-cosine 1.01` from `data/naturals/compositions.json` | the oils, on the atlas and in the simplifier |
 | `artifacts/percepts_fp3.json` | `train_fp_v3.py` | every colour, and the simplifier's arithmetic |
 
-### Gate: the stores must hold every row of the CSV
+### Gate: the store must hold every row of the CSV
 
-The two receptor stores are the pair that goes stale unnoticed, because the
-exports do not complain: `export_viewer_data.py` builds the atlas from whatever
-the store holds, so a store one commit behind simply draws fewer points, and
-the page looks correct. `export_simplify_data.py` reads the CSV and the
+The receptor store is what goes stale unnoticed, because the exports do not
+complain: `export_viewer_data.py` builds the atlas from whatever the store
+holds, so a store one commit behind simply draws fewer points, and the page
+looks correct. `export_simplify_data.py` reads the CSV and the
 naturals directly, so it is current while the atlas is not — the two pages then
 disagree by exactly the missing molecules.
 
@@ -108,23 +107,23 @@ because none of them compares the store to the CSV.
 So compare them explicitly, before exporting:
 
 ```powershell
-.venv/Scripts/python.exe -c "import csv,io,json;n=len(list(csv.DictReader(io.open('library/input/expanded_materials.csv',newline='',encoding='utf-8-sig'))));p=json.load(open('artifacts/library/provenance.json'));q=json.load(open('artifacts/library_mpnn_clean/provenance.json'));print('csv',n,'gcn',p['n_molecules'],p['updated_utc'],'mpnn',q['n_molecules'],q['updated_utc'])"
+.venv/Scripts/python.exe -c "import csv,io,json;n=len(list(csv.DictReader(io.open('library/input/expanded_materials.csv',newline='',encoding='utf-8-sig'))));p=json.load(open('artifacts/library/provenance.json'));print('csv',n,'store',p['n_molecules'],p['updated_utc'])"
 ```
 
-Pass condition: `gcn` and `mpnn` both equal `csv` (the MPNN store may hold a
-molecule the CSV does not — the export aligns by name and drops extras, so `≥`
-is acceptable there, `<` is not), and both `updated_utc` are later than the last
-commit that touched the CSV:
+Pass condition: `store` equals `csv` (`≥` is acceptable if the store holds a
+molecule the CSV no longer does — the export aligns by name and drops extras;
+`<` never is), and `updated_utc` is later than the last commit that touched the
+CSV:
 
 ```powershell
 git log -1 --format='%ci %s' -- library/input/expanded_materials.csv
 ```
 
-If they do not, the two commands in the table above are the fix. They are
-append-only — both skip InChIKeys already in the store, so growing the library
-costs the new molecules, not all 427 × 386 pairs — and the panel embeddings come
-from `artifacts/panel_embeddings.npy`, so ESM-2 does not re-run. 31 new molecules
-took 129 s (GCN) and 187 s (MPNN).
+If they do not, the command in the table above is the fix. It is append-only —
+it skips InChIKeys already in the store, so growing the library costs the new
+molecules, not all 427 × 386 pairs — and the panel embeddings come from
+`artifacts/panel_embeddings.npy`, so ESM-2 does not re-run. 31 new molecules
+took 129 s.
 
 **`--device cpu` is not a compromise, it is the only option.** DGL in `.venv` is
 the CPU wheel: torch reports `2.3.0+cu121` and `cuda True`, but any DGL graph
@@ -133,23 +132,19 @@ enabled. Please install the cuda version of dgl.` No other venv here has a CUDA
 DGL either (`.venv-pom` is CPU torch, `.venv-unimol` has no dgl, `.venv-pyrfume`
 no torch). Torch being CUDA-enabled is not enough — the model is a DGL model.
 
-**Landmine: `run_mpnn.py --csv` does not default to the CSV of record.** It
-defaults to `library/input/final_materials.csv`, a legacy 128-row file whose
-names are dilution-qualified (`Ambroxan, 10% in Alcohol`). Run without `--csv`
-and it scores that file instead, adds the one or two molecules it happens to be
-missing, prints `stored 397 molecules`, and exits 0 — a success message for the
-wrong set. Always pass `--csv library/input/expanded_materials.csv`.
+`run_mpnn.py` is gone with the MPNN space (November 2026), so the landmine it
+carried is too: it used to default to `library/input/final_materials.csv`, a
+legacy 128-row file with dilution-qualified names, and would score that instead
+and exit 0. If a second space is ever added back, give its entry point an
+explicit `--csv` default before anything else.
 
-**The receptor stores are versioned in this repository**, unlike the pages.
-After a rebuild `git status` shows six modified files — `molecules.tsv`,
-`provenance.json` and `vectors.npz` under each of `artifacts/library/` and
-`artifacts/library_mpnn_clean/` — and they belong in a commit *here*, before the
-site deploy, so that the source hash the site commit names is a commit that
-actually contains the molecule set the pages were drawn from. A store rebuilt
-and left uncommitted means no commit reproduces the published page. (If the
-MPNN store shows one row more than the CSV, that is a molecule from the legacy
-`final_materials.csv` picked up by a `run_mpnn.py` run without `--csv`; the
-export aligns by name and drops it.)
+**The receptor store is versioned in this repository**, unlike the pages.
+After a rebuild `git status` shows three modified files — `molecules.tsv`,
+`provenance.json` and `vectors.npz` under `artifacts/library/` — and they belong
+in a commit *here*, before the site deploy, so that the source hash the site
+commit names is a commit that actually contains the molecule set the pages were
+drawn from. A store rebuilt and left uncommitted means no commit reproduces the
+published page.
 
 **Landmine: `build_naturals.py` is not part of a deploy.** It rebuilds
 `artifacts/naturals.json` from `compositions.json` from scratch and will wipe
@@ -176,12 +171,10 @@ while the store was missing their constituents. They are in the spec now and
 all 47 go through one path; myrrh's descriptor row moved 0.48 and castoreum's
 0.57 when the hand composition was replaced by the generator's.
 
-If the spec or the stores changed, rebuild both files:
+If the spec or the store changed, rebuild the file:
 
 ```powershell
 .venv/Scripts/python.exe scripts/build_naturals.py --store library --max-nearest-cosine 1.01
-.venv/Scripts/python.exe scripts/build_naturals.py --store library_mpnn_clean `
-    --out artifacts/naturals_library_mpnn_clean.json --max-nearest-cosine 1.01
 ```
 
 **`--max-nearest-cosine 1.01` is the current policy.** The default (0.98) trims
@@ -240,9 +233,10 @@ until someone reads one.
 Note what this export is *not* allowed to decide: `MODELS[0]` (the GCN store)
 fixes the molecule set and the naturals file everything aligns to, and
 `modelOrder` separately decides which space the page opens on. Those are two
-different questions and the code keeps them apart on purpose — see
-`build_naturals.py`'s header for the deploy in which they got out of step and
-the GCN atlas plotted its oils in MPNN coordinates.
+different questions and the code keeps them apart on purpose. That distinction
+was learned the hard way when the GCN atlas plotted its oils in MPNN
+coordinates; with one chemistry space the specific failure cannot recur, but
+the index still means "the molecule set", not "the first tab".
 
 ## 4. The simplifier
 
@@ -366,16 +360,17 @@ inventory: 147 of 475 materials carry a shelf row's use level
 thresholds (shared with the simplifier): 126 compiled, 124 KFO-Atlas, 177 imputed
 full descriptor matrix: 475 molecules x 138
 wrote artifacts/viewer_data_deploy.json  (8.19 MB)
-  molecules 475  receptors 386  models ['gcn', 'mpnn', 'percept']
+  molecules 475  receptors 386  models ['gcn', 'percept']
   gcn   mds3_full      shepard 0.989
-  mpnn  mds3_full      shepard 0.993
   percept mds3_full    shepard 0.940
 ```
 
-`475 = 427 molecules + 47 oils + the white point`; the two receptor stores hold
-427 each, and the export prints 48 oils because that count includes the white
-point. Both naturals files carry all 47 oils and the same percept and flags, so
-the two encoder spaces cannot disagree about an oil.
+`475 = 427 molecules + 47 oils + the white point`; the receptor store holds
+427, and the export prints 48 oils because that count includes the white point.
+Two spaces, not three: the chemistry space and the percept space. The MPNN
+space was removed in November 2026 — it tied the GCN on the panel comparison
+and its GRU was pinned to 82–100 distinct values across a 2816-cell
+representation — and the build got a third smaller with it (8.28 MB → 5.54 MB).
 
 Shepard above 0.93 on the opening space is the number to watch; a projection
 that drops below about 0.9 is drawing a picture of something other than what it
@@ -414,17 +409,16 @@ mistake.
 1. Working tree in this repository clean apart from intended changes; source
    commit hash recorded.
 2. Stores current (§2), **checked, not assumed**: `provenance.json`'s
-   `n_molecules` for `library/` and `library_mpnn_clean/` equals the CSV row
-   count, and both are newer than the last CSV commit. `naturals.json` and
+   `n_molecules` for `library/` equals the CSV row count, and it is newer than
+   the last CSV commit. `naturals.json` and
    `percepts_fp3.json` are current. Nothing in the export printed a `SKIPPED`
    model, and the molecule count the export prints equals CSV rows + oils + 1
    (475 today).
-2b. The naturals files were **generated** from `data/naturals/compositions.json`
-   (`build_naturals.py`, both stores, `--max-nearest-cosine 1.01`): 47 oils,
+2b. `naturals.json` was **generated** from `data/naturals/compositions.json`
+   (`build_naturals.py --store library --max-nearest-cosine 1.01`): 47 oils,
    every entry with a 138-long `percept` and a 386-long `receptors`, and one
-   identical key set across all 47. The two files agree on every oil's `percept`
-   and `atlas` flag; their receptor vectors differ by design. Any movement in
-   oils you did not touch is explained by an input that moved — say which.
+   identical key set across all 47. Any movement in oils you did not touch is
+   explained by an input that moved — say which.
 3. Atlas exported with `--no-notes`, built with the token; simplifier exported
    to its default `artifacts/simplify_data.json`.
 4. `check_viewer_js.py` prints `ok` for all three code blocks of both pages.

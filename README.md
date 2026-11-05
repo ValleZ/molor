@@ -662,9 +662,11 @@ afterwards and had never been pointed at this question, so they are a genuinely
 new instrument: Dravnieks 1985 and Keller 2016, ~57-subject psychophysics that
 nothing in this repository is fitted on.
 
-`scripts/encoder_panel_test.py`. Both stores hold the same 396 molecules in the
-same order, so each encoder can be scored on *exactly the same pairs* and the
-difference bootstrapped over molecules — paired, which is where the power is.
+`scripts/encoder_panel_test.py`, since removed with the MPNN space — the
+measurement below is kept as the record of why one space was kept and one was
+not. Both stores held the same 396 molecules in the same order, so each encoder
+could be scored on *exactly the same pairs* and the difference bootstrapped
+over molecules — paired, which is where the power is.
 Two probes, with the primary one named before running: a **readout** (ridge
 386 → 92 descriptors, fitted out-of-fold on all 374 labelled molecules, then
 cosine between predicted descriptor vectors), which measures how much odour
@@ -1964,11 +1966,11 @@ use levels.
 |---|---|
 | `eval_similarity_graded.py` | does a representation's geometry match graded human panels? Paired bootstrap over materials, since pairs are not independent |
 | `notes_vs_models.py` | does a model rank the perfumer's own descriptors highly? Scored against a base-rate prior, which alone reaches 0.841 AUC |
-| `nn_agreement.py` | does a material's nearest neighbour share a descriptor with it? The local measure, which is what reading a map actually is |
-| `class_coherence.py` | same question for odour family |
-| `encoder_health.py` | saturation, representation diversity, input sensitivity, and two isomer probes |
-| `probe_pair.py` | where every representation puts one specific pair, with the chemistry baseline and what each dataset actually says |
-| `blind_encoder_test.py` | forced choice between two layouts, key written to a file and never printed |
+| ~~`nn_agreement.py`~~ | does a material's nearest neighbour share a descriptor with it? Removed with the MPNN space: the question was asked of two layouts and there is one |
+| ~~`class_coherence.py`~~ | same question for odour family; removed, same reason |
+| ~~`encoder_health.py`~~ | saturation, representation diversity, input sensitivity, two isomer probes; removed — its whole job was diagnosing the MPNN |
+| ~~`probe_pair.py`~~ | where every representation puts one specific pair; removed, same reason |
+| ~~`blind_encoder_test.py`~~ | forced choice between two layouts; removed — there is no choice left to make blind |
 
 A caution carried by `notes_vs_models`: predicting GS-LF base rates while
 ignoring the molecule entirely scores 0.841 AUC against the perfumer's notes,
@@ -2635,7 +2637,8 @@ scripts/          everything measured in this document, one script per claim
   musk_test.py              do the four musk chemotypes recognise each other
   percept_blind_spots.py    materials the percept model cannot tell apart
   musk_receptor.py          OR5AN1 does; the global distance discards it
-  encoder_panel_test.py     GCN vs MPNN on human panels, paired; still a tie
+  (the MPNN space and the scripts that compared the two encoders were removed in
+                           November 2026; GCN is the chemistry layout)
   receptor_metric.py        can reweighting get it back? pre-registered, no
   receptor_importance.py    a class detector is not a similarity axis
   receptor_readout.py       386 -> 138 descriptors; a 3x gain, still beaten

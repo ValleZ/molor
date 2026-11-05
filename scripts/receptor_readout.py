@@ -133,7 +133,7 @@ def flat_keys(entries, smiles_by_name):
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--store", default="library_mpnn_clean")
+    ap.add_argument("--store", default="library")
     ap.add_argument("--folds", type=int, default=5)
     ap.add_argument("--mlp", action="store_true",
                     help="also run MLPs at each --hidden width")

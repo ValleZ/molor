@@ -109,7 +109,10 @@ def self_word(name: str) -> str | None:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--percepts", default="artifacts/percepts_fp3.json")
-    ap.add_argument("--store", default="library")
+    ap.add_argument("--store", default="library", choices=("library",),
+                    help="the receptor store to compose in. One store since "
+                         "the MPNN was removed; kept as a flag because --out "
+                         "is derived from it")
     ap.add_argument("--out", default="artifacts/naturals.json")
     ap.add_argument("--force-out", action="store_true",
                     help="write --out even when it is not the file this "
@@ -147,8 +150,7 @@ def main() -> int:
     # That happened: the GCN atlas spent a deploy plotting its oils with MPNN
     # coordinates, which drew them as a tight clump apart from everything
     # else, correctly ordered inside the clump and meaningless beside it.
-    expect = ("artifacts/naturals.json" if args.store == "library"
-              else f"artifacts/naturals_{args.store}.json")
+    expect = "artifacts/naturals.json"
     # Compared as paths, not strings: on Windows "artifacts\\x.json" and
     # "artifacts/x.json" are the same file, and a string comparison rejected
     # the correct target with the message telling you to pass it.

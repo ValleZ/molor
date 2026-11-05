@@ -109,9 +109,8 @@ def main() -> int:
                     help="how the star is positioned; see predict_formula.py. "
                          "union is noisy-OR, which puts any many-ingredient "
                          "blend on the rim of the cloud whatever it smells of")
-    ap.add_argument("--both-encoders", action="store_true",
-                    help="export both layouts; the default exports the GCN "
-                         "one only, which is half the work for a throwaway")
+    # --both-encoders is gone with the MPNN store: there is one chemistry
+    # layout now, so the flag had nothing to switch between.
     ap.add_argument("--percepts", default="artifacts/percepts_fp3.json")
     ap.add_argument("--keep-notes", action="store_true",
                     help="include the private smelling notes; this build is "
@@ -125,7 +124,7 @@ def main() -> int:
 
     TEMP.mkdir(parents=True, exist_ok=True)
     py = sys.executable
-    stores = "library,library_mpnn_clean" if args.both_encoders else "library"
+    stores = "library"
     labels = args.label or []
 
     jobs = []
@@ -182,8 +181,7 @@ def main() -> int:
     print(f"[try] 2/3 exporting the atlas with {len(queries)} blend(s) on it")
     export = [py, "scripts/export_viewer_data.py", "--out", data,
               "--percepts", args.percepts, "--query", merged]
-    if not args.both_encoders:
-        export += ["--models", "gcn=library"]
+    export += ["--models", "gcn=library"]
     if not args.keep_notes:
         export += ["--no-notes"]
     run(export)

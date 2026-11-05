@@ -268,9 +268,10 @@ def main() -> int:
     ap.add_argument("--viewer-point", default=None,
                     help="write a query file that export_viewer_data.py "
                          "--query injects, to see where the blend lands")
-    ap.add_argument("--stores", default="library,library_mpnn_clean",
+    ap.add_argument("--stores", default="library",
                     help="receptor spaces to write a vector for with "
-                         "--viewer-point; the atlas needs one per encoder")
+                         "--viewer-point; one per encoder on the atlas, and "
+                         "there is one encoder since the MPNN was removed")
     ap.add_argument("--owned", action="store_true",
                     help="also list the nearest materials the perfumer "
                          "actually stocks, which are the only ones a bench "
