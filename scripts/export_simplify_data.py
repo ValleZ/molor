@@ -375,7 +375,11 @@ def volatility(resolve=lambda n: n):
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--percepts", default="artifacts/percepts_fp3.json")
+    # THE SWITCH. Which percept artifact the whole downstream stack uses:
+    # this export -> artifacts/simplify_data.json -> perfumer materials.db.
+    # fp4 (retrained with pos_weight) is current; revert to fp3 by passing
+    # --percepts artifacts/percepts_fp3.json, or point at fp5 when it exists.
+    ap.add_argument("--percepts", default="artifacts/percepts_fp4.json")
     ap.add_argument("--out", default="artifacts/simplify_data.json")
     args = ap.parse_args()
 

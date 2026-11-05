@@ -313,7 +313,35 @@ Script: `scripts/merge_percept_evidence.py`. Candidate artifacts:
 
 `--no-graded` rebuilds the labels-only variant for comparison.
 
-**No consumer default has been changed.** The candidate is inert until a
-`--percepts artifacts/percepts_merged90.json` flag is passed somewhere, and
-`export_simplify_data.py` — the step that writes `materials.db` — has not been
-run against it. Validation items 1–4 in this document are the gate.
+### ADOPTED: percept v4 (fp4) is the active model
+
+The evidence-merge candidates above stay rejected. What shipped is the
+**retrain**: `artifacts/percepts_fp4.json` (fingerprint MLP, pos_weight, 5x
+ensemble) is now the default in `scripts/export_simplify_data.py`, so the whole
+stack follows it — export -> `artifacts/simplify_data.json` ->
+`perfumer/tools/build_db.py` -> `materials.db`.
+
+Switching models is now a flag, not an edit: pass a different `--percepts` and
+re-run the export + build. `build_db.py` derives `percept_model` / `percept_auc`
+from that file's meta, so provenance can never again hardcode a model name.
+Reverting to fp3 is the same two commands with
+`--percepts artifacts/percepts_fp3.json` (the old database is kept at
+`perfumer/materials.db.fp3`).
+
+What it took to ship, all measured:
+
+* the five demo samples were **re-selected against fp4** (the old set was
+  chosen on fp3 and no longer landed): lilac 0.966 5/5, musk 0.928 4/5, garden
+  soil 0.905 2/6, cinnamon 0.877 4/6, orange blossom 0.859 2/5;
+* the engine needed **no** re-tune: ridge 0.10 already scores 5/5 on that set
+  (0.15 also 5/5, 0.05 4/5, 0.02 3/5);
+* `percept.build_target_vector`'s floor had to stop being capped at the
+  quietest ask — fp4 lifts the library mean above `logit(0.5)` on two axes, so
+  the cap was replacing the background target with the ask;
+* `tools/fetch_cas.py`, `fetch_ifra.py` and `fetch_longevity.py` must run
+  **after** `build_db.py` — a bare rebuild wipes CAS/IFRA/substantivity;
+* two fp3-era test assumptions were replaced by data-independent invariants
+  (a two-material 50/50 accord is now possible; the scale assertion recomputed
+  a formula that the model's sd profile decides).
+
+Suite: **88 passed** against the fp4 database.

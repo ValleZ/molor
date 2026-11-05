@@ -231,7 +231,10 @@ def main() -> int:
               f"on the training set")
 
     (ROOT / args.out).write_text(json.dumps({
-        "checkpoint": f"fingerprint MLP v3 (ablation-selected, {args.ensemble}x ensemble)",
+        "checkpoint": ("fingerprint MLP v4 (pos_weight, %dx ensemble)"
+                       % args.ensemble) if POS_WEIGHT else
+                      ("fingerprint MLP v3 (ablation-selected, %dx ensemble)"
+                       % args.ensemble),
         "oof_mean_auc": round(float(aucs.mean()), 4),
         "similarity_spearman": (round(rho, 4) if rho == rho else None),
         "config": {"hidden": list(HIDDEN), "batchnorm": BATCHNORM,
