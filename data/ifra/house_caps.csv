@@ -1,0 +1,6 @@
+name,cas_number,cat4_pct,reason
+Lyral,31906-04-4,0,"EU Cosmetics Regulation Annex II prohibits HICC (Reg. (EU) 2022/1181), so 0 is the right cap -- but it is NOT an IFRA figure. The IFRA 51st restricts HICC at 0.2% (IFRA_STD_044), and the old seed CSV recorded the ban as 'IFRA 49th: prohibited', which is the wrong instrument. The row lives here so the provenance says which regulator actually forbids it."
+Guaiacol,90-05-1,1,"house cap, not an IFRA figure: no IFRA standard lists guaiacol. The perfumer's own ceiling on a phenolic smoke material that dominates in overdose."
+2-Isopropyl Phenol,88-69-7,1,"house cap, not an IFRA figure: phenolic creosote, dominates in overdose, and no IFRA standard lists it."
+Anethole ex Star Anise,104-46-1,0.01,"house cap on ESTRAGOLE CONTENT, not on anethole: star anise oil carries estragole (IFRA_STD_099, cat-4 0.014%) and anethole itself is not restricted. The figure keeps the oil's estragole below the estragole limit."
+Metal Oxazole,38303-23-0,2,"house cap, NOT an IFRA figure: no IFRA standard lists this substance and cat-4 permits 100%; 2% is the perfumer's own ceiling on the finished product."

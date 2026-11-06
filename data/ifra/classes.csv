@@ -1,0 +1,3 @@
+standard_id,match_kind,pattern,note
+IFRA_STD_077,name_regex,\b(damascone|damascenone|isodamascone|rose ketone),"Rose ketones is a family standard. The annex names the members it was tested on, and 259 of 263 standards say the scope ""includes but is not limited to"" those CAS numbers. A damascone whose CAS is not listed is still a rose ketone, and the group limit is a SUM across the family."
+IFRA_STD_063,name_regex,\bmethyl ionone\b,"Methyl ionone, mixed isomers. The ionone isomers share one standard; a trade name like ""Methyl Ionone Gamma Coeur"" reaches it by name rather than by CAS."

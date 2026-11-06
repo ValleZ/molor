@@ -478,6 +478,19 @@ def main() -> int:
         return " ".join(_re.sub(r"[^a-z0-9]+", " ", x.lower()).split())
     strength = load_strength()
     vol, oil_cov = volatility(resolve)
+    # IFRA: one resolved row per material, from the official standards
+    # workbook (scripts/import_ifra.py -> scripts/resolve_ifra.py). The page
+    # had no IFRA column at all until 2026-11, which meant the simplifier could
+    # offer a material at a dose the regulator forbids and say nothing about
+    # it. `status` is what keeps "no restriction" apart from "not identified".
+    ifra = {}
+    ifra_path = ROOT / "data" / "ifra" / "materials.csv"
+    if ifra_path.is_file():
+        for r in csv.DictReader(io.open(ifra_path, encoding="utf-8-sig")):
+            ifra[(r.get("name") or "").strip()] = r
+    else:
+        print(f"  WARNING: {ifra_path} missing; the page will carry no IFRA "
+              f"limits (run scripts/import_ifra.py and scripts/resolve_ifra.py)")
     n_blocked = 0
     n_unverified = 0
     mats = []
@@ -520,6 +533,18 @@ def main() -> int:
             "p": [round(float(v), 3) for v in X[i]],
             "iso": round(float(iso_pct[i]), 1),
             "use": lvl,
+            # IFRA category 4 (fine fragrance), % of the finished product, and
+            # the status that says whether a missing number means "unlimited"
+            # or "unknown". Rendered as "IFRA 4.7%" / "no restriction" /
+            # "IFRA unknown" -- three different claims.
+            # `not in (None, "")` rather than truthiness: a cap of exactly 0
+            # is a prohibition and is the one value that must never be read as
+            # "no cap".
+            "ifra": (float(ifra[n]["cat4_pct"])
+                     if n in ifra
+                     and ifra[n].get("cat4_pct") not in (None, "") else None),
+            "ifraStat": (ifra[n].get("status") or None) if n in ifra else None,
+            "ifraWhy": (ifra[n].get("evidence") or None) if n in ifra else None,
             "thr": thr,
             "str": round(st["mult"], 3) if st else None,
             "strN": st["n"] if st else None,
@@ -582,6 +607,19 @@ def main() -> int:
     print(f"  KFO-Atlas supplied {treport.get('kfo', 0)} thresholds that would "
           f"otherwise have been imputed")
     print("  " + describe_thr(treport))
+    if ifra:
+        status_n: dict[str, int] = {}
+        for m in mats:
+            key = m.get("ifraStat") or "missing"
+            status_n[key] = status_n.get(key, 0) + 1
+        print(f"  IFRA: {sum(1 for m in mats if m.get('ifra') is not None)} "
+              f"with a cat-4 cap -- " + ", ".join(
+                  f"{k} {v}" for k, v in
+                  sorted(status_n.items(), key=lambda kv: -kv[1])))
+        oils_uncapped = [m["n"] for m in mats
+                         if m.get("oil") and m.get("ifra") is None]
+        print(f"  IFRA: {47 - len(oils_uncapped)}/47 oils carry a derived cap "
+              f"from their restricted constituents")
 
     payload = {
         "descriptors": desc,

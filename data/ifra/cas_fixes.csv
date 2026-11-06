@@ -1,0 +1,17 @@
+name,cas,evidence
+Aurantiol,89-43-0,"PubChem name -> CID 98118; agrees with the CAS in the IFRA annex's Schiff-base sheet, which is the stronger of the two sources"
+Bacdanol,106185-75-5,PubChem name -> CID 6438196
+Borneol,507-70-0,"PubChem name -> CID 64685, the same CID the KFO threshold sheet uses for borneol"
+Camphor,76-22-2,"PubChem name -> CID 2537, the same CID the KFO threshold sheet uses for camphor"
+Cedramber,67874-81-1,PubChem name -> CID 11085796
+Cedryl Acetate,77-54-3,PubChem name -> CID 13918856
+Cis-3-Hexenyl Salicylate,65405-77-8,PubChem name -> CID 6021887
+Ebanol,67801-20-1,PubChem name -> CID 6437266
+Ethyl Linalool,10339-55-6,PubChem name -> CID 6433547
+Habanolide,111879-80-2,"PubChem name -> CID 9856149; the perfumer supplied this CAS directly"
+Maltol Isobutyrate,65416-14-0,PubChem name -> CID 3354132
+Phytol,150-86-7,"PubChem name -> CID 5280435, the same CID the KFO threshold sheet uses for phytol"
+Pistachio Thiazole,18640-74-9,"2-isobutylthiazole; PubChem name -> CID 62725, the same CID the KFO sheet uses"
+Thiocineole,68391-28-6,PubChem name -> CID 109322
+Ambrocenide,211299-54-6,PubChem name -> CID 66731260
+Cedrene Alpha,469-61-4,"alpha-cedrene; PubChem name -> CID 6431015"

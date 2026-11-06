@@ -1,0 +1,751 @@
+name,is_natural,cas,status,standard_id,cat4_pct,cat9_pct,via,evidence,source
+(E)-2-Hexenal,0,6728-26-3,restricted,IFRA_STD_039,0.0077,0.015,direct,IFRA_STD_039 2-Hexenal cat-4 0.0077% (amendment 51),IFRA 51st overview workbook via data/ifra/limits.csv
+"(E,E)-2,4-Decadienal",0,2363-88-4,prohibited,IFRA_STD_129,0,,direct,"IFRA_STD_129 2,4-Dienals is a PROHIBITION",IFRA 51st overview workbook via data/ifra/limits.csv
+(Z)-3-Hexenal,0,6789-80-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+"2,3,5-Trimethylpyrazine",0,14667-55-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+"2,6-Dibromophenol",0,608-33-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+"2,6-Dimethylpyrazine",0,108-50-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+2-Acetoxyfuranodiene,0,,unknown,,,,,"no CAS and no name match, so nothing can be claimed",IFRA 51st overview workbook via data/ifra/limits.csv
+2-Acetyl Pyrazine,0,22047-25-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+2-Acetyl Pyridine,0,1122-62-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+2-Acetyl Thiazole,0,24295-03-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+"2-Ethyl-3,5-Dimethylpyrazine",0,13360-65-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+2-Ethylhexyl Salicylate,0,118-60-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+2-Isobutyl Quinoline,0,68141-26-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+2-Isopropyl Phenol,0,88-69-7,restricted,,1,,house,"house cap: house cap, not an IFRA figure: phenolic creosote, dominates in overdose, and no IFRA stand",IFRA 51st overview workbook via data/ifra/limits.csv
+2-Methoxyfuranodiene,0,,unknown,,,,,"no CAS and no name match, so nothing can be claimed",IFRA 51st overview workbook via data/ifra/limits.csv
+2-Methyl Pyrazine,0,109-08-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+2-Octen-4-One,0,4643-27-0,restricted,IFRA_STD_229,0.047,0.092,direct,IFRA_STD_229 2-Octen-4-one cat-4 0.047% (amendment 51),IFRA 51st overview workbook via data/ifra/limits.csv
+"3,3-Dimethyl-1-Indanone",0,26465-81-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+3-Methylbutanal,0,590-86-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+3-Octen-2-One,0,,restricted,IFRA_STD_234,0.047,0.092,direct,IFRA_STD_234 3-Octen-2-one cat-4 0.047% (amendment 51),IFRA 51st overview workbook via data/ifra/limits.csv
+3-Phenylpropyl Cinnamate,0,122-68-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+6-Methyl Quinoline,0,91-62-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Acalea,0,84697-09-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Acetal CD,0,5694-72-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Acetanisole,0,100-06-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Acetate C-9,0,143-13-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Acetoin,0,513-86-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Acetophenone,0,98-86-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Acetyl Propionyl,0,600-14-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Adoxal,0,141-13-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Alcohol C-10,0,112-30-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Alcohol C-11 Undecylenic,0,25377-71-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Alcohol C-12 Lauric,0,112-53-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Alcohol C-6,0,111-27-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Aldambre,0,1725-03-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Aldehyde C-10,0,112-31-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Aldehyde C-11 MOA,0,19009-56-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Aldehyde C-11 Undecylenic,0,112-45-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Aldehyde C-11 Undecylic,0,112-44-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Aldehyde C-12 Lauric,0,112-54-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Aldehyde C-12 MNA,0,110-41-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Aldehyde C-7,0,111-71-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Aldehyde C-8,0,124-13-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Aldehyde C-9,0,124-19-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Aldron®,0,68901-22-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Allyl Amyl Glycolate,0,67634-00-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Allyl Anthranilate,0,7493-63-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Allyl Cyclohexyl Propionate,0,2705-87-5,restricted,IFRA_STD_238,0.47,0.92,direct,IFRA_STD_238 Allyl 3-cyclohexylpropionate cat-4 0.47% (amendment 51),IFRA 51st overview workbook via data/ifra/limits.csv
+Allyl Heptanoate,0,142-19-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Allyl Hexanoate,0,123-68-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Allyl Ionone,0,79-78-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Almond Pyrazine,0,2847-30-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Alpha Angelica Lactone,0,591-12-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Alpha Phellandrene,0,99-83-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Alpha Pinene,0,80-56-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Alpha Santalene,0,512-61-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Alpha Santalol,0,,unknown,,,,,"no CAS and no name match, so nothing can be claimed",IFRA 51st overview workbook via data/ifra/limits.csv
+Amber Core,0,139504-68-0,restricted,IFRA_STD_222,1.3,2.6,direct,IFRA_STD_222 1-(2-tert.-Butyl cyclohexyloxy)-2-butanol cat-4 1.3% (amendment 51),IFRA 51st overview workbook via data/ifra/limits.csv
+Ambermax® 50,0,929625-08-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+AmberXtreme,0,476332-65-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Amboryl Acetate,0,59056-62-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Ambrettolide,0,123-69-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Ambrinol,0,41199-19-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Ambrocenide,0,211299-54-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Ambroxan,0,6790-58-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Amyl Acetate,0,628-63-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Amyl Benzoate,0,2049-96-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Amyl Cinnamic Aldehyde,0,122-40-7,restricted,IFRA_STD_005,7,1.5,direct,IFRA_STD_005 alpha-Amyl cinnamic aldehyde cat-4 7% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Amyl Salicylate,0,2050-08-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Andrane,0,13567-39-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Anethole ex Star Anise,0,104-46-1,restricted,,0.01,,house,"house cap: house cap on ESTRAGOLE CONTENT, not on anethole: star anise oil carries estragole (IFRA_ST",IFRA 51st overview workbook via data/ifra/limits.csv
+Anisaldehyde,0,123-11-5,restricted,IFRA_STD_054,1.4,0.42,direct,IFRA_STD_054 p-Methoxybenzaldehyde cat-4 1.4% (amendment 51),IFRA 51st overview workbook via data/ifra/limits.csv
+Anisyl Acetate,0,104-21-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Anisyl Acetone,0,104-20-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Anisyl Alcohol,0,105-13-5,restricted,IFRA_STD_006,0.21,0.099,direct,IFRA_STD_006 Anisyl alcohol cat-4 0.21% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Antillone™,0,35194-30-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Aphermate,0,25225-08-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Apo Patchone Coeur,0,4621-04-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Apritone,0,74016-19-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Aquaflora,0,1339119-15-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Atranorin,0,,unknown,,,,,"no CAS and no name match, so nothing can be claimed",IFRA 51st overview workbook via data/ifra/limits.csv
+Aurantiol,0,89-43-0,restricted,IFRA_STD_043,3.7234,,contribution,2.1% IFRA_STD_043 / 56.4% Hydroxycitronellal in Hydroxycitronellal methyl anthra,IFRA 51st overview workbook via data/ifra/limits.csv
+Avobenzone,0,70356-09-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Bacdanol,0,106185-75-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Basil EO (ct linalool),1,,restricted,IFRA_STD_099,1.47368,,contribution,"0.014% IFRA_STD_099 / 0.95% Estragole in Basil oil, chemotype linalool",IFRA 51st overview workbook via data/ifra/limits.csv
+Benzaldehyde,0,100-52-7,restricted,IFRA_STD_007,0.25,0.49,direct,IFRA_STD_007 Benzaldehyde cat-4 0.25% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Benzoic Acid,0,65-85-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Benzoin Siam Resinoid,1,,unrestricted,,,,absent,"no standard, class rule or constituent claims it (natural: identified by name)",IFRA 51st overview workbook via data/ifra/limits.csv
+Benzophenone,0,119-61-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Benzyl Acetate,0,140-11-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Benzyl Acetone,0,2550-26-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Benzyl Alcohol,0,100-51-6,restricted,IFRA_STD_008,2.5,2.2,direct,IFRA_STD_008 Benzyl alcohol cat-4 2.5% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Benzyl Benzoate,0,120-51-4,restricted,IFRA_STD_009,4.8,1.9,direct,IFRA_STD_009 Benzyl benzoate cat-4 4.8% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Benzyl Butyrate,0,103-37-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Benzyl Cinnamate,0,103-41-3,restricted,IFRA_STD_010,2,3.9,direct,IFRA_STD_010 Benzyl cinnamate cat-4 2% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Benzyl Formate,0,104-57-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Benzyl Isobutyrate,0,103-28-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Benzyl Isoeugenol,0,92666-21-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Benzyl Isovalerate,0,103-38-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Benzyl Phenylacetate,0,102-16-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Benzyl Propionate,0,122-63-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Benzyl Salicylate,0,118-58-1,restricted,IFRA_STD_011,7.3,14,direct,IFRA_STD_011 Benzyl salicylate cat-4 7.3% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Bergamot EO (Turkish),1,,unrestricted,,,,absent,"no standard, class rule or constituent claims it (natural: identified by name)",IFRA 51st overview workbook via data/ifra/limits.csv
+Berryflor,0,104986-28-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Beta Pinene,0,127-91-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Beta Santalol,0,11031-45-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Bicyclononalactone,0,4430-31-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Biocyclamol,0,51411-24-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Biomuguet,0,194934-66-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Birch Tar Oil (rectified),1,,prohibited,IFRA_STD_114,0,,direct,IFRA_STD_114 Birch wood pyrolysate is a PROHIBITION,IFRA 51st overview workbook via data/ifra/limits.csv
+Bisabolene,0,17627-44-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Blackcurrant mercaptan,0,94087-83-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Boisambrene Forte,0,58567-11-6,restricted,IFRA_STD_252,1.5,2.9,direct,IFRA_STD_252 (Ethoxymethoxy)-cyclododecane cat-4 1.5% (amendment 51),IFRA 51st overview workbook via data/ifra/limits.csv
+Boisiris®,0,68845-00-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Bornafix®,0,128119-70-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Borneol,0,507-70-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Boronal,0,3155-71-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Bourgeonal®,0,18127-01-0,restricted,IFRA_STD_014,0.47,0.099,direct,IFRA_STD_014 p-tert-Butyldihydrocinnamaldehyde cat-4 0.47% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Brahmanol,0,72089-08-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Bulnesene Alpha,0,,unknown,,,,,"no CAS and no name match, so nothing can be claimed",IFRA 51st overview workbook via data/ifra/limits.csv
+Bulnesol,0,22451-73-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Butylated Hydroxytoluene (BHT),0,128-37-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Calone 1951,0,28940-11-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Camphene,0,79-92-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Camphor,0,76-22-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Canthoxal,0,5462-06-6,restricted,IFRA_STD_057,2.5,2.7,direct,IFRA_STD_057 4-Methoxy-alpha-methylbenzenepropanal cat-4 2.5% (amendment 51),IFRA 51st overview workbook via data/ifra/limits.csv
+Canthoxalia,0,111753-62-9,restricted,IFRA_STD_057,4.363,,contribution,2.5% IFRA_STD_057 / 57.3% 4-Methoxy-α-methylbenzenepro in Canthoxal-methyl anthranilate (o,IFRA 51st overview workbook via data/ifra/limits.csv
+Cantryl®,0,15373-31-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Caprylic Acid,0,124-07-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Caramel Acetate,0,4166-20-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Carbinol Muguet,0,103-05-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Carbitol™,0,111-90-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Carvacrol,0,499-75-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Carvacryl Methyl Ether,0,6379-73-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Caryophyllene Acetate,0,57082-24-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Caryophyllene Beta,0,87-44-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Caryophyllene Oxide,0,1139-30-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Cascalone,0,950919-28-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Cashmeran,0,33704-61-9,restricted,IFRA_STD_028,3.8,0.13,direct,"IFRA_STD_028 6,7-Dihydro-1,1,2,3,3-pentamethyl-4(5H)-indanone (DPMI) cat-4 3.8% (amendment 49)",IFRA 51st overview workbook via data/ifra/limits.csv
+Cassia Bark EO,1,,restricted,IFRA_STD_018,0.314465,,contribution,0.25% IFRA_STD_018 / 79.5% Cinnamic aldehyde in Cassia oil,IFRA 51st overview workbook via data/ifra/limits.csv
+Cassifix,0,139539-66-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Castoramine,0,,unknown,,,,,"no CAS and no name match, so nothing can be claimed",IFRA 51st overview workbook via data/ifra/limits.csv
+Castoreum Absolute,1,,unrestricted,,,,absent,"no standard, class rule or constituent claims it (natural: identified by name)",IFRA 51st overview workbook via data/ifra/limits.csv
+Cedarwood EO (Virginia),1,,restricted,IFRA_STD_197,6.17284,,contribution,"1.5% IFRA_STD_197 / 24.3% alpha-Cedrene in Cedarwood oil, Virginian",IFRA 51st overview workbook via data/ifra/limits.csv
+Cedramber,0,67874-81-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Cedrene Alpha,0,469-61-4,restricted,IFRA_STD_197,1.5,2.9,direct,IFRA_STD_197 Cedrene cat-4 1.5% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Cedrene Beta,0,,unknown,,,,,"no CAS and no name match, so nothing can be claimed",IFRA 51st overview workbook via data/ifra/limits.csv
+Cedrenyl Acetate,0,1405-92-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Cedrol,0,77-53-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Cedroxyde®,0,71735-79-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Cedryl Acetate,0,77-54-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Celeriax,0,17369-59-4,restricted,IFRA_STD_076,0.4,0.79,direct,IFRA_STD_076 3-Propylidenephthalide cat-4 0.4% (amendment 51),IFRA 51st overview workbook via data/ifra/limits.csv
+Celestolide,0,13171-00-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Centifolether,0,120811-92-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Cervolide®,0,6707-60-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Cetonal®,0,65405-84-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Cetylic Alcohol,0,36653-82-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Chamomile Isobutyrate,0,80118-06-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Chloroatranorin,0,,unknown,,,,,"no CAS and no name match, so nothing can be claimed",IFRA 51st overview workbook via data/ifra/limits.csv
+Chloroxylenol,0,88-04-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Cinnamaldehyde,0,104-55-2,restricted,IFRA_STD_018,0.25,0.49,direct,IFRA_STD_018 Cinnamic aldehyde cat-4 0.25% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Cinnamic Acid,0,621-82-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Cinnamon Bark EO (commercial),1,,restricted,IFRA_STD_018,0.333333,,contribution,0.25% IFRA_STD_018 / 75% Cinnamic aldehyde in Cinnamon bark oil,IFRA 51st overview workbook via data/ifra/limits.csv
+Cinnamoxal™,0,60125-24-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Cinnamyl Acetate,0,103-54-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Cinnamyl Alcohol,0,104-54-1,restricted,IFRA_STD_017,1.2,0.76,direct,IFRA_STD_017 Cinnamic alcohol cat-4 1.2% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Cinnamyl Cinnamate,0,122-69-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Cinnamyl Propionate,0,103-56-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Cis Jasmone,0,488-10-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Cis-3-Hexenyl Benzoate,0,25152-85-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Cis-3-Hexenyl Butyrate,0,16491-36-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Cis-3-Hexenyl Cis-3-Hexenoate,0,61444-38-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Cis-3-Hexenyl Isobutyrate,0,41519-23-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Cis-3-Hexenyl Isovalerate,0,35154-45-1,restricted,IFRA_STD_245,0.43,0.84,direct,IFRA_STD_245 cis-3-Hexenyl isovalerate cat-4 0.43% (amendment 51),IFRA 51st overview workbook via data/ifra/limits.csv
+Cis-3-Hexenyl Propionate,0,33467-74-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Cis-3-Hexenyl Salicylate,0,65405-77-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Cis-3-Hexenyl Tiglate,0,67883-79-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Cistulate,0,52557-97-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Citral,0,5392-40-5,restricted,IFRA_STD_021,0.6,1.2,direct,IFRA_STD_021 Citral cat-4 0.6% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Citronellal,0,106-23-0,restricted,IFRA_STD_206,0.49,1.4,direct,IFRA_STD_206 Citronellal cat-4 0.49% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Citronellol,0,106-22-9,restricted,IFRA_STD_022,12,24,direct,IFRA_STD_022 Citronellol cat-4 12% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Citronellyl Acetate,0,150-84-5,restricted,IFRA_STD_248,2.7,5.4,direct,IFRA_STD_248 Citronellyl acetate cat-4 2.7% (amendment 51),IFRA 51st overview workbook via data/ifra/limits.csv
+Citronellyl Formate,0,105-85-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Civettal,0,91-61-2,specification_only,IFRA_STD_215,,,direct,IFRA_STD_215 p-Methyltetrahydroquinoline sets no use limit,IFRA 51st overview workbook via data/ifra/limits.csv
+Civettone,0,542-46-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Claritone,0,74338-72-0,restricted,IFRA_STD_224,1.9,3.7,direct,"IFRA_STD_224 2,4,4,7-Tetramethyl-6-octen-3-one cat-4 1.9% (amendment 51)",IFRA 51st overview workbook via data/ifra/limits.csv
+Clary Sage EO,1,,unrestricted,,,,absent,"no standard, class rule or constituent claims it (natural: identified by name)",IFRA 51st overview workbook via data/ifra/limits.csv
+Clonal™,0,2437-25-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Clove Bud EO (steam distilled),1,,restricted,IFRA_STD_035,3.04878,,contribution,2.5% IFRA_STD_035 / 82% Eugenol in Clove bud oil,IFRA 51st overview workbook via data/ifra/limits.csv
+Cocoa Hexenal,0,21834-92-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Coffee Pentenolone,0,21835-01-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Coniferyl Benzoate,0,4159-29-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Coranol,0,83926-73-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Corps Racine,0,2110-18-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Corylone,0,80-71-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Cosmone,0,259854-71-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Coumarin,0,91-64-5,restricted,IFRA_STD_023,1.5,0.52,direct,IFRA_STD_023 Coumarin cat-4 1.5% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Coumarone,0,1646-26-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Creosol,0,2785-85-5,restricted,IFRA_STD_058,0.047,0.092,direct,IFRA_STD_058 2-Methoxy-4-methylphenol cat-4 0.047% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Cuminic Aldehyde,0,122-03-2,restricted,IFRA_STD_024,0.47,0.92,direct,IFRA_STD_024 Cuminaldehyde cat-4 0.47% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Cuparene,0,,unknown,,,,,"no CAS and no name match, so nothing can be claimed",IFRA 51st overview workbook via data/ifra/limits.csv
+Curzerene,0,17910-09-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Cyclamen Aldehyde,0,103-95-7,restricted,IFRA_STD_025,0.95,0.23,direct,IFRA_STD_025 Cyclamen aldehyde cat-4 0.95% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Cyclemax™,0,7775-00-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Cyclohexyl Ethyl Alcohol,0,4442-79-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Cyclopidene,0,40203-73-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Cycloverdyl Propionate,0,17511-60-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Cyclozonal,0,68991-96-8,restricted,IFRA_STD_259,2.1,4.2,direct,IFRA_STD_259 Octahydro-dimethylnaphthalene-2-carbaldehyde (mixed isomers) cat-4 2.1% (amendment 51),IFRA 51st overview workbook via data/ifra/limits.csv
+D-Limonene,0,5989-54-8,specification_only,IFRA_STD_186,,,direct,IFRA_STD_186 Limonene sets no use limit,IFRA 51st overview workbook via data/ifra/limits.csv
+Damascenone Total,0,23726-93-4,restricted,IFRA_STD_077,0.043,0.084,direct,IFRA_STD_077 Rose ketones cat-4 0.043% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Damascol 4,0,4927-36-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Damascone Alpha,0,24720-09-0,restricted,IFRA_STD_077,0.043,0.084,direct,IFRA_STD_077 Rose ketones cat-4 0.043% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Damascone Beta,0,23726-91-2,restricted,IFRA_STD_077,0.043,0.084,direct,IFRA_STD_077 Rose ketones cat-4 0.043% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Damascone Delta,0,57378-68-4,restricted,IFRA_STD_077,0.043,0.084,direct,IFRA_STD_077 Rose ketones cat-4 0.043% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Damascone Gamma,0,31191-93-2,restricted,IFRA_STD_077,0.043,0.084,class,class rule '\\b(damascone|damascenone|isodamascone|rose ketone)' -> IFRA_STD_077 cat-4 0.043%,IFRA 51st overview workbook via data/ifra/limits.csv
+Datilat,0,68039-69-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Delphol HC,0,84560-00-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Delphone,0,4819-67-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Delta Decalactone,0,705-86-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Delta Dodecalactone,0,713-95-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Delta Nonalactone,0,3301-94-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Delta Octalactone,0,698-76-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Delta Undecalactone,0,710-04-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Diacetyl,0,431-03-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Diethyl Hexyl Adipate,0,103-23-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Diethyl Malonate,0,105-53-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Diethyl Phthalate,0,84-66-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Diethyl Succinate,0,123-25-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Diethyl Tartrate (DET),0,87-91-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Dihydro Alpha Ionone,0,31499-72-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Dihydro Beta Ionone,0,17283-81-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Dihydro Eugenol,0,2785-87-7,restricted,IFRA_STD_191,0.73,1.4,direct,IFRA_STD_191 2-Methoxy-4-propylphenol cat-4 0.73% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Dihydro Gamma Ionone,0,13720-12-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Dihydro Myrcenol,0,53219-21-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Dihydroactinidiolide,0,17092-92-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Dihydroambrate,0,37172-02-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Dihydroanethol,0,104-45-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Dihydrocarveol,0,619-01-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Dihydrocarvyl Acetate,0,20777-49-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Dihydrolinalool,0,18479-51-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Dihydromyrcenyl Acetate,0,53767-93-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Dihydrorose Oxide,0,13477-62-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Dihydroterpinyl Acetate,0,58985-18-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Dimethyl Benzyl Carbinol,0,100-86-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Dimethyl Benzyl Carbinyl Acetate,0,151-05-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Dimethyl Benzyl Carbinyl Butyrate,0,10094-34-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Dimethyl Disulfide,0,624-92-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Dimethyl Hydroquinone,0,150-78-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Dimethyl Octenone,0,2550-11-0,restricted,IFRA_STD_235,1.9,1.5,direct,IFRA_STD_235 Dimethyl octenone cat-4 1.9% (amendment 51),IFRA 51st overview workbook via data/ifra/limits.csv
+Dimethyl Sulfide,0,75-18-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Dimethyl Trisulfide,0,3658-80-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Dimetol®,0,13254-34-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Dimyrcetol,0,25279-09-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Diphenyl Oxide,0,101-84-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Dipropylene Glycol (DPG),0,25265-71-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Doremox,0,94201-73-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Dulcinyl,0,55418-52-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Dupical,0,30168-23-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Dynascone,0,56973-85-4,restricted,IFRA_STD_031,1.1,1.4,direct,"IFRA_STD_031 1-(5,5-Dimethyl-1-cyclohexen-1-yl)pent-4-en-1-one cat-4 1.1% (amendment 49)",IFRA 51st overview workbook via data/ifra/limits.csv
+Ebanol,0,67801-20-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Edenolide,0,478695-70-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Elemene Beta,0,33880-83-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Elemi EO (Manila),1,,restricted,IFRA_STD_100,2.75,,contribution,0.011% IFRA_STD_100 / 0.4% Methyl eugenol in Elemi oil,IFRA 51st overview workbook via data/ifra/limits.csv
+Elemicin,0,487-11-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Elemol,0,,unknown,,,,,"no CAS and no name match, so nothing can be claimed",IFRA 51st overview workbook via data/ifra/limits.csv
+Ethyl 2-methyl butyrate,0,7452-79-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Ethyl Acetate,0,141-78-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Ethyl Acetoacetate,0,141-97-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Ethyl Benzoate,0,93-89-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Ethyl Butyrate,0,105-54-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Ethyl Caproate,0,123-66-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Ethyl Decanoate,0,110-38-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Ethyl Everninate,0,,unknown,,,,,"no CAS and no name match, so nothing can be claimed",IFRA 51st overview workbook via data/ifra/limits.csv
+Ethyl Formate,0,109-94-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Ethyl Furaneol,0,27538-09-6,restricted,IFRA_STD_226,0.25,0.49,direct,IFRA_STD_226 Ethyl and Methyl furaneol cat-4 0.25% (amendment 51),IFRA 51st overview workbook via data/ifra/limits.csv
+Ethyl Heptanoate,0,106-30-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Ethyl Isobutyrate,0,97-62-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Ethyl Laurate,0,106-33-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Ethyl Levulinate,0,539-88-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Ethyl Linalool,0,10339-55-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Ethyl Maltol,0,4940-11-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Ethyl Myristate,0,124-06-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Ethyl Octanoate,0,106-32-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Ethyl Safranate,0,35044-59-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Ethyl Salicylate,0,118-61-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Ethyl Tiglate,0,,unknown,,,,,"no CAS and no name match, so nothing can be claimed",IFRA 51st overview workbook via data/ifra/limits.csv
+Ethyl Undecylenate,0,692-86-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Ethyl Vanillin,0,121-32-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Ethylene Brassylate,0,105-95-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Eucalyptol,0,470-82-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Eudesmol Beta,0,92790-78-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Eugenol ex Clove,0,97-53-0,restricted,IFRA_STD_035,2.5,4.9,direct,IFRA_STD_035 Eugenol cat-4 2.5% (amendment 51),IFRA 51st overview workbook via data/ifra/limits.csv
+Eugenyl Acetate,0,93-28-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Evernic Acid,0,,unknown,,,,,"no CAS and no name match, so nothing can be claimed",IFRA 51st overview workbook via data/ifra/limits.csv
+Evernyl,0,4707-47-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Exaltenone,0,14595-54-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Exaltolide Total,0,106-02-5,restricted,IFRA_STD_026,2.4,4.6,direct,IFRA_STD_026 Cyclopentadecanolide cat-4 2.4% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Exaltone,0,502-72-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Farnesene Alpha,0,502-61-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Farnesol,0,4602-84-0,restricted,IFRA_STD_036,1.2,2.3,direct,IFRA_STD_036 Farnesol cat-4 1.2% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Fenchol,0,1632-73-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Fenchone Alpha,0,1195-79-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+"Fennel EO (sweet, seed)",1,,restricted,IFRA_STD_099,0.603448,,contribution,"0.014% IFRA_STD_099 / 2.32% Estragole in Fennel oil, sweet",IFRA 51st overview workbook via data/ifra/limits.csv
+Filbertone,0,81925-81-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Firascone,0,815580-59-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Firsantol®,0,104864-90-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Fleuramone™,0,137-03-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Floralate,0,67634-26-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Floralozone,0,93963-78-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Floramat,0,67801-64-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Florex®,0,69486-14-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Florhydral,0,125109-85-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Florol,0,63500-71-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Floropal,0,5182-36-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Fraistone,0,6290-17-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Frankincense EO (Boswellia carterii),1,,unrestricted,,,,absent,"no standard, class rule or constituent claims it (natural: identified by name)",IFRA 51st overview workbook via data/ifra/limits.csv
+Freskomenthe,0,14765-30-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Fructalate,0,72903-27-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Fructone,0,6413-10-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Fruitate,0,80657-64-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Furanodiene,0,19912-61-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+"Furanoeudesma-1,3-diene",0,115526-32-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Furfural,0,98-01-1,restricted,IFRA_STD_098,0.001,0.001,direct,IFRA_STD_098 Furfural cat-4 0.001% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Furfuryl Acetate,0,623-17-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Furfuryl Mercaptan,0,98-02-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Galaxolide,0,1222-05-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Gamma Decalactone,0,706-14-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Gamma Dodecalactone,0,2305-05-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Gamma Heptalactone,0,105-21-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Gamma Hexalactone,0,695-06-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Gamma Nonalactone,0,104-61-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Gamma Octalactone,0,104-50-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Gamma Undecalactone,0,104-67-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Geosmin,0,16423-19-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Geraldehyde,0,762-26-5,restricted,IFRA_STD_204,3,2.5,direct,"IFRA_STD_204 5,9-Dimethyl-4,8-decadienal cat-4 3% (amendment 49)",IFRA 51st overview workbook via data/ifra/limits.csv
+Geraniol 95,0,106-24-1,restricted,IFRA_STD_037,4.7,2.8,direct,IFRA_STD_037 Geraniol cat-4 4.7% (amendment 51),IFRA 51st overview workbook via data/ifra/limits.csv
+"Geranium EO (Bourbon, Madagascar)",1,,restricted,IFRA_STD_037,26.5537,,contribution,4.7% IFRA_STD_037 / 17.7% Geraniol in Geranium oil,IFRA 51st overview workbook via data/ifra/limits.csv
+Geranyl Acetate,0,141-12-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Geranyl Acetone,0,3796-70-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Geranyl Butyrate,0,106-29-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Geranyl Formate,0,105-86-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Geranyl Propionate,0,105-90-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Germacrene B,0,15423-57-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Germacrene D,0,37839-63-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Germacrone,0,32663-51-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Givescone®,0,57934-97-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Globanone®,0,3100-36-5,restricted,IFRA_STD_250,4.3,8.4,direct,IFRA_STD_250 Cyclohexadecenone cat-4 4.3% (amendment 51),IFRA 51st overview workbook via data/ifra/limits.csv
+Grape Butyrate,0,5405-41-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Grapefruit EO (cold-pressed),1,,restricted,IFRA_STD_039,25.6667,,contribution,0.0077% IFRA_STD_039 / 0.03% 2-Hexenal in Grapefruit oil,IFRA 51st overview workbook via data/ifra/limits.csv
+Grenoble Pyrazine,0,5910-89-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Guaiacol,0,90-05-1,restricted,,1,,house,"house cap: house cap, not an IFRA figure: no IFRA standard lists guaiacol. The perfumer's own ceiling",IFRA 51st overview workbook via data/ifra/limits.csv
+Guaiacwood EO,1,,unrestricted,,,,absent,"no standard, class rule or constituent claims it (natural: identified by name)",IFRA 51st overview workbook via data/ifra/limits.csv
+Guaiene Alpha,0,,unknown,,,,,"no CAS and no name match, so nothing can be claimed",IFRA 51st overview workbook via data/ifra/limits.csv
+Guaiene Beta,0,,unknown,,,,,"no CAS and no name match, so nothing can be claimed",IFRA 51st overview workbook via data/ifra/limits.csv
+Guaiol,0,13822-35-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Guaiyl Acetate,0,134-28-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Habanolide,0,111879-80-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Hedione,0,24851-98-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Helional,0,1205-17-0,restricted,IFRA_STD_059,2.6,0.15,direct,"IFRA_STD_059 alpha-Methyl-1,3-benzodioxole-5-propionaldehyde (MMDHCA) cat-4 2.6% (amendment 49)",IFRA 51st overview workbook via data/ifra/limits.csv
+Heliotropin,0,120-57-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Helvetolide,0,141773-73-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Heptan-2-one,0,110-43-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Herbac®,0,25304-14-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Herbanate®,0,116126-82-0,restricted,IFRA_STD_219,0.94,1.8,direct,IFRA_STD_219 Ethyl isopropyl bicycloheptene-2-carboxylate cat-4 0.94% (amendment 51),IFRA 51st overview workbook via data/ifra/limits.csv
+Herbavert,0,67583-77-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Herboxane,0,54546-26-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Hexenol-3-CIS,0,928-96-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Hexenyl-3-CIS Acetate,0,3681-71-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Hexyl 2-Methyl Butyrate,0,10032-15-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Hexyl Acetate,0,142-92-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Hexyl Benzoate,0,6789-88-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Hexyl Butyrate,0,2639-63-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Hexyl Caprylate,0,1117-55-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Hexyl Cinnamic Aldehyde,0,,restricted,IFRA_STD_040,9.9,19,direct,IFRA_STD_040 alpha-Hexyl cinnamic aldehyde cat-4 9.9% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Hexyl Isobutyrate,0,2349-07-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Hexyl Isovalerate,0,10032-13-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Hexyl Salicylate,0,6259-76-3,restricted,IFRA_STD_042,6.5,1.2,direct,IFRA_STD_042 Hexyl salicylate cat-4 6.5% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Hexyl Tiglate,0,16930-96-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Hindinol®,0,28219-60-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Honeyflor,0,2396-78-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Hyacinth Body,0,2556-10-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Hydratropic Aldehyde,0,38235-74-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Hydrocinnamic Acid,0,501-52-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Hydroxyambran,0,118562-73-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Hydroxycitronellal,0,107-75-5,restricted,IFRA_STD_043,2.1,4.1,direct,IFRA_STD_043 Hydroxycitronellal cat-4 2.1% (amendment 51),IFRA 51st overview workbook via data/ifra/limits.csv
+Indocolore,0,2206-94-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Indolarome,0,18096-62-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Indolene 50,0,120-72-9,restricted,IFRA_STD_043,3.30709,,contribution,2.1% IFRA_STD_043 / 63.5% Hydroxycitronellal in Hydroxycitronellal-Indole (or In,IFRA 51st overview workbook via data/ifra/limits.csv
+Ionone Alpha,0,127-41-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Ionone Beta,0,79-77-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Iraldeine® Beta,0,63429-28-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Iraldeine® Delta,0,79-89-0,restricted,IFRA_STD_063,30,59,direct,"IFRA_STD_063 Methyl ionone, mixed isomers cat-4 30% (amendment 49)",IFRA 51st overview workbook via data/ifra/limits.csv
+Iralia®,0,1335-46-2,restricted,IFRA_STD_063,30,59,direct,"IFRA_STD_063 Methyl ionone, mixed isomers cat-4 30% (amendment 49)",IFRA 51st overview workbook via data/ifra/limits.csv
+Iris Nitrile,0,29127-83-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Irone Alpha,0,79-69-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Irotyl,0,2983-37-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Iso E Super,0,54464-57-2,restricted,IFRA_STD_068,20,2.4,direct,"IFRA_STD_068 1-(1,2,3,4,5,6,7,8 Octahydro-2,3,8,8-tetramethyl-2-naphthalenyl) ethanone (OTNE) cat-4 20% (amendment 49)",IFRA 51st overview workbook via data/ifra/limits.csv
+Isoamyl Acetate,0,123-92-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Isoamyl Benzoate,0,94-46-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Isoamyl Isovalerate,0,659-70-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Isoamyl Salicylate,0,87-20-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Isobornyl Acetate,0,92618-89-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Isobutavan,0,20665-85-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Isobutyl Benzoate,0,120-50-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Isobutyl Isovalerate,0,589-59-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Isobutyl Phenyl Acetate,0,102-13-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Isobutyl Salicylate,0,87-19-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Isocyclocitral,0,1335-66-6,restricted,IFRA_STD_046,3,5.9,direct,IFRA_STD_046 Isocyclocitral cat-4 3% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Isoeugenol,0,97-54-1,restricted,IFRA_STD_048,0.11,0.21,direct,IFRA_STD_048 Isoeugenol cat-4 0.11% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Isoeugenyl Acetate,0,5912-87-8,restricted,IFRA_STD_255,0.99,0.2,direct,IFRA_STD_255 Isoeugenyl acetate cat-4 0.99% (amendment 51),IFRA 51st overview workbook via data/ifra/limits.csv
+Isojasmone B-11,0,95-41-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Isomenthone,0,10458-14-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Isomethyl Ionone Alpha,0,127-51-5,restricted,IFRA_STD_063,30,59,direct,"IFRA_STD_063 Methyl ionone, mixed isomers cat-4 30% (amendment 49)",IFRA 51st overview workbook via data/ifra/limits.csv
+Isomuscone,0,2550-52-9,restricted,IFRA_STD_249,4.3,8.4,direct,IFRA_STD_249 Cyclohexadecanone cat-4 4.3% (amendment 51),IFRA 51st overview workbook via data/ifra/limits.csv
+Isophytol,0,505-32-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Isopropyl 2-Methylbutyrate,0,66576-71-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Isopropyl Myristate,0,110-27-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Isopropyl Quinoline,0,135-79-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Isovalencenol,0,,unknown,,,,,"no CAS and no name match, so nothing can be claimed",IFRA 51st overview workbook via data/ifra/limits.csv
+Ivy Dioxolane,0,68901-32-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Jasmal®,0,18871-14-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Jasmine Absolute (grandiflorum),1,,restricted,IFRA_STD_049,0.6,1.2,direct,IFRA_STD_049 Jasmine absolute (grandiflorum) cat-4 0.6% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Jasminlactone,0,25524-95-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Jasmolactone® Delta,0,32764-98-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Juniper Berry EO,1,,unrestricted,,,,absent,"no standard, class rule or constituent claims it (natural: identified by name)",IFRA 51st overview workbook via data/ifra/limits.csv
+Karanal,0,117933-89-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Kephalis,0,36306-87-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Ketoisophorone,0,1125-21-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Khusimol,0,,unknown,,,,,"no CAS and no name match, so nothing can be claimed",IFRA 51st overview workbook via data/ifra/limits.csv
+Khusimone,0,,unknown,,,,,"no CAS and no name match, so nothing can be claimed",IFRA 51st overview workbook via data/ifra/limits.csv
+Koavone®,0,81786-73-4,restricted,IFRA_STD_232,1.9,0.39,direct,"IFRA_STD_232 3,4,5,6,6-Pentamethylhept-3-en-2-one cat-4 1.9% (amendment 51)",IFRA 51st overview workbook via data/ifra/limits.csv
+Kohinool®,0,87118-95-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+l-Carvone,0,6485-40-1,restricted,IFRA_STD_016,0.59,0.18,direct,IFRA_STD_016 Carvone cat-4 0.59% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Labdamate,0,2021-28-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Labdane,0,,unknown,,,,,"no CAS and no name match, so nothing can be claimed",IFRA 51st overview workbook via data/ifra/limits.csv
+Labdanum Absolute,1,,restricted,IFRA_STD_007,41.6667,,contribution,0.25% IFRA_STD_007 / 0.6% Benzaldehyde in Cistus absolute,IFRA 51st overview workbook via data/ifra/limits.csv
+Labienoxime,0,81783-01-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Lactojasmone,0,7011-83-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Laevo Menthol,0,1490-04-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Lavandin EO (Grosso),1,,unrestricted,,,,absent,"no standard, class rule or constituent claims it (natural: identified by name)",IFRA 51st overview workbook via data/ifra/limits.csv
+Lavandulyl Acetate,0,25905-14-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+"Lavender EO (French, L. angustifolia)",1,,restricted,IFRA_STD_039,77,,contribution,0.0077% IFRA_STD_039 / 0.01% 2-Hexenal in Lavender oil,IFRA 51st overview workbook via data/ifra/limits.csv
+Lavender EO (South African),1,,restricted,IFRA_STD_039,77,,contribution,0.0077% IFRA_STD_039 / 0.01% 2-Hexenal in Lavender oil,IFRA 51st overview workbook via data/ifra/limits.csv
+"Lavender EO (Spanish, var. pyrenaica)",1,,restricted,IFRA_STD_039,77,,contribution,0.0077% IFRA_STD_039 / 0.01% 2-Hexenal in Lavender oil,IFRA 51st overview workbook via data/ifra/limits.csv
+Ledol,0,,unknown,,,,,"no CAS and no name match, so nothing can be claimed",IFRA 51st overview workbook via data/ifra/limits.csv
+"Lemon EO (Sicilian, cold-pressed)",1,,restricted,IFRA_STD_021,17.1429,,contribution,"0.6% IFRA_STD_021 / 3.5% Citral in Lemon oil, expressed",IFRA 51st overview workbook via data/ifra/limits.csv
+Lemongrass EO,1,,restricted,IFRA_STD_021,1.44858,,contribution,"0.6% IFRA_STD_021 / 41.42% Geranial in Lemongrass oil, East Indian",IFRA 51st overview workbook via data/ifra/limits.csv
+Lemonile,0,61792-11-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Levistamel,0,675-09-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Levulinic Acid,0,123-76-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Liffarome,0,67633-96-9,restricted,IFRA_STD_246,0.56,1.1,direct,IFRA_STD_246 cis-3-Hexenyl methyl carbonate cat-4 0.56% (amendment 51),IFRA 51st overview workbook via data/ifra/limits.csv
+Lilial,0,80-54-6,prohibited,IFRA_STD_015,0,0.1,direct,IFRA_STD_015 p-tert-Butyl-α-methylhydrocinnamic aldehyde (p-BMHCA) is a PROHIBITION,IFRA 51st overview workbook via data/ifra/limits.csv
+Lilyflore®,0,285977-85-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+"Lime EO (Persian, expressed)",1,,restricted,IFRA_STD_021,23.0769,,contribution,"0.6% IFRA_STD_021 / 2.6% Geranial in Lime oil, expressed",IFRA 51st overview workbook via data/ifra/limits.csv
+Linalool,0,78-70-6,specification_only,IFRA_STD_187,,,direct,IFRA_STD_187 Linalool sets no use limit,IFRA 51st overview workbook via data/ifra/limits.csv
+Linalyl Acetate,0,115-95-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Linalyl Cinnamate,0,78-37-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Linalyl Formate,0,115-99-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Linalyl Propionate,0,144-39-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Lindestrene,0,2221-88-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+"Litsea Cubeba EO (Chinese, fruit)",1,,restricted,IFRA_STD_021,0.869565,,contribution,0.6% IFRA_STD_021 / 69% Citral in Litsea cubeba oil,IFRA 51st overview workbook via data/ifra/limits.csv
+Lyral,0,31906-04-4,prohibited,,0,,house,"house cap: EU Cosmetics Regulation Annex II prohibits HICC (Reg. (EU) 2022/1181), so 0 is the right c",IFRA 51st overview workbook via data/ifra/limits.csv
+Madranol,0,60241-53-4,restricted,IFRA_STD_251,1.3,2.6,direct,"IFRA_STD_251 1-(2,2,6-Trimethylcyclohexyl)-3-pentanol cat-4 1.3% (amendment 51)",IFRA 51st overview workbook via data/ifra/limits.csv
+Magnolan,0,27606-09-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Mahagonate,0,67392-15-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Majantol®,0,103694-68-4,restricted,IFRA_STD_032,1.7,0.14,direct,"IFRA_STD_032 2,2-Dimethyl-3-(3-tolyl)propan-1-ol cat-4 1.7% (amendment 49)",IFRA 51st overview workbook via data/ifra/limits.csv
+Maltol,0,118-71-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Maltol Isobutyrate,0,65416-14-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Mandarin Aldehyde Total,0,4826-62-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+"Mandarin EO (Italian, cold-pressed)",1,,restricted,IFRA_STD_094,25,,contribution,0.1% IFRA_STD_094 / 0.4% Methyl N-methylanthranilate in Mandarin oil,IFRA 51st overview workbook via data/ifra/limits.csv
+Manzanate,0,39255-32-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Maritima,0,38462-23-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Matsutake Alcohol,0,24587-53-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Mayol,0,5502-75-0,restricted,IFRA_STD_208,4.7,0.39,direct,"IFRA_STD_208 cis,trans-4-(Isopropyl)cyclohexanemethanol cat-4 4.7% (amendment 49)",IFRA 51st overview workbook via data/ifra/limits.csv
+Mefranal,0,55066-49-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Melafleur,0,68991-97-9,restricted,IFRA_STD_259,2.1,4.2,direct,IFRA_STD_259 Octahydro-dimethylnaphthalene-2-carbaldehyde (mixed isomers) cat-4 2.1% (amendment 51),IFRA 51st overview workbook via data/ifra/limits.csv
+Melonal,0,106-72-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Melozone®,0,30772-79-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Menthofuran,0,494-90-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Menthone,0,89-80-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Menthyl Acetate,0,16409-45-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Mesifuran,0,4077-47-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Metal Oxazole,0,38303-23-0,restricted,,2,,house,"house cap: house cap, NOT an IFRA figure: no IFRA standard lists this substance and cat-4 permits 100",IFRA 51st overview workbook via data/ifra/limits.csv
+Methyl Acetate,0,79-20-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Methyl Anthranilate,0,134-20-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Methyl Benzoate,0,93-58-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Methyl Beta-Orcinol Carboxylate,0,,unknown,,,,,"no CAS and no name match, so nothing can be claimed",IFRA 51st overview workbook via data/ifra/limits.csv
+Methyl Butyrate,0,623-42-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Methyl Chavicol,0,140-67-0,restricted,IFRA_STD_099,0.014,0.0041,direct,IFRA_STD_099 Estragole cat-4 0.014% (amendment 51),IFRA 51st overview workbook via data/ifra/limits.csv
+Methyl Cinnamate,0,103-26-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Methyl Corylone,0,21834-98-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Methyl Cyclogeranate,0,28043-10-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Methyl Diantilis,0,5595-79-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Methyl Heptenone,0,110-93-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Methyl Heptine Carbonate,0,111-12-6,restricted,IFRA_STD_062,0.047,0.092,direct,IFRA_STD_062 Methyl heptine carbonate cat-4 0.047% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Methyl Ionone Gamma Coeur,0,93175-78-1,restricted,IFRA_STD_063,30,59,class,class rule '\\bmethyl ionone\\b' -> IFRA_STD_063 cat-4 30%,IFRA 51st overview workbook via data/ifra/limits.csv
+Methyl Isobutyrate,0,547-63-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Methyl Isoeugenol,0,93-16-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Methyl Jasmonate,0,39924-52-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Methyl Laitone,0,94201-19-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Methyl Linoleate,0,112-63-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Methyl Myristate,0,124-10-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Methyl N-Methylanthranilate,0,85-91-6,restricted,IFRA_STD_094,0.1,0.5,direct,IFRA_STD_094 Methyl N-methylanthranilate cat-4 0.1% (amendment 51),IFRA 51st overview workbook via data/ifra/limits.csv
+Methyl Nicotinate,0,93-60-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Methyl Nonyl Ketone,0,112-12-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Methyl Octine Carbonate,0,111-80-8,restricted,IFRA_STD_064,0.01,0.02,direct,IFRA_STD_064 Methyl octine carbonate cat-4 0.01% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Methyl Orsellinate,0,3899-19-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Methyl Palmitate,0,112-39-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Methyl Pamplemousse,0,67674-46-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Methyl Propionate,0,554-12-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Methyl Salicylate,0,119-36-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Methyl Tuberate,0,33673-62-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Microcare PEHG,0,122-99-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Milk Lactone,0,334-49-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Mimosal™,0,1226911-69-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Mintonat,0,67859-96-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+MMB,0,56539-66-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Muguet Aldehyde,0,7492-67-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Muguissimo™,0,1449104-34-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Muscenone®,0,82356-51-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Muscone,0,541-91-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Musk Ambrette,0,83-66-9,prohibited,IFRA_STD_168,0,,direct,IFRA_STD_168 Musk ambrette is a PROHIBITION,IFRA 51st overview workbook via data/ifra/limits.csv
+Musk Ketone,0,81-14-1,specification_only,IFRA_STD_189,,,direct,IFRA_STD_189 Musk ketone sets no use limit,IFRA 51st overview workbook via data/ifra/limits.csv
+Musk R1,0,3391-83-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Musk Xylene,0,81-15-2,prohibited,IFRA_STD_170,0,,direct,IFRA_STD_170 Musk xylene is a PROHIBITION,IFRA 51st overview workbook via data/ifra/limits.csv
+Myrac Aldehyde,0,37677-14-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Myrcene,0,123-35-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Myristic Acid,0,544-63-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Myroxide,0,69103-20-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Myrrh EO,1,,unrestricted,,,,absent,"no standard, class rule or constituent claims it (natural: identified by name)",IFRA 51st overview workbook via data/ifra/limits.csv
+Mysore Acetate,0,30772-69-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Nectarate,0,113889-23-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Nectaryl,0,95962-14-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Neo Patchouli,0,58096-46-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Neobergamate Forte,0,1118-39-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Neofolione,0,111-79-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Nerol,0,106-25-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Neroli EO (Egyptian),1,,restricted,IFRA_STD_036,55.0459,,contribution,"1.2% IFRA_STD_036 / 2.18% trans-trans-Farnesol in Orange flower oil, bitter (nerol",IFRA 51st overview workbook via data/ifra/limits.csv
+Nerolidol,0,1119-38-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Nerolin Bromelia,0,93-18-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Nerolin Fragarol,0,2173-57-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Nerolin Yara Yara,0,93-04-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Neryl Acetate,0,16409-44-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Nootkatone,0,91416-23-8,specification_only,IFRA_STD_185,,,direct,IFRA_STD_185 Nootkatone sets no use limit,IFRA 51st overview workbook via data/ifra/limits.csv
+Nopyl Acetate,0,6165-23-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Norlimbanol®,0,70788-30-6,restricted,IFRA_STD_221,1.3,2.6,direct,"IFRA_STD_221 1-(2,2,6-Trimethylcyclohexyl)-3-hexanol cat-4 1.3% (amendment 51)",IFRA 51st overview workbook via data/ifra/limits.csv
+Norpatchoulenol,0,,unknown,,,,,"no CAS and no name match, so nothing can be claimed",IFRA 51st overview workbook via data/ifra/limits.csv
+Nutmeg EO (East Indian),1,,restricted,IFRA_STD_100,0.916667,,contribution,0.011% IFRA_STD_100 / 1.2% Methyl eugenol in Nutmeg oil,IFRA 51st overview workbook via data/ifra/limits.csv
+Nutty Furan,0,1193-79-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Nutty Pyrazine,0,23747-48-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Nympheal,0,1637294-12-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Oakmoss Absolute,1,,restricted,IFRA_STD_067,0.1,0.1,direct,IFRA_STD_067 Oakmoss extracts cat-4 0.1% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Oceanol,0,33662-58-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Ocimene,0,13877-91-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Octinoxate,0,83834-59-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Okoumal,0,131812-67-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Onestolide®,0,109-29-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Operanide,0,823178-41-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+"Orange EO (sweet, Florida)",1,,unrestricted,,,,absent,"no standard, class rule or constituent claims it (natural: identified by name)",IFRA 51st overview workbook via data/ifra/limits.csv
+Orange Flower Ether,0,14576-08-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Oranger Crystals,0,93-08-3,restricted,IFRA_STD_095,0.2,,direct,IFRA_STD_095 Methyl beta-naphthyl ketone cat-4 0.2% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Orcinol,0,504-15-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Orcinyl 3,0,3209-13-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Orivone®,0,16587-71-6,restricted,IFRA_STD_236,0.15,0.29,direct,IFRA_STD_236 Isopentylcyclohexanone cat-4 0.15% (amendment 51),IFRA 51st overview workbook via data/ifra/limits.csv
+Osyrol,0,41890-92-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Oudhbois,0,179911-08-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Oxane,0,67715-80-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Oxynex® ST,0,444811-29-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Oxyoctaline Formate,0,65405-72-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+p-Cresyl Methyl Ether,0,104-93-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+p-Cymene,0,99-87-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Palissandin,0,2986-54-1,restricted,IFRA_STD_265,0.43,0.026,direct,IFRA_STD_265 Methoxycyclododecane cat-4 0.43% (amendment 51),IFRA 51st overview workbook via data/ifra/limits.csv
+Palmitic Acid,0,57-10-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Pamplefleur®,0,92585-24-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Pandanol,0,3558-60-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Para Cresol,0,106-44-5,restricted,IFRA_STD_260,0.005,0.005,direct,IFRA_STD_260 p-Cresol cat-4 0.005% (amendment 51),IFRA 51st overview workbook via data/ifra/limits.csv
+Para Cresyl Acetate,0,140-39-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Para Cresyl Caprylate,0,59558-23-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Para Methyl Acetophenone,0,122-00-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Para Tolyl Aldehyde,0,104-87-0,restricted,IFRA_STD_081,0.47,0.92,direct,"IFRA_STD_081 o,m,p-Tolualdehydes and their mixtures cat-4 0.47% (amendment 49)",IFRA 51st overview workbook via data/ifra/limits.csv
+Paradisamide,0,406488-30-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Passifloran,0,136954-25-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Pastry Carbaldehyde,0,620-02-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Patchone,0,98-52-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Patchoulene Beta,0,,unknown,,,,,"no CAS and no name match, so nothing can be claimed",IFRA 51st overview workbook via data/ifra/limits.csv
+Patchouli EO (Javanese),1,,unrestricted,,,,absent,"no standard, class rule or constituent claims it (natural: identified by name)",IFRA 51st overview workbook via data/ifra/limits.csv
+Patchoulol,0,,unknown,,,,,"no CAS and no name match, so nothing can be claimed",IFRA 51st overview workbook via data/ifra/limits.csv
+Pear Ester,0,3025-30-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Peomosa,0,19819-98-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Peonile,0,10461-98-0,restricted,IFRA_STD_241,0.52,1,direct,IFRA_STD_241 alpha-Cyclohexylidene benzeneacetonitrile cat-4 0.52% (amendment 51),IFRA 51st overview workbook via data/ifra/limits.csv
+Peppermint EO (Michigan),1,,unrestricted,,,,absent,"no standard, class rule or constituent claims it (natural: identified by name)",IFRA 51st overview workbook via data/ifra/limits.csv
+Peranat,0,90397-38-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Petitgrain EO (bigarade),1,,restricted,IFRA_STD_039,8.55556,,contribution,0.0077% IFRA_STD_039 / 0.09% 2-Hexenal in Petitgrain bigarade oil,IFRA 51st overview workbook via data/ifra/limits.csv
+Pharaone,0,313973-37-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Phenethyl Acetate,0,103-45-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Phenethyl Alcohol,0,60-12-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Phenoxanol®,0,55066-48-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Phenoxyethyl Isobutyrate,0,103-60-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Phenyl Acetaldehyde,0,122-78-1,restricted,IFRA_STD_073,0.25,0.49,direct,IFRA_STD_073 Phenylacetaldehyde cat-4 0.25% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Phenyl Acetic Acid,0,103-82-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Phenyl Ethyl Cinnamate,0,63238-64-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Phenyl Ethyl Phenyl Acetate,0,102-20-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Phenyl Ethyl Pivalate,0,67662-96-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Phenyl Ethyl Propionate,0,122-70-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Phenyl Ethyl Tiglate,0,55719-85-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Phenyl Propyl Alcohol,0,122-97-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Phytol,0,150-86-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Piconia,0,23787-90-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Pinoacetaldehyde,0,33885-51-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Piperitone,0,89-81-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Piperonyl Acetate,0,326-61-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Pistachio Thiazole,0,18640-74-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Plicatone,0,41724-19-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Pogostol,0,,unknown,,,,,"no CAS and no name match, so nothing can be claimed",IFRA 51st overview workbook via data/ifra/limits.csv
+Poirenate,0,2511-00-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Polysantol®,0,107898-54-4,restricted,IFRA_STD_211,1.1,1.7,direct,"IFRA_STD_211 3,3-Dimethyl-5-(2,2,3-trimethyl-3-cyclopenten-1-yl)-4-penten-2-ol cat-4 1.1% (amendment 49)",IFRA 51st overview workbook via data/ifra/limits.csv
+Praslin Pyrazine,0,123-32-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Precyclemone B,0,52474-60-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Prenyl Acetate,0,1191-16-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Pyroprunat,0,68039-73-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Raspberry Glycidate,0,52788-71-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Raspberry Ketone,0,5471-51-2,restricted,IFRA_STD_217,1,1,direct,IFRA_STD_217 4-(4-Hydroxyphenyl)butan-2-one cat-4 1% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Rhodinol Ex Geranium Bourbon,0,6812-78-8,restricted,IFRA_STD_022,12,24,direct,IFRA_STD_022 Citronellol cat-4 12% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Rhodinyl Acetate,0,141-11-7,restricted,IFRA_STD_248,2.7,5.4,direct,IFRA_STD_248 Citronellyl acetate cat-4 2.7% (amendment 51),IFRA 51st overview workbook via data/ifra/limits.csv
+Rhodinyl Formate,0,141-09-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Rhubofix,0,41816-03-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Rhuboflor,0,93939-86-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Rhumacetal,0,1670-47-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Romandolide®,0,236391-76-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Romascone,0,81752-87-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Rose Crystals,0,90-17-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Rose Oxide,0,16409-43-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Rose Oxide Laevo,0,3033-23-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Rosemary EO (cineole type),1,,unrestricted,,,,absent,"no standard, class rule or constituent claims it (natural: identified by name)",IFRA 51st overview workbook via data/ifra/limits.csv
+Rosethyl,0,64988-06-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Rosewood EO (Aniba rosaeodora),1,,unrestricted,,,,absent,"no standard, class rule or constituent claims it (natural: identified by name)",IFRA 51st overview workbook via data/ifra/limits.csv
+Rosyrane Super,0,60335-71-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Sabinene,0,3387-41-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Safraleine®,0,54440-17-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Safranal,0,116-26-7,restricted,IFRA_STD_082,0.012,0.024,direct,"IFRA_STD_082 2,6,6-Trimethylcyclohex-1,3-dienyl methanal cat-4 0.012% (amendment 49)",IFRA 51st overview workbook via data/ifra/limits.csv
+Sakura Salicylate,0,79915-74-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Salicynile®,0,130786-09-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Sandalore,0,65113-99-7,restricted,IFRA_STD_212,1.2,2.3,direct,"IFRA_STD_212 5-(2,2,3-Trimethyl-3-cyclopentenyl)-3-methylpentan-2-ol cat-4 1.2% (amendment 49)",IFRA 51st overview workbook via data/ifra/limits.csv
+Sandalwood EO (East Indian),1,,unrestricted,,,,absent,"no standard, class rule or constituent claims it (natural: identified by name)",IFRA 51st overview workbook via data/ifra/limits.csv
+Scentenal,0,86803-90-9,restricted,IFRA_STD_056,1.1,2.1,direct,IFRA_STD_056 Methoxy dicyclopentadiene carboxaldehyde cat-4 1.1% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Sclareol,0,318237-79-5,specification_only,IFRA_STD_183,,,direct,IFRA_STD_183 Sclareol sets no use limit,IFRA 51st overview workbook via data/ifra/limits.csv
+Sclareolate®,0,319002-92-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Seychellene,0,,unknown,,,,,"no CAS and no name match, so nothing can be claimed",IFRA 51st overview workbook via data/ifra/limits.csv
+Silvial®,0,6658-48-6,restricted,IFRA_STD_045,0.99,1.9,direct,IFRA_STD_045 p-Isobutyl-alpha-methyl hydrocinnamaldehyde cat-4 0.99% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Sinensal Natural ex Orange,0,60066-88-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Skatole,0,83-34-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Sotolone,0,28664-35-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Spearmint EO (Mentha spicata),1,,restricted,IFRA_STD_016,0.892992,,contribution,0.59% IFRA_STD_016 / 66.07% l-Carvone in Spearmint oil,IFRA 51st overview workbook via data/ifra/limits.csv
+Spike Lavender EO (L. latifolia),1,,restricted,IFRA_STD_039,77,,contribution,0.0077% IFRA_STD_039 / 0.01% 2-Hexenal in Spike lavender oil,IFRA 51st overview workbook via data/ifra/limits.csv
+Spirambrene,0,121251-68-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Spirogalbanone,0,224031-70-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Squalane,0,111-01-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Starfleur™ 40,0,1254940-85-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Stemone,0,22457-23-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Strawberiff,0,3142-72-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Strawberry Furanone,0,3658-77-3,restricted,IFRA_STD_201,0.25,0.49,direct,"IFRA_STD_201 4-Hydroxy-2,5-dimethyl-3(2H)-furanone cat-4 0.25% (amendment 49)",IFRA 51st overview workbook via data/ifra/limits.csv
+Strawberry Glycidate,0,77-83-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Styrallyl Acetate,0,93-92-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Styrax Resinoid,1,,restricted,IFRA_STD_017,85.7143,,contribution,1.2% IFRA_STD_017 / 1.4% Cinnamic alcohol in Styrax resinoid,IFRA 51st overview workbook via data/ifra/limits.csv
+Styrene,0,100-42-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Sublimolide™,0,93635-21-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Sulfurol (Milky),0,137-00-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Symroxane,0,676125-00-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Syringa Aldehyde 50% PEA,0,104-09-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Syringol,0,91-10-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Syvertal,0,4359-47-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Tabanon,0,13215-88-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Tamisone,0,51519-65-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Tangerine EO,1,,unrestricted,,,,absent,"no standard, class rule or constituent claims it (natural: identified by name)",IFRA 51st overview workbook via data/ifra/limits.csv
+Tarragon EO (estragole type),1,,restricted,IFRA_STD_099,0.0175,,contribution,0.014% IFRA_STD_099 / 80% Estragole in Tarragon oil,IFRA 51st overview workbook via data/ifra/limits.csv
+TCD Alcohol DM,0,26160-83-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Terpinen-4-ol,0,562-74-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Terpinene Gamma,0,99-85-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Terpineol Alpha,0,98-55-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+"Terpinolene, Rectified",0,586-62-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Terpinyl Acetate,0,80-26-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Terrasol,0,18368-91-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Tetrahydro Linalool,0,78-69-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Tetrahydrogeraniol,0,106-21-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Tetramethyl Pyrazine,0,1124-11-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Theaspirane,0,36431-72-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Theobromal,0,134-96-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Thiocineole,0,68391-28-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Thujopsene,0,,unknown,,,,,"no CAS and no name match, so nothing can be claimed",IFRA 51st overview workbook via data/ifra/limits.csv
+Thyme EO (thymol type),1,,restricted,IFRA_STD_100,36.6667,,contribution,"0.011% IFRA_STD_100 / 0.03% Methyl eugenol in Thyme oil, white",IFRA 51st overview workbook via data/ifra/limits.csv
+Thymol,0,89-83-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Tobacarol,0,1209-61-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Tomato Thiazole,0,18640-74-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Tonalide,0,21145-77-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Toscanol,0,16510-27-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+"Trans-2,Cis-6-Nonadienal",0,557-48-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+"Trans-2,Cis-6-Nonadienol",0,28069-72-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Trans-2-Decenal,0,3913-81-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Trans-2-Hexenol,0,2305-21-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Trans-2-Nonenal,0,2463-53-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Trans-2-Octenal,0,2548-87-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Trans-4-Decenal,0,65405-70-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Traseolide,0,68140-48-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Triethyl Citrate,0,77-93-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Trifernal,0,16251-77-7,restricted,IFRA_STD_074,0.44,0.08,direct,IFRA_STD_074 3-Phenylbutanal cat-4 0.44% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Triplal,0,68039-49-6,restricted,IFRA_STD_030,2.5,4.9,direct,IFRA_STD_030 Dimethylcyclohex-3-ene-1-carbaldehyde (mixed isomers) cat-4 2.5% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Trisamber,0,338735-71-0,restricted,IFRA_STD_237,0.94,1.8,direct,IFRA_STD_237 Woody furan cat-4 0.94% (amendment 51),IFRA 51st overview workbook via data/ifra/limits.csv
+Troenan,0,80480-24-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Tropicalia™,0,10138-32-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Ultravanil,0,2563-07-7,restricted,IFRA_STD_033,0.099,0.052,direct,IFRA_STD_033 2-Ethoxy-4-methylphenol cat-4 0.099% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Undecavertol,0,81782-77-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Valencene,0,4630-07-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Vanillin,0,121-33-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Vanillin Acetate,0,881-68-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Vanitrope,0,94-86-0,restricted,IFRA_STD_190,0.99,0.75,direct,IFRA_STD_190 Propenylguaethol cat-4 0.99% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Velberry™,0,13431-57-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Veloutone,0,65443-14-3,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Velvione,0,37609-25-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Veratraldehyde,0,120-14-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Verbenone,0,5480-12-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Verdol,0,13491-79-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Verdone,0,1728-46-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Verdox HC,0,88-41-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Vernaldehyde,0,66327-54-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Vertenex,0,32210-23-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Vertofix Coeur,0,68039-35-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Vertoliff,0,27939-60-2,restricted,IFRA_STD_030,2.5,4.9,direct,IFRA_STD_030 Dimethylcyclohex-3-ene-1-carbaldehyde (mixed isomers) cat-4 2.5% (amendment 49),IFRA 51st overview workbook via data/ifra/limits.csv
+Vertosine,0,68738-99-8,restricted,IFRA_STD_030,4.91159,,contribution,"2.5% IFRA_STD_030 / 50.9% 2,4-Dimethylcyclohex-3-ene-1 in Triplal-methyl anthranilate (or ",IFRA 51st overview workbook via data/ifra/limits.csv
+Vetikolacetat®,0,68083-58-9,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Vetikone®,0,7403-42-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Vetimoss,0,21112-37-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Vetiselinenol,0,,unknown,,,,,"no CAS and no name match, so nothing can be claimed",IFRA 51st overview workbook via data/ifra/limits.csv
+Vetiver Acetate 53281,0,117-98-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Vetiver EO (Haiti),1,,unrestricted,,,,absent,"no standard, class rule or constituent claims it (natural: identified by name)",IFRA 51st overview workbook via data/ifra/limits.csv
+Vetiverol ex Vetiver Haiti,0,68129-81-7,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Vetivone Alpha,0,,unknown,,,,,"no CAS and no name match, so nothing can be claimed",IFRA 51st overview workbook via data/ifra/limits.csv
+Vetivone Beta,0,,unknown,,,,,"no CAS and no name match, so nothing can be claimed",IFRA 51st overview workbook via data/ifra/limits.csv
+Violettyne MIP,0,166432-52-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Violiff,0,87731-18-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Viridine,0,101-48-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Whiskey Lactone,0,39212-23-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Widdrol,0,,unknown,,,,,"no CAS and no name match, so nothing can be claimed",IFRA 51st overview workbook via data/ifra/limits.csv
+Woodol®,0,1139-08-8,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Ylang Ylang EO (extra),1,,restricted,IFRA_STD_048,11.1111,,contribution,"0.11% IFRA_STD_048 / 0.99% Isoeugenol in Ylang, Ylang oil extra",IFRA 51st overview workbook via data/ifra/limits.csv
+Ylanganate,0,89-71-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Ysamber® K,0,154171-77-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Z11™ 10 MIP,0,57345-19-4,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Zenolide,0,54982-83-1,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Zingerone,0,122-48-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Zizanoic Acid,0,,unknown,,,,,"no CAS and no name match, so nothing can be claimed",IFRA 51st overview workbook via data/ifra/limits.csv

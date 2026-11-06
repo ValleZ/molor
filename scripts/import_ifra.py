@@ -209,35 +209,81 @@ def read_standards(path: Path) -> tuple[list[dict], dict]:
     return standards, {"header_row": header_idx + 1}
 
 
-def read_schiff_bases(path: Path) -> list[dict]:
-    """The Schiff-base sheet: % of the restricted aldehyde in the base.
+def read_contributions(path: Path) -> list[dict]:
+    """ONE table for "this material contains that restricted thing at X%".
 
-    This is the only route to a limit for a material like Aurantiol, which has
-    no standard of its own: cat-4 (hydroxycitronellal) / level = the cap.
+    Two sheets of the annex are the same shape and were kept apart for no
+    reason: a natural complex substance carries restricted constituents, and a
+    Schiff base carries its restricted aldehyde. Both allow the one derivation
+    a material with no standard of its own needs:
+
+        cap = limit(constituent cat-4, %) / level(constituent, %)
+
+    Aurantiol is the worked example: hydroxycitronellal at 2.1% in the standard
+    and 56.4% of the Schiff base gives 3.72%. Lemongrass oil is the same
+    arithmetic with citral.
     """
     if not path.is_file():
         return []
     import openpyxl
 
     wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
-    ws = wb["Schiff bases"]
-    rows = list(ws.iter_rows(values_only=True))
-    wb.close()
-    start = next(i for i, r in enumerate(rows[:8])
-                 if any("Schiff base" in str(c or "") for c in r))
     out = []
-    for r in rows[start + 1:]:
-        if not r or not r[0]:
-            continue
-        state, level, note = parse_cell(r[4])
-        out.append({
-            "aldehyde_name": str(r[0] or "").strip(),
-            "aldehyde_cas": "; ".join(CAS_RE.findall(str(r[1] or ""))),
-            "schiff_base_name": str(r[2] or "").strip(),
-            "schiff_base_cas": "; ".join(CAS_RE.findall(str(r[3] or ""))),
-            "level_pct": "" if level is None else f"{level:g}",
-            "level_raw": str(r[4] or "").strip(),
-        })
+
+    def level_of(cell) -> float | None:
+        _, pct, _ = parse_cell(cell)
+        return pct
+
+    # --- naturals: NCS -> its restricted constituents ----------------------
+    if "Natural contributions" in wb.sheetnames:
+        ws = wb["Natural contributions"]
+        rows = list(ws.iter_rows(values_only=True))
+        start = next((i for i, r in enumerate(rows[:12])
+                      if any("NCS NAME" in str(c or "").upper() for c in r)), 6)
+        for r in rows[start + 1:]:
+            if not r or len(r) < 10 or not r[5] or not r[7]:
+                continue
+            cid = CAS_RE.findall(str(r[7] or ""))
+            if not cid:
+                continue
+            ncs_cas = CAS_RE.findall(str(r[3] or "")) + CAS_RE.findall(str(r[4] or ""))
+            out.append({
+                "kind": "ncs",
+                "parent_name": str(r[5] or "").strip(),
+                "parent_cas": "; ".join(ncs_cas),
+                "parent_extra": str(r[6] or "").strip(),   # botanical name
+                "constituent_name": str(r[8] or "").strip(),
+                "constituent_cas": cid[0],
+                "level_pct": ("" if level_of(r[9]) is None
+                              else f"{level_of(r[9]):g}"),
+                "level_raw": str(r[9] or "").strip(),
+            })
+
+    # --- Schiff bases: base -> its restricted aldehyde ---------------------
+    if "Schiff bases" in wb.sheetnames:
+        ws = wb["Schiff bases"]
+        rows = list(ws.iter_rows(values_only=True))
+        start = next(i for i, r in enumerate(rows[:8])
+                     if any("Schiff base" in str(c or "") for c in r))
+        for r in rows[start + 1:]:
+            if not r or not r[0]:
+                continue
+            ald = CAS_RE.findall(str(r[1] or ""))
+            base = CAS_RE.findall(str(r[3] or ""))
+            if not ald or not base:
+                continue
+            out.append({
+                "kind": "schiff",
+                "parent_name": str(r[2] or "").strip(),
+                "parent_cas": "; ".join(base),
+                "parent_extra": "",
+                "constituent_name": str(r[0] or "").strip(),
+                "constituent_cas": ald[0],
+                "level_pct": ("" if level_of(r[4]) is None
+                              else f"{level_of(r[4]):g}"),
+                "level_raw": str(r[4] or "").strip(),
+            })
+    wb.close()
     return out
 
 
@@ -267,7 +313,7 @@ def main() -> int:
                              f"(XLS)' from {SOURCE_URL}")
 
     standards, meta = read_standards(args.overview)
-    schiff = read_schiff_bases(args.annex)
+    contributions = read_contributions(args.annex)
 
     limit_rows = []
     for s in standards:
@@ -292,10 +338,11 @@ def main() -> int:
         "cas_numbers", "synonyms", "notes_json"])
     write_csv(args.out / "limits.csv", limit_rows,
               ["standard_id", "category", "amendment", "state", "pct", "note"])
-    if schiff:
-        write_csv(args.out / "schiff_bases.csv", schiff,
-                  ["aldehyde_name", "aldehyde_cas", "schiff_base_name",
-                   "schiff_base_cas", "level_pct", "level_raw"])
+    if contributions:
+        write_csv(args.out / "contributions.csv", contributions,
+                  ["kind", "parent_name", "parent_cas", "parent_extra",
+                   "constituent_name", "constituent_cas", "level_pct",
+                   "level_raw"])
 
     # ---- gates -------------------------------------------------------------
     states = Counter(r["state"] for r in limit_rows)
@@ -313,9 +360,13 @@ def main() -> int:
     print(f"[ifra] {len(all_blank)} standards with no category limits "
           f"(prohibition/specification only), {len(any_number)} with numbers, "
           f"{cat4} with a category-4 figure")
-    if schiff:
-        print(f"[ifra] {len(schiff)} Schiff bases, "
-              f"{sum(1 for s in schiff if s['level_pct'])} with an aldehyde level")
+    if contributions:
+        by_kind = Counter(c["kind"] for c in contributions)
+        print(f"[ifra] {len(contributions)} contributions "
+              + ", ".join(f"{k} {v}" for k, v in by_kind.most_common())
+              + ", "
+              + str(sum(1 for c in contributions if c["level_pct"]))
+              + " with a level")
     open_scope = sum(1 for s in standards if s["scope_open"])
     print(f"[ifra] {open_scope}/{len(standards)} standards declare an open scope "
           f"(\"includes but is not limited to\") -- absence from a CAS list is "
@@ -359,7 +410,7 @@ def main() -> int:
             "standards_without_limits": len(all_blank),
             "standards_with_numbers": len(any_number),
             "category4_figures": cat4,
-            "schiff_bases": len(schiff),
+            "contributions": len(contributions),
         },
     }
     args.out.mkdir(parents=True, exist_ok=True)

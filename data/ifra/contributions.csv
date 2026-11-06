@@ -1,0 +1,1048 @@
+kind,parent_name,parent_cas,parent_extra,constituent_name,constituent_cas,level_pct,level_raw
+ncs,Balm oil,8014-71-9; 84082-61-1,Melissa officinalis L.,"(E) 3,7-Dimethyl-3,6-octadienal (iso-Geranial)",72203-98-6,0.85,0.85
+ncs,"Lemongrass oil, East Indian",8007-02-1; 91844-92-7,Cymbopogon flexuosus (Nees ex Steudel) Will. Watson,"(E) 3,7-Dimethyl-3,6-octadienal (iso-Geranial)",72203-98-6,1.3,1.3
+ncs,"Lemongrass oil, West Indian",8007-02-1; 89998-14-1,Cymbopogon citratus (DC) Stapf.,"(E) 3,7-Dimethyl-3,6-octadienal (iso-Geranial)",72203-98-6,1.2,1.2
+ncs,Litsea cubeba oil,68855-99-2; 90063-59-5,Litsea Cubeba(Lour.) Pers.,"(E) 3,7-Dimethyl-3,6-octadienal (iso-Geranial)",72203-98-6,1,1
+ncs,Petitgrain lemon oil,8048-51-9; 84929-31-7,Citrus limon (L.) Burm. f.,"(E) 3,7-Dimethyl-3,6-octadienal (iso-Geranial)",72203-98-6,0.5,0.5
+ncs,Balm oil,8014-71-9; 84082-61-1,Melissa officinalis L.,"(Z) 3,7-Dimethyl-3,6-octadienal (iso-Neral)",72203-97-5,0.4,0.4
+ncs,"Lemongrass oil, East Indian",8007-02-1; 91844-92-7,Cymbopogon flexuosus (Nees ex Steudel) Will. Watson,"(Z) 3,7-Dimethyl-3,6-octadienal (iso-Neral)",72203-97-5,0.78,0.78
+ncs,"Lemongrass oil, West Indian",8007-02-1; 89998-14-1,Cymbopogon citratus (DC) Stapf.,"(Z) 3,7-Dimethyl-3,6-octadienal (iso-Neral)",72203-97-5,1,1
+ncs,Litsea cubeba oil,68855-99-2; 90063-59-5,Litsea Cubeba(Lour.) Pers.,"(Z) 3,7-Dimethyl-3,6-octadienal (iso-Neral)",72203-97-5,0.4,0.4
+ncs,Petitgrain lemon oil,8048-51-9; 84929-31-7,Citrus limon (L.) Burm. f.,"(Z) 3,7-Dimethyl-3,6-octadienal (iso-Neral)",72203-97-5,0.2,0.2
+ncs,"Bay leaf, West Indian, oil",8006-78-8; 91721-75-4; 85085-61-6,Pimenta racemosa (Mill.) J.W. Moore,1-Octen-3-yl acetate,2442-10-6,0.3,0.3
+ncs,"Erospicata oil, Mentha spicata 'Erospicata'",84696-51-5,Mentha spicata Erospicata,1-Octen-3-yl acetate,2442-10-6,0.06,0.06
+ncs,Lavandin abrialis oil,8022-15-9; 93455-96-0,Lavandula x intermedia abrialis,1-Octen-3-yl acetate,2442-10-6,0.2,0.2
+ncs,Lavandin absolute,8022-15-9; 91722-69-9,Lavandula officinalis x Lavandula latifolia,1-Octen-3-yl acetate,2442-10-6,1.09,1.09
+ncs,Lavandin grosso absolute,93455-97-1,Lavandula angustifolia Mill. x Lavandula latifolia Medik.,1-Octen-3-yl acetate,2442-10-6,0.14,0.14
+ncs,Lavandin grosso oil,8022-15-9; 93455-97-1,Lavandula officinalis x Lavandula latifolia,1-Octen-3-yl acetate,2442-10-6,0.3,0.3
+ncs,Lavandin oil,8022-15-9; 91722-69-9,Lavandula officinalis x Lavandula latifolia,1-Octen-3-yl acetate,2442-10-6,0.3,0.3
+ncs,Lavandin super oil,93685-88-2,Lavendula super,1-Octen-3-yl acetate,2442-10-6,0.3,0.3
+ncs,Lavender absolute,8000-28-0; 84776-65-8; 90063-37-9; 97722-12-8,Lavandula angustifolia angustifolia,1-Octen-3-yl acetate,2442-10-6,0.31,0.31
+ncs,Lavender concrete,8000-28-0; 84776-65-8; 90063-37-9,Lavandula angustifolia angustifolia,1-Octen-3-yl acetate,2442-10-6,0.5,0.5
+ncs,Lavender oil,8000-28-0; 84776-65-8; 90063-37-9; 97722-12-8,Lavandula angustifolia angustifolia,1-Octen-3-yl acetate,2442-10-6,1.04,1.04
+ncs,Lavender oil dentata,93165-50-5,Lavandula dentata,1-Octen-3-yl acetate,2442-10-6,0,
+ncs,Mentha citrata oil,68917-15-7; 85085-49-0,Mentha citrata Ehrhart,1-Octen-3-yl acetate,2442-10-6,0.25,0.25
+ncs,Spearmint oil,8008-79-5; 84696-51-5,Mentha spicata L.,1-Octen-3-yl acetate,2442-10-6,0.06,0.06
+ncs,"Spearmint oil, Scotch",91770-24-0,Mentha x gentilis L. syn. Mentha x gracilis Sole,1-Octen-3-yl acetate,2442-10-6,0.06,0.06
+ncs,Anise seed oil,8007-70-3; 84775-42-8,Pimpinella anisum L.,2-Hexenal,505-57-7,0.5,0.5
+ncs,Clary sage absolute,8016-63-5; 84775-83-7,Salvia sclarea L.,2-Hexenal,505-57-7,0.04,0.04
+ncs,Clove leaf oil terpenes,68917-29-3; 84961-50-2,Syzygium aromaticum (L.) Merr. & L.M.Perry,2-Hexenal,505-57-7,0.01,0.01
+ncs,Coriander herb oil,8008-52-4; 84775-50-8,Corindrum sativum L.,2-Hexenal,505-57-7,0.02,0.02
+ncs,Grapefruit oil,8016-20-4; 90045-43-5,Citrus paradisi Macf.,2-Hexenal,505-57-7,0.03,0.03
+ncs,Jasmine sambac absolute,103798-23-6; 91770-14-8,Jasminum sambac (L.) Aiton,2-Hexenal,505-57-7,0.1,0.1
+ncs,Jasmine sambac CO2 extract,103798-23-6; 91770-14-8,Jasminum sambac,2-Hexenal,505-57-7,0.01,0.01
+ncs,Laurel leaf oil,8007-48-5; 8002-41-3; 84603-73-6,Laurus nobilis L,2-Hexenal,505-57-7,0.03,0.03
+ncs,Lavandin abrialis oil,8022-15-9; 93455-96-0,Lavandula x intermedia abrialis,2-Hexenal,505-57-7,0.02,0.02
+ncs,Lavender oil,8000-28-0; 84776-65-8; 90063-37-9; 97722-12-8,Lavandula angustifolia angustifolia,2-Hexenal,505-57-7,0.01,0.01
+ncs,Petitgrain bigarade oil,8014-17-3; 72968-50-4,Citrus aurantium L.,2-Hexenal,505-57-7,0.09,0.09
+ncs,"Pine Scotch, oil",8023-99-2; 84012-35-1,Pinus sylvestris L.,2-Hexenal,505-57-7,0.02,0.02
+ncs,Rose oil,8007-01-0; 90106-38-0,Rosa x damascena Mill.,2-Hexenal,505-57-7,0.02,0.02
+ncs,Spike lavender oil,8016-78-2; 84837-04-7,Lavandula latifolia Medik.,2-Hexenal,505-57-7,0.01,0.01
+ncs,Star anise oil,68952-43-2; 84650-59-9,"Illicium verum Hook, f.",2-Hexenal,505-57-7,0.01,0.01
+ncs,Tarragon oil,8016-88-4; 90131-45-6,Artemisia dracunculus L.,2-Hexenal,505-57-7,0.01,0.01
+ncs,Violet leaf absolute,8024-08-6; 90147-36-7,Viola odorata L.,2-Hexenal,505-57-7,0.02,0.02
+ncs,Wormwood oil,8008-93-3; 84929-19-1,Artemisia absinthium L.,2-Hexenal,505-57-7,0.06,0.06
+ncs,Yarrow oil,8022-07-9; 84082-83-7,Achillea millefolium L.,2-Hexenal,505-57-7,0.02,0.02
+ncs,"Birch tar oil, rectified",8001-88-5; 84012-15-7; 85940-29-0; 91745-85-6,Betula pendula Roth,2-Methyl-2-pentenal,623-36-9,0.05,0.05
+ncs,Lavandin abrialis oil,8022-15-9; 93455-96-0,Lavandula x intermedia abrialis,7-Methoxycoumarin,531-59-9,0.01,0.01
+ncs,Lavandin absolute,8022-15-9; 91722-69-9,Lavandula officinalis x Lavandula latifolia,7-Methoxycoumarin,531-59-9,0.62,0.62
+ncs,Lavandin concrete,8022-15-9; 91722-69-9,Lavandula officinalis x Lavandula latifolia,7-Methoxycoumarin,531-59-9,0.37,0.37
+ncs,Lavandin grosso absolute,93455-97-1,Lavandula angustifolia Mill. x Lavandula latifolia Medik.,7-Methoxycoumarin,531-59-9,2,2
+ncs,Lavandin oil,8022-15-9; 91722-69-9,Lavandula officinalis x Lavandula latifolia,7-Methoxycoumarin,531-59-9,0.01,0.01
+ncs,Lavender absolute,8000-28-0; 84776-65-8; 90063-37-9; 97722-12-8,Lavandula angustifolia angustifolia,7-Methoxycoumarin,531-59-9,3.8,3.8
+ncs,Lavender concrete,8000-28-0; 84776-65-8; 90063-37-9,Lavandula angustifolia angustifolia,7-Methoxycoumarin,531-59-9,8,8
+ncs,"Lemon oil, expressed",8008-56-8; 84929-31-7,Citrus limon (L.) Burm. f.,7-Methoxycoumarin,531-59-9,0.05,0.05
+ncs,"Lime oil, expressed",8008-26-2; 93685-55-3; 90063-52-8,Citrus aurantifolia (Christman) Swingle,7-Methoxycoumarin,531-59-9,0.21,0.21
+ncs,"Persian lime oil, expressed",8008-26-2; 90063-52-8,Citrus latifolia Tanaka,7-Methoxycoumarin,531-59-9,0.28,0.28
+ncs,Tarragon oil,8016-88-4; 90131-45-6,Artemisia dracunculus L.,7-Methoxycoumarin,531-59-9,0.07,0.07
+ncs,Horseradish oil,84775-62-2,Amoracia rusticana G. Gaertn. et al.,Allyl isothiocyanate,57-06-7,45,45
+ncs,Angelica seed oil,8015-64-3; 84775-41-7,Angelica archangelica L.,alpha-Bisabolol,515-69-5,0.2,0.2
+ncs,Arnica absolute,8057-65-6; 68990-11-4,Arnica montana L.,alpha-Bisabolol,515-69-5,0.15,0.15
+ncs,"Arnica oils, montana",8057-65-6; 68990-11-4,Arnica montana L.,alpha-Bisabolol,515-69-5,0.6,0.6
+ncs,Baccharis dracunculifolia oil,68991-21-9; 94406-01-6,Baccharis dracunculifolia,alpha-Bisabolol,515-69-5,1.4,1.4
+ncs,"Basil oil, chemotype linalool",8015-73-4; 84775-71-3,Ocimum basilicum L.,alpha-Bisabolol,515-69-5,0.2,0.2
+ncs,Cabreuva oil,68188-03-4; 91722-93-9; 91722-94-0,Myrocarpus frondosus Fr. Allem,alpha-Bisabolol,515-69-5,2,2
+ncs,Carrot seed oil,8015-88-1; 84929-61-3,Daucus carota L.,alpha-Bisabolol,515-69-5,0.28,0.28
+ncs,"Cedarwood oil, Chinese",1159574-01-2; 85085-29-6,Cupressus funebris Endl.,alpha-Bisabolol,515-69-5,0.6,0.6
+ncs,"Cedarwood oil, Texas",68990-83-0; 91722-61-1,Juniperus mexicana Schiede,alpha-Bisabolol,515-69-5,0.15,0.15
+ncs,"Cedarwood oil, Virginian",8000-27-9; 85085-41-2,Juniperus virginiana L.,alpha-Bisabolol,515-69-5,0.6,0.6
+ncs,"Chamomile flower oil, blue",8002-66-2; 84082-60-0,Matricaria chamomilla L.,alpha-Bisabolol,515-69-5,4,4
+ncs,"Fir needle oil, Siberian",8021-29-2; 91697-89-1,Abies siberica Ledeb (Pinaceae),alpha-Bisabolol,515-69-5,0.2,0.2
+ncs,Lavandin absolute,8022-15-9; 91722-69-9,Lavandula officinalis x Lavandula latifolia,alpha-Bisabolol,515-69-5,0.64,0.64
+ncs,Lavandin concrete,8022-15-9; 91722-69-9,Lavandula officinalis x Lavandula latifolia,alpha-Bisabolol,515-69-5,1.91,1.91
+ncs,Lavandin concrete,8022-15-9; 91722-69-9,Lavandula officinalis x Lavandula latifolia,alpha-Bisabolol,515-69-5,1.91,1.91
+ncs,Lavandin grosso absolute,93455-97-1,Lavandula angustifolia Mill. x Lavandula latifolia Medik.,alpha-Bisabolol,515-69-5,0.7,0.7
+ncs,Lavandin grosso oil,8022-15-9; 93455-97-1,Lavandula officinalis x Lavandula latifolia,alpha-Bisabolol,515-69-5,0.35,0.35
+ncs,Lavandin oil,8022-15-9; 91722-69-9,Lavandula officinalis x Lavandula latifolia,alpha-Bisabolol,515-69-5,0.03,0.03
+ncs,Lavandin super oil,93685-88-2,Lavendula super,alpha-Bisabolol,515-69-5,0.3,0.3
+ncs,Mastic oil,68991-39-9; 61789-92-2; 90082-82-9,Pistacia lentiscus L.,alpha-Bisabolol,515-69-5,0.08,0.08
+ncs,Populus nigra absolute,921202-04-2; 84650-39-5,Populus nigra L.,alpha-Bisabolol,515-69-5,0.2,0.2
+ncs,Sandalwood oil,8006-87-9; 84787-70-2,Santalum album L.,alpha-Bisabolol,515-69-5,0.22,0.22
+ncs,"Sandalwood oil, Australian",8024-35-9; 92875-02-0,Santalum spicata (R.Br.) A.DC.,alpha-Bisabolol,515-69-5,3.02,3.02
+ncs,"Sandalwood oil, New Caledonian",91845-48-6,Santalum austrocaledonicum Vieill,alpha-Bisabolol,515-69-5,0.47,0.47
+ncs,Schinus terebenthifolius CO2 extract,949495-68-5,Schinus terebenthifolius Raddi,alpha-Bisabolol,515-69-5,0.3,0.3
+ncs,Turmeric oil,8024-37-1; 84775-52-0,Curcuma longa L.,alpha-Bisabolol,515-69-5,0.1,0.1
+ncs,Yarrow oil,8022-07-9; 84082-83-7,Achillea millefolium L.,alpha-Bisabolol,515-69-5,0.3,0.3
+ncs,Zdravetz oil,68991-32-2; 92347-05-2,Geranium macrorrhizum L.,alpha-Bisabolol,515-69-5,2,2
+ncs,Cananga oil,68606-83-7; 93686-30-7,Cananga odorata (Lam.) Hook. f. & Thomson (forma macrophylla Steenis),alpha-Cedrene,469-61-4,0.4,0.4
+ncs,"Cedarwood oil, Atlas",8023-85-6; 92201-55-3,Cedrus atlantica (Endl.) Manetti ex Carriere,alpha-Cedrene,469-61-4,1.5,1.5
+ncs,"Cedarwood oil, Chinese",1159574-01-2; 85085-29-6,Cupressus funebris Endl.,alpha-Cedrene,469-61-4,19.1,19.1
+ncs,"Cedarwood oil, Texas",68990-83-0; 91722-61-1,Juniperus mexicana Schiede,alpha-Cedrene,469-61-4,12,12
+ncs,"Cedarwood oil, Virginian",8000-27-9; 85085-41-2,Juniperus virginiana L.,alpha-Cedrene,469-61-4,24.3,24.3
+ncs,Cypress oil,8013-86-3; 84696-07-1,Cupresssus sempervirens L.,alpha-Cedrene,469-61-4,0.36,0.36
+ncs,Helichrysum absolute,8023-95-8; 90045-56-0; 85665-35-6,Helichrysum angustifolium DC.,alpha-Cedrene,469-61-4,0.08,0.08
+ncs,Juniper berry oil,8002-68-4; 84603-69-0,Juniperus communis L.,alpha-Cedrene,469-61-4,0.4,0.4
+ncs,"Pine needle, dwarf, oil",8000-26-8; 90082-73-8; 90082-72-7,Pinus pumila (Pall.) Regel,alpha-Cedrene,469-61-4,0.25,0.25
+ncs,Verbena absolute,8024-12-2; 85116-63-8,Lippia citriodora (L.) Kunth,alpha-Cedrene,469-61-4,0.5,0.5
+ncs,Vetiver oil (all origins),8016-96-4; 84238-29-9,Chrysopogon zizanioides (L.) Roberty,alpha-Cedrene,469-61-4,0.2,0.2
+ncs,Armoise vulgaris oil,68991-20-8; 84775-45-1; 8022-37-5,Artemisia vulgaris L.,alpha-Thujone,546-80-5,50,50
+ncs,Artemesia afra oil,91745-71-0,Artemesia afra L. Jacq. Ex Willd.,alpha-Thujone,546-80-5,50,50
+ncs,Artemisia herba-alba oil,84775-75-7,Artemesia herba alba Asso,alpha-Thujone,546-80-5,39,39
+ncs,Cedar leaf oil,8007-20-3; 90131-58-1,Thuja occidentalis L.,alpha-Thujone,546-80-5,55,55
+ncs,"Cedar leaf oil, China",91770-83-0,Platycladus orientalis (L.) Franco,alpha-Thujone,546-80-5,2.3,2.3
+ncs,Hyssop oil,8006-83-5; 84603-66-7,Hyssopus officinalis L.,alpha-Thujone,546-80-5,0.2,0.2
+ncs,Mentha longifolia oil,90063-99-3,Mentha longifolia (L.) Huds.,alpha-Thujone,546-80-5,7.1,7.1
+ncs,Olibanum oil,8016-36-2; 8050-07-5,Boswellia spp.,alpha-Thujone,546-80-5,0.1,0.1
+ncs,Olibanum sacra oil,89957-98-2,Boswellia sacra,alpha-Thujone,546-80-5,0.1,0.1
+ncs,Sage Dalmatian oil,8022-56-8; 84082-79-1,Salvia officinalis L.,alpha-Thujone,546-80-5,25,25
+ncs,Sage Dalmatian oleoresin,84082-79-1,Salvia officinalis L.,alpha-Thujone,546-80-5,7.3,7.3
+ncs,"Sage oil, Spanish",8022-56-8; 90106-49-3; 97952-71-1,Salvia lavandifolia Vahl,alpha-Thujone,546-80-5,0.01,0.01
+ncs,Sage oleoresin,8022-56-8; 84082-79-1,Salvia officinalis L.,alpha-Thujone,546-80-5,7.5,7.5
+ncs,Savory summer oil,8016-68-0; 84775-98-4,Satureja hortensis L.,alpha-Thujone,546-80-5,1.5,1.5
+ncs,"Spruce oil, Black",8008-80-8; 91722-18-9,Picea mariana (Mill.) Britton,alpha-Thujone,546-80-5,0.17,0.17
+ncs,Tansy oil,8016-87-3; 84961-64-8,Tanacetum vulgare L.,alpha-Thujone,546-80-5,0.5,0.5
+ncs,Wormwood oil,8008-93-3; 84929-19-1,Artemisia absinthium L.,alpha-Thujone,546-80-5,3,3
+ncs,Yarrow oil,8022-07-9; 84082-83-7,Achillea millefolium L.,alpha-Thujone,546-80-5,2,2
+ncs,Cassie absolute,8023-82-3; 89958-31-6,Vachellia farnesiana (L.) Willd.,Anisyl alcohol,105-13-5,0.8,0.8
+ncs,Mimosa absolute,8031-03-6; 93685-96-2; 98903-76-5,Acacia decurrens (Wendl.f.) Willd.,Anisyl alcohol,105-13-5,0.12,0.12
+ncs,Vanilla absolute,8024-06-4; 84650-63-5,Vanilla planifolia,Anisyl alcohol,105-13-5,0.03,0.03
+ncs,Vanilla CO2 extract,8024-06-4; 84650-63-5,Vanilla planifolia,Anisyl alcohol,105-13-5,0.02,0.02
+ncs,Vanilla oleoresin,8024-06-4; 84650-63-5,Vanilla planifolia,Anisyl alcohol,105-13-5,0.7,0.7
+ncs,Vanilla tahitensis absolute,953789-39-4; 94167-14-3,Vanilla tahitensis J.W. Moore,Anisyl alcohol,105-13-5,0.07,0.07
+ncs,Vanilla tahitensis CO2 extract,953789-39-4; 94167-14-3,Vanilla tahitensis J.W. Moore,Anisyl alcohol,105-13-5,0,
+ncs,Vanilla tincture,8047-24-3; 84650-63-5,Vanilla planifolia,Anisyl alcohol,105-13-5,0.01,0.01
+ncs,"Almond oil, bitter",8013-76-1; 90320-35-7,Prunus amygdalus amara (Bitter Almond) kernel oil,Benzaldehyde,100-52-7,99,99
+ncs,"Benzoin infusion, Sumatra",9000-05-9,Styrax paralleloneurum Perkins,Benzaldehyde,100-52-7,0.001,0.001
+ncs,Cajuput oil,8008-98-8; 85480-37-1,Melaleuca leucadendron L.,Benzaldehyde,100-52-7,0.1,0.1
+ncs,Cassia  bark oil,8007-80-5; 84961-46-6,Cinnamomum cassia [L.] J. Presl syn. C. aromaticum Nees,Benzaldehyde,100-52-7,1.3,1.3
+ncs,Cassia bark oleoresin,8007-80-5; 84961-46-6,Cinnamomum cassia [L.] J. Presl syn. C. aromaticum Nees,Benzaldehyde,100-52-7,0.95,0.95
+ncs,Cassia oil,8007-80-5; 84961-46-6,Cinnamomum cassia [L.] J. Presl syn. C. aromaticum Nees,Benzaldehyde,100-52-7,1,1
+ncs,Cassie absolute,8023-82-3; 89958-31-6,Vachellia farnesiana (L.) Willd.,Benzaldehyde,100-52-7,0.3,0.3
+ncs,Cinnamon bark CO2 extract,8015-91-6; 84649-98-9,Cinnamomum verum J. Presl syn. C. zeylanicum Blume,Benzaldehyde,100-52-7,0.1,0.1
+ncs,Cinnamon bark oil,8015-91-6; 84649-98-9,Cinnamomum zeylanicum Blume,Benzaldehyde,100-52-7,0.2,0.2
+ncs,"Cinnamon bark oil, Laos",97659-68-2,Cinnamomum loureiroi Nees,Benzaldehyde,100-52-7,0.5,0.5
+ncs,Cinnamon leaf oil,8015-91-6; 84649-98-9,Cinnamomum zeylanicum Blume,Benzaldehyde,100-52-7,0.16,0.16
+ncs,Cistus absolute,8016-26-0; 89997-74-0,Cistus ladaniferus L.,Benzaldehyde,100-52-7,0.6,0.6
+ncs,Cistus concrete,8016-26-0; 89997-74-0,Cistus ladaniferus L.,Benzaldehyde,100-52-7,0.6,0.6
+ncs,Cistus oil,8016-26-0; 89997-74-0,Cistus ladaniferus L.,Benzaldehyde,100-52-7,0.9,0.9
+ncs,Davana oil,8016-03-3; 91844-86-9,Artemisia pallens Wall.,Benzaldehyde,100-52-7,0.2,0.2
+ncs,Hyacinth absolute,8023-94-7; 94333-75-2,Hyacinthus orientalis L.,Benzaldehyde,100-52-7,0.1,0.1
+ncs,Jasmine grandiflorum absolute,8022-96-6; 84776-64-7,Jasminum grandiflorum L.,Benzaldehyde,100-52-7,0.02,0.02
+ncs,Labdanum extract ambreine,68917-77-1; 90244-89-6; 89997-74-0,Cistus ladaniferus L.,Benzaldehyde,100-52-7,0.8,0.8
+ncs,Labdanum gum,8016-26-0; 89997-74-0; 84775-64-4; 84775-64-4,Cistus labdanifer L.,Benzaldehyde,100-52-7,0.2,0.2
+ncs,Labdanum oil,8016-26-0; 90244-89-6; 89997-74-0,Cistus ladaniferus L.,Benzaldehyde,100-52-7,0.38,0.38
+ncs,Labdanum oleoresin,8016-26-0; 90244-89-6; 89997-74-0,Cistus ladaniferus L.,Benzaldehyde,100-52-7,0.2,0.2
+ncs,Labdanum resinoid,89997-74-0; 90244-89-6,Cistus ladaniferus L.,Benzaldehyde,100-52-7,0.03,0.03
+ncs,Mimosa absolute,8031-03-6; 93685-96-2; 98903-76-5,Acacia decurrens (Wendl.f.) Willd.,Benzaldehyde,100-52-7,0.08,0.08
+ncs,Niaouli oil,8014-68-4; 132940-73-9,Melaleuca viridiflora Sol. ex Gaertn.,Benzaldehyde,100-52-7,0.2,0.2
+ncs,Perilla oil,68132-21-8; 90082-61-4,Perilla frutescens (L.) Britton,Benzaldehyde,100-52-7,0.33,0.33
+ncs,Rose absolute,90106-38-0,Rosa x damascena Mill.,Benzaldehyde,100-52-7,0.02,0.02
+ncs,Rose concrete,90106-38-0,Rosa x damascena Mill.,Benzaldehyde,100-52-7,0.5,0.5
+ncs,Rose oil,8007-01-0; 90106-38-0,Rosa x damascena Mill.,Benzaldehyde,100-52-7,0.04,0.04
+ncs,Styrax extract,8046-19-3; 8046-19-3; 94891-27-7; 94891-28-8,Liquidambar spp.,Benzaldehyde,100-52-7,0.05,0.05
+ncs,Styrax oil,8046-19-3; 94891-28-8,Liquidambar styraciflua L.,Benzaldehyde,100-52-7,0.03,0.03
+ncs,"Styrax oil, Honduras",8046-19-3; 94891-28-8,Liquidambar styraciflua L.,Benzaldehyde,100-52-7,0.1,0.1
+ncs,"Styrax oil, pyrogenated",8024-01-9; 94891-27-7,Liquidambar orientalis Mill.,Benzaldehyde,100-52-7,0.1,0.1
+ncs,Styrax resinoid,8046-19-3; 8046-19-3,Liquidambar styraciflua L.,Benzaldehyde,100-52-7,0.04,0.04
+ncs,"Balsam absolute, Peru",8007-00-9,Myroxylon balsamum (L.) Harms var. pereirae (Royle) Harms,Benzyl alcohol,100-51-6,0.43,0.43
+ncs,"Balsam oil, Peru",8007-00-9,Myroxylon balsamum (L.) Harms var. pereirae (Royle) Harms,Benzyl alcohol,100-51-6,1.57,1.57
+ncs,"Balsam resinoid, Peru",8007-00-9,Myroxylon balsamum (L.) Harms var. pereirae (Royle) Harms,Benzyl alcohol,100-51-6,0.17,0.17
+ncs,Carnation absolute,8021-43-0; 89958-29-2,Dianthus caryophyllus L.,Benzyl alcohol,100-51-6,0.2,0.2
+ncs,Cassie absolute,8023-82-3; 89958-31-6,Vachellia farnesiana (L.) Willd.,Benzyl alcohol,100-51-6,2.7,2.7
+ncs,Champaca absolute,8006-76-6; 92457-18-6,Michelia champaca L.,Benzyl alcohol,100-51-6,0.64,0.64
+ncs,Cinnamon leaf oil,8015-91-6; 84649-98-9,Cinnamomum zeylanicum Blume,Benzyl alcohol,100-51-6,0.1,0.1
+ncs,Clove bud oil terpenes,8000-34-8; 84961-50-2,Syzygium aromaticum (L.) Merr. & L.M.Perry,Benzyl alcohol,100-51-6,0.01,0.01
+ncs,Hyacinth absolute,8023-94-7; 94333-75-2,Hyacinthus orientalis L.,Benzyl alcohol,100-51-6,40,40
+ncs,Jasmine absolute,8022-96-6; 84776-64-7,Jasmium grandifloum L.,Benzyl alcohol,100-51-6,1.08,1.08
+ncs,Jasmine concrete,8022-96-6; 84776-64-7,Jasminum grandiflorum L.,Benzyl alcohol,100-51-6,1.08,1.08
+ncs,Jasmine officinale absolute,8024-43-9; 90045-94-6,Jasminum officinale L.,Benzyl alcohol,100-51-6,3,3
+ncs,Jasmine sambac absolute,103798-23-6; 91770-14-8,Jasminum sambac (L.) Aiton,Benzyl alcohol,100-51-6,4.2,4.2
+ncs,Jasmine sambac CO2 extract,103798-23-6; 91770-14-8,Jasminum sambac,Benzyl alcohol,100-51-6,4.2,4.2
+ncs,Lavandin grosso absolute,93455-97-1,Lavandula angustifolia Mill. x Lavandula latifolia Medik.,Benzyl alcohol,100-51-6,0.02,0.02
+ncs,Mimosa absolute,8031-03-6; 93685-96-2; 98903-76-5,Acacia decurrens (Wendl.f.) Willd.,Benzyl alcohol,100-51-6,0.19,0.19
+ncs,Mimosa concrete,98903-76-5; 93685-96-2,Acacia decurrens Willd. var.dealbata,Benzyl alcohol,100-51-6,0.04,0.04
+ncs,Narcissus poeticus absolute,68917-12-4; 90064-26-9,Narcissus poeticus L.,Benzyl alcohol,100-51-6,2.8,2.8
+ncs,Rose absolute,90106-38-0,Rosa x damascena Mill.,Benzyl alcohol,100-51-6,0.54,0.54
+ncs,Rose oil,8007-01-0; 90106-38-0,Rosa x damascena Mill.,Benzyl alcohol,100-51-6,0.02,0.02
+ncs,Styrax absolute,8046-19-3; 94891-27-7; 94891-28-8,Liquidambar styraciflua L.,Benzyl alcohol,100-51-6,2.5,2.5
+ncs,Styrax essence pyrogenated,8046-19-3; 8046-19-3,Liquidambar Styraciflua,Benzyl alcohol,100-51-6,0.15,0.15
+ncs,Styrax oil,8046-19-3; 94891-28-8,Liquidambar styraciflua L.,Benzyl alcohol,100-51-6,0.07,0.07
+ncs,Thyme absolute,8007-46-3; 84929-51-1,Thymus vulgaris L.,Benzyl alcohol,100-51-6,0.3,0.3
+ncs,Tuberose absolute,8024-05-3; 94334-35-7,Poliantes tuberosa L.,Benzyl alcohol,100-51-6,0.5,0.5
+ncs,Tuberose concrete,8024-05-3; 94334-35-7,Poliantes tuberosa L.,Benzyl alcohol,100-51-6,0.5,0.5
+ncs,Violet leaf absolute,8024-08-6; 90147-36-7,Viola odorata L.,Benzyl alcohol,100-51-6,0.1,0.1
+ncs,Ylang ylang oil I,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Benzyl alcohol,100-51-6,0.09,0.09
+ncs,Ylang ylang oil II,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Benzyl alcohol,100-51-6,0.09,0.09
+ncs,Ylang ylang oil III,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Benzyl alcohol,100-51-6,0.04,0.04
+ncs,"Ylang, Ylang oil complete",8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Benzyl alcohol,100-51-6,0.25,0.25
+ncs,"Ylang, Ylang oil extra",8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Benzyl alcohol,100-51-6,0.24,0.24
+ncs,Ylang-ylang absolute,83863-30-3,Cananga odorata (Lam.) Hook.f.&Thomson forma genuina,Benzyl alcohol,100-51-6,0.5,0.5
+ncs,"Balsam absolute, Peru",8007-00-9,Myroxylon balsamum (L.) Harms var. pereirae (Royle) Harms,Benzyl benzoate,120-51-4,32.5,32.5
+ncs,"Balsam oil, Peru",8007-00-9,Myroxylon balsamum (L.) Harms var. pereirae (Royle) Harms,Benzyl benzoate,120-51-4,59.17,59.17
+ncs,"Balsam resinoid, Peru",8007-00-9,Myroxylon balsamum (L.) Harms var. pereirae (Royle) Harms,Benzyl benzoate,120-51-4,14.16,14.16
+ncs,"Benzoin infusion, Sumatra",9000-05-9,Styrax paralleloneurum Perkins,Benzyl benzoate,120-51-4,0.018,0.018
+ncs,"Benzoin resinoid, Siam",84012-39-5,Styrax tonkinensis (Pierre) Craib ex Hartwick,Benzyl benzoate,120-51-4,0.25,0.25
+ncs,"Benzoin resinoid, Sumatra",84929-79-3,Styrax benzoin Dryand.,Benzyl benzoate,120-51-4,0.04,0.04
+ncs,Cananga oil,68606-83-7; 93686-30-7,Cananga odorata (Lam.) Hook. f. & Thomson (forma macrophylla Steenis),Benzyl benzoate,120-51-4,4.2,4.2
+ncs,Carnation absolute,8021-43-0; 89958-29-2,Dianthus caryophyllus L.,Benzyl benzoate,120-51-4,13,13
+ncs,Cassia  bark oil,8007-80-5; 84961-46-6,Cinnamomum cassia [L.] J. Presl syn. C. aromaticum Nees,Benzyl benzoate,120-51-4,0.08,0.08
+ncs,Cassia bark oleoresin,8007-80-5; 84961-46-6,Cinnamomum cassia [L.] J. Presl syn. C. aromaticum Nees,Benzyl benzoate,120-51-4,0.06,0.06
+ncs,Cassia oil,8007-80-5; 84961-46-6,Cinnamomum cassia [L.] J. Presl syn. C. aromaticum Nees,Benzyl benzoate,120-51-4,0.1,0.1
+ncs,Cassie absolute,8023-82-3; 89958-31-6,Vachellia farnesiana (L.) Willd.,Benzyl benzoate,120-51-4,0.05,0.05
+ncs,Champaca absolute,8006-76-6; 92457-18-6,Michelia champaca L.,Benzyl benzoate,120-51-4,0.53,0.53
+ncs,Cinnamon bark CO2 extract,8015-91-6; 84649-98-9,Cinnamomum verum J. Presl syn. C. zeylanicum Blume,Benzyl benzoate,120-51-4,1.8,1.8
+ncs,Cinnamon bark oil,8015-91-6; 84649-98-9,Cinnamomum zeylanicum Blume,Benzyl benzoate,120-51-4,0.6,0.6
+ncs,"Cinnamon bark oil, Laos",97659-68-2,Cinnamomum loureiroi Nees,Benzyl benzoate,120-51-4,0.01,0.01
+ncs,Cinnamon leaf oil,8015-91-6; 84649-98-9,Cinnamomum zeylanicum Blume,Benzyl benzoate,120-51-4,3.5,3.5
+ncs,Clove bud absolute,84961-50-2,Syzygium aromaticum (L.) Merr. & L.M.Perry,Benzyl benzoate,120-51-4,0.07,0.07
+ncs,Hyacinth absolute,8023-94-7; 94333-75-2,Hyacinthus orientalis L.,Benzyl benzoate,120-51-4,6,6
+ncs,Jasmine absolute,8022-96-6; 84776-64-7,Jasmium grandifloum L.,Benzyl benzoate,120-51-4,10.07,10.07
+ncs,Jasmine CO2 extract,8022-96-6; 84776-64-7,Jasmium grandifloum L.,Benzyl benzoate,120-51-4,5,5
+ncs,Jasmine concrete,8022-96-6; 84776-64-7,Jasminum grandiflorum L.,Benzyl benzoate,120-51-4,10.07,10.07
+ncs,Jasmine officinale absolute,8024-43-9; 90045-94-6,Jasminum officinale L.,Benzyl benzoate,120-51-4,10,10
+ncs,Jasmine sambac absolute,103798-23-6; 91770-14-8,Jasminum sambac (L.) Aiton,Benzyl benzoate,120-51-4,0.75,0.75
+ncs,Jasmine sambac CO2 extract,103798-23-6; 91770-14-8,Jasminum sambac,Benzyl benzoate,120-51-4,0.75,0.75
+ncs,Mimosa absolute,8031-03-6; 93685-96-2; 98903-76-5,Acacia decurrens (Wendl.f.) Willd.,Benzyl benzoate,120-51-4,0.12,0.12
+ncs,Narcissus poeticus absolute,68917-12-4; 90064-26-9,Narcissus poeticus L.,Benzyl benzoate,120-51-4,8.9,8.9
+ncs,Rose absolute,90106-38-0,Rosa x damascena Mill.,Benzyl benzoate,120-51-4,0.02,0.02
+ncs,Rose oil,8007-01-0; 90106-38-0,Rosa x damascena Mill.,Benzyl benzoate,120-51-4,0.07,0.07
+ncs,Rosewood oil,8015-77-8; 83863-32-5; 93685-34-8,Aniba rosaeodora (Ducke) var amazonica,Benzyl benzoate,120-51-4,1.2,1.2
+ncs,Styrax oil,8046-19-3; 94891-28-8,Liquidambar styraciflua L.,Benzyl benzoate,120-51-4,0.02,0.02
+ncs,Tuberose absolute,8024-05-3; 94334-35-7,Poliantes tuberosa L.,Benzyl benzoate,120-51-4,5.5,5.5
+ncs,Tuberose concrete,8024-05-3; 94334-35-7,Poliantes tuberosa L.,Benzyl benzoate,120-51-4,0.72,0.72
+ncs,Ylang ylang oil I,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Benzyl benzoate,120-51-4,5.86,5.86
+ncs,Ylang ylang oil II,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Benzyl benzoate,120-51-4,7.81,7.81
+ncs,Ylang ylang oil III,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Benzyl benzoate,120-51-4,6.23,6.23
+ncs,"Ylang, Ylang oil complete",8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Benzyl benzoate,120-51-4,6.32,6.32
+ncs,"Ylang, Ylang oil extra",8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Benzyl benzoate,120-51-4,5.73,5.73
+ncs,Ylang-ylang absolute,83863-30-3,Cananga odorata (Lam.) Hook.f.&Thomson forma genuina,Benzyl benzoate,120-51-4,7,7
+ncs,"Balsam absolute, Peru",8007-00-9,Myroxylon balsamum (L.) Harms var. pereirae (Royle) Harms,Benzyl cinnamate,103-41-3,9.95,9.95
+ncs,"Balsam oil, Peru",8007-00-9,Myroxylon balsamum (L.) Harms var. pereirae (Royle) Harms,Benzyl cinnamate,103-41-3,16.38,16.38
+ncs,"Balsam resinoid, Peru",8007-00-9,Myroxylon balsamum (L.) Harms var. pereirae (Royle) Harms,Benzyl cinnamate,103-41-3,9.02,9.02
+ncs,"Benzoin infusion, Sumatra",9000-05-9,Styrax paralleloneurum Perkins,Benzyl cinnamate,103-41-3,0.4,0.4
+ncs,"Benzoin resinoid, Siam",84012-39-5,Styrax tonkinensis (Pierre) Craib ex Hartwick,Benzyl cinnamate,103-41-3,0.36,0.36
+ncs,"Benzoin resinoid, Sumatra",84929-79-3,Styrax benzoin Dryand.,Benzyl cinnamate,103-41-3,0.45,0.45
+ncs,Styrax absolute,8046-19-3; 94891-27-7; 94891-28-8,Liquidambar styraciflua L.,Benzyl cinnamate,103-41-3,0.17,0.17
+ncs,Styrax essence pyrogenated,8046-19-3; 8046-19-3,Liquidambar Styraciflua,Benzyl cinnamate,103-41-3,0.15,0.15
+ncs,"Styrax oil, Honduras",8046-19-3; 94891-28-8,Liquidambar styraciflua L.,Benzyl cinnamate,103-41-3,2.1,2.1
+ncs,Ylang ylang oil I,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Benzyl cinnamate,103-41-3,0.03,0.03
+ncs,Ylang ylang oil III,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Benzyl cinnamate,103-41-3,0.02,0.02
+ncs,Champaca absolute,8006-76-6; 92457-18-6,Michelia champaca L.,Benzyl cyanide,140-29-4,1,1
+ncs,Genet absolute,90131-21-8; 129316-65-0,Spartium junceum L.,Benzyl cyanide,140-29-4,0.1,0.1
+ncs,Jasmine absolute,8022-96-6; 84776-64-7,Jasmium grandifloum L.,Benzyl cyanide,140-29-4,0.02,0.02
+ncs,Jasmine grandiflorum absolute,8022-96-6; 84776-64-7,Jasminum grandiflorum L.,Benzyl cyanide,140-29-4,0.02,0.02
+ncs,Jasmine sambac absolute,103798-23-6; 91770-14-8,Jasminum sambac (L.) Aiton,Benzyl cyanide,140-29-4,1.2,1.2
+ncs,Jasmine sambac CO2 extract,103798-23-6; 91770-14-8,Jasminum sambac,Benzyl cyanide,140-29-4,1.2,1.2
+ncs,Karo karunde absolute,94334-14-2,Leptactina senegambica Hook f.,Benzyl cyanide,140-29-4,5,5
+ncs,Magnolia flower oil,68917-19-1,Magnolia grandiflora L.,Benzyl cyanide,140-29-4,0.09,0.09
+ncs,Orange blossoms absolute,8016-38-4; 72968-50-4,Citrus aurantium L. spp. Amara Link,Benzyl cyanide,140-29-4,0.52,0.52
+ncs,"Orange flower oil, bitter (neroli and neroli bigarade)",8016-38-4; 72968-50-4,Citrus aurantium L. spp. Amara Link,Benzyl cyanide,140-29-4,0.16,0.16
+ncs,Orange flower water absolute,8030-28-2; 72968-50-4,Citrus aurantium L. spp. Amara Link,Benzyl cyanide,140-29-4,0.83,0.83
+ncs,"Orange flower, bitter, concrete",72968-50-4,Citrus aurantium L.,Benzyl cyanide,140-29-4,0.31,0.31
+ncs,Tuberose absolute,8024-05-3; 94334-35-7,Poliantes tuberosa L.,Benzyl cyanide,140-29-4,0.8,0.8
+ncs,Tuberose oil,8024-05-3; 94334-35-7,Poliantes tuberosa L.,Benzyl cyanide,140-29-4,0.17,0.17
+ncs,Ylang ylang oil I,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Benzyl cyanide,140-29-4,0.05,0.05
+ncs,Ylang ylang oil II,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Benzyl cyanide,140-29-4,0.02,0.02
+ncs,Ylang ylang oil III,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Benzyl cyanide,140-29-4,0.02,0.02
+ncs,"Ylang, Ylang oil extra",8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Benzyl cyanide,140-29-4,0.02,0.02
+ncs,Cananga oil,68606-83-7; 93686-30-7,Cananga odorata (Lam.) Hook. f. & Thomson (forma macrophylla Steenis),Benzyl salicylate,118-58-1,0.4,0.4
+ncs,Carnation absolute,8021-43-0; 89958-29-2,Dianthus caryophyllus L.,Benzyl salicylate,118-58-1,7,7
+ncs,Cassie absolute,8023-82-3; 89958-31-6,Vachellia farnesiana (L.) Willd.,Benzyl salicylate,118-58-1,0.03,0.03
+ncs,Clove bud absolute,84961-50-2,Syzygium aromaticum (L.) Merr. & L.M.Perry,Benzyl salicylate,118-58-1,0.04,0.04
+ncs,Hyacinth absolute,8023-94-7; 94333-75-2,Hyacinthus orientalis L.,Benzyl salicylate,118-58-1,0.2,0.2
+ncs,Jasmine absolute,8022-96-6; 84776-64-7,Jasmium grandifloum L.,Benzyl salicylate,118-58-1,0.17,0.17
+ncs,Jasmine concrete,8022-96-6; 84776-64-7,Jasminum grandiflorum L.,Benzyl salicylate,118-58-1,0.17,0.17
+ncs,Jasmine officinale absolute,8024-43-9; 90045-94-6,Jasminum officinale L.,Benzyl salicylate,118-58-1,0.2,0.2
+ncs,Jasmine sambac absolute,103798-23-6; 91770-14-8,Jasminum sambac (L.) Aiton,Benzyl salicylate,118-58-1,0.2,0.2
+ncs,Jasmine sambac CO2 extract,103798-23-6; 91770-14-8,Jasminum sambac,Benzyl salicylate,118-58-1,0.15,0.15
+ncs,Mimosa absolute,8031-03-6; 93685-96-2; 98903-76-5,Acacia decurrens (Wendl.f.) Willd.,Benzyl salicylate,118-58-1,0.02,0.02
+ncs,Tuberose absolute,8024-05-3; 94334-35-7,Poliantes tuberosa L.,Benzyl salicylate,118-58-1,3.6,3.6
+ncs,Tuberose concrete,8024-05-3; 94334-35-7,Poliantes tuberosa L.,Benzyl salicylate,118-58-1,2.1,2.1
+ncs,Ylang ylang oil I,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Benzyl salicylate,118-58-1,2.58,2.58
+ncs,Ylang ylang oil II,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Benzyl salicylate,118-58-1,2.36,2.36
+ncs,Ylang ylang oil III,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Benzyl salicylate,118-58-1,2.48,2.48
+ncs,"Ylang, Ylang oil complete",8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Benzyl salicylate,118-58-1,3.11,3.11
+ncs,"Ylang, Ylang oil extra",8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Benzyl salicylate,118-58-1,3.35,3.35
+ncs,Ylang-ylang absolute,83863-30-3,Cananga odorata (Lam.) Hook.f.&Thomson forma genuina,Benzyl salicylate,118-58-1,3.5,3.5
+ncs,Styrax extract,8046-19-3; 8046-19-3; 94891-27-7; 94891-28-8,Liquidambar spp.,Benzyl trans-cinnamate,78277-23-3,1,1
+ncs,Styrax oil,8046-19-3; 94891-28-8,Liquidambar styraciflua L.,Benzyl trans-cinnamate,78277-23-3,1.75,1.75
+ncs,Styrax resinoid,8046-19-3; 8046-19-3,Liquidambar styraciflua L.,Benzyl trans-cinnamate,78277-23-3,0.93,0.93
+ncs,"Cedarwood oil, Chinese",1159574-01-2; 85085-29-6,Cupressus funebris Endl.,beta-Cedrene,546-28-1,6,6
+ncs,"Cedarwood oil, Texas",68990-83-0; 91722-61-1,Juniperus mexicana Schiede,beta-Cedrene,546-28-1,3,3
+ncs,"Cedarwood oil, Virginian",8000-27-9; 85085-41-2,Juniperus virginiana L.,beta-Cedrene,546-28-1,5.9,5.9
+ncs,Cypress oil,8013-86-3; 84696-07-1,Cupresssus sempervirens L.,beta-Cedrene,546-28-1,0.38,0.38
+ncs,Tea tree oil,68647-73-4; 85085-48-9,Melaleuca alternifolia (Maiden & Betche) Cheel,beta-Cedrene,546-28-1,0.03,0.03
+ncs,Verbena absolute,8024-12-2; 85116-63-8,Lippia citriodora (L.) Kunth,beta-Cedrene,546-28-1,0.1,0.1
+ncs,Vetiver oil (all origins),8016-96-4; 84238-29-9,Chrysopogon zizanioides (L.) Roberty,beta-Cedrene,546-28-1,0.1,0.1
+ncs,Armoise vulgaris oil,68991-20-8; 84775-45-1; 8022-37-5,Artemisia vulgaris L.,beta-Thujone,471-15-8,7.5,7.5
+ncs,Artemesia afra oil,91745-71-0,Artemesia afra L. Jacq. Ex Willd.,beta-Thujone,471-15-8,10,10
+ncs,Artemisia herba-alba oil,84775-75-7,Artemesia herba alba Asso,beta-Thujone,471-15-8,10,10
+ncs,Cedar leaf oil,8007-20-3; 90131-58-1,Thuja occidentalis L.,beta-Thujone,471-15-8,10,10
+ncs,"Cedar leaf oil, China",91770-83-1,Platycladus orientalis (L.) Franco,beta-Thujone,471-15-8,10,10
+ncs,Hyssop oil,8006-83-5; 84603-66-7,Hyssopus officinalis L.,beta-Thujone,471-15-8,0.2,0.2
+ncs,Juniper berry oil,8002-68-4; 84603-69-0,Juniperus communis L.,beta-Thujone,471-15-8,0.05,0.05
+ncs,Mentha longifolia oil,90063-99-3,Mentha longifolia (L.) Huds.,beta-Thujone,471-15-8,1,1
+ncs,Olibanum absolute,8016-36-2; 97952-72-2; 89957-98-2,Boswellia spp.,beta-Thujone,471-15-8,0.2,0.2
+ncs,Olibanum carterii oil,8016-36-2; 8050-07-5; 89957-98-2,Boswellia carterii,beta-Thujone,471-15-8,0.4,0.4
+ncs,Olibanum oil,8016-36-2; 8050-07-5,Boswellia spp.,beta-Thujone,471-15-8,0.4,0.4
+ncs,Olibanum sacra oil,89957-98-2,Boswellia sacra,beta-Thujone,471-15-8,0.2,0.2
+ncs,Sage Dalmatian oil,8022-56-8; 84082-79-1,Salvia officinalis L.,beta-Thujone,471-15-8,8,8
+ncs,Sage Dalmatian oleoresin,84082-79-1,Salvia officinalis L.,beta-Thujone,471-15-8,2.7,2.7
+ncs,"Sage oil, Spanish",8022-56-8; 90106-49-3; 97952-71-1,Salvia lavandifolia Vahl,beta-Thujone,471-15-8,0.02,0.02
+ncs,Sage oleoresin,8022-56-8; 84082-79-1,Salvia officinalis L.,beta-Thujone,471-15-8,2.5,2.5
+ncs,Savory summer oil,8016-68-0; 84775-98-4,Satureja hortensis L.,beta-Thujone,471-15-8,0.5,0.5
+ncs,Tagetes erecta oil,8016-84-0; 90131-43-4,Tagetes erecta L.,beta-Thujone,471-15-8,0.5,0.5
+ncs,Tagetes minuta oil,91770-75-1,Tagetes minuta L.,beta-Thujone,471-15-8,0.5,0.5
+ncs,Tansy oil,8016-87-3; 84961-64-8,Tanacetum vulgare L.,beta-Thujone,471-15-8,71,71
+ncs,"Thyme oil, wild",8007-46-3; 84776-98-7,Thymus serpyllum L.,beta-Thujone,471-15-8,0.2,0.2
+ncs,Wormwood oil,8008-93-3; 84929-19-1,Artemisia absinthium L.,beta-Thujone,471-15-8,42,42
+ncs,Yarrow oil,8022-07-9; 84082-83-7,Achillea millefolium L.,beta-Thujone,471-15-8,0.6,0.6
+ncs,"Bucchu oil, crenulata",92346-82-2,Agathosma crenulata (L.) Pill.,Carvone,99-49-0,0.19,0.19
+ncs,Gingergrass oil,8023-92-5; 92704-07-9,Cymbopogon martinii (Roxb.) W.Watson var.sofia,Carvone,99-49-0,4,4
+ncs,Grapefruit oil terpenes,68917-32-8; 90045-43-5,Citrus x paradisi Macfad.,Carvone,99-49-0,0.09,0.09
+ncs,Labdanum oil,8016-26-0; 90244-89-6; 89997-74-0,Cistus ladaniferus L.,Carvone,99-49-0,0.25,0.25
+ncs,"Marjoram oil, sweet",8015-01-8; 84082-58-6,Origanum majorana L.,Carvone,99-49-0,0.4,0.4
+ncs,Mentha longifolia oil,90063-99-3,Mentha longifolia (L.) Huds.,Carvone,99-49-0,1,1
+ncs,Nigella sativa oil,90064-32-7; 84775-51-9,Nigella sativa L.,Carvone,99-49-0,8,8
+ncs,Olibanum sacra oil,89957-98-2,Boswellia sacra,Carvone,99-49-0,0.3,0.3
+ncs,"Orange oil, bitter",68916-04-1; 72968-50-4,Citrus aurantium L. spp. Amara Link,Carvone,99-49-0,0.05,0.05
+ncs,"Orange oil, sweet, terpenes",68647-72-3; 8028-48-6,Citrus sinensis (L.) Osbeck,Carvone,99-49-0,0.08,0.08
+ncs,Origanum oil,8007-11-2; 90131-59-2,Thymus capitata (L.) Cav.,Carvone,99-49-0,0.1,0.1
+ncs,Peppermint oil,8006-90-4; 84082-70-2; 98306-02-6,Mentha x piperita L.,Carvone,99-49-0,0.1,0.1
+ncs,Cistus oil,8016-26-0; 89997-74-0,Cistus ladaniferus L.,Carvyl acetate,97-42-7,0.18,0.18
+ncs,"Spearmint oil, Scotch",91770-24-0,Mentha x gentilis L. syn. Mentha x gracilis Sole,Carvyl acetate,97-42-7,0.15,0.15
+ncs,Valerian root oil,8008-88-6; 8057-49-6,Valeriana officinalis L.,Carvyl acetate,97-42-7,0.05,0.05
+ncs,"Benzoin infusion, Sumatra",9000-05-9,Styrax paralleloneurum Perkins,Cinnamic alcohol,104-54-1,0.006,0.006
+ncs,"Benzoin resinoid, Siam",84012-39-5,Styrax tonkinensis (Pierre) Craib ex Hartwick,Cinnamic alcohol,104-54-1,0.36,0.36
+ncs,"Benzoin resinoid, Sumatra",84929-79-3,Styrax benzoin Dryand.,Cinnamic alcohol,104-54-1,0.01,0.01
+ncs,Cassia  bark oil,8007-80-5; 84961-46-6,Cinnamomum cassia [L.] J. Presl syn. C. aromaticum Nees,Cinnamic alcohol,104-54-1,0,0..3
+ncs,Cassia bark oleoresin,8007-80-5; 84961-46-6,Cinnamomum cassia [L.] J. Presl syn. C. aromaticum Nees,Cinnamic alcohol,104-54-1,0.37,0.37
+ncs,Cassia oil,8007-80-5; 84961-46-6,Cinnamomum cassia [L.] J. Presl syn. C. aromaticum Nees,Cinnamic alcohol,104-54-1,0.2,0.2
+ncs,Champaca absolute,8006-76-6; 92457-18-6,Michelia champaca L.,Cinnamic alcohol,104-54-1,0.02,0.02
+ncs,Cinnamon bark CO2 extract,8015-91-6; 84649-98-9,Cinnamomum verum J. Presl syn. C. zeylanicum Blume,Cinnamic alcohol,104-54-1,1.1,1.1
+ncs,Cinnamon bark oil,8015-91-6; 84649-98-9,Cinnamomum zeylanicum Blume,Cinnamic alcohol,104-54-1,0.3,0.3
+ncs,"Cinnamon bark oil, Laos",97659-68-2,Cinnamomum loureiroi Nees,Cinnamic alcohol,104-54-1,0.5,0.5
+ncs,Cistus absolute,8016-26-0; 89997-74-0,Cistus ladaniferus L.,Cinnamic alcohol,104-54-1,0.03,0.03
+ncs,Hyacinth absolute,8023-94-7; 94333-75-2,Hyacinthus orientalis L.,Cinnamic alcohol,104-54-1,11.2,11.2
+ncs,Jasmine sambac absolute,103798-23-6; 91770-14-8,Jasminum sambac (L.) Aiton,Cinnamic alcohol,104-54-1,0.15,0.15
+ncs,Jasmine sambac CO2 extract,103798-23-6; 91770-14-8,Jasminum sambac,Cinnamic alcohol,104-54-1,0.15,0.15
+ncs,Styrax absolute,8046-19-3; 94891-27-7; 94891-28-8,Liquidambar styraciflua L.,Cinnamic alcohol,104-54-1,0.82,0.82
+ncs,Styrax essence pyrogenated,8046-19-3; 8046-19-3,Liquidambar Styraciflua,Cinnamic alcohol,104-54-1,0.25,0.25
+ncs,Styrax extract,8046-19-3; 8046-19-3; 94891-27-7; 94891-28-8,Liquidambar spp.,Cinnamic alcohol,104-54-1,0.8,0.8
+ncs,Styrax oil,8046-19-3; 94891-28-8,Liquidambar styraciflua L.,Cinnamic alcohol,104-54-1,1.85,1.85
+ncs,"Styrax oil, Honduras",8046-19-3; 94891-28-8,Liquidambar styraciflua L.,Cinnamic alcohol,104-54-1,1.5,1.5
+ncs,"Styrax oil, pyrogenated",8024-01-9; 94891-27-7,Liquidambar orientalis Mill.,Cinnamic alcohol,104-54-1,0.3,0.3
+ncs,Styrax resinoid,8046-19-3; 8046-19-3,Liquidambar styraciflua L.,Cinnamic alcohol,104-54-1,1.4,1.4
+ncs,Ylang ylang oil I,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Cinnamic alcohol,104-54-1,0.01,0.01
+ncs,Ylang ylang oil II,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook.f.&Thomson forma genuina,Cinnamic alcohol,104-54-1,0.02,0.02
+ncs,Ylang ylang oil III,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Cinnamic alcohol,104-54-1,0.02,0.02
+ncs,"Benzoin resinoid, Siam",84012-39-5,Styrax tonkinensis (Pierre) Craib ex Hartwick,Cinnamic aldehyde,104-55-2,0.01,0.01
+ncs,Cassia  bark oil,8007-80-5; 84961-46-6,Cinnamomum cassia [L.] J. Presl syn. C. aromaticum Nees,Cinnamic aldehyde,104-55-2,78.85,78.85
+ncs,Cassia bark oleoresin,8007-80-5; 84961-46-6,Cinnamomum cassia [L.] J. Presl syn. C. aromaticum Nees,Cinnamic aldehyde,104-55-2,46.23,46.23
+ncs,Cassia oil,8007-80-5; 84961-46-6,Cinnamomum cassia [L.] J. Presl syn. C. aromaticum Nees,Cinnamic aldehyde,104-55-2,79.5,79.5
+ncs,Cinnamon bark CO2 extract,8015-91-6; 84649-98-9,Cinnamomum verum J. Presl syn. C. zeylanicum Blume,Cinnamic aldehyde,104-55-2,77.5,77.5
+ncs,Cinnamon bark oil,8015-91-6; 84649-98-9,Cinnamomum zeylanicum Blume,Cinnamic aldehyde,104-55-2,75,75
+ncs,"Cinnamon bark oil, Laos",97659-68-2,Cinnamomum loureiroi Nees,Cinnamic aldehyde,104-55-2,95,95
+ncs,Cinnamon leaf oil,8015-91-6; 84649-98-9,Cinnamomum zeylanicum Blume,Cinnamic aldehyde,104-55-2,1.5,1.5
+ncs,Hyacinth absolute,8023-94-7; 94333-75-2,Hyacinthus orientalis L.,Cinnamic aldehyde,104-55-2,0.3,0.3
+ncs,Styrax extract,8046-19-3; 8046-19-3; 94891-27-7; 94891-28-8,Liquidambar spp.,Cinnamic aldehyde,104-55-2,0.05,0.05
+ncs,Styrax oil,8046-19-3; 94891-28-8,Liquidambar styraciflua L.,Cinnamic aldehyde,104-55-2,0.03,0.03
+ncs,"Styrax oil, Honduras",8046-19-3; 94891-28-8,Liquidambar styraciflua L.,Cinnamic aldehyde,104-55-2,0.1,0.1
+ncs,Styrax resinoid,8046-19-3; 8046-19-3,Liquidambar styraciflua L.,Cinnamic aldehyde,104-55-2,0.04,0.04
+ncs,"Erospicata oil, Mentha spicata 'Erospicata'",84696-51-5,Mentha spicata Erospicata,cis-3-Hexenyl isovalerate,35154-45-1,0.16,0.16
+ncs,Geranium oil,8000-46-2; 90082-51-2,Pelargonium graveolens l'Hertier ex Aiton,cis-3-Hexenyl isovalerate,35154-45-1,0.1,0.1
+ncs,Mentha arvensis oil,68917-18-0; 90063-97-1; 91722-84-8,Mentha arvenis L.,cis-3-Hexenyl isovalerate,35154-45-1,0.98,0.98
+ncs,Peppermint oil,8006-90-4; 84082-70-2; 98306-02-6,Mentha x piperita L.,cis-3-Hexenyl isovalerate,35154-45-1,0.1,0.1
+ncs,Calamus oil,8015-79-0; 84775-39-3,Acorus calamus L.,cis-Asarone/beta-Asarone,5273-86-9,70,70
+ncs,Carrot seed oil,8015-88-1; 84929-61-3,Daucus carota L.,cis-Asarone/beta-Asarone,5273-86-9,0.05,0.05
+ncs,Cubeb oil,8007-87-2; 90082-59-0,Piper cubeba L. f.,cis-Asarone/beta-Asarone,5273-86-9,2.98,2.98
+ncs,Verbena absolute,8024-12-2; 85116-63-8,Lippia citriodora (L.) Kunth,cis-Asarone/beta-Asarone,5273-86-9,0.01,0.01
+ncs,Cardamom seed absolute,96507-91-4; 85940-32-5,Elettaria cardamomum  (L.) Maton,Citral,5392-40-5,0.88,0.88
+ncs,Cardamom seed CO2 extract,96507-91-4; 85940-32-5,Elettaria cardamomum  (L.) Maton,Citral,5392-40-5,0.88,0.88
+ncs,Cardamom seed oil,8000-66-6; 85940-32-5; 96507-91-4,Elettaria cardamomum (L.) Maton,Citral,5392-40-5,0.5,0.5
+ncs,Cassie absolute,8023-82-3; 89958-31-6,Vachellia farnesiana (L.) Willd.,Citral,5392-40-5,0.03,0.03
+ncs,"Citronella oil, Ceylon type",8000-29-1; 89998-15-2,Cymbopogon nardus (L.) Rendle,Citral,5392-40-5,0.8,0.8
+ncs,"Citronella oil, Java type",8000-29-1; 91771-61-8,Cymbopogon winterianus Jowitt,Citral,5392-40-5,0.8,0.8
+ncs,Citrus junos oil,233683-84-6,Citrus junos Siebold ex. Tanaka ichangensis × reticulata var. austera (reticulata var. austera) (Rutaceae),Citral,5392-40-5,0.01,0.01
+ncs,Clementine oil,93686-22-7,Citrus clementina Hort. Ex Tan,Citral,5392-40-5,0.15,0.15
+ncs,Cyperus articulatus oil,799259-56-6,Cyperus articulatus L.,Citral,5392-40-5,0.7,0.7
+ncs,Eucalyptus radiata oil,92201-64-4,Eucalyptus radiata Sieber ex DC oil,Citral,5392-40-5,1.5,1.5
+ncs,Geranium oil,8000-46-2; 90082-51-2,Pelargonium graveolens l'Hertier ex Aiton,Citral,5392-40-5,0.5,0.5
+ncs,Geranium oil African,8000-46-2; 90082-52-3,Pelargonium odoratissimum L'Heritier,Citral,5392-40-5,0.5,0.5
+ncs,Ginger oil,8007-08-7; 84696-15-1,Zingiber officinale Rosc.,Citral,5392-40-5,2.8,2.8
+ncs,Ginger oleoresin,8007-08-7; 84696-15-1,Zingiber officinale Rosc.,Citral,5392-40-5,0.8,0.8
+ncs,Grapefruit oil,8016-20-4; 90045-43-5,Citrus paradisi Macf.,Citral,5392-40-5,0.1,0.1
+ncs,Grapefruit oil terpenes,68917-32-8; 90045-43-5,Citrus x paradisi Macfad.,Citral,5392-40-5,0.01,0.01
+ncs,"Grapefruit oil, terpeneless",68916-46-1; 90045-43-5,Citrus x paradisi Macfad.,Citral,5392-40-5,10,10
+ncs,"Kumquat oil, Fortunella margarita",938464-05-2,Fortunella (Lour.) Swingle,Citral,5392-40-5,10,10
+ncs,Lemon essence oil,8008-56-8; 84929-31-7,Citrus limon (L.) Osbeck,Citral,5392-40-5,2.03,2.03
+ncs,"Lemon oil, expressed",8008-56-8; 84929-31-7,Citrus limon (L.) Burm. f.,Citral,5392-40-5,3.5,3.5
+ncs,"Lemon oil, terpeneless",68648-39-5; 84929-31-7,Citrus limon (L.) Osbeck,Citral,5392-40-5,40,40
+ncs,"Lemongrass oil, West Indian",8007-02-1; 89998-14-1,Cymbopogon citratus (DC) Stapf.,Citral,5392-40-5,73,73
+ncs,Litsea cubeba oil,68855-99-2; 90063-59-5,Litsea Cubeba(Lour.) Pers.,Citral,5392-40-5,69,69
+ncs,Mentha citrata oil,68917-15-7; 85085-49-0,Mentha citrata Ehrhart,Citral,5392-40-5,0.03,0.03
+ncs,Meyer lemon oil. cold pressed,1370641-98-7,Citrus x meyerii,Citral,5392-40-5,5,5
+ncs,"Murcote oil, expressed",93686-22-7,"Citrus reticulata spp. murcote, Swingle",Citral,5392-40-5,0.1,0.1
+ncs,Orange essence oil,68514-75-0; 8028-48-6,Citrus sinensis (L.) Osbeck,Citral,5392-40-5,0.15,0.15
+ncs,"Orange oil, sweet, terpenes",68647-72-3; 8028-48-6,Citrus sinensis (L.) Osbeck,Citral,5392-40-5,0.01,0.01
+ncs,"Orange, sweet, Valencia oil",8008-57-9; 97766-30-8,Citrus sinensis (L.) Osbeck,Citral,5392-40-5,0.15,0.15
+ncs,Palmarosa oil,8014-19-5; 91722-54-2; 84649-81-0,Cymbopogon martinii (Roxb.) Wats,Citral,5392-40-5,0.6,0.6
+ncs,Perilla oil,68132-21-8; 90082-61-4,Perilla frutescens (L.) Britton,Citral,5392-40-5,0.17,0.17
+ncs,Petitgrain bigarade absolute,8030-28-2; 72968-50-4,Citrus aurantium L.,Citral,5392-40-5,0.2,0.2
+ncs,Petitgrain bigarade oil,8014-17-3; 72968-50-4,Citrus aurantium L. spp. Amara Link,Citral,5392-40-5,0.65,0.65
+ncs,Petitgrain lemon oil,8048-51-9; 84929-31-7,Citrus limon (L.) Burm. f.,Citral,5392-40-5,23,23
+ncs,Petitgrain mandarin oil,8014-17-3; 84929-38-4,Citrus reticulata Blanco,Citral,5392-40-5,0.14,0.14
+ncs,Rose concrete,90106-38-0,Rosa x damascena Mill.,Citral,5392-40-5,0.16,0.16
+ncs,"Tangelo oil, expressed",72869-73-9; 93763-95-2,Citrus x tangelo Ingram and Moore,Citral,5392-40-5,0.1,0.1
+ncs,Tangerine oil,8016-85-1; 93686-22-7; 8008-31-9,Citrus reticulata blanco,Citral,5392-40-5,0.1,0.1
+ncs,"Tangor oil, expressed",93686-22-7,Citrus reticulata x Citrus sinensis,Citral,5392-40-5,0.1,0.1
+ncs,Verbena absolute,8024-12-2; 85116-63-8,Lippia citriodora (L.) Kunth,Citral,5392-40-5,25.6,25.6
+ncs,Ylang ylang oil I,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Citral,5392-40-5,0.12,0.12
+ncs,Ylang ylang oil II,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook.f.&Thomson forma genuina,Citral,5392-40-5,0.09,0.09
+ncs,Ylang ylang oil III,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Citral,5392-40-5,0.02,0.02
+ncs,"Ylang, Ylang oil extra",8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Citral,5392-40-5,0.01,0.01
+ncs,Balm oil,8014-71-9; 84082-61-1,Melissa officinalis L.,Citronellal,106-23-0,6.88,6.88
+ncs,Citron oil,68991-25-3,Citrus medica L.,Citronellal,106-23-0,0.15,0.15
+ncs,"Citronella oil, Ceylon type",8000-29-1; 89998-15-2,Cymbopogon nardus (L.) Rendle,Citronellal,106-23-0,4.5,4.5
+ncs,"Citronella oil, Java type",8000-29-1; 91771-61-8,Cymbopogon winterianus Jowitt,Citronellal,106-23-0,36,36
+ncs,Citrus hystrix extract,91771-50-5,Citrus hystrix DC,Citronellal,106-23-0,11.7,11.7
+ncs,Clementine oil,93686-22-7,Citrus clementina Hort. Ex Tan,Citronellal,106-23-0,0.1,0.1
+ncs,Eucalyptus citriodora oil,85203-56-1,Corymbia citriodora (Hook.) K.D. Hill & L.A. Johnson,Citronellal,106-23-0,71.77,71.77
+ncs,Geranium oil,8000-46-2; 90082-51-2,Pelargonium graveolens l'Hertier ex Aiton,Citronellal,106-23-0,0.15,0.15
+ncs,Ginger oil,8007-08-7; 84696-15-1,Zingiber officinale Rosc.,Citronellal,106-23-0,0.4,0.4
+ncs,Grapefruit essence oil,8016-20-4; 90045-43-5,Citrus x paradisi Macfad.,Citronellal,106-23-0,0.07,0.07
+ncs,Grapefruit oil,8016-20-4; 90045-43-5,Citrus paradisi Macf.,Citronellal,106-23-0,0.1,0.1
+ncs,Grapefruit oil,8016-20-4; 90045-43-5,Citrus x paradisi Macfad.,Citronellal,106-23-0,0.1,0.1
+ncs,Grapefruit oil terpenes,68917-32-8; 90045-43-5,Citrus x paradisi Macfad.,Citronellal,106-23-0,0.01,0.01
+ncs,"Grapefruit oil, terpeneless",68916-46-1; 90045-43-5,Citrus x paradisi Macfad.,Citronellal,106-23-0,3.2,3.2
+ncs,"Kumquat oil, Fortunella margarita",938464-05-2,Fortunella (Lour.) Swingle,Citronellal,106-23-0,3,3
+ncs,Lemon essence oil,8008-56-8; 84929-31-7,Citrus limon (L.) Osbeck,Citronellal,106-23-0,0.06,0.06
+ncs,Lemon oil steam distilled,8008-56-8; 84929-31-7,Citrus limon (L.) Osbeck,Citronellal,106-23-0,0.07,0.07
+ncs,"Lemon oil, expressed",8008-56-8; 84929-31-7,Citrus limon (L.) Burm. f.,Citronellal,106-23-0,0.1,0.1
+ncs,"Lemon oil, terpeneless",68648-39-5; 84929-31-7,Citrus limon (L.) Osbeck,Citronellal,106-23-0,3,3
+ncs,"Lemongrass oil, East Indian",8007-02-1; 91844-92-7,Cymbopogon flexuosus (Nees ex Steudel) Will. Watson,Citronellal,106-23-0,0.51,0.51
+ncs,"Lemongrass oil, West Indian",8007-02-1; 89998-14-1,Cymbopogon citratus (DC) Stapf.,Citronellal,106-23-0,0.3,0.3
+ncs,"Lime oil, expressed",8008-26-2; 93685-55-3; 90063-52-8,Citrus aurantifolia (Christman) Swingle,Citronellal,106-23-0,0.5,0.5
+ncs,Litsea cubeba oil,68855-99-2; 90063-59-5,Litsea Cubeba(Lour.) Pers.,Citronellal,106-23-0,1.1,1.1
+ncs,Meyer lemon oil. cold pressed,1370641-98-7,Citrus x meyerii,Citronellal,106-23-0,0.2,0.2
+ncs,"Murcote oil, expressed",93686-22-7,"Citrus reticulata spp. murcote, Swingle",Citronellal,106-23-0,0.1,0.1
+ncs,"Persian lime oil, expressed",8008-26-2; 90063-52-8,Citrus latifolia Tanaka,Citronellal,106-23-0,1.39,1.39
+ncs,Petitgrain bigarade oil,8014-17-3; 72968-50-4,Citrus aurantium L. spp. Amara Link,Citronellal,106-23-0,0.05,0.05
+ncs,Petitgrain lemon oil,8048-51-9; 84929-31-7,Citrus limon (L.) Burm. f.,Citronellal,106-23-0,1,1
+ncs,Petitgrain mandarin oil,8014-17-3; 84929-38-4,Citrus reticulata Blanco,Citronellal,106-23-0,0.05,0.05
+ncs,Rose oil,8007-01-0; 90106-38-0,Rosa x damascena Mill.,Citronellal,106-23-0,0.51,0.51
+ncs,"Tangelo oil, expressed",72869-73-9; 93763-95-2,Citrus x tangelo Ingram and Moore,Citronellal,106-23-0,0.1,0.1
+ncs,Tangerine oil,8016-85-1; 93686-22-7; 8008-31-9,Citrus reticulata blanco,Citronellal,106-23-0,0.1,0.1
+ncs,"Tangor oil, expressed",93686-22-7,Citrus reticulata x Citrus sinensis,Citronellal,106-23-0,0.1,0.1
+ncs,Abies alba cone oil,8021-27-0; 90028-76-5,Abies alba Mill.,Citronellyl acetate,150-84-5,0.05,0.05
+ncs,Balm oil,8014-71-9; 84082-61-1,Melissa officinallis L.,Citronellyl acetate,150-84-5,1.35,1.35
+ncs,"Basil oil, chemotype linalool",8015-73-4; 84775-71-3,Ocimum basilicum L.,Citronellyl acetate,150-84-5,0.1,0.1
+ncs,"Bucchu absolute, betulina",84649-93-4; 68650-46-4,Agathosma betulina (P.J.Bergius) Pillans,Citronellyl acetate,150-84-5,0.15,0.15
+ncs,"Citronella oil, Ceylon type",8000-29-1; 89998-15-2,Cymbopogon nardus (L.) Rendle,Citronellyl acetate,150-84-5,0.9,0.9
+ncs,"Citronella oil, Java type",8000-29-1; 91771-61-8,Cymbopogon winterianus Jowitt,Citronellyl acetate,150-84-5,3,3
+ncs,Citrus hystrix extract,91771-50-5,Citrus hystrix DC,Citronellyl acetate,150-84-5,0.4,0.4
+ncs,Eucalyptus citriodora oil,85203-56-1,Corymbia citriodora (Hook.) K.D. Hill & L.A. Johnson,Citronellyl acetate,150-84-5,1.81,1.81
+ncs,Geranium absolute,8000-46-2; 90082-51-2; 68916-42-7,Pelargonium graveolens l'Hertier ex Aiton,Citronellyl acetate,150-84-5,0.41,0.41
+ncs,Geranium oil,8000-46-2; 90082-51-2,Pelargonium graveolens l'Hertier ex Aiton,Citronellyl acetate,150-84-5,0.5,0.5
+ncs,Geranium oil African,8000-46-2; 90082-52-3,Pelargonium odoratissimum L'Heritier,Citronellyl acetate,150-84-5,0.8,0.8
+ncs,Ginger CO2 extract,8007-08-7; 84696-15-1,Zingiber officinalle Roscoe,Citronellyl acetate,150-84-5,0.17,0.17
+ncs,"Grapefruit oil, terpeneless",68916-46-1; 90045-43-5,Citrus x paradisi Macfad.,Citronellyl acetate,150-84-5,0.31,0.31
+ncs,Juniper berry oil,8002-68-4; 84603-69-0,Juniperus communis L.,Citronellyl acetate,150-84-5,0.19,0.19
+ncs,"Lemon oil, terpeneless",68648-39-5; 84929-31-7,Citrus limon (L.) Osbeck,Citronellyl acetate,150-84-5,1.72,1.72
+ncs,"Lemongrass oil, East Indian",8007-02-1; 91844-92-7,Cymbopogon flexuosus (Nees ex Steudel) Will. Watson,Citronellyl acetate,150-84-5,0.23,0.23
+ncs,Nutmeg oil,8008-45-5; 84082-68-8,Myristica fragrans Houtt.,Citronellyl acetate,150-84-5,0.13,0.13
+ncs,Petitgrain lemon oil,8048-51-9; 84929-31-7,Citrus limon (L.) Burm. f.,Citronellyl acetate,150-84-5,0.2,0.2
+ncs,Rose absolute,90106-38-0,Rosa x damascena Mill.,Citronellyl acetate,150-84-5,0.13,0.13
+ncs,Rose concrete,90106-38-0,Rosa x damascena Mill.,Citronellyl acetate,150-84-5,0.03,0.03
+ncs,Rose oil,8007-01-0; 90106-38-0,Rosa x damascena Mill.,Citronellyl acetate,150-84-5,0.55,0.55
+ncs,Rose water stronger,8007-01-0; 84604-12-6,Rosa x centifolia L.,Citronellyl acetate,150-84-5,0.02,0.02
+ncs,Schinus molle oil,68917-52-2; 94334-31-3,Schinus areira L.,Citronellyl acetate,150-84-5,0.14,0.14
+ncs,Schinus terebenthifolius CO2 extract,949495-68-5,Schinus terebenthifolius Raddi,Citronellyl acetate,150-84-5,0.25,0.25
+ncs,Tagetes minuta oil,91770-75-1,Tagetes minuta L.,Citronellyl acetate,150-84-5,0.43,0.43
+ncs,Cassia  bark oil,8007-80-5; 84961-46-6,Cinnamomum cassia [L.] J. Presl syn. C. aromaticum Nees,Coumarin,91-64-5,2.85,2.85
+ncs,Cassia bark oleoresin,8007-80-5; 84961-46-6,Cinnamomum cassia [L.] J. Presl syn. C. aromaticum Nees,Coumarin,91-64-5,3.27,3.27
+ncs,Cassia oil,8007-80-5; 84961-46-6,Cinnamomum cassia [L.] J. Presl syn. C. aromaticum Nees,Coumarin,91-64-5,2,2
+ncs,Cinnamon bark CO2 extract,8015-91-6; 84649-98-9,Cinnamomum verum J. Presl syn. C. zeylanicum Blume,Coumarin,91-64-5,0.1,0.1
+ncs,Cinnamon bark oil,8015-91-6; 84649-98-9,Cinnamomum zeylanicum Blume,Coumarin,91-64-5,0.6,0.6
+ncs,"Cinnamon bark oil, Laos",97659-68-2,Cinnamomum loureiroi Nees,Coumarin,91-64-5,3,3
+ncs,Cinnamon leaf oil,8015-91-6; 84649-98-9,Cinnamomum zeylanicum Blume,Coumarin,91-64-5,0.3,0.3
+ncs,Deertongue leaf absolute,68606-82-6; 68602-86-8,Liatris odoratissima (Walt.) Willd.,Coumarin,91-64-5,25,25
+ncs,Flouve absolute,68916-09-6; 89957-44-8,Anthoxanthum odorantum L.,Coumarin,91-64-5,2,2
+ncs,Hay absolute,8031-00-3; 90063-63-1; 100209-32-3,Lolium perenne. L,Coumarin,91-64-5,8,8
+ncs,Lavandin abrialis oil,8022-15-9; 93455-96-0,Lavandula x intermedia abrialis,Coumarin,91-64-5,0.2,0.2
+ncs,Lavandin absolute,8022-15-9; 91722-69-9,Lavandula officinalis x Lavandula latifolia,Coumarin,91-64-5,1.77,1.77
+ncs,Lavandin concrete,8022-15-9; 91722-69-9,Lavandula officinalis x Lavandula latifolia,Coumarin,91-64-5,1.21,1.21
+ncs,Lavandin grosso absolute,93455-97-1,Lavandula angustifolia Mill. x Lavandula latifolia Medik.,Coumarin,91-64-5,4.09,4.09
+ncs,Lavandin super oil,93685-88-2,Lavendula super,Coumarin,91-64-5,0.1,0.1
+ncs,Lavender absolute,8000-28-0; 84776-65-8; 90063-37-9; 97722-12-8,Lavandula angustifolia angustifolia,Coumarin,91-64-5,5.98,5.98
+ncs,Lavender oil dentata,93165-50-5,Lavandula dentata,Coumarin,91-64-5,0.35,0.35
+ncs,Narcissus poeticus absolute,68917-12-4; 90064-26-9,Narcissus poeticus L.,Coumarin,91-64-5,1.2,1.2
+ncs,Osmanthus absolute,68917-05-5; 92347-21-2,Osmanthus fragrans Lour.,Coumarin,91-64-5,0.02,0.02
+ncs,Osmanthus concrete,68917-05-5; 92347-21-2,Osmanthus fragrans Lour.,Coumarin,91-64-5,0.02,0.02
+ncs,Tonka Bean absolute,8024-04-2; 90028-06-1; 8046-22-8,Dipteryx odorata,Coumarin,91-64-5,56.77,56.77
+ncs,"Benzoin resinoid, Sumatra",84929-79-3,Styrax benzoin Dryand.,Cresol (unspecified),1319-77-3,0.01,0.01
+ncs,"Birch tar oil, rectified",8001-88-5; 84012-15-7; 85940-29-0; 91745-85-6,Betula pendula Roth,Cresol (unspecified),1319-77-3,1.8,1.8
+ncs,Jasmine CO2 extract,8022-96-6; 84776-64-7,Jasmium grandifloum L.,Cresol (unspecified),1319-77-3,0.016,0.016
+ncs,Jasmine grandiflorum absolute,8022-96-6; 84776-64-7,Jasminum grandiflorum L.,Cresol (unspecified),1319-77-3,0.7,0.7
+ncs,Jasmine officinale absolute,8024-43-9; 90045-94-6,Jasminum officinale L.,Cresol (unspecified),1319-77-3,0.01,0.01
+ncs,Nutmeg oil,8008-45-5; 84082-68-8,Myristica fragrans Houtt.,Cresol (unspecified),1319-77-3,0.1,0.1
+ncs,"Pine tar oil, rectified",97435-14-8,Pinus palustris Mill. and other Pinus spp.,Cresol (unspecified),1319-77-3,0.68,0.68
+ncs,Styrax extract,8046-19-3; 8046-19-3; 94891-27-7; 94891-28-8,Liquidambar spp.,Cresol (unspecified),1319-77-3,0.39,0.39
+ncs,Ylang ylang oil I,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Cresol (unspecified),1319-77-3,0.03,0.03
+ncs,Ylang ylang oil II,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook.f.&Thomson forma genuina,Cresol (unspecified),1319-77-3,0.03,0.03
+ncs,Ylang-ylang absolute,83863-30-3,Cananga odorata (Lam.) Hook.f.&Thomson forma genuina,Cresol (unspecified),1319-77-3,0.31,0.31
+ncs,Cubeb oil,8007-87-2; 90082-59-0,Piper cubeba L. f.,Cuminaldehyde,122-03-2,0.09,0.09
+ncs,Cumin seed oil,8014-13-9; 84775-51-9,Cuminum cyminum L.,Cuminaldehyde,122-03-2,21,21
+ncs,Lavender absolute,8000-28-0; 84776-65-8; 90063-37-9; 97722-12-8,Lavandula angustifolia angustifolia,Cuminaldehyde,122-03-2,0.06,0.06
+ncs,Lavender oil dentata,93165-50-5,Lavandula dentata,Cuminaldehyde,122-03-2,0.2,0.2
+ncs,Perilla oil,68132-21-8; 90082-61-4,Perilla frutescens (L.) Britton,Cuminaldehyde,122-03-2,0.24,0.24
+ncs,Angelica root oil,8015-64-3; 84775-41-7,Angelica archangelica L.,Cyclopentadecanolide/omega-Pentadecalatone,106-02-5,1.6,1.6
+ncs,Angelica seed oil,8015-64-3; 84775-41-7,Angelica archangelica L.,Cyclopentadecanolide/omega-Pentadecalatone,106-02-5,0.29,0.29
+ncs,Galbanum oil,8023-91-4; 9000-24-2; 93165-40-3,Ferula spp.,Cyclopentadecanolide/omega-Pentadecalatone,106-02-5,0.1,0.1
+ncs,Caraway seed oil,8000-42-8; 85940-31-4,Carum carvi L.,d-Carvone,2244-16-8,59,59
+ncs,Celery seed oil,8015-90-5; 89997-35-3,Apium graveolens L.,d-Carvone,2244-16-8,0.2,0.2
+ncs,Celery seed oleoresin,8015-90-5; 89997-35-3,Apium graveolens L.,d-Carvone,2244-16-8,0.1,0.1
+ncs,Dill seed oil,8006-75-5; 90028-03-8,Anethum graveolens L.,d-Carvone,2244-16-8,51,51
+ncs,Dill weed oil,8006-75-5; 90028-03-8,Anethum graveolens L.,d-Carvone,2244-16-8,31.5,31.5
+ncs,Savory winter oil,90106-57-3,Satureja montana L.,d-Carvone,2244-16-8,0.85,0.85
+ncs,Deertongue leaf absolute,68606-82-6; 68602-86-8,Liatris odoratissima (Walt.) Willd.,Dihydrocoumarin,119-84-6,2,2
+ncs,Tonka Bean absolute,8024-04-2; 90028-06-1; 8046-22-8,Dipteryx odorata,Dihydrocoumarin,119-84-6,1.85,1.85
+ncs,Balm oil,8014-71-9; 84082-61-1,Melissa officinalis L.,dl-Citronellol,106-22-9,7.49,7.49
+ncs,"Bucchu absolute, betulina",84649-93-4; 68650-46-4,Agathosma betulina (P.J.Bergius) Pillans,dl-Citronellol,106-22-9,0.19,0.19
+ncs,Citron oil,68991-25-3,Citrus medica L.,dl-Citronellol,106-22-9,0.12,0.12
+ncs,"Citronella oil, Ceylon type",8000-29-1; 89998-15-2,Cymbopogon nardus (L.) Rendle,dl-Citronellol,106-22-9,6,6
+ncs,"Citronella oil, Java type",8000-29-1; 91771-61-8,Cymbopogon winterianus Jowitt,dl-Citronellol,106-22-9,11,11
+ncs,Citrus hystrix extract,91771-50-5,Citrus hystrix DC,dl-Citronellol,106-22-9,3,3
+ncs,Eucalyptus citriodora oil,85203-56-1,Corymbia citriodora (Hook.) K.D. Hill & L.A. Johnson,dl-Citronellol,106-22-9,7.37,7.37
+ncs,Hibawood oil,68917-43-1; 91722-39-3,Thujopsis dolabrata (Thunb. Ex L.f.) Sieb.& Zucc.,dl-Citronellol,106-22-9,0.38,0.38
+ncs,"Lemongrass oil, East Indian",8007-02-1; 91844-92-7,Cymbopogon flexuosus (Nees ex Steudel) Will. Watson,dl-Citronellol,106-22-9,0.25,0.25
+ncs,Lime oil distilled,8008-26-2; 90063-52-8,Citrus aurantifolia (Christm.) Swingle,dl-Citronellol,106-22-9,0.01,0.01
+ncs,Litsea cubeba oil,68855-99-2; 90063-59-5,Litsea Cubeba(Lour.) Pers.,dl-Citronellol,106-22-9,0.15,0.15
+ncs,"Marjoram oil, Spanish",8016-33-9; 91722-83-7; 84837-14-9,Thymus mastichina L.,dl-Citronellol,106-22-9,0.09,0.09
+ncs,Niaouli oil,8014-68-4; 132940-73-9,Melaleuca viridiflora Sol. ex Gaertn.,dl-Citronellol,106-22-9,0.1,0.1
+ncs,"Orange flower oil, bitter (neroli and neroli bigarade)",8016-38-4; 72968-50-4,Citrus aurantium L. spp. Amara Link,dl-Citronellol,106-22-9,0.04,0.04
+ncs,Orange flower water absolute,8030-28-2; 72968-50-4,Citrus aurantium L. spp. Amara Link,dl-Citronellol,106-22-9,0.02,0.02
+ncs,"Pine, Pinus pumila, extract",97676-05-6,Pinus Pumila (Pall) Regel,dl-Citronellol,106-22-9,0.1,0.1
+ncs,Rose absolute,90106-38-0,Rosa x damascena Mill.,dl-Citronellol,106-22-9,4.02,4.02
+ncs,Rose concrete,90106-38-0,Rosa x damascena Mill.,dl-Citronellol,106-22-9,4.7,4.7
+ncs,Rose oil,8007-01-0; 90106-38-0,Rosa x damascena Mill.,dl-Citronellol,106-22-9,32.5,32.5
+ncs,Rose water stronger,8007-01-0; 84604-12-6,Rosa x centifolia L.,dl-Citronellol,106-22-9,1.2,1.2
+ncs,Schinus molle oil,68917-52-2; 94334-31-3,Schinus areira L.,dl-Citronellol,106-22-9,0.02,0.02
+ncs,"Spruce oil, Black",8008-80-8; 91722-18-9,Picea mariana (Mill.) Britton,dl-Citronellol,106-22-9,0.2,0.2
+ncs,"Spruce oil, White",91770-69-3; 91722-18-8,Picea abies (L.) H.Karst.,dl-Citronellol,106-22-9,0.28,0.28
+ncs,"Thyme oil, red",8007-46-3; 84929-51-1,Thymus vulgaris L.,dl-Citronellol,106-22-9,0.02,0.02
+ncs,Verbena absolute,8024-12-2; 85116-63-8,Lippia citriodora (L.) Kunth,dl-Citronellol,106-22-9,0.45,0.45
+ncs,Anise seed oil,8007-70-3; 84775-42-8,Pimpinella anisum L.,Estragole,140-67-0,2.39,2.39
+ncs,"Basil oil, chemotype estragole",8015-73-4; 84775-71-3,Ocimum basilicum L.,Estragole,140-67-0,81.87,81.87
+ncs,"Basil oil, chemotype linalool",8015-73-4; 84775-71-3,Ocimum basilicum L.,Estragole,140-67-0,0.95,0.95
+ncs,"Basil oleoresin, chemotype estragole",8015-73-4; 84775-71-3,Ocimum basilicum L.,Estragole,140-67-0,34,34
+ncs,"Bay leaf, West Indian, oil",8006-78-8; 91721-75-4; 85085-61-6,Pimenta racemosa (Mill.) J.W. Moore,Estragole,140-67-0,0.1,0.1
+ncs,"Fennel oil, bitter, phellandrene type",84625-39-8,Foeniculum vulgare Mill.,Estragole,140-67-0,4.7,4.7
+ncs,"Fennel oil, bitter,anethole type",8006-84-6; 84625-39-8,Foeniculum vulgare Mill.,Estragole,140-67-0,2.1,2.1
+ncs,"Fennel oil, sweet",8006-84-6; 84455-29-8,Foeniculum vulgare subsp. vulgare var. Dulce (Mill) Batt.,Estragole,140-67-0,2.32,2.32
+ncs,"Fir needle oil, Canadian",8024-15-5; 85085-34-3,Abies balsamea (L.) Mill.,Estragole,140-67-0,0.04,0.04
+ncs,Hyssop oil,8006-83-5; 84603-66-7,Hyssopus officinalis L.,Estragole,140-67-0,0.17,0.17
+ncs,Laurel leaf oil,8007-48-5; 8002-41-3; 84603-73-6,Laurus nobilis L,Estragole,140-67-0,0.16,0.16
+ncs,Mentha citrata oil,68917-15-7; 85085-49-0,Mentha citrata Ehrhart,Estragole,140-67-0,0.3,0.3
+ncs,Myrtle oil,8008-46-6; 84083-67-7,Myrtus communis L.,Estragole,140-67-0,0.1,0.1
+ncs,Ravensara aromatica oil,91770-56-8,Ravansara aromatica Sonn. (v. anisata),Estragole,140-67-0,8,8
+ncs,Star anise oil,68952-43-2; 84650-59-9,"Illicium verum Hook, f.",Estragole,140-67-0,3.3,3.3
+ncs,Tarragon oil,8016-88-4; 90131-45-6,Artemisia dracunculus L.,Estragole,140-67-0,80,80
+ncs,Ylang ylang oil I,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Estragole,140-67-0,0.2,0.2
+ncs,Ylang ylang oil II,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook.f.&Thomson forma genuina,Estragole,140-67-0,0.13,0.13
+ncs,Ylang ylang oil III,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Estragole,140-67-0,0.03,0.03
+ncs,"Ylang, Ylang oil extra",8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Estragole,140-67-0,0.02,0.02
+ncs,Allspice oil,8006-77-7; 84929-57-7,Pimenta dioica (L.) Merr.,Eugenol,97-53-0,69,69
+ncs,Allspice oleoresin,8006-77-7; 84929-57-7,Pimenta officinalis Lindl.,Eugenol,97-53-0,41.4,41.4
+ncs,Armoise vulgaris oil,68991-20-8; 84775-45-1; 8022-37-5,Artemisia vulgaris L.,Eugenol,97-53-0,1,1
+ncs,"Basil oil, chemotype estragole",8015-73-4; 84775-71-3,Ocimum basilicum L.,Eugenol,97-53-0,0.34,0.34
+ncs,"Basil oil, chemotype linalool",8015-73-4; 84775-71-3,Ocimum basilicum L.,Eugenol,97-53-0,7.9,7.9
+ncs,"Basil oleoresin, chemotype estragole",8015-73-4; 84775-71-3,Ocimum basilicum L.,Eugenol,97-53-0,0.2,0.2
+ncs,"Bay leaf, West Indian, oil",8006-78-8; 91721-75-4; 85085-61-6,Pimenta racemosa (Mill.) J.W. Moore,Eugenol,97-53-0,51,51
+ncs,"Benzoin infusion, Sumatra",9000-05-9,Styrax paralleloneurum Perkins,Eugenol,97-53-0,0.001,0.001
+ncs,Calamus oil,8015-79-0; 84775-39-3,Acorus calamus L.,Eugenol,97-53-0,0.2,0.2
+ncs,Cananga oil,68606-83-7; 93686-30-7,Cananga odorata (Lam.) Hook. f. & Thomson (forma macrophylla Steenis),Eugenol,97-53-0,0.4,0.4
+ncs,Carnation absolute,8021-43-0; 89958-29-2,Dianthus caryophyllus L.,Eugenol,97-53-0,18,18
+ncs,Cascarilla bark oil,8007-06-5; 84836-99-7,Croton eleuteria (L.) W.Wright,Eugenol,97-53-0,0.4,0.4
+ncs,Cassia  bark oil,8007-80-5; 84961-46-6,Cinnamomum cassia [L.] J. Presl syn. C. aromaticum Nees,Eugenol,97-53-0,0.1,0.1
+ncs,Cassia bark oleoresin,8007-80-5; 84961-46-6,Cinnamomum cassia [L.] J. Presl syn. C. aromaticum Nees,Eugenol,97-53-0,0.02,0.02
+ncs,Cassia oil,8007-80-5; 84961-46-6,Cinnamomum cassia [L.] J. Presl syn. C. aromaticum Nees,Eugenol,97-53-0,0.1,0.1
+ncs,Cassie absolute,8023-82-3; 89958-31-6,Vachellia farnesiana (L.) Willd.,Eugenol,97-53-0,0.06,0.06
+ncs,Champaca absolute,8006-76-6; 92457-18-6,Michelia champaca L.,Eugenol,97-53-0,0.55,0.55
+ncs,Cinnamon bark CO2 extract,8015-91-6; 84649-98-9,Cinnamomum verum J. Presl syn. C. zeylanicum Blume,Eugenol,97-53-0,2.5,2.5
+ncs,Cinnamon bark oil,8015-91-6; 84649-98-9,Cinnamomum zeylanicum Blume,Eugenol,97-53-0,2,2
+ncs,Cinnamon leaf oil,8015-91-6; 84649-98-9,Cinnamomum zeylanicum Blume,Eugenol,97-53-0,74,74
+ncs,Cistus absolute,8016-26-0; 89997-74-0,Cistus ladaniferus L.,Eugenol,97-53-0,0.06,0.06
+ncs,Cistus oil,8016-26-0; 89997-74-0,Cistus ladaniferus L.,Eugenol,97-53-0,0.4,0.4
+ncs,Citron oil,68991-25-3,Citrus medica L.,Eugenol,97-53-0,0.01,0.01
+ncs,"Citronella oil, Ceylon type",8000-29-1; 89998-15-2,Cymbopogon nardus (L.) Rendle,Eugenol,97-53-0,0.2,0.2
+ncs,"Citronella oil, Java type",8000-29-1; 91771-61-8,Cymbopogon winterianus Jowitt,Eugenol,97-53-0,0.9,0.9
+ncs,Clove bud absolute,84961-50-2,Syzygium aromaticum (L.) Merr. & L.M.Perry,Eugenol,97-53-0,69.08,69.08
+ncs,Clove bud oil,8000-34-8; 84961-50-2,Syzygium aromaticum L.,Eugenol,97-53-0,82,82
+ncs,Clove bud oil terpenes,8000-34-8; 84961-50-2,Syzygium aromaticum (L.) Merr. & L.M.Perry,Eugenol,97-53-0,27,27
+ncs,Clove leaf oil,8000-34-8; 84961-50-2,Syzygium aromaticum L.,Eugenol,97-53-0,85.3,85.3
+ncs,Clove leaf oil terpenes,68917-29-3; 84961-50-2,Syzygium aromaticum (L.) Merr. & L.M.Perry,Eugenol,97-53-0,0.77,0.77
+ncs,Clove stem oil,8000-34-8; 84961-50-2,Syzygium aromaticum L.,Eugenol,97-53-0,88,88
+ncs,Eucalyptus citriodora oil,85203-56-1,Corymbia citriodora (Hook.) K.D. Hill & L.A. Johnson,Eugenol,97-53-0,0.12,0.12
+ncs,Genet absolute,90131-21-8; 129316-65-0,Spartium junceum L.,Eugenol,97-53-0,0.02,0.02
+ncs,Hyacinth absolute,8023-94-7; 94333-75-2,Hyacinthus orientalis L.,Eugenol,97-53-0,0.2,0.2
+ncs,Jasmine absolute,8022-96-6; 84776-64-7,Jasmium grandifloum L.,Eugenol,97-53-0,1.53,1.53
+ncs,Jasmine CO2 extract,8022-96-6; 84776-64-7,Jasmium grandifloum L.,Eugenol,97-53-0,1,1
+ncs,Jasmine concrete,8022-96-6; 84776-64-7,Jasminum grandiflorum L.,Eugenol,97-53-0,1.53,1.53
+ncs,Jasmine officinale absolute,8024-43-9; 90045-94-6,Jasminum officinale L.,Eugenol,97-53-0,2,2
+ncs,Labdanum oil,8016-26-0; 90244-89-6; 89997-74-0,Cistus ladaniferus L.,Eugenol,97-53-0,0.5,0.5
+ncs,Laurel leaf oil,8007-48-5; 8002-41-3; 84603-73-6,Laurus nobilis L,Eugenol,97-53-0,1.33,1.33
+ncs,Lavandin grosso absolute,93455-97-1,Lavandula angustifolia Mill. x Lavandula latifolia Medik.,Eugenol,97-53-0,0.04,0.04
+ncs,"Lemongrass oil, East Indian",8007-02-1; 91844-92-7,Cymbopogon flexuosus (Nees ex Steudel) Will. Watson,Eugenol,97-53-0,0.08,0.08
+ncs,"Lemongrass oil, West Indian",8007-02-1; 89998-14-1,Cymbopogon citratus (DC) Stapf.,Eugenol,97-53-0,0.2,0.2
+ncs,Mace oil,8007-12-3; 84082-68-8,Myristica fragrans Houtt.,Eugenol,97-53-0,0.7,0.7
+ncs,Mace oleoresin,8007-12-3; 84082-68-8,Myristica fragrans Houtt.,Eugenol,97-53-0,0.4,0.4
+ncs,Mentha citrata oil,68917-15-7; 85085-49-0,Mentha citrata Ehrhart,Eugenol,97-53-0,0.01,0.01
+ncs,Mimosa absolute,8031-03-6; 93685-96-2; 98903-76-5,Acacia decurrens (Wendl.f.) Willd.,Eugenol,97-53-0,0.02,0.02
+ncs,Nutmeg oil,8008-45-5; 84082-68-8,Myristica fragrans Houtt.,Eugenol,97-53-0,0.2,0.2
+ncs,Nutmeg oleoresin,8008-45-5; 84082-68-8,Myristica fragrans Houtt.,Eugenol,97-53-0,0.1,0.1
+ncs,Ocatea cymbarum oil,68917-09-9; 91770-39-7,Ocotea cymbarum Kunth,Eugenol,97-53-0,0.36,0.36
+ncs,Origanum oil,8007-11-2; 90131-59-2,Thymus capitata (L.) Cav.,Eugenol,97-53-0,0.08,0.08
+ncs,Osmanthus absolute,68917-05-5; 92347-21-2,Osmanthus fragrans Lour.,Eugenol,97-53-0,0.07,0.07
+ncs,Osmanthus concrete,68917-05-5; 92347-21-2,Osmanthus fragrans Lour.,Eugenol,97-53-0,0.06,0.06
+ncs,Pimenta leaf oil,8006-77-7; 84929-57-7,Pimenta officinalis Lindl.,Eugenol,97-53-0,83,83
+ncs,"Pine Scotch, resinoid",8023-99-2,Pinus sylvestris L.,Eugenol,97-53-0,0.02,0.02
+ncs,Rose absolute,90106-38-0,Rosa x damascena Mill.,Eugenol,97-53-0,0.65,0.65
+ncs,Rose concrete,90106-38-0,Rosa x damascena Mill.,Eugenol,97-53-0,1,1
+ncs,Rose oil,8007-01-0; 90106-38-0,Rosa x damascena Mill.,Eugenol,97-53-0,1.14,1.14
+ncs,Sassafras bark oil,8006-80-2; 84787-72-4,Sassafras albidum (Nutt.) Nees,Eugenol,97-53-0,0.36,0.36
+ncs,Savory winter oil,90106-57-3,Satureja montana L.,Eugenol,97-53-0,3.32,3.32
+ncs,Snakeroot oil,8016-69-1; 89957-73-3,Asarum canadense L.,Eugenol,97-53-0,1,1
+ncs,Tarragon oil,8016-88-4; 90131-45-6,Artemisia dracunculus L.,Eugenol,97-53-0,0.6,0.6
+ncs,Thyme absolute,8007-46-3; 84929-51-1,Thymus vulgaris L.,Eugenol,97-53-0,0.12,0.12
+ncs,"Thyme oil, red",8007-46-3; 84929-51-1,Thymus vulgaris L.,Eugenol,97-53-0,0.12,0.12
+ncs,"Thyme oil, white",8007-46-3; 84929-51-1,Thymus vulgaris L.,Eugenol,97-53-0,0.1,0.1
+ncs,Tuberose absolute,8024-05-3; 94334-35-7,Poliantes tuberosa L.,Eugenol,97-53-0,0.5,0.5
+ncs,Tuberose concrete,8024-05-3; 94334-35-7,Poliantes tuberosa L.,Eugenol,97-53-0,0.48,0.48
+ncs,Turmeric oil,8024-37-1; 84775-52-0,Curcuma longa L.,Eugenol,97-53-0,1,1
+ncs,Verbena absolute,8024-12-2; 85116-63-8,Lippia citriodora (L.) Kunth,Eugenol,97-53-0,0.55,0.55
+ncs,Ylang ylang oil I,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Eugenol,97-53-0,0.58,0.58
+ncs,Ylang ylang oil II,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Eugenol,97-53-0,0.69,0.69
+ncs,Ylang ylang oil III,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Eugenol,97-53-0,0.45,0.45
+ncs,"Ylang, Ylang oil complete",8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Eugenol,97-53-0,0.31,0.31
+ncs,"Ylang, Ylang oil extra",8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Eugenol,97-53-0,0.34,0.34
+ncs,Ylang-ylang absolute,83863-30-3,Cananga odorata (Lam.) Hook.f.&Thomson forma genuina,Eugenol,97-53-0,0.5,0.5
+ncs,Ambrette seed absolute,8015-62-1; 84455-19-6,Hibiscus abelmoschus L.,Farnesal,19317-11-4,0.5,0.5
+ncs,Ambrette seed oil,8015-62-1; 84455-19-6,Hibiscus abelmoschus L.,Farnesal,19317-11-4,0.2,0.2
+ncs,"Citronella oil, Ceylon type",8000-29-1; 89998-15-2,Cymbopogon nardus (L.) Rendle,Farnesal,19317-11-4,0.01,0.01
+ncs,"Citronella oil, Java type",8000-29-1; 91771-61-8,Cymbopogon winterianus Jowitt,Farnesal,19317-11-4,0.01,0.01
+ncs,Ginger oil,8007-08-7; 84696-15-1,Zingiber officinale Rosc.,Farnesal,19317-11-4,0.2,0.2
+ncs,Ambrette seed absolute,8015-62-1; 84455-19-6,Hibiscus abelmoschus L.,Farnesol,4602-84-0,5,5
+ncs,Ambrette seed oil,8015-62-1; 84455-19-6,Hibiscus abelmoschus L.,Farnesol,4602-84-0,3,3
+ncs,Ambrette tincture,8015-62-1; 84455-19-6,Hibiscus abelmoschus L.,Farnesol,4602-84-0,0.2,0.2
+ncs,Arnica absolute,8057-65-6; 68990-11-4,Arnica montana L.,Farnesol,4602-84-0,1.2,1.2
+ncs,"Arnica oils, montana",8057-65-6; 68990-11-4,Arnica montana L.,Farnesol,4602-84-0,5,5
+ncs,Baccharis dracunculifolia oil,68991-21-9; 94406-01-6,Baccharis dracunculifolia,Farnesol,4602-84-0,0.2,0.2
+ncs,Cabreuva oil,68188-03-4; 91722-93-9; 91722-94-0,Myrocarpus frondosus Fr. Allem,Farnesol,4602-84-0,0.1,0.1
+ncs,Calamus oil,8015-79-0; 84775-39-3,Acorus calamus L.,Farnesol,4602-84-0,0.5,0.5
+ncs,Cananga oil,68606-83-7; 93686-30-7,Cananga odorata (Lam.) Hook. f. & Thomson (forma macrophylla Steenis),Farnesol,4602-84-0,2,2
+ncs,Carrot seed oil,8015-88-1; 84929-61-3,Daucus carota L.,Farnesol,4602-84-0,2.18,2.18
+ncs,"Cinnamon bark oil, Laos",97659-68-2,Cinnamomum loureiroi Nees,Farnesol,4602-84-0,0.01,0.01
+ncs,Cinnamon leaf oil,8015-91-6; 84649-98-9,Cinnamomum zeylanicum Blume,Farnesol,4602-84-0,0.12,0.12
+ncs,Citron oil,68991-25-3,Citrus medica L.,Farnesol,4602-84-0,0.01,0.01
+ncs,Orange blossoms absolute,8016-38-4; 72968-50-4,Citrus aurantium L. spp. Amara Link,Farnesol,4602-84-0,3.72,3.72
+ncs,Orange flower water absolute,8030-28-2; 72968-50-4,Citrus aurantium L. spp. Amara Link,Farnesol,4602-84-0,1.08,1.08
+ncs,"Orange flower, bitter, CO2 extract",8030-28-2,Citrus aurantium L.,Farnesol,4602-84-0,6.5,6.5
+ncs,"Orange flower, bitter, concrete",72968-50-4,Citrus aurantium L.,Farnesol,4602-84-0,1.95,1.95
+ncs,Palmarosa oil,8014-19-5; 91722-54-2; 84649-81-0,Cymbopogon martinii (Roxb.) Wats,Farnesol,4602-84-0,1,1
+ncs,Petitgrain bigarade absolute,8030-28-2; 72968-50-4,Citrus aurantium L.,Farnesol,4602-84-0,0.11,0.11
+ncs,Rose absolute,90106-38-0,Rosa x damascena Mill.,Farnesol,4602-84-0,0.32,0.32
+ncs,Schinus molle oil,68917-52-2; 94334-31-3,Schinus areira L.,Farnesol,4602-84-0,0.03,0.03
+ncs,Thyme absolute,8007-46-3; 84929-51-1,Thymus vulgaris L.,Farnesol,4602-84-0,0.02,0.02
+ncs,Tuberose absolute,8024-05-3; 94334-35-7,Poliantes tuberosa L.,Farnesol,4602-84-0,0.3,0.3
+ncs,Tuberose concrete,8024-05-3; 94334-35-7,Poliantes tuberosa L.,Farnesol,4602-84-0,0.3,0.3
+ncs,Yarrow oil,8022-07-9; 84082-83-7,Achillea millefolium L.,Farnesol,4602-84-0,0.1,0.1
+ncs,"Ylang, Ylang oil complete",8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Farnesol,4602-84-0,1.5,1.5
+ncs,"Ylang, Ylang oil extra",8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Farnesol,4602-84-0,1.36,1.36
+ncs,Balm oil,8014-71-9; 84082-61-1,Melissa officinallis L.,Geranial,141-27-5,29.6,29.6
+ncs,"Basil oil, chemotype estragole",8015-73-4; 84775-71-3,Ocimum basilicum L.,Geranial,141-27-5,0.07,0.07
+ncs,"Bay leaf, West Indian, oil",8006-78-8; 91721-75-4; 85085-61-6,Pimenta racemosa (Mill.) J.W. Moore,Geranial,141-27-5,0.25,0.25
+ncs,Bergamot oil expressed,8007-75-8; 89957-91-5; 92704-01-3,Citrus bergamia Risso & Poit.,Geranial,141-27-5,0.28,0.28
+ncs,Carrot seed oil,8015-88-1; 84929-61-3,Daucus carota L.,Geranial,141-27-5,0.03,0.03
+ncs,Citron oil,68991-25-3,Citrus medica L.,Geranial,141-27-5,2.63,2.63
+ncs,Eucalyptus citriodora oil,85203-56-1,Corymbia citriodora (Hook.) K.D. Hill & L.A. Johnson,Geranial,141-27-5,0.05,0.05
+ncs,Ginger CO2 extract,8007-08-7; 84696-15-1,Zingiber officinalle Roscoe,Geranial,141-27-5,0.9,0.9
+ncs,Grapefruit essence oil,8016-20-4; 90045-43-5,Citrus x paradisi Macfad.,Geranial,141-27-5,0.06,0.06
+ncs,Grapefruit oil,8016-20-4; 90045-43-5,Citrus x paradisi Macfad.,Geranial,141-27-5,0.06,0.06
+ncs,Lemon oil steam distilled,8008-56-8; 84929-31-7,Citrus limon (L.) Osbeck,Geranial,141-27-5,1.36,1.36
+ncs,"Lemongrass oil, East Indian",8007-02-1; 91844-92-7,Cymbopogon flexuosus (Nees ex Steudel) Will. Watson,Geranial,141-27-5,41.42,41.42
+ncs,Lime oil distilled,8008-26-2; 90063-52-8,Citrus aurantifolia (Christm.) Swingle,Geranial,141-27-5,0.32,0.32
+ncs,"Lime oil, expressed",8008-26-2; 90063-52-8; 93685-55-3,Citrus aurantifolia (Christm.) Swingle,Geranial,141-27-5,2.6,2.6
+ncs,"Marjoram oil, Spanish",8016-33-9; 84837-14-9; 91722-83-7,Thymus mastichina L.,Geranial,141-27-5,0.1,0.1
+ncs,"Orange flower oil, bitter (neroli and neroli bigarade)",8016-38-4; 72968-50-4,Citrus aurantium L. spp. Amara Link,Geranial,141-27-5,0.1,0.1
+ncs,Orange flower water absolute,8030-28-2; 72968-50-4,Citrus aurantium L. spp. Amara Link,Geranial,141-27-5,0.02,0.02
+ncs,"Orange oil, bitter",68916-04-1; 72968-50-4,Citrus aurantium L. spp. Amara Link,Geranial,141-27-5,0.05,0.05
+ncs,"Persian lime oil, expressed",8008-26-2; 90063-52-8,Citrus latifolia Tanaka,Geranial,141-27-5,2.45,2.45
+ncs,"Petitgrain oil, Paraguay",8014-17-3; 72968-50-4,Citrus aurantium L. spp. Amara Link,Geranial,141-27-5,0.18,0.18
+ncs,Rose absolute,90106-38-0,Rosa x damascena Mill.,Geranial,141-27-5,0.07,0.07
+ncs,Rose oil,8007-01-0; 90106-38-0,Rosa x damascena Mill.,Geranial,141-27-5,1.06,1.06
+ncs,Tangerine oil terpenes,68608-38-8; 93686-22-7,Citrus reticulata Blanco,Geranial,141-27-5,0.02,0.02
+ncs,"Thyme oil, red",8007-46-3; 84929-51-1,Thymus vulgaris L.,Geranial,141-27-5,0.1,0.1
+ncs,Armoise vulgaris oil,68991-20-8; 84775-45-1; 8022-37-5,Artemisia vulgaris L.,Geraniol,106-24-1,1,1
+ncs,Balm oil,8014-71-9; 84082-61-1,Melissa officinalis L.,Geraniol,106-24-1,3.79,3.79
+ncs,"Basil oil, chemotype linalool",8015-73-4; 84775-71-3,Ocimum basilicum L.,Geraniol,106-24-1,0.2,0.2
+ncs,Bergamot oil expressed,8007-75-8; 89957-91-5; 92704-01-3,Citrus bergamia Risso & Poit.,Geraniol,106-24-1,0.04,0.04
+ncs,Cajuput oil,8008-98-8; 85480-37-1,Melaleuca leucadendron L.,Geraniol,106-24-1,0.2,0.2
+ncs,Cananga oil,68606-83-7; 93686-30-7,Cananga odorata (Lam.) Hook. f. & Thomson (forma macrophylla Steenis),Geraniol,106-24-1,0.7,0.7
+ncs,Cardamom seed absolute,96507-91-4; 85940-32-5,Elettaria cardamomum  (L.) Maton,Geraniol,106-24-1,0.83,0.83
+ncs,Cardamom seed CO2 extract,96507-91-4; 85940-32-5,Elettaria cardamomum  (L.) Maton,Geraniol,106-24-1,0.8,0.8
+ncs,Cardamom seed oil,8000-66-6; 85940-32-5; 96507-91-4,Elettaria cardamomum (L.) Maton,Geraniol,106-24-1,1,1
+ncs,Carrot seed oil,8015-88-1; 84929-61-3,Daucus carota L.,Geraniol,106-24-1,1.43,1.43
+ncs,Cassie absolute,8023-82-3; 89958-31-6,Vachellia farnesiana (L.) Willd.,Geraniol,106-24-1,1,1
+ncs,Cistus absolute,8016-26-0; 89997-74-0,Cistus ladaniferus L.,Geraniol,106-24-1,0.01,0.01
+ncs,Citron oil,68991-25-3,Citrus medica L.,Geraniol,106-24-1,0.71,0.71
+ncs,"Citronella oil, Ceylon type",8000-29-1; 89998-15-2,Cymbopogon nardus (L.) Rendle,Geraniol,106-24-1,17.7,17.7
+ncs,"Citronella oil, Java type",8000-29-1; 91771-61-8,Cymbopogon winterianus Jowitt,Geraniol,106-24-1,22,22
+ncs,Citrus hystrix extract,91771-50-5,Citrus hystrix DC,Geraniol,106-24-1,0.7,0.7
+ncs,Clary sage absolute,8016-63-5; 84775-83-7,Salvia sclarea L.,Geraniol,106-24-1,0.19,0.19
+ncs,Clary sage concrete,8016-63-5; 84775-83-7,Salvia sclarea L.,Geraniol,106-24-1,0.2,0.2
+ncs,Clary sage oil,8016-63-5; 84775-83-7,Salvia sclarea L.,Geraniol,106-24-1,1.2,1.2
+ncs,Clove bud oil terpenes,8000-34-8; 84961-50-2,Syzygium aromaticum (L.) Merr. & L.M.Perry,Geraniol,106-24-1,0.05,0.05
+ncs,Coriander herb oil,8008-52-4; 84775-50-8,Corindrum sativum L.,Geraniol,106-24-1,0.8,0.8
+ncs,Coriander seed oil,8008-52-4; 84775-50-8,Coriandrum sativum L.,Geraniol,106-24-1,1.6,1.6
+ncs,Eucalyptus citriodora oil,85203-56-1,Corymbia citriodora (Hook.) K.D. Hill & L.A. Johnson,Geraniol,106-24-1,0.11,0.11
+ncs,Eucalyptus dives oil,8000-48-4; 90028-48-1,Eucalyptus dives Shauer,Geraniol,106-24-1,0.13,0.13
+ncs,Eucalyptus radiata oil,92201-64-4,Eucalyptus radiata Sieber ex DC oil,Geraniol,106-24-1,0.16,0.16
+ncs,"Fir needle oil, Siberian",8021-29-2; 91697-89-1,Abies siberica Ledeb (Pinaceae),Geraniol,106-24-1,0.03,0.03
+ncs,Genet absolute,90131-21-8; 129316-65-0,Spartium junceum L.,Geraniol,106-24-1,0.13,0.13
+ncs,Geranium absolute,8000-46-2; 90082-51-2; 68916-42-7,Pelargonium graveolens l'Hertier ex Aiton,Geraniol,106-24-1,9,9
+ncs,Geranium oil,8000-46-2; 90082-51-2,Pelargonium graveolens l'Hertier ex Aiton,Geraniol,106-24-1,17.7,17.7
+ncs,Geranium oil African,8000-46-2; 90082-52-3,Pelargonium odoratissimum L'Heritier,Geraniol,106-24-1,17,17
+ncs,Ginger CO2 extract,8007-08-7; 84696-15-1,Zingiber officinalle Roscoe,Geraniol,106-24-1,0.27,0.27
+ncs,Ginger oil,8007-08-7; 84696-15-1,Zingiber officinale Rosc.,Geraniol,106-24-1,0.5,0.5
+ncs,Ginger oleoresin,8007-08-7; 84696-15-1,Zingiber officinale Rosc.,Geraniol,106-24-1,0.1,0.1
+ncs,Gingergrass oil,8023-92-5; 92704-07-9,Cymbopogon martinii (Roxb.) W.Watson var.sofia,Geraniol,106-24-1,0.04,0.04
+ncs,"Grapefruit oil, terpeneless",68916-46-1; 90045-43-5,Citrus x paradisi Macfad.,Geraniol,106-24-1,0.1,0.1
+ncs,Helichrysum absolute,8023-95-8; 90045-56-0; 85665-35-6,Helichrysum angustifolium DC.,Geraniol,106-24-1,0.03,0.03
+ncs,Helichrysum oil,8023-95-8; 90045-56-0; 85665-35-6,Helichrysum angustifolium DC.,Geraniol,106-24-1,0.05,0.05
+ncs,Ho bark oil,8022-91-1; 91745-89-0,Cinnamomum camphora (L.) J.Presl,Geraniol,106-24-1,0.03,0.03
+ncs,Ho Leaf oil,8022-91-1; 91745-89-0,Cinnamomum camphora (L.) J.Presl,Geraniol,106-24-1,0.4,0.4
+ncs,Hop oil,8007-04-3; 8060-28-4,Humulus lupus L.,Geraniol,106-24-1,0.2,0.2
+ncs,Hyacinth absolute,8023-94-7; 94333-75-2,Hyacinthus orientalis L.,Geraniol,106-24-1,0.03,0.03
+ncs,Jasmine grandiflorum absolute,8022-96-6; 84776-64-7,Jasminum grandiflorum L.,Geraniol,106-24-1,0.02,0.02
+ncs,Jasmine officinale absolute,8024-43-9; 90045-94-6,Jasminum officinale L.,Geraniol,106-24-1,0.1,0.1
+ncs,Juniper berry oil,8002-68-4; 84603-69-0,Juniperus communis L.,Geraniol,106-24-1,0.1,0.1
+ncs,"Kumquat oil, Fortunella margarita",938464-05-2,Fortunella (Lour.) Swingle,Geraniol,106-24-1,0.2,0.2
+ncs,Labdanum oil,8016-26-0; 90244-89-6; 89997-74-0,Cistus ladaniferus L.,Geraniol,106-24-1,0.12,0.12
+ncs,Laurel leaf oil,8007-48-5; 8002-41-3; 84603-73-6,Laurus nobilis L,Geraniol,106-24-1,0.05,0.05
+ncs,Lavandin abrialis oil,8022-15-9; 93455-96-0,Lavandula x intermedia abrialis,Geraniol,106-24-1,0.3,0.3
+ncs,Lavandin absolute,8022-15-9; 91722-69-9,Lavandula officinalis x Lavandula latifolia,Geraniol,106-24-1,0.08,0.08
+ncs,Lavandin grosso absolute,93455-97-1,Lavandula angustifolia Mill. x Lavandula latifolia Medik.,Geraniol,106-24-1,0.2,0.2
+ncs,Lavandin oil,8022-15-9; 91722-69-9,Lavandula officinalis x Lavandula latifolia,Geraniol,106-24-1,0.2,0.2
+ncs,Lavandin super oil,93685-88-2,Lavendula super,Geraniol,106-24-1,0.5,0.5
+ncs,Lavender concrete,8000-28-0; 84776-65-8; 90063-37-9,Lavandula angustifolia angustifolia,Geraniol,106-24-1,0.1,0.1
+ncs,Lavender oil,8000-28-0; 84776-65-8; 90063-37-9; 97722-12-8,Lavandula angustifolia angustifolia,Geraniol,106-24-1,0.48,0.48
+ncs,Lavender oil dentata,93165-50-5,Lavandula dentata,Geraniol,106-24-1,0,
+ncs,Lemon essence oil,8008-56-8; 84929-31-7,Citrus limon (L.) Osbeck,Geraniol,106-24-1,0.09,0.09
+ncs,Lemon oil steam distilled,8008-56-8; 84929-31-7,Citrus limon (L.) Osbeck,Geraniol,106-24-1,0.07,0.07
+ncs,"Lemon oil, expressed",8008-56-8; 84929-31-7,Citrus limon (L.) Burm. f.,Geraniol,106-24-1,0.1,0.1
+ncs,"Lemon oil, terpeneless",68648-39-5; 84929-31-7,Citrus limon (L.) Osbeck,Geraniol,106-24-1,2,2
+ncs,"Lemongrass oil, East Indian",8007-02-1; 91844-92-7,Cymbopogon flexuosus (Nees ex Steudel) Will. Watson,Geraniol,106-24-1,5.25,5.25
+ncs,"Lemongrass oil, West Indian",8007-02-1; 89998-14-1,Cymbopogon citratus (DC) Stapf.,Geraniol,106-24-1,2.3,2.3
+ncs,Lime oil distilled,8008-26-2; 90063-52-8,Citrus aurantifolia (Christm.) Swingle,Geraniol,106-24-1,0.02,0.02
+ncs,"Lime oil, expressed",8008-26-2; 90063-52-8; 93685-55-3,Citrus aurantifolia (Christm.) Swingle,Geraniol,106-24-1,0.15,0.15
+ncs,Linaloe wood oil,8006-86-8; 92874-96-9,Bursera penicillata (DC.) Engl.,Geraniol,106-24-1,1,1
+ncs,Litsea cubeba oil,68855-99-2; 90063-59-5,Litsea Cubeba(Lour.) Pers.,Geraniol,106-24-1,1.1,1.1
+ncs,Lovage root oil,8016-31-7; 84837-06-9,Levisticum officinale Koch,Geraniol,106-24-1,0.92,0.92
+ncs,"Marjoram oil, Spanish",8016-33-9; 91722-83-7; 84837-14-9,Thymus mastichina L.,Geraniol,106-24-1,0.13,0.13
+ncs,"Marjoram oil, sweet",8015-01-8; 84082-58-6,Origanum majorana L.,Geraniol,106-24-1,0.3,0.3
+ncs,Marjoram oleoresin,84082-58-6,Origanum majorana L.,Geraniol,106-24-1,0.1,0.1
+ncs,Mastic oil,68991-39-9; 61789-92-2; 90082-82-9,Pistacia lentiscus L.,Geraniol,106-24-1,0.05,0.05
+ncs,Mentha citrata oil,68917-15-7; 85085-49-0,Mentha citrata Ehrhart,Geraniol,106-24-1,1.17,1.17
+ncs,Michelia alba flower oil,92457-18-6,Michelia x alba DC. (champaca x montana),Geraniol,106-24-1,0.32,0.32
+ncs,Michelia alba leaf oil,92457-18-6,Michelia x alba DC. (champaca x montana),Geraniol,106-24-1,0.24,0.24
+ncs,Myrtle oil,8008-46-6; 84083-67-7,Myrtus communis L.,Geraniol,106-24-1,0.4,0.4
+ncs,Orange blossoms absolute,8016-38-4; 72968-50-4,Citrus aurantium L. spp. Amara Link,Geraniol,106-24-1,0.49,0.49
+ncs,"Orange flower oil, bitter (neroli and neroli bigarade)",8016-38-4; 72968-50-4,Citrus aurantium L. spp. Amara Link,Geraniol,106-24-1,2.66,2.66
+ncs,Orange flower water absolute,8030-28-2; 72968-50-4,Citrus aurantium L. spp. Amara Link,Geraniol,106-24-1,8.84,8.84
+ncs,"Orange flower, bitter, CO2 extract",8030-28-2,Citrus aurantium L.,Geraniol,106-24-1,0.45,0.45
+ncs,"Orange flower, bitter, concrete",72968-50-4,Citrus aurantium L.,Geraniol,106-24-1,0.23,0.23
+ncs,"Orange oil, bitter",68916-04-1; 72968-50-4,Citrus aurantium L. spp. Amara Link,Geraniol,106-24-1,0.02,0.02
+ncs,Osmanthus absolute,68917-05-5; 92347-21-2,Osmanthus fragrans Lour.,Geraniol,106-24-1,1.2,1.2
+ncs,Osmanthus concrete,68917-05-5; 92347-21-2,Osmanthus fragrans Lour.,Geraniol,106-24-1,1.2,1.2
+ncs,Palmarosa oil,8014-19-5; 91722-54-2; 84649-81-0,Cymbopogon martinii (Roxb.) Wats,Geraniol,106-24-1,82.4,82.4
+ncs,"Persian lime oil, expressed",8008-26-2; 90063-52-8,Citrus latifolia Tanaka,Geraniol,106-24-1,0.12,0.12
+ncs,Petitgrain bigarade absolute,8030-28-2; 72968-50-4,Citrus aurantium L.,Geraniol,106-24-1,0.85,0.85
+ncs,Petitgrain bigarade oil,8014-17-3; 72968-50-4,Citrus aurantium L. spp. Amara Link,Geraniol,106-24-1,2.4,2.4
+ncs,Petitgrain lemon oil,8048-51-9; 84929-31-7,Citrus limon (L.) Burm. f.,Geraniol,106-24-1,2,2
+ncs,"Petitgrain oil, Paraguay",8014-17-3; 72968-50-4,Citrus aurantium L. spp. Amara Link,Geraniol,106-24-1,2.77,2.77
+ncs,Rose absolute,90106-38-0,Rosa x damascena Mill.,Geraniol,106-24-1,1.64,1.64
+ncs,Rose concrete,90106-38-0,Rosa x damascena Mill.,Geraniol,106-24-1,2.7,2.7
+ncs,Rose oil,8007-01-0; 90106-38-0,Rosa x damascena Mill.,Geraniol,106-24-1,17.7,17.7
+ncs,Rose water stronger,8007-01-0; 84604-12-6,Rosa x centifolia L.,Geraniol,106-24-1,0.5,0.5
+ncs,Rosewood oil,8015-77-8; 83863-32-5; 93685-34-8,Aniba rosaeodora (Ducke) var amazonica,Geraniol,106-24-1,0.8,0.8
+ncs,"Sage oil, Spanish",8022-56-8; 90106-49-3; 97952-71-1,Salvia lavandifolia Vahl,Geraniol,106-24-1,0.3,0.3
+ncs,Savory winter oil,90106-57-3,Satureja montana L.,Geraniol,106-24-1,0.33,0.33
+ncs,Schinus molle oil,68917-52-2; 94334-31-3,Schinus areira L.,Geraniol,106-24-1,0.1,0.1
+ncs,Snakeroot oil,8016-69-1; 89957-73-3,Asarum canadense L.,Geraniol,106-24-1,1,1
+ncs,Spike lavender oil,8016-78-2; 84837-04-7,Lavandula latifolia Medik.,Geraniol,106-24-1,0.2,0.2
+ncs,Thyme absolute,8007-46-3; 84929-51-1,Thymus vulgaris L.,Geraniol,106-24-1,0.03,0.03
+ncs,"Thyme oil, red",8007-46-3; 84929-51-1,Thymus vulgaris L.,Geraniol,106-24-1,0.06,0.06
+ncs,"Thyme oil, white",8007-46-3; 84929-51-1,Thymus vulgaris L.,Geraniol,106-24-1,0.1,0.1
+ncs,Tuberose absolute,8024-05-3; 94334-35-7,Poliantes tuberosa L.,Geraniol,106-24-1,0.1,0.1
+ncs,Tuberose concrete,8024-05-3; 94334-35-7,Poliantes tuberosa L.,Geraniol,106-24-1,0.1,0.1
+ncs,Verbena absolute,8024-12-2; 85116-63-8,Lippia citriodora (L.) Kunth,Geraniol,106-24-1,4.1,4.1
+ncs,Wormwood oil,8008-93-3; 84929-19-1,Artemisia absinthium L.,Geraniol,106-24-1,0.1,0.1
+ncs,Ylang ylang oil I,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Geraniol,106-24-1,1.38,1.38
+ncs,Ylang ylang oil II,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Geraniol,106-24-1,1.43,1.43
+ncs,Ylang ylang oil III,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Geraniol,106-24-1,0.32,0.32
+ncs,"Ylang, Ylang oil complete",8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Geraniol,106-24-1,0.67,0.67
+ncs,"Ylang, Ylang oil extra",8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Geraniol,106-24-1,0.64,0.64
+ncs,Ylang-ylang absolute,83863-30-3,Cananga odorata (Lam.) Hook.f.&Thomson forma genuina,Geraniol,106-24-1,1,1
+ncs,"Erospicata oil, Mentha spicata 'Erospicata'",84696-51-5,Mentha spicata Erospicata,Hexen-2-al,6728-26-3,0.07,0.07
+ncs,Hyssop oil,8006-83-5; 84603-66-7,Hyssopus officinalis L.,Hexen-2-al,6728-26-3,0.2,0.2
+ncs,Spearmint oil,8008-79-5; 84696-51-5,Mentha spicata L.,Hexen-2-al,6728-26-3,0.02,0.02
+ncs,Spearmint oil terpenes,84696-51-5,Mentha spicata L. syn Mentha viridis L. var. crispa Benth.,Hexen-2-al,6728-26-3,0.25,0.25
+ncs,"Benzoin resinoid, Siam",84012-39-5,Styrax tonkinensis (Pierre) Craib ex Hartwick,Isoeugenol,97-54-1,0.1,0.1
+ncs,"Benzoin resinoid, Sumatra",84929-79-3,Styrax benzoin Dryand.,Isoeugenol,97-54-1,0.01,0.01
+ncs,Cassia  bark oil,8007-80-5; 84961-46-6,Cinnamomum cassia [L.] J. Presl syn. C. aromaticum Nees,Isoeugenol,97-54-1,0.1,0.1
+ncs,Cassia oil,8007-80-5; 84961-46-6,Cinnamomum cassia [L.] J. Presl syn. C. aromaticum Nees,Isoeugenol,97-54-1,0.1,0.1
+ncs,Champaca absolute,8006-76-6; 92457-18-6,Michelia champaca L.,Isoeugenol,97-54-1,0.03,0.03
+ncs,Cinnamon bark CO2 extract,8015-91-6; 84649-98-9,Cinnamomum verum J. Presl syn. C. zeylanicum Blume,Isoeugenol,97-54-1,0.05,0.05
+ncs,Cinnamon bark oil,8015-91-6; 84649-98-9,Cinnamomum zeylanicum Blume,Isoeugenol,97-54-1,0.02,0.02
+ncs,Cinnamon leaf oil,8015-91-6; 84649-98-9,Cinnamomum zeylanicum Blume,Isoeugenol,97-54-1,0.13,0.13
+ncs,Clove bud absolute,84961-50-2,Syzygium aromaticum (L.) Merr. & L.M.Perry,Isoeugenol,97-54-1,0.01,0.01
+ncs,Clove leaf oil,8000-34-8; 84961-50-2,Syzygium aromaticum L.,Isoeugenol,97-54-1,0.1,0.1
+ncs,Jasmine grandiflorum absolute,8022-96-6; 84776-64-7,Jasminum grandiflorum L.,Isoeugenol,97-54-1,0.12,0.12
+ncs,Jasmine officinale absolute,8024-43-9; 90045-94-6,Jasminum officinale L.,Isoeugenol,97-54-1,0.1,0.1
+ncs,"Lemongrass oil, East Indian",8007-02-1; 91844-92-7,Cymbopogon flexuosus (Nees ex Steudel) Will. Watson,Isoeugenol,97-54-1,0.47,0.47
+ncs,"Lemongrass oil, West Indian",8007-02-1; 89998-14-1,Cymbopogon citratus (DC) Stapf.,Isoeugenol,97-54-1,0.5,0.5
+ncs,Lovage root oil,8016-31-7; 84837-06-9,Levisticum officinale Koch,Isoeugenol,97-54-1,0.06,0.06
+ncs,Nutmeg oil,8008-45-5; 84082-68-8,Myristica fragrans Houtt.,Isoeugenol,97-54-1,0.5,0.5
+ncs,"Pine Scotch, resinoid",8023-99-2,Pinus sylvestris L.,Isoeugenol,97-54-1,0.01,0.01
+ncs,Tuberose absolute,8024-05-3; 94334-35-7,Poliantes tuberosa L.,Isoeugenol,97-54-1,1.5,1.5
+ncs,Tuberose concrete,8024-05-3; 94334-35-7,Poliantes tuberosa L.,Isoeugenol,97-54-1,1.5,1.5
+ncs,Ylang ylang oil I,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Isoeugenol,97-54-1,0.51,0.51
+ncs,Ylang ylang oil II,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Isoeugenol,97-54-1,0.24,0.24
+ncs,Ylang ylang oil III,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Isoeugenol,97-54-1,0.54,0.54
+ncs,"Ylang, Ylang oil complete",8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Isoeugenol,97-54-1,0.52,0.52
+ncs,"Ylang, Ylang oil extra",8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Isoeugenol,97-54-1,0.99,0.99
+ncs,Ylang-ylang absolute,83863-30-3,Cananga odorata (Lam.) Hook.f.&Thomson forma genuina,Isoeugenol,97-54-1,0.5,0.5
+ncs,Clove bud absolute,84961-50-2,Syzygium aromaticum (L.) Merr. & L.M.Perry,Isoeugenyl acetate,93-29-8,0.01,0.01
+ncs,Guaiac wood oil,8016-23-7; 89958-10-1,Bulnesia sarmienti Lorentz ex Griseb.,Isoeugenyl acetate,93-29-8,0.12,0.12
+ncs,Ylang ylang oil I,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Isoeugenyl acetate,93-29-8,0.07,0.07
+ncs,Ylang ylang oil II,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook.f.&Thomson forma genuina,Isoeugenyl acetate,93-29-8,0.05,0.05
+ncs,Ylang ylang oil III,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Isoeugenyl acetate,93-29-8,0.03,0.03
+ncs,"Ylang, Ylang oil complete",8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Isoeugenyl acetate,93-29-8,0.12,0.12
+ncs,"Ylang, Ylang oil extra",8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Isoeugenyl acetate,93-29-8,0.12,0.12
+ncs,Ylang-ylang absolute,83863-30-3,Cananga odorata (Lam.) Hook.f.&Thomson forma genuina,Isoeugenyl acetate,93-29-8,0.05,0.05
+ncs,Cistus oil,8016-26-0; 89997-74-0,Cistus ladaniferus L.,Isophorone,78-59-1,0.2,0.2
+ncs,"Basil oil, chemotype estragole",8015-73-4; 84775-71-3,Ocimum basilicum L.,l-Carvone,6485-40-1,0.49,0.49
+ncs,Carrot seed oil,8015-88-1; 84929-61-3,Daucus carota L.,l-Carvone,6485-40-1,0.05,0.05
+ncs,Cistus oil,8016-26-0; 89997-74-0,Cistus ladaniferus L.,l-Carvone,6485-40-1,0.6,0.6
+ncs,"Erospicata oil, Mentha spicata 'Erospicata'",84696-51-5,Mentha spicata Erospicata,l-Carvone,6485-40-1,67,67
+ncs,Lavender oil dentata,93165-50-5,Lavandula dentata,l-Carvone,6485-40-1,0.3,0.3
+ncs,Lovage root oil,8016-31-7; 84837-06-9,Levisticum officinale Koch,l-Carvone,6485-40-1,0.02,0.02
+ncs,Mentha arvensis oil,68917-18-0; 90063-97-1; 91722-84-8,Mentha arvenis L.,l-Carvone,6485-40-1,0.25,0.25
+ncs,Myrtle oil,8008-46-6; 84083-67-7,Myrtus communis L.,l-Carvone,6485-40-1,0.2,0.2
+ncs,Parsley herb oil,8000-68-8; 84012-33-9,Petroselinum crispum (Mill.) Nyman ex A.W.Hill,l-Carvone,6485-40-1,0.2,0.2
+ncs,"Pine Scotch, resinoid",8023-99-2,Pinus sylvestris L.,l-Carvone,6485-40-1,0.001,0.001
+ncs,Spearmint oil,8008-79-5; 84696-51-5,Mentha spicata L.,l-Carvone,6485-40-1,66.07,66.07
+ncs,Spearmint oil terpenes,84696-51-5,Mentha spicata L. syn Mentha viridis L. var. crispa Benth.,l-Carvone,6485-40-1,8.51,8.51
+ncs,"Spearmint oil, Scotch",91770-24-0,Mentha x gentilis L. syn. Mentha x gracilis Sole,l-Carvone,6485-40-1,64.12,64.12
+ncs,Thyme absolute,8007-46-3; 84929-51-1,Thymus vulgaris L.,l-Carvone,6485-40-1,0.05,0.05
+ncs,Yarrow oil,8022-07-9; 84082-83-7,Achillea millefolium L.,l-Carvone,6485-40-1,0.2,0.2
+ncs,Geranium absolute,8000-46-2; 90082-51-2; 68916-42-7,Pelargonium graveolens l'Hertier ex Aiton,l-Citronellol,7540-51-4,10.6,10.6
+ncs,Geranium oil,8000-46-2; 90082-51-2,Pelargonium graveolens l'Hertier ex Aiton,l-Citronellol,7540-51-4,21.1,21.1
+ncs,Geranium oil African,8000-46-2; 90082-52-3,Pelargonium odoratissimum L'Heritier,l-Citronellol,7540-51-4,33,33
+ncs,Abies alba cone oil,8021-27-0; 90028-76-5,Abies alba Mill.,Longifolene,475-20-7,0.3,0.3
+ncs,Abies alba needle oil,8021-27-0; 90028-76-5,Abies alba Mill.,Longifolene,475-20-7,0.3,0.3
+ncs,Angelica seed oil,8015-64-3; 84775-41-7,Angelica archangelica L.,Longifolene,475-20-7,0.5,0.5
+ncs,"Cedarwood oil, Atlas",8023-85-6; 92201-55-3,Cedrus atlantica (Endl.) Manetti ex Carriere,Longifolene,475-20-7,0.6,0.6
+ncs,"Cedarwood oil, Himalaya",68991-36-6; 91771-47-0,Cedrus deodora (Roxb ex D.Don) G.Don,Longifolene,475-20-7,0.7,0.7
+ncs,"Cedarwood oil, Texas",68990-83-0; 91722-61-1,Juniperus mexicana Schiede,Longifolene,475-20-7,0.4,0.4
+ncs,Eucalyptus citriodora oil,85203-56-1,Corymbia citriodora (Hook.) K.D. Hill & L.A. Johnson,Longifolene,475-20-7,0.21,0.21
+ncs,"Fir needle oil, Canadian",8024-15-5; 85085-34-3,Abies balsamea (L.) Mill.,Longifolene,475-20-7,0.22,0.22
+ncs,Hinoki leaf oil,91745-97-0,Chamaecyparis obtusa (Siebold & Zucc.) Endl.,Longifolene,475-20-7,32,32
+ncs,Hinoki wood oil,91745-97-0,Chamaecyparis obtusa (Siebold & Zucc.) Endl.,Longifolene,475-20-7,0.7,0.7
+ncs,Juniper berry oil,8002-68-4; 84603-69-0,Juniperus communis L.,Longifolene,475-20-7,0.1,0.1
+ncs,Litsea cubeba oil,68855-99-2; 90063-59-5,Litsea Cubeba(Lour.) Pers.,Longifolene,475-20-7,0.2,0.2
+ncs,Nigella sativa oil,90064-32-7; 84775-51-9,Nigella sativa L.,Longifolene,475-20-7,1.8,1.8
+ncs,Pine needle oil,8021-29-2; 84012-35-1,Abies spp.,Longifolene,475-20-7,0.09,0.09
+ncs,"Pine needle, dwarf, oil",8000-26-8; 90082-73-8; 90082-72-7,Pinus pumila (Pall.) Regel,Longifolene,475-20-7,0.15,0.15
+ncs,"Pine Scotch, oil",8023-99-2; 84012-35-1,Pinus sylvestris L.,Longifolene,475-20-7,0.09,0.09
+ncs,"Pine, Pinus pinaster, oil",8000-26-8; 84929-42-0; 90082-75-0,Pinus pinaster Aiton,Longifolene,475-20-7,3.71,3.71
+ncs,"Pine, Pinus pumila, extract",97676-05-6,Pinus Pumila (Pall) Regel,Longifolene,475-20-7,0.1,0.1
+ncs,"Spruce oil, Black",8008-80-8; 91722-18-9,Picea mariana (Mill.) Britton,Longifolene,475-20-7,0.25,0.25
+ncs,"Spruce oil, White",91770-69-3; 91722-18-8,Picea abies (L.) H.Karst.,Longifolene,475-20-7,0.22,0.22
+ncs,Turpentine gum,9005-90-7,Pinus spp.,Longifolene,475-20-7,4.39,4.39
+ncs,Turpentine oil,8006-64-2,Pinus spp.,Longifolene,475-20-7,0.12,0.12
+ncs,Allspice oil,8006-77-7; 84929-57-7,Pimenta dioica (L.) Merr.,Methyl eugenol,93-15-2,8.5,8.5
+ncs,Allspice oleoresin,8006-77-7; 84929-57-7,Pimenta officinalis Lindl.,Methyl eugenol,93-15-2,5.1,5.1
+ncs,"Basil oil, chemotype estragole",8015-73-4; 84775-71-3,Ocimum basilicum L.,Methyl eugenol,93-15-2,0.39,0.39
+ncs,"Basil oil, chemotype linalool",8015-73-4; 84775-71-3,Ocimum basilicum L.,Methyl eugenol,93-15-2,0.2,0.2
+ncs,"Basil oleoresin, chemotype estragole",8015-73-4; 84775-71-3,Ocimum basilicum L.,Methyl eugenol,93-15-2,0.2,0.2
+ncs,"Bay leaf, West Indian, oil",8006-78-8; 91721-75-4; 85085-61-6,Pimenta racemosa (Mill.) J.W. Moore,Methyl eugenol,93-15-2,2,2
+ncs,"Bucchu absolute, betulina",84649-93-4; 68650-46-4,Agathosma betulina (P.J.Bergius) Pillans,Methyl eugenol,93-15-2,0.02,0.02
+ncs,"Bucchu oil, crenulata",92346-82-2,Agathosma crenulata (L.) Pill.,Methyl eugenol,93-15-2,0.19,0.19
+ncs,Calamus oil,8015-79-0; 84775-39-3,Acorus calamus L.,Methyl eugenol,93-15-2,0.3,0.3
+ncs,Cananga oil,68606-83-7; 93686-30-7,Cananga odorata (Lam.) Hook. f. & Thomson (forma macrophylla Steenis),Methyl eugenol,93-15-2,0.2,0.2
+ncs,Champaca absolute,8006-76-6; 92457-18-6,Michelia champaca L.,Methyl eugenol,93-15-2,0.01,0.01
+ncs,Cinnamon leaf oil,8015-91-6; 84649-98-9,Cinnamomum zeylanicum Blume,Methyl eugenol,93-15-2,0.01,0.01
+ncs,"Citronella oil, Java type",8000-29-1; 91771-61-8,Cymbopogon winterianus Jowitt,Methyl eugenol,93-15-2,0.1,0.1
+ncs,Clove bud oil,8000-34-8; 84961-50-2,Syzygium aromaticum L.,Methyl eugenol,93-15-2,0.1,0.1
+ncs,Clove bud oil terpenes,8000-34-8; 84961-50-2,Syzygium aromaticum (L.) Merr. & L.M.Perry,Methyl eugenol,93-15-2,0.1,0.1
+ncs,Clove leaf oil,8000-34-8; 84961-50-2,Syzygium aromaticum L.,Methyl eugenol,93-15-2,0.1,0.1
+ncs,Clove stem oil,8000-34-8; 84961-50-2,Syzygium aromaticum L.,Methyl eugenol,93-15-2,0.06,0.06
+ncs,Elemi oil,8023-89-0; 97675-63-3; 9000-75-3,Canarium luzonicum (Blume) A. Gray,Methyl eugenol,93-15-2,0.4,0.4
+ncs,Elemi resinoid,8023-89-0; 97675-63-3; 9000-75-3,Canarium luzonicum (Blume) A. Gray,Methyl eugenol,93-15-2,0.09,0.09
+ncs,Hyacinth absolute,8023-94-7; 94333-75-2,Hyacinthus orientalis L.,Methyl eugenol,93-15-2,1.5,1.5
+ncs,Hyssop oil,8006-83-5; 84603-66-7,Hyssopus officinalis L.,Methyl eugenol,93-15-2,0.2,0.2
+ncs,Labdanum oil,8016-26-0; 90244-89-6; 89997-74-0,Cistus ladaniferus L.,Methyl eugenol,93-15-2,0.05,0.05
+ncs,Laurel leaf oil,8007-48-5; 8002-41-3; 84603-73-6,Laurus nobilis L,Methyl eugenol,93-15-2,3.22,3.22
+ncs,"Lemongrass oil, East Indian",8007-02-1; 91844-92-7,Cymbopogon flexuosus (Nees ex Steudel) Will. Watson,Methyl eugenol,93-15-2,0.05,0.05
+ncs,Lovage root oil,8016-31-7; 84837-06-9,Levisticum officinale Koch,Methyl eugenol,93-15-2,0.13,0.13
+ncs,Mace oil,8007-12-3; 84082-68-8,Myristica fragrans Houtt.,Methyl eugenol,93-15-2,1.2,1.2
+ncs,Mace oleoresin,8007-12-3; 84082-68-8,Myristica fragrans Houtt.,Methyl eugenol,93-15-2,0.6,0.6
+ncs,Mastic absolute,68991-39-9; 90082-82-9,Pistacia lentiscus L.,Methyl eugenol,93-15-2,0.01,0.01
+ncs,Mastic oil,68991-39-9; 61789-92-2; 90082-82-9,Pistacia lentiscus L.,Methyl eugenol,93-15-2,0.02,0.02
+ncs,Michelia alba flower oil,92457-18-6,Michelia x alba DC. (champaca x montana),Methyl eugenol,93-15-2,2.06,2.06
+ncs,Michelia alba leaf oil,92457-18-6,Michelia x alba DC. (champaca x montana),Methyl eugenol,93-15-2,0.33,0.33
+ncs,Myrtle oil,8008-46-6; 84083-67-7,Myrtus communis L.,Methyl eugenol,93-15-2,1,1
+ncs,Nutmeg oil,8008-45-5; 84082-68-8,Myristica fragrans Houtt.,Methyl eugenol,93-15-2,1.2,1.2
+ncs,Nutmeg oleoresin,8008-45-5; 84082-68-8,Myristica fragrans Houtt.,Methyl eugenol,93-15-2,0.6,0.6
+ncs,Ocatea cymbarum oil,68917-09-9; 91770-39-7,Ocotea cymbarum Kunth,Methyl eugenol,93-15-2,0.3,0.3
+ncs,Pimenta leaf oil,8006-77-7; 84929-57-7,Pimenta officinalis Lindl.,Methyl eugenol,93-15-2,6,6
+ncs,Rose absolute,90106-38-0,Rosa x damascena Mill.,Methyl eugenol,93-15-2,0.43,0.43
+ncs,Rose concrete,90106-38-0,Rosa x damascena Mill.,Methyl eugenol,93-15-2,0.5,0.5
+ncs,Rose oil,8007-01-0; 90106-38-0,Rosa x damascena Mill.,Methyl eugenol,93-15-2,2,2
+ncs,Rose water stronger,8007-01-0; 84604-12-6,Rosa x centifolia L.,Methyl eugenol,93-15-2,0.04,0.04
+ncs,Sassafras bark oil,8006-80-2; 84787-72-4,Sassafras albidum (Nutt.) Nees,Methyl eugenol,93-15-2,0.3,0.3
+ncs,Savory winter oil,90106-57-3,Satureja montana L.,Methyl eugenol,93-15-2,0.13,0.13
+ncs,Snakeroot oil,8016-69-1; 89957-73-3,Asarum canadense L.,Methyl eugenol,93-15-2,40,40
+ncs,Tarragon oil,8016-88-4; 90131-45-6,Artemisia dracunculus L.,Methyl eugenol,93-15-2,0.3,0.3
+ncs,Tea tree oil,68647-73-4; 85085-48-9,Melaleuca alternifolia (Maiden & Betche) Cheel,Methyl eugenol,93-15-2,0.05,0.05
+ncs,Thyme absolute,8007-46-3; 84929-51-1,Thymus vulgaris L.,Methyl eugenol,93-15-2,0.01,0.01
+ncs,"Thyme oil, red",8007-46-3; 84929-51-1,Thymus vulgaris L.,Methyl eugenol,93-15-2,0.01,0.01
+ncs,"Thyme oil, white",8007-46-3; 84929-51-1,Thymus vulgaris L.,Methyl eugenol,93-15-2,0.03,0.03
+ncs,Tuberose absolute,8024-05-3; 94334-35-7,Poliantes tuberosa L.,Methyl eugenol,93-15-2,1.8,1.8
+ncs,Tuberose concrete,8024-05-3; 94334-35-7,Poliantes tuberosa L.,Methyl eugenol,93-15-2,1.07,1.07
+ncs,Verbena absolute,8024-12-2; 85116-63-8,Lippia citriodora (L.) Kunth,Methyl eugenol,93-15-2,0.1,0.1
+ncs,Ylang ylang oil I,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Methyl eugenol,93-15-2,0.04,0.04
+ncs,Ylang ylang oil II,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook.f.&Thomson forma genuina,Methyl eugenol,93-15-2,0.03,0.03
+ncs,Ylang ylang oil III,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),Methyl eugenol,93-15-2,0.04,0.04
+ncs,Jasmine sambac absolute,103798-23-6; 91770-14-8,Jasminum sambac (L.) Aiton,Methyl N-formylanthranilate,41270-80-8,0.05,0.05
+ncs,Jasmine sambac CO2 extract,103798-23-6; 91770-14-8,Jasminum sambac,Methyl N-formylanthranilate,41270-80-8,0.05,0.05
+ncs,"Orange flower oil, bitter (Neroli and Neroli bigarade)",8016-38-4; 72968-50-4,Citrus aurantium L. ssp. Amara Link,Methyl N-formylanthranilate,41270-80-8,0.03,0.03
+ncs,Clementine oil,93686-22-7,Citrus clementina Hort. Ex Tan,Methyl N-methylanthranilate,85-91-6,0.03,0.03
+ncs,Genet absolute,90131-21-8; 129316-65-0,Spartium junceum L.,Methyl N-methylanthranilate,85-91-6,0.34,0.34
+ncs,Mandarin oil,8008-31-9; 84929-38-4,Citrus reticulata Blanco,Methyl N-methylanthranilate,85-91-6,0.4,0.4
+ncs,Petitgrain mandarin oil,8014-17-3; 84929-38-4,Citrus reticulata Blanco,Methyl N-methylanthranilate,85-91-6,50.13,50.13
+ncs,"Petitgrain oil, Paraguay",8014-17-3; 72968-50-4,Citrus aurantium L. spp. Amara Link,Methyl N-methylanthranilate,85-91-6,0.06,0.06
+ncs,Balm oil,8014-71-9; 84082-61-1,Melissa officinallis L.,Neral,106-26-3,16.68,16.68
+ncs,"Basil oil, chemotype estragole",8015-73-4; 84775-71-3,Ocimum basilicum L.,Neral,106-26-3,0.02,0.02
+ncs,"Bay leaf, West Indian, oil",8006-78-8; 91721-75-4; 85085-61-6,Pimenta racemosa (Mill.) J.W. Moore,Neral,106-26-3,0.2,0.2
+ncs,Bergamot oil expressed,8007-75-8; 89957-91-5; 92704-01-3,Citrus bergamia Risso & Poit.,Neral,106-26-3,0.2,0.2
+ncs,Carrot seed oil,8015-88-1; 84929-61-3,Daucus carota L.,Neral,106-26-3,0.01,0.01
+ncs,Citron oil,68991-25-3,Citrus medica L.,Neral,106-26-3,1.57,1.57
+ncs,Eucalyptus citriodora oil,85203-56-1,Corymbia citriodora (Hook.) K.D. Hill & L.A. Johnson,Neral,106-26-3,0.03,0.03
+ncs,Ginger CO2 extract,8007-08-7; 84696-15-1,Zingiber officinalle Roscoe,Neral,106-26-3,0.57,0.57
+ncs,Grapefruit essence oil,8016-20-4; 90045-43-5,Citrus x paradisi Macfad.,Neral,106-26-3,0.04,0.04
+ncs,Grapefruit oil,8016-20-4; 90045-43-5,Citrus x paradisi Macfad.,Neral,106-26-3,0.04,0.04
+ncs,Lemon oil steam distilled,8008-56-8; 84929-31-7,Citrus limon (L.) Osbeck,Neral,106-26-3,0.81,0.81
+ncs,"Lemongrass oil, East Indian",8007-02-1; 91844-92-7,Cymbopogon flexuosus (Nees ex Steudel) Will. Watson,Neral,106-26-3,30.54,30.54
+ncs,Lime oil distilled,8008-26-2; 90063-52-8,Citrus aurantifolia (Christm.) Swingle,Neral,106-26-3,0.26,0.26
+ncs,"Lime oil, expressed",8008-26-2; 90063-52-8; 93685-55-3,Citrus aurantifolia (Christm.) Swingle,Neral,106-26-3,1.7,1.7
+ncs,"Marjoram oil, Spanish",8016-33-9; 84837-14-9; 91722-83-7,Thymus mastichina L.,Neral,106-26-3,0.07,0.07
+ncs,"Orange flower oil, bitter (neroli and neroli bigarade)",8016-38-4; 72968-50-4,Citrus aurantium L. spp. Amara Link,Neral,106-26-3,0.04,0.04
+ncs,Orange flower water absolute,8030-28-2; 72968-50-4,Citrus aurantium L. spp. Amara Link,Neral,106-26-3,0.01,0.01
+ncs,"Orange oil, bitter",68916-04-1; 72968-50-4,Citrus aurantium L. spp. Amara Link,Neral,106-26-3,0.03,0.03
+ncs,"Persian lime oil, expressed",8008-26-2; 90063-52-8,Citrus latifolia Tanaka,Neral,106-26-3,1.61,1.61
+ncs,"Petitgrain oil, Paraguay",8014-17-3; 72968-50-4,Citrus aurantium L. spp. Amara Link,Neral,106-26-3,0.08,0.08
+ncs,Rose absolute,90106-38-0,Rosa x damascena Mill.,Neral,106-26-3,0.08,0.08
+ncs,Rose oil,8007-01-0; 90106-38-0,Rosa x damascena Mill.,Neral,106-26-3,0.79,0.79
+ncs,Tangerine oil terpenes,68608-38-8; 93686-22-7,Citrus reticulata Blanco,Neral,106-26-3,0.01,0.01
+ncs,"Thyme oil, red",8007-46-3; 84929-51-1,Thymus vulgaris L.,Neral,106-26-3,0.06,0.06
+ncs,Cassia  bark oil,8007-80-5; 84961-46-6,Cinnamomum cassia [L.] J. Presl syn. C. aromaticum Nees,o-Methoxycinnamaldehyde,1504-74-1,0.7,0.7
+ncs,Cassia bark oleoresin,8007-80-5; 84961-46-6,Cinnamomum cassia [L.] J. Presl syn. C. aromaticum Nees,o-Methoxycinnamaldehyde,1504-74-1,0.94,0.94
+ncs,Cassia oil,8007-80-5; 84961-46-6,Cinnamomum cassia [L.] J. Presl syn. C. aromaticum Nees,o-Methoxycinnamaldehyde,1504-74-1,9,9
+ncs,Cinnamon bark oil,8015-91-6; 84649-98-9,Cinnamomum zeylanicum Blume,o-Methoxycinnamaldehyde,1504-74-1,0.5,0.5
+ncs,Styrax essence pyrogenated,8046-19-3; 8046-19-3,Liquidambar Styraciflua,p-Cresol,106-44-5,0.35,0.35
+ncs,"Styrax oil, pyrogenated",8024-01-9; 94891-27-7,Liquidambar orientalis Mill.,p-Cresol,106-44-5,0.3,0.3
+ncs,Caraway seed oil,8000-42-8; 85940-31-4,Carum carvi L.,Perilla aldehyde,2111-75-3,0.1,0.1
+ncs,Gingergrass oil,8023-92-5; 92704-07-9,Cymbopogon martinii (Roxb.) W.Watson var.sofia,Perilla aldehyde,2111-75-3,0.2,0.2
+ncs,"Grapefruit oil, terpeneless",68916-46-1; 90045-43-5,Citrus x paradisi Macfad.,Perilla aldehyde,2111-75-3,1,1
+ncs,"Orange oil, bitter",68916-04-1; 72968-50-4,Citrus aurantium L. spp. Amara Link,Perilla aldehyde,2111-75-3,0.02,0.02
+ncs,"Orange oil, sweet, terpenes",68647-72-3; 8028-48-6,Citrus sinensis (L.) Osbeck,Perilla aldehyde,2111-75-3,0.01,0.01
+ncs,Perilla oil,68132-21-8; 90082-61-4,Perilla frutescens (L.) Britton,Perilla aldehyde,2111-75-3,53.78,53.78
+ncs,Tangerine oil terpenes,68608-38-8; 93686-22-7,Citrus reticulata Blanco,Perilla aldehyde,2111-75-3,0.01,0.01
+ncs,Carrot seed oil,8015-88-1; 84929-61-3,Daucus carota L.,p-Isopropylbenzyl alcohol,536-60-7,0.06,0.06
+ncs,Cassis bud absolute,97676-19-2; 68606-81-5,Ribes nigrum L.,p-Isopropylbenzyl alcohol,536-60-7,0.1,0.1
+ncs,Cumin seed oil,8014-13-9; 84775-51-9,Cuminum cyminum L.,p-Isopropylbenzyl alcohol,536-60-7,0.2,0.2
+ncs,Lavender oil dentata,93165-50-5,Lavandula dentata,p-Isopropylbenzyl alcohol,536-60-7,0.2,0.2
+ncs,Anise seed oil,8007-70-3; 84775-42-8,Pimpinella anisum L.,p-Methoxybenzaldehyde,123-11-5,0.43,0.43
+ncs,"Basil oil, chemotype estragole",8015-73-4; 84775-71-3,Ocimum basilicum L.,p-Methoxybenzaldehyde,123-11-5,0.1,0.1
+ncs,Cassie absolute,8023-82-3; 89958-31-6,Vachellia farnesiana (L.) Willd.,p-Methoxybenzaldehyde,123-11-5,1,1
+ncs,"Fennel oil, bitter, phellandrene type",84625-39-8,Foeniculum vulgare Mill.,p-Methoxybenzaldehyde,123-11-5,0.2,0.2
+ncs,"Fennel oil, bitter,anethole type",8006-84-6; 84625-39-8,Foeniculum vulgare Mill.,p-Methoxybenzaldehyde,123-11-5,0.3,0.3
+ncs,"Fennel oil, sweet",8006-84-6; 84455-29-8,Foeniculum vulgare subsp. vulgare var. Dulce (Mill) Batt.,p-Methoxybenzaldehyde,123-11-5,0.47,0.47
+ncs,Mimosa absolute,8031-03-6; 93685-96-2; 98903-76-5,Acacia decurrens (Wendl.f.) Willd.,p-Methoxybenzaldehyde,123-11-5,0.1,0.1
+ncs,Star anise oil,68952-43-2; 84650-59-9,"Illicium verum Hook, f.",p-Methoxybenzaldehyde,123-11-5,0.2,0.2
+ncs,Vanilla absolute,8024-06-4; 84650-63-5,Vanilla planifolia,p-Methoxybenzaldehyde,123-11-5,0.03,0.03
+ncs,Vanilla CO2 extract,8024-06-4; 84650-63-5,Vanilla planifolia,p-Methoxybenzaldehyde,123-11-5,0,
+ncs,Vanilla oleoresin,8024-06-4; 84650-63-5,Vanilla planifolia,p-Methoxybenzaldehyde,123-11-5,0.03,0.03
+ncs,Vanilla tahitensis absolute,953789-39-4; 94167-14-3,Vanilla tahitensis J.W. Moore,p-Methoxybenzaldehyde,123-11-5,0,
+ncs,Vanilla tahitensis CO2 extract,953789-39-4; 94167-14-3,Vanilla tahitensis J.W. Moore,p-Methoxybenzaldehyde,123-11-5,0,
+ncs,"Camphor oil, brown",8008-51-3; 92201-50-8; 92704-03-5,Cinnamomum camphora (L.) J.Presl,Safrole,94-59-7,80,80
+ncs,"Camphor oil, yellow",8008-51-3; 92201-50-8; 92704-03-5,Cinnamomum camphora (L.) J.Presl,Safrole,94-59-7,50,50
+ncs,Cinnamon bark oil,8015-91-6; 84649-98-9,Cinnamomum zeylanicum Blume,Safrole,94-59-7,0.2,0.2
+ncs,Cinnamon leaf oil,8015-91-6; 84649-98-9,Cinnamomum zeylanicum Blume,Safrole,94-59-7,1.2,1.2
+ncs,Cubeb oil,8007-87-2; 90082-59-0,Piper cubeba L. f.,Safrole,94-59-7,0.04,0.04
+ncs,Litsea cubeba oil,68855-99-2; 90063-59-5,Litsea Cubeba(Lour.) Pers.,Safrole,94-59-7,0.05,0.05
+ncs,Mace oil,8007-12-3; 84082-68-8,Myristica fragrans Houtt.,Safrole,94-59-7,1.7,1.7
+ncs,Mace oleoresin,8007-12-3; 84082-68-8,Myristica fragrans Houtt.,Safrole,94-59-7,1.6,1.6
+ncs,Nutmeg oil,8008-45-5; 84082-68-8,Myristica fragrans Houtt.,Safrole,94-59-7,1.5,1.5
+ncs,Nutmeg oleoresin,8008-45-5; 84082-68-8,Myristica fragrans Houtt.,Safrole,94-59-7,1,1
+ncs,Ocatea cymbarum oil,68917-09-9; 91770-39-7,Ocotea cymbarum Kunth,Safrole,94-59-7,92,92
+ncs,Ravensara aromatica oil,91770-56-8,Ravansara aromatica Sonn. (v. anisata),Safrole,94-59-7,0.03,0.03
+ncs,Sassafras bark oil,8006-80-2; 84787-72-4,Sassafras albidum (Nutt.) Nees,Safrole,94-59-7,92,92
+ncs,Calamus oil,8015-79-0; 84775-39-3,Acorus calamus L.,trans-Asarone/alpha-Asarone,2883-98-9,0.7,0.7
+ncs,Carrot seed oil,8015-88-1; 84929-61-3,Daucus carota L.,trans-Asarone/alpha-Asarone,2883-98-9,0.19,0.19
+ncs,Cubeb oil,8007-87-2; 90082-59-0,Piper cubeba L. f.,trans-Asarone/alpha-Asarone,2883-98-9,1.55,1.55
+ncs,Verbena absolute,8024-12-2; 85116-63-8,Lippia citriodora (L.) Kunth,trans-Asarone/alpha-Asarone,2883-98-9,0.1,0.1
+ncs,"Lime oil, expressed",8008-26-2; 90063-52-8; 93685-55-3,Citrus aurantifolia (Christm.) Swingle,trans-Carvyl acetate,1134-95-8,0.2,0.2
+ncs,Styrax absolute,8046-19-3; 94891-27-7; 94891-28-8,Liquidambar styraciflua L.,trans-Isoeugenol,5932-68-3,0.03,0.03
+ncs,Champaca absolute,8006-76-6; 92457-18-6,Michelia champaca L.,trans-trans-Farnesol,106-28-5,0.01,0.01
+ncs,Jasmine sambac absolute,103798-23-6; 91770-14-8,Jasminum sambac (L.) Aiton,trans-trans-Farnesol,106-28-5,0.6,0.6
+ncs,Jasmine sambac CO2 extract,103798-23-6; 91770-14-8,Jasminum sambac,trans-trans-Farnesol,106-28-5,0.6,0.6
+ncs,Lime oil distilled,8008-26-2; 90063-52-8,Citrus aurantifolia (Christm.) Swingle,trans-trans-Farnesol,106-28-5,0.02,0.02
+ncs,"Orange flower oil, bitter (neroli and neroli bigarade)",8016-38-4; 72968-50-4,Citrus aurantium L. spp. Amara Link,trans-trans-Farnesol,106-28-5,2.18,2.18
+ncs,"Petitgrain oil, Paraguay",8014-17-3; 72968-50-4,Citrus aurantium L. spp. Amara Link,trans-trans-Farnesol,106-28-5,0.03,0.03
+ncs,Rose oil,8007-01-0; 90106-38-0,Rosa x damascena Mill.,trans-trans-Farnesol,106-28-5,1.37,1.37
+ncs,"Sandalwood oil, Australian",8024-35-9; 92875-02-0,Santalum spicata (R.Br.) A.DC.,trans-trans-Farnesol,106-28-5,8.38,8.38
+ncs,"Sandalwood oil, New Caledonian",91845-48-6,Santalum austrocaledonicum Vieill,trans-trans-Farnesol,106-28-5,0.85,0.85
+ncs,Ylang ylang oil I,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),trans-trans-Farnesol,106-28-5,1.82,1.82
+ncs,Ylang ylang oil II,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook.f.&Thomson forma genuina,trans-trans-Farnesol,106-28-5,2.35,2.35
+ncs,Ylang ylang oil III,8006-81-3; 83863-30-3,Cananga odorata (Lam.) Hook. f. &Thomson oil (forma genuine Steenis),trans-trans-Farnesol,106-28-5,1.76,1.76
+ncs,Ylang-ylang absolute,83863-30-3,Cananga odorata (Lam.) Hook.f.&Thomson forma genuina,trans-trans-Farnesol,106-28-5,1.5,1.5
+schiff,"α-Amylcinnamaldehyde-methyl anthranilate (or Jasmea, Seringone)",68527-78-6,,α-Amylcinnamaldehyde,122-40-7,60.3,60.3
+schiff,Benzaldehyde methyl anthranilate ; Methyl 2-[(phenylmethylene)amino]benzoate; Methyl 2-(benzylideneamino)benzoate (or Amandolene),39129-16-3; 37837-44-8,,Benzaldehyde,100-52-7,44.4,44.4
+schiff,Lysmeral-methyl anthranilate (or Verdantiol),91-51-0,,p-t-Butyl-α-methylhydrocinnamic aldehyde (Lysmeral),80-54-6,60.6,60.6
+schiff,Cinnamic aldehyde methyl anthranilate,94386-48-8,,Cinnamic aldehyde,104-55-2,49.8,49.8
+schiff,Citral-methyl anthranilate,67801-47-2,,Citral,5392-40-5,53.3,53.3
+schiff,"Triplal-methyl anthranilate (or Vertosine, Ligantraal, Agrumea)",68738-99-8,,"2,4-Dimethylcyclohex-3-ene-1-carbaldehyde (Triplal)",68039-49-6,50.9,50.9
+schiff,α-Hexylcinnamic aldehyde methyl anthranilate (or Jasmea H),67924-13-4,,α-Hexylcinnamaldehyde,101-86-0,61.8,61.8
+schiff,Hydroxycitronellal-Indole (or Indolene 50%),68527-79-7,,Hydroxycitronellal,107-75-5,63.5,63.5
+schiff,"Hydroxycitronellal methyl anthranilate (or Aurantiol, Aurantium, Aurantoin)",89-43-0,,Hydroxycitronellal,107-75-5,56.4,56.4
+schiff,Lyral-methyl anthranilate (or Lyrantion),67634-12-2,,3 and 4-(4-Hydroxy-4-methylpentyl)-3-cyclohexene-1-carboxaldehyde (Lyral),31906-04-4,61.3,61.3
+schiff,"Canthoxal-methyl anthranilate (or Canthalide, Anthranolene)",111753-62-9,,"4-Methoxy-α-methylbenzeneproponal (Canthoxal, Fennaldehyde)",5462-06-6,57.3,57.3
+schiff,Helional-methyl anthranilate (or Helioforte),111753-60-7,,"α-Methyl-1,3-benzodioxole-5-propionaldehyde (Helional, MMDHCA)",1205-17-0,59.1,59.1
+schiff,Methyl 2-{[3-(4-isopropylphenyl)-2-methylpropylidene]amino}benzoate; Cyclamen aldehyde-methyl anthranilate,91-50-9,,Cyclamen aldehyde,103-95-7,58.8,58.8
+schiff,"Citronellal methylanthranilate; Methyl 2-[(3,7-dimethyl-6-octenylidene)amino]benzoate (or Citronama)",67845-42-5,,Citronellal,106-23-0,53.7,53.7
+schiff,"Ethyl 2-[[[4-(1,1-dimethylethyl)phenyl]methylene]amino]benzoate",94108-09-5,,Cuminaldehyde,122-03-2,50.2,50.2
+schiff,Methyl 2-[(4-methoxybenzylidene)amino]benzoate (or Anisimea),14735-72-9,,p-Methoxybenzaldehyde,123-11-5,50.6,50.6

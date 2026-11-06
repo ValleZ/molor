@@ -1297,6 +1297,28 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
           note.push('<span class="dim">' + esc(m.vol)
             + " tier, inherited from " + m.volCov + "% of the oil</span>");
         }
+        // IFRA. Three claims that used to read alike, because a missing number
+        // was one number: a published limit, a confirmed absence of one, and an
+        // identity nobody could establish. "No restriction" is left unsaid --
+        // it is the default and would be noise on 573 rows -- but "unknown"
+        // is not the same silence and has to be visible.
+        if (m.ifraStat === "prohibited" || m.ifra === 0) {
+          note.push('<span class="warn">IFRA: prohibited, not for use</span>');
+        } else if (m.ifra != null) {
+          var overCap = 100 * x.share > m.ifra * 1.02 + 0.02;
+          note.push('<span class="' + (overCap ? "warn" : "dim") + '">IFRA cat-4 '
+            + (m.ifra < 0.01 ? m.ifra.toFixed(4) : m.ifra.toFixed(2))
+              .replace(/\.?0+$/, "") + "% of the finished product"
+            + (overCap ? " -- this formula is at "
+              + (100 * x.share).toFixed(1) + "% neat" : "")
+            + "</span>");
+        } else if (m.ifraStat === "specification_only") {
+          note.push('<span class="dim">IFRA: purity specification only, '
+            + "no use limit</span>");
+        } else if (m.ifraStat === "unknown") {
+          note.push('<span class="warn">IFRA status unknown -- identity not '
+            + "established, so no limit can be quoted either way</span>");
+        }
         // Offered, but nothing here has checked it is a perfumery material.
         // Only worth saying about a substitution: if the formula already
         // contains it, the choice has been made.
