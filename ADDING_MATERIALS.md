@@ -267,14 +267,14 @@ percentiles, the alias table, use levels, and the threshold column. It
 prints its own summary; the numbers to read are:
 
 ```
-143 compiled thresholds, 484 imputed (leave-one-out median error 3.63x)
-752 materials (47 of them oils), 149 owned, 752 with a threshold
-138 descriptors, 289 aliases, yardstick 1.101
-53 materials may never be proposed; 34 are offered but unverified
+143 compiled thresholds, 435 imputed (leave-one-out median error 3.63x)
+750 materials (47 of them oils), 149 owned, 750 with a threshold
+138 descriptors, 289 aliases, yardstick 1.099
+56 materials may never be proposed; 34 are offered but unverified
 ```
 
 The materials count is the one to watch: it must equal the CSV rows plus
-every oil in the naturals file — 704 + 47 today — because that is what the
+every oil in the naturals file — 703 + 47 today — because that is what the
 perfumer's `materials.db` will hold. `compiled` is the inventory meeting the
 library by name (§6); if it drops, the join is failing, not the data.
 
@@ -333,6 +333,38 @@ material*, and that the provenance label is the honest one:
   (cinnamyl alcohol 500, benzyl isoeugenol 5000): a heavy-ester resinoid
   genuinely is a weak smeller, and the label says the figure is an
   interpolation, not a measurement.
+
+**The KFO tier is generated, not curated, and nothing regenerates it.** It is
+`scripts/import_kfo.py` read against the published workbook, so it goes stale
+the moment the library grows. After the 278-molecule catalogue commit the sheet
+had never been re-read, so the batch was imputed over a 180-material match set.
+Re-reading it matched 230 and moved 48 materials from guess to published — 36
+of them from the batch, 12 recovered from materials already in the library —
+taking `kfo` 124 → 172 and `imputed` 483 → 435:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\import_kfo.py vendor\zenodo\kfo_2282.xlsx --no-fetch
+```
+
+The workbook is gitignored under `vendor/zenodo/`; the CID → InChIKey cache in
+`data/percept/` makes `--no-fetch` enough and the run takes seconds. It prints
+its own agreement check against the compiled water column, and that is the
+number to hold it to: **2.4x median error, 83% within a decade**, unchanged by
+the regeneration because KFO is a different sample of the same quantity, not a
+sharper instrument. **These are water thresholds** — that was tested, not
+assumed; the argument is in the script's docstring, not here.
+
+Two rules decide which rows count, both tested before believed:
+
+* **An oil or fat measurement is dropped, not converted**, on the same argument
+  as the air-phase rows. "Nutty Pyrazine" rested on one 50 µg/mL peanut-oil row
+  — 50 000 ppb, against a k-NN guess of 2.1 and a supplier selling it
+  pre-diluted at 1% because it is potent. It falls back to `imputed`.
+* **Stereochemistry is matched at the skeleton, never at the name.** Library
+  structures are stereo-unspecified where the sheet holds one isomer, so a
+  full-InChIKey join missed Geosmin (imputed 2.95 ppb against a published 0.11)
+  and 13 others. The `match` column records `full` or `skeleton`. Name matching
+  is the wrong shortcut: the sheet's "Creosol" is guaiacol, the library's is not.
 
 ## 7. NEVER_PROPOSE (blocking a material from being proposed)
 

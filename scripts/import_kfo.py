@@ -27,6 +27,43 @@ error against compiled is 2.4x with 81% inside a decade, where this project's
 own imputation manages 3.0x and 77%. So the KFO median is ranked ABOVE
 imputed, not below compiled -- it is the same quantity at comparable quality.
 
+*A fat matrix is dropped, not converted.* A row measured in an oil or fat is
+skipped on the same argument that skips the air-phase rows: the number is real
+but it is not a water threshold, and it is biased high by however lipophilic
+the compound is. The tier-wide test above could not see this because it is
+rare -- but rare is not absent, and it is the direction that over-doses:
+
+    6,7-dihydro-5-methyl-5(H)-cyclopentapyrazine   "Nutty Pyrazine"
+        one row, 50 ug/mL in peanut oil  ->  50 000 ppb
+        the k-nearest-neighbour guess    ->       2.1 ppb
+
+A 24 000x overestimate on a material every supplier sells pre-diluted because
+it is powerful. Dropping fat rows leaves the tier's agreement with the
+compiled water column exactly where it was (2.4x either way, 56 compounds),
+because only 2 of the 218 matched compounds rested on fat rows at all; it
+costs those two their published figure and they fall back to imputed, which
+is the honest outcome for a material whose only measurement is in oil.
+
+*Stereochemistry is matched at the skeleton, never at the name.* The library
+holds stereo-unspecified structures for materials the atlas holds as one
+stereoisomer, so a full-InChIKey join silently misses them: Geosmin was
+imputed at 2.95 ppb while the atlas publishes 0.11 ppb, and Borneol, Camphor,
+Nootkatone, Germacrene D, Phytol, Methyl Jasmonate, 3-Octen-2-one and
+Isomenthone missed the same way. InChIKey's first block hashes the skeleton
+with stereo and isotopes removed, so it cannot join two different compounds;
+the match is taken on that block as a FALLBACK, only where no full key
+matched, and the values of every stereoisomer sharing the skeleton are pooled
+before the median so the spread column carries their disagreement.
+
+Name matching would have been the tempting shortcut and it is wrong: the
+library's "Creosol" is a different isomer from the atlas's "Creosol", which
+is guaiacol. The CSV records `match` = full or skeleton, so a figure borrowed
+across stereoisomers is visible in the file rather than implied by it.
+
+The other silent loss was duplicate keys: `lib` was keyed by InChIKey, so two
+library rows sharing one (Menthone and Isomenthone are bit-identical in the
+percept model) collapsed and only the first ever received a figure.
+
 What the tests did NOT clear, and why compiled still wins outright:
 
     Damascenone Total   compiled 0.002 ppb   KFO 0.05    25x high
@@ -74,6 +111,11 @@ TO_PPB = {
 #: Air thresholds are a different quantity and are dropped, not converted --
 #: the same rule the boiling-point merge applies to vacuum distillations.
 AIR = {"mg/m³", "mg/m3", "μg/m³", "ug/m3", "μg/m3", "ng/l air"}
+#: The same argument for a fat matrix: a hydrophobic compound is held back by
+#: the oil it sits in, so the figure is not a water threshold, and it is biased
+#: high by an amount that tracks logP. Dropped, not converted -- see the
+#: docstring for the 50 000 ppb peanut-oil row that made the rule worth having.
+FAT = "fats and oils"
 #: A spread this wide across the published values makes the median a label
 #: rather than a measurement, and the page says so.
 WIDE_SPREAD = 100.0
@@ -149,8 +191,9 @@ def main() -> int:
 
     vals = defaultdict(list)
     names = {}
-    air = 0
+    air = fat = 0
     unknown = Counter()
+    cat_col = col.get("Food categories")
     for r in rows[2:]:
         if not r or not r[col["PubChem CIDs"]]:
             continue
@@ -163,6 +206,9 @@ def main() -> int:
         unit = str(r[ucol] or "").strip().lower() if ucol is not None else ""
         if unit in AIR:
             air += 1
+            continue
+        if cat_col is not None and FAT in str(r[cat_col] or "").lower():
+            fat += 1
             continue
         f = TO_PPB.get(unit)
         if f is None:
@@ -178,40 +224,58 @@ def main() -> int:
         names.setdefault(cid, str(r[col["Compound names"]] or "").strip())
 
     print(f"[kfo] {len(vals)} compounds with an aqueous threshold")
-    print(f"[kfo] dropped {air} air-phase rows (a different quantity) and "
-          f"{sum(unknown.values())} rows in units not convertible exactly")
+    print(f"[kfo] dropped {air} air-phase and {fat} oil/fat-matrix rows (a "
+          f"different quantity in each case) and {sum(unknown.values())} rows "
+          f"in units not convertible exactly")
     if unknown:
         print(f"       e.g. {', '.join(f'{u} x{c}' for u, c in unknown.most_common(5))}")
 
     keys = fetch_keys(sorted(vals), fetch=not args.no_fetch)
-    lib = {}
+    # Every library ROW keeps its own name: keying this by InChIKey collapsed
+    # duplicates and quietly gave Menthone a figure and Isomenthone none.
+    lib = []
     for r in csv.DictReader(io.open(
             ROOT / "library/input/expanded_materials.csv", encoding="utf-8")):
         m = Chem.MolFromSmiles((r.get("smiles") or "").strip())
         if m is not None:
-            lib.setdefault(Chem.MolToInchiKey(m), r["name"].strip())
-    k2c = {}
+            lib.append((r["name"].strip(), Chem.MolToInchiKey(m)))
+    k2c, skel2c = defaultdict(list), defaultdict(list)
     for c, k in keys.items():
-        k2c.setdefault(k, c)
+        if k:
+            k2c[k].append(c)
+            skel2c[k.split("-")[0]].append(c)
 
     pay = json.loads((ROOT / "artifacts/simplify_data.json")
                      .read_text(encoding="utf-8"))
     M = {m["n"]: m for m in pay["materials"]}
 
     out, cross = [], []
-    for k, name in sorted(lib.items(), key=lambda kv: kv[1]):
-        cid = k2c.get(k)
-        if cid is None or cid not in vals:
+    n_skel = 0
+    for name, k in sorted(lib, key=lambda t: t[0]):
+        cids = [c for c in k2c.get(k, []) if c in vals]
+        match = "full"
+        if not cids:
+            # Fallback, never a preference: the library's structure is stereo-
+            # unspecified where the atlas holds one isomer, and InChIKey's first
+            # block hashes the skeleton with stereo removed, so this cannot join
+            # two different compounds. Name matching would -- the atlas's
+            # "Creosol" is guaiacol and the library's is not.
+            cids = [c for c in skel2c.get(k.split("-")[0], []) if c in vals]
+            match = "skeleton"
+        if not cids:
             continue
-        v = np.asarray(vals[cid], float)
+        if match == "skeleton":
+            n_skel += 1
+        v = np.asarray([x for c in sorted(cids) for x in vals[c]], float)
         med = float(np.median(v))
-        rec = {"name": name, "inchikey": k, "cid": cid,
-               "kfo_name": names.get(cid, ""),
+        rec = {"name": name, "inchikey": k, "cid": ",".join(sorted(cids)),
+               "kfo_name": "; ".join(names.get(c, "") for c in sorted(cids)),
                "ppb": round(med, 6), "n": int(v.size),
                "min_ppb": round(float(v.min()), 6),
                "max_ppb": round(float(v.max()), 6),
                "spread": round(float(v.max() / max(v.min(), 1e-12)), 1),
-               "wide": int(v.max() / max(v.min(), 1e-12) > WIDE_SPREAD)}
+               "wide": int(v.max() / max(v.min(), 1e-12) > WIDE_SPREAD),
+               "match": match}
         out.append(rec)
         cur = M.get(name, {})
         if cur.get("thrSrc") == "compiled" and cur.get("thr"):
@@ -224,7 +288,8 @@ def main() -> int:
         w.writerows(out)
     wide = sum(r["wide"] for r in out)
     print(f"\n[kfo] wrote {OUT.relative_to(ROOT)}: {len(out)} library "
-          f"materials, {wide} of them with a spread over {WIDE_SPREAD:.0f}x")
+          f"materials, {wide} of them with a spread over {WIDE_SPREAD:.0f}x, "
+          f"{n_skel} matched on the skeleton rather than the full InChIKey")
     bysrc = Counter(M.get(r["name"], {}).get("thrSrc") for r in out)
     print(f"[kfo] they currently hold: "
           + ", ".join(f"{v} {k}" for k, v in bysrc.items()))
