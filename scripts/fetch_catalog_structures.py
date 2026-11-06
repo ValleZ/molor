@@ -6,7 +6,7 @@ library without a single hand-typed SMILES.
     .venv/Scripts/python.exe scripts/fetch_catalog_structures.py
     .venv/Scripts/python.exe scripts/fetch_catalog_structures.py --refresh
 
-Input : ../valkon.us/molor/data/fraterworks_missing.json  (the gap list)
+Input : vendor/fraterworks/fraterworks_missing.json  (the gap list, gitignored)
 Output: artifacts/catalog_structures.json   cache: CID, SMILES, InChIKey, formula
         artifacts/proposed_materials.csv    name,smiles,source  - ready to append
 
@@ -48,7 +48,7 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 PERFUMER = ROOT.parent / "perfumer"
 
-DEFAULT_GAP = ROOT.parent / "valkon.us" / "molor" / "data" / "fraterworks_missing.json"
+DEFAULT_GAP = ROOT / "vendor" / "fraterworks" / "fraterworks_missing.json"
 LIBRARY = ROOT / "library" / "input" / "expanded_materials.csv"
 CACHE = ROOT / "artifacts" / "catalog_structures.json"
 PROPOSED = ROOT / "artifacts" / "proposed_materials.csv"

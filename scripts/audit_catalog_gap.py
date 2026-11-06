@@ -2,12 +2,18 @@
 """
 What do we actually know about a supplier catalogue that is not in the library?
 
-Joins a Fraterworks gap list (molor/data/fraterworks_missing.json) against every
+Joins a Fraterworks gap list (vendor/fraterworks/fraterworks_missing.json) against every
 data source the library already owns, and reports per material which columns
 would be inherited, which would be imputed, and which would be empty.
 
     python scripts/audit_catalog_gap.py
-    python scripts/audit_catalog_gap.py --gap ../valkon.us/molor/data/fraterworks_missing.json
+    python scripts/audit_catalog_gap.py --gap path/to/fraterworks_missing.json
+
+The gap list is produced by scripts/diff_fraterworks.py from the catalogue
+snapshot in vendor/fraterworks/ (both gitignored). It used to live in the
+static site repository, which two scripts here reached across for -- that is
+how the snapshot came to be committed to a site that publishes two HTML files
+(valkon.us commit 310fcb6, undone in 89f2e4d).
 
 Sources, and what each one can contribute:
 
@@ -38,7 +44,7 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 PERFUMER = ROOT.parent / "perfumer"
 
-DEFAULT_GAP = ROOT.parent / "valkon.us" / "molor" / "data" / "fraterworks_missing.json"
+DEFAULT_GAP = ROOT / "vendor" / "fraterworks" / "fraterworks_missing.json"
 INVENTORY = ROOT / "data" / "inventory" / "inventory.csv"
 LIBRARY = ROOT / "library" / "input" / "expanded_materials.csv"
 IFRA = ROOT / "data" / "ifra" / "materials.csv"
