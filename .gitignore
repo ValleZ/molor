@@ -13,6 +13,9 @@ vendor/unimol*/
 artifacts/esm_cache/
 artifacts/panel_embeddings.npy
 artifacts/*.log
+# The receptor store's own backup: `orvector library add` copies the previous
+# vectors beside the live ones before an append, and the CSV rebuilds them.
+artifacts/library/_backup_*/
 
 # Keep the small, reproducibility-critical artifacts:
 !artifacts/receptors.tsv
