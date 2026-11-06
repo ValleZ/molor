@@ -15,7 +15,8 @@ Sources, and what each one can contribute:
                                         family, ifra_cat4/cat9, top_pct,
                                         water_threshold_ppb, stability
   library/input/expanded_materials.csv  name + smiles (already a library molecule)
-  tools/ifra_limits.csv   (perfumer)    ifra_cat4_pct
+  data/ifra/materials.csv               ifra_cat4_pct + ifra_status
+                                        (the resolved verdicts, not a seed)
   tools/longevity.csv     (perfumer)    substantivity_hours
   perfumer/docs/usable-materials-cas.csv  the CAS the library already knows
 
@@ -40,7 +41,7 @@ PERFUMER = ROOT.parent / "perfumer"
 DEFAULT_GAP = ROOT.parent / "valkon.us" / "molor" / "data" / "fraterworks_missing.json"
 INVENTORY = ROOT / "data" / "inventory" / "inventory.csv"
 LIBRARY = ROOT / "library" / "input" / "expanded_materials.csv"
-IFRA = PERFUMER / "tools" / "ifra_limits.csv"
+IFRA = ROOT / "data" / "ifra" / "materials.csv"
 LONGEVITY = PERFUMER / "tools" / "longevity.csv"
 USABLE = PERFUMER / "docs" / "usable-materials-cas.csv"
 
@@ -78,7 +79,16 @@ def main() -> int:
 
     inventory = read_csv(INVENTORY)
     library = read_csv(LIBRARY)
+    # The IFRA column used to come from the perfumer's hand-kept seed. That
+    # seed is gone (2026-11): the figures are resolved here in the library, and
+    # reading the old path silently reported 0 rows -- a coverage column that
+    # reads "0 / 384" looks like a fact about the catalogue rather than a
+    # broken join, which is exactly the failure this script exists to avoid.
     ifra = read_csv(IFRA)
+    if not ifra:
+        print(f"WARNING: {IFRA} missing or empty; the ifra_limit_pct column "
+              f"is meaningless. Run scripts/import_ifra.py and "
+              f"scripts/resolve_ifra.py.")
     longevity = read_csv(LONGEVITY)
     usable = read_csv(USABLE)
 
@@ -87,7 +97,7 @@ def main() -> int:
     lib_by_name = {norm(r.get("name", "")): r for r in library}
     cas_to_name = {(r.get("cas") or "").strip(): (r.get("name") or "") for r in usable}
     ifra_by_name = {norm(r.get("name", "")): r for r in ifra}
-    ifra_by_cas = {(r.get("cas_number") or "").strip(): r for r in ifra if r.get("cas_number")}
+    ifra_by_cas = {(r.get("cas") or "").strip(): r for r in ifra if r.get("cas")}
     long_by_name = {norm(r.get("name", "")): r for r in longevity}
 
     rows = []
@@ -124,7 +134,8 @@ def main() -> int:
                 "volatility_class": (inv.get("volatility_class") if inv and has_value(inv, "volatility_class") else ""),
                 "family": (inv.get("family") if inv and has_value(inv, "family") else ""),
                 "ifra_cat4": (inv.get("ifra_cat4") if inv and has_value(inv, "ifra_cat4") else ""),
-                "ifra_limit_pct": ((ifra_row or {}).get("ifra_cat4_pct") or ""),
+                "ifra_limit_pct": ((ifra_row or {}).get("cat4_pct") or ""),
+                "ifra_status": ((ifra_row or {}).get("status") or ""),
                 "top_pct": (inv.get("top_pct") if inv and has_value(inv, "top_pct") else ""),
                 "threshold_ppb": (
                     inv.get("water_threshold_ppb") if inv and has_value(inv, "water_threshold_ppb") else ""
@@ -146,7 +157,7 @@ def main() -> int:
     print(f"gap materials                    : {n}")
     print(f"inventory rows available         : {len(inventory)}")
     print(f"library molecules available      : {len(library)}")
-    print(f"ifra_limits.csv rows             : {len(ifra)}")
+    print(f"data/ifra/materials.csv rows     : {len(ifra)}")
     print(f"longevity.csv rows               : {len(longevity)}")
     print()
     print(f"  in inventory (inherits columns) : {have('in_inventory') if False else sum(1 for r in rows if r['in_inventory'] == 'yes')}")
