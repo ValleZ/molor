@@ -52,8 +52,18 @@ def main() -> int:
     ap.add_argument("--percepts", default="artifacts/percepts_fp3.json")
     ap.add_argument("--materials",
                     default="library/input/expanded_materials.csv")
-    ap.add_argument("--yardstick", type=float, default=0.439)
+    ap.add_argument("--yardstick", type=float, default=None,
+                    help="just-noticeable scale. Default: whatever the shipped "
+                         "simplifier payload carries (~1.10 on fp4). This used "
+                         "to hard-code 0.439, an fp3-era figure that survived "
+                         "the model change and made every verdict ~2.5x too "
+                         "strict")
     args = ap.parse_args()
+    if args.yardstick is None:
+        import yardstick as ys
+        args.yardstick = ys.from_payload()
+        print(f"[blind] yardstick {args.yardstick:.3f} "
+              f"(from artifacts/simplify_data.json)")
 
     try:
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")

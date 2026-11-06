@@ -123,7 +123,8 @@ def main() -> int:
     D = np.linalg.norm(X[:, None, :] - X[None, :, :], axis=2)
     np.fill_diagonal(D, np.inf)
     nn = D.min(1)
-    yard = float(np.median(nn))
+    import yardstick as ys  # the shared ruler: scripts/yardstick.py
+    yard = ys.of_distances(D)
     print(f"[white] a material's nearest neighbour sits {yard:.3f} away "
           f"(median); 10th percentile {np.percentile(nn, 10):.3f}")
     print(f"[white] a material sits {np.median(np.linalg.norm(X - mu, axis=1)):.3f} "

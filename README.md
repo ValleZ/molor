@@ -241,7 +241,9 @@ So:
 5. **Euclidean distance matrix** over those 20 components. This matrix is what
    the viewer's "distance to" numbers come from, and its median is the
    `medianDistance` the page quotes against. (The simplifier's separate
-   yardstick, 0.439, is a percept-space figure and not this one.)
+   yardstick — `scripts/yardstick.py`, median nearest-neighbour distance in
+   percept space, 1.101 on fp4 — is a different figure and not this one. The
+   0.439 quoted in older notes was its fp3 value.)
 6. **Metric MDS to 3 axes** on the precomputed distances (`n_init=6`,
    `max_iter=800`, fixed seed). MDS minimises the disagreement between the 3D
    distances and the 20-D ones directly, which is what we want; PCA maximises
@@ -1788,10 +1790,10 @@ geometry either discard bond features by design (the GCN) or annihilate them in
 their trained weights (the MPNN).
 
 Three honest notes. 29 of 396 is 7% of the library, so this is a bounded defect
-rather than a pervasive one. The 0.439 yardstick is a median nearest-neighbour
-distance and not a measured perceptual threshold, so "below the yardstick"
-means "closer than typical neighbours", not "provably indistinguishable to a
-nose". And the chain-length groups are separated by a real signal — molecular
+rather than a pervasive one. The 0.439 yardstick (fp3; 1.10 on fp4 — see
+`scripts/yardstick.py`) is a median nearest-neighbour distance and not a
+measured perceptual threshold, so "below the yardstick" means "closer than
+typical neighbours", not "provably indistinguishable to a nose". And the chain-length groups are separated by a real signal — molecular
 weight genuinely tracks the shift from fruity-citrus to soapy-waxy in an
 aldehyde series — it is just a thin channel to carry a whole homologous series
 on.

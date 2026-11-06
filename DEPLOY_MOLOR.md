@@ -380,18 +380,21 @@ vectors, hence preprocess → PCA-20 → MDS).
 **Simplifier export**, 1.4 s:
 
 ```
-compiled 142, KFO-Atlas 124, imputed 208 (leave-one-out median error 3.12x)
-474 materials (47 of them oils), 148 owned, 474 with a threshold
-138 descriptors, 289 aliases, yardstick 0.451
-30 may never be proposed; 34 offered but unverified
+compiled 143, KFO-Atlas 124, imputed 484 (leave-one-out median error 3.63x)
+752 materials (47 of them oils), 149 owned, 752 with a threshold
+138 descriptors, 289 aliases, yardstick 1.101
+53 may never be proposed; 34 offered but unverified
 ```
 
-`yardstick 0.451` is what a random blend of the same size achieves — measured,
-not set — and the page reports closeness against it. It has moved twice: 0.470
-originally, 0.488 when the oils were regenerated from the spec, and 0.451 when
-they were recomposed by the weighted mean. Every move is a real change in the
-material set or in how an oil's vector is built; the number is a property of
-the data, so a silent shift here means the inputs moved under you.
+`yardstick 1.101` is the median distance from a material to its nearest
+neighbour in percept space ([`scripts/yardstick.py`](scripts/yardstick.py)), and
+the page reports closeness against it. It is a property of the data **and of the
+percept model**: the identical formula gives 0.506 on fp3 and 1.221 on fp4,
+because `pos_weight` lifts the mean probability from 0.047 to 0.164. The 0.451
+quoted here for months was an fp3 figure retired when fp4 became active
+(`b8d08f9`); the definition never changed. Read the number the export prints
+rather than a literal — `percept_blind_spots.py` hard-coded 0.439 and stayed
+silently wrong after the model change.
 
 If `compiled` looks small and `owned` looks low, the inventory join is not
 resolving: both counts are the sheet meeting the library by name, and that join

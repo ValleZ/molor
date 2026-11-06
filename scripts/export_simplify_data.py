@@ -439,8 +439,10 @@ def main() -> int:
     np.fill_diagonal(D, np.inf)
     iso = np.sort(D, axis=1)[:, :5].mean(1)
     iso_pct = 100.0 * np.argsort(np.argsort(iso)) / max(len(iso) - 1, 1)
-    # The just-noticeable scale everything is reported against.
-    yardstick = float(np.median(D.min(1)))
+    # The just-noticeable scale everything is reported against. One definition,
+    # in scripts/yardstick.py, so no caller carries a stale literal.
+    import yardstick as ys
+    yardstick = ys.of_distances(D)
 
     # One resolver for every sheet-vs-library join on this page, so the use
     # level, the recorded tier and the compiled threshold all agree about which

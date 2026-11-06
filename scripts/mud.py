@@ -341,7 +341,8 @@ def main() -> int:
 
     D = np.linalg.norm(X[:, None, :] - X[None, :, :], axis=2)
     np.fill_diagonal(D, np.inf)
-    yard = float(np.median(D.min(1)))
+    import yardstick as ys  # the shared ruler: scripts/yardstick.py
+    yard = ys.of_distances(D)
     if args.target == "centroid":
         target, tname = mu, "the library's average smell"
     elif args.target == "flat":

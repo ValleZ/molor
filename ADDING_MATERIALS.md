@@ -267,21 +267,31 @@ percentiles, the alias table, use levels, and the threshold column. It
 prints its own summary; the numbers to read are:
 
 ```
-142 compiled thresholds, 208 imputed (leave-one-out median error 3.12x)
-474 materials (47 of them oils), 148 owned, 474 with a threshold
-138 descriptors, 289 aliases, yardstick 0.451
-30 materials may never be proposed; 34 are offered but unverified
+143 compiled thresholds, 484 imputed (leave-one-out median error 3.63x)
+752 materials (47 of them oils), 149 owned, 752 with a threshold
+138 descriptors, 289 aliases, yardstick 1.101
+53 materials may never be proposed; 34 are offered but unverified
 ```
 
 The materials count is the one to watch: it must equal the CSV rows plus
-every oil in the naturals file — 427 + 47 today — because that is what the
+every oil in the naturals file — 704 + 47 today — because that is what the
 perfumer's `materials.db` will hold. `compiled` is the inventory meeting the
 library by name (§6); if it drops, the join is failing, not the data.
-`yardstick` is what a random blend of the same size achieves — measured, not
-set — so it moves whenever the material set or an oil's composition rule moves:
-0.470, then 0.488 when the oils were regenerated from the spec, then 0.451 when
-they were recomposed by the weighted mean. A shift here is a fact about the
-data, not a tuning knob.
+
+`yardstick` is the **median distance from a material to its nearest neighbour**
+in percept space, defined once in [`scripts/yardstick.py`](scripts/yardstick.py).
+It is a *ruler*, not a measurement: it is what "close enough" is read against,
+and it is the scale at which two materials are as similar as typical neighbours
+are — not a perceptual threshold, and not «what a random blend achieves» (this
+doc said that for months; it was never true of the code).
+
+It is **model-dependent**, which is the trap. The same formula over the same
+library gives 0.506 on fp3 and 1.221 on fp4, because `pos_weight` lifts the mean
+probability from 0.047 to 0.164 and everything sits further apart. The 0.451 long
+quoted here was an fp3-era figure that survived the fp4 adoption (`b8d08f9`); the
+formula has not changed since the first commit. So: quote the number the export
+prints, and never hard-code it — a literal 0.439 in `percept_blind_spots.py` did
+survive the model change and made that script's verdicts ~2.5× too strict.
 
 If the export crashes on `oils[o]["percept"]`, a naturals entry is missing
 its composed vector — see §4.
