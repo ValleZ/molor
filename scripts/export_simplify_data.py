@@ -175,6 +175,33 @@ NEVER_PROPOSE = {
     "Methyl Beta-Orcinol Carboxylate": "oakmoss lichen acid, not sold as a formulating material",
     "Methyl Orsellinate": "oakmoss lichen acid, not sold as a formulating material",
     "Ethyl Everninate": "oakmoss lichen acid, not sold as a formulating material",
+    # The rest of the GC constituents of the vetiver, patchouli, cedar and
+    # sandalwood rebuilds. Same rule as the myrrh and oakmoss blocks above:
+    # they enter the library so an oil can be rebuilt from a cited
+    # composition, and none of them is a bottle -- if they are sold at all it
+    # is as a phytochemical reference standard. The 2026-11 IFRA pass flagged
+    # exactly these for having no CAS anywhere; the CAS is now known (PubChem)
+    # and the material is still unbuyable, so they are blocked by name rather
+    # than by an absence of data, which was only ever a symptom.
+    "Khusimone": "vetiver GC constituent; the ketone is a reference standard, and vetiver is voiced through the EO",
+    "Isovalencenol": "vetiver GC constituent, sold only as a phytochemical reference standard",
+    "Vetiselinenol": "vetiver GC constituent, sold only as a phytochemical reference standard",
+    "Vetivone Alpha": "vetiver GC constituent, a reference standard rather than a stock item",
+    "Vetivone Beta": "vetiver GC constituent, a reference standard rather than a stock item",
+    "Zizanoic Acid": "vetiver GC acid; a phytochemical reagent, and vetiver is voiced through the EO",
+    "Patchoulol": "patchouli GC constituent and the oil's own note -- sold as the EO, not as a bottle of the alcohol",
+    "Norpatchoulenol": "patchouli GC constituent, sold only as a reference standard",
+    "Pogostol": "patchouli GC constituent, sold only as a reference standard",
+    "Seychellene": "patchouli GC hydrocarbon, sold only as a reference standard",
+    "Patchoulene Beta": "patchouli GC hydrocarbon, sold only as a reference standard",
+    "Guaiene Alpha": "patchouli/guaiac GC hydrocarbon, a reference standard rather than a stock item",
+    "Bulnesene Alpha": "patchouli/guaiac GC hydrocarbon, a reference standard rather than a stock item",
+    "Cuparene": "patchouli/cedar GC hydrocarbon, a reference standard rather than a stock item",
+    "Cedrene Beta": "cedarwood GC hydrocarbon; beta-cedrene is a reference standard, cedarwood is voiced through the EO",
+    "Thujopsene": "cedarwood GC hydrocarbon, sold only as a reference standard",
+    "Widdrol": "cedarwood GC sesquiterpene alcohol, sold only as a reference standard",
+    "Elemol": "elemi GC sesquiterpene alcohol, sold only as a reference standard",
+    "Ethyl Tiglate": "trace fermentation/fruit ester, not stocked by any supplier on this perfumer's list",
     # The perfumer's own do-not-use list, moved here so ONE list decides what
     # exists on every surface. It used to live only in
     # perfumer/tools/ifra_limits.csv, which reached the simplifier through
