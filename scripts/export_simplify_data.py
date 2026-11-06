@@ -138,6 +138,19 @@ NEVER_PROPOSE = {
     # figure, and the engine proposed it at 10 parts in a lilac formula on a
     # small balsamic lift. Labdanum is voiced through the absolute.
     "Labdane": "labdanum diterpene constituent, sold only as a reference standard — use Labdanum Absolute instead",
+    # Solvents and carriers. These entered the library from the Fraterworks
+    # sweep, where they are sold under product_type "Aromachem" like any
+    # other material, so they became formulable candidates: the engine
+    # proposed DPG in a lilac formula at 0.2% and it satisfied residual
+    # cheaply because its percept vector is near-flat - which also appears
+    # to terminate the greedy growth early (n=12 returned 5 materials).
+    # They are things you DISSOLVE a material in, never things you smell;
+    # the material sweep should have excluded them at import.
+    "Dipropylene Glycol (DPG)": "carrier solvent, not a perfumery material",
+    "Carbitol®": "glycol ether solvent, not a perfumery material",
+    "Triethyl Citrate": "carrier/plasticiser solvent, not a perfumery material",
+    "Diethyl Phthalate": "carrier solvent (DEP), not a perfumery material",
+    "Isopropyl Myristate": "carrier/emollient ester, not a perfumery material",
     # The myrrh rebuild constituents. None is a shelf material: the
     # furanosesquiterpenes are the smell of myrrh but exist in commerce
     # only as phytochemical reference standards -- the Fraterworks
