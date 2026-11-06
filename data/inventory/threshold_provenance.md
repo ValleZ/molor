@@ -55,29 +55,25 @@ previously an unexplained outlier.
 
 *Isomer thresholds supplied by the perfumer, 2026-11-01.*
 
-## Galaxolide, 10 ppb — the nose overrides it through strength.csv
+## Galaxolide, 10 ppb — the bench puts it near 12
 
-**Observation.** The perfumer finds Galaxolide fairly weak, perhaps weaker than
-Hedione. That is a comparison from memory, not a blotter session, so the row in
-`strength.csv` has `judgements` 0. It sets the multiplier to 0.1375, which puts
-the effective threshold at Hedione's 72.7 ppb. Treat it as a floor on how weak
-the material is, not a measurement. It also needs re-entering if
-`apply_strength.py` regenerates `strength.csv`, which would drop it.
+**The comparison.** Sniffed against Hedione on 2026-11-06, the bottle was
+clearly about 3x louder, and about level with Ethyl Maltol at 1%. An earlier
+memory of it as weaker than Hedione was wrong, which is why it was checked.
 
-**What points the other way, and why it did not win.** Published work puts the
-active (4S) isomers at 1 ng/L in air or below, seen second-hand, not in the
-primary paper (Frater, Muller and Kraft, Helv. Chim. Acta, 1999). With ECHA's
-vapour pressure (0.0727 Pa) and solubility (1.75 mg/L) that is about 0.2 ppb in
-water, so as a detection figure 10 ppb is high, not low. A detection threshold
-is the wrong question here: it says where the material becomes noticeable, and
-the bench says how it behaves at a use level. Its saturated vapour is only about
-7,600x that air threshold, so a low threshold and a weak impression are both
-true at once, as with Iso E Super above.
+**The number.** The inventory's bottle is Galaxolide 50% IPM and the library's
+rows are neat, so 3x as the solution is about 6x neat. That gives an effective
+threshold of 72.7 / 6 = 12.1 ppb, a multiplier of 0.826 on the compiled 10 ppb.
+If the bottle sniffed was neat, it should be 24.2 ppb instead. `judgements` is 0
+because this was a bottle comparison, not a blotter session, and the row has to
+be re-entered if `apply_strength.py` regenerates `strength.csv`.
 
-The compiled 10 ppb is left in place, unconverted, for the reason given above:
-an unmarked conversion is how this column became untrustworthy.
-
-The inventory lists this material as "Galaxolide 50% IPM", so the impression and
-the 20% top figure may both describe the solution rather than the neat material.
+**What it does not settle.** Published work puts the active (4S) isomers at
+1 ng/L in air or below, seen second-hand, not in the primary paper (Frater,
+Muller and Kraft, Helv. Chim. Acta, 1999). With ECHA's vapour pressure
+(0.0727 Pa) and solubility (1.75 mg/L) that is about 0.2 ppb in water. It was
+not used: a detection figure answers where a material becomes noticeable, and
+this bench comparison answers how strong it is at a working dose. An unmarked
+conversion is also how this column became untrustworthy.
 
 *Comparison supplied by the perfumer, 2026-11-06.*
