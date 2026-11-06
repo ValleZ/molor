@@ -1,0 +1,2418 @@
+{
+ "84697-09-6": {
+  "cas": "84697-09-6",
+  "status": "ok",
+  "cid": 3020082,
+  "smiles": "CCCCCC(=CC1=CC=C(C=C1)C)C=O",
+  "inchikey": "VHBOIZSCWFNPBM-UHFFFAOYSA-N",
+  "formula": "C15H20O"
+ },
+ "29895-73-6": {
+  "cas": "29895-73-6",
+  "status": "ok",
+  "cid": 21895,
+  "smiles": "C1C(OC(O1)CC2=CC=CC=C2)CO",
+  "inchikey": "ZPENOSKWEKGDCX-UHFFFAOYSA-N",
+  "formula": "C11H14O3"
+ },
+ "600-14-6": {
+  "cas": "600-14-6",
+  "status": "ok",
+  "cid": 11747,
+  "smiles": "CCC(=O)C(=O)C",
+  "inchikey": "TZMFJUDUGYTVRY-UHFFFAOYSA-N",
+  "formula": "C5H8O2"
+ },
+ "141-13-9": {
+  "cas": "141-13-9",
+  "status": "ok",
+  "cid": 98403,
+  "smiles": "CC(CCCC(C)C=O)CCC=C(C)C",
+  "inchikey": "UEGBWDUVDAKUGA-UHFFFAOYSA-N",
+  "formula": "C14H26O"
+ },
+ "112-30-1": {
+  "cas": "112-30-1",
+  "status": "ok",
+  "cid": 8174,
+  "smiles": "CCCCCCCCCCO",
+  "inchikey": "MWKFXSUHUHTGQN-UHFFFAOYSA-N",
+  "formula": "C10H22O"
+ },
+ "112-53-8": {
+  "cas": "112-53-8",
+  "status": "ok",
+  "cid": 8193,
+  "smiles": "CCCCCCCCCCCCO",
+  "inchikey": "LQZZUXJYWNFBMV-UHFFFAOYSA-N",
+  "formula": "C12H26O"
+ },
+ "1725-03-7": {
+  "cas": "1725-03-7",
+  "status": "ok",
+  "cid": 74409,
+  "smiles": "C1CCCCCOC(=O)CCCC1",
+  "inchikey": "MVOSYKNQRRHGKX-UHFFFAOYSA-N",
+  "formula": "C11H20O2"
+ },
+ "1337-83-3": {
+  "cas": "1337-83-3",
+  "status": "no_cid"
+ },
+ "19009-56-4": {
+  "cas": "19009-56-4",
+  "status": "ok",
+  "cid": 29381,
+  "smiles": "CCCCCCCCC(C)C=O",
+  "inchikey": "LBICMZLDYMBIGA-UHFFFAOYSA-N",
+  "formula": "C11H22O"
+ },
+ "68901-22-4": {
+  "cas": "68901-22-4",
+  "status": "ok",
+  "cid": 111416,
+  "smiles": "CC1CC(CCC1=O)CC2C3CCC(C3)C2(C)C",
+  "inchikey": "TUCJTYGBRWODLS-UHFFFAOYSA-N",
+  "formula": "C17H28O"
+ },
+ "79-78-7": {
+  "cas": "79-78-7",
+  "status": "ok",
+  "cid": 5365976,
+  "smiles": "CC1=CCCC(C1/C=C/C(=O)CCC=C)(C)C",
+  "inchikey": "FXCYGAGBPZQRJE-ZHACJKMWSA-N",
+  "formula": "C16H24O"
+ },
+ "2847-30-5": {
+  "cas": "2847-30-5",
+  "status": "ok",
+  "cid": 17898,
+  "smiles": "CC1=NC=CN=C1OC",
+  "inchikey": "VKJIAEQRKBQLLA-UHFFFAOYSA-N",
+  "formula": "C6H8N2O"
+ },
+ "139504-68-0": {
+  "cas": "139504-68-0",
+  "status": "ok",
+  "cid": 164422,
+  "smiles": "CCC(COC1CCCCC1C(C)(C)C)O",
+  "inchikey": "GQBVHGLNSHPKPG-UHFFFAOYSA-N",
+  "formula": "C14H28O2"
+ },
+ "929625-08-1": {
+  "cas": "929625-08-1",
+  "status": "ok",
+  "cid": 68852524,
+  "smiles": "CC(CO)C1=C2C(C3CCC2(C3)C(CC1)(C)C)(C)C",
+  "inchikey": "MNHPIPXJWPEIDB-UHFFFAOYSA-N",
+  "formula": "C18H30O"
+ },
+ "476332-65-7": {
+  "cas": "476332-65-7",
+  "status": "ok",
+  "cid": 92030006,
+  "smiles": "CC1C(C2CCC3CC(OC3C2C1(C)C)(C)C)(C)C",
+  "inchikey": "HUYXPANWJVOYCI-UHFFFAOYSA-N",
+  "formula": "C18H32O"
+ },
+ "59056-62-1": {
+  "cas": "59056-62-1",
+  "status": "ok",
+  "cid": 100938,
+  "smiles": "CC(=O)OCC1CCC(C23C14C2CC(C3)C4(C)C)(C)C",
+  "inchikey": "ANPXCNWSCGYEMA-UHFFFAOYSA-N",
+  "formula": "C18H28O2"
+ },
+ "211299-54-6": {
+  "cas": "211299-54-6",
+  "status": "ok",
+  "cid": 66731260,
+  "smiles": "C[C@@H]1CC[C@@H]2[C@@]13C[C@H](C2(C)C)C4(C(C3)OC(O4)(C)C)C",
+  "inchikey": "YJVLDTISLGRQTJ-KPFXUCSBSA-N",
+  "formula": "C18H30O2"
+ },
+ "3738-00-9": {
+  "cas": "3738-00-9",
+  "status": "ok",
+  "cid": 107166,
+  "smiles": "CC1(CCCC2(C1CCC3(C2CCO3)C)C)C",
+  "inchikey": "YPZUZOLGGMJZJO-UHFFFAOYSA-N",
+  "formula": "C16H28O"
+ },
+ "2049-96-9": {
+  "cas": "2049-96-9",
+  "status": "ok",
+  "cid": 16296,
+  "smiles": "CCCCCOC(=O)C1=CC=CC=C1",
+  "inchikey": "QKNZNUNCDJZTCH-UHFFFAOYSA-N",
+  "formula": "C12H16O2"
+ },
+ "8015-65-4": {
+  "cas": "8015-65-4",
+  "status": "no_cid"
+ },
+ "13567-39-0": {
+  "cas": "13567-39-0",
+  "status": "ok",
+  "cid": 122510,
+  "smiles": "CC1CCC2C13CC(C2(C)C)C4(C(C3)O4)C",
+  "inchikey": "HZRFVTRTTXBHSE-UHFFFAOYSA-N",
+  "formula": "C15H24O"
+ },
+ "104-20-1": {
+  "cas": "104-20-1",
+  "status": "ok",
+  "cid": 61007,
+  "smiles": "CC(=O)CCC1=CC=C(C=C1)OC",
+  "inchikey": "PCBSXBYCASFXTM-UHFFFAOYSA-N",
+  "formula": "C11H14O2"
+ },
+ "105-13-5": {
+  "cas": "105-13-5",
+  "status": "ok",
+  "cid": 7738,
+  "smiles": "COC1=CC=C(C=C1)CO",
+  "inchikey": "MSHFRERJPWKJFX-UHFFFAOYSA-N",
+  "formula": "C8H10O2"
+ },
+ "35194-30-0": {
+  "cas": "35194-30-0",
+  "status": "ok",
+  "cid": 118782,
+  "smiles": "CC(=O)CCCCCCC=C",
+  "inchikey": "DZECLZDTSQJBSU-UHFFFAOYSA-N",
+  "formula": "C10H18O"
+ },
+ "25225-08-5": {
+  "cas": "25225-08-5",
+  "status": "ok",
+  "cid": 91337,
+  "smiles": "CC(C1CCCC(C1)(C)C)OC=O",
+  "inchikey": "NFASPEPDTMCBEN-UHFFFAOYSA-N",
+  "formula": "C11H20O2"
+ },
+ "4621-04-9": {
+  "cas": "4621-04-9",
+  "status": "ok",
+  "cid": 20739,
+  "smiles": "CC(C)C1CCC(CC1)O",
+  "inchikey": "DKKRDMLKVSKFMJ-UHFFFAOYSA-N",
+  "formula": "C9H18O"
+ },
+ "68133-79-9": {
+  "cas": "68133-79-9",
+  "status": "ok",
+  "cid": 6437428,
+  "smiles": "CC(=CCC/C(=C/CC1CCCC1=O)/C)C",
+  "inchikey": "ZNSALEJHPSBXDK-JLHYYAGUSA-N",
+  "formula": "C15H24O"
+ },
+ "1339119-15-1": {
+  "cas": "1339119-15-1",
+  "status": "ok",
+  "cid": 54159794,
+  "smiles": "C1CC2C(C1)C3CC2CC3CC=O",
+  "inchikey": "BFTAXJRKNXWMMX-UHFFFAOYSA-N",
+  "formula": "C12H18O"
+ },
+ "70356-09-1": {
+  "cas": "70356-09-1",
+  "status": "ok",
+  "cid": 51040,
+  "smiles": "CC(C)(C)C1=CC=C(C=C1)C(=O)CC(=O)C2=CC=C(C=C2)OC",
+  "inchikey": "XNEFYCZVKIDDMS-UHFFFAOYSA-N",
+  "formula": "C20H22O3"
+ },
+ "68845-36-3": {
+  "cas": "68845-36-3",
+  "status": "no_cid"
+ },
+ "2550-26-7": {
+  "cas": "2550-26-7",
+  "status": "ok",
+  "cid": 17355,
+  "smiles": "CC(=O)CCC1=CC=CC=C1",
+  "inchikey": "AKGGYBADQZYZPD-UHFFFAOYSA-N",
+  "formula": "C10H12O"
+ },
+ "104986-28-9": {
+  "cas": "104986-28-9",
+  "status": "ok",
+  "cid": 113640,
+  "smiles": "CCOC(=O)CCCCCOC(=O)C",
+  "inchikey": "ODGMPRNNVXITJQ-UHFFFAOYSA-N",
+  "formula": "C10H18O4"
+ },
+ "4430-31-3": {
+  "cas": "4430-31-3",
+  "status": "ok",
+  "cid": 20487,
+  "smiles": "C1CCC2C(C1)CCC(=O)O2",
+  "inchikey": "MSFLYJIWLHSQLG-UHFFFAOYSA-N",
+  "formula": "C9H14O2"
+ },
+ "51411-24-6": {
+  "cas": "51411-24-6",
+  "status": "ok",
+  "cid": 439223,
+  "smiles": "CC(CCC=C(C)CCC=C(C)C)CCO",
+  "inchikey": "OOOOFOPLSIWRAR-UHFFFAOYSA-N",
+  "formula": "C15H28O"
+ },
+ "194934-66-2": {
+  "cas": "194934-66-2",
+  "status": "ok",
+  "cid": 44256573,
+  "smiles": "C[C@@H](CC/C=C(\\C)/CCC=C(C)C)CC=O",
+  "inchikey": "ITBYWGRSPHMAEE-HNRFISLBSA-N",
+  "formula": "C15H26O"
+ },
+ "17627-44-0": {
+  "cas": "17627-44-0",
+  "status": "ok",
+  "cid": 86597,
+  "smiles": "CC1=CCC(CC1)C(=CCC=C(C)C)C",
+  "inchikey": "YHBUQBJHSRGZNF-UHFFFAOYSA-N",
+  "formula": "C15H24"
+ },
+ "58567-11-6": {
+  "cas": "58567-11-6",
+  "status": "ok",
+  "cid": 94111,
+  "smiles": "CCOCOC1CCCCCCCCCCC1",
+  "inchikey": "VQNUNMBDOKEZHS-UHFFFAOYSA-N",
+  "formula": "C15H30O2"
+ },
+ "68845-00-1": {
+  "cas": "68845-00-1",
+  "status": "ok",
+  "cid": 111376,
+  "smiles": "CCOC1(CCC2C(=C)C1CCC2(C)C)C",
+  "inchikey": "LUNAXRIJWWBQTE-UHFFFAOYSA-N",
+  "formula": "C15H26O"
+ },
+ "128119-70-0": {
+  "cas": "128119-70-0",
+  "status": "ok",
+  "cid": 18955245,
+  "smiles": "CC(CO)COC1CC2CCC1(C2(C)C)C",
+  "inchikey": "YCOHHRPARVZBHK-UHFFFAOYSA-N",
+  "formula": "C14H26O2"
+ },
+ "3155-71-3": {
+  "cas": "3155-71-3",
+  "status": "ok",
+  "cid": 102375,
+  "smiles": "CC1=C(C(CCC1)(C)C)CC=C(C)C=O",
+  "inchikey": "FJCQUJKUMKZEMH-UHFFFAOYSA-N",
+  "formula": "C14H22O"
+ },
+ "18127-01-0": {
+  "cas": "18127-01-0",
+  "status": "ok",
+  "cid": 64832,
+  "smiles": "CC(C)(C)C1=CC=C(C=C1)CCC=O",
+  "inchikey": "FZJUFJKVIYFBSY-UHFFFAOYSA-N",
+  "formula": "C13H18O"
+ },
+ "72089-08-8": {
+  "cas": "72089-08-8",
+  "status": "ok",
+  "cid": 166220,
+  "smiles": "CC1=CCC(C1(C)C)CCC(C)CO",
+  "inchikey": "CYVGAJHMMVDTDZ-UHFFFAOYSA-N",
+  "formula": "C13H24O"
+ },
+ "128-37-0": {
+  "cas": "128-37-0",
+  "status": "ok",
+  "cid": 31404,
+  "smiles": "CC1=CC(=C(C(=C1)C(C)(C)C)O)C(C)(C)C",
+  "inchikey": "NLZUEZXRPGMBCV-UHFFFAOYSA-N",
+  "formula": "C15H24O"
+ },
+ "76-22-2": {
+  "cas": "76-22-2",
+  "status": "ok",
+  "cid": 2537,
+  "smiles": "CC1(C2CCC1(C(=O)C2)C)C",
+  "inchikey": "DSSYKIVIOFKYAU-UHFFFAOYSA-N",
+  "formula": "C10H16O"
+ },
+ "5462-06-6": {
+  "cas": "5462-06-6",
+  "status": "ok",
+  "cid": 64813,
+  "smiles": "CC(CC1=CC=C(C=C1)OC)C=O",
+  "inchikey": "VLFBSPUPYFTTNF-UHFFFAOYSA-N",
+  "formula": "C11H14O2"
+ },
+ "111753-62-9": {
+  "cas": "111753-62-9",
+  "status": "ok",
+  "cid": 3034267,
+  "smiles": "CC(CC1=CC=C(C=C1)OC)C=NC2=CC=CC=C2C(=O)OC",
+  "inchikey": "DCVGBQPSFNIPPI-UHFFFAOYSA-N",
+  "formula": "C19H21NO3"
+ },
+ "15373-31-6": {
+  "cas": "15373-31-6",
+  "status": "ok",
+  "cid": 85833,
+  "smiles": "CC1=CCC(C1(C)C)CC#N",
+  "inchikey": "YYJOTFQPYNOYAB-UHFFFAOYSA-N",
+  "formula": "C10H15N"
+ },
+ "4166-20-5": {
+  "cas": "4166-20-5",
+  "status": "ok",
+  "cid": 61334,
+  "smiles": "CC1C(=O)C(=C(O1)C)OC(=O)C",
+  "inchikey": "VPKIUOQJQJVLRW-UHFFFAOYSA-N",
+  "formula": "C8H10O4"
+ },
+ "103-05-9": {
+  "cas": "103-05-9",
+  "status": "ok",
+  "cid": 7632,
+  "smiles": "CC(C)(CCC1=CC=CC=C1)O",
+  "inchikey": "YXVSKJDFNJFXAJ-UHFFFAOYSA-N",
+  "formula": "C11H16O"
+ },
+ "111-90-0": {
+  "cas": "111-90-0",
+  "status": "ok",
+  "cid": 8146,
+  "smiles": "CCOCCOCCO",
+  "inchikey": "XXJWXESWEXIICW-UHFFFAOYSA-N",
+  "formula": "C6H14O3"
+ },
+ "6379-73-3": {
+  "cas": "6379-73-3",
+  "status": "ok",
+  "cid": 80790,
+  "smiles": "CC1=C(C=C(C=C1)C(C)C)OC",
+  "inchikey": "YVLHTQPPMZOCOW-UHFFFAOYSA-N",
+  "formula": "C11H16O"
+ },
+ "57082-24-3": {
+  "cas": "57082-24-3",
+  "status": "ok",
+  "cid": 90473619,
+  "smiles": "CC(=O)O[C@]12CCC[C@](C1)(CC[C@@H]3[C@@H]2CC3(C)C)C",
+  "inchikey": "SJDDHMSVZMBJPH-YQFWSFKMSA-N",
+  "formula": "C17H28O2"
+ },
+ "1139-30-6": {
+  "cas": "1139-30-6",
+  "status": "ok",
+  "cid": 1742210,
+  "smiles": "C[C@@]12CC[C@@H]3[C@H](CC3(C)C)C(=C)CC[C@H]1O2",
+  "inchikey": "NVEQFIOZRFFVFW-RGCMKSIDSA-N",
+  "formula": "C15H24O"
+ },
+ "71735-79-0": {
+  "cas": "71735-79-0",
+  "status": "ok",
+  "cid": 6441804,
+  "smiles": "CC1(C/C=C\\CC/C=C\\CCC2C1(O2)C)C",
+  "inchikey": "PUXIGTZUWRBNMW-RRMOSLQNSA-N",
+  "formula": "C15H24O"
+ },
+ "77-54-3": {
+  "cas": "77-54-3",
+  "status": "ok",
+  "cid": 13918856,
+  "smiles": "C[C@@H]1CC[C@@H]2[C@]13CC[C@@]([C@H](C3)C2(C)C)(C)OC(=O)C",
+  "inchikey": "HQKQRXZEXPXXIG-DTWJZALFSA-N",
+  "formula": "C17H28O2"
+ },
+ "17369-59-4": {
+  "cas": "17369-59-4",
+  "status": "ok",
+  "cid": 28500,
+  "smiles": "CCC=C1C2=CC=CC=C2C(=O)O1",
+  "inchikey": "NGSZDVVHIGAMOJ-UHFFFAOYSA-N",
+  "formula": "C11H10O2"
+ },
+ "120811-92-9": {
+  "cas": "120811-92-9",
+  "status": "ok",
+  "cid": 22336876,
+  "smiles": "CC(CC1=CC=CC=C1)COC",
+  "inchikey": "YRELUSXNOZNOQI-UHFFFAOYSA-N",
+  "formula": "C11H16O"
+ },
+ "6707-60-4": {
+  "cas": "6707-60-4",
+  "status": "ok",
+  "cid": 23173,
+  "smiles": "C1CCCCCOCCCCOC(=O)CCCC1",
+  "inchikey": "MRMOPGVGWFNHIN-UHFFFAOYSA-N",
+  "formula": "C15H28O3"
+ },
+ "65405-84-7": {
+  "cas": "65405-84-7",
+  "status": "ok",
+  "cid": 103381,
+  "smiles": "CC1=CCCC(C1C(C)CCC=O)(C)C",
+  "inchikey": "ACVNYUMGXUDACR-UHFFFAOYSA-N",
+  "formula": "C14H24O"
+ },
+ "36653-82-4": {
+  "cas": "36653-82-4",
+  "status": "ok",
+  "cid": 2682,
+  "smiles": "CCCCCCCCCCCCCCCCO",
+  "inchikey": "BXWNKGSJHAJOGX-UHFFFAOYSA-N",
+  "formula": "C16H34O"
+ },
+ "80118-06-5": {
+  "cas": "80118-06-5",
+  "status": "ok",
+  "cid": 3018907,
+  "smiles": "CC(C)C(=O)OC(C)CC(=C)C",
+  "inchikey": "JJWWUTCHOAKZPR-UHFFFAOYSA-N",
+  "formula": "C10H18O2"
+ },
+ "88-04-0": {
+  "cas": "88-04-0",
+  "status": "ok",
+  "cid": 2723,
+  "smiles": "CC1=CC(=CC(=C1Cl)C)O",
+  "inchikey": "OSDLLIBGSJNGJE-UHFFFAOYSA-N",
+  "formula": "C8H9ClO"
+ },
+ "8046-19-3": {
+  "cas": "8046-19-3",
+  "status": "no_cid"
+ },
+ "1504-74-1": {
+  "cas": "1504-74-1",
+  "status": "ok",
+  "cid": 641298,
+  "smiles": "COC1=CC=CC=C1/C=C/C=O",
+  "inchikey": "KKVZAVRSVHUSPL-GQCTYLIASA-N",
+  "formula": "C10H10O2"
+ },
+ "61444-38-0": {
+  "cas": "61444-38-0",
+  "status": "ok",
+  "cid": 6435882,
+  "smiles": "CC/C=C\\CCOC(=O)C/C=C\\CC",
+  "inchikey": "UZJQQWFHPLYECS-SFECMWDFSA-N",
+  "formula": "C12H20O2"
+ },
+ "33467-74-2": {
+  "cas": "33467-74-2",
+  "status": "ok",
+  "cid": 5365049,
+  "smiles": "CC/C=C\\CCOC(=O)CC",
+  "inchikey": "LGTLDEUQCOJGFP-WAYWQWQTSA-N",
+  "formula": "C9H16O2"
+ },
+ "67883-79-8": {
+  "cas": "67883-79-8",
+  "status": "ok",
+  "cid": 15461361,
+  "smiles": "CC/C=C\\CCOC(=O)/C(=C/C)/C",
+  "inchikey": "JNWQKXUWZWKUAY-JQEGGOPCSA-N",
+  "formula": "C11H18O2"
+ },
+ "52557-97-8": {
+  "cas": "52557-97-8",
+  "status": "ok",
+  "cid": 103659,
+  "smiles": "CC1(CC2CC(C1C2)C(=O)OC)C",
+  "inchikey": "ZVLGEOXMDTXXEI-UHFFFAOYSA-N",
+  "formula": "C11H18O2"
+ },
+ "91-61-2": {
+  "cas": "91-61-2",
+  "status": "ok",
+  "cid": 66678,
+  "smiles": "CC1=CC2=C(C=C1)NCCC2",
+  "inchikey": "XOKMRXSMOHCNIX-UHFFFAOYSA-N",
+  "formula": "C10H13N"
+ },
+ "74338-72-0": {
+  "cas": "74338-72-0",
+  "status": "ok",
+  "cid": 9815427,
+  "smiles": "CC(C)C(=O)C(C)(C)CC=C(C)C",
+  "inchikey": "CTLDWNVYXLHMAS-UHFFFAOYSA-N",
+  "formula": "C12H22O"
+ },
+ "1450625-49-6": {
+  "cas": "1450625-49-6",
+  "status": "no_cid"
+ },
+ "5986-55-0": {
+  "cas": "5986-55-0",
+  "status": "ok",
+  "cid": 10955174,
+  "smiles": "C[C@H]1CC[C@@]2([C@@]3([C@H]1C[C@H](C2(C)C)CC3)C)O",
+  "inchikey": "GGHMUJBZYLPWFD-CUZKYEQNSA-N",
+  "formula": "C15H26O"
+ },
+ "2437-25-4": {
+  "cas": "2437-25-4",
+  "status": "ok",
+  "cid": 17092,
+  "smiles": "CCCCCCCCCCCC#N",
+  "inchikey": "VXCUURYYWGCLIH-UHFFFAOYSA-N",
+  "formula": "C12H23N"
+ },
+ "21834-92-4": {
+  "cas": "21834-92-4",
+  "status": "ok",
+  "cid": 5370602,
+  "smiles": "CC(C)C/C=C(/C=O)\\C1=CC=CC=C1",
+  "inchikey": "YURDCJXYOLERLO-LCYFTJDESA-N",
+  "formula": "C13H16O"
+ },
+ "21835-01-8": {
+  "cas": "21835-01-8",
+  "status": "ok",
+  "cid": 62752,
+  "smiles": "CCC1=C(C(=O)CC1)O",
+  "inchikey": "JHWFWLUAUPZUCP-UHFFFAOYSA-N",
+  "formula": "C7H10O2"
+ },
+ "83926-73-2": {
+  "cas": "83926-73-2",
+  "status": "ok",
+  "cid": 14434313,
+  "smiles": "CC(C)(CCC1CCCCC1)O",
+  "inchikey": "KZZASWGRLOTITL-UHFFFAOYSA-N",
+  "formula": "C11H22O"
+ },
+ "2110-18-1": {
+  "cas": "2110-18-1",
+  "status": "ok",
+  "cid": 459494,
+  "smiles": "C1=CC=C(C=C1)CCCC2=CC=CC=N2",
+  "inchikey": "JJJPNTQYUJPWGQ-UHFFFAOYSA-N",
+  "formula": "C14H15N"
+ },
+ "1646-26-0": {
+  "cas": "1646-26-0",
+  "status": "ok",
+  "cid": 15435,
+  "smiles": "CC(=O)C1=CC2=CC=CC=C2O1",
+  "inchikey": "YUTFQTAITWWGFH-UHFFFAOYSA-N",
+  "formula": "C10H8O2"
+ },
+ "7775-00-0": {
+  "cas": "7775-00-0",
+  "status": "ok",
+  "cid": 62654,
+  "smiles": "CC(C)C1=CC=C(C=C1)CCC=O",
+  "inchikey": "RLEFOSDUWZYGOS-UHFFFAOYSA-N",
+  "formula": "C12H16O"
+ },
+ "4442-79-9": {
+  "cas": "4442-79-9",
+  "status": "ok",
+  "cid": 20508,
+  "smiles": "C1CCC(CC1)CCO",
+  "inchikey": "QJQZRLXDLORINA-UHFFFAOYSA-N",
+  "formula": "C8H16O"
+ },
+ "40203-73-4": {
+  "cas": "40203-73-4",
+  "status": "ok",
+  "cid": 162409,
+  "smiles": "COC(=O)C=C1CCCC1",
+  "inchikey": "ZDBCSZOFHPULAS-UHFFFAOYSA-N",
+  "formula": "C8H12O2"
+ },
+ "17511-60-3": {
+  "cas": "17511-60-3",
+  "status": "ok",
+  "cid": 86579,
+  "smiles": "CCC(=O)OC1CC2CC1C3C2C=CC3",
+  "inchikey": "BLBJUGKATXCWET-UHFFFAOYSA-N",
+  "formula": "C13H18O2"
+ },
+ "68991-96-8": {
+  "cas": "68991-96-8",
+  "status": "ok",
+  "cid": 112134,
+  "smiles": "CC1(CCCC2=C1CCC(C2)C=O)C",
+  "inchikey": "POLSEKWMVQFBBA-UHFFFAOYSA-N",
+  "formula": "C13H20O"
+ },
+ "4927-36-0": {
+  "cas": "4927-36-0",
+  "status": "ok",
+  "cid": 78639,
+  "smiles": "CCC(=O)CC(C)(C)C1=CC=CC=C1",
+  "inchikey": "VEZKFOIEZCNFBT-UHFFFAOYSA-N",
+  "formula": "C13H18O"
+ },
+ "28219-61-6": {
+  "cas": "28219-61-6",
+  "status": "no_cid"
+ },
+ "68039-69-0": {
+  "cas": "68039-69-0",
+  "status": "ok",
+  "cid": 107073,
+  "smiles": "CC=CC(=O)OC(C)C1CCCCC1",
+  "inchikey": "ZNPGEERBEOWCEF-UHFFFAOYSA-N",
+  "formula": "C12H20O2"
+ },
+ "84560-00-9": {
+  "cas": "84560-00-9",
+  "status": "ok",
+  "cid": 3019960,
+  "smiles": "CCCCCC1CCCC1O",
+  "inchikey": "MWYGSCHWFNRSET-UHFFFAOYSA-N",
+  "formula": "C10H20O"
+ },
+ "4819-67-4": {
+  "cas": "4819-67-4",
+  "status": "ok",
+  "cid": 20959,
+  "smiles": "CCCCCC1CCCC1=O",
+  "inchikey": "VNWOJVJCRAHBJJ-UHFFFAOYSA-N",
+  "formula": "C10H18O"
+ },
+ "103-23-1": {
+  "cas": "103-23-1",
+  "status": "ok",
+  "cid": 7641,
+  "smiles": "CCCCC(CC)COC(=O)CCCCC(=O)OCC(CC)CCCC",
+  "inchikey": "SAOKZLXYCUGLFA-UHFFFAOYSA-N",
+  "formula": "C22H42O4"
+ },
+ "87-91-2": {
+  "cas": "87-91-2",
+  "status": "ok",
+  "cid": 6993580,
+  "smiles": "CCOC(=O)[C@@H]([C@H](C(=O)OCC)O)O",
+  "inchikey": "YSAVZVORKRDODB-PHDIDXHHSA-N",
+  "formula": "C8H14O6"
+ },
+ "13720-12-2": {
+  "cas": "13720-12-2",
+  "status": "ok",
+  "cid": 114558,
+  "smiles": "CC(=O)CCC1C(=C)CCCC1(C)C",
+  "inchikey": "ZLPHULOLXDKCND-UHFFFAOYSA-N",
+  "formula": "C13H22O"
+ },
+ "17092-92-1": {
+  "cas": "17092-92-1",
+  "status": "ok",
+  "cid": 6432173,
+  "smiles": "C[C@@]12CCCC(C1=CC(=O)O2)(C)C",
+  "inchikey": "IMKHDCBNRDRUEB-LLVKDONJSA-N",
+  "formula": "C11H16O2"
+ },
+ "37172-02-4": {
+  "cas": "37172-02-4",
+  "status": "ok",
+  "cid": 162248,
+  "smiles": "CCC(C)C1CCCCC1(C=C)OC(=O)C",
+  "inchikey": "KOSQMCNVEGXSCQ-UHFFFAOYSA-N",
+  "formula": "C14H24O2"
+ },
+ "104-45-0": {
+  "cas": "104-45-0",
+  "status": "ok",
+  "cid": 7702,
+  "smiles": "CCCC1=CC=C(C=C1)OC",
+  "inchikey": "KBHWKXNXTURZCD-UHFFFAOYSA-N",
+  "formula": "C10H14O"
+ },
+ "18479-51-1": {
+  "cas": "18479-51-1",
+  "status": "ok",
+  "cid": 86749,
+  "smiles": "CCC(C)(CCC=C(C)C)O",
+  "inchikey": "JRTBBCBDKSRRCY-UHFFFAOYSA-N",
+  "formula": "C10H20O"
+ },
+ "18479-58-8": {
+  "cas": "18479-58-8",
+  "status": "ok",
+  "cid": 29096,
+  "smiles": "CC(CCCC(C)(C)O)C=C",
+  "inchikey": "XSNQECSCDATQEL-UHFFFAOYSA-N",
+  "formula": "C10H20O"
+ },
+ "53767-93-4": {
+  "cas": "53767-93-4",
+  "status": "ok",
+  "cid": 103826,
+  "smiles": "CC(CCCC(C)(C)OC(=O)C)C=C",
+  "inchikey": "BEARMGATPGLSKG-UHFFFAOYSA-N",
+  "formula": "C12H22O2"
+ },
+ "13477-62-8": {
+  "cas": "13477-62-8",
+  "status": "ok",
+  "cid": 114530,
+  "smiles": "CC1CCOC(C1)CC(C)C",
+  "inchikey": "LETLQGKRPMMKKC-UHFFFAOYSA-N",
+  "formula": "C10H20O"
+ },
+ "85-91-6": {
+  "cas": "85-91-6",
+  "status": "ok",
+  "cid": 6826,
+  "smiles": "CNC1=CC=CC=C1C(=O)OC",
+  "inchikey": "GVOWHGSUZUUUDR-UHFFFAOYSA-N",
+  "formula": "C9H11NO2"
+ },
+ "100-86-7": {
+  "cas": "100-86-7",
+  "status": "ok",
+  "cid": 7531,
+  "smiles": "CC(C)(CC1=CC=CC=C1)O",
+  "inchikey": "RIWRBSMFKVOJMN-UHFFFAOYSA-N",
+  "formula": "C10H14O"
+ },
+ "94248-21-2": {
+  "cas": "94248-21-2",
+  "status": "no_cid"
+ },
+ "150-78-7": {
+  "cas": "150-78-7",
+  "status": "ok",
+  "cid": 9016,
+  "smiles": "COC1=CC=C(C=C1)OC",
+  "inchikey": "OHBQPCCCRFSCAX-UHFFFAOYSA-N",
+  "formula": "C8H10O2"
+ },
+ "13254-34-7": {
+  "cas": "13254-34-7",
+  "status": "ok",
+  "cid": 83268,
+  "smiles": "CC(C)CCCC(C)(C)O",
+  "inchikey": "HGDVHRITTGWMJK-UHFFFAOYSA-N",
+  "formula": "C9H20O"
+ },
+ "25279-09-8": {
+  "cas": "25279-09-8",
+  "status": "ok",
+  "cid": 91375,
+  "smiles": "CC(CCCC(C)(C)OC=O)C=C",
+  "inchikey": "ONXALCWZXZZQSG-UHFFFAOYSA-N",
+  "formula": "C11H20O2"
+ },
+ "101-84-8": {
+  "cas": "101-84-8",
+  "status": "ok",
+  "cid": 7583,
+  "smiles": "C1=CC=C(C=C1)OC2=CC=CC=C2",
+  "inchikey": "USIUVYZYUHIAEV-UHFFFAOYSA-N",
+  "formula": "C12H10O"
+ },
+ "25265-71-8": {
+  "cas": "25265-71-8",
+  "status": "ok",
+  "cid": 134692469,
+  "smiles": "CC(CO)OC(C)CO.CC(COCC(C)O)O",
+  "inchikey": "BPRJQFIHEGORJE-UHFFFAOYSA-N",
+  "formula": "C12H28O6"
+ },
+ "55418-52-5": {
+  "cas": "55418-52-5",
+  "status": "ok",
+  "cid": 62098,
+  "smiles": "CC(=O)CCC1=CC2=C(C=C1)OCO2",
+  "inchikey": "TZJLGGWGVLADDN-UHFFFAOYSA-N",
+  "formula": "C11H12O3"
+ },
+ "30168-23-1": {
+  "cas": "30168-23-1",
+  "status": "ok",
+  "cid": 6438291,
+  "smiles": "C1CC2C(C1)C\\3CC2C/C3=C\\CCC=O",
+  "inchikey": "WFEISWUNAJPLRX-ONNFQVAWSA-N",
+  "formula": "C14H20O"
+ },
+ "56973-85-4": {
+  "cas": "56973-85-4",
+  "status": "ok",
+  "cid": 92606,
+  "smiles": "CC1(CCC=C(C1)C(=O)CCC=C)C",
+  "inchikey": "OEVIJAZJVZDBQL-UHFFFAOYSA-N",
+  "formula": "C13H20O"
+ },
+ "639-99-6": {
+  "cas": "639-99-6",
+  "status": "ok",
+  "cid": 92138,
+  "smiles": "CC(=C)[C@@H]1C[C@@H](CC[C@@]1(C)C=C)C(C)(C)O",
+  "inchikey": "GFJIQNADMLPFOW-VNHYZAJKSA-N",
+  "formula": "C15H26O"
+ },
+ "35044-59-8": {
+  "cas": "35044-59-8",
+  "status": "ok",
+  "cid": 118201,
+  "smiles": "CCOC(=O)C1=C(C=CCC1(C)C)C",
+  "inchikey": "KYEZYLFPHRVFBF-UHFFFAOYSA-N",
+  "formula": "C12H18O2"
+ },
+ "692-86-4": {
+  "cas": "692-86-4",
+  "status": "ok",
+  "cid": 12729,
+  "smiles": "CCOC(=O)CCCCCCCCC=C",
+  "inchikey": "FXNFFCMITPHEIT-UHFFFAOYSA-N",
+  "formula": "C13H24O2"
+ },
+ "14595-54-1": {
+  "cas": "14595-54-1",
+  "status": "ok",
+  "cid": 6365389,
+  "smiles": "C1CCCCCC(=O)CC/C=C\\CCCC1",
+  "inchikey": "JIYIHILAGIZIMD-CLFYSBASSA-N",
+  "formula": "C15H26O"
+ },
+ "81925-81-7": {
+  "cas": "81925-81-7",
+  "status": "ok",
+  "cid": 5362588,
+  "smiles": "CCC(C)C(=O)/C=C/C",
+  "inchikey": "ARJWAURHQDJJAC-GQCTYLIASA-N",
+  "formula": "C8H14O"
+ },
+ "815580-59-7": {
+  "cas": "815580-59-7",
+  "status": "ok",
+  "cid": 12082921,
+  "smiles": "CC1C=CCC(C1C(=O)OC)(C)C",
+  "inchikey": "OENXQYZXKNBMLM-UHFFFAOYSA-N",
+  "formula": "C11H18O2"
+ },
+ "104864-90-6": {
+  "cas": "104864-90-6",
+  "status": "ok",
+  "cid": 16063533,
+  "smiles": "CC1=CCC(C1(C)C)C(=C)CC(C)CO",
+  "inchikey": "DGHXZJZALPECTJ-UHFFFAOYSA-N",
+  "formula": "C14H24O"
+ },
+ "137-03-1": {
+  "cas": "137-03-1",
+  "status": "ok",
+  "cid": 8710,
+  "smiles": "CCCCCCCC1CCCC1=O",
+  "inchikey": "PJXHBTZLHITWFX-UHFFFAOYSA-N",
+  "formula": "C12H22O"
+ },
+ "67634-26-8": {
+  "cas": "67634-26-8",
+  "status": "ok",
+  "cid": 106749,
+  "smiles": "CC1C=C(CCC1COC(=O)C)C",
+  "inchikey": "LICUDMOFXVHDPB-UHFFFAOYSA-N",
+  "formula": "C11H18O2"
+ },
+ "67801-64-3": {
+  "cas": "67801-64-3",
+  "status": "ok",
+  "cid": 105664,
+  "smiles": "CCOC(=O)OC1CCCCC1C(C)(C)C",
+  "inchikey": "ZHWLEUGSDGROJS-UHFFFAOYSA-N",
+  "formula": "C13H24O3"
+ },
+ "69486-14-2": {
+  "cas": "69486-14-2",
+  "status": "ok",
+  "cid": 6437737,
+  "smiles": "C/C=C/1\\CC2CC1C3C2OC(=O)CC3",
+  "inchikey": "LLVFKEOMLYDSGT-FARCUNLSSA-N",
+  "formula": "C12H16O2"
+ },
+ "6290-17-1": {
+  "cas": "6290-17-1",
+  "status": "ok",
+  "cid": 95392,
+  "smiles": "CCOC(=O)CC1(OCC(O1)C)C",
+  "inchikey": "GSIXJEIRJVOUFB-UHFFFAOYSA-N",
+  "formula": "C9H16O4"
+ },
+ "14765-30-1": {
+  "cas": "14765-30-1",
+  "status": "ok",
+  "cid": 61771,
+  "smiles": "CCC(C)C1CCCCC1=O",
+  "inchikey": "RQXTZKGDMNIWJF-UHFFFAOYSA-N",
+  "formula": "C10H18O"
+ },
+ "80657-64-3": {
+  "cas": "80657-64-3",
+  "status": "ok",
+  "cid": 157343,
+  "smiles": "CCOC(=O)[C@@]12CCC[C@@H]1[C@@H]3CC[C@H]2C3",
+  "inchikey": "MGQPKOBPXHENPO-LSCVPOLPSA-N",
+  "formula": "C13H20O2"
+ },
+ "695-06-7": {
+  "cas": "695-06-7",
+  "status": "ok",
+  "cid": 12756,
+  "smiles": "CCC1CCC(=O)O1",
+  "inchikey": "JBFHTYHTHYHCDJ-UHFFFAOYSA-N",
+  "formula": "C6H10O2"
+ },
+ "762-26-5": {
+  "cas": "762-26-5",
+  "status": "ok",
+  "cid": 101854,
+  "smiles": "CC(=CCCC(=CCCC=O)C)C",
+  "inchikey": "MMLYERLRGHVBEK-UHFFFAOYSA-N",
+  "formula": "C12H20O"
+ },
+ "689-67-8": {
+  "cas": "689-67-8",
+  "status": "ok",
+  "cid": 1549778,
+  "smiles": "CC(=CCC/C(=C/CCC(=O)C)/C)C",
+  "inchikey": "HNZUNIKWNYHEJJ-FMIVXFBMSA-N",
+  "formula": "C13H22O"
+ },
+ "57934-97-1": {
+  "cas": "57934-97-1",
+  "status": "ok",
+  "cid": 93847,
+  "smiles": "CCC1=CCCC(C1C(=O)OCC)(C)C",
+  "inchikey": "CQHUPYQUERYPML-UHFFFAOYSA-N",
+  "formula": "C13H22O2"
+ },
+ "34902-57-3": {
+  "cas": "34902-57-3",
+  "status": "no_cid"
+ },
+ "3100-36-5": {
+  "cas": "3100-36-5",
+  "status": "ok",
+  "cid": 534634,
+  "smiles": "C1CCCC=CCCCCCCC(=O)CCC1",
+  "inchikey": "ZGEHHVDYDNXYMW-UHFFFAOYSA-N",
+  "formula": "C16H28O"
+ },
+ "5405-41-4": {
+  "cas": "5405-41-4",
+  "status": "ok",
+  "cid": 62572,
+  "smiles": "CCOC(=O)CC(C)O",
+  "inchikey": "OMSUIQOIVADKIM-UHFFFAOYSA-N",
+  "formula": "C6H12O3"
+ },
+ "5910-89-4": {
+  "cas": "5910-89-4",
+  "status": "ok",
+  "cid": 22201,
+  "smiles": "CC1=NC=CN=C1C",
+  "inchikey": "OXQOBQJCDNLAPO-UHFFFAOYSA-N",
+  "formula": "C6H8N2"
+ },
+ "68611-23-4": {
+  "cas": "68611-23-4",
+  "status": "no_cid"
+ },
+ "134-28-1": {
+  "cas": "134-28-1",
+  "status": "ok",
+  "cid": 240122,
+  "smiles": "C[C@H]1CC[C@H](CC2=C1CC[C@@H]2C)C(C)(C)OC(=O)C",
+  "inchikey": "DRFSOBZVMGLICQ-SGMGOOAPSA-N",
+  "formula": "C17H28O2"
+ },
+ "25304-14-7": {
+  "cas": "25304-14-7",
+  "status": "ok",
+  "cid": 91388,
+  "smiles": "CC(=O)C1CCCC(C1)(C)C",
+  "inchikey": "DXIWBWIDAYBUDF-UHFFFAOYSA-N",
+  "formula": "C10H18O"
+ },
+ "116126-82-0": {
+  "cas": "116126-82-0",
+  "status": "ok",
+  "cid": 121232748,
+  "smiles": "CCOC(=O)[C@@H]1[C@@H]2C[C@H]([C@H]1C(C)C)C=C2",
+  "inchikey": "HJEFAEQTNTXLHL-WRWGMCAJSA-N",
+  "formula": "C13H20O2"
+ },
+ "67583-77-1": {
+  "cas": "67583-77-1",
+  "status": "ok",
+  "cid": 106714,
+  "smiles": "CCOC1CC(CC(C1)(C)C)C",
+  "inchikey": "JVBNHJDWWBSWLE-UHFFFAOYSA-N",
+  "formula": "C11H22O"
+ },
+ "54546-26-8": {
+  "cas": "54546-26-8",
+  "status": "ok",
+  "cid": 94569,
+  "smiles": "CCCCC1OC(CC(O1)(C)C)C",
+  "inchikey": "QUBNQDBPPTZYJL-UHFFFAOYSA-N",
+  "formula": "C11H22O2"
+ },
+ "8050-15-5": {
+  "cas": "8050-15-5",
+  "status": "no_cid"
+ },
+ "28219-60-5": {
+  "cas": "28219-60-5",
+  "status": "ok",
+  "cid": 119897,
+  "smiles": "CC1=CCC(C1(C)C)CC=C(C)CO",
+  "inchikey": "MTVBNJVZZAQKRV-UHFFFAOYSA-N",
+  "formula": "C13H22O"
+ },
+ "300371-33-9": {
+  "cas": "300371-33-9",
+  "status": "no_cid"
+ },
+ "2396-78-3": {
+  "cas": "2396-78-3",
+  "status": "ok",
+  "cid": 61311,
+  "smiles": "CCC=CCC(=O)OC",
+  "inchikey": "XEAIHUDTEINXFG-UHFFFAOYSA-N",
+  "formula": "C7H12O2"
+ },
+ "2556-10-7": {
+  "cas": "2556-10-7",
+  "status": "ok",
+  "cid": 102849,
+  "smiles": "CCOC(C)OCCC1=CC=CC=C1",
+  "inchikey": "QQDGMPOYFGNLMT-UHFFFAOYSA-N",
+  "formula": "C12H18O2"
+ },
+ "118562-73-5": {
+  "cas": "118562-73-5",
+  "status": "ok",
+  "cid": 9815980,
+  "smiles": "CC(CO)C1CCCCCCCCCCC1",
+  "inchikey": "WKHTUDYDJUHYMK-UHFFFAOYSA-N",
+  "formula": "C15H30O"
+ },
+ "2206-94-2": {
+  "cas": "2206-94-2",
+  "status": "ok",
+  "cid": 75153,
+  "smiles": "CC(=O)OC(=C)C1=CC=CC=C1",
+  "inchikey": "HWCUCNKPBMGSSC-UHFFFAOYSA-N",
+  "formula": "C10H10O2"
+ },
+ "18096-62-3": {
+  "cas": "18096-62-3",
+  "status": "ok",
+  "cid": 87453,
+  "smiles": "C1C2COCOC2C3=CC=CC=C31",
+  "inchikey": "CZSXBBWOROMVEW-UHFFFAOYSA-N",
+  "formula": "C11H12O2"
+ },
+ "127-43-5": {
+  "cas": "127-43-5",
+  "status": "ok",
+  "cid": 5375218,
+  "smiles": "CCC(=O)/C=C/C1=C(CCCC1(C)C)C",
+  "inchikey": "LMWNGLDCJDIIBR-CMDGGOBGSA-N",
+  "formula": "C14H22O"
+ },
+ "79-89-0": {
+  "cas": "79-89-0",
+  "status": "ok",
+  "cid": 97996,
+  "smiles": "CC1=C(C(CCC1)(C)C)C=C(C)C(=O)C",
+  "inchikey": "NSSHGPBKKVJJMM-UHFFFAOYSA-N",
+  "formula": "C14H22O"
+ },
+ "1335-46-2": {
+  "cas": "1335-46-2",
+  "status": "ok",
+  "cid": 5371084,
+  "smiles": "CCC(=O)/C=C/C1C(=CCCC1(C)C)C",
+  "inchikey": "VPKMGDRERYMTJX-CMDGGOBGSA-N",
+  "formula": "C14H22O"
+ },
+ "29127-83-1": {
+  "cas": "29127-83-1",
+  "status": "ok",
+  "cid": 6438193,
+  "smiles": "CCCCCC/C=C\\C#N",
+  "inchikey": "WOVJAWMZNOWDII-FPLPWBNLSA-N",
+  "formula": "C9H15N"
+ },
+ "79-69-6": {
+  "cas": "79-69-6",
+  "status": "ok",
+  "cid": 5371002,
+  "smiles": "CC1CC=C(C(C1(C)C)/C=C/C(=O)C)C",
+  "inchikey": "JZQOJFLIJNRDHK-CMDGGOBGSA-N",
+  "formula": "C14H22O"
+ },
+ "2983-37-1": {
+  "cas": "2983-37-1",
+  "status": "ok",
+  "cid": 102916,
+  "smiles": "CCCCC(CC)C(=O)OCC",
+  "inchikey": "YXAGIRHBJJLWHW-UHFFFAOYSA-N",
+  "formula": "C10H20O2"
+ },
+ "1335-66-6": {
+  "cas": "1335-66-6",
+  "status": "ok",
+  "cid": 16204527,
+  "smiles": "CC1CC(=CC(C1C=O)C)C.CC1C=C(CC(C1C)C=O)C",
+  "inchikey": "AEXLFXYEFLKADK-UHFFFAOYSA-N",
+  "formula": "C20H32O2"
+ },
+ "95-41-0": {
+  "cas": "95-41-0",
+  "status": "ok",
+  "cid": 66768,
+  "smiles": "CCCCCCC1=CCCC1=O",
+  "inchikey": "VGECIEOJXLMWGO-UHFFFAOYSA-N",
+  "formula": "C11H18O"
+ },
+ "2550-52-9": {
+  "cas": "2550-52-9",
+  "status": "ok",
+  "cid": 75695,
+  "smiles": "C1CCCCCCCC(=O)CCCCCCC1",
+  "inchikey": "LXJDKGYSHYYKFJ-UHFFFAOYSA-N",
+  "formula": "C16H30O"
+ },
+ "135-79-5": {
+  "cas": "135-79-5",
+  "status": "ok",
+  "cid": 67285,
+  "smiles": "CC(C)C1=CC2=C(C=C1)N=CC=C2",
+  "inchikey": "NKCQEIXYLHACJC-UHFFFAOYSA-N",
+  "formula": "C12H13N"
+ },
+ "68901-32-6": {
+  "cas": "68901-32-6",
+  "status": "ok",
+  "cid": 111418,
+  "smiles": "CC1=CC2CC(C1CC2C(C)C)C3OCCO3",
+  "inchikey": "QSWPBUXWYKVPMT-UHFFFAOYSA-N",
+  "formula": "C15H24O2"
+ },
+ "18871-14-2": {
+  "cas": "18871-14-2",
+  "status": "ok",
+  "cid": 86799,
+  "smiles": "CCCCCC1COCCC1OC(=O)C",
+  "inchikey": "VSRVCSJJKWDZSH-UHFFFAOYSA-N",
+  "formula": "C12H22O3"
+ },
+ "25524-95-2": {
+  "cas": "25524-95-2",
+  "status": "ok",
+  "cid": 5352626,
+  "smiles": "CC/C=C\\CC1CCCC(=O)O1",
+  "inchikey": "XPPALVZZCMPTIV-ARJAWSKDSA-N",
+  "formula": "C10H16O2"
+ },
+ "32764-98-0": {
+  "cas": "32764-98-0",
+  "status": "ok",
+  "cid": 6438319,
+  "smiles": "C/C=C/CCC1CCCC(=O)O1",
+  "inchikey": "NBCMACYORPIYNY-NSCUHMNNSA-N",
+  "formula": "C10H16O2"
+ },
+ "198404-98-7": {
+  "cas": "198404-98-7",
+  "status": "no_cid"
+ },
+ "117933-89-8": {
+  "cas": "117933-89-8",
+  "status": "ok",
+  "cid": 16070752,
+  "smiles": "CCC(C)C1(COC(OC1)C2CCC(=CC2C)C)C",
+  "inchikey": "DASQRZJTRKBKPP-UHFFFAOYSA-N",
+  "formula": "C17H30O2"
+ },
+ "1125-21-9": {
+  "cas": "1125-21-9",
+  "status": "ok",
+  "cid": 62374,
+  "smiles": "CC1=CC(=O)CC(C1=O)(C)C",
+  "inchikey": "AYJXHIDNNLJQDT-UHFFFAOYSA-N",
+  "formula": "C9H12O2"
+ },
+ "81786-73-4": {
+  "cas": "81786-73-4",
+  "status": "ok",
+  "cid": 20836197,
+  "smiles": "CC(/C(=C(/C)\\C(=O)C)/C)C(C)(C)C",
+  "inchikey": "IXIYWQIFBRZMNR-HJWRWDBZSA-N",
+  "formula": "C12H22O"
+ },
+ "87118-95-4": {
+  "cas": "87118-95-4",
+  "status": "ok",
+  "cid": 15219341,
+  "smiles": "CC(C(C)C(C)O)C(C)C(C)(C)C",
+  "inchikey": "XEFKRPWKRQTXDA-UHFFFAOYSA-N",
+  "formula": "C12H26O"
+ },
+ "2021-28-5": {
+  "cas": "2021-28-5",
+  "status": "ok",
+  "cid": 16237,
+  "smiles": "CCOC(=O)CCC1=CC=CC=C1",
+  "inchikey": "JAGZUIGGHGTFHO-UHFFFAOYSA-N",
+  "formula": "C11H14O2"
+ },
+ "7011-83-8": {
+  "cas": "7011-83-8",
+  "status": "ok",
+  "cid": 285097,
+  "smiles": "CCCCCCC1(CCC(=O)O1)C",
+  "inchikey": "ALWUKGXLBSQSMA-UHFFFAOYSA-N",
+  "formula": "C11H20O2"
+ },
+ "84929-31-7": {
+  "cas": "84929-31-7",
+  "status": "no_cid"
+ },
+ "675-09-2": {
+  "cas": "675-09-2",
+  "status": "ok",
+  "cid": 12662,
+  "smiles": "CC1=CC(=O)OC(=C1)C",
+  "inchikey": "IXYLIUKQQQXXON-UHFFFAOYSA-N",
+  "formula": "C7H8O2"
+ },
+ "285977-85-7": {
+  "cas": "285977-85-7",
+  "status": "ok",
+  "cid": 11367306,
+  "smiles": "CC1=CC2=C(CC(C2)(C)CO)C=C1",
+  "inchikey": "UWSPWQQZFOSTHS-UHFFFAOYSA-N",
+  "formula": "C12H16O"
+ },
+ "60241-53-4": {
+  "cas": "60241-53-4",
+  "status": "ok",
+  "cid": 108425,
+  "smiles": "CC1CCCC(C1CC(C)C(C)O)(C)C",
+  "inchikey": "HMENPFAAAQWASO-UHFFFAOYSA-N",
+  "formula": "C14H28O"
+ },
+ "103694-68-4": {
+  "cas": "103694-68-4",
+  "status": "ok",
+  "cid": 175948,
+  "smiles": "CC1=CC(=CC=C1)CC(C)(C)CO",
+  "inchikey": "FYMOBFDUZIDKMI-UHFFFAOYSA-N",
+  "formula": "C12H18O"
+ },
+ "20407-84-5": {
+  "cas": "20407-84-5",
+  "status": "ok",
+  "cid": 5283361,
+  "smiles": "CCCCCCCCC/C=C/C=O",
+  "inchikey": "SSNZFFBDIMUILS-ZHACJKMWSA-N",
+  "formula": "C12H22O"
+ },
+ "38462-23-6": {
+  "cas": "38462-23-6",
+  "status": "ok",
+  "cid": 162309,
+  "smiles": "CC(=CCCC(=CCCC1=CC=NC=C1)C)C",
+  "inchikey": "OVJCOXQJBRJIRJ-UHFFFAOYSA-N",
+  "formula": "C16H23N"
+ },
+ "30772-79-3": {
+  "cas": "30772-79-3",
+  "status": "ok",
+  "cid": 161676,
+  "smiles": "C1CC2CC1C3C2C(CC3)C=O",
+  "inchikey": "USPJNXWHVJTDJW-UHFFFAOYSA-N",
+  "formula": "C11H16O"
+ },
+ "4077-47-8": {
+  "cas": "4077-47-8",
+  "status": "ok",
+  "cid": 61325,
+  "smiles": "CC1C(=O)C(=C(O1)C)OC",
+  "inchikey": "SIMKGHMLPVDSJE-UHFFFAOYSA-N",
+  "formula": "C7H10O3"
+ },
+ "38303-23-0": {
+  "cas": "38303-23-0",
+  "status": "ok",
+  "cid": 162297,
+  "smiles": "C1CCCCCC2=C(CCCC1)N=CO2",
+  "inchikey": "LUVGCXAXOHXTEI-UHFFFAOYSA-N",
+  "formula": "C13H21NO"
+ },
+ "28043-10-9": {
+  "cas": "28043-10-9",
+  "status": "ok",
+  "cid": 119800,
+  "smiles": "CC1=CCCC(C1C(=O)OC)(C)C",
+  "inchikey": "NVAGRWXDIIKUBU-UHFFFAOYSA-N",
+  "formula": "C11H18O2"
+ },
+ "124-10-7": {
+  "cas": "124-10-7",
+  "status": "ok",
+  "cid": 31284,
+  "smiles": "CCCCCCCCCCCCCC(=O)OC",
+  "inchikey": "ZAZKJZBWRNNLDS-UHFFFAOYSA-N",
+  "formula": "C15H30O2"
+ },
+ "33673-62-0": {
+  "cas": "33673-62-0",
+  "status": "ok",
+  "cid": 97707,
+  "smiles": "CCCCCC1C(CC(=O)O1)C",
+  "inchikey": "LOQFOBUZYRBURV-UHFFFAOYSA-N",
+  "formula": "C10H18O2"
+ },
+ "122-99-6": {
+  "cas": "122-99-6",
+  "status": "ok",
+  "cid": 31236,
+  "smiles": "C1=CC=C(C=C1)OCCO",
+  "inchikey": "QCDWFXQBSFUVSP-UHFFFAOYSA-N",
+  "formula": "C8H10O2"
+ },
+ "72881-27-7": {
+  "cas": "72881-27-7",
+  "status": "ok",
+  "cid": 5282724,
+  "smiles": "CCCCCCC/C=C/C(=O)O",
+  "inchikey": "WXBXVVIUZANZAU-CMDGGOBGSA-N",
+  "formula": "C10H18O2"
+ },
+ "1226911-69-8": {
+  "cas": "1226911-69-8",
+  "status": "ok",
+  "cid": 71465644,
+  "smiles": "CC1=CC=C(C=C1)/C=C(\\C)/CCC=O",
+  "inchikey": "LBKHGAIELUNYML-ZRDIBKRKSA-N",
+  "formula": "C13H16O"
+ },
+ "67859-96-5": {
+  "cas": "67859-96-5",
+  "status": "ok",
+  "cid": 106917,
+  "smiles": "CC1CC(CC(C1)(C)C)OC(=O)C",
+  "inchikey": "OIVWFAFCHQDCCG-UHFFFAOYSA-N",
+  "formula": "C11H20O2"
+ },
+ "56539-66-3": {
+  "cas": "56539-66-3",
+  "status": "ok",
+  "cid": 62118,
+  "smiles": "CC(C)(CCO)OC",
+  "inchikey": "MFKRHJVUCZRDTF-UHFFFAOYSA-N",
+  "formula": "C6H14O2"
+ },
+ "7492-67-3": {
+  "cas": "7492-67-3",
+  "status": "ok",
+  "cid": 61401,
+  "smiles": "CC(CCC=C(C)C)CCOCC=O",
+  "inchikey": "LMETVDMCIJNNKH-UHFFFAOYSA-N",
+  "formula": "C12H22O2"
+ },
+ "1449104-34-0": {
+  "cas": "1449104-34-0",
+  "status": "ok",
+  "cid": 89738936,
+  "smiles": "CC(C/C(=C/C1CCCCC1)/C)C=O",
+  "inchikey": "MHWUIEVFBRHXMA-PKNBQFBNSA-N",
+  "formula": "C13H22O"
+ },
+ "82356-51-2": {
+  "cas": "82356-51-2",
+  "status": "ok",
+  "cid": 57353762,
+  "smiles": "CC1=CCCCCCCCCCCCCC1=O",
+  "inchikey": "ZLICVGXIPCPPMS-UHFFFAOYSA-N",
+  "formula": "C16H28O"
+ },
+ "3391-83-1": {
+  "cas": "3391-83-1",
+  "status": "ok",
+  "cid": 18826,
+  "smiles": "C1CCCCC(=O)OCCCCCOCCCC1",
+  "inchikey": "MKEIDVFLAWJKMY-UHFFFAOYSA-N",
+  "formula": "C15H28O3"
+ },
+ "37677-14-8": {
+  "cas": "37677-14-8",
+  "status": "ok",
+  "cid": 93199,
+  "smiles": "CC(=CCCC1=CCC(CC1)C=O)C",
+  "inchikey": "MQBIZQLCHSZBOI-UHFFFAOYSA-N",
+  "formula": "C13H20O"
+ },
+ "69103-20-4": {
+  "cas": "69103-20-4",
+  "status": "ok",
+  "cid": 94648,
+  "smiles": "CC(=CCC1C(O1)(C)C)C=C",
+  "inchikey": "LIMXJCIGROLRED-UHFFFAOYSA-N",
+  "formula": "C10H16O"
+ },
+ "30772-69-1": {
+  "cas": "30772-69-1",
+  "status": "ok",
+  "cid": 161675,
+  "smiles": "CC(=O)OCC1CCC2C1C3CCC2C3",
+  "inchikey": "TXFBASMXWNIAGS-UHFFFAOYSA-N",
+  "formula": "C13H20O2"
+ },
+ "113889-23-9": {
+  "cas": "113889-23-9",
+  "status": "ok",
+  "cid": 44153588,
+  "smiles": "CCCC(=O)OC1C=CC2C1C3CCC2C3",
+  "inchikey": "KLEHDRXJJZQKPQ-UHFFFAOYSA-N",
+  "formula": "C14H20O2"
+ },
+ "95962-14-4": {
+  "cas": "95962-14-4",
+  "status": "ok",
+  "cid": 175661,
+  "smiles": "CC1=CCC(CC1)C(C)CC2CCCC2=O",
+  "inchikey": "KNHGOYVXAHUDHP-UHFFFAOYSA-N",
+  "formula": "C15H24O"
+ },
+ "58096-46-1": {
+  "cas": "58096-46-1",
+  "status": "ok",
+  "cid": 93947,
+  "smiles": "CC1(CC2C1CCC3(CCCC2(C3)OC=O)C)C",
+  "inchikey": "BGEIOYHSLPDHJC-UHFFFAOYSA-N",
+  "formula": "C16H26O2"
+ },
+ "111-79-5": {
+  "cas": "111-79-5",
+  "status": "ok",
+  "cid": 5368076,
+  "smiles": "CCCCCC/C=C/C(=O)OC",
+  "inchikey": "ZWNPUELCBZVMDA-CMDGGOBGSA-N",
+  "formula": "C10H18O2"
+ },
+ "93-18-5": {
+  "cas": "93-18-5",
+  "status": "ok",
+  "cid": 7129,
+  "smiles": "CCOC1=CC2=CC=CC=C2C=C1",
+  "inchikey": "GUMOJENFFHZAFP-UHFFFAOYSA-N",
+  "formula": "C12H12O"
+ },
+ "2173-57-1": {
+  "cas": "2173-57-1",
+  "status": "ok",
+  "cid": 16582,
+  "smiles": "CC(C)COC1=CC2=CC=CC=C2C=C1",
+  "inchikey": "XOHIHZHSDMWWMS-UHFFFAOYSA-N",
+  "formula": "C14H16O"
+ },
+ "93-04-9": {
+  "cas": "93-04-9",
+  "status": "ok",
+  "cid": 7119,
+  "smiles": "COC1=CC2=CC=CC=C2C=C1",
+  "inchikey": "LUZDYPLAQQGJEA-UHFFFAOYSA-N",
+  "formula": "C11H10O"
+ },
+ "70788-30-6": {
+  "cas": "70788-30-6",
+  "status": "ok",
+  "cid": 116699,
+  "smiles": "CCCC(CCC1C(CCCC1(C)C)C)O",
+  "inchikey": "BVDMQAQCEBGIJR-UHFFFAOYSA-N",
+  "formula": "C15H30O"
+ },
+ "1193-79-9": {
+  "cas": "1193-79-9",
+  "status": "ok",
+  "cid": 14514,
+  "smiles": "CC1=CC=C(O1)C(=O)C",
+  "inchikey": "KEFJLCGVTHRGAH-UHFFFAOYSA-N",
+  "formula": "C7H8O2"
+ },
+ "23747-48-0": {
+  "cas": "23747-48-0",
+  "status": "ok",
+  "cid": 32065,
+  "smiles": "CC1CCC2=NC=CN=C12",
+  "inchikey": "YZEFQPIMXZVPKP-UHFFFAOYSA-N",
+  "formula": "C8H10N2"
+ },
+ "5466-77-3": {
+  "cas": "5466-77-3",
+  "status": "ok",
+  "cid": 5355130,
+  "smiles": "CCCCC(CC)COC(=O)/C=C/C1=CC=C(C=C1)OC",
+  "inchikey": "YBGZDTIWKVFICR-JLHYYAGUSA-N",
+  "formula": "C18H26O3"
+ },
+ "131812-67-4": {
+  "cas": "131812-67-4",
+  "status": "ok",
+  "cid": 3034278,
+  "smiles": "CC1COC(O1)(C)C2=CC3=C(C=C2)C(CCC3(C)C)(C)C",
+  "inchikey": "JEPWTUCYPWOCQV-UHFFFAOYSA-N",
+  "formula": "C19H28O2"
+ },
+ "8016-36-2": {
+  "cas": "8016-36-2",
+  "status": "no_cid"
+ },
+ "109-29-5": {
+  "cas": "109-29-5",
+  "status": "ok",
+  "cid": 7984,
+  "smiles": "C1CCCCCCCC(=O)OCCCCCCC1",
+  "inchikey": "LOKPJYNMYCVCRM-UHFFFAOYSA-N",
+  "formula": "C16H30O2"
+ },
+ "823178-41-2": {
+  "cas": "823178-41-2",
+  "status": "ok",
+  "cid": 21059272,
+  "smiles": "CC1C(C2=C(C1(C)C)C3C(CC2)OC(O3)(C)C)(C)C",
+  "inchikey": "QFQQCCDAGARSEN-UHFFFAOYSA-N",
+  "formula": "C17H28O2"
+ },
+ "14576-08-0": {
+  "cas": "14576-08-0",
+  "status": "ok",
+  "cid": 85755,
+  "smiles": "CC1=CCC(CC1)C(C)(C)OC",
+  "inchikey": "YWJHQHJWHJRTAB-UHFFFAOYSA-N",
+  "formula": "C11H20O"
+ },
+ "3209-13-0": {
+  "cas": "3209-13-0",
+  "status": "ok",
+  "cid": 76674,
+  "smiles": "CC1=CC(=CC(=C1)OC)O",
+  "inchikey": "NOTCZLKDULMKBR-UHFFFAOYSA-N",
+  "formula": "C8H10O2"
+ },
+ "16587-71-6": {
+  "cas": "16587-71-6",
+  "status": "ok",
+  "cid": 27941,
+  "smiles": "CCC(C)(C)C1CCC(=O)CC1",
+  "inchikey": "DCSKAMGZSIRJAQ-UHFFFAOYSA-N",
+  "formula": "C11H20O"
+ },
+ "41890-92-0": {
+  "cas": "41890-92-0",
+  "status": "ok",
+  "cid": 162053,
+  "smiles": "CC(CCCC(C)(C)OC)C(C)O",
+  "inchikey": "ZJVRYPHKSDHLTC-UHFFFAOYSA-N",
+  "formula": "C11H24O2"
+ },
+ "179911-08-1": {
+  "cas": "179911-08-1",
+  "status": "ok",
+  "cid": 44150680,
+  "smiles": "CCC(=O)N(CC)C1=CC=CC(=C1)C",
+  "inchikey": "DSYVYGLBPDTBKH-UHFFFAOYSA-N",
+  "formula": "C12H17NO"
+ },
+ "444811-29-4": {
+  "cas": "444811-29-4",
+  "status": "ok",
+  "cid": 10163591,
+  "smiles": "CCCCC(CC)COC(=O)C(=CC1=CC(=C(C(=C1)OC)O)OC)C(=O)OCC(CC)CCCC",
+  "inchikey": "NSBAXYINVVKQQI-UHFFFAOYSA-N",
+  "formula": "C28H44O7"
+ },
+ "65405-72-3": {
+  "cas": "65405-72-3",
+  "status": "ok",
+  "cid": 103377,
+  "smiles": "CC1CCC2(C(=CCCC2(C1OC=O)C)C)C",
+  "inchikey": "DAWDTDPJINNEJM-UHFFFAOYSA-N",
+  "formula": "C15H24O2"
+ },
+ "92585-24-5": {
+  "cas": "92585-24-5",
+  "status": "ok",
+  "cid": 3021997,
+  "smiles": "CC(CC(C)C1=CC=CC=C1)CO",
+  "inchikey": "SXGYZCMGVZKIPJ-UHFFFAOYSA-N",
+  "formula": "C12H18O"
+ },
+ "3558-60-9": {
+  "cas": "3558-60-9",
+  "status": "ok",
+  "cid": 19089,
+  "smiles": "COCCC1=CC=CC=C1",
+  "inchikey": "CQLYXIUHVFRXLT-UHFFFAOYSA-N",
+  "formula": "C9H12O"
+ },
+ "59558-23-5": {
+  "cas": "59558-23-5",
+  "status": "ok",
+  "cid": 43046,
+  "smiles": "CCCCCCCC(=O)OC1=CC=C(C=C1)C",
+  "inchikey": "ALRYNTSLFYRKGF-UHFFFAOYSA-N",
+  "formula": "C15H22O2"
+ },
+ "104-93-8": {
+  "cas": "104-93-8",
+  "status": "ok",
+  "cid": 7731,
+  "smiles": "CC1=CC=C(C=C1)OC",
+  "inchikey": "CHLICZRVGGXEOD-UHFFFAOYSA-N",
+  "formula": "C8H10O"
+ },
+ "27043-05-6": {
+  "cas": "27043-05-6",
+  "status": "no_cid"
+ },
+ "136954-25-1": {
+  "cas": "136954-25-1",
+  "status": "ok",
+  "cid": 2733977,
+  "smiles": "CCCC(CCOC(=O)C)SC(=O)C",
+  "inchikey": "GSJSVAFGVJLTNQ-UHFFFAOYSA-N",
+  "formula": "C10H18O3S"
+ },
+ "620-02-0": {
+  "cas": "620-02-0",
+  "status": "ok",
+  "cid": 12097,
+  "smiles": "CC1=CC=C(O1)C=O",
+  "inchikey": "OUDFNZMQXZILJD-UHFFFAOYSA-N",
+  "formula": "C6H6O2"
+ },
+ "98-52-2": {
+  "cas": "98-52-2",
+  "status": "ok",
+  "cid": 7391,
+  "smiles": "CC(C)(C)C1CCC(CC1)O",
+  "inchikey": "CCOQPGVQAWPUPE-UHFFFAOYSA-N",
+  "formula": "C10H20O"
+ },
+ "91770-49-9": {
+  "cas": "91770-49-9",
+  "status": "no_cid"
+ },
+ "61788-85-0": {
+  "cas": "61788-85-0",
+  "status": "no_cid"
+ },
+ "19819-98-8": {
+  "cas": "19819-98-8",
+  "status": "ok",
+  "cid": 88267,
+  "smiles": "CC1=CC=CC=C1CCO",
+  "inchikey": "RUGISKODRCWQNE-UHFFFAOYSA-N",
+  "formula": "C9H12O"
+ },
+ "90397-38-9": {
+  "cas": "90397-38-9",
+  "status": "ok",
+  "cid": 163588,
+  "smiles": "CCCC(C)COC(=O)C(C)CCC",
+  "inchikey": "UMFWRNLJDQMTFR-UHFFFAOYSA-N",
+  "formula": "C12H24O2"
+ },
+ "55066-48-3": {
+  "cas": "55066-48-3",
+  "status": "ok",
+  "cid": 108312,
+  "smiles": "CC(CCC1=CC=CC=C1)CCO",
+  "inchikey": "OXYRENDGHPGWKV-UHFFFAOYSA-N",
+  "formula": "C12H18O"
+ },
+ "103-53-7": {
+  "cas": "103-53-7",
+  "status": "ok",
+  "cid": 5369459,
+  "smiles": "C1=CC=C(C=C1)CCOC(=O)/C=C/C2=CC=CC=C2",
+  "inchikey": "MJQVZIANGRDJBT-VAWYXSNFSA-N",
+  "formula": "C17H16O2"
+ },
+ "67662-96-8": {
+  "cas": "67662-96-8",
+  "status": "ok",
+  "cid": 105516,
+  "smiles": "CC(C)(C)C(=O)OCCC1=CC=CC=C1",
+  "inchikey": "DPVYDTACPLLHCF-UHFFFAOYSA-N",
+  "formula": "C13H18O2"
+ },
+ "122-70-3": {
+  "cas": "122-70-3",
+  "status": "ok",
+  "cid": 31225,
+  "smiles": "CCC(=O)OCCC1=CC=CC=C1",
+  "inchikey": "HVGZQCSMLUDISR-UHFFFAOYSA-N",
+  "formula": "C11H14O2"
+ },
+ "55719-85-2": {
+  "cas": "55719-85-2",
+  "status": "ok",
+  "cid": 5357002,
+  "smiles": "C/C=C(\\C)/C(=O)OCCC1=CC=CC=C1",
+  "inchikey": "KVMWYGAYARXPOL-QDEBKDIKSA-N",
+  "formula": "C13H16O2"
+ },
+ "122-68-9": {
+  "cas": "122-68-9",
+  "status": "ok",
+  "cid": 5320530,
+  "smiles": "C1=CC=C(C=C1)CCCOC(=O)/C=C/C2=CC=CC=C2",
+  "inchikey": "LYRAHIUDQRJGGZ-BUHFOSPRSA-N",
+  "formula": "C18H18O2"
+ },
+ "23787-90-8": {
+  "cas": "23787-90-8",
+  "status": "ok",
+  "cid": 90978,
+  "smiles": "CC1(CCC(=O)C2C13CCC(C3)C2(C)C)C",
+  "inchikey": "VCOCESNMLNDPLX-UHFFFAOYSA-N",
+  "formula": "C15H24O"
+ },
+ "33885-51-7": {
+  "cas": "33885-51-7",
+  "status": "ok",
+  "cid": 118111,
+  "smiles": "CC1(C2CC=C(C1C2)CCC=O)C",
+  "inchikey": "DDFGFKGJBOILQZ-UHFFFAOYSA-N",
+  "formula": "C12H18O"
+ },
+ "41724-19-0": {
+  "cas": "41724-19-0",
+  "status": "ok",
+  "cid": 162481,
+  "smiles": "CC1CC2C3CCC(C3)C2CC1=O",
+  "inchikey": "VWFXPROOUAWFEE-UHFFFAOYSA-N",
+  "formula": "C12H18O"
+ },
+ "2511-00-4": {
+  "cas": "2511-00-4",
+  "status": "ok",
+  "cid": 160641,
+  "smiles": "CCOC(=O)C(C)C1CCCCC1",
+  "inchikey": "PZUDDXJZNSJESK-UHFFFAOYSA-N",
+  "formula": "C11H20O2"
+ },
+ "107898-54-4": {
+  "cas": "107898-54-4",
+  "status": "ok",
+  "cid": 15984303,
+  "smiles": "CC1=CCC(C1(C)C)/C=C/C(C)(C)C(C)O",
+  "inchikey": "QZFSNJAQFWEXEA-MDZDMXLPSA-N",
+  "formula": "C15H26O"
+ },
+ "123-32-0": {
+  "cas": "123-32-0",
+  "status": "ok",
+  "cid": 31252,
+  "smiles": "CC1=CN=C(C=N1)C",
+  "inchikey": "LCZUOKDVTBMCMX-UHFFFAOYSA-N",
+  "formula": "C6H8N2"
+ },
+ "52474-60-9": {
+  "cas": "52474-60-9",
+  "status": "ok",
+  "cid": 103648,
+  "smiles": "CC(=CCCC1=CCCC(C1)(C)C=O)C",
+  "inchikey": "MBVBLQFHVRGNLW-UHFFFAOYSA-N",
+  "formula": "C14H22O"
+ },
+ "68039-73-6": {
+  "cas": "68039-73-6",
+  "status": "ok",
+  "cid": 107074,
+  "smiles": "CC=CC(=O)OC1CCCC1C2CCCC2",
+  "inchikey": "IBCFURUUOKXNFW-UHFFFAOYSA-N",
+  "formula": "C14H22O2"
+ },
+ "52788-71-3": {
+  "cas": "52788-71-3",
+  "status": "ok",
+  "cid": 103688,
+  "smiles": "CCOC(=O)C1C(O1)C2=CC=C(C=C2)C",
+  "inchikey": "UMSHXRVBYUKRDF-UHFFFAOYSA-N",
+  "formula": "C12H14O3"
+ },
+ "41816-03-9": {
+  "cas": "41816-03-9",
+  "status": "ok",
+  "cid": 94522,
+  "smiles": "CC1C2(O1)CC3CC2C4C3CC=C(C4)C",
+  "inchikey": "VKPRTBDRPNWOGL-UHFFFAOYSA-N",
+  "formula": "C14H20O"
+ },
+ "1670-47-9": {
+  "cas": "1670-47-9",
+  "status": "ok",
+  "cid": 74279,
+  "smiles": "CCOC1(CCCCC1)OCC",
+  "inchikey": "MWUDABUKTZAZCX-UHFFFAOYSA-N",
+  "formula": "C10H20O2"
+ },
+ "236391-76-7": {
+  "cas": "236391-76-7",
+  "status": "ok",
+  "cid": 21933618,
+  "smiles": "CCC(=O)OCC(=O)OC(C)C1CCCC(C1)(C)C",
+  "inchikey": "PDUFSBFWOJELLV-UHFFFAOYSA-N",
+  "formula": "C15H26O4"
+ },
+ "81752-87-6": {
+  "cas": "81752-87-6",
+  "status": "ok",
+  "cid": 11095260,
+  "smiles": "CC1(CCCC(=C)C1C(=O)OC)C",
+  "inchikey": "SMJXJPQSPQXVMU-UHFFFAOYSA-N",
+  "formula": "C11H18O2"
+ },
+ "90-17-5": {
+  "cas": "90-17-5",
+  "status": "ok",
+  "cid": 7007,
+  "smiles": "CC(=O)OC(C1=CC=CC=C1)C(Cl)(Cl)Cl",
+  "inchikey": "JKRWZLOCPLZZEI-UHFFFAOYSA-N",
+  "formula": "C10H9Cl3O2"
+ },
+ "16409-43-1": {
+  "cas": "16409-43-1",
+  "status": "ok",
+  "cid": 27866,
+  "smiles": "CC1CCOC(C1)C=C(C)C",
+  "inchikey": "CZCBTSFUTPZVKJ-UHFFFAOYSA-N",
+  "formula": "C10H18O"
+ },
+ "3033-23-6": {
+  "cas": "3033-23-6",
+  "status": "ok",
+  "cid": 1712087,
+  "smiles": "C[C@@H]1CCO[C@@H](C1)C=C(C)C",
+  "inchikey": "CZCBTSFUTPZVKJ-NXEZZACHSA-N",
+  "formula": "C10H18O"
+ },
+ "64988-06-3": {
+  "cas": "64988-06-3",
+  "status": "ok",
+  "cid": 105179,
+  "smiles": "CCOCC1=CC=CC=C1OC",
+  "inchikey": "DEYIKSBEIOIJCD-UHFFFAOYSA-N",
+  "formula": "C10H14O2"
+ },
+ "60335-71-9": {
+  "cas": "60335-71-9",
+  "status": "ok",
+  "cid": 108443,
+  "smiles": "CC1=CCOC(C1)C2=CC=CC=C2",
+  "inchikey": "SWOPLXXJAVYFPY-UHFFFAOYSA-N",
+  "formula": "C12H14O"
+ },
+ "8030-89-5": {
+  "cas": "8030-89-5",
+  "status": "no_cid"
+ },
+ "54440-17-4": {
+  "cas": "54440-17-4",
+  "status": "ok",
+  "cid": 10149036,
+  "smiles": "CC1C(=O)C2=CC=CC=C2C1(C)C",
+  "inchikey": "KZSUMHASCAWKLE-UHFFFAOYSA-N",
+  "formula": "C12H14O"
+ },
+ "79915-74-5": {
+  "cas": "79915-74-5",
+  "status": "ok",
+  "cid": 166517,
+  "smiles": "CC(C)OCCOC(=O)C1=CC=CC=C1O",
+  "inchikey": "KFBPVHFUHYKWIF-UHFFFAOYSA-N",
+  "formula": "C12H16O4"
+ },
+ "130786-09-3": {
+  "cas": "130786-09-3",
+  "status": "ok",
+  "cid": 5463415,
+  "smiles": "CCC/C=C(\\C#N)/C1=CC=CC=C1",
+  "inchikey": "UYBGOPSMJQAVEH-KPKJPENVSA-N",
+  "formula": "C12H13N"
+ },
+ "70955-71-4": {
+  "cas": "70955-71-4",
+  "status": "no_cid"
+ },
+ "319002-92-1": {
+  "cas": "319002-92-1",
+  "status": "ok",
+  "cid": 16063805,
+  "smiles": "CCCOC(=O)[C@H](C)OC(C)(C)CC",
+  "inchikey": "KPUAQAYQMYWKBV-VIFPVBQESA-N",
+  "formula": "C11H22O3"
+ },
+ "6658-48-6": {
+  "cas": "6658-48-6",
+  "status": "ok",
+  "cid": 110914,
+  "smiles": "CC(C)CC1=CC=C(C=C1)CC(C)C=O",
+  "inchikey": "YLIXVKUWWOQREC-UHFFFAOYSA-N",
+  "formula": "C14H20O"
+ },
+ "60066-88-8": {
+  "cas": "60066-88-8",
+  "status": "ok",
+  "cid": 5281535,
+  "smiles": "C/C(=C\\CCC(=C)C=C)/CC/C=C(\\C)/C=O",
+  "inchikey": "NOPLRNXKHZRXHT-YFVJMOTDSA-N",
+  "formula": "C15H22O"
+ },
+ "83-34-1": {
+  "cas": "83-34-1",
+  "status": "ok",
+  "cid": 6736,
+  "smiles": "CC1=CNC2=CC=CC=C12",
+  "inchikey": "ZFRKQXVRDFCRJG-UHFFFAOYSA-N",
+  "formula": "C9H9N"
+ },
+ "28664-35-9": {
+  "cas": "28664-35-9",
+  "status": "ok",
+  "cid": 62835,
+  "smiles": "CC1C(=C(C(=O)O1)O)C",
+  "inchikey": "UNYNVICDCJHOPO-UHFFFAOYSA-N",
+  "formula": "C6H8O3"
+ },
+ "121251-68-1": {
+  "cas": "121251-68-1",
+  "status": "ok",
+  "cid": 44154128,
+  "smiles": "C[C@@H]1CC[C@H]2[C@H](C2(C)C)C13COC(OC3)(C)C",
+  "inchikey": "ORHSGDMSYGKJJY-GRYCIOLGSA-N",
+  "formula": "C15H26O2"
+ },
+ "224031-70-3": {
+  "cas": "224031-70-3",
+  "status": "ok",
+  "cid": 15405344,
+  "smiles": "C=CCCC(=O)C1=CCCC2(C1)CCCC2",
+  "inchikey": "WPFFGMCNILGTEA-UHFFFAOYSA-N",
+  "formula": "C15H22O"
+ },
+ "111-01-3": {
+  "cas": "111-01-3",
+  "status": "ok",
+  "cid": 8089,
+  "smiles": "CC(C)CCCC(C)CCCC(C)CCCCC(C)CCCC(C)CCCC(C)C",
+  "inchikey": "PRAKJMSDJKAYCZ-UHFFFAOYSA-N",
+  "formula": "C30H62"
+ },
+ "1315250-65-7": {
+  "cas": "1315250-65-7",
+  "status": "ok",
+  "cid": 59557434,
+  "smiles": "CC(C)CC1CCC(CC1)CCC=O",
+  "inchikey": "XUTZHJNXAOHUTM-UHFFFAOYSA-N",
+  "formula": "C13H24O"
+ },
+ "3142-72-1": {
+  "cas": "3142-72-1",
+  "status": "ok",
+  "cid": 18458,
+  "smiles": "CCC=C(C)C(=O)O",
+  "inchikey": "JJYWRQLLQAKNAD-UHFFFAOYSA-N",
+  "formula": "C6H10O2"
+ },
+ "28645-51-4": {
+  "cas": "28645-51-4",
+  "status": "ok",
+  "cid": 5355293,
+  "smiles": "C1CCC/C=C\\CCCCCCOC(=O)CCC1",
+  "inchikey": "QILMAYXCYBTEDM-IWQZZHSRSA-N",
+  "formula": "C16H28O2"
+ },
+ "137-00-8": {
+  "cas": "137-00-8",
+  "status": "ok",
+  "cid": 1136,
+  "smiles": "CC1=C(SC=N1)CCO",
+  "inchikey": "BKAWJIRCKVUVED-UHFFFAOYSA-N",
+  "formula": "C6H9NOS"
+ },
+ "676125-00-1": {
+  "cas": "676125-00-1",
+  "status": "ok",
+  "cid": 78062915,
+  "smiles": "CC1(CC(C=C2C13CCC(C3)C2(C)C)OC)C",
+  "inchikey": "VIHCRGZIINXRHA-UHFFFAOYSA-N",
+  "formula": "C16H26O"
+ },
+ "104-09-6": {
+  "cas": "104-09-6",
+  "status": "ok",
+  "cid": 61006,
+  "smiles": "CC1=CC=C(C=C1)CC=O",
+  "inchikey": "CIXAYNMKFFQEFU-UHFFFAOYSA-N",
+  "formula": "C9H10O"
+ },
+ "91-10-1": {
+  "cas": "91-10-1",
+  "status": "ok",
+  "cid": 7041,
+  "smiles": "COC1=C(C(=CC=C1)OC)O",
+  "inchikey": "KLIDCXVFHGNTTM-UHFFFAOYSA-N",
+  "formula": "C8H10O3"
+ },
+ "4359-47-1": {
+  "cas": "4359-47-1",
+  "status": "ok",
+  "cid": 107271,
+  "smiles": "CCCCC(CC)C1OCCO1",
+  "inchikey": "LQSZQAHPRJMRET-UHFFFAOYSA-N",
+  "formula": "C10H20O2"
+ },
+ "13215-88-8": {
+  "cas": "13215-88-8",
+  "status": "ok",
+  "cid": 107631,
+  "smiles": "CC=CC=C1C(=CC(=O)CC1(C)C)C",
+  "inchikey": "CBQXHTWJSZXYSK-UHFFFAOYSA-N",
+  "formula": "C13H18O"
+ },
+ "51519-65-4": {
+  "cas": "51519-65-4",
+  "status": "ok",
+  "cid": 103487,
+  "smiles": "C1CC2C3CC(C2C(=O)C1)C=C3",
+  "inchikey": "YINCMLNASBORJF-UHFFFAOYSA-N",
+  "formula": "C11H14O"
+ },
+ "26160-83-8": {
+  "cas": "26160-83-8",
+  "status": "ok",
+  "cid": 160138,
+  "smiles": "C1CC2C3CC(C2C1CO)CC3CO",
+  "inchikey": "OTLDLKLSNZMTTA-UHFFFAOYSA-N",
+  "formula": "C12H20O2"
+ },
+ "18368-91-7": {
+  "cas": "18368-91-7",
+  "status": "ok",
+  "cid": 106997,
+  "smiles": "CCC1(C(C2CCC1(C2)C)(C)C)O",
+  "inchikey": "KIPCKEJKGCXRGA-UHFFFAOYSA-N",
+  "formula": "C12H22O"
+ },
+ "106-21-8": {
+  "cas": "106-21-8",
+  "status": "ok",
+  "cid": 7792,
+  "smiles": "CC(C)CCCC(C)CCO",
+  "inchikey": "PRNCMAKCNVRZFX-UHFFFAOYSA-N",
+  "formula": "C10H22O"
+ },
+ "134-96-3": {
+  "cas": "134-96-3",
+  "status": "ok",
+  "cid": 8655,
+  "smiles": "COC1=CC(=CC(=C1O)OC)C=O",
+  "inchikey": "KCDXJAYRVLXPFO-UHFFFAOYSA-N",
+  "formula": "C9H10O4"
+ },
+ "68398-18-5": {
+  "cas": "68398-18-5",
+  "status": "ok",
+  "cid": 109332,
+  "smiles": "CC1CCC2CC1SC2(C)C",
+  "inchikey": "FAXNZPOZWCWYBD-UHFFFAOYSA-N",
+  "formula": "C10H18S"
+ },
+ "470-40-6": {
+  "cas": "470-40-6",
+  "status": "ok",
+  "cid": 442402,
+  "smiles": "CC1=CC[C@@]2(CCCC([C@]23[C@H]1C3)(C)C)C",
+  "inchikey": "WXQGPFZDVCRBME-QEJZJMRPSA-N",
+  "formula": "C15H24"
+ },
+ "18640-74-9": {
+  "cas": "18640-74-9",
+  "status": "ok",
+  "cid": 62725,
+  "smiles": "CC(C)CC1=NC=CS1",
+  "inchikey": "CMPVUVUNJQERIT-UHFFFAOYSA-N",
+  "formula": "C7H11NS"
+ },
+ "108-50-9": {
+  "cas": "108-50-9",
+  "status": "ok",
+  "cid": 7938,
+  "smiles": "CC1=CN=CC(=N1)C",
+  "inchikey": "HJFZAYHYIWGLNL-UHFFFAOYSA-N",
+  "formula": "C6H8N2"
+ },
+ "28069-72-9": {
+  "cas": "28069-72-9",
+  "status": "ok",
+  "cid": 5362833,
+  "smiles": "CC/C=C\\CC/C=C/CO",
+  "inchikey": "AMXYRHBJZOVHOL-ODYTWBPASA-N",
+  "formula": "C9H16O"
+ },
+ "68140-48-7": {
+  "cas": "68140-48-7",
+  "status": "ok",
+  "cid": 91696,
+  "smiles": "CC1C(C2=C(C1(C)C)C=C(C(=C2)C(=O)C)C)C(C)C",
+  "inchikey": "IMRYETFJNLKUHK-UHFFFAOYSA-N",
+  "formula": "C18H26O"
+ },
+ "77-93-0": {
+  "cas": "77-93-0",
+  "status": "ok",
+  "cid": 6506,
+  "smiles": "CCOC(=O)CC(CC(=O)OCC)(C(=O)OCC)O",
+  "inchikey": "DOOTYTYQINUNNV-UHFFFAOYSA-N",
+  "formula": "C12H20O7"
+ },
+ "16251-77-7": {
+  "cas": "16251-77-7",
+  "status": "ok",
+  "cid": 85979,
+  "smiles": "CC(CC=O)C1=CC=CC=C1",
+  "inchikey": "MYHGOWDLVRDUFA-UHFFFAOYSA-N",
+  "formula": "C10H12O"
+ },
+ "144020-22-4": {
+  "cas": "144020-22-4",
+  "status": "no_cid"
+ },
+ "338735-71-0": {
+  "cas": "338735-71-0",
+  "status": "ok",
+  "cid": 57357974,
+  "smiles": "CC1CC2CCC3C(C2O1)C(C(C3(C)C)C)(C)C",
+  "inchikey": "YFHKETGXYQOMGB-UHFFFAOYSA-N",
+  "formula": "C17H30O"
+ },
+ "80480-24-6": {
+  "cas": "80480-24-6",
+  "status": "ok",
+  "cid": 166523,
+  "smiles": "CCCC(C)C1OCC(CO1)(C)CCC",
+  "inchikey": "LODLFUCEWWWXPR-UHFFFAOYSA-N",
+  "formula": "C13H26O2"
+ },
+ "10138-32-6": {
+  "cas": "10138-32-6",
+  "status": "ok",
+  "cid": 24986,
+  "smiles": "CCOC(=O)C1CC2CC1C=C2",
+  "inchikey": "FCCGTJAGEHZPBF-UHFFFAOYSA-N",
+  "formula": "C10H14O2"
+ },
+ "2563-07-7": {
+  "cas": "2563-07-7",
+  "status": "ok",
+  "cid": 75715,
+  "smiles": "CCOC1=C(C=CC(=C1)C)O",
+  "inchikey": "ZWQBCCVEOIYNDL-UHFFFAOYSA-N",
+  "formula": "C9H12O2"
+ },
+ "4630-07-3": {
+  "cas": "4630-07-3",
+  "status": "ok",
+  "cid": 9855795,
+  "smiles": "C[C@@H]1CCC=C2[C@]1(C[C@@H](CC2)C(=C)C)C",
+  "inchikey": "QEBNYNLSCGVZOH-NFAWXSAZSA-N",
+  "formula": "C15H24"
+ },
+ "94-86-0": {
+  "cas": "94-86-0",
+  "status": "ok",
+  "cid": 5354280,
+  "smiles": "CCOC1=C(C=C(C=C1)/C=C/C)O",
+  "inchikey": "RADIRXJQODWKGQ-HWKANZROSA-N",
+  "formula": "C11H14O2"
+ },
+ "13431-57-7": {
+  "cas": "13431-57-7",
+  "status": "ok",
+  "cid": 83442,
+  "smiles": "CC(=O)OCC(C)(C)COC(=O)C",
+  "inchikey": "ZFFGZCTVZNNVLP-UHFFFAOYSA-N",
+  "formula": "C9H16O4"
+ },
+ "120-14-9": {
+  "cas": "120-14-9",
+  "status": "ok",
+  "cid": 8419,
+  "smiles": "COC1=C(C=C(C=C1)C=O)OC",
+  "inchikey": "WJUFSDZVCOTFON-UHFFFAOYSA-N",
+  "formula": "C9H10O3"
+ },
+ "13491-79-7": {
+  "cas": "13491-79-7",
+  "status": "ok",
+  "cid": 26068,
+  "smiles": "CC(C)(C)C1CCCCC1O",
+  "inchikey": "DLTWBMHADAJAAZ-UHFFFAOYSA-N",
+  "formula": "C10H20O"
+ },
+ "1728-46-7": {
+  "cas": "1728-46-7",
+  "status": "ok",
+  "cid": 102681,
+  "smiles": "CC(C)(C)C1CCCCC1=O",
+  "inchikey": "ZRYDPLOWJSFQAE-UHFFFAOYSA-N",
+  "formula": "C10H18O"
+ },
+ "66327-54-6": {
+  "cas": "66327-54-6",
+  "status": "ok",
+  "cid": 106684,
+  "smiles": "CC(C)CCCC1=CCC(CC1)(C)C=O",
+  "inchikey": "MVTYXAVPKZRAMW-UHFFFAOYSA-N",
+  "formula": "C14H24O"
+ },
+ "32210-23-4": {
+  "cas": "32210-23-4",
+  "status": "ok",
+  "cid": 36081,
+  "smiles": "CC(=O)OC1CCC(CC1)C(C)(C)C",
+  "inchikey": "MBZRJSQZCBXRGK-UHFFFAOYSA-N",
+  "formula": "C12H22O2"
+ },
+ "27939-60-2": {
+  "cas": "27939-60-2",
+  "status": "ok",
+  "cid": 3034463,
+  "smiles": "CC1C=CCCC1(C)C=O",
+  "inchikey": "CYGGTUUCLIFNIU-UHFFFAOYSA-N",
+  "formula": "C9H14O"
+ },
+ "68738-99-8": {
+  "cas": "68738-99-8",
+  "status": "ok",
+  "cid": 3034893,
+  "smiles": "CC\\1C=C(CC/C1=C\\NC2=CC=CC=C2C(=O)OC)C",
+  "inchikey": "KDSJAOIHFZMUNK-SDNWHVSQSA-N",
+  "formula": "C17H21NO2"
+ },
+ "68083-58-9": {
+  "cas": "68083-58-9",
+  "status": "ok",
+  "cid": 107098,
+  "smiles": "CC(CC(C)(C)C1=CC=CC=C1)OC(=O)C",
+  "inchikey": "MXIGGIZQUGDKAP-UHFFFAOYSA-N",
+  "formula": "C14H20O2"
+ },
+ "7403-42-1": {
+  "cas": "7403-42-1",
+  "status": "ok",
+  "cid": 81898,
+  "smiles": "CC(=O)CC(C)(C)C1=CC=CC=C1",
+  "inchikey": "PFDVPCSDZXZDMF-UHFFFAOYSA-N",
+  "formula": "C12H16O"
+ },
+ "21112-37-8": {
+  "cas": "21112-37-8",
+  "status": "ok",
+  "cid": 88792,
+  "smiles": "CC(C)(C)C1=C(C=CC(=C1)OC)OC",
+  "inchikey": "ALVJDUNBMKMTDC-UHFFFAOYSA-N",
+  "formula": "C12H18O2"
+ },
+ "117-98-6": {
+  "cas": "117-98-6",
+  "status": "ok",
+  "cid": 8347,
+  "smiles": "CC1CC(C=C(C2C1CC(=C(C)C)C2)C)OC(=O)C",
+  "inchikey": "UAVFEMBKDRODDE-UHFFFAOYSA-N",
+  "formula": "C17H26O2"
+ },
+ "8016-96-4": {
+  "cas": "8016-96-4",
+  "status": "no_cid"
+ },
+ "89-88-3": {
+  "cas": "89-88-3",
+  "status": "ok",
+  "cid": 101549,
+  "smiles": "CC1CC(C=C(C2C1CC(=C(C)C)C2)C)O",
+  "inchikey": "INIOTLARNNSXAE-UHFFFAOYSA-N",
+  "formula": "C15H24O"
+ },
+ "68917-34-0": {
+  "cas": "68917-34-0",
+  "status": "no_cid"
+ },
+ "166432-52-6": {
+  "cas": "166432-52-6",
+  "status": "ok",
+  "cid": 6433089,
+  "smiles": "CCCCCC#C/C=C/C=C",
+  "inchikey": "VJCOQIJZYGQPKM-FNORWQNLSA-N",
+  "formula": "C11H16"
+ },
+ "87731-18-8": {
+  "cas": "87731-18-8",
+  "status": "ok",
+  "cid": 5463762,
+  "smiles": "COC(=O)OC1CCC/C=C\\CC1",
+  "inchikey": "LDHHCYCOENSXIM-IHWYPQMZSA-N",
+  "formula": "C10H16O3"
+ },
+ "1139-08-8": {
+  "cas": "1139-08-8",
+  "status": "ok",
+  "cid": 535389,
+  "smiles": "CC1(CCC(C2C13CCC(C3)C2(C)C)O)C",
+  "inchikey": "VJCRIDPUJYUCNH-UHFFFAOYSA-N",
+  "formula": "C15H26O"
+ },
+ "89-71-4": {
+  "cas": "89-71-4",
+  "status": "ok",
+  "cid": 33094,
+  "smiles": "CC1=CC=CC=C1C(=O)OC",
+  "inchikey": "WVWZECQNFWFVFW-UHFFFAOYSA-N",
+  "formula": "C9H10O2"
+ },
+ "154171-77-4": {
+  "cas": "154171-77-4",
+  "status": "ok",
+  "cid": 118976605,
+  "smiles": "CC1(CCC2([C@@H]3[C@@]14CC[C@@H](C4)C3(C)C)OCCO2)C",
+  "inchikey": "RTPMDRYHLHGFGT-XEZPLFJOSA-N",
+  "formula": "C17H28O2"
+ },
+ "57345-19-4": {
+  "cas": "57345-19-4",
+  "status": "ok",
+  "cid": 93639,
+  "smiles": "CC1(CCCC2(C1CCC34C2CCC(O3)(OC4)C)C)C",
+  "inchikey": "PHNCACYNYORRNS-UHFFFAOYSA-N",
+  "formula": "C18H30O2"
+ },
+ "54982-83-1": {
+  "cas": "54982-83-1",
+  "status": "ok",
+  "cid": 41270,
+  "smiles": "C1CCCCCC(=O)OCCOC(=O)CCCC1",
+  "inchikey": "GJJSUPSPZIZYPM-UHFFFAOYSA-N",
+  "formula": "C14H24O4"
+ }
+}
