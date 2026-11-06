@@ -1,0 +1,45 @@
+{
+  "source": {
+    "overview": "ifra-51st-amendment-ifra-standards-overview.xlsx",
+    "overview_sha256": "0580e1e71cd98335136f46f2c2beea272b72c863183d42fe92b9833ea546ed9e",
+    "annex": "ifra-51st-amendment-annex-on-contributions-from-other-sources.xlsx",
+    "annex_sha256": "28988a6c543db4b7aa3e39229bc543154b0df6b59f773726f2a4f2936f271bef",
+    "url": "https://ifrafragrance.org/initiatives-positions/safe-use-fragrance-science/ifra-standards/ifra-standards-documentation",
+    "amendments_represented": [
+      "4",
+      "10",
+      "17",
+      "28",
+      "29",
+      "38",
+      "39",
+      "40",
+      "43",
+      "44",
+      "45",
+      "47",
+      "48",
+      "49",
+      "50",
+      "51"
+    ],
+    "imported": "2026-11-06"
+  },
+  "meta": {
+    "header_row": 3
+  },
+  "counts": {
+    "standards": 263,
+    "limit_rows": 4734,
+    "states": {
+      "limit": 2914,
+      "no_restriction": 182,
+      "not_applicable": 1548,
+      "see_notebox": 90
+    },
+    "standards_without_limits": 86,
+    "standards_with_numbers": 172,
+    "category4_figures": 172,
+    "schiff_bases": 17
+  }
+}

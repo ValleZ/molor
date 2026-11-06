@@ -5,6 +5,9 @@
 .venv-unimol/
 vendor/olfaction/
 vendor/zenodo/
+# IFRA standards workbooks and PDFs: IFRA restricts redistribution, so the
+# source documents stay here and only the derived tables are committed.
+vendor/ifra/
 # OpenPOM clone: 10 x 25 MB ensemble checkpoints, re-cloneable
 vendor/openpom/
 # Dense Sense clone: 4.1 GB of ensemble checkpoints, re-cloneable
