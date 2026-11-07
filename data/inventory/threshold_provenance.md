@@ -78,7 +78,7 @@ conversion is also how this column became untrustworthy.
 
 *Comparison supplied by the perfumer, 2026-11-06.*
 
-## Cedarwood EO (Virginia), 200 ppb — the sea mixes put it near 7
+## Cedarwood EO (Virginia), 200 ppb — a balance test against Calone puts it at 2.0
 
 **The figure had no source.** 45 of the 47 naturals carry a threshold with no
 source and no boiling point, and this one sat at 200 ppb, which made it one of
@@ -94,6 +94,15 @@ about 2. That puts cedarwood's effective threshold near 10 ppb (5 to 20), about
 the mixes are the better guide to dosing, and they sit between 2 and 3 bins.
 `judgements` is 0 because this came from mixes, not a blotter session, and the
 row has to be re-entered if `apply_strength.py` regenerates `strength.csv`.
+
+**The balance test (2026-11-07), which replaces the estimate above.** Calone
+1951 at 4.7 parts with cedarwood at 1, 2, 3, 4.5 and 6.5 parts in DPG, smelled
+at sea-mix strength (let down to 10%). Cedarwood at 2 parts was the most neutral
+and at 3 it led, so the balance is about 2.3 parts. On the linear model, equal
+loudness means 2.3 / t = 4.7 / 4.11, so t = 2.01 ppb, a multiplier of 99.4
+(4.19 bins). That replaces the 3-bin row. It is relative to Calone's 4.11
+ppb, which itself rests on a blotter multiplier measured at top % (see the last
+section), so if Calone moves, cedarwood moves with it.
 
 **What it does not settle.** Ylang Ylang EO (359, imputed) and Vetiver EO (60)
 ranked as loud or louder on the same strips, but no mix measured their size,
