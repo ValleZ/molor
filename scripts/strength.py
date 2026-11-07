@@ -64,6 +64,12 @@ def load_strength(path: Path | str | None = None) -> dict[str, dict]:
         mult = num("strength_multiplier")
         if not mult or mult <= 0:
             continue
+        # A strip ranking corrects on top of a blotter session rather than
+        # replacing it, so the session's own numbers stay as measured.
+        # How the factors were fitted: threshold_provenance.md.
+        strip = num("strip_factor")
+        if strip and strip > 0:
+            mult *= strip
         out[n] = {
             "mult": mult,
             "bin": num("bin_mean", 0.0),

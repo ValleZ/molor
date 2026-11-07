@@ -123,6 +123,21 @@ def oil_tokens(name: str) -> list[str]:
     return [w for w in low.split() if w and w not in OIL_NOISE]
 
 
+#: How a natural was made. The words are noise for finding the plant, but two
+#: forms of one plant are different materials: "Labdanum Resinoid" on the
+#: perfumer's shelf was matched to the library's "Labdanum Absolute", so the
+#: engine offered an absolute the perfumer does not have (2026-11-07).
+OIL_FORMS = {"absolute": "absolute", "abs": "absolute", "resinoid": "resinoid",
+             "concrete": "concrete", "co2": "co2", "eo": "oil", "essential": "oil"}
+
+
+def oil_form(name: str) -> str | None:
+    """The form a name states, or None when it states none."""
+    low = re.sub(r"[^a-z0-9]+", " ", name.lower()).split()
+    forms = {OIL_FORMS[w] for w in low if w in OIL_FORMS}
+    return forms.pop() if len(forms) == 1 else None
+
+
 def owned_names() -> set[str]:
     """Material names the perfumer has on the shelf, from the inventory.
 
@@ -195,6 +210,7 @@ def match_oil(name: str, oils: list[str]):
     want = oil_tokens(name)
     if not want:
         return None, []
+    want_form = oil_form(name)
     # Two passes, and the order matters. A prefix match is what carries
     # "Cedar Virginia" to "Cedarwood EO (Virginia)", and it is also what
     # carried "Lemon EO" to "Lemongrass EO" and then declared the pair
@@ -210,6 +226,10 @@ def match_oil(name: str, oils: list[str]):
         for oil in oils:
             toks = oil_tokens(oil)
             if not toks:
+                continue
+            # Both name a form and they differ: a different material.
+            have_form = oil_form(oil)
+            if want_form and have_form and want_form != have_form:
                 continue
             head = toks[0]
             if exact:

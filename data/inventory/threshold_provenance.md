@@ -143,3 +143,38 @@ still. A balance test against cedarwood, as with Calone, would pin it.
 `judgements` is 0 for both, so `apply_strength.py` must not regenerate the file.
 
 *Strip ranking supplied by the perfumer, 2026-11-07.*
+
+## Strip ranking of the formula materials (2026-11-07), and a fit over both sessions
+
+The perfumer ranked, loudest first and all neat except the labdanum:
+Vetiver EO, Hexyl Acetate, Lemonile, Labdanum Resinoid 50% TEC, Cedarwood
+EO, Cis-3-Hexenyl Salicylate, Aurantiol, Vertofix Coeur, Floralozone,
+Helional, Florol, Hedione. (The vetiver on the shelf is Fraterworks Vetiver
+Oil Java, CAS 8016-96-4, matched to the library's Vetiver EO (Haiti) row:
+same plant, a different origin's grade.)
+
+**The fit.** Effective thresholds were fitted to this session and the earlier
+merged ranking together, as the least weighted change in log threshold that
+puts every strip in the order the nose gave, with "louder" at least a quarter
+bin (1.32x) and ties equal. Loudness on a strip is taken as concentration over
+threshold. Cedarwood EO is held at its balance-test 2.01 ppb. Weights: 3 for a
+blotter-session or bench figure, 1 for a compiled one, 0.3 for an imputed or
+unsourced one, so measured figures move least. The result goes in
+`strength.csv`'s `strip_factor` column, which `strength.py` multiplies onto
+the blotter multiplier, so the session numbers stay as measured.
+
+**What moved most.** Floralozone 1 -> 45 ppb (ranked below Vertofix neat),
+Helional 10 -> 59, Cis-3-Hexenyl Salicylate 257 (imputed) -> 20, Aurantiol
+100 -> 26, Lemonile 5 -> 1.5, Hedione 73 -> 183, Galaxolide 12 -> 53. Ethyl
+Maltol (to 0.8) and Styrallyl Acetate (to 0.9) move about 100x because the
+earlier ranking had Ethyl Maltol at 1% above Galaxolide at 50%, and a linear
+reading of concentration turns that into potency; their hand ceilings in the
+engine still bound them.
+
+**What it does not settle.** Labdanum Resinoid is not in the library. Its
+strip was dropped, and the library's Labdanum Absolute, which the shelf row
+had been matched to, is no longer marked as owned (`predict_formula.oil_form`
+now refuses to match two different forms of one plant). A strip ranking gives
+order, not size; a step between neighbours may be larger than a quarter bin.
+
+*Strip ranking supplied by the perfumer, 2026-11-07.*
