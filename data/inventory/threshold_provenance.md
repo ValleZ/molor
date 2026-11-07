@@ -187,3 +187,20 @@ the library's Patchouli EO (Javanese)) between Cedarwood and the labdanum, so
 below Lemonile. Refitted from the pre-strip thresholds with unsourced naturals
 weighted 0.3: Patchouli 30 -> 1.5 ppb, Verdox HC 100 -> 14, Paradisamide
 14 -> 32, Florol 100 -> 82; the rest moved under 1.3x.
+
+**Ethyl Maltol as a dilution pair, and Tetrahydro Linalool (later on
+2026-11-07).** Strips, quietest first: Hedione ~ Ethyl Maltol 1% (level, maybe
+a little above) < Tetrahydro Linalool < Galaxolide 50% < Ethyl Maltol 10% <
+Florol. Ten times more Ethyl Maltol moved it only a few places, which is the
+usual compressive growth of loudness with concentration. Under any
+monotonic loudness curve of concentration over threshold, it also means
+Hedione's threshold is at least 10x Florol's, where the column had 2.3x. The
+refit puts Hedione at 615 ppb (blotter-weighted, so it moved least per unit
+but carried the stretch), Florol 47, Ethyl Maltol 6.1, Tetrahydro Linalool
+106, and the materials between them about 1.6x stronger.
+
+The earlier ranking had Ethyl Maltol 1% above Galaxolide 50%; per the
+engine's hand-ceiling note that was a bottle comparison, where headspace
+favours the volatile material. Today's strips put it the other way, so the
+bottle result is kept on record but left out of the strip fit; Ethyl Maltol's
+previous 0.8 ppb came from it.
