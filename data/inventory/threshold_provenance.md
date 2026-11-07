@@ -204,3 +204,6 @@ engine's hand-ceiling note that was a bottle comparison, where headspace
 favours the volatile material. Today's strips put it the other way, so the
 bottle result is kept on record but left out of the strip fit; Ethyl Maltol's
 previous 0.8 ppb came from it.
+
+**Sandalore** was placed between Florol and Helional in the formula session:
+20 -> 41 ppb, with its neighbours moving about 1.15x to make room.
