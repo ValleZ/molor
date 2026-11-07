@@ -178,3 +178,12 @@ now refuses to match two different forms of one plant). A strip ranking gives
 order, not size; a step between neighbours may be larger than a quarter bin.
 
 *Strip ranking supplied by the perfumer, 2026-11-07.*
+
+**Additions to the formula session (later on 2026-11-07).** Galaxolide (50% in
+IPM) between Florol and Hedione; Paradisamide about level with Vertofix Coeur
+and Floralozone (no gap forced to either); Verdox HC between Cedarwood and
+Cis-3-Hexenyl Salicylate; Patchouli (Dark Indonesia, CAS 8014-09-3, matched to
+the library's Patchouli EO (Javanese)) between Cedarwood and the labdanum, so
+below Lemonile. Refitted from the pre-strip thresholds with unsourced naturals
+weighted 0.3: Patchouli 30 -> 1.5 ppb, Verdox HC 100 -> 14, Paradisamide
+14 -> 32, Florol 100 -> 82; the rest moved under 1.3x.
