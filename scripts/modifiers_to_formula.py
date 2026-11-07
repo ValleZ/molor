@@ -117,7 +117,6 @@ def main() -> int:
     sd = X.std(0) + 1e-9
     thr = [m.get("thr") for m in mat]
     tsrc = [m.get("thrSrc") for m in mat]
-    use = [m.get("use") for m in mat]
 
     text = (sys.stdin.read() if args.modifiers == "-"
             else io.open(args.modifiers, encoding="utf-8").read())
@@ -184,8 +183,6 @@ def main() -> int:
             flags.append("EO")
         if tsrc[i] == "imputed":
             flags.append("threshold imputed")
-        if use[i] and 100 * mass[j] > use[i]:
-            flags.append(f"over a recorded max of {use[i]}%")
         print(f"  {names[i][:30]:30s} {100 * mass[j]:8.3f} "
               f"{100 * act[j]:6.1f}% {thr[i]:8.3g} {tsrc[i]:>8s}  "
               + "; ".join(flags))

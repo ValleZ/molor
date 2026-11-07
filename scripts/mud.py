@@ -78,20 +78,13 @@ def thresholds() -> dict[str, float]:
     return out
 
 
-def use_levels() -> dict[str, float]:
+def owned() -> set[str]:
+    """Names on the perfumer's shelf (inventory.csv)."""
     path = ROOT / "data" / "inventory" / "inventory.csv"
-    out: dict[str, float] = {}
     if not path.is_file():
-        return out
-    for r in csv.DictReader(io.open(path, encoding="utf-8-sig")):
-        n = (r.get("name") or r.get("material") or "").strip()
-        if not n:
-            continue
-        try:
-            out[n] = float((r.get("top_pct") or "").strip())
-        except ValueError:
-            out[n] = float("nan")
-    return out
+        return set()
+    return {n for r in csv.DictReader(io.open(path, encoding="utf-8-sig"))
+            if (n := (r.get("name") or r.get("material") or "").strip())}
 
 
 def masses(shares: np.ndarray, th: np.ndarray, exponent: float) -> np.ndarray:
@@ -305,7 +298,7 @@ def main() -> int:
     names = list(pj["molecules"])
     X = np.asarray(pj["probs"], float)
     mu = X.mean(0)
-    lv = use_levels()
+    lv = owned()
     ladder = [float(x) for x in args.dilutions.split(",") if x.strip()]
 
     thr = thresholds()
@@ -427,9 +420,7 @@ def main() -> int:
         tag = "  <- inside the yardstick" if res < yard else ""
         print(f"  k={k}  distance to the mud point {res:.3f}{tag}")
         for i, x in sorted(zip(chosen, w), key=lambda p: -p[1]):
-            cap = lv.get(names[i], float("nan"))
-            lim = "" if cap != cap else f"   [you use it up to {cap:g}%]"
-            print(f"        {100 * x:5.1f}%  {names[i]}{lim}")
+            print(f"        {100 * x:5.1f}%  {names[i]}")
         print(f"        nearest single material to this blend: "
               f"{names[near]} at {dn[near]:.3f}")
         print(f"        its profile: mean {mix.mean():.3f}, sd "
@@ -450,15 +441,11 @@ def main() -> int:
                     shares, np.array([thr[n_] for n_ in row["names"]]),
                     exponent)
             sheet = as_sheet(shares, ladder)
-            over = []
             with open(path, "w", encoding="utf-8", newline="") as fh:
                 cw = csv.writer(fh)
                 cw.writerow(["material", "dilution", "weight"])
                 for n_, x, (d, parts, neat) in zip(row["names"], shares, sheet):
                     cw.writerow([n_, d, round(parts, 2)])
-                    cap = lv.get(n_, float("nan"))
-                    if cap == cap and 100 * x > cap * 1.02 + 0.02:
-                        over.append((n_, 100 * float(x), cap))
             print(f"[mud] wrote {path.relative_to(ROOT)}  "
                   f"(distance {row['residual']:.3f}, exponent {exponent:g})")
             print("      what to weigh, and the neat share it delivers:")
@@ -466,11 +453,6 @@ def main() -> int:
                 dil = "neat" if d >= 100 else f"{d:g}% dilution"
                 print(f"        {parts:7.1f} parts of {n_} ({dil})"
                       f"   -> {100 * float(x):5.2f}% of the neat material")
-            if over:
-                print("      [!] above your own use level, so smell it "
-                      "diluted: "
-                      + ", ".join(f"{n_} at {s:.1f}% vs {c:g}%"
-                                  for n_, s, c in over))
 
         for k in (args.emit_k or [3, args.max_k]):
             row = next(r for r in rows if r["k"] == k)

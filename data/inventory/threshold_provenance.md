@@ -100,3 +100,24 @@ ranked as loud or louder on the same strips, but no mix measured their size,
 so they are left as they are until one does.
 
 *Mixes and strip ranking supplied by the perfumer, 2026-11-06 and 2026-11-07.*
+
+## The blotter-session multipliers rest on top %, which is no longer used
+
+On 2026-11-07 the perfumer asked that nothing use the sheet's top % column.
+`build_inventory.py` no longer copies it, so it is gone from `inventory.csv`
+and everything downstream, and `strength_worksheet.py`, which prepared each
+blotter at that level, was removed.
+
+The 23 rows in `strength.csv` with `judgements` above 0 came from those
+sessions. Each strip was made at the material's top %, and a bin means
+"louder or quieter than its use level implies". So the multipliers still carry
+top % inside them. They stay for now because they are the only measurement
+for those materials, but they are suspect. Calone 1951's 0.243 (judged two
+bins weak) is the one that matters most: it held Calone to 1.23 parts, and the
+sea mixes say it needs far more.
+
+New corrections come from direct comparisons instead, entered by hand with
+`judgements` 0, like Galaxolide and Cedarwood EO above: a balance test between
+two materials at working strength, or a ranking of strips at stated dilutions.
+`apply_strength.py` would overwrite those hand rows if re-run on the old
+session sheets, so don't.

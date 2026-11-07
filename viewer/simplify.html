@@ -1363,10 +1363,6 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
           // formula already contains it is not a choice anyone is making.
           note.push('<span class="warn">distinctive — may read as itself</span>');
         }
-        if (m.use && 100 * x.share > m.use * 1.02 + 0.02) {
-          over.push(m.n + " at " + (100 * x.share).toFixed(1)
-                    + "% against a recorded working maximum of " + m.use + "%");
-        }
         html += "<tr><td>" + esc(m.n) + "</td><td class=num>"
           + (x.dil === 100 ? "neat" : x.dil + "%") + "</td><td class=num>"
           + (x.parts >= 1 ? x.parts.toFixed(1) : x.parts.toPrecision(2))
@@ -1466,8 +1462,7 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
     }
     if (over.length) {
       el("overUse").hidden = false;
-      el("overUse").textContent = "Above a recorded working maximum: "
-        + over.join("; ") + ". Smell it diluted.";
+      el("overUse").textContent = "Not for use: " + over.join("; ") + ".";
     } else {
       el("overUse").hidden = true;
     }

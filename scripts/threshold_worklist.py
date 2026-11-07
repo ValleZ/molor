@@ -75,10 +75,9 @@ def main() -> int:
         if n:
             try:
                 inv[n] = (float(v) if v else None,
-                          float(lp) if lp else None,
-                          float(r.get("top_pct") or 0) or None)
+                          float(lp) if lp else None)
             except ValueError:
-                inv[n] = (None, None, None)
+                inv[n] = (None, None)
 
     lib = set(P)
     forms = []
@@ -132,11 +131,11 @@ def main() -> int:
 
     rows = []
     for n in shift:
-        thr, lp, use = inv.get(n, (None, None, None))
+        thr, lp = inv.get(n, (None, None))
         rows.append({"name": n, "worst_shift": shift[n],
                      "formulas": appears[n],
                      "score": shift[n] * appears[n],
-                     "threshold": thr, "logp": lp, "use": use})
+                     "threshold": thr, "logp": lp})
     rows.sort(key=lambda r: -r["score"])
 
     print(f"  {'material':30s} {'score':>6s} {'worst':>6s} {'in':>3s} "

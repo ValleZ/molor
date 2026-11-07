@@ -1,167 +1,167 @@
-name,inchikey,smiles,single_molecule,volatility_class,family,top_pct,ifra_cat4,ifra_cat9,stability,log_drop,log_drop_source,water_threshold_ppb,logp,boiling_point_c
-Aldehyde C-10,KSMVZQYAVGTKIV-UHFFFAOYSA-N,CCCCCCCCCC=O,1,Top,Aldehyde,0.5,—,—,Oxidises fast,0.12,e,0.5,3.33,209.0
-Aldehyde C-11 Undecylenic,OFHHDSQXFXLTKC-UHFFFAOYSA-N,C=CCCCCCCCCC=O,1,Top,Aldehyde,0.5,—,—,Oxidises fast,0.23,m,1.0,3.49,230.0
-Aldehyde C-12 MNA,NFAVNWJJYQAGNB-UHFFFAOYSA-N,CCCCCCCCCC(C)C=O,1,Top-Mid,Aldehyde,0.5,—,—,Oxidises fast,0.1,e,1.0,3.96,245.0
-Aldehyde C-8,NUJGJRNETVAIRJ-UHFFFAOYSA-N,CCCCCCCC=O,1,Top,Aldehyde,0.5,—,—,Oxidises,0.12,e,0.7,2.55,171.0
-Allyl Amyl Glycolate,XCWPXUNHSPOFGV-UHFFFAOYSA-N,C=CCOC(=O)COCCC(C)C,1,Top-Mid,Green / Pineapple,0.5,—,—,Oxidises,0.28,e,0.5,1.78,235.0
-Alpha Pinene,GRWFGVWFFZKLTI-UHFFFAOYSA-N,CC1=CCC2CC1C2(C)C,1,Top,Aromatic,3.0,—,—,"Poor. Oxidizes fast; antioxidant, minimal headspace",0.2,e,6.0,3.0,156.0
-Ambrettolide,NVIPUOMWGQAOIT-RQOWECAXSA-N,O=C1CCCCC/C=C\CCCCCCCCO1,1,Base,Musk,8.0,—,—,Stable,0.2,e,25.0,4.78,345.0
-Ambroxan,YPZUZOLGGMJZJO-LQKXBSAESA-N,CC1(C)CCC[C@]2(C)[C@H]3CCO[C@]3(C)CC[C@@H]12,1,Base,Amber / Woody,5.0,—,—,Stable,0.18,e,3.0,4.41,315.0
-Anethole ex Star Anise,RUVINXPYWBROJD-ONEGZZNKSA-N,C/C=C/c1ccc(OC)cc1,1,Mid,Anisic,5.0,?,?,Oxidises,0.1,e,50.0,3.4,234.0
-Anisaldehyde,ZRSNZINYAWTAHE-UHFFFAOYSA-N,COc1ccc(C=O)cc1,1,Mid,Floral / Anisic,5.0,1.4%,0.42%,Oxidises,0.2,e,50.0,1.76,248.0
-Auralva,BFBPISPWJZMWJN-CPNJWEJPSA-N,COC(=O)c1ccccc1/N=C/CC(C)CCCC(C)(C)O,1,Mid,Floral,5.0,?,?,Stable,0.15,e,30.0,4.0,400.0
-Aurantiol,BFBPISPWJZMWJN-CPNJWEJPSA-N,COC(=O)c1ccccc1/N=C/CC(C)CCCC(C)(C)O,1,Base,Floral / Schiff base,5.0,?,?,Darkens,0.15,e,100.0,4.14,400.0
-Benzaldehyde,HUMNYLRZRPPJDN-UHFFFAOYSA-N,O=Cc1ccccc1,1,Top,Almond,0.5,0.25%,0.49%,Oxidises fast,0.12,e,350.0,1.5,200.0
-Benzoin Siam Resinoid,,,0,Base,Balsamic / Vanilla,10.0,?,?,Improves,0.03,e,50.0,3.0,300.0
-Benzyl Acetate,QUKGYYKBILRGFE-UHFFFAOYSA-N,CC(=O)OCc1ccccc1,1,Top-Mid,Ester / Floral,10.0,—,—,Stable,0.17,m,200.0,1.75,213.0
-Benzyl Isoeugenol,YKSSSKBJDZDZTD-XVNBXDOJSA-N,C/C=C/c1ccc(OCc2ccccc2)c(OC)c1,1,Base,Floral / Balsamic,3.0,—,—,Darkens,0.1,e,5000.0,4.31,360.0
-Benzyl Salicylate,ZCTQGTTXIYCGGC-UHFFFAOYSA-N,O=C(OCc1ccccc1)c1ccccc1O,1,Base,Salicylate,10.0,7.3%,14.0%,Stable,0.12,e,10000.0,2.75,320.0
-Bergamot BF,,,0,Top,Citrus,15.0,?,?,Oxidises fast,0.03,e,15.0,4.2,175.0
-Bergamote 000136,,,0,Top,Citrus,15.0,?,?,Oxidises; fridge,0.05,e,15.0,4.0,190.0
-Blackcurrant mercaptan,XVHGKKGBUDMTIQ-UHFFFAOYSA-N,COCCC(C)(C)S,1,Top,Fruity,2.0,—,—,Oxidizes to disulfides; destroyed by bleach,0.03,e,0.0001,1.73,232.0
-Calone 1951,SWUIQEBPZIHZQS-UHFFFAOYSA-N,Cc1ccc2c(c1)OCC(=O)CO2,1,Mid,Marine,1.0,—,—,Stable,0.15,e,1.0,1.34,275.0
-Cananga Oil,,,0,Mid,Floral,5.0,0.73%,1.4%,Good,0.1,e,,,
-Cashmeran,MIZGSAALSYARKU-UHFFFAOYSA-N,CC1C(C)(C)C2=C(C(=O)CCC2)C1(C)C,1,Base,Woody / Spicy / Musk,5.0,3.8%,0.13%,Stable,0.18,e,5.0,3.74,285.0
-Cassifix,RTIYSHLNESDZSF-UHFFFAOYSA-N,CC1=CCC(C23CCCC(C)(C2)OC3)C1(C)C,1,Mid,Fruity,5.0,?,?,Excellent,0.15,e,5.0,4.0,301.0
-Cassis Base 345B,,,0,Mid,Fruity / Blackcurrant,5.0,?,?,Stable,0.1,e,,,
-Cedarwood Virginia,,,0,Base,Woody,10.0,?,?,Oxidises,0.1,e,200.0,3.9,260.0
-Cinnamaldehyde,KJPRLNWUNMBNBZ-QPJJXVBHSA-N,O=C/C=C/c1ccccc1,1,Mid,Spicy,10.0,0.25%,0.49%,Oxidises,0.12,e,200.0,1.9,248.0
-Cinnamyl Alcohol,OOCCDEMITAIZTP-QPJJXVBHSA-N,OC/C=C/c1ccccc1,1,Mid-Base,Balsamic / Floral,1.0,1.2%,0.76%,Oxidises,0.2,e,500.0,1.95,250.0
-Cis-3-Hexenyl Salicylate,IEPWIPZLLIOZLU-ARJAWSKDSA-N,CC/C=C\CCOC(=O)c1ccccc1O,1,Base,Green / Salicylate,10.0,—,—,Stable,0.15,e,,4.9,290.0
-Citral,WTEVQBCEXWBHNA-JXMROGBWSA-N,CC(C)=CCC/C(C)=C/C=O,1,Top,Citrus,1.0,0.6%,1.2%,Oxidises fast,0.17,e,30.0,2.88,229.0
-Citronellol,QMVPMAAFGQKVCJ-UHFFFAOYSA-N,CC(C)=CCCC(C)CCO,1,Mid,Rose alcohol,15.0,12.0%,24.0%,Oxidises,0.08,e,40.0,2.75,225.0
-Citronellyl Acetate,JOZKFWLRHCDGJA-UHFFFAOYSA-N,CC(=O)OCCC(C)CCC=C(C)C,1,Top-Mid,Ester / Floral,10.0,2.7%,5.4%,Stable,0.12,e,100.0,4.2,240.0
-Civettone Base 184332,,,0,Base,Musk / Animalic,5.0,?,?,Stable,0.2,e,1.0,5.5,340.0
-Coumarin,ZYGHJZDHTFUPRJ-UHFFFAOYSA-N,O=c1ccc2ccccc2o1,1,Base,Gourmand / Fougere,5.0,1.5%,0.52%,Stable,0.2,e,25.0,1.79,301.0
-Cyclamen Aldehyde,ZFNVDHOSLNRHNN-UHFFFAOYSA-N,CC(C=O)Cc1ccc(C(C)C)cc1,1,Mid,Floral / Aldehydic,2.0,0.95%,0.23%,Oxidises,0.15,e,4.0,3.19,270.0
-D-Limonene,XMGQYMWWDOXHJM-SNVBAGLBSA-N,C=C(C)[C@@H]1CC=C(C)CC1,1,Top,Citrus,20.0,—,—,Oxidises fast,0.54,m,10.0,3.31,176.0
-Damascenone Total,POIARNZEYGURDG-FNORWQNLSA-N,C/C=C/C(=O)C1=C(C)C=CCC1(C)C,1,Top-Mid,Rose ketone,0.05,0.043%,0.084%,Oxidises,0.04,e,0.002,3.43,232.0
-Damascone Alpha,CRIGTVCBMUKRSL-FNORWQNLSA-N,C/C=C/C(=O)C1C(C)=CCCC1(C)C,1,Mid,Rose ketone,0.2,0.043%,0.084%,Oxidises,0.04,e,0.1,3.51,232.0
-Damascone Beta,BGTBFNDXYDYBEY-FNORWQNLSA-N,C/C=C/C(=O)C1=C(C)CCCC1(C)C,1,Mid,Rose ketone,5.0,0.043%,0.084%,Good,0.04,e,0.09,3.66,232.0
-Delta Decalactone,GHBSPIPJMLAMEP-UHFFFAOYSA-N,CCCCCC1CCCC(=O)O1,1,Mid,Lactone,1.0,—,—,Stable,0.14,e,100.0,2.66,281.0
-Dihydro Eugenol,PXIKRTCSSLJURC-UHFFFAOYSA-N,CCCc1ccc(O)c(OC)c1,1,Mid-Base,Phenolic / Floral,1.0,0.73%,1.4%,Darkens,0.28,m,20.0,2.35,246.0
-Dihydro Myrcenol,XSNQECSCDATQEL-UHFFFAOYSA-N,C=CC(C)CCCC(C)(C)O,1,Top,Citrus / Fresh,15.0,—,—,Oxidises,0.2,e,10.0,2.75,198.0
-Dimethyl Benzyl Carbinyl Acetate,FLUWAIIVLCVEKF-UHFFFAOYSA-N,CC(=O)OC(C)(C)Cc1ccccc1,1,Mid,Floral / Fruity,5.0,—,—,Stable,0.12,e,30.0,2.57,240.0
-Dimethyl Octenone,WKQWDIFHKYWRTA-UHFFFAOYSA-N,CCC(=O)C(C)CC=C(C)C,1,Top,Green / Citrus,0.5,1.9%,1.5%,Oxidises,0.14,e,1.0,2.96,208.0
-Dimethyl Sulfide,QMMFVYPAHWMCMS-UHFFFAOYSA-N,CSC,1,Top,Sulfurous / Fruity,1.0,—,—,Fair; fridge,0.01,e,1.0,0.92,37.0
-Doremox,GDAVABNCFOTAOD-UHFFFAOYSA-N,CC1CCOC(c2ccccc2)C1,1,Top-Mid,Rose / Green,2.0,—,—,Stable,0.12,e,5.0,3.0,240.0
-Ebanol,RNLHVODSMDJCBR-UHFFFAOYSA-N,CC1=CCC(C=CC(C)C(C)O)C1(C)C,1,Base,Sandalwood,5.0,—,—,Stable,0.15,e,1.0,3.55,300.0
-Edenolide,QISVACSCBGQBEZ-UHFFFAOYSA-N,CCOC(=O)CC(=O)OC(C)C1CCCC(C)(C)C1,1,Base,Musk,15.0,—,—,Good,0.0,e,15.0,3.09,310.0
-Ethyl 2-methyl butyrate,HCRBXQFHJMCTLF-UHFFFAOYSA-N,CCOC(=O)C(C)CC,1,Top,Fruity ester,0.2,—,—,Stable,0.13,e,0.15,1.6,133.0
-Ethyl Acetate,XEKOWRVHYACXOJ-UHFFFAOYSA-N,CCOC(C)=O,1,Top,Fruity / Solvent,2.0,—,—,Fair; volatile,0.01,e,5000.0,0.73,77.0
-Ethyl Benzoate,MTZQAGJQAFMTAQ-UHFFFAOYSA-N,CCOC(=O)c1ccccc1,1,Top-Mid,Fruity ester,5.0,—,—,Stable,0.15,e,60.0,2.64,212.0
-Ethyl Butyrate,OBNCKNCVKJNDBV-UHFFFAOYSA-N,CCCC(=O)OCC,1,Top,Fruity ester,0.5,—,—,Stable,0.19,m,1.0,1.35,121.0
-Ethyl Furaneol,QJYOEDXNPLUUAR-UHFFFAOYSA-N,CCC1=C(O)C(=O)C(C)O1,1,Mid,Gourmand / Fruity,0.5,0.25%,0.49%,Darkens,0.08,e,30.0,1.15,232.0
-Ethyl Linalool,KRLBLPBPZSSIGH-UHFFFAOYSA-N,C=CC(C)(O)CCC=C(C)CC,1,Top-Mid,Linalool family,10.0,—,—,Oxidises,0.4,e,8.0,3.06,199.0
-Ethyl Maltol,YIKYNHJUKRTCJL-UHFFFAOYSA-N,CCc1occc(=O)c1O,1,Mid-Base,Gourmand,1.0,—,—,Stable,0.03,e,100.0,0.91,188.0
-Ethyl Vanillin,CBOQJANXLMLOSS-UHFFFAOYSA-N,CCOc1cc(C=O)ccc1O,1,Base,Gourmand,1.0,—,—,Darkens,0.0,m,30.0,1.6,285.0
-Ethylene Brassylate,XRHCAGNSDHCHFJ-UHFFFAOYSA-N,O=C1CCCCCCCCCCCC(=O)OCCO1,1,Base,Musk,15.0,—,—,Stable,0.06,e,33.0,3.38,332.0
-Eugenol ex Clove,RRAFCDWBNXTKKO-UHFFFAOYSA-N,C=CCc1ccc(O)c(OC)c1,1,Mid,Phenolic / Spice,1.0,2.5%,4.9%,Darkens,0.04,e,10.0,2.13,254.0
-Exaltolide Total,FKUPPRZPSYCDRS-UHFFFAOYSA-N,O=C1CCCCCCCCCCCCCCO1,1,Base,Musk,8.0,2.4%,4.6%,Stable,0.0,e,25.0,4.61,345.0
-Fleur de Cassie,,,0,Mid-Base,Floral base,5.0,?,?,Darkens,0.18,e,20.0,3.5,200.0
-Floralozone,JFTSYAALCNQOKO-UHFFFAOYSA-N,CCc1ccc(CC(C)(C)C=O)cc1,1,Top-Mid,Marine / Ozonic,1.0,—,—,Oxidises,0.12,e,1.0,3.5,255.0
-Florhydral,OHRBQTOZYGEWCJ-UHFFFAOYSA-N,CC(C)c1cccc(C(C)CC=O)c1,1,Mid,Floral / Green,2.0,—,—,Oxidises,0.18,e,2.0,3.5,270.0
-Florol,YVSNOTITPICPTB-UHFFFAOYSA-N,CC(C)CC1CC(C)(O)CCO1,1,Mid,Muguet / Floral,5.0,—,—,Stable,0.3,e,100.0,1.96,218.0
-Fructone,XWEOGMYZFCHQNT-UHFFFAOYSA-N,CCOC(=O)CC1(C)OCCO1,1,Top-Mid,Fruity ester,5.0,—,—,"Acetal — hydrolyses at low pH, weak in acidic wash bases",0.18,e,100.0,0.7,207.0
-Galaxolide,ONKNPOPIGWHAQC-UHFFFAOYSA-N,CC1COCc2cc3c(cc21)C(C)(C)C(C)C3(C)C,1,Base,Musk,20.0,—,—,Stable,0.12,e,10.0,4.53,325.0
-Gamma Decalactone,IFYYFLINQYPWGJ-UHFFFAOYSA-N,CCCCCCC1CCC(=O)O1,1,Mid-Base,Lactone / Peach,1.0,—,—,Stable,0.1,e,11.0,2.66,281.0
-Gamma Nonalactone,OALYTRUKMRCXNH-UHFFFAOYSA-N,CCCCCC1CCC(=O)O1,1,Mid,Lactone,3.0,—,—,Very good,0.15,e,30.0,2.27,262.0
-Gamma Undecalactone,PHXATPHONSXBIL-UHFFFAOYSA-N,CCCCCCCC1CCC(=O)O1,1,Mid-Base,Lactone / Peach,1.0,—,—,Stable,0.14,m,5.0,3.05,297.0
-Geraniol 95,GLZPCOQZEFWAFX-JXMROGBWSA-N,CC(C)=CCC/C(C)=C/CO,1,Mid,Rose alcohol,10.0,4.7%,2.8%,Oxidises,0.03,e,40.0,2.67,230.0
-Geranyl Acetate,HIGQPQRQIQDZMP-FLIBITNWSA-N,CC(=O)OC/C=C(/C)CCC=C(C)C,1,Mid,Rose / Ester,5.0,—,—,Oxidises,0.15,e,15.0,3.24,245.0
-"Grapefruit oil, Pink",,,0,Top,Grapefruit,10.0,4.0%,—,Poor. Limonene oxidation,0.1,e,10.0,3.3,178.0
-Habanolide,ZYXGECMFJMLZNA-UHFFFAOYSA-N,O=C1CCCCCCCCCC=CCCCO1,1,Base,Musk,10.0,—,—,Stable,0.15,e,15.0,4.39,340.0
-Hedione,KVWWIYGFBYDJQC-UHFFFAOYSA-N,CCCCCC1C(=O)CCC1CC(=O)OC,1,Mid,Floral / Smoother,30.0,—,—,Stable,0.39,m,20.0,2.73,300.0
-Helional,BOPPSUHPZARXTH-UHFFFAOYSA-N,CC(C=O)Cc1ccc2c(c1)OCO2,1,Mid,Floral / Marine,5.0,2.6%,0.15%,Oxidises,0.14,e,10.0,1.79,280.0
-Heliotropin Repl X24,,,0,Mid-Base,Powdery / Almond,10.0,?,?,Stable,0.15,e,,,
-Heliotropin,SATCULPHIDQDRE-UHFFFAOYSA-N,O=Cc1ccc2c(c1)OCO2,1,Mid-Base,Powdery / Almond,5.0,—,—,Darkens,0.4,e,100.0,1.23,250.0
-Helvetolide,LSTSBZKIQFOPHA-UHFFFAOYSA-N,CCC(=O)OCC(C)(C)OC(C)C1CCCC(C)(C)C1,1,Base,Musk,10.0,—,—,Stable,0.2,e,10.0,4.8,300.0
-Hexenol-3-CIS,UFLHIIWVXFIJGU-ARJAWSKDSA-N,CC/C=C\CCO,1,Top,Green,0.3,—,—,Oxidises,0.1,e,10.0,1.33,157.0
-Hexenyl-3-CIS Acetate,NPFVOOAXDOBMCE-PLNGDYQASA-N,CC/C=C\CCOC(C)=O,1,Top,Green,0.5,—,—,Oxidises,0.05,e,10.0,1.91,169.0
-Hexyl Acetate,AOGQPLXWSUTHQB-UHFFFAOYSA-N,CCCCCCOC(C)=O,1,Top,Fruity ester,1.0,—,—,Stable,0.12,e,2.0,2.13,171.0
-Hexyl Cinnamic Aldehyde,GUUHFMWKWLOQMM-UHFFFAOYSA-N,CCCCCCC(C=O)=Cc1ccccc1,1,Mid-Base,Floral / Jasmine,10.0,9.9%,19.0%,Oxidises,0.11,m,1000.0,4.24,305.0
-Hexyl Salicylate,DUKPKQFHJQGTGU-UHFFFAOYSA-N,CCCCCCOC(=O)c1ccccc1O,1,Base,Salicylate / Floral,10.0,6.5%,1.2%,Stable,0.12,e,1000.0,3.13,300.0
-Hydroxycitronellal,WPFVBOQKRVRMJB-UHFFFAOYSA-N,CC(CC=O)CCCC(C)(C)O,1,Mid,Muguet,5.0,2.1%,4.1%,Oxidises,0.15,e,30.0,2.15,241.0
-Indolene 50,SIKJAQJRHWYJAI-UHFFFAOYSA-N,c1ccc2[nH]ccc2c1,1,Mid-Base,Animalic / Indolic,0.5,?,?,Darkens,0.15,e,140.0,2.17,253.0
-Ionone Alpha,UZFLPKAIBPNNCA-BQYQJAHWSA-N,CC(=O)/C=C/C1C(C)=CCCC1(C)C,1,Mid,Ionone / Violet,5.0,—,—,Oxidises,0.09,m,0.4,3.51,240.0
-Ionone Beta,PSQYTAPXSHCGMF-BQYQJAHWSA-N,CC(=O)/C=C/C1=C(C)CCCC1(C)C,1,Mid,Ionone / Violet,5.0,—,—,Oxidises,0.13,m,0.007,3.66,260.0
-Iso E Super,FVUGZKDGWGKCFE-UHFFFAOYSA-N,CC(=O)C1(C)CC2=C(CCCC2(C)C)CC1C,1,Base,Woody / Amber,25.0,20.0%,2.4%,Stable,0.15,e,0.5,4.52,295.0
-Isoamyl Acetate,MLFHJEHSLIIPHL-UHFFFAOYSA-N,CC(=O)OCCC(C)C,1,Top,Fruity ester,1.0,—,—,Stable,0.25,e,5.0,1.6,142.0
-Isobornyl Acetate,KGEKLUUHTZCSIP-UHFFFAOYSA-N,CC(=O)OC1CC2CCC1(C)C2(C)C,1,Top,Aromatic,5.0,—,—,Good,0.08,e,225.0,2.76,227.0
-Isobutyl Phenyl Acetate,RJASFPFZACBKBE-UHFFFAOYSA-N,CC(C)COC(=O)Cc1ccccc1,1,Mid,Honey / Chocolate,5.0,—,—,Stable,0.15,e,50.0,3.4,247.0
-Isoeugenol Replacer,,,0,Mid,Spicy / Phenolic,5.0,7.35%,?,Stable,0.2,e,,,
-Kephalis,YLNYLLVKHRZLGO-UHFFFAOYSA-N,C=C(OCC)C1C(C)(C)CC(=O)CC1(C)C,1,Base,Woody / Amber,20.0,—,—,Stable,0.15,e,10.0,3.9,290.0
-Labdanum Resinoid,,,0,Base,Amber / Resin,5.0,?,?,Improves,0.0,e,300.0,5.5,300.0
-Lavandin Grosso EO,,,0,Top,Aromatic,10.0,?,?,Oxidises fast,0.03,e,15.0,3.0,200.0
-Lemon FCF,,,0,Top,Citrus,10.0,?,?,Oxidises fast,0.0,e,10.0,3.3,200.0
-Lemonile,DHJVLXVXNFUSMU-UHFFFAOYSA-N,CCC(C)=CCCC(C)=CC#N,1,Top,Citrus,1.0,—,—,Excellent. The stable citral replacement,0.1,e,5.0,3.59,245.0
-Liffarome,BLOXMGXSDAAJGX-PLNGDYQASA-N,CC/C=C\CCOC(=O)OC,1,Top,Ester / Green,1.0,0.56%,1.1%,Moderate; hydrolyses in alkali,0.15,e,3.0,2.13,205.0
-"Lime Oil, Distilled",,,0,Top,Citrus,5.0,?,?,Oxidises fast; fridge,0.03,e,10.0,3.5,176.0
-Linalool,CDOSHBSSFJOMGT-UHFFFAOYSA-N,C=CC(C)(O)CCC=C(C)C,1,Top-Mid,Linalool family,15.0,—,—,Oxidises,0.15,e,6.0,2.67,198.0
-Linalyl Acetate,UWKAYLJWKGQEPM-UHFFFAOYSA-N,C=CC(C)(CCC=C(C)C)OC(C)=O,1,Top,Linalool family,15.0,—,—,Oxidises,0.04,m,25.0,3.24,220.0
-Linalyl Propionate,WAQIIHCCEMGYKP-UHFFFAOYSA-N,C=CC(C)(CCC=C(C)C)OC(=O)CC,1,Top-Mid,Floral / Bergamot,10.0,—,—,Oxidises,0.15,e,,4.0,226.0
-Maltol Isobutyrate,LPNUBNQKJRGCSC-UHFFFAOYSA-N,Cc1c(OC(=O)C(C)C)occc1=O,1,Mid,Gourmand / Fruity,5.0,—,—,Stable,0.15,e,,1.6,
-Manzanate,HZPKNSYIDSNZKW-UHFFFAOYSA-N,CCCC(C)C(=O)OCC,1,Top,Fruity ester,1.0,—,—,Stable,0.12,e,0.05,2.7,153.0
-Melonal,YGFGZTXGYTUXBA-UHFFFAOYSA-N,CC(C)=CCCC(C)C=O,1,Top,Marine,5.0,—,—,Acid-sensitive,0.04,e,1.0,2.57,232.0
-Methyl Anthranilate,VAMXMNNIEUEQDV-UHFFFAOYSA-N,COC(=O)c1ccccc1N,1,Mid,Floral / Indolic,1.0,—,—,Darkens,0.15,e,3.0,1.06,256.0
-Methyl Benzoate,QPJVMBTYPHYUOC-UHFFFAOYSA-N,COC(=O)c1ccccc1,1,Top,Ester,2.0,—,—,Stable,0.13,e,0.52,1.47,199.0
-Methyl Cinnamate,CCRCUPLGCSFEDV-BQYQJAHWSA-N,COC(=O)/C=C/c1ccccc1,1,Mid,Balsamic / Fruity,5.0,—,—,Stable,0.15,e,30.0,2.62,261.0
-Methyl Diantilis,FNEWGEWRECZWQM-UHFFFAOYSA-N,CCOc1cc(COC)ccc1O,1,Mid-Base,Spicy / Floral,5.0,—,—,Stable,0.05,e,5.0,1.94,290.0
-Methyl Ionone Gamma Coeur,PSLHSYRVWGKZHP-UHFFFAOYSA-N,CC(=O)C=C(C)C1C(C)=CCCC1(C)C,1,Mid-Base,Ionone / Violet,5.0,30.0%,59.0%,Oxidises,0.13,e,5.0,3.9,248.0
-Methyl Laitone,COWIMPXRUUJKQF-UHFFFAOYSA-N,CC1CCC2(CCC(=O)O2)CC1,1,Mid,Lactonic / Gourmand,0.5,—,—,Stable,0.2,e,8.0,2.9,232.0
-Methyl Pamplemousse,RDHNTAXPFZIMDN-UHFFFAOYSA-N,COC(OC)C(C)(C)CC=C(C)C,1,Top,Grapefruit,0.5,—,—,Oxidises,0.23,m,7.0,2.99,215.0
-Mimosa De Provence,,,0,Mid-Base,Floral base,10.0,?,?,Darkens,0.15,e,20.0,3.5,250.0
-Neobergamate Forte,DCXXKSXLKWAZNO-UHFFFAOYSA-N,C=CC(=C)CCCC(C)(C)OC(C)=O,1,Top-Mid,Citrus,5.0,—,—,Oxidises,0.0,e,30.0,4.6,240.0
-Neobutenone Alpha,,,0,Top-Mid,Fruity / Damascone,1.0,1.1%,1.4%,Stable,0.02,e,0.1,3.6,230.0
-Nootkatone,WTOYNNBCKUYIKC-UHFFFAOYSA-N,C=C(C)C1CCC2=CC(=O)CC(C)C2(C)C1,1,Mid,Grapefruit,0.5,—,—,Oxidises,0.1,e,800.0,3.9,310.0
-Nympheal,UKZXPOJABTXLMK-UHFFFAOYSA-N,Cc1cc(CC(C)C)ccc1CCC=O,1,Mid,Floral / Muguet,2.0,—,—,Stable,0.15,e,1.0,3.7,290.0
-Oakmoss IFRA43,,,0,Base,Mossy,1.0,0.1%,0.1%,Improves,0.15,e,50.0,3.5,300.0
-Orange Sweet EO,,,0,Top,Citrus,20.0,?,?,Oxidises fast,0.15,e,5.0,3.3,176.0
-Orange Terpenes,,,0,Top,Citrus,20.0,—,—,Oxidises fast,0.38,m,10.0,3.3,176.0
-Oranger Crystals,XSAYZAUNJMRRIR-UHFFFAOYSA-N,CC(=O)c1ccc2ccccc2c1,1,Mid,Floral / Orange blossom,2.0,0.2%,—,Stable,0.41,m,10.0,1.51,257.0
-Orchidée № 2,,,0,Mid-Base,Floral base,30.0,?,?,Good,0.15,e,20.0,4.0,280.0
-Oud Oliffac,,,0,Base,Oud / Woody,5.0,?,?,Stable,0.1,e,20.0,4.5,300.0
-Oxane,GKGOLPMYJJXRGD-UHFFFAOYSA-N,CCCC1CCOC(C)S1,1,Top,Sulfurous / Tropical,1.0,—,—,Stable,0.1,e,0.01,2.9,210.0
-Para Cresyl Acetate,CDJJKTLOZJAGIZ-UHFFFAOYSA-N,CC(=O)Oc1ccc(C)cc1,1,Mid,Animalic,0.2,—,—,Darkens,0.15,e,25.0,1.92,212.0
-Paradisamide,XATDMWWMSDQXFD-UHFFFAOYSA-N,CCC(CC)C(=O)N(C)c1cccc(C)c1,1,Mid-Base,Fruity,5.0,—,—,Stable,0.2,e,10.0,3.3,300.0
-Patchouli Dark,,,0,Base,Woody / Earthy,10.0,?,?,Improves,0.15,e,30.0,3.22,280.0
-Pear Ester,OPCRGEVPIBLWAY-QNRZBPGKSA-N,CCCCC/C=C\C=C\C(=O)OCC,1,Top-Mid,Fruity ester,2.0,—,—,Oxidises,0.15,e,100.0,4.2,270.0
-Peonile,ZHOOOLQOWQVYOE-UHFFFAOYSA-N,N#CC(=C1CCCCC1)c1ccccc1,1,Mid,Floral,5.0,0.52%,1.0%,Stable,0.0,e,30.0,3.93,300.0
-Petitgrain EO,,,0,Top,Citrus / Green,5.0,?,?,Oxidises fast,0.2,e,15.0,3.2,190.0
-Phenethyl Acetate,MDHYEMXUFSJLGV-UHFFFAOYSA-N,CC(=O)OCCc1ccccc1,1,Top-Mid,Ester / Floral,5.0,—,—,Stable,0.19,m,50.0,1.79,232.0
-Phenethyl Alcohol,WRMNZCZEMHIOCP-UHFFFAOYSA-N,OCCc1ccccc1,1,Mid,Rose alcohol,20.0,—,—,Stable,0.16,m,750.0,1.22,220.0
-Phenyl Acetaldehyde,DTUQWGWMVIHBKE-UHFFFAOYSA-N,O=CCc1ccccc1,1,Top-Mid,Floral / Green,2.0,0.25%,0.49%,Oxidises,0.2,e,4.0,1.78,195.0
-Phenyl Ethyl Phenyl Acetate Replacer,,,0,Base,Floral / Rosy,5.0,?,?,Stable,0.3,e,500.0,3.02,320.0
-Pineapple Supreme,,,0,Top,Fruity,1.0,?,?,Stable,0.12,e,1.0,2.8,180.0
-Pistachio Thiazole,ZOMLUJGPZRNYBF-UHFFFAOYSA-N,Cc1ccsc1C(C)C,1,Mid,Nutty / Gourmand,1.0,—,—,Stable,0.05,e,0.1,2.5,200.0
-Raspberry Ketone,NJGBTKGETPDVIK-UHFFFAOYSA-N,CC(=O)CCc1ccc(O)cc1,1,Mid-Base,Fruity,1.0,1.0%,1.0%,Stable,0.4,e,5.0,1.91,292.0
-Raspberry Ripple,,,0,Mid,Gourmand / Fruity,5.0,?,?,Stable,0.12,e,5.0,2.0,250.0
-Rhuboflor,UBALJTRHSDXCPY-UHFFFAOYSA-N,CC=C1CC2CC1C1CCCOC21,1,Top-Mid,Green / Fruity,2.0,?,?,Stable,0.15,e,,,
-Rose Absolute Select,,,0,Mid,Rose,10.0,?,?,Good,0.08,e,5.0,2.5,220.0
-Rose Oxide,ZBCCUWZRJMGIBB-UHFFFAOYSA-N,CC(C)=CC1CCC(C)CO1,1,Top,Rose,0.5,—,—,Oxidises,0.15,e,0.5,2.77,183.0
-Rosemary Tunisia,,,0,Top,Aromatic,5.0,?,?,Oxidises fast,0.1,e,25.0,2.8,165.0
-Sandalore,NGYMOTOXXHCHOC-UHFFFAOYSA-N,CC1=CCC(CCC(C)C(C)O)C1(C)C,1,Base,Sandalwood,5.0,1.2%,2.3%,Stable,0.2,m,20.0,3.78,300.0
-Stemone,CBVWMGCJNPPAAR-UHFFFAOYSA-N,CCC(CC(C)CC)=NO,1,Mid,Green,0.5,—,—,Oxidises,0.2,e,2.0,2.66,205.0
-Strawberiff,,,0,Mid,Fruity / Acidic,0.5,?,?,Stable,0.1,e,1.0,2.0,220.0
-Strawberry Furanone,INAXVXBDKKUCGI-UHFFFAOYSA-N,CC1=C(O)C(=O)C(C)O1,1,Mid,Gourmand / Fruity,5.0,0.25%,0.49%,"Poor. Browns, pH-sensitive",0.17,e,20.0,0.76,232.0
-Strawberry Glycidate,LQKRYVGRPXFFAV-UHFFFAOYSA-N,CCOC(=O)C1OC1(C)c1ccccc1,1,Mid,Fruity,0.5,—,—,Stable,0.02,e,20.0,1.86,272.0
-Styrallyl Acetate,QUMXDOLUJCHOAY-UHFFFAOYSA-N,CC(=O)OC(C)c1ccccc1,1,Top,Ester / Green,1.0,—,—,Stable,0.12,e,160.0,2.31,215.0
-"Styrax Resinoid EAL, Wild",,,0,Base,Balsamic / Resin,5.0,0.64%,1.3%,Good,0.05,e,50.0,3.0,300.0
-Tangerine EO,,,0,Top,Citrus,10.0,?,?,Oxidises fast,0.03,e,20.0,3.3,176.0
-Terpineol Alpha,WUOACPNHFRMFPN-UHFFFAOYSA-N,CC1=CCC(C(C)(C)O)CC1,1,Mid,Floral / Pine,10.0,—,—,Stable,0.4,e,330.0,2.98,219.0
-Tetrahydro Linalool,DLHQZZUEERVIGQ-UHFFFAOYSA-N,CCC(C)(O)CCCC(C)C,1,Top-Mid,Linalool family,10.0,—,—,Stable,0.08,e,100.0,2.97,193.0
-Thiocineole,DXKUHGIKFQWKIT-UHFFFAOYSA-N,CC12CCC(CC1)SC2(C)C,1,Top,Grapefruit / Sulfur,1.0,—,—,Fair; fridge,0.03,e,0.001,3.2,215.0
-Torref Pyrazine,,,0,Top-Mid,Roasted / Gourmand,5.0,—,—,Stable,0.1,e,700.0,0.54,155.0
-Toscanol,SHLSJFDJYSSUIP-UHFFFAOYSA-N,COc1ccc(CC2CC2)cc1,1,Mid,Anisic / Specialty,2.0,—,—,Stable,0.2,e,30.0,3.3,235.0
-"Trans-2,Cis-6-Nonadienal",HZYHMHHBBBSGHB-ODYTWBPASA-N,CC/C=C\CC/C=C/C=O,1,Top,Green / Cucumber,1.0,—,—,Oxidises fast; fridge,0.1,e,0.01,3.0,202.0
-Trans-4-Decenal,CWRKZMLUDFBPAO-VOTSOKGWSA-N,CCCCC/C=C/CCC=O,1,Top,Aldehyde / Citrus,1.0,—,—,Oxidises fast; fridge,0.12,e,0.1,3.6,210.0
-Triplal,MZZRKEIUNOYYDF-UHFFFAOYSA-N,CC1=CC(C)C(C=O)CC1,1,Top,Green,1.0,2.5%,4.9%,Fair,0.12,e,0.5,2.18,195.0
-Ultrazur,,,0,Mid,Marine / Specialty,0.5,—,—,Stable,0.15,e,1.5,3.5,250.0
-Undecavertol,WSTQLNQRVZNEDV-UHFFFAOYSA-N,CCC=C(C)C(O)CCCCC,1,Mid,Green / Floral,2.0,—,—,Oxidises,0.12,e,3.0,3.28,225.0
-Vanillin,MWOOGOJBHIARFG-UHFFFAOYSA-N,COc1cc(C=O)ccc1O,1,Base,Gourmand,3.0,—,—,Darkens,0.07,m,100.0,1.21,285.0
-Veloutone,PUKWIVZFEZFVAT-UHFFFAOYSA-N,CCCCCC1(C)CCC(C)(C)C1=O,1,Mid,Fruity / Lactonic,5.0,—,—,Stable,0.15,e,5.0,4.3,230.0
-Velvione,ABRIMXGLNHCLIP-UHFFFAOYSA-N,O=C1CCCC=CCCCCCCCCCC1,1,Base,Musk,5.0,?,?,Stable,0.2,e,15.0,5.2,330.0
-Verdox HC,FINOAUDUYKVGDS-UHFFFAOYSA-N,CC(=O)OC1CCCCC1C(C)(C)C,1,Top,Fruity / Green apple,20.0,—,—,Stable,0.15,e,100.0,4.3,221.0
-Vertofix Coeur,,,0,Base,Woody,30.0,—,—,Stable,0.05,e,100.0,5.0,272.0
-Vetiver Java,,,0,Base,Woody / Earthy,5.0,?,?,Improves,0.15,e,60.0,4.2,300.0
-Ylang-Ylang total,,,0,,,,,,,,,,,
+name,inchikey,smiles,single_molecule,volatility_class,family,ifra_cat4,ifra_cat9,stability,log_drop,log_drop_source,water_threshold_ppb,logp,boiling_point_c
+Aldehyde C-10,KSMVZQYAVGTKIV-UHFFFAOYSA-N,CCCCCCCCCC=O,1,Top,Aldehyde,—,—,Oxidises fast,0.12,e,0.5,3.33,209.0
+Aldehyde C-11 Undecylenic,OFHHDSQXFXLTKC-UHFFFAOYSA-N,C=CCCCCCCCCC=O,1,Top,Aldehyde,—,—,Oxidises fast,0.23,m,1.0,3.49,230.0
+Aldehyde C-12 MNA,NFAVNWJJYQAGNB-UHFFFAOYSA-N,CCCCCCCCCC(C)C=O,1,Top-Mid,Aldehyde,—,—,Oxidises fast,0.1,e,1.0,3.96,245.0
+Aldehyde C-8,NUJGJRNETVAIRJ-UHFFFAOYSA-N,CCCCCCCC=O,1,Top,Aldehyde,—,—,Oxidises,0.12,e,0.7,2.55,171.0
+Allyl Amyl Glycolate,XCWPXUNHSPOFGV-UHFFFAOYSA-N,C=CCOC(=O)COCCC(C)C,1,Top-Mid,Green / Pineapple,—,—,Oxidises,0.28,e,0.5,1.78,235.0
+Alpha Pinene,GRWFGVWFFZKLTI-UHFFFAOYSA-N,CC1=CCC2CC1C2(C)C,1,Top,Aromatic,—,—,"Poor. Oxidizes fast; antioxidant, minimal headspace",0.2,e,6.0,3.0,156.0
+Ambrettolide,NVIPUOMWGQAOIT-RQOWECAXSA-N,O=C1CCCCC/C=C\CCCCCCCCO1,1,Base,Musk,—,—,Stable,0.2,e,25.0,4.78,345.0
+Ambroxan,YPZUZOLGGMJZJO-LQKXBSAESA-N,CC1(C)CCC[C@]2(C)[C@H]3CCO[C@]3(C)CC[C@@H]12,1,Base,Amber / Woody,—,—,Stable,0.18,e,3.0,4.41,315.0
+Anethole ex Star Anise,RUVINXPYWBROJD-ONEGZZNKSA-N,C/C=C/c1ccc(OC)cc1,1,Mid,Anisic,?,?,Oxidises,0.1,e,50.0,3.4,234.0
+Anisaldehyde,ZRSNZINYAWTAHE-UHFFFAOYSA-N,COc1ccc(C=O)cc1,1,Mid,Floral / Anisic,1.4%,0.42%,Oxidises,0.2,e,50.0,1.76,248.0
+Auralva,BFBPISPWJZMWJN-CPNJWEJPSA-N,COC(=O)c1ccccc1/N=C/CC(C)CCCC(C)(C)O,1,Mid,Floral,?,?,Stable,0.15,e,30.0,4.0,400.0
+Aurantiol,BFBPISPWJZMWJN-CPNJWEJPSA-N,COC(=O)c1ccccc1/N=C/CC(C)CCCC(C)(C)O,1,Base,Floral / Schiff base,?,?,Darkens,0.15,e,100.0,4.14,400.0
+Benzaldehyde,HUMNYLRZRPPJDN-UHFFFAOYSA-N,O=Cc1ccccc1,1,Top,Almond,0.25%,0.49%,Oxidises fast,0.12,e,350.0,1.5,200.0
+Benzoin Siam Resinoid,,,0,Base,Balsamic / Vanilla,?,?,Improves,0.03,e,50.0,3.0,300.0
+Benzyl Acetate,QUKGYYKBILRGFE-UHFFFAOYSA-N,CC(=O)OCc1ccccc1,1,Top-Mid,Ester / Floral,—,—,Stable,0.17,m,200.0,1.75,213.0
+Benzyl Isoeugenol,YKSSSKBJDZDZTD-XVNBXDOJSA-N,C/C=C/c1ccc(OCc2ccccc2)c(OC)c1,1,Base,Floral / Balsamic,—,—,Darkens,0.1,e,5000.0,4.31,360.0
+Benzyl Salicylate,ZCTQGTTXIYCGGC-UHFFFAOYSA-N,O=C(OCc1ccccc1)c1ccccc1O,1,Base,Salicylate,7.3%,14.0%,Stable,0.12,e,10000.0,2.75,320.0
+Bergamot BF,,,0,Top,Citrus,?,?,Oxidises fast,0.03,e,15.0,4.2,175.0
+Bergamote 000136,,,0,Top,Citrus,?,?,Oxidises; fridge,0.05,e,15.0,4.0,190.0
+Blackcurrant mercaptan,XVHGKKGBUDMTIQ-UHFFFAOYSA-N,COCCC(C)(C)S,1,Top,Fruity,—,—,Oxidizes to disulfides; destroyed by bleach,0.03,e,0.0001,1.73,232.0
+Calone 1951,SWUIQEBPZIHZQS-UHFFFAOYSA-N,Cc1ccc2c(c1)OCC(=O)CO2,1,Mid,Marine,—,—,Stable,0.15,e,1.0,1.34,275.0
+Cananga Oil,,,0,Mid,Floral,0.73%,1.4%,Good,0.1,e,,,
+Cashmeran,MIZGSAALSYARKU-UHFFFAOYSA-N,CC1C(C)(C)C2=C(C(=O)CCC2)C1(C)C,1,Base,Woody / Spicy / Musk,3.8%,0.13%,Stable,0.18,e,5.0,3.74,285.0
+Cassifix,RTIYSHLNESDZSF-UHFFFAOYSA-N,CC1=CCC(C23CCCC(C)(C2)OC3)C1(C)C,1,Mid,Fruity,?,?,Excellent,0.15,e,5.0,4.0,301.0
+Cassis Base 345B,,,0,Mid,Fruity / Blackcurrant,?,?,Stable,0.1,e,,,
+Cedarwood Virginia,,,0,Base,Woody,?,?,Oxidises,0.1,e,200.0,3.9,260.0
+Cinnamaldehyde,KJPRLNWUNMBNBZ-QPJJXVBHSA-N,O=C/C=C/c1ccccc1,1,Mid,Spicy,0.25%,0.49%,Oxidises,0.12,e,200.0,1.9,248.0
+Cinnamyl Alcohol,OOCCDEMITAIZTP-QPJJXVBHSA-N,OC/C=C/c1ccccc1,1,Mid-Base,Balsamic / Floral,1.2%,0.76%,Oxidises,0.2,e,500.0,1.95,250.0
+Cis-3-Hexenyl Salicylate,IEPWIPZLLIOZLU-ARJAWSKDSA-N,CC/C=C\CCOC(=O)c1ccccc1O,1,Base,Green / Salicylate,—,—,Stable,0.15,e,,4.9,290.0
+Citral,WTEVQBCEXWBHNA-JXMROGBWSA-N,CC(C)=CCC/C(C)=C/C=O,1,Top,Citrus,0.6%,1.2%,Oxidises fast,0.17,e,30.0,2.88,229.0
+Citronellol,QMVPMAAFGQKVCJ-UHFFFAOYSA-N,CC(C)=CCCC(C)CCO,1,Mid,Rose alcohol,12.0%,24.0%,Oxidises,0.08,e,40.0,2.75,225.0
+Citronellyl Acetate,JOZKFWLRHCDGJA-UHFFFAOYSA-N,CC(=O)OCCC(C)CCC=C(C)C,1,Top-Mid,Ester / Floral,2.7%,5.4%,Stable,0.12,e,100.0,4.2,240.0
+Civettone Base 184332,,,0,Base,Musk / Animalic,?,?,Stable,0.2,e,1.0,5.5,340.0
+Coumarin,ZYGHJZDHTFUPRJ-UHFFFAOYSA-N,O=c1ccc2ccccc2o1,1,Base,Gourmand / Fougere,1.5%,0.52%,Stable,0.2,e,25.0,1.79,301.0
+Cyclamen Aldehyde,ZFNVDHOSLNRHNN-UHFFFAOYSA-N,CC(C=O)Cc1ccc(C(C)C)cc1,1,Mid,Floral / Aldehydic,0.95%,0.23%,Oxidises,0.15,e,4.0,3.19,270.0
+D-Limonene,XMGQYMWWDOXHJM-SNVBAGLBSA-N,C=C(C)[C@@H]1CC=C(C)CC1,1,Top,Citrus,—,—,Oxidises fast,0.54,m,10.0,3.31,176.0
+Damascenone Total,POIARNZEYGURDG-FNORWQNLSA-N,C/C=C/C(=O)C1=C(C)C=CCC1(C)C,1,Top-Mid,Rose ketone,0.043%,0.084%,Oxidises,0.04,e,0.002,3.43,232.0
+Damascone Alpha,CRIGTVCBMUKRSL-FNORWQNLSA-N,C/C=C/C(=O)C1C(C)=CCCC1(C)C,1,Mid,Rose ketone,0.043%,0.084%,Oxidises,0.04,e,0.1,3.51,232.0
+Damascone Beta,BGTBFNDXYDYBEY-FNORWQNLSA-N,C/C=C/C(=O)C1=C(C)CCCC1(C)C,1,Mid,Rose ketone,0.043%,0.084%,Good,0.04,e,0.09,3.66,232.0
+Delta Decalactone,GHBSPIPJMLAMEP-UHFFFAOYSA-N,CCCCCC1CCCC(=O)O1,1,Mid,Lactone,—,—,Stable,0.14,e,100.0,2.66,281.0
+Dihydro Eugenol,PXIKRTCSSLJURC-UHFFFAOYSA-N,CCCc1ccc(O)c(OC)c1,1,Mid-Base,Phenolic / Floral,0.73%,1.4%,Darkens,0.28,m,20.0,2.35,246.0
+Dihydro Myrcenol,XSNQECSCDATQEL-UHFFFAOYSA-N,C=CC(C)CCCC(C)(C)O,1,Top,Citrus / Fresh,—,—,Oxidises,0.2,e,10.0,2.75,198.0
+Dimethyl Benzyl Carbinyl Acetate,FLUWAIIVLCVEKF-UHFFFAOYSA-N,CC(=O)OC(C)(C)Cc1ccccc1,1,Mid,Floral / Fruity,—,—,Stable,0.12,e,30.0,2.57,240.0
+Dimethyl Octenone,WKQWDIFHKYWRTA-UHFFFAOYSA-N,CCC(=O)C(C)CC=C(C)C,1,Top,Green / Citrus,1.9%,1.5%,Oxidises,0.14,e,1.0,2.96,208.0
+Dimethyl Sulfide,QMMFVYPAHWMCMS-UHFFFAOYSA-N,CSC,1,Top,Sulfurous / Fruity,—,—,Fair; fridge,0.01,e,1.0,0.92,37.0
+Doremox,GDAVABNCFOTAOD-UHFFFAOYSA-N,CC1CCOC(c2ccccc2)C1,1,Top-Mid,Rose / Green,—,—,Stable,0.12,e,5.0,3.0,240.0
+Ebanol,RNLHVODSMDJCBR-UHFFFAOYSA-N,CC1=CCC(C=CC(C)C(C)O)C1(C)C,1,Base,Sandalwood,—,—,Stable,0.15,e,1.0,3.55,300.0
+Edenolide,QISVACSCBGQBEZ-UHFFFAOYSA-N,CCOC(=O)CC(=O)OC(C)C1CCCC(C)(C)C1,1,Base,Musk,—,—,Good,0.0,e,15.0,3.09,310.0
+Ethyl 2-methyl butyrate,HCRBXQFHJMCTLF-UHFFFAOYSA-N,CCOC(=O)C(C)CC,1,Top,Fruity ester,—,—,Stable,0.13,e,0.15,1.6,133.0
+Ethyl Acetate,XEKOWRVHYACXOJ-UHFFFAOYSA-N,CCOC(C)=O,1,Top,Fruity / Solvent,—,—,Fair; volatile,0.01,e,5000.0,0.73,77.0
+Ethyl Benzoate,MTZQAGJQAFMTAQ-UHFFFAOYSA-N,CCOC(=O)c1ccccc1,1,Top-Mid,Fruity ester,—,—,Stable,0.15,e,60.0,2.64,212.0
+Ethyl Butyrate,OBNCKNCVKJNDBV-UHFFFAOYSA-N,CCCC(=O)OCC,1,Top,Fruity ester,—,—,Stable,0.19,m,1.0,1.35,121.0
+Ethyl Furaneol,QJYOEDXNPLUUAR-UHFFFAOYSA-N,CCC1=C(O)C(=O)C(C)O1,1,Mid,Gourmand / Fruity,0.25%,0.49%,Darkens,0.08,e,30.0,1.15,232.0
+Ethyl Linalool,KRLBLPBPZSSIGH-UHFFFAOYSA-N,C=CC(C)(O)CCC=C(C)CC,1,Top-Mid,Linalool family,—,—,Oxidises,0.4,e,8.0,3.06,199.0
+Ethyl Maltol,YIKYNHJUKRTCJL-UHFFFAOYSA-N,CCc1occc(=O)c1O,1,Mid-Base,Gourmand,—,—,Stable,0.03,e,100.0,0.91,188.0
+Ethyl Vanillin,CBOQJANXLMLOSS-UHFFFAOYSA-N,CCOc1cc(C=O)ccc1O,1,Base,Gourmand,—,—,Darkens,0.0,m,30.0,1.6,285.0
+Ethylene Brassylate,XRHCAGNSDHCHFJ-UHFFFAOYSA-N,O=C1CCCCCCCCCCCC(=O)OCCO1,1,Base,Musk,—,—,Stable,0.06,e,33.0,3.38,332.0
+Eugenol ex Clove,RRAFCDWBNXTKKO-UHFFFAOYSA-N,C=CCc1ccc(O)c(OC)c1,1,Mid,Phenolic / Spice,2.5%,4.9%,Darkens,0.04,e,10.0,2.13,254.0
+Exaltolide Total,FKUPPRZPSYCDRS-UHFFFAOYSA-N,O=C1CCCCCCCCCCCCCCO1,1,Base,Musk,2.4%,4.6%,Stable,0.0,e,25.0,4.61,345.0
+Fleur de Cassie,,,0,Mid-Base,Floral base,?,?,Darkens,0.18,e,20.0,3.5,200.0
+Floralozone,JFTSYAALCNQOKO-UHFFFAOYSA-N,CCc1ccc(CC(C)(C)C=O)cc1,1,Top-Mid,Marine / Ozonic,—,—,Oxidises,0.12,e,1.0,3.5,255.0
+Florhydral,OHRBQTOZYGEWCJ-UHFFFAOYSA-N,CC(C)c1cccc(C(C)CC=O)c1,1,Mid,Floral / Green,—,—,Oxidises,0.18,e,2.0,3.5,270.0
+Florol,YVSNOTITPICPTB-UHFFFAOYSA-N,CC(C)CC1CC(C)(O)CCO1,1,Mid,Muguet / Floral,—,—,Stable,0.3,e,100.0,1.96,218.0
+Fructone,XWEOGMYZFCHQNT-UHFFFAOYSA-N,CCOC(=O)CC1(C)OCCO1,1,Top-Mid,Fruity ester,—,—,"Acetal — hydrolyses at low pH, weak in acidic wash bases",0.18,e,100.0,0.7,207.0
+Galaxolide,ONKNPOPIGWHAQC-UHFFFAOYSA-N,CC1COCc2cc3c(cc21)C(C)(C)C(C)C3(C)C,1,Base,Musk,—,—,Stable,0.12,e,10.0,4.53,325.0
+Gamma Decalactone,IFYYFLINQYPWGJ-UHFFFAOYSA-N,CCCCCCC1CCC(=O)O1,1,Mid-Base,Lactone / Peach,—,—,Stable,0.1,e,11.0,2.66,281.0
+Gamma Nonalactone,OALYTRUKMRCXNH-UHFFFAOYSA-N,CCCCCC1CCC(=O)O1,1,Mid,Lactone,—,—,Very good,0.15,e,30.0,2.27,262.0
+Gamma Undecalactone,PHXATPHONSXBIL-UHFFFAOYSA-N,CCCCCCCC1CCC(=O)O1,1,Mid-Base,Lactone / Peach,—,—,Stable,0.14,m,5.0,3.05,297.0
+Geraniol 95,GLZPCOQZEFWAFX-JXMROGBWSA-N,CC(C)=CCC/C(C)=C/CO,1,Mid,Rose alcohol,4.7%,2.8%,Oxidises,0.03,e,40.0,2.67,230.0
+Geranyl Acetate,HIGQPQRQIQDZMP-FLIBITNWSA-N,CC(=O)OC/C=C(/C)CCC=C(C)C,1,Mid,Rose / Ester,—,—,Oxidises,0.15,e,15.0,3.24,245.0
+"Grapefruit oil, Pink",,,0,Top,Grapefruit,4.0%,—,Poor. Limonene oxidation,0.1,e,10.0,3.3,178.0
+Habanolide,ZYXGECMFJMLZNA-UHFFFAOYSA-N,O=C1CCCCCCCCCC=CCCCO1,1,Base,Musk,—,—,Stable,0.15,e,15.0,4.39,340.0
+Hedione,KVWWIYGFBYDJQC-UHFFFAOYSA-N,CCCCCC1C(=O)CCC1CC(=O)OC,1,Mid,Floral / Smoother,—,—,Stable,0.39,m,20.0,2.73,300.0
+Helional,BOPPSUHPZARXTH-UHFFFAOYSA-N,CC(C=O)Cc1ccc2c(c1)OCO2,1,Mid,Floral / Marine,2.6%,0.15%,Oxidises,0.14,e,10.0,1.79,280.0
+Heliotropin Repl X24,,,0,Mid-Base,Powdery / Almond,?,?,Stable,0.15,e,,,
+Heliotropin,SATCULPHIDQDRE-UHFFFAOYSA-N,O=Cc1ccc2c(c1)OCO2,1,Mid-Base,Powdery / Almond,—,—,Darkens,0.4,e,100.0,1.23,250.0
+Helvetolide,LSTSBZKIQFOPHA-UHFFFAOYSA-N,CCC(=O)OCC(C)(C)OC(C)C1CCCC(C)(C)C1,1,Base,Musk,—,—,Stable,0.2,e,10.0,4.8,300.0
+Hexenol-3-CIS,UFLHIIWVXFIJGU-ARJAWSKDSA-N,CC/C=C\CCO,1,Top,Green,—,—,Oxidises,0.1,e,10.0,1.33,157.0
+Hexenyl-3-CIS Acetate,NPFVOOAXDOBMCE-PLNGDYQASA-N,CC/C=C\CCOC(C)=O,1,Top,Green,—,—,Oxidises,0.05,e,10.0,1.91,169.0
+Hexyl Acetate,AOGQPLXWSUTHQB-UHFFFAOYSA-N,CCCCCCOC(C)=O,1,Top,Fruity ester,—,—,Stable,0.12,e,2.0,2.13,171.0
+Hexyl Cinnamic Aldehyde,GUUHFMWKWLOQMM-UHFFFAOYSA-N,CCCCCCC(C=O)=Cc1ccccc1,1,Mid-Base,Floral / Jasmine,9.9%,19.0%,Oxidises,0.11,m,1000.0,4.24,305.0
+Hexyl Salicylate,DUKPKQFHJQGTGU-UHFFFAOYSA-N,CCCCCCOC(=O)c1ccccc1O,1,Base,Salicylate / Floral,6.5%,1.2%,Stable,0.12,e,1000.0,3.13,300.0
+Hydroxycitronellal,WPFVBOQKRVRMJB-UHFFFAOYSA-N,CC(CC=O)CCCC(C)(C)O,1,Mid,Muguet,2.1%,4.1%,Oxidises,0.15,e,30.0,2.15,241.0
+Indolene 50,SIKJAQJRHWYJAI-UHFFFAOYSA-N,c1ccc2[nH]ccc2c1,1,Mid-Base,Animalic / Indolic,?,?,Darkens,0.15,e,140.0,2.17,253.0
+Ionone Alpha,UZFLPKAIBPNNCA-BQYQJAHWSA-N,CC(=O)/C=C/C1C(C)=CCCC1(C)C,1,Mid,Ionone / Violet,—,—,Oxidises,0.09,m,0.4,3.51,240.0
+Ionone Beta,PSQYTAPXSHCGMF-BQYQJAHWSA-N,CC(=O)/C=C/C1=C(C)CCCC1(C)C,1,Mid,Ionone / Violet,—,—,Oxidises,0.13,m,0.007,3.66,260.0
+Iso E Super,FVUGZKDGWGKCFE-UHFFFAOYSA-N,CC(=O)C1(C)CC2=C(CCCC2(C)C)CC1C,1,Base,Woody / Amber,20.0%,2.4%,Stable,0.15,e,0.5,4.52,295.0
+Isoamyl Acetate,MLFHJEHSLIIPHL-UHFFFAOYSA-N,CC(=O)OCCC(C)C,1,Top,Fruity ester,—,—,Stable,0.25,e,5.0,1.6,142.0
+Isobornyl Acetate,KGEKLUUHTZCSIP-UHFFFAOYSA-N,CC(=O)OC1CC2CCC1(C)C2(C)C,1,Top,Aromatic,—,—,Good,0.08,e,225.0,2.76,227.0
+Isobutyl Phenyl Acetate,RJASFPFZACBKBE-UHFFFAOYSA-N,CC(C)COC(=O)Cc1ccccc1,1,Mid,Honey / Chocolate,—,—,Stable,0.15,e,50.0,3.4,247.0
+Isoeugenol Replacer,,,0,Mid,Spicy / Phenolic,7.35%,?,Stable,0.2,e,,,
+Kephalis,YLNYLLVKHRZLGO-UHFFFAOYSA-N,C=C(OCC)C1C(C)(C)CC(=O)CC1(C)C,1,Base,Woody / Amber,—,—,Stable,0.15,e,10.0,3.9,290.0
+Labdanum Resinoid,,,0,Base,Amber / Resin,?,?,Improves,0.0,e,300.0,5.5,300.0
+Lavandin Grosso EO,,,0,Top,Aromatic,?,?,Oxidises fast,0.03,e,15.0,3.0,200.0
+Lemon FCF,,,0,Top,Citrus,?,?,Oxidises fast,0.0,e,10.0,3.3,200.0
+Lemonile,DHJVLXVXNFUSMU-UHFFFAOYSA-N,CCC(C)=CCCC(C)=CC#N,1,Top,Citrus,—,—,Excellent. The stable citral replacement,0.1,e,5.0,3.59,245.0
+Liffarome,BLOXMGXSDAAJGX-PLNGDYQASA-N,CC/C=C\CCOC(=O)OC,1,Top,Ester / Green,0.56%,1.1%,Moderate; hydrolyses in alkali,0.15,e,3.0,2.13,205.0
+"Lime Oil, Distilled",,,0,Top,Citrus,?,?,Oxidises fast; fridge,0.03,e,10.0,3.5,176.0
+Linalool,CDOSHBSSFJOMGT-UHFFFAOYSA-N,C=CC(C)(O)CCC=C(C)C,1,Top-Mid,Linalool family,—,—,Oxidises,0.15,e,6.0,2.67,198.0
+Linalyl Acetate,UWKAYLJWKGQEPM-UHFFFAOYSA-N,C=CC(C)(CCC=C(C)C)OC(C)=O,1,Top,Linalool family,—,—,Oxidises,0.04,m,25.0,3.24,220.0
+Linalyl Propionate,WAQIIHCCEMGYKP-UHFFFAOYSA-N,C=CC(C)(CCC=C(C)C)OC(=O)CC,1,Top-Mid,Floral / Bergamot,—,—,Oxidises,0.15,e,,4.0,226.0
+Maltol Isobutyrate,LPNUBNQKJRGCSC-UHFFFAOYSA-N,Cc1c(OC(=O)C(C)C)occc1=O,1,Mid,Gourmand / Fruity,—,—,Stable,0.15,e,,1.6,
+Manzanate,HZPKNSYIDSNZKW-UHFFFAOYSA-N,CCCC(C)C(=O)OCC,1,Top,Fruity ester,—,—,Stable,0.12,e,0.05,2.7,153.0
+Melonal,YGFGZTXGYTUXBA-UHFFFAOYSA-N,CC(C)=CCCC(C)C=O,1,Top,Marine,—,—,Acid-sensitive,0.04,e,1.0,2.57,232.0
+Methyl Anthranilate,VAMXMNNIEUEQDV-UHFFFAOYSA-N,COC(=O)c1ccccc1N,1,Mid,Floral / Indolic,—,—,Darkens,0.15,e,3.0,1.06,256.0
+Methyl Benzoate,QPJVMBTYPHYUOC-UHFFFAOYSA-N,COC(=O)c1ccccc1,1,Top,Ester,—,—,Stable,0.13,e,0.52,1.47,199.0
+Methyl Cinnamate,CCRCUPLGCSFEDV-BQYQJAHWSA-N,COC(=O)/C=C/c1ccccc1,1,Mid,Balsamic / Fruity,—,—,Stable,0.15,e,30.0,2.62,261.0
+Methyl Diantilis,FNEWGEWRECZWQM-UHFFFAOYSA-N,CCOc1cc(COC)ccc1O,1,Mid-Base,Spicy / Floral,—,—,Stable,0.05,e,5.0,1.94,290.0
+Methyl Ionone Gamma Coeur,PSLHSYRVWGKZHP-UHFFFAOYSA-N,CC(=O)C=C(C)C1C(C)=CCCC1(C)C,1,Mid-Base,Ionone / Violet,30.0%,59.0%,Oxidises,0.13,e,5.0,3.9,248.0
+Methyl Laitone,COWIMPXRUUJKQF-UHFFFAOYSA-N,CC1CCC2(CCC(=O)O2)CC1,1,Mid,Lactonic / Gourmand,—,—,Stable,0.2,e,8.0,2.9,232.0
+Methyl Pamplemousse,RDHNTAXPFZIMDN-UHFFFAOYSA-N,COC(OC)C(C)(C)CC=C(C)C,1,Top,Grapefruit,—,—,Oxidises,0.23,m,7.0,2.99,215.0
+Mimosa De Provence,,,0,Mid-Base,Floral base,?,?,Darkens,0.15,e,20.0,3.5,250.0
+Neobergamate Forte,DCXXKSXLKWAZNO-UHFFFAOYSA-N,C=CC(=C)CCCC(C)(C)OC(C)=O,1,Top-Mid,Citrus,—,—,Oxidises,0.0,e,30.0,4.6,240.0
+Neobutenone Alpha,,,0,Top-Mid,Fruity / Damascone,1.1%,1.4%,Stable,0.02,e,0.1,3.6,230.0
+Nootkatone,WTOYNNBCKUYIKC-UHFFFAOYSA-N,C=C(C)C1CCC2=CC(=O)CC(C)C2(C)C1,1,Mid,Grapefruit,—,—,Oxidises,0.1,e,800.0,3.9,310.0
+Nympheal,UKZXPOJABTXLMK-UHFFFAOYSA-N,Cc1cc(CC(C)C)ccc1CCC=O,1,Mid,Floral / Muguet,—,—,Stable,0.15,e,1.0,3.7,290.0
+Oakmoss IFRA43,,,0,Base,Mossy,0.1%,0.1%,Improves,0.15,e,50.0,3.5,300.0
+Orange Sweet EO,,,0,Top,Citrus,?,?,Oxidises fast,0.15,e,5.0,3.3,176.0
+Orange Terpenes,,,0,Top,Citrus,—,—,Oxidises fast,0.38,m,10.0,3.3,176.0
+Oranger Crystals,XSAYZAUNJMRRIR-UHFFFAOYSA-N,CC(=O)c1ccc2ccccc2c1,1,Mid,Floral / Orange blossom,0.2%,—,Stable,0.41,m,10.0,1.51,257.0
+Orchidée № 2,,,0,Mid-Base,Floral base,?,?,Good,0.15,e,20.0,4.0,280.0
+Oud Oliffac,,,0,Base,Oud / Woody,?,?,Stable,0.1,e,20.0,4.5,300.0
+Oxane,GKGOLPMYJJXRGD-UHFFFAOYSA-N,CCCC1CCOC(C)S1,1,Top,Sulfurous / Tropical,—,—,Stable,0.1,e,0.01,2.9,210.0
+Para Cresyl Acetate,CDJJKTLOZJAGIZ-UHFFFAOYSA-N,CC(=O)Oc1ccc(C)cc1,1,Mid,Animalic,—,—,Darkens,0.15,e,25.0,1.92,212.0
+Paradisamide,XATDMWWMSDQXFD-UHFFFAOYSA-N,CCC(CC)C(=O)N(C)c1cccc(C)c1,1,Mid-Base,Fruity,—,—,Stable,0.2,e,10.0,3.3,300.0
+Patchouli Dark,,,0,Base,Woody / Earthy,?,?,Improves,0.15,e,30.0,3.22,280.0
+Pear Ester,OPCRGEVPIBLWAY-QNRZBPGKSA-N,CCCCC/C=C\C=C\C(=O)OCC,1,Top-Mid,Fruity ester,—,—,Oxidises,0.15,e,100.0,4.2,270.0
+Peonile,ZHOOOLQOWQVYOE-UHFFFAOYSA-N,N#CC(=C1CCCCC1)c1ccccc1,1,Mid,Floral,0.52%,1.0%,Stable,0.0,e,30.0,3.93,300.0
+Petitgrain EO,,,0,Top,Citrus / Green,?,?,Oxidises fast,0.2,e,15.0,3.2,190.0
+Phenethyl Acetate,MDHYEMXUFSJLGV-UHFFFAOYSA-N,CC(=O)OCCc1ccccc1,1,Top-Mid,Ester / Floral,—,—,Stable,0.19,m,50.0,1.79,232.0
+Phenethyl Alcohol,WRMNZCZEMHIOCP-UHFFFAOYSA-N,OCCc1ccccc1,1,Mid,Rose alcohol,—,—,Stable,0.16,m,750.0,1.22,220.0
+Phenyl Acetaldehyde,DTUQWGWMVIHBKE-UHFFFAOYSA-N,O=CCc1ccccc1,1,Top-Mid,Floral / Green,0.25%,0.49%,Oxidises,0.2,e,4.0,1.78,195.0
+Phenyl Ethyl Phenyl Acetate Replacer,,,0,Base,Floral / Rosy,?,?,Stable,0.3,e,500.0,3.02,320.0
+Pineapple Supreme,,,0,Top,Fruity,?,?,Stable,0.12,e,1.0,2.8,180.0
+Pistachio Thiazole,ZOMLUJGPZRNYBF-UHFFFAOYSA-N,Cc1ccsc1C(C)C,1,Mid,Nutty / Gourmand,—,—,Stable,0.05,e,0.1,2.5,200.0
+Raspberry Ketone,NJGBTKGETPDVIK-UHFFFAOYSA-N,CC(=O)CCc1ccc(O)cc1,1,Mid-Base,Fruity,1.0%,1.0%,Stable,0.4,e,5.0,1.91,292.0
+Raspberry Ripple,,,0,Mid,Gourmand / Fruity,?,?,Stable,0.12,e,5.0,2.0,250.0
+Rhuboflor,UBALJTRHSDXCPY-UHFFFAOYSA-N,CC=C1CC2CC1C1CCCOC21,1,Top-Mid,Green / Fruity,?,?,Stable,0.15,e,,,
+Rose Absolute Select,,,0,Mid,Rose,?,?,Good,0.08,e,5.0,2.5,220.0
+Rose Oxide,ZBCCUWZRJMGIBB-UHFFFAOYSA-N,CC(C)=CC1CCC(C)CO1,1,Top,Rose,—,—,Oxidises,0.15,e,0.5,2.77,183.0
+Rosemary Tunisia,,,0,Top,Aromatic,?,?,Oxidises fast,0.1,e,25.0,2.8,165.0
+Sandalore,NGYMOTOXXHCHOC-UHFFFAOYSA-N,CC1=CCC(CCC(C)C(C)O)C1(C)C,1,Base,Sandalwood,1.2%,2.3%,Stable,0.2,m,20.0,3.78,300.0
+Stemone,CBVWMGCJNPPAAR-UHFFFAOYSA-N,CCC(CC(C)CC)=NO,1,Mid,Green,—,—,Oxidises,0.2,e,2.0,2.66,205.0
+Strawberiff,,,0,Mid,Fruity / Acidic,?,?,Stable,0.1,e,1.0,2.0,220.0
+Strawberry Furanone,INAXVXBDKKUCGI-UHFFFAOYSA-N,CC1=C(O)C(=O)C(C)O1,1,Mid,Gourmand / Fruity,0.25%,0.49%,"Poor. Browns, pH-sensitive",0.17,e,20.0,0.76,232.0
+Strawberry Glycidate,LQKRYVGRPXFFAV-UHFFFAOYSA-N,CCOC(=O)C1OC1(C)c1ccccc1,1,Mid,Fruity,—,—,Stable,0.02,e,20.0,1.86,272.0
+Styrallyl Acetate,QUMXDOLUJCHOAY-UHFFFAOYSA-N,CC(=O)OC(C)c1ccccc1,1,Top,Ester / Green,—,—,Stable,0.12,e,160.0,2.31,215.0
+"Styrax Resinoid EAL, Wild",,,0,Base,Balsamic / Resin,0.64%,1.3%,Good,0.05,e,50.0,3.0,300.0
+Tangerine EO,,,0,Top,Citrus,?,?,Oxidises fast,0.03,e,20.0,3.3,176.0
+Terpineol Alpha,WUOACPNHFRMFPN-UHFFFAOYSA-N,CC1=CCC(C(C)(C)O)CC1,1,Mid,Floral / Pine,—,—,Stable,0.4,e,330.0,2.98,219.0
+Tetrahydro Linalool,DLHQZZUEERVIGQ-UHFFFAOYSA-N,CCC(C)(O)CCCC(C)C,1,Top-Mid,Linalool family,—,—,Stable,0.08,e,100.0,2.97,193.0
+Thiocineole,DXKUHGIKFQWKIT-UHFFFAOYSA-N,CC12CCC(CC1)SC2(C)C,1,Top,Grapefruit / Sulfur,—,—,Fair; fridge,0.03,e,0.001,3.2,215.0
+Torref Pyrazine,,,0,Top-Mid,Roasted / Gourmand,—,—,Stable,0.1,e,700.0,0.54,155.0
+Toscanol,SHLSJFDJYSSUIP-UHFFFAOYSA-N,COc1ccc(CC2CC2)cc1,1,Mid,Anisic / Specialty,—,—,Stable,0.2,e,30.0,3.3,235.0
+"Trans-2,Cis-6-Nonadienal",HZYHMHHBBBSGHB-ODYTWBPASA-N,CC/C=C\CC/C=C/C=O,1,Top,Green / Cucumber,—,—,Oxidises fast; fridge,0.1,e,0.01,3.0,202.0
+Trans-4-Decenal,CWRKZMLUDFBPAO-VOTSOKGWSA-N,CCCCC/C=C/CCC=O,1,Top,Aldehyde / Citrus,—,—,Oxidises fast; fridge,0.12,e,0.1,3.6,210.0
+Triplal,MZZRKEIUNOYYDF-UHFFFAOYSA-N,CC1=CC(C)C(C=O)CC1,1,Top,Green,2.5%,4.9%,Fair,0.12,e,0.5,2.18,195.0
+Ultrazur,,,0,Mid,Marine / Specialty,—,—,Stable,0.15,e,1.5,3.5,250.0
+Undecavertol,WSTQLNQRVZNEDV-UHFFFAOYSA-N,CCC=C(C)C(O)CCCCC,1,Mid,Green / Floral,—,—,Oxidises,0.12,e,3.0,3.28,225.0
+Vanillin,MWOOGOJBHIARFG-UHFFFAOYSA-N,COc1cc(C=O)ccc1O,1,Base,Gourmand,—,—,Darkens,0.07,m,100.0,1.21,285.0
+Veloutone,PUKWIVZFEZFVAT-UHFFFAOYSA-N,CCCCCC1(C)CCC(C)(C)C1=O,1,Mid,Fruity / Lactonic,—,—,Stable,0.15,e,5.0,4.3,230.0
+Velvione,ABRIMXGLNHCLIP-UHFFFAOYSA-N,O=C1CCCC=CCCCCCCCCCC1,1,Base,Musk,?,?,Stable,0.2,e,15.0,5.2,330.0
+Verdox HC,FINOAUDUYKVGDS-UHFFFAOYSA-N,CC(=O)OC1CCCCC1C(C)(C)C,1,Top,Fruity / Green apple,—,—,Stable,0.15,e,100.0,4.3,221.0
+Vertofix Coeur,,,0,Base,Woody,—,—,Stable,0.05,e,100.0,5.0,272.0
+Vetiver Java,,,0,Base,Woody / Earthy,?,?,Improves,0.15,e,60.0,4.2,300.0
+Ylang-Ylang total,,,0,,,,,,,,,,

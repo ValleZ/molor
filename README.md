@@ -2527,7 +2527,9 @@ other, which is the range a nose compares well in.
 suspicion: for every formula in the repository, each ingredient's threshold was
 perturbed tenfold and the resulting shift in the blend's percept vector
 measured. The top 20 carry about two thirds of everything the dose conversion
-rests on. `scripts/strength_worksheet.py` turns that list into a bench sheet,
+rests on. `scripts/strength_worksheet.py` turned that list into a bench sheet
+(removed 2026-11-07: it dosed every strip at the perfumer's top %, which is
+no longer used anywhere),
 `scripts/apply_strength.py` turns the filled sheet into multipliers, and
 `scripts/strength.py` applies them.
 
@@ -2635,7 +2637,7 @@ scripts/          everything measured in this document, one script per claim
   reverse_accord.py         a descriptor target or a material to reproduce
   palette.py                the gamut of a fixed palette
   rule_bakeoff.py           five mixture rules against the oils
-  mud.py / olfactory_white.py   the white point, and how few materials reach it
+  mud.py                    the white point, and how few materials reach it
   musk_test.py              do the four musk chemotypes recognise each other
   percept_blind_spots.py    materials the percept model cannot tell apart
   musk_receptor.py          OR5AN1 does; the global distance discards it
@@ -2645,7 +2647,9 @@ scripts/          everything measured in this document, one script per claim
   receptor_importance.py    a class detector is not a similarity axis
   receptor_readout.py       386 -> 138 descriptors; a 3x gain, still beaten
   bench_simplify.py         the simplifier against the hand heuristic, both rules
-  discriminating_blends.py  blends whose smell would decide the mixture rule
+  (olfactory_white.py, discriminating_blends.py and strength_worksheet.py were
+                           removed on 2026-11-07: each was built on the
+                           perfumer's top %, which is no longer used)
   export_viewer_data.py / build_viewer.py          the atlas
   export_simplify_data.py / build_simplify.py      the simplifier
   check_viewer_js.py        lexes a built page before it ships

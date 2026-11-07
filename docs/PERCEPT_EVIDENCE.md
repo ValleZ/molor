@@ -137,8 +137,8 @@ artifacts/percepts_merged.manifest.json   # provenance, rule, counts, hashes
 * Producers of percept files already write this shape (`run_percept.py`,
   `run_openpom.py`, `run_densesense.py`, `build_naturals.py`).
 * Consumers already take `--percepts <path>`: `bench_simplify`,
-  `build_naturals`, `descriptor_list`, `discriminating_blends`, `eval_mixtures`,
-  `export_simplify_data`, `export_viewer_data`, `mud`, `olfactory_white`,
+  `build_naturals`, `descriptor_list`, `eval_mixtures`,
+  `export_simplify_data`, `export_viewer_data`, `mud`,
   `palette`, `percept_blind_spots`, `predict_formula`, `reverse_accord`,
   `rule_bakeoff`, `threshold_worklist`, `try_formula`; plus `ORV_PERCEPTS` in
   `formula_check`, `mixture`, `suggest_check`.

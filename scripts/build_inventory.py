@@ -3,11 +3,11 @@
 Exported from the perfumery-inventory spreadsheet. It carries several things
 this project had been missing or guessing at:
 
-*top %* -- the maximum level the perfumer actually uses a material at. Against
-the 11 materials that also have a measured air-phase threshold, this correlates
-at rho 0.756, better than anything modelled here. It is not pure potency, since
-it also reflects IFRA limits, cost, solubility and how much of the character is
-wanted, but as a practical dosing guide it is the best signal available.
+*top %* -- the perfumer's own maximum use level -- is deliberately NOT copied.
+It mixes potency with IFRA limits, cost and how much of the character is
+wanted, and the perfumer does not want anything dosed from it (2026-11-07).
+Leaving the column out of inventory.csv is what keeps it out of everything
+downstream; do not add it back to COLS.
 
 *family* -- an odour/chemical family per material, which restores an evaluation
 axis that had gone dead: expanded_materials.csv has no class column, so
@@ -57,7 +57,6 @@ OUT = ROOT / "data" / "inventory" / "inventory.csv"
 COLS = {
     "type": "volatility_class",
     "family": "family",
-    "top %": "top_pct",
     "IFRA Cat 4": "ifra_cat4",
     "IFRA Cat 9": "ifra_cat9",
     "stability": "stability",
@@ -107,7 +106,7 @@ def main() -> int:
                "single_molecule": int(is_single)}
         for src_col, dst in COLS.items():
             v = r.get(src_col, "")
-            if dst in ("top_pct", "log_drop", "water_threshold_ppb", "logp",
+            if dst in ("log_drop", "water_threshold_ppb", "logp",
                        "boiling_point_c"):
                 n = num(v)
                 rec[dst] = "" if n is None else n
@@ -148,15 +147,11 @@ def main() -> int:
         "rows": len(out),
         "single_molecules": int(sum(r["single_molecule"] for r in out)),
         "join_library": len(joined),
-        "top_pct_filled": int(sum(1 for r in out if r["top_pct"] != "")),
         "family_filled": int(sum(1 for r in out if r["family"])),
         "families": len(fams),
         "log_drop_measured": int(sum(1 for r in out
                                      if r["log_drop_source"] == "m")),
         "caveats": {
-            "top_pct": "perfumer's own maximum use level; rho 0.756 against "
-                       "measured air thresholds over 11 materials, but also "
-                       "reflects IFRA limits, cost and desired character",
             "water_threshold_ppb": "assembled from mixed sources and flagged "
                                    "rough by the perfumer; rho 0.451 against "
                                    "Abraham air thresholds (n=11) and 0.386 "

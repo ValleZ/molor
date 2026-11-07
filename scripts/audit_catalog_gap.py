@@ -18,7 +18,7 @@ how the snapshot came to be committed to a site that publishes two HTML files
 Sources, and what each one can contribute:
 
   data/inventory/inventory.csv          boiling_point_c, logp, volatility_class,
-                                        family, ifra_cat4/cat9, top_pct,
+                                        family, ifra_cat4/cat9,
                                         water_threshold_ppb, stability
   library/input/expanded_materials.csv  name + smiles (already a library molecule)
   data/ifra/materials.csv               ifra_cat4_pct + ifra_status
@@ -142,7 +142,6 @@ def main() -> int:
                 "ifra_cat4": (inv.get("ifra_cat4") if inv and has_value(inv, "ifra_cat4") else ""),
                 "ifra_limit_pct": ((ifra_row or {}).get("cat4_pct") or ""),
                 "ifra_status": ((ifra_row or {}).get("status") or ""),
-                "top_pct": (inv.get("top_pct") if inv and has_value(inv, "top_pct") else ""),
                 "threshold_ppb": (
                     inv.get("water_threshold_ppb") if inv and has_value(inv, "water_threshold_ppb") else ""
                 ),
@@ -178,7 +177,6 @@ def main() -> int:
         "family",
         "ifra_cat4",
         "ifra_limit_pct",
-        "top_pct",
         "threshold_ppb",
         "longevity_h",
     ):

@@ -368,14 +368,14 @@ def formula_sourced():
 
 
 def inventory(resolve=lambda n: n):
-    """name -> (use level %, threshold ppb). Both may be None.
+    """name -> compiled threshold ppb, or None.
 
     Keyed by the library name the shelf name refers to. `resolve` is
     `parse_formulas.library_name` bound to this page's own material and oil
     names: without it the join was exact string equality, and the perfumer's
     shelf -- which says "Orange Sweet EO", "Oakmoss IFRA43", "Patchouli
-    Dark" -- matched 2 of its 47 oils. Every other oil lost its dosing ceiling
-    (`use`) and its compiled threshold in silence.
+    Dark" -- matched 2 of its 47 oils. Every other oil lost its compiled threshold in
+    silence. The sheet's top % is not read: inventory.csv no longer carries it.
     """
     path = ROOT / "data" / "inventory" / "inventory.csv"
     out: dict[str, tuple] = {}
@@ -393,7 +393,7 @@ def inventory(resolve=lambda n: n):
             except ValueError:
                 return None
 
-        out[resolve(n)] = (num("top_pct"), num("water_threshold_ppb"))
+        out[resolve(n)] = num("water_threshold_ppb")
     return out
 
 
@@ -526,7 +526,7 @@ def main() -> int:
     mats = []
     n_measured = 0
     for i, n in enumerate(names):
-        lvl, thr = inv.get(n, (None, None))
+        thr = inv.get(n)
         o = oils.get(n)
         st = strength.get(n)
         if st:
@@ -562,7 +562,6 @@ def main() -> int:
             "cat": bool(_norm(n) in catalogue) or None,
             "p": [round(float(v), 3) for v in X[i]],
             "iso": round(float(iso_pct[i]), 1),
-            "use": lvl,
             # IFRA category 4 (fine fragrance), % of the finished product, and
             # the status that says whether a missing number means "unlimited"
             # or "unknown". Rendered as "IFRA 4.7%" / "no restriction" /

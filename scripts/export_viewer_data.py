@@ -753,8 +753,8 @@ def main() -> int:
         print(f"  thresholds: {len(thresh)} measured kept, "
               f"{thresh_meta['predictions_withheld']} predictions withheld")
 
-    # The perfumer's own maximum use level, which is the best dosing signal
-    # available: it tracks measured thresholds at rho 0.76 where both exist.
+    # Family and volatility tier from the perfumer's shelf. (The sheet's top %
+    # used to ride along here; it is no longer in inventory.csv.)
     usage = {}
     ipath = ROOT / "data" / "inventory" / "inventory.csv"
     if ipath.is_file():
@@ -766,16 +766,14 @@ def main() -> int:
         lib_names = {e.name for e in entries}
         oil_names = [e.name for e in nat_ents]
         for r in _c.DictReader(open(ipath, encoding="utf-8-sig")):
-            if r.get("top_pct"):
-                usage[library_name(r["name"], lib_names, oil_names)] = (
-                    float(r["top_pct"]), r.get("family", ""),
-                    r.get("volatility_class", ""))
+            usage[library_name(r["name"], lib_names, oil_names)] = (
+                r.get("family", ""), r.get("volatility_class", ""))
         # Counted against the page's materials, not against the inventory: two
         # shelf rows can resolve to one material (Bergamot BF and Bergamote
         # 000136 are one oil), so the size of `usage` understates the coverage
         # and reads like data loss when it is the opposite.
         print(f"  inventory: {sum(1 for e in entries if e.name in usage)} "
-              f"of {len(entries)} materials carry a shelf row's use level")
+              f"of {len(entries)} materials carry a shelf row")
 
     # Boiling points, and a volatility tier derived from them where the
     # inventory never assigned one. The cut-points are not chosen here: they
@@ -815,7 +813,7 @@ def main() -> int:
 
     def tier_of(name):
         """(group, provenance) -- recorded, then derived, then inherited."""
-        rec = VOL_GROUP.get(usage.get(name, [None, None, None])[2])
+        rec = VOL_GROUP.get(usage.get(name, [None, None])[1])
         if rec:
             return rec, "recorded"
         bp = bps.get(name)
@@ -1009,9 +1007,8 @@ def main() -> int:
              "strengthSE": (round(strength[e.name]["se"], 2)
                             if e.name in strength
                             and strength[e.name]["se"] is not None else None),
-             "topPct": usage.get(e.name, [None, None, None])[0],
-             "family": usage.get(e.name, [None, None, None])[1],
-             "volatility": usage.get(e.name, [None, None, None])[2],
+             "family": usage.get(e.name, [None, None])[0] or None,
+             "volatility": usage.get(e.name, [None, None])[1] or None,
              # Collapsed to three, using the same map volatility_profile.py
              # uses and for the same reason it gives there: five tiers over
              # a small set leaves tiers holding one material. On this atlas
