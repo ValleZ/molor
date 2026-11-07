@@ -130,3 +130,16 @@ New corrections come from direct comparisons instead, entered by hand with
 two materials at working strength, or a ranking of strips at stated dilutions.
 `apply_strength.py` would overwrite those hand rows if re-run on the old
 session sheets, so don't.
+
+## Ylang Ylang EO (extra) and Vetiver EO (Haiti) — set from the strip ranking
+
+On the neat strips of 2026-11-07, Ylang Ylang EO ranked level with Cedarwood
+EO and Vetiver EO above both. Cedarwood is the anchor, at 2.01 ppb from the
+balance test against Calone. So Ylang Ylang (359 ppb, imputed, no source) is
+set equal to it, 2.01 ppb (x178.6), and Vetiver (60 ppb, no source) one bin
+louder, 0.67 ppb (x89.5). The ranks are measured; one bin for "louder than"
+is the smallest step a ranking can express, so Vetiver could be stronger
+still. A balance test against cedarwood, as with Calone, would pin it.
+`judgements` is 0 for both, so `apply_strength.py` must not regenerate the file.
+
+*Strip ranking supplied by the perfumer, 2026-11-07.*
