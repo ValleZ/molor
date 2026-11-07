@@ -207,3 +207,21 @@ previous 0.8 ppb came from it.
 
 **Sandalore** was placed between Florol and Helional in the formula session:
 20 -> 41 ppb, with its neighbours moving about 1.15x to make room.
+
+## Refit under the engine's own loudness model (2026-11-07, evening)
+
+The strip thresholds above were fitted under a plain reading of loudness,
+concentration over threshold, but the engine also applies volatility from the
+boiling point. Under the engine's model only 170 of 199 strip pairs kept their
+order, and the engine's volatility (10x per 65 C, Trouton) made Aurantiol 200x
+quieter than its threshold. Refitting every strip threshold under the engine's
+model at a range of volatility strengths, the thresholds had to move least at
+170-210 C per tenfold (objective 93 against 134 at 65 C and 105 with no
+volatility), so the engine now uses 180 C, and no boost below 150 C.
+
+The fit lives in the perfumer repo as `tools/fit_strips.py` and refuses to run
+unless materials.db was built from this repository's HEAD with strength.csv
+unmodified. The thresholds it gives are effective ones for the engine's model:
+Aurantiol 2.7 ppb (400 C makes it 7x quieter than its threshold alone),
+Hedione 502, Tetrahydro Linalool 341, Florol 109, Galaxolide 24, Hexyl Acetate
+2.4 (171 C makes it 2.7x louder).
