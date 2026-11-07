@@ -6,7 +6,7 @@ Aldehyde C-8,NUJGJRNETVAIRJ-UHFFFAOYSA-N,CCCCCCCC=O,1,Top,Aldehyde,0.5,—,—,O
 Allyl Amyl Glycolate,XCWPXUNHSPOFGV-UHFFFAOYSA-N,C=CCOC(=O)COCCC(C)C,1,Top-Mid,Green / Pineapple,0.5,—,—,Oxidises,0.28,e,0.5,1.78,235.0
 Alpha Pinene,GRWFGVWFFZKLTI-UHFFFAOYSA-N,CC1=CCC2CC1C2(C)C,1,Top,Aromatic,3.0,—,—,"Poor. Oxidizes fast; antioxidant, minimal headspace",0.2,e,6.0,3.0,156.0
 Ambrettolide,NVIPUOMWGQAOIT-RQOWECAXSA-N,O=C1CCCCC/C=C\CCCCCCCCO1,1,Base,Musk,8.0,—,—,Stable,0.2,e,25.0,4.78,345.0
-Ambroxan,YPZUZOLGGMJZJO-LQKXBSAESA-N,CC1(C)CCC[C@]2(C)[C@H]3CCO[C@]3(C)CC[C@@H]12,1,Base,Amber / Woody,5.0,—,—,Stable,0.18,e,3.0,4.41,78.0
+Ambroxan,YPZUZOLGGMJZJO-LQKXBSAESA-N,CC1(C)CCC[C@]2(C)[C@H]3CCO[C@]3(C)CC[C@@H]12,1,Base,Amber / Woody,5.0,—,—,Stable,0.18,e,3.0,4.41,315.0
 Anethole ex Star Anise,RUVINXPYWBROJD-ONEGZZNKSA-N,C/C=C/c1ccc(OC)cc1,1,Mid,Anisic,5.0,?,?,Oxidises,0.1,e,50.0,3.4,234.0
 Anisaldehyde,ZRSNZINYAWTAHE-UHFFFAOYSA-N,COc1ccc(C=O)cc1,1,Mid,Floral / Anisic,5.0,1.4%,0.42%,Oxidises,0.2,e,50.0,1.76,248.0
 Auralva,BFBPISPWJZMWJN-CPNJWEJPSA-N,COC(=O)c1ccccc1/N=C/CC(C)CCCC(C)(C)O,1,Mid,Floral,5.0,?,?,Stable,0.15,e,30.0,4.0,400.0
@@ -53,7 +53,7 @@ Ethyl Benzoate,MTZQAGJQAFMTAQ-UHFFFAOYSA-N,CCOC(=O)c1ccccc1,1,Top-Mid,Fruity est
 Ethyl Butyrate,OBNCKNCVKJNDBV-UHFFFAOYSA-N,CCCC(=O)OCC,1,Top,Fruity ester,0.5,—,—,Stable,0.19,m,1.0,1.35,121.0
 Ethyl Furaneol,QJYOEDXNPLUUAR-UHFFFAOYSA-N,CCC1=C(O)C(=O)C(C)O1,1,Mid,Gourmand / Fruity,0.5,0.25%,0.49%,Darkens,0.08,e,30.0,1.15,232.0
 Ethyl Linalool,KRLBLPBPZSSIGH-UHFFFAOYSA-N,C=CC(C)(O)CCC=C(C)CC,1,Top-Mid,Linalool family,10.0,—,—,Oxidises,0.4,e,8.0,3.06,199.0
-Ethyl Maltol,YIKYNHJUKRTCJL-UHFFFAOYSA-N,CCc1occc(=O)c1O,1,Mid-Base,Gourmand,0.5,—,—,Stable,0.03,e,100.0,0.91,188.0
+Ethyl Maltol,YIKYNHJUKRTCJL-UHFFFAOYSA-N,CCc1occc(=O)c1O,1,Mid-Base,Gourmand,1.0,—,—,Stable,0.03,e,100.0,0.91,188.0
 Ethyl Vanillin,CBOQJANXLMLOSS-UHFFFAOYSA-N,CCOc1cc(C=O)ccc1O,1,Base,Gourmand,1.0,—,—,Darkens,0.0,m,30.0,1.6,285.0
 Ethylene Brassylate,XRHCAGNSDHCHFJ-UHFFFAOYSA-N,O=C1CCCCCCCCCCCC(=O)OCCO1,1,Base,Musk,15.0,—,—,Stable,0.06,e,33.0,3.38,332.0
 Eugenol ex Clove,RRAFCDWBNXTKKO-UHFFFAOYSA-N,C=CCc1ccc(O)c(OC)c1,1,Mid,Phenolic / Spice,1.0,2.5%,4.9%,Darkens,0.04,e,10.0,2.13,254.0

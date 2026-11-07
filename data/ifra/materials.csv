@@ -121,7 +121,7 @@ Brahmanol,0,72089-08-8,unrestricted,,,,absent,"no standard, class rule or consti
 Bulnesene Alpha,0,3691-11-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
 Bulnesol,0,22451-73-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
 Butylated Hydroxytoluene (BHT),0,128-37-0,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
-Calone 1951,0,28940-11-6,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
+Calone 1951,0,28940-11-6,restricted,,0.47,,house,"house cap: IFRA 52nd amendment draft: 0.47% of the finished product, cat-4. The 51st amendment (the w",IFRA 51st overview workbook via data/ifra/limits.csv
 Camphene,0,79-92-5,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
 Camphor,0,76-22-2,unrestricted,,,,absent,"no standard, class rule or constituent claims it",IFRA 51st overview workbook via data/ifra/limits.csv
 Canthoxal,0,5462-06-6,restricted,IFRA_STD_057,2.5,2.7,direct,IFRA_STD_057 4-Methoxy-alpha-methylbenzenepropanal cat-4 2.5% (amendment 51),IFRA 51st overview workbook via data/ifra/limits.csv

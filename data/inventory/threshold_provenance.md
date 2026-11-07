@@ -77,3 +77,26 @@ this bench comparison answers how strong it is at a working dose. An unmarked
 conversion is also how this column became untrustworthy.
 
 *Comparison supplied by the perfumer, 2026-11-06.*
+
+## Cedarwood EO (Virginia), 200 ppb — the sea mixes put it near 7
+
+**The figure had no source.** 45 of the 47 naturals carry a threshold with no
+source and no boiling point, and this one sat at 200 ppb, which made it one of
+the weakest bodies in the library. On the strips of 2026-11-07 it ranked among
+the loudest materials on the shelf, level with Ylang Ylang EO and below only
+Vetiver EO.
+
+**The number.** In five compounded sea mixes (2026-11-06), cedarwood and
+Calone took over from each other at roughly similar doses, within a factor of
+about 2. That puts cedarwood's effective threshold near 10 ppb (5 to 20), about
+20x below the stored figure. The row in `strength.csv` is 3 bins (27x), so
+7.4 ppb, the upper of the two whole-bin choices: a neat strip saturates, so
+the mixes are the better guide to dosing, and they sit between 2 and 3 bins.
+`judgements` is 0 because this came from mixes, not a blotter session, and the
+row has to be re-entered if `apply_strength.py` regenerates `strength.csv`.
+
+**What it does not settle.** Ylang Ylang EO (359, imputed) and Vetiver EO (60)
+ranked as loud or louder on the same strips, but no mix measured their size,
+so they are left as they are until one does.
+
+*Mixes and strip ranking supplied by the perfumer, 2026-11-06 and 2026-11-07.*
