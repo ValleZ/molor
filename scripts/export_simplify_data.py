@@ -244,6 +244,7 @@ NEVER_PROPOSE = {
     "Carbitol™": "solvent (ethoxydiglycol), not a perfumery material",
     "Squalane": "odourless emollient, not a perfumery material",
     "Diethyl Hexyl Adipate": "plasticiser and emollient, odourless, not a perfumery material",
+    "Chloroxylenol": "antiseptic (PCMX), not a perfumery material",
 }
 
 #: Files whose entries were added because a real formula asked for them by
