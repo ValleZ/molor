@@ -225,3 +225,20 @@ unmodified. The thresholds it gives are effective ones for the engine's model:
 Aurantiol 2.7 ppb (400 C makes it 7x quieter than its threshold alone),
 Hedione 502, Tetrahydro Linalool 341, Florol 109, Galaxolide 24, Hexyl Acetate
 2.4 (171 C makes it 2.7x louder).
+
+## Gooseberry shelf strips (2026-11-08)
+
+Sixteen strips in one sitting, loudest first as given: Hexenol neat, Isoamyl
+Acetate, Hexenyl-3-cis Acetate, Citral 50%, Hexyl Acetate, Allyl Amyl
+Glycolate, Strawberiff, Manzanate 10%, Verdox HC, Hexenol 10%, Blackcurrant
+Mercaptan 0.1%, Paradisamide, Cassifix, Fructone, Ethyl Linalool, Hedione. The
+raw ranking is in the perfumer's strip-session doc.
+
+Eight strips sat between Hexenol neat and Hexenol 10%, nine steps over a 10x
+dilution, which the fit's least gap of a quarter bin (1.32x) cannot hold, so
+the least gap is now 1.28x. Biggest moves (ppb): Citral 30 -> 0.49, Hexenol
+10 -> 1.18, Hexenyl-3-cis Acetate 10 -> 1.65, Verdox HC 15 -> 4.0, Isoamyl
+Acetate 5 -> 1.64, Ethyl Linalool 8 -> 84, Blackcurrant Mercaptan 0.0001 ->
+0.006, Manzanate 0.05 -> 0.70, Cassifix 5 -> 13.9. Published figures for
+Hexenol run the other way (about 70 ppb in a compiled table); the strips are
+what the engine is scored on, so they win here, weighted as compiled figures.
