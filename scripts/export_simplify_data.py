@@ -237,6 +237,13 @@ NEVER_PROPOSE = {
     "Dimethyl Disulfide": "not purchasable as a formulating material",
     "Dimethyl Trisulfide": "not purchasable as a formulating material",
     "Isopropyl 2-Methylbutyrate": "not purchasable as a formulating material",
+    # Catalogue additives the perfumer engine's brief search reached once it
+    # searched the whole library on the brief's own objective (2026-11-08):
+    # their predicted percept rows happened to fit a sulfurous brief.
+    "Oxynex® ST": "antioxidant and photostabiliser, not a perfumery material",
+    "Carbitol™": "solvent (ethoxydiglycol), not a perfumery material",
+    "Squalane": "odourless emollient, not a perfumery material",
+    "Diethyl Hexyl Adipate": "plasticiser and emollient, odourless, not a perfumery material",
 }
 
 #: Files whose entries were added because a real formula asked for them by
