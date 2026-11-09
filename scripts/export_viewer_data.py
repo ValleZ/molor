@@ -793,9 +793,11 @@ def main() -> int:
     bpath = ROOT / "data" / "inventory" / "boiling_points.csv"
     if bpath.is_file():
         import csv as _c2
+        # Molecules only, so no oil head-word match: it read "Mandarin
+        # Aldehyde Total" (272 C) as Mandarin EO and made the oil a middle note.
         for r in _c2.DictReader(open(bpath, encoding="utf-8-sig")):
             try:
-                bps[library_name(r["name"], lib_names, oil_names)] = float(r["bp_c"])
+                bps[library_name(r["name"], lib_names)] = float(r["bp_c"])
             except (ValueError, KeyError):
                 pass
         print(f"  boiling points: {len(bps)} fetched values available")

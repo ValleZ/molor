@@ -411,7 +411,7 @@ def inventory(resolve=lambda n: n):
 BP_TOP, BP_BASE = 216.0, 276.0
 
 
-def volatility(resolve=lambda n: n):
+def volatility(resolve=lambda n: n, resolve_molecule=None):
     """name -> (tier, 'recorded' | 'derived'), collapsed to three.
 
     The simplifier matches a single percept vector, and the README records
@@ -434,7 +434,10 @@ def volatility(resolve=lambda n: n):
     if bp.is_file():
         for r in csv.DictReader(io.open(bp, encoding="utf-8-sig")):
             try:
-                bps[resolve((r.get("name") or "").strip())] = float(r["bp_c"])
+                # Molecules only, so no oil head-word match: that read
+                # "Mandarin Aldehyde Total" (272 C) as Mandarin EO, making the
+                # oil a middle note and leaving the aldehyde without a tier.
+                bps[(resolve_molecule or resolve)((r.get("name") or "").strip())] = float(r["bp_c"])
             except (ValueError, KeyError):
                 pass
     out = {}
@@ -515,7 +518,7 @@ def main() -> int:
     def _norm(x):
         return " ".join(_re.sub(r"[^a-z0-9]+", " ", x.lower()).split())
     strength = load_strength()
-    vol, oil_cov = volatility(resolve)
+    vol, oil_cov = volatility(resolve, lambda n: library_name(n, lib_set))
     # IFRA: one resolved row per material, from the official standards
     # workbook (scripts/import_ifra.py -> scripts/resolve_ifra.py). The page
     # had no IFRA column at all until 2026-11, which meant the simplifier could
