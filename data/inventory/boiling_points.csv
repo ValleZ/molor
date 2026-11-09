@@ -67,7 +67,7 @@ Cascalone,RFSYHLFFESXTQI-UHFFFAOYSA-N,267.0,unstated,unstated,Vigon item 511690 
 Cedrene Alpha,IRAQOCYXUMOFCW-YKURLNKLSA-N,261.0,unstated,unstated,Vigon item 508305 product page,PubChem and NIST have no value; the page states no pressure,reply_09.csv,pass
 Cedrol,SVURIXNDRWRAFU-OGMFBOKVSA-N,286.0,unstated,unstated,PubChem CID 65575,,reply_01.csv,pass
 Cedroxyde®,PUXIGTZUWRBNMW-RRMOSLQNSA-N,305.0,unstated,unstated,Vigon item 502744 product page,PubChem and NIST have no value; the page states no pressure,reply_06.csv,pass
-Cedryl Acetate,HQKQRXZEXPXXIG-GXTNNVKYSA-N,201.5,atmospheric,760 mmhg,PubChem CID 240121 (HMDB),"stereo-isomer CID 240121, the exact CID 6482 has no boiling point",reply_06.csv,pass
+Cedryl Acetate,HQKQRXZEXPXXIG-GXTNNVKYSA-N,292,estimated,760 mmhg (calculated),literature/calculated 291.7-295 C,"2026-11-09 fix: old value 201.5 C was far below the molecular-weight trend (sd 36 C). Supplier 200-203 C cannot be atmospheric: cedrol itself boils at 286 C. | was: PubChem CID 240121 (HMDB); stereo-isomer CID 240121, the exact CID 6482 has no boiling point",manual-2026-11-09,
 Celestolide,IKTHMQYJOWTSJO-UHFFFAOYSA-N,304.5,atmospheric,101.325 kpa,PubChem CID 61585,BOC Sciences lists 309.1 C at 760 mmHg,reply_01.csv,pass
 Cetylic Alcohol,BXWNKGSJHAJOGX-UHFFFAOYSA-N,334.0,atmospheric,760 mmhg,PubChem CID 2682 (HSDB),DrugBank gives 344 without a unit and JECFA 344 C without a pressure,reply_10.csv,pass
 Cinnamyl Acetate,WJSDHUCWMSHDCR-VMPITWQZSA-N,263.5,unstated,unstated,PubChem CID 5282110,,reply_01.csv,pass
@@ -100,7 +100,7 @@ Diethyl Succinate,DKMROQRQHGEIOW-UHFFFAOYSA-N,217.5,atmospheric,760.00 mm hg,Pub
 Diethyl Tartrate (DET),YSAVZVORKRDODB-PHDIDXHHSA-N,280.0,atmospheric,760 mmhg,PubChem CID 6993580 (PAC Chemical Database),JECFA gives 280-281 C with no pressure and 153 C at 12 mmHg,reply_10.csv,pass
 Dihydro Alpha Ionone,JHJCHCSUEGPIGE-UHFFFAOYSA-N,234.0,unstated,unstated,PubChem CID 35821,,reply_02.csv,unverified
 Dihydro Beta Ionone,QJJDNZGPQDGNDX-UHFFFAOYSA-N,261.5,atmospheric,760.00 mm hg,PubChem CID 519382,,reply_02.csv,unverified
-Dihydroactinidiolide,IMKHDCBNRDRUEB-LLVKDONJSA-N,90.0,unstated,unstated,PubChem CID 6432173 (JECFA),single source and it states no pressure,reply_10.csv,pass
+Dihydroactinidiolide,IMKHDCBNRDRUEB-LLVKDONJSA-N,296,atmospheric,760 mmhg,Parchem 295-296 C @ 760; Selleckchem SDS 295-296 C @ 760,2026-11-09 fix: old value 90.0 C was far below the molecular-weight trend (sd 36 C). JECFA 90 C is a reduced-pressure figure. | was: PubChem CID 6432173 (JECFA); single source and it states no pressure,manual-2026-11-09,
 Dihydroambrate,KOSQMCNVEGXSCQ-UHFFFAOYSA-N,268.0,unstated,unstated,Vigon item 500883 product page,PubChem and NIST have no value; the page states no pressure,reply_10.csv,pass
 Dihydroanethol,KBHWKXNXTURZCD-UHFFFAOYSA-N,212.5,atmospheric,760 mmhg,"PubChem CID 7702 (HMDB, JECFA)",both sources agree,reply_10.csv,pass
 Dihydrocarveol,KRCZYMFUWVJCLI-UHFFFAOYSA-N,224.5,atmospheric,atmospheric pressure,Finetech CAS 619-01-2,,reply_02.csv,unverified
@@ -134,7 +134,7 @@ Fenchone Alpha,LHXDLQBQYFFVNW-UHFFFAOYSA-N,193.0,atmospheric,760.00 mm hg,PubChe
 Firascone,OENXQYZXKNBMLM-UHFFFAOYSA-N,206.0,unstated,unstated,Vigon item 504911 product page,PubChem and NIST have no value; the page states no pressure,reply_10.csv,pass
 Firsantol®,DGHXZJZALPECTJ-UHFFFAOYSA-N,271.0,unstated,unstated,Vigon item 504845 product page,PubChem and NIST have no value; the page states no pressure,reply_07.csv,unverified
 Floropal,IEZPIUQRQRWIFE-UHFFFAOYSA-N,278.5,atmospheric,760.00 mm hg,PubChem CID 107381,,reply_02.csv,unverified
-Fraistone,GSIXJEIRJVOUFB-UHFFFAOYSA-N,85.0,unstated,unstated,PubChem CID 95392 (JECFA),single source and it states no pressure,reply_10.csv,pass
+Fraistone,GSIXJEIRJVOUFB-UHFFFAOYSA-N,216,converted,from 76 C @ 4 mmhg,"TCI E1417 76 C @ 4 mmHg, converted",2026-11-09 fix: old value 85.0 C was far below the molecular-weight trend (sd 36 C). Converted as Whiskey Lactone (+-15 C). Parchem/JECFA 85 C states no pressure. | was: PubChem CID 95392 (JECFA); single source and it states no pressure,manual-2026-11-09,
 Fructalate,KRJHRNUTLDTSKY-UHFFFAOYSA-N,278.0,unstated,unstated,Vigon item 504004 product page,PubChem and NIST have no value; the page states no pressure,reply_08.csv,pass
 Furfural,HYBBIBNJHNGZAN-UHFFFAOYSA-N,161.7,atmospheric,760 mmhg,PubChem CID 7362,,reply_02.csv,unverified
 Furfuryl Acetate,CKOYRRWBOKMNRG-UHFFFAOYSA-N,176.1,atmospheric,760 mmhg,PubChem CID 12170,,reply_02.csv,unverified
@@ -187,7 +187,7 @@ Linalyl Cinnamate,DPFUEXLIKDHJNB-BUHFOSPRSA-N,353.0,atmospheric,760.00 mm hg,Pub
 Linalyl Formate,JZOCDHMHLGUPFI-UHFFFAOYSA-N,202.0,unstated,unstated,PubChem CID 61040,,reply_03.csv,pass
 Majantol®,FYMOBFDUZIDKMI-UHFFFAOYSA-N,289.0,unstated,unstated,Vigon item 502518 product page,PubChem and NIST have no value; the page states no pressure,reply_11.csv,pass
 Maltol,XPCTZQVDEJYUGT-UHFFFAOYSA-N,285.0,unstated,unstated,Vigon item 500413 (maltol FCC) product page,"CAMEO gives 199 F at 760 mmHg marked ""sublimes"" and HSDB says sublimes at 93 C; the supplier page states no pressure",reply_06.csv,pass
-Maltol Isobutyrate,LPNUBNQKJRGCSC-UHFFFAOYSA-N,176.0,unstated,unstated,Vigon item 500224 product page,PubChem has no record for this InChIKey; the page states no pressure,reply_07.csv,unverified
+Maltol Isobutyrate,LPNUBNQKJRGCSC-UHFFFAOYSA-N,330,converted,from 176 C @ 7 mmhg,"Parchem 176 C @ 7 mmHg, converted",2026-11-09 fix: old value 176.0 C was far below the molecular-weight trend (sd 36 C). Converted as Whiskey Lactone (+-15 C); Parchem also gives 125 C @ 0.1 mmHg (would be ~400); ChemicalBook predicts 322. | was: Vigon item 500224 product page; PubChem has no record for this InChIKey; the page states no pressure,manual-2026-11-09,
 Mandarin Aldehyde Total,SSNZFFBDIMUILS-ZHACJKMWSA-N,272.0,unstated,unstated,PubChem CID 5283361 (JECFA),"HMDB gives 73-74 C at 0.5 mmHg, a vacuum figure; JECFA states no pressure",reply_11.csv,pass
 Matsutake Alcohol,VSMOENVRRABVKN-MRVPVSSYSA-N,175.1,unstated,unstated,PubChem CID 18827 (JECFA),"stereo-isomer CID 18827, the exact CID 2724898 has no boiling point; HMDB gives 84-85 C at 25 mmHg; no pressure stated",reply_09.csv,pass
 Mefranal,DFJMIMVMOIFPQG-UHFFFAOYSA-N,254.0,unstated,unstated,Vigon item 503238 product page,PubChem and NIST have no value; the page states no pressure,reply_09.csv,pass
@@ -233,7 +233,7 @@ Para Cresol,IWDCLRJOBJJRNH-UHFFFAOYSA-N,201.9,atmospheric,760.00 mm hg,PubChem C
 Para Cresyl Caprylate,ALRYNTSLFYRKGF-UHFFFAOYSA-N,265.0,unstated,unstated,PubChem CID 43046 (JECFA),no pressure stated by the source,reply_08.csv,pass
 Para Methyl Acetophenone,GNKZMNRKLCTJAY-UHFFFAOYSA-N,224.0,atmospheric,756.00 mm hg,PubChem CID 8500,,reply_03.csv,pass
 Para Tolyl Aldehyde,FXLOVSHXALFLKQ-UHFFFAOYSA-N,204.0,atmospheric,760.00 mm hg,PubChem CID 7725,,reply_03.csv,pass
-Passifloran,GSJSVAFGVJLTNQ-UHFFFAOYSA-N,212.0,atmospheric,760 mmhg,PubChem CID 2733977 (HMDB),JECFA gives 212 C without a pressure,reply_11.csv,pass
+Passifloran,GSJSVAFGVJLTNQ-UHFFFAOYSA-N,285,estimated,from vapour pressure,Parchem VP 0.00205 mmHg @ 25 C (CAS 136954-25-1),"2026-11-09 fix: old value 212.0 C was far below the molecular-weight trend (sd 36 C). 212 C @ 760 contradicts the same sheet's vapour pressure, which implies ~285-315 C; MW trend 283. Rough. | was: PubChem CID 2733977 (HMDB); JECFA gives 212 C without a pressure",manual-2026-11-09,
 Pastry Carbaldehyde,OUDFNZMQXZILJD-UHFFFAOYSA-N,187.0,unstated,unstated,PubChem CID 12097 (JECFA),"HMDB gives 89-90 C at 26 mmHg, a vacuum figure; JECFA states no pressure",reply_12.csv,pass
 Peomosa,RUGISKODRCWQNE-UHFFFAOYSA-N,243.6,unstated,unstated,NIST WebBook CAS 19819-98-8,"NIST T boil from the atmospheric table, pressure not printed on the page",reply_08.csv,pass
 Phenyl Acetic Acid,WLJVXDMOQOGPHL-UHFFFAOYSA-N,265.5,unstated,unstated,PubChem CID 999,,reply_03.csv,pass
@@ -274,7 +274,7 @@ Tetrahydrogeraniol,PRNCMAKCNVRZFX-UHFFFAOYSA-N,213.0,unstated,unstated,PubChem C
 Tetramethyl Pyrazine,FINHMKGKINIASC-UHFFFAOYSA-N,190.1,unstated,unstated,NIST WebBook CAS 1124-11-4,,reply_05.csv,unverified
 Thymol,MGSRCZKZVOBKFT-UHFFFAOYSA-N,231.5,atmospheric,760.00 mm hg,PubChem CID 6989,CRC lists 233 C with pressure unstated,reply_04.csv,pass
 Tomato Thiazole,CMPVUVUNJQERIT-UHFFFAOYSA-N,179.0,unstated,unstated,PubChem CID 62725 (JECFA),no pressure stated by the source,reply_12.csv,pass
-Tonalide,DNRJTBAOUJJKDY-UHFFFAOYSA-N,165.0,atmospheric,atmospheric pressure,PubChem CID 89440,,reply_04.csv,pass
+Tonalide,DNRJTBAOUJJKDY-UHFFFAOYSA-N,326,atmospheric,1 atm,EU Risk Assessment Report AHTN (2008); Tonalid SDS 2022,2026-11-09 fix: old value 165.0 C was far below the molecular-weight trend (sd 36 C). PubChem 165 C is not atmospheric. | was: PubChem CID 89440,manual-2026-11-09,
 "Trans-2,Cis-6-Nonadienol",AMXYRHBJZOVHOL-ODYTWBPASA-N,196.0,unstated,unstated,PubChem CID 34134 (JECFA),"stereo-isomer CID 34134, the exact CID 5362833 has no boiling point; no pressure stated",reply_07.csv,unverified
 Trans-2-Hexenol,ZCHHRLHTBGRGOT-SNAWJCMRSA-N,159.0,atmospheric,760.00 mm hg,PubChem CID 5318042,,reply_04.csv,pass
 Triethyl Citrate,DOOTYTYQINUNNV-UHFFFAOYSA-N,294.0,unstated,unstated,PubChem CID 6506,,reply_04.csv,pass
@@ -290,7 +290,7 @@ Vertenex,MBZRJSQZCBXRGK-UHFFFAOYSA-N,228.0,unstated,unstated,Vigon item 501612 p
 Vertosine,KDSJAOIHFZMUNK-SDNWHVSQSA-N,405.0,unstated,unstated,Vigon item 500726 (Schiff base) product page,PubChem and NIST have no value; the page states no pressure,reply_12.csv,pass
 Vetikolacetat®,MXIGGIZQUGDKAP-UHFFFAOYSA-N,293.0,unstated,unstated,Vigon item 502546 product page,PubChem and NIST have no value; the page states no pressure,reply_12.csv,pass
 Viridine,WNJSKZBEWNVKGU-UHFFFAOYSA-N,220.0,atmospheric,754.00 mm hg,PubChem CID 60995,,reply_04.csv,pass
-Whiskey Lactone,WNVCMFHPRIBNCW-UHFFFAOYSA-N,93.5,unstated,unstated,PubChem CID 62900 (JECFA),no pressure stated by the source,reply_09.csv,pass
+Whiskey Lactone,WNVCMFHPRIBNCW-UHFFFAOYSA-N,234,converted,from 93.5 C @ 5 mmhg,"JECFA 93-94 C @ 5 mmHg, converted","2026-11-09 fix: old value 93.5 C was far below the molecular-weight trend (sd 36 C). Converted with Trouton dS=26 cal/mol/K, checked on linalool, coumarin, geraniol, benzyl benzoate, vanillin (+-15 C). ChemNet predicts 246.5. | was: PubChem CID 62900 (JECFA); no pressure stated by the source",manual-2026-11-09,
 Ylanganate,WVWZECQNFWFVFW-UHFFFAOYSA-N,207.6,unstated,unstated,NIST WebBook CAS 89-71-4,"NIST T boil from the atmospheric table, pressure not printed on the page",reply_12.csv,pass
 Z11™ 10 MIP,PHNCACYNYORRNS-UHFFFAOYSA-N,200.0,unstated,unstated,Vigon item 513169 product page,PubChem and NIST have no value; the page states no pressure,reply_12.csv,pass
 l-Carvone,ULDHMXUKGWMISQ-SECBINFHSA-N,228.5,atmospheric,760.00 mm hg,PubChem CID 439570,JECFA lists 231 C with pressure unstated,reply_04.csv,pass
