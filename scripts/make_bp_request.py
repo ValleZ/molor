@@ -100,6 +100,9 @@ def main() -> int:
     ap.add_argument("--controls", type=int, default=6,
                     help="known-answer rows mixed into each batch")
     ap.add_argument("--seed", type=int, default=11)
+    ap.add_argument("--first", type=Path, default=None,
+                    help="text file of names, one per line, to request first "
+                         "(e.g. the materials real formulas use most)")
     args = ap.parse_args()
 
     try:
@@ -120,6 +123,11 @@ def main() -> int:
             except ValueError:
                 pass
 
+    # Fetched answers already merged are not asked for again.
+    bpf = ROOT / "data/inventory/boiling_points.csv"
+    fetched = ({r["name"].strip() for r in csv.DictReader(
+        io.open(bpf, encoding="utf-8-sig"))} if bpf.is_file() else set())
+
     smiles = {r["name"].strip(): (r.get("smiles") or "").strip()
               for r in csv.DictReader(io.open(
                   ROOT / "library/input/expanded_materials.csv",
@@ -129,7 +137,11 @@ def main() -> int:
                      .read_text(encoding="utf-8"))
     want = [m["n"] for m in pay["materials"]
             if not m.get("noUse") and not m.get("unver") and not m.get("oil")
-            and m["n"] not in known]
+            and m["n"] not in known and m["n"] not in fetched]
+    if args.first and args.first.is_file():
+        order = {n.strip(): i for i, n in enumerate(
+            args.first.read_text(encoding="utf-8").splitlines()) if n.strip()}
+        want.sort(key=lambda n: order.get(n, len(order)))
 
     def key(n):
         m = Chem.MolFromSmiles(smiles.get(n, "") or "")
@@ -158,8 +170,11 @@ def main() -> int:
     batches = [rows[i:i + args.batch_size]
                for i in range(0, len(rows), args.batch_size)]
     OUT.mkdir(parents=True, exist_ok=True)
-    for f in OUT.glob("batch_*.md"):
-        f.unlink()
+    # Number after every batch or reply already on disk, so a new round never
+    # overwrites (or is confused with) an earlier round's reply_NN.csv.
+    done = [int(f.stem.split("_")[1]) for f in OUT.glob("*_*.*")
+            if f.stem.split("_")[1].isdigit()]
+    base = max(done, default=0)
 
     ci = 0
     for b, batch in enumerate(batches, 1):
@@ -169,19 +184,20 @@ def main() -> int:
                 use.append(picks[ci]); ci += 1
         rng.shuffle(use)
         body = "".join(f"| {n} | {ik} | {smi} |\n" for n, ik, smi in use)
-        txt = HEAD.format(n=b, total=len(batches)) + body
-        (OUT / f"batch_{b:02d}.md").write_text(txt, encoding="utf-8")
+        txt = HEAD.format(n=base + b, total=base + len(batches)) + body
+        (OUT / f"batch_{base + b:02d}.md").write_text(txt, encoding="utf-8")
 
-    print(f"[bp] {len(want)} proposable molecules have no boiling point")
+    print(f"[bp] {len(want)} proposable molecules have no boiling point "
+          f"({len(fetched)} fetched earlier are skipped)")
     print(f"[bp] {len(rows)} have a usable InChIKey; {len(nokey)} do not"
           + (f" ({', '.join(nokey[:4])})" if nokey else ""))
-    print(f"[bp] wrote {len(batches)} batches to "
+    print(f"[bp] wrote batch_{base + 1:02d}..batch_{base + len(batches):02d} to "
           f"data/inventory/bp_requests/, {args.batch_size} materials each")
     print(f"[bp] plus {min(ci, len(picks))} control rows with answers this "
           f"repository already holds, mixed in unlabelled")
     print(f"\nPaste one batch per message. Save each reply as")
-    print(f"  data/inventory/bp_requests/reply_01.csv  (matching the batch "
-          f"number)")
+    print(f"  data/inventory/bp_requests/reply_{base + 1:02d}.csv  (matching "
+          f"the batch number)")
     print(f"then run scripts/merge_bp.py, which scores the controls before it "
           f"merges anything.")
     return 0
