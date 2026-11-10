@@ -372,3 +372,186 @@ What it took to ship, all measured:
   a formula that the model's sd profile decides).
 
 Suite: **88 passed** against the fp4 database.
+
+## fp5 without `pos_weight`: REJECTED by the perfumer (2026-11-09)
+
+**Verdict: fp4 stays. Dropping or weakening `pos_weight` is not to be tried
+again on the strength of label-based numbers.**
+
+The candidate was fp3's recipe (no `pos_weight`) on today's 703 molecules. On
+every number below it beat fp4, and the perfumer's nose overruled them on the
+material vectors themselves:
+
+| material | fp4 | candidate | perfumer |
+|---|---|---|---|
+| Damascone Beta | 24 words above 0.5: berry 0.98, tobacco 0.98, tea 0.98, plum 0.97, black currant 0.97 | 6 above 0.5: fruity 0.93, floral 0.79, woody 0.70, berry 0.62, plum 0.32 | the rich profile is right: tea and black currant are there, berry and fruit for sure, dry plum somewhat; tobacco about 0.25 if at all |
+| Cassifix (no label row) | woody 0.97, cedar 0.96, amber 0.92 | woody 0.93, cedar 0.33, amber 0.25 | woody plus something special that is called amber; fp4 closer |
+| Phenethyl Alcohol | 15 above 0.5, with hyacinth 0.95, balsamic 0.88, geranium 0.71 | floral 0.93, rose 0.84, sweet 0.66 | a complex smell of many flowers; fp4 closer |
+
+Why the numbers pointed the wrong way:
+
+1. **Materials really are that rich.** A label row lists seven or so words and
+   each is a real facet. Without `pos_weight` the loss is dominated by the
+   zeros, so the model learns to mention a rare word faintly even where the
+   row has it (only 24% of labelled cells reach 0.7). That is under-calling,
+   and fp4's "over-prediction" was mostly the correction of it. The panel
+   agrees in hindsight: it rates 10.3% of cells as present, the candidate's
+   mean prediction is 0.044 and fp4's 0.155. The truth lies between, and the
+   candidate is further from it.
+2. **Label support is circular.** It rewards picking materials whose row holds
+   the asked word, and a model without `pos_weight` mostly repeats its
+   training rows. It cannot tell a model that copies labels from one that
+   rightly reads a facet into a material whose row lacks the word (Cassifix
+   has no row at all, and fp4's reading of it was the better one).
+3. **The pick tables were judged by name, not by smell.** "Cedryl Acetate for
+   a cedar brief" looks right on paper to someone who has not smelled the
+   alternatives.
+
+What survives: fp4 does overstate some cells (tobacco 0.98 on Damascone Beta
+against the perfumer's 0.25), and the graded targets of to-do items 5 and 6
+are the way to address that, trained **with** `pos_weight`. Fit still cannot
+compare two models. And the only gate that counts is the perfumer reading a
+material's vector against the material.
+
+The measurements, kept for the record:
+
+Retrained at five strengths of `pos_weight` (the per-label weight raised to a
+power: 0 = the candidate, 1 = fp4), and run through eight briefs at eight
+materials from the whole library:
+
+| `pos_weight` power | 0 | 0.25 | 0.5 | 0.75 | 1 (fp4) |
+|---|---|---|---|---|---|
+| out-of-fold AUC | 0.867 | 0.867 | 0.871 | 0.870 | 0.869 |
+| similarity vs label overlap | **0.503** | 0.440 | 0.417 | 0.387 | 0.356 |
+| mean prediction (label rate 0.051) | 0.044 | 0.066 | 0.091 | 0.120 | 0.155 |
+| engine's own fit, mean of 8 briefs | 0.526 | 0.633 | 0.763 | 0.839 | 0.871 |
+| label support for the asked facets | **0.66** | 0.62 | 0.62 | 0.52 | 0.48 |
+| label support for the hero facet | **0.84** | 0.73 | 0.76 | 0.62 | 0.56 |
+
+*Label support* is the share of the smell that comes from picks whose own
+GS-LF row uses the asked word, among the picks that have a row (asked facets
+weighted by their ask). It does not come from the model under test, though a
+model trained without `pos_weight` follows its training labels closely, so
+part of this is the model repeating them.
+
+The engine's fit moves the other way: **fit is the model grading itself and
+cannot compare two models.** The gates above (fit, facets landing) all had
+this flaw. Label support turned out to have its own (see the verdict).
+
+What the picks look like (judged by name only; not smelled):
+
+| brief | fp4 | no `pos_weight` |
+|---|---|---|
+| cedar and amber | Cassifix, Hedione, Cycloverdyl Propionate, Boisambrene Forte, Bornafix, 2-Ethylhexyl Salicylate, Florex, Trisamber | Vertofix Coeur, Cinnamyl Cinnamate, Cedryl Acetate, Caryophyllene Oxide, Isobornyl Acetate, Cedrenyl Acetate, Ambroxan, Amboryl Acetate |
+| peach | Phenethyl Alcohol, Apritone, Benzyl Acetate, Gamma Nonalactone, Delta Decalactone, Fruitate, Gamma Octalactone, Blackcurrant mercaptan | Apritone, Jasminlactone, Nectaryl, Lactojasmone, Gamma Decalactone, Delta Decalactone, Gamma Nonalactone, Delta Undecalactone |
+| lilac and cold cream | Isobutavan, Phytol, Benzyl Alcohol, Apritone, Geranyl Acetone, Bourgeonal, Starfleur 40, Cis Jasmone | Veratraldehyde, Hedione, Lactojasmone, Helional, Canthoxal, Vanillin Acetate, Canthoxalia, Anisyl Alcohol |
+| berry | Apritone, Fructone, Rhubofix, Dimethyl Benzyl Carbinyl Acetate, Ethyl 2-methyl butyrate, Styrallyl Acetate, Grape Butyrate, Ethyl Butyrate | Fructone, Benzyl Isobutyrate, Dihydroactinidiolide, Ethyl 2-methyl butyrate, Ethyl Isobutyrate, Methyl Isobutyrate, Damascone Alpha, Damascone Beta |
+
+### What the Dravnieks panel says about labels and the model
+
+127 of the 138 panel molecules have a GS-LF row, giving 10,414 cells where a
+panel rating, a label and an out-of-fold prediction can be compared. "Present"
+is a rating of 9.8 or more, the median rating of a labelled cell.
+
+| predictor of "present" (cross-validated by molecule) | AUC |
+|---|---|
+| label alone | 0.629 |
+| out-of-fold model alone (no `pos_weight`) | 0.793 |
+| label and model together | 0.802 |
+
+- A label of 1 is worth about 2.4x in odds; the model's out-of-fold opinion is
+  worth more. A missing word is weak evidence of absence, as the raise-only
+  rule assumed, and a present word is weaker evidence than a flat 0.9.
+- Half of the labelled cells rate under 10 on the panel; 7.5% of the
+  unlabelled ones rate 10 or more.
+- **Position in the label row carries almost no information.** The first word
+  of `descriptors` rates 15.7 on average, the sixth and later 13.2. The merged
+  file's order is not prominence.
+
+A panel-calibrated matrix was built from this (value = probability of
+"present" given label, out-of-fold prediction and how common the descriptor
+is; labelled molecules use their out-of-fold prediction, the rest the model's).
+It makes the result nearly independent of `pos_weight` (label support 0.67 to
+0.69, hero 0.83 to 0.88) and beats the plain model by little (0.69 / 0.87
+against 0.66 / 0.84). Not worth its machinery yet.
+
+The scripts for all of the above were one-off and are not in the repository,
+and neither is the training change (an exponent on the weight in
+`train_fp_v3.py`'s `fit`, and a dump of the out-of-fold predictions).
+
+### To do
+
+In order. Each item says what to do and how to tell whether it worked.
+
+1. ~~Decide fp5 by nose.~~ Done 2026-11-09: rejected, see the verdict.
+2. ~~Ship fp5 = fp3's recipe.~~ Dropped with it.
+3. **A gate the perfumer can run in five minutes.** Neither fit nor label
+   support can judge a model. For any new candidate, print the top words of
+   ten materials the perfumer knows well (Damascone Beta, Cassifix, Phenethyl
+   Alcohol, Hedione, Iso E Super and five more of their choosing), old model
+   beside new, and let the nose decide before anything else is measured.
+4. **The perfumer's own yes/no answers: as a check only, never as training.**
+   One nose is not the consensus the labels describe (Damascone Beta is
+   labelled plum and does not smell of plum to the perfumer), so a personal
+   "no" must not overwrite a label. If collected at all, the answers are a
+   private test set: which model disagrees with this nose less.
+5. **More label sources for the same molecules: checked 2026-11-09, worth
+   doing.** The pyrfume archive holds all four, and votes across sources grade
+   the labels. On the Dravnieks panel molecules:
+
+   | GS-LF label | votes from the 4 extra sources | cells | mean panel rating | rated 10 or more |
+   |---|---|---|---|---|
+   | 1 | 0 | 335 | 12.3 | 42% |
+   | 1 | 1 | 175 | 17.1 | 58% |
+   | 1 | 2 or more | 78 | 23.7 | 64% |
+   | 0 | 0 | 8754 | 2.9 | 7% |
+   | 0 | 1 | 161 | 7.3 | 28% |
+   | 0 | 2 or more | 9 | 11.5 | 44% |
+
+   Library coverage (of 699 keyed molecules): Arctander 355, IFRA glossary
+   328, Sigma 258, Flavornet 203. They add only 8 of the 69 molecules that
+   have no GS-LF row, so this grades labels and does not fill gaps.
+   - The check matched words by name plus a short synonym list (66 of
+     Arctander's 76 words map, 105 of IFRA's 184, 78 of Sigma's 114, 75 of
+     Flavornet's 195). Write a proper crosswalk per source, as for Dravnieks.
+   - Build a soft training target per cell from label and votes, with values
+     taken from the panel table above (for example 0.4 / 0.6 / 0.65 for a
+     label with 0 / 1 / 2+ votes, 0.3 for one vote without a label).
+   - Train on it **with** `pos_weight` (fp4's recipe) and put the result
+     through the gate of item 3. The aim is fp4's richness with the overstated
+     cells graded down (tobacco on Damascone Beta), not fewer facets.
+6. **Descriptor order: checked 2026-11-09, the first word counts.** The merged
+   file's order is uninformative, but the raw sources keep theirs. Mean panel
+   rating by position: Good Scents 21.3 / 15.9 / 16.4 / 14.4 (first, second,
+   third, later), IFRA glossary 21.3 / 14.6 / 12.2. Only the first position
+   stands out. Add "first-listed in Good Scents or IFRA" as one more vote in
+   the target of item 5; do not grade the later positions.
+7. **Labels for the oils and the 69 unlabelled molecules.** They have no row,
+   and the oils are composed from constituents.
+   - Take each one's supplier description (Fraterworks pages are already
+     fetched by `fetch_fraterworks.py`; The Good Scents has oils too).
+   - Turn the prose into vocabulary words with the same mapper that turns a
+     brief into facets (`llm.py` in the perfumer repo).
+   - The perfumer checks ten by hand. If they hold, write them as label rows
+     and treat them like any other.
+   - For oils, compare with the composed vector. Where they disagree, the
+     description wins for what the oil smells of, and the disagreement is a
+     finding about the composition, in this order of likelihood:
+     1. the oil is composed by mass share (`build_naturals.py`), while the
+        engine mixes by share of the smell. A potent trace (damascenone in
+        rose, pyrazines in galbanum) is nearly absent by mass and leads by
+        smell. Compose oils with the engine's own loudness rule first, then
+        compare again;
+     2. a constituent is missing from the stated composition or from the
+        library;
+     3. only then is the description treated as the odd one out.
+   - Keep the composed vector for gradation and raise the described facets on
+     it, as the label merge does for molecules.
+8. **Ensemble disagreement.** Save the standard deviation over the five
+   models beside the mean. Try scoring a material at mean minus half its
+   spread, and see whether label support rises on the unlabelled picks (about
+   one per sheet today).
+9. **Panel calibration, later.** Revisit once items 4 to 7 have added
+   evidence: the calibration is the natural place to combine label, vote
+   count, model and spread into one value, and the panel is the only graded
+   truth to fit it on.
