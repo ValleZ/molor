@@ -1,0 +1,1105 @@
+{
+ "_about": "Essential oil descriptions for the library. Each is a supplier text (Fraterworks product page, cached in vendor/fraterworks) read for odour and mapped to the 138-word GS-LF vocabulary; weights are in the brief mapper's currency, where a weight is read directly as a percept probability. The brief mapper itself (perfumer llm.prose_to_brief) could not run (its API key returned 401), so the maps were written by hand from the same text and vocabulary. Six poorly represented oils (Petitgrain, Lavandin, Vetiver, Lime, Labdanum, Tangerine) were revised from web sources on 2026-11-10; each of their words carries a provenance: 'text' (supplier text), 'revised' (supplier weight changed, old weight kept) or 'web' (added from web sources, listed per oil). Web sources are mostly trade copy and disagree on several points. 'match' says how close the described product is to the composed oil: exact, close, proxy (a sibling origin or grade; only words that hold for the family are kept), heart (a fraction; the whole-oil map is from the web) or none. Every map was re-read against its cached text on 2026-11-10 and each change is listed in that oil's 'review'. scripts/build_naturals.py applies the maps to the composed vectors, raise-only (PERCEPT_EVIDENCE.md, 'Oil descriptions'); 'avoid' is recorded and never applied. The comparison with the composed vector is written to artifacts/naturals.json ('described'), not kept here. Not yet confirmed by the perfumer's nose.",
+ "descriptors": [
+  "alcoholic",
+  "aldehydic",
+  "alliaceous",
+  "almond",
+  "amber",
+  "animal",
+  "anisic",
+  "apple",
+  "apricot",
+  "aromatic",
+  "balsamic",
+  "banana",
+  "beefy",
+  "bergamot",
+  "berry",
+  "bitter",
+  "black currant",
+  "brandy",
+  "burnt",
+  "buttery",
+  "cabbage",
+  "camphoreous",
+  "caramellic",
+  "cedar",
+  "celery",
+  "chamomile",
+  "cheesy",
+  "cherry",
+  "chocolate",
+  "cinnamon",
+  "citrus",
+  "clean",
+  "clove",
+  "cocoa",
+  "coconut",
+  "coffee",
+  "cognac",
+  "cooked",
+  "cooling",
+  "cortex",
+  "coumarinic",
+  "creamy",
+  "cucumber",
+  "dairy",
+  "dry",
+  "earthy",
+  "ethereal",
+  "fatty",
+  "fermented",
+  "fishy",
+  "floral",
+  "fresh",
+  "fruit skin",
+  "fruity",
+  "garlic",
+  "gassy",
+  "geranium",
+  "grape",
+  "grapefruit",
+  "grassy",
+  "green",
+  "hawthorn",
+  "hay",
+  "hazelnut",
+  "herbal",
+  "honey",
+  "hyacinth",
+  "jasmin",
+  "juicy",
+  "ketonic",
+  "lactonic",
+  "lavender",
+  "leafy",
+  "leathery",
+  "lemon",
+  "lily",
+  "malty",
+  "meaty",
+  "medicinal",
+  "melon",
+  "metallic",
+  "milky",
+  "mint",
+  "muguet",
+  "mushroom",
+  "musk",
+  "musty",
+  "natural",
+  "nutty",
+  "odorless",
+  "oily",
+  "onion",
+  "orange",
+  "orangeflower",
+  "orris",
+  "ozone",
+  "peach",
+  "pear",
+  "phenolic",
+  "pine",
+  "pineapple",
+  "plum",
+  "popcorn",
+  "potato",
+  "powdery",
+  "pungent",
+  "radish",
+  "raspberry",
+  "ripe",
+  "roasted",
+  "rose",
+  "rummy",
+  "sandalwood",
+  "savory",
+  "sharp",
+  "smoky",
+  "soapy",
+  "solvent",
+  "sour",
+  "spicy",
+  "strawberry",
+  "sulfurous",
+  "sweaty",
+  "sweet",
+  "tea",
+  "terpenic",
+  "tobacco",
+  "tomato",
+  "tropical",
+  "vanilla",
+  "vegetable",
+  "vetiver",
+  "violet",
+  "warm",
+  "waxy",
+  "weedy",
+  "winey",
+  "woody"
+ ],
+ "oils": {
+  "Lavender EO (French, L. angustifolia)": {
+   "source_title": "Lavender “Signature” Oil",
+   "source_url": "https://fraterworks.com/products/lavender-signature-oil-france",
+   "match": "close",
+   "descriptor_map": {
+    "lavender": 1.0,
+    "floral": 0.7,
+    "sweet": 0.5
+   },
+   "avoid": [
+    "earthy"
+   ],
+   "note": "Supplier text describes the French lavender it is named for; the composed oil is a generic French lavender."
+  },
+  "Lavender EO (Spanish, var. pyrenaica)": {
+   "source_title": "Lavender Oil, Balkans",
+   "source_url": "https://fraterworks.com/products/lavender-oil-balkans",
+   "match": "proxy",
+   "descriptor_map": {
+    "lavender": 1.0,
+    "herbal": 0.3
+   },
+   "avoid": [],
+   "note": "Proxy: Balkan lavender. Text is used up to its 'Lavender Variety Comparison' heading, which is about other oils. Composed oil is high in borneol and camphor, which the Balkan text says it lacks.",
+   "review": [
+    "dropped floral: proxy: Balkan lavender's balance of linalool and linalyl acetate; the composed Spanish oil is led by borneol and camphor",
+    "dropped sweet: proxy: Balkan lavender's balance of linalool and linalyl acetate; the composed Spanish oil is led by borneol and camphor",
+    "dropped fresh: proxy: Balkan lavender's balance of linalool and linalyl acetate; the composed Spanish oil is led by borneol and camphor",
+    "dropped fruity: proxy: Balkan lavender's balance of linalool and linalyl acetate; the composed Spanish oil is led by borneol and camphor",
+    "dropped woody: proxy: Balkan lavender's balance of linalool and linalyl acetate; the composed Spanish oil is led by borneol and camphor",
+    "avoid camphoreous removed: it contradicts the composition this entry stands for"
+   ]
+  },
+  "Spike Lavender EO (L. latifolia)": {
+   "source_title": null,
+   "source_url": null,
+   "match": "none",
+   "descriptor_map": {},
+   "avoid": [],
+   "note": "No supplier product in the catalogue."
+  },
+  "Lavender EO (South African)": {
+   "source_title": null,
+   "source_url": null,
+   "match": "none",
+   "descriptor_map": {},
+   "avoid": [],
+   "note": "No supplier product in the catalogue."
+  },
+  "Petitgrain EO (bigarade)": {
+   "source_title": "Petitgrain Bigarade Oil",
+   "source_url": "https://fraterworks.com/products/petitgrain-bigarade",
+   "match": "exact",
+   "descriptor_map": {
+    "green": 0.8,
+    "citrus": 0.7,
+    "floral": 0.6,
+    "woody": 0.6,
+    "fresh": 0.6,
+    "bitter": 0.3,
+    "soapy": 0.2
+   },
+   "avoid": [],
+   "note": "Supplier text gives origin, part and method only; no odour description. Descriptors added from web sources; the supplier text gave none.",
+   "provenance": {
+    "green": {
+     "weight": 0.8,
+     "source": "web",
+     "web": [
+      "https://caperfume.com/pages/discover-ingredient/petitgrain",
+      "https://www.hysses.com/essential-oil-petitgrain/"
+     ]
+    },
+    "citrus": {
+     "weight": 0.7,
+     "source": "web",
+     "web": [
+      "https://caperfume.com/pages/discover-ingredient/petitgrain",
+      "https://www.hysses.com/essential-oil-petitgrain/"
+     ]
+    },
+    "floral": {
+     "weight": 0.6,
+     "source": "web",
+     "web": [
+      "https://caperfume.com/pages/discover-ingredient/petitgrain",
+      "https://www.hysses.com/essential-oil-petitgrain/"
+     ]
+    },
+    "woody": {
+     "weight": 0.6,
+     "source": "web",
+     "web": [
+      "https://caperfume.com/pages/discover-ingredient/petitgrain",
+      "https://www.hysses.com/essential-oil-petitgrain/"
+     ]
+    },
+    "fresh": {
+     "weight": 0.6,
+     "source": "web",
+     "web": [
+      "https://caperfume.com/pages/discover-ingredient/petitgrain",
+      "https://www.hysses.com/essential-oil-petitgrain/"
+     ]
+    },
+    "bitter": {
+     "weight": 0.3,
+     "source": "web",
+     "web": [
+      "https://caperfume.com/pages/discover-ingredient/petitgrain",
+      "https://www.hysses.com/essential-oil-petitgrain/"
+     ]
+    },
+    "soapy": {
+     "weight": 0.2,
+     "source": "web",
+     "web": [
+      "https://caperfume.com/pages/discover-ingredient/petitgrain",
+      "https://www.hysses.com/essential-oil-petitgrain/"
+     ]
+    }
+   },
+   "web_sources": [
+    "https://caperfume.com/pages/discover-ingredient/petitgrain",
+    "https://www.hysses.com/essential-oil-petitgrain/"
+   ]
+  },
+  "Cedarwood EO (Virginia)": {
+   "source_title": "Cedarwood “Superior” Oil, Virginia",
+   "source_url": "https://fraterworks.com/products/cedarwood-extra-oil-virginia",
+   "match": "exact",
+   "descriptor_map": {
+    "woody": 0.9,
+    "cedar": 0.8
+   },
+   "avoid": [],
+   "note": "Text is thin: 'refined and low-key odour', a base to extend sandalwood and oud."
+  },
+  "Bergamot EO (Turkish)": {
+   "source_title": "Bergamot “Superior” Oil, FCF",
+   "source_url": "https://fraterworks.com/products/bergamot-oil-fcf",
+   "match": "proxy",
+   "descriptor_map": {
+    "bergamot": 1.0,
+    "citrus": 0.6
+   },
+   "avoid": [],
+   "note": "Proxy: Calabrian-style bergaptene-free bergamot; text contrasts it with caustic-treated bergamot. Turkish origin has no supplier text.",
+   "review": [
+    "dropped green: 'classic Italian green bergamot oil' names the colour grade, not an odour"
+   ]
+  },
+  "Geranium EO (Bourbon, Madagascar)": {
+   "source_title": "Geranium Bourbon “Supreme” Oil",
+   "source_url": "https://fraterworks.com/products/geranium-bourbon",
+   "match": "close",
+   "descriptor_map": {
+    "geranium": 1.0,
+    "green": 0.7,
+    "floral": 0.7,
+    "rose": 0.4
+   },
+   "avoid": [],
+   "note": "Text: 'closest in scent' to the classic Bourbon quality; green and floral."
+  },
+  "Peppermint EO (Michigan)": {
+   "source_title": "Peppermint Oil “Black Mitcham”",
+   "source_url": "https://fraterworks.com/products/peppermint-oil",
+   "match": "proxy",
+   "descriptor_map": {
+    "mint": 1.0
+   },
+   "avoid": [],
+   "note": "Proxy: English Black Mitcham, which the text sets against American and Indian peppermint. Text says top-note penetration is tempered by ageing.",
+   "review": [
+    "dropped sweet: proxy: the text gives it as what sets Black Mitcham apart from other peppermints, the American among them",
+    "dropped floral: proxy: the text gives it as what sets Black Mitcham apart from other peppermints, the American among them"
+   ]
+  },
+  "Lemongrass EO": {
+   "source_title": null,
+   "source_url": null,
+   "match": "none",
+   "descriptor_map": {},
+   "avoid": [],
+   "note": "No supplier product in the catalogue."
+  },
+  "Lavandin EO (Grosso)": {
+   "source_title": "Lavandin Grosso Oil",
+   "source_url": "https://fraterworks.com/products/lavandin-grosso",
+   "match": "exact",
+   "descriptor_map": {
+    "camphoreous": 0.7,
+    "herbal": 0.6,
+    "floral": 0.7,
+    "lavender": 0.8,
+    "fresh": 0.5,
+    "woody": 0.2
+   },
+   "avoid": [],
+   "note": "Text: 'fresh herbaceous-floral', 'clean, camphoraceous', 'sweet floral heart', woody undertones.",
+   "provenance": {
+    "camphoreous": {
+     "weight": 0.7,
+     "source": "revised",
+     "text_weight": 0.5,
+     "web": [
+      "https://www.givaudan.com/print/2738541",
+      "https://fieldfolio.com/buckley-and-phillips-aromatics/buckley-and-phillips-wholesale-catalogue/lavandin-grosso-essential-oil",
+      "https://tilleydistributionproducts.com/products/lavandin-oil-grosso"
+     ]
+    },
+    "herbal": {
+     "weight": 0.6,
+     "source": "text"
+    },
+    "floral": {
+     "weight": 0.7,
+     "source": "revised",
+     "text_weight": 0.8,
+     "web": [
+      "https://www.givaudan.com/print/2738541",
+      "https://fieldfolio.com/buckley-and-phillips-aromatics/buckley-and-phillips-wholesale-catalogue/lavandin-grosso-essential-oil",
+      "https://tilleydistributionproducts.com/products/lavandin-oil-grosso"
+     ]
+    },
+    "lavender": {
+     "weight": 0.8,
+     "source": "revised",
+     "text_weight": 0.8,
+     "web": [
+      "https://www.givaudan.com/print/2738541",
+      "https://fieldfolio.com/buckley-and-phillips-aromatics/buckley-and-phillips-wholesale-catalogue/lavandin-grosso-essential-oil",
+      "https://tilleydistributionproducts.com/products/lavandin-oil-grosso"
+     ]
+    },
+    "fresh": {
+     "weight": 0.5,
+     "source": "text"
+    },
+    "woody": {
+     "weight": 0.2,
+     "source": "revised",
+     "text_weight": 0.4,
+     "web": [
+      "https://www.givaudan.com/print/2738541",
+      "https://fieldfolio.com/buckley-and-phillips-aromatics/buckley-and-phillips-wholesale-catalogue/lavandin-grosso-essential-oil",
+      "https://tilleydistributionproducts.com/products/lavandin-oil-grosso"
+     ]
+    }
+   },
+   "web_sources": [
+    "https://www.givaudan.com/print/2738541",
+    "https://fieldfolio.com/buckley-and-phillips-aromatics/buckley-and-phillips-wholesale-catalogue/lavandin-grosso-essential-oil",
+    "https://tilleydistributionproducts.com/products/lavandin-oil-grosso"
+   ],
+   "review": [
+    "lavender 0.6 -> 0.8: back to the supplier-text weight; lavandin is sold and used as a lavender",
+    "floral 0.6 -> 0.7: Givaudan lists 'Floral, Camphorated', floral first",
+    "camphoreous 0.9 -> 0.7: present in every source, but not above the lavender character"
+   ]
+  },
+  "Clary Sage EO": {
+   "source_title": "Clary Sage Oil",
+   "source_url": "https://fraterworks.com/products/clary-sage",
+   "match": "exact",
+   "descriptor_map": {
+    "floral": 0.7,
+    "herbal": 0.7,
+    "fresh": 0.4
+   },
+   "avoid": [],
+   "note": "Text: 'complex notes of herbs and flowers', most floral; blends with fresh notes.",
+   "review": [
+    "floral 1.0 -> 0.7: 'most floral' is against other clary sages; the text opens on 'herbs and flowers' together",
+    "herbal 0.6 -> 0.7: same sentence"
+   ]
+  },
+  "Rosemary EO (cineole type)": {
+   "source_title": "Rosemary Oil, Tunisia",
+   "source_url": "https://fraterworks.com/products/rosemary-oil-ct-cineole",
+   "match": "exact",
+   "descriptor_map": {
+    "aromatic": 0.5,
+    "fresh": 0.5,
+    "camphoreous": 0.4
+   },
+   "avoid": [],
+   "note": "Text: rich in cineole, 'particularly vibrant top note'. Honey is about bees, not odour, so it is left out."
+  },
+  "Juniper Berry EO": {
+   "source_title": "Juniper Berry Oil, Rectified",
+   "source_url": "https://fraterworks.com/products/juniper-berry",
+   "match": "exact",
+   "descriptor_map": {
+    "fresh": 0.8
+   },
+   "avoid": [],
+   "note": "Thin: 'fresh and fizzy', no off notes. Berry is from the name.",
+   "review": [
+    "dropped berry: the berry is the plant part; the vocabulary's berry is a fruit smell the text does not claim"
+   ]
+  },
+  "Thyme EO (thymol type)": {
+   "source_title": "Red Thyme Oil",
+   "source_url": "https://fraterworks.com/products/red-thyme-oil",
+   "match": "close",
+   "descriptor_map": {
+    "spicy": 0.8,
+    "herbal": 0.8,
+    "phenolic": 0.8,
+    "medicinal": 0.7,
+    "earthy": 0.6,
+    "warm": 0.6,
+    "woody": 0.5,
+    "balsamic": 0.4,
+    "sweet": 0.2
+   },
+   "avoid": [],
+   "note": "Text describes the red (unrectified) distillate, which the composition is taken from."
+  },
+  "Clove Bud EO (steam distilled)": {
+   "source_title": "Clove Bud “Signature” Oil",
+   "source_url": "https://fraterworks.com/products/clovebud-oil",
+   "match": "exact",
+   "descriptor_map": {
+    "clove": 1.0,
+    "spicy": 0.7,
+    "vanilla": 0.5,
+    "warm": 0.5,
+    "medicinal": 0.4,
+    "sweet": 0.4
+   },
+   "avoid": [],
+   "note": "Text: Madagascan clove, sweeter and more vanilla than most."
+  },
+  "Orange EO (sweet, Florida)": {
+   "source_title": "Sweet Orange Oil, Decolourised",
+   "source_url": "https://fraterworks.com/products/sweet-orange-oil",
+   "match": "close",
+   "descriptor_map": {
+    "orange": 0.9,
+    "citrus": 0.9
+   },
+   "avoid": [],
+   "note": "Text is about a Tarocco blood orange oil (decolourised), not a Florida sweet orange."
+  },
+  "Lime EO (Persian, expressed)": {
+   "source_title": "Persian Lime Oil, FCF",
+   "source_url": "https://fraterworks.com/products/persian-lime-oil-fcf",
+   "match": "close",
+   "descriptor_map": {
+    "citrus": 1.0,
+    "fresh": 0.7,
+    "green": 0.5,
+    "lemon": 0.4,
+    "pungent": 0.3
+   },
+   "avoid": [],
+   "note": "Thin: 'zesty and vibrant aroma' of cold-pressed lime peel.",
+   "provenance": {
+    "citrus": {
+     "weight": 1.0,
+     "source": "text"
+    },
+    "fresh": {
+     "weight": 0.7,
+     "source": "revised",
+     "text_weight": 0.6,
+     "web": [
+      "https://caperfume.com/pages/discover-ingredient/lime",
+      "https://aromaweb.com/essentialoilsgo/lime.asp"
+     ]
+    },
+    "lemon": {
+     "weight": 0.4,
+     "source": "web",
+     "web": [
+      "https://caperfume.com/pages/discover-ingredient/lime",
+      "https://aromaweb.com/essentialoilsgo/lime.asp"
+     ]
+    },
+    "green": {
+     "weight": 0.5,
+     "source": "web",
+     "web": [
+      "https://caperfume.com/pages/discover-ingredient/lime",
+      "https://aromaweb.com/essentialoilsgo/lime.asp"
+     ]
+    },
+    "pungent": {
+     "weight": 0.3,
+     "source": "web",
+     "web": [
+      "https://caperfume.com/pages/discover-ingredient/lime",
+      "https://aromaweb.com/essentialoilsgo/lime.asp"
+     ]
+    }
+   },
+   "web_sources": [
+    "https://caperfume.com/pages/discover-ingredient/lime",
+    "https://aromaweb.com/essentialoilsgo/lime.asp"
+   ]
+  },
+  "Tangerine EO": {
+   "source_title": "Tangerine Heart",
+   "source_url": "https://fraterworks.com/products/tangerine-heart",
+   "match": "heart",
+   "descriptor_map": {
+    "citrus": 1.0,
+    "fresh": 0.6,
+    "sweet": 0.5,
+    "fruity": 0.4,
+    "herbal": 0.2
+   },
+   "avoid": [],
+   "note": "NOT REPRESENTATIVE: the text describes a molecularly distilled heart fraction with terpenes removed, not the whole tangerine oil that is composed.",
+   "heart_fraction_map": {
+    "citrus": 1.0,
+    "fruity": 0.7,
+    "juicy": 0.7,
+    "floral": 0.5,
+    "sweet": 0.5,
+    "fresh": 0.4
+   },
+   "provenance": {
+    "citrus": {
+     "weight": 1.0,
+     "source": "web",
+     "web": [
+      "https://aromaweb.com/essentialoilspz/tangerine.asp",
+      "https://caperfume.com/pages/discover-ingredient/tangerine"
+     ]
+    },
+    "fresh": {
+     "weight": 0.6,
+     "source": "web",
+     "web": [
+      "https://aromaweb.com/essentialoilspz/tangerine.asp",
+      "https://caperfume.com/pages/discover-ingredient/tangerine"
+     ]
+    },
+    "sweet": {
+     "weight": 0.5,
+     "source": "web",
+     "web": [
+      "https://aromaweb.com/essentialoilspz/tangerine.asp",
+      "https://caperfume.com/pages/discover-ingredient/tangerine"
+     ]
+    },
+    "fruity": {
+     "weight": 0.4,
+     "source": "web",
+     "web": [
+      "https://aromaweb.com/essentialoilspz/tangerine.asp",
+      "https://caperfume.com/pages/discover-ingredient/tangerine"
+     ]
+    },
+    "herbal": {
+     "weight": 0.2,
+     "source": "web",
+     "web": [
+      "https://aromaweb.com/essentialoilspz/tangerine.asp",
+      "https://caperfume.com/pages/discover-ingredient/tangerine"
+     ]
+    }
+   },
+   "web_sources": [
+    "https://aromaweb.com/essentialoilspz/tangerine.asp",
+    "https://caperfume.com/pages/discover-ingredient/tangerine"
+   ],
+   "web_note": "Whole-oil map from web sources. The heart-fraction map is kept in heart_fraction_map."
+  },
+  "Cinnamon Bark EO (commercial)": {
+   "source_title": "Cinnamon Bark Ceylon “Supreme” Oil",
+   "source_url": "https://fraterworks.com/products/cinnamon-ceylon-supreme-oil",
+   "match": "close",
+   "descriptor_map": {},
+   "avoid": [],
+   "note": "Source gives only a blending note ('sticky fruit notes, particularly plum, resins and balsams'). That describes what it pairs with, so it is not used."
+  },
+  "Lemon EO (Sicilian, cold-pressed)": {
+   "source_title": "Lemon Oil Pelatrice, Messina",
+   "source_url": "https://fraterworks.com/products/lemon-oil-messina",
+   "match": "close",
+   "descriptor_map": {
+    "lemon": 1.0,
+    "citrus": 0.9,
+    "fresh": 0.7
+   },
+   "avoid": [],
+   "note": "Text: high citral (3-4%), fresher and more powerful than standard cold-pressed lemon. Messina, not generic Sicilian."
+  },
+  "Grapefruit EO (cold-pressed)": {
+   "source_title": "Grapefruit Oil, White",
+   "source_url": "https://fraterworks.com/products/grapefruit-oil",
+   "match": "close",
+   "descriptor_map": {
+    "grapefruit": 1.0,
+    "citrus": 0.8,
+    "bitter": 0.2
+   },
+   "avoid": [],
+   "note": "Text: American, 'robust and rich', with far less bitterness than European grapefruit."
+  },
+  "Mandarin EO (Italian, cold-pressed)": {
+   "source_title": "Mandarin Oil, Green",
+   "source_url": "https://fraterworks.com/products/mandarin-oil-green",
+   "match": "close",
+   "descriptor_map": {
+    "citrus": 1.0,
+    "sharp": 0.6,
+    "floral": 0.3
+   },
+   "avoid": [],
+   "note": "Text: green mandarin, 'tart, sharp citrus scent with a floral hint'."
+  },
+  "Neroli EO (Egyptian)": {
+   "source_title": "Neroli Oil, Morocco",
+   "source_url": "https://fraterworks.com/products/neroli-oil-morocco",
+   "match": "proxy",
+   "descriptor_map": {
+    "floral": 0.9,
+    "orangeflower": 0.7,
+    "fresh": 0.6
+   },
+   "avoid": [],
+   "note": "Proxy: Moroccan neroli. Text compares it with Tunisian (brighter, greener, creamier and honeyed); no Egyptian text."
+  },
+  "Rosewood EO (Aniba rosaeodora)": {
+   "source_title": "Rosewood Oil",
+   "source_url": "https://fraterworks.com/products/rosewood-oil",
+   "match": "exact",
+   "descriptor_map": {
+    "woody": 1.0,
+    "rose": 0.8,
+    "sweet": 0.6,
+    "warm": 0.6,
+    "floral": 0.5,
+    "spicy": 0.4
+   },
+   "avoid": [],
+   "note": "Text: 'sweet, rosy, woody warmth', peppery-spicy opening, a wood and flower balance."
+  },
+  "Litsea Cubeba EO (Chinese, fruit)": {
+   "source_title": "Litsea Cubeba Oil",
+   "source_url": "https://fraterworks.com/products/litsea-cubeba",
+   "match": "close",
+   "descriptor_map": {
+    "citrus": 1.0,
+    "lemon": 0.6
+   },
+   "avoid": [],
+   "note": "Thin: text is about citral content (around 70%) and lemon-boosting, not odour."
+  },
+  "Patchouli EO (Javanese)": {
+   "source_title": "Patchouli Dark PA30",
+   "source_url": "https://fraterworks.com/products/patchouli-dark",
+   "match": "close",
+   "descriptor_map": {
+    "earthy": 0.9
+   },
+   "avoid": [],
+   "note": "Thin: 'refined and sheer dry down', 'the less dirty the higher the prestige'. Text is about the Dark PA30 grade, not a Javanese lot."
+  },
+  "Vetiver EO (Haiti)": {
+   "source_title": "Vetiver Oil, Haiti",
+   "source_url": "https://fraterworks.com/products/vetiver-oil-haiti",
+   "match": "exact",
+   "descriptor_map": {
+    "woody": 1.0,
+    "earthy": 0.8,
+    "smoky": 0.4,
+    "nutty": 0.5,
+    "powdery": 0.4,
+    "grapefruit": 0.4,
+    "spicy": 0.3
+   },
+   "avoid": [],
+   "note": "Supplier text gives certification and origin only; no odour description. Descriptors added from web sources; the supplier text gave none.",
+   "provenance": {
+    "woody": {
+     "weight": 1.0,
+     "source": "web",
+     "web": [
+      "https://studio.dsm-firmenich.com/product/vetiver-haiti-sfe-pe-991252",
+      "https://fraterworks.com/products/vetiver-oil-haiti",
+      "https://www.perflavory.com/docs/doc1011832.html"
+     ]
+    },
+    "earthy": {
+     "weight": 0.8,
+     "source": "web",
+     "web": [
+      "https://studio.dsm-firmenich.com/product/vetiver-haiti-sfe-pe-991252",
+      "https://fraterworks.com/products/vetiver-oil-haiti",
+      "https://www.perflavory.com/docs/doc1011832.html"
+     ]
+    },
+    "smoky": {
+     "weight": 0.4,
+     "source": "web",
+     "web": [
+      "https://studio.dsm-firmenich.com/product/vetiver-haiti-sfe-pe-991252",
+      "https://fraterworks.com/products/vetiver-oil-haiti",
+      "https://www.perflavory.com/docs/doc1011832.html"
+     ]
+    },
+    "nutty": {
+     "weight": 0.5,
+     "source": "web",
+     "web": [
+      "https://studio.dsm-firmenich.com/product/vetiver-haiti-sfe-pe-991252",
+      "https://fraterworks.com/products/vetiver-oil-haiti",
+      "https://www.perflavory.com/docs/doc1011832.html"
+     ]
+    },
+    "powdery": {
+     "weight": 0.4,
+     "source": "web",
+     "web": [
+      "https://studio.dsm-firmenich.com/product/vetiver-haiti-sfe-pe-991252",
+      "https://fraterworks.com/products/vetiver-oil-haiti",
+      "https://www.perflavory.com/docs/doc1011832.html"
+     ]
+    },
+    "grapefruit": {
+     "weight": 0.4,
+     "source": "web",
+     "web": [
+      "https://studio.dsm-firmenich.com/product/vetiver-haiti-sfe-pe-991252",
+      "https://fraterworks.com/products/vetiver-oil-haiti",
+      "https://www.perflavory.com/docs/doc1011832.html"
+     ]
+    },
+    "spicy": {
+     "weight": 0.3,
+     "source": "web",
+     "web": [
+      "https://studio.dsm-firmenich.com/product/vetiver-haiti-sfe-pe-991252",
+      "https://fraterworks.com/products/vetiver-oil-haiti",
+      "https://www.perflavory.com/docs/doc1011832.html"
+     ]
+    }
+   },
+   "web_sources": [
+    "https://studio.dsm-firmenich.com/product/vetiver-haiti-sfe-pe-991252",
+    "https://fraterworks.com/products/vetiver-oil-haiti",
+    "https://www.perflavory.com/docs/doc1011832.html"
+   ],
+   "review": [
+    "smoky 0.7 -> 0.4: the cited pages say 'slightly smoky', 'a hint of smokiness', 'a smoky nuance'",
+    "dropped leathery: not found in the cited pages (Firmenich, Perflavory's supplier list)"
+   ]
+  },
+  "Ylang Ylang EO (extra)": {
+   "source_title": "Ylang-Ylang Extra Oil, Comoros",
+   "source_url": "https://fraterworks.com/products/ylang-ylang-extra-oil-comoros",
+   "match": "close",
+   "descriptor_map": {
+    "floral": 0.9,
+    "sweet": 0.6,
+    "creamy": 0.6,
+    "fruity": 0.5,
+    "spicy": 0.5,
+    "cinnamon": 0.4
+   },
+   "avoid": [],
+   "note": "Text: 'creamier top note and a fruitier and spicier cinnamic dry down', sweeter and richer.",
+   "review": [
+    "dropped ethereal: the text gives 'most ethereal top notes' to the superior grade, not to extra, and the vocabulary's ethereal is the ether-like solvent smell"
+   ]
+  },
+  "Elemi EO (Manila)": {
+   "source_title": "Elemi Oil",
+   "source_url": "https://fraterworks.com/products/elemi-oil-extra",
+   "match": "close",
+   "descriptor_map": {
+    "citrus": 0.6,
+    "spicy": 0.5,
+    "balsamic": 0.4
+   },
+   "avoid": [],
+   "note": "Text: 'peppery-citrus lift' with resinous depth (resinous has no vocabulary word; mapped to balsamic)."
+  },
+  "Sandalwood EO (East Indian)": {
+   "source_title": "Sandalwood Mysore “Signature” Oil",
+   "source_url": "https://fraterworks.com/products/sandalwood-mysore",
+   "match": "close",
+   "descriptor_map": {
+    "sandalwood": 1.0,
+    "creamy": 0.8,
+    "woody": 0.6,
+    "animal": 0.5,
+    "musk": 0.5
+   },
+   "avoid": [],
+   "note": "Text: 'creamy goodness', 'musky animal intensity in the dry down'. Mysore, not generic East Indian."
+  },
+  "Jasmine Absolute (grandiflorum)": {
+   "source_title": "Jasmine Absolute, France",
+   "source_url": "https://fraterworks.com/products/jasmin-de-grasse-absolute",
+   "match": "close",
+   "descriptor_map": {
+    "jasmin": 1.0,
+    "floral": 0.7,
+    "sweet": 0.4
+   },
+   "avoid": [],
+   "note": "Thin: 'luscious and rich', 'unique odour profile'. Text is French jasmine.",
+   "review": [
+    "source_url corrected: the handle jasmine-absolute-france is not in the catalogue snapshot; 'Jasmine Absolute, France' is jasmin-de-grasse-absolute"
+   ]
+  },
+  "Spearmint EO (Mentha spicata)": {
+   "source_title": "Spearmint “Signature” Oil",
+   "source_url": "https://fraterworks.com/products/spearmint-oil",
+   "match": "exact",
+   "descriptor_map": {
+    "mint": 1.0,
+    "fresh": 0.6
+   },
+   "avoid": [],
+   "note": "Text: 'signature spearmint scent', 'vibrance and freshness'."
+  },
+  "Fennel EO (sweet, seed)": {
+   "source_title": "Fennel Seed Oil",
+   "source_url": "https://fraterworks.com/products/fennel-oil",
+   "match": "exact",
+   "descriptor_map": {
+    "anisic": 1.0,
+    "powdery": 0.6,
+    "herbal": 0.5,
+    "sweet": 0.4,
+    "camphoreous": 0.4,
+    "warm": 0.4
+   },
+   "avoid": [],
+   "note": "Text covers sweet and bitter fennel; the sweet type is used. Its 'anisic-camphoraceous' character is taken from the text."
+  },
+  "Tarragon EO (estragole type)": {
+   "source_title": "Tarragon “Signature” Oil",
+   "source_url": "https://fraterworks.com/products/tarragon-oil",
+   "match": "close",
+   "descriptor_map": {
+    "anisic": 1.0,
+    "green": 0.6,
+    "spicy": 0.5,
+    "celery": 0.5,
+    "herbal": 0.5,
+    "sweet": 0.4
+   },
+   "avoid": [],
+   "note": "Text quotes Arctander: 'sweet-anisic, green-spicy, slightly celery-like'. Hungarian origin."
+  },
+  "Basil EO (ct linalool)": {
+   "source_title": "Basil Oil ct Linalool",
+   "source_url": "https://fraterworks.com/products/basil-oil-ct-linalool",
+   "match": "exact",
+   "descriptor_map": {
+    "herbal": 0.8,
+    "green": 0.5,
+    "anisic": 0.3,
+    "sweet": 0.3
+   },
+   "avoid": [],
+   "note": "Text: 'sweet basil', 'much subdued anise note', softer than methyl chavicol type."
+  },
+  "Cassia Bark EO": {
+   "source_title": null,
+   "source_url": null,
+   "match": "none",
+   "descriptor_map": {},
+   "avoid": [],
+   "note": "No supplier product in the catalogue."
+  },
+  "Nutmeg EO (East Indian)": {
+   "source_title": "Nutmeg Oil, Aceh",
+   "source_url": "https://fraterworks.com/products/nutmeg-oil-aceh",
+   "match": "proxy",
+   "descriptor_map": {
+    "spicy": 1.0,
+    "warm": 0.5
+   },
+   "avoid": [],
+   "note": "Proxy: Aceh nutmeg. Text is about sourcing and allergens; odour is only 'versatile spice ... naturalness'."
+  },
+  "Frankincense EO (Boswellia carterii)": {
+   "source_title": "Frankincense Oil, Somalia",
+   "source_url": "https://fraterworks.com/products/frankincense-oil-somalia",
+   "match": "close",
+   "descriptor_map": {
+    "fresh": 0.6,
+    "balsamic": 0.5
+   },
+   "avoid": [],
+   "note": "Text: 'bright and fresh top note resin', incense. Somali, the B. carterii origin."
+  },
+  "Birch Tar Oil (rectified)": {
+   "source_title": "Birch Tar Oil, Rectified",
+   "source_url": "https://fraterworks.com/products/birch-tar-extra-oil-rectified",
+   "match": "exact",
+   "descriptor_map": {},
+   "avoid": [
+    "meaty",
+    "fishy"
+   ],
+   "note": "Text gives only what it lacks ('no unwanted meaty or fishy notes'). No positive odour description."
+  },
+  "Oakmoss Absolute": {
+   "source_title": "Oakmoss Green Absolute",
+   "source_url": "https://fraterworks.com/products/oakmoss-green-absolute",
+   "match": "close",
+   "descriptor_map": {},
+   "avoid": [],
+   "note": "Text gives grade and history only ('classic green oakmoss absolute'); no odour description.",
+   "review": [
+    "dropped green: 'green oakmoss' is the untreated grade (against brown, atranol-free); the text has no odour description"
+   ]
+  },
+  "Labdanum Absolute": {
+   "source_title": "Labdanum Absolute “Super Premium”",
+   "source_url": "https://fraterworks.com/products/labdanum-absolute-super-premium",
+   "match": "close",
+   "descriptor_map": {
+    "balsamic": 0.9,
+    "floral": 0.6,
+    "amber": 0.6,
+    "leathery": 0.5,
+    "honey": 0.3,
+    "caramellic": 0.3,
+    "animal": 0.3
+   },
+   "avoid": [
+    "earthy"
+   ],
+   "note": "Text: 'cleaner floral-balsamic scent', lighter than the earthier resinoid.",
+   "provenance": {
+    "balsamic": {
+     "weight": 0.9,
+     "source": "text"
+    },
+    "floral": {
+     "weight": 0.6,
+     "source": "text"
+    },
+    "amber": {
+     "weight": 0.6,
+     "source": "web",
+     "web": [
+      "https://caperfume.com/pages/discover-ingredient/labdanum",
+      "https://www.scentspiracy.com/fragrance-ingredients/labdanum-absolute-50",
+      "https://premierepeau.com/pages/glossary-terms/labdanum-absolute"
+     ]
+    },
+    "leathery": {
+     "weight": 0.5,
+     "source": "web",
+     "web": [
+      "https://caperfume.com/pages/discover-ingredient/labdanum",
+      "https://www.scentspiracy.com/fragrance-ingredients/labdanum-absolute-50",
+      "https://premierepeau.com/pages/glossary-terms/labdanum-absolute"
+     ]
+    },
+    "honey": {
+     "weight": 0.3,
+     "source": "web",
+     "web": [
+      "https://caperfume.com/pages/discover-ingredient/labdanum",
+      "https://www.scentspiracy.com/fragrance-ingredients/labdanum-absolute-50",
+      "https://premierepeau.com/pages/glossary-terms/labdanum-absolute"
+     ]
+    },
+    "caramellic": {
+     "weight": 0.3,
+     "source": "web",
+     "web": [
+      "https://caperfume.com/pages/discover-ingredient/labdanum",
+      "https://www.scentspiracy.com/fragrance-ingredients/labdanum-absolute-50",
+      "https://premierepeau.com/pages/glossary-terms/labdanum-absolute"
+     ]
+    },
+    "animal": {
+     "weight": 0.3,
+     "source": "web",
+     "web": [
+      "https://caperfume.com/pages/discover-ingredient/labdanum",
+      "https://www.scentspiracy.com/fragrance-ingredients/labdanum-absolute-50",
+      "https://premierepeau.com/pages/glossary-terms/labdanum-absolute"
+     ]
+    }
+   },
+   "web_sources": [
+    "https://caperfume.com/pages/discover-ingredient/labdanum",
+    "https://www.scentspiracy.com/fragrance-ingredients/labdanum-absolute-50",
+    "https://premierepeau.com/pages/glossary-terms/labdanum-absolute"
+   ],
+   "web_note": "amber, leathery, honey, caramellic and animal come from labdanum in general (web); Floral Concept's text describes a cleaner floral-balsamic absolute. Leathery and honey may belong to the resinoid: check before using them."
+  },
+  "Castoreum Absolute": {
+   "source_title": "Castoreum “Signature” Absolute 50%",
+   "source_url": "https://fraterworks.com/products/castoreum-signature-absolute",
+   "match": "close",
+   "descriptor_map": {
+    "leathery": 1.0,
+    "animal": 0.8
+   },
+   "avoid": [],
+   "note": "Text: 'Intensely leathery', 'animalics', no off notes. Diluted 50% in TEC."
+  },
+  "Styrax Resinoid": {
+   "source_title": "Styrax Resinoid EAL, Wild",
+   "source_url": "https://fraterworks.com/products/styrax-resin-absolute",
+   "match": "close",
+   "descriptor_map": {
+    "sweet": 0.7,
+    "cinnamon": 0.6,
+    "vanilla": 0.6,
+    "spicy": 0.3
+   },
+   "avoid": [],
+   "note": "Text: 'sweet, cinnamic, vanilla, subtly spicy'. Styrene (plastic) note is a defect, not a descriptor."
+  },
+  "Benzoin Siam Resinoid": {
+   "source_title": "Benzoin Siam Resinoid 50% TEC",
+   "source_url": "https://fraterworks.com/products/benzoin-siam-resinoid-50-tec",
+   "match": "close",
+   "descriptor_map": {
+    "sweet": 0.8
+   },
+   "avoid": [],
+   "note": "Thin: 'sweet and fine'. Text is mostly about grade and the absence of chemical side odours."
+  },
+  "Guaiacwood EO": {
+   "source_title": "Guaiac Wood Oil",
+   "source_url": "https://fraterworks.com/products/guaiac-wood-oil",
+   "match": "exact",
+   "descriptor_map": {
+    "woody": 1.0,
+    "smoky": 0.7,
+    "spicy": 0.5,
+    "rose": 0.4
+   },
+   "avoid": [],
+   "note": "Text: 'smoky and woody', spice and tea rose. Paraguayan."
+  },
+  "Myrrh EO": {
+   "source_title": "Myrrh Oil",
+   "source_url": "https://fraterworks.com/products/myrrh-oil",
+   "match": "exact",
+   "descriptor_map": {
+    "balsamic": 1.0,
+    "earthy": 0.6,
+    "smoky": 0.5,
+    "warm": 0.5,
+    "sweet": 0.5
+   },
+   "avoid": [],
+   "note": "Text: 'balsamic sweetness and earthy richness, with a smoky edge'."
+  }
+ }
+}

@@ -307,7 +307,7 @@ payload inlined, so exporting `viewer_data.json` / `simplify_data.json` never
 changes what a visitor sees. Two builders publish them, and both live upstream:
 
 ```powershell
-build_naturals      --percepts artifacts/percepts_fp4.json   # oils have no structure
+build_naturals      --percepts artifacts/percepts_fp4.json   # oils have no structure; also applies oil_descriptions.json
 scripts/export_simplify_data.py --percepts artifacts/percepts_fp4.json
 export_viewer_data  --percepts artifacts/percepts_fp4.json
 build_simplify.py simplify_data.json C:/Valle/dev/valkon.us/molor/simplify/index.html --mixpanel <token>
@@ -479,6 +479,114 @@ The scripts for all of the above were one-off and are not in the repository,
 and neither is the training change (an exponent on the weight in
 `train_fp_v3.py`'s `fit`, and a dump of the out-of-fold predictions).
 
+## Oil descriptions: applied to the oils (2026-11-10)
+
+To-do item 7, for the oils. Not yet confirmed by the perfumer's nose; what to
+read is at the end of this section.
+
+**What is applied.** `data/naturals/oil_descriptions.json` maps a supplier text
+per oil onto the vocabulary (40 of the 47 oils have a usable map, 151 words).
+`build_naturals.py` composes each oil as before and then raises the described
+words on the composed vector:
+
+```
+percept[word] = max(composed[word], min(weight, 0.9))
+```
+
+Nothing is lowered, and `avoid` lists are recorded and never applied ("no
+earthy conclusion" in a supplier's text compares two products). 72 of the 151
+words were above the composition and were raised, on 36 oils. The composed
+vector is kept beside the raised one (`percept_composed`), with the record of
+what each word was and became (`described`). Every reader of
+`artifacts/naturals.json` takes `percept`, so the atlas, the simplifier,
+`predict_formula.py` and the perfumer's `materials.db` follow with no change
+of their own; the two pages and the database's `notes` also name the raised
+words.
+
+**Why the weight is the target.** The maps are in the brief mapper's currency,
+and the engine reads a brief weight directly as a percept probability
+(`percept.build_target_vector`). The cap of 0.9 is the label merge's: fp4's
+median on a labelled cell of a library molecule is 0.88 (4481 cells; 77% are
+at 0.7 or more), so an oil's leading word lands where a molecule's labelled
+word does.
+
+**The check of the maps.** All 43 maps with a source were re-read against the
+cached supplier text, and the web-sourced words of the six revised oils
+against one or two of their cited pages each (one Tangerine page refused the
+fetch). Ten oils changed, each listed in its `review` field:
+
+- words that named a grade, a colour or a plant part, not a smell: `green` on
+  Bergamot ("green bergamot oil") and Oakmoss ("green oakmoss"), `berry` on
+  Juniper Berry;
+- `ethereal` on Ylang Ylang extra, which the text gives to the superior grade;
+- two proxies that carried their sibling's distinguishing words: Peppermint
+  (Black Mitcham's sweetness, set against American oils in the text) and
+  Spanish lavender (Balkan text, which says it lacks the camphor the composed
+  oil is led by). A proxy now keeps only words that hold for the family;
+- weights above what the sources say: Clary Sage `floral` 1.0 to 0.7, Lavandin
+  `camphoreous` 0.9 to 0.7 with `lavender` back at 0.8, Vetiver `smoky` 0.7 to
+  0.4 ("slightly smoky" in three sources) and `leathery` dropped (not found);
+- the Jasmine source URL pointed at a handle the catalogue does not hold.
+
+**Composing by loudness does not explain the disagreements.** Item 7 put this
+first: oils are composed by mass share and the engine mixes by share of the
+smell. Measured on the 35 oils with an exact or close description, with the
+engine's own functions (`air_units`, `voice_at`, `voice_shares`, at 20%):
+
+| composition rule | described words' mean percentile in the oil's vector | mean value on described words | oils better / worse than mass share |
+|---|---|---|---|
+| mass share, mean (shipped) | 0.914 | 0.647 | |
+| mass share, mean of logits | 0.919 | 0.659 | 21 / 12 |
+| activity (mass over threshold, with volatility), mean | 0.909 | 0.645 | 13 / 19 |
+| the engine's voice shares, mean of logits | 0.915 | 0.656 | 14 / 17 |
+
+No rule separates from another. The potent traces that would lead by smell
+(damascenone in rose, pyrazines in galbanum) are not in the stated
+compositions at all, and most constituents' thresholds are imputed: French
+lavender gets worse, because eucalyptol at 5% by mass takes 48% of the smell.
+So the composition rule stays, and the disagreements are of the second kind:
+constituents missing from the composition or the library. The largest, as a
+worklist for the compositions:
+
+| oil | described, and nearly absent from the composition |
+|---|---|
+| Neroli | orangeflower 0.03 |
+| Guaiacwood | smoky 0.01 |
+| Sandalwood | creamy 0.03 |
+| Vetiver | smoky 0.02, nutty 0.01, earthy 0.29 |
+| Castoreum | leathery 0.34, animal 0.28 |
+| Labdanum | caramellic 0.00, leathery 0.16, floral 0.20 |
+| Myrrh | smoky 0.05, warm 0.12, balsamic 0.28 |
+| Ylang Ylang | creamy 0.09 |
+| Styrax | vanilla 0.21 |
+| Grapefruit, Bergamot, Lavandin | grapefruit 0.43, bergamot 0.58, camphoreous 0.43 |
+
+**What moved downstream.** 36 oil vectors, and through them four imputed oil
+thresholds (the imputation reads percept neighbours; the largest move is
+Spearmint, 1.29 to 1.89 ppb), the usage model's figures (within 16%), the
+simplifier's yardstick (1.124) and one `collapsed_onto` (Grapefruit no longer
+sits on D-Limonene). The perfumer engine's four sample briefs, 8 materials
+each, by name only and not smelled:
+
+| brief | before | after |
+|---|---|---|
+| lilac and cold cream | fit 0.866: Isobutavan, Biocyclamol, Benzyl Alcohol, Ethyl Laurate, Benzophenone, Tetrahydro Linalool, Cis Jasmone, Trans-2-Hexenol | fit 0.894: Isobutavan, Carbinol Muguet, Benzyl Benzoate, Hydrocinnamic Acid, **Ylang Ylang EO**, Starfleur 40, Jasminlactone, Cis Jasmone |
+| musk with powder and wax | fit 0.911: Cinnamyl Cinnamate, Helvetolide, Vertofix Coeur, Berryflor, Zenolide, Isomuscone, Delta Nonalactone, Benzyl Butyrate | fit 0.913: Helvetolide, Vertofix Coeur, Berryflor, Hydrocinnamic Acid, Zenolide, Cinnamaldehyde, Exaltone, Delta Undecalactone |
+| garden soil | fit 0.840 | fit 0.840, the same eight |
+| orange blossom with honey and wax | fit 0.908: Damascol 4, Vertosine, Amyl Salicylate, Coranol, Coumarone, Alcohol C-10, Hydratropic Aldehyde, Alcohol C-11 Undecylenic | fit 0.876: Phenethyl Alcohol, Damascol 4, Hedione, Alcohol C-10, **Neroli EO**, Nympheal, Ylanganate, Cis-3-Hexenyl Cis-3-Hexenoate |
+
+Three of four sheets changed, more than 36 vectors would suggest: the oils
+enter the library's mean and spread, which every brief's target is built on,
+so the picks re-rank. On the first pass the musk sample picked 24 parts of
+Phytol, which the perfumer's suite forbids by name and nothing upstream
+blocked; Phytol and Cetylic Alcohol are in `NEVER_PROPOSE` now. Fit is the
+model grading itself (see the fp5 verdict), so the fit column decides nothing.
+
+**For the nose.** The gate of item 3, on the oils: for ten oils the perfumer
+knows, read the raised words against the bottle. The whole list is the
+`described` field of `artifacts/naturals.json`; `build_naturals.py` prints it,
+and `--no-descriptions` rebuilds the oils without it.
+
 ### To do
 
 In order. Each item says what to do and how to tell whether it worked.
@@ -527,7 +635,10 @@ In order. Each item says what to do and how to tell whether it worked.
    stands out. Add "first-listed in Good Scents or IFRA" as one more vote in
    the target of item 5; do not grade the later positions.
 7. **Labels for the oils and the 69 unlabelled molecules.** They have no row,
-   and the oils are composed from constituents.
+   and the oils are composed from constituents. *Oils: applied 2026-11-10,
+   see "Oil descriptions" above; the perfumer's check of ten is still owed,
+   and the loudness composition was tried and changes nothing. The 69
+   molecules are not started.*
    - Take each one's supplier description (Fraterworks pages are already
      fetched by `fetch_fraterworks.py`; The Good Scents has oils too).
    - Turn the prose into vocabulary words with the same mapper that turns a

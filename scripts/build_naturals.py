@@ -40,6 +40,15 @@ visible. And where a constituent is missing from the library the weights are
 renormalised over what remains, which quietly rewrites the oil -- geranium
 loses isomenthone, peppermint loses menthofuran, and both of those carry
 character out of proportion to their percentage.
+
+What a composition cannot voice, a description can. data/naturals/
+oil_descriptions.json maps each oil's supplier text onto the vocabulary, and
+its words are raised on the composed vector: `max(composed, min(weight,
+DESCRIBED_CAP))` per described word, nothing lowered. The composed vector keeps
+the gradation and is kept in the file beside the raised one. The blind
+self-check above is run on the composed vector, before the description is
+applied, since afterwards it would be grading the description with itself.
+docs/PERCEPT_EVIDENCE.md, "Oil descriptions", has the measurements.
 """
 
 from __future__ import annotations
@@ -60,6 +69,15 @@ from eval_mixtures import combine  # noqa: E402
 from orvector.store import Library  # noqa: E402
 
 COMPOSITIONS = ROOT / "data" / "naturals" / "compositions.json"
+DESCRIPTIONS = ROOT / "data" / "naturals" / "oil_descriptions.json"
+
+#: Most a described word is raised to. A description weight is in the brief
+#: mapper's currency, where a weight is read directly as a percept probability
+#: (perfumer percept.build_target_vector), and 0.9 is where the label merge put
+#: a label of 1: fp4's median on a labelled cell of a library molecule is 0.88,
+#: so an oil's leading word lands where a molecule's labelled word does, and
+#: stays under the logit clamp so one oil cannot saturate a blend.
+DESCRIBED_CAP = 0.9
 NULL_DRAWS = 3000
 
 #: The descriptor each oil's own name claims, for the blind self-check. Only
@@ -106,9 +124,70 @@ def self_word(name: str) -> str | None:
     return None
 
 
+def load_descriptions(path: Path, desc: list[str]) -> dict:
+    """Oil -> its description entry, for the oils that have a usable map.
+
+    The file carries its own copy of the vocabulary; a different one means the
+    words were mapped onto another model's axes, so it is refused, not aligned.
+    """
+    if not path.is_file():
+        return {}
+    blob = json.loads(path.read_text(encoding="utf-8"))
+    if blob.get("descriptors") != desc:
+        raise SystemExit(f"{path} was mapped onto a different vocabulary than "
+                         f"the percept file's {len(desc)} descriptors")
+    out = {}
+    for oil, v in blob["oils"].items():
+        unknown = [w for w in v.get("descriptor_map", {}) if w not in desc]
+        if unknown:
+            raise SystemExit(f"{path}: {oil} uses words outside the "
+                             f"vocabulary: {', '.join(unknown)}")
+        if v.get("descriptor_map"):
+            out[oil] = v
+    return out
+
+
+def apply_description(mix: np.ndarray, entry: dict, desc: list[str]):
+    """Raise the described words on a composed vector; never lower one.
+
+    Returns the raised vector and the record of what the description said and
+    what it changed, which travels into the naturals file.
+    """
+    out = mix.copy()
+    prov = entry.get("provenance", {})
+    words = []
+    for word, weight in entry["descriptor_map"].items():
+        i = desc.index(word)
+        to = max(float(mix[i]), min(float(weight), DESCRIBED_CAP))
+        out[i] = to
+        words.append({"name": word, "weight": weight,
+                      "composed": round(float(mix[i]), 4),
+                      "to": round(to, 4),
+                      "evidence": prov.get(word, {}).get("source", "text")})
+    return out, {
+        "source_title": entry.get("source_title"),
+        "source_url": entry.get("source_url"),
+        "match": entry.get("match"),
+        "words": words,
+        "raised": [w["name"] for w in words if w["to"] > w["composed"]],
+        # Recorded, never applied: "not earthy" in a supplier's text is a
+        # comparison with a sibling product, not a rating of zero.
+        "avoid": entry.get("avoid", []),
+    }
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--percepts", default="artifacts/percepts_fp3.json")
+    # The active model. This default was fp3 long after fp4 was adopted, so
+    # the documented rebuild command silently recomposed the oils on a model
+    # the rest of the stack no longer used.
+    ap.add_argument("--percepts", default="artifacts/percepts_fp4.json")
+    ap.add_argument("--descriptions", default=str(DESCRIPTIONS.relative_to(ROOT)),
+                    help="supplier descriptions mapped onto the vocabulary; "
+                         "their words are raised on the composed vector")
+    ap.add_argument("--no-descriptions", action="store_true",
+                    help="write the composed vectors alone, as before "
+                         "2026-11-10; for comparison")
     ap.add_argument("--store", default="library", choices=("library",),
                     help="the receptor store to compose in. One store since "
                          "the MPNN was removed; kept as a flag because --out "
@@ -171,6 +250,12 @@ def main() -> int:
     S = {e.name: s for e, s in zip(entries, scores)}
 
     spec = json.loads(COMPOSITIONS.read_text(encoding="utf-8"))["naturals"]
+    described = ({} if args.no_descriptions
+                 else load_descriptions(ROOT / args.descriptions, desc))
+    stray = sorted(set(described) - set(spec))
+    if stray:
+        raise SystemExit(f"{args.descriptions} describes oils the spec does "
+                         f"not hold: {', '.join(stray)}")
     rng = np.random.default_rng(0)
     X = LM - LM.mean(0)
     Xn = X / np.maximum(np.linalg.norm(X, axis=1, keepdims=True), 1e-12)
@@ -210,6 +295,14 @@ def main() -> int:
         z = (mix - null.mean(0)) / np.maximum(null.std(0), 1e-9)
         order = list(np.argsort(-z))
 
+        # The description is applied here, after the blind check and before
+        # anything that describes the finished point (nearest materials,
+        # collapse, the atlas trim).
+        composed = mix
+        said = None
+        if oil in described:
+            mix, said = apply_description(composed, described[oil], desc)
+
         y = mix - LM.mean(0)
         y = y / max(float(np.linalg.norm(y)), 1e-12)
         sim = Xn @ y
@@ -245,7 +338,9 @@ def main() -> int:
             i = desc.index(word)
             check = {"descriptor": word, "rank": order.index(i) + 1,
                      "of": len(desc), "z": round(float(z[i]), 2),
-                     "p": round(float(mix[i]), 3)}
+                     # The composition's own value: the check is blind, so it
+                     # must not read a word the description raised.
+                     "p": round(float(composed[i]), 3)}
 
         out["naturals"][oil] = {
             "composition_used": {n: round(float(x), 4) for (n, _), x in zip(res, w)},
@@ -262,6 +357,10 @@ def main() -> int:
             "source": meta.get("source", ""),
             "note": meta.get("note", ""),
             "percept": [round(float(v), 4) for v in mix],
+            # The composition alone, before any described word was raised.
+            # Equal to `percept` for an oil with no description.
+            "percept_composed": [round(float(v), 4) for v in composed],
+            "described": said,
             "receptors": [round(float(v), 4) for v in rec],
             "lift_top": [{"name": desc[i], "z": round(float(z[i]), 2)}
                          for i in order[:10]],
@@ -288,6 +387,10 @@ def main() -> int:
         print(f"    nearest:  " + ", ".join(near))
         if missing:
             print(f"    omitted:  {', '.join(missing)}")
+        if said and said["raised"]:
+            print("    described: " + ", ".join(
+                f"{w['name']} {w['composed']:.2f}->{w['to']:.2f}"
+                for w in said["words"] if w["to"] > w["composed"]))
         if collapsed:
             print(f"    COLLAPSED onto {collapsed} at cosine "
                   f"{sim[int(np.argmax(sim))]:.4f}: not a distinguishable oil")
@@ -302,6 +405,11 @@ def main() -> int:
     print(f"\n[nat] {len(out['naturals'])} built, {len(on_atlas)} on the atlas, {len(trimmed)} trimmed from it but still available to formulas, "
           f"{len(scored)} self-checkable, "
           f"{len(passed)} put their own name in the top 5 of {len(desc)}")
+    n_desc = [v["described"] for v in out["naturals"].values() if v["described"]]
+    print(f"[nat] {len(n_desc)} carry a description; "
+          f"{sum(len(d['raised']) for d in n_desc)} of "
+          f"{sum(len(d['words']) for d in n_desc)} described words were raised "
+          f"above the composition (cap {DESCRIBED_CAP})")
     print(f"[nat] wrote {args.out}")
     return 0
 

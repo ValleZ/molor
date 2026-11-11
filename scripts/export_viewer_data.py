@@ -137,6 +137,13 @@ def load_naturals(store: str):
         # use than a diamond that implies otherwise.
         e.collapsed_onto = v.get("collapsed_onto")
         e.omitted = v.get("omitted_from_library") or []
+        # Words a supplier description raised above the composition
+        # (build_naturals.apply_description), so the card can say which part
+        # of an oil's colour is read from prose and not from its constituents.
+        said = v.get("described") or {}
+        e.described = [[w["name"], w["composed"], w["to"]]
+                       for w in said.get("words", []) if w["to"] > w["composed"]]
+        e.described_source = said.get("source_title")
         ents.append(e)
         percept[oil] = np.asarray(v["percept"], dtype=float)
         rec[oil] = np.asarray(v["receptors"], dtype=float)
@@ -981,6 +988,8 @@ def main() -> int:
              "queryPlacement": getattr(e, "placement", None),
              "queryDropped": getattr(e, "dropped", None),
              "collapsedOnto": getattr(e, "collapsed_onto", None),
+             "described": getattr(e, "described", None) or None,
+             "describedSource": getattr(e, "described_source", None),
              "inTrain": int(e.name in in_train),
              "intensity": intensity.get(e.name, [None, None])[0],
              "intensityPct": intensity.get(e.name, [None, None])[1],

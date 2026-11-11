@@ -1432,6 +1432,14 @@ window.addEventListener("error", function (ev) {
           + m.queryDropped.map(esc).join(", ") + "</p>";
       }
     }
+    if (m.isNatural && m.described) {
+      html += '<p class="t-meta"><strong>Raised from a description</strong>'
+        + (m.describedSource ? " (" + esc(m.describedSource) + ")" : "")
+        + ", above what the constituents give: "
+        + m.described.map(function (d) {
+            return esc(d[0]) + " " + d[1].toFixed(2) + " → " + d[2].toFixed(2);
+          }).join(", ") + "</p>";
+    }
     if (m.isNatural && m.collapsedOnto) {
       html += '<p class="t-meta" style="color:var(--warn,#c9803a)">'
         + "Not a distinguishable oil: this build sits on top of "

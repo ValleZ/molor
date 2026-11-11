@@ -1288,7 +1288,8 @@ A stock strength in the name is read as a dilution: Calone 10%  40"></textarea>
       .forEach(function (x) {
         var m = MAT[x.idx];
         var note = [];
-        if (m.oil) note.push('<span class="pill eo">EO</span> ' + esc(m.built || ""));
+        if (m.oil) note.push('<span class="pill eo">EO</span> ' + esc(m.built || "")
+          + (m.said ? "; raised from a supplier description: " + esc(m.said.join(", ")) : ""));
         // An oil's tier is inherited from its constituents, so say from how
         // much of the oil. Vetiver was being given one from 1% of its weight
         // before a coverage floor went in, and anything below 60% now gets

@@ -245,6 +245,12 @@ NEVER_PROPOSE = {
     "Squalane": "odourless emollient, not a perfumery material",
     "Diethyl Hexyl Adipate": "plasticiser and emollient, odourless, not a perfumery material",
     "Chloroxylenol": "antiseptic (PCMX), not a perfumery material",
+    # The two waxes the perfumer suite names (test_potency.py: no formula may
+    # call for them). Nothing blocked them; the samples only happened not to
+    # pick them. When the oils' described words were raised (2026-11-10) the
+    # picks re-ranked and Phytol took 24 parts of the musk sample.
+    "Phytol": "waxy diterpene alcohol, a cosmetic and lab additive, not a perfumery material",
+    "Cetylic Alcohol": "fatty-alcohol wax and emulsion thickener, not a perfumery material",
 }
 
 #: Files whose entries were added because a real formula asked for them by
@@ -600,6 +606,11 @@ def main() -> int:
                 f"{k} {100 * v:.0f}%" for k, v in
                 sorted(o["composition_used"].items(), key=lambda kv: -kv[1])[:5])
                 if o else None),
+            # Words a supplier description raised above the composition
+            # (build_naturals.apply_description). The perfumer service copies
+            # them into the material's notes.
+            "said": ([w["name"] for w in (o.get("described") or {}).get("words", [])
+                      if w["to"] > w["composed"]] or None) if o else None,
         })
 
     # Materials whose percept vectors are bit-identical. ECFP4 radius 2 plus

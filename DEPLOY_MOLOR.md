@@ -84,7 +84,7 @@ The four inputs the exports actually open, and how each is rebuilt:
 | input | rebuilt by | used for |
 |---|---|---|
 | `artifacts/library/` (vectors + logits) | `python -m orvector library add --csv library/input/expanded_materials.csv --device cpu` | the chemistry space, and the reference molecule set |
-| `artifacts/naturals.json` | `build_naturals.py --store library --max-nearest-cosine 1.01` from `data/naturals/compositions.json` | the oils, on the atlas and in the simplifier |
+| `artifacts/naturals.json` | `build_naturals.py --store library --max-nearest-cosine 1.01` from `data/naturals/compositions.json` and `data/naturals/oil_descriptions.json` | the oils, on the atlas and in the simplifier |
 | `artifacts/percepts_fp3.json` | `train_fp_v3.py` | every colour, and the simplifier's arithmetic |
 
 ### Gate: the store must hold every row of the CSV
@@ -171,7 +171,15 @@ while the store was missing their constituents. They are in the spec now and
 all 47 go through one path; myrrh's descriptor row moved 0.48 and castoreum's
 0.57 when the hand composition was replaced by the generator's.
 
-If the spec or the store changed, rebuild the file:
+Since 2026-11-10 the percept row has a second input: the words of
+`data/naturals/oil_descriptions.json` are raised on the composed vector
+(`docs/PERCEPT_EVIDENCE.md`, "Oil descriptions"). `percept` is the raised
+vector, `percept_composed` the composition alone, and `described` the record.
+The receptor vector, and so the oil's position on the atlas, is untouched.
+`--percepts` defaults to fp4 now; it was fp3 until that day, so this command
+as written recomposed the oils on the retired model.
+
+If the spec, the descriptions or the store changed, rebuild the file:
 
 ```powershell
 .venv/Scripts/python.exe scripts/build_naturals.py --store library --max-nearest-cosine 1.01
