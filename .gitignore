@@ -65,3 +65,7 @@ data/formulas/mixes.csv
 # Web-session answers for boiling points: pasted output, not project data
 # until merge_bp.py has scored its controls and written boiling_points.csv.
 data/inventory/bp_requests/reply_*.csv
+
+# Soft training targets: 6 MB derived in seconds from gslf_votes.csv's inputs
+# by scripts/build_soft_targets.py (docs/SOFT_TARGETS_REPORT.md).
+data/percept/gslf_soft_targets*.csv

@@ -67,7 +67,18 @@ def build(d_in: int, n_tasks: int) -> nn.Sequential:
     return nn.Sequential(*layers)
 
 
-def fit(Xtr, Ytr, Xva, Yva, seed, device, epochs=180, lr=1e-3):
+def fit(Xtr, Ytr, Xva, Yva, seed, device, epochs=180, lr=1e-3, Ttr=None,
+        cell_weight=False):
+    """Ytr/Yva are the BINARY labels: they set pos_weight and score early
+    stopping. Ttr, when given, replaces Ytr as the loss target (soft labels,
+    same shape, values in [0, 1]).
+
+    With pos_weight w and a soft target t, the plain loss weights only the
+    positive term, w*t*(-log p) + (1-t)*(-log(1-p)), and settles at
+    p = w*t / (w*t + 1 - t): 0.96 for t = 0.35 at w = 48. cell_weight=True
+    weights the whole cell instead, c*(t*(-log p) + (1-t)*(-log(1-p))) with
+    c = w where t > 0 and 1 elsewhere, which settles at p = t. On binary
+    targets the two are the same loss."""
     from sklearn.metrics import roc_auc_score
 
     torch.manual_seed(seed)
@@ -75,15 +86,23 @@ def fit(Xtr, Ytr, Xva, Yva, seed, device, epochs=180, lr=1e-3):
     if POS_WEIGHT:
         pos = Ytr.sum(axis=0)
         w = np.clip((len(Ytr) - pos) / np.maximum(pos, 1.0), 1.0, 50.0)
-        lossf = nn.BCEWithLogitsLoss(
-            pos_weight=torch.tensor(w, dtype=torch.float32, device=device))
+        wt = torch.tensor(w, dtype=torch.float32, device=device)
+        if cell_weight:
+            raw = nn.BCEWithLogitsLoss(reduction="none")
+
+            def lossf(logit, t):
+                c = torch.where(t > 0, wt.expand_as(t), torch.ones_like(t))
+                return (c * raw(logit, t)).mean()
+        else:
+            lossf = nn.BCEWithLogitsLoss(pos_weight=wt)
     else:
         lossf = nn.BCEWithLogitsLoss()
     opt = torch.optim.AdamW(model.parameters(), lr=lr, weight_decay=1e-5)
     sched = torch.optim.lr_scheduler.CosineAnnealingLR(opt, T_max=epochs)
 
     xt = torch.tensor(Xtr, dtype=torch.float32, device=device)
-    yt = torch.tensor(Ytr, dtype=torch.float32, device=device)
+    yt = torch.tensor(Ytr if Ttr is None else Ttr, dtype=torch.float32,
+                      device=device)
     xv = torch.tensor(Xva, dtype=torch.float32, device=device)
     best, best_state, patience = -1.0, None, 0
     n, bs = len(xt), 128
@@ -138,6 +157,24 @@ def main() -> int:
                          "gslf_hierarchical.csv is GS-LF with its implied "
                          "hierarchy propagated")
     ap.add_argument("--out", default="artifacts/percepts_fp3.json")
+    ap.add_argument("--soft-targets", default=None,
+                    help="CSV with the train CSV's rows and columns holding "
+                         "graded targets in [0, 1] (data/percept/"
+                         "gslf_soft_targets.csv). The loss uses them; "
+                         "pos_weight, early stopping and every ROC-AUC still "
+                         "use the BINARY labels of --train-csv")
+    ap.add_argument("--soft-weight", choices=("target", "cell"), default="target",
+                    help="with --soft-targets and --pos-weight: 'target' "
+                         "weights the positive term only (settles at "
+                         "w*t/(w*t+1-t)); 'cell' weights the whole cell where "
+                         "t > 0 (settles at t). Same loss on binary targets")
+    ap.add_argument("--seed-offset", type=int, default=0,
+                    help="added to every model seed. The recipe is "
+                         "deterministic, so a second draw (e.g. 7000) is the "
+                         "only way to see how far cells move by chance")
+    ap.add_argument("--oof-out", default=None,
+                    help="write the out-of-fold predictions here (.npz with "
+                         "'oof' and the training-CSV row index 'rows')")
     ap.add_argument("--pos-weight", action="store_true",
                     help="enable per-label pos_weight (capped at 50). The "
                          "ablations dropped it for GEOMETRY (it costs ~+0.08 "
@@ -165,6 +202,16 @@ def main() -> int:
     tasks = [c for c in df.columns if c not in (smi_col, "descriptors")]
     Xraw, ok = featurise(df[smi_col].astype(str).tolist())
     Y = df[tasks].to_numpy(dtype=float)[ok]
+    T = None
+    if args.soft_targets:
+        sdf = pd.read_csv(ROOT / args.soft_targets)
+        assert list(sdf.columns) == list(df.columns), "soft-target columns differ"
+        assert (sdf[smi_col].astype(str).to_numpy()
+                == df[smi_col].astype(str).to_numpy()).all(), "soft-target rows differ"
+        T = sdf[tasks].to_numpy(dtype=float)[ok]
+        assert T.min() >= 0 and T.max() <= 1, "soft targets outside [0, 1]"
+        print(f"[v3] SOFT TARGETS from {args.soft_targets}: mean {T.mean():.4f} "
+              f"(binary label rate {Y.mean():.4f}); pos_weight and AUC stay binary")
 
     rows = list(_csv.DictReader(
         open(ROOT / args.predict_csv, newline="", encoding="utf-8-sig")))
@@ -183,12 +230,17 @@ def main() -> int:
     Xp = np.clip(np.hstack([Xpraw[:, :start], (Xpraw[:, start:] - mu) / sd]
                            ).astype(np.float32), -10, 10)
 
+    cellw = T is not None and args.soft_weight == "cell"
+    if cellw:
+        print("[v3] soft-weight CELL: the whole cell is weighted where t > 0")
     oof = np.zeros_like(Y, dtype=float)
     for k, (tr, te) in enumerate(
             KFold(args.folds, shuffle=True, random_state=0).split(X), 1):
         cut = int(len(tr) * 0.9)
         models = [fit(X[tr[:cut]], Y[tr[:cut]], X[tr[cut:]], Y[tr[cut:]],
-                      100 * k + s, device) for s in range(args.ensemble)]
+                      100 * k + s + args.seed_offset, device,
+                      Ttr=None if T is None else T[tr[:cut]], cell_weight=cellw)
+                  for s in range(args.ensemble)]
         oof[te] = predict(models, X[te], device)
         print(f"[v3]   fold {k}/{args.folds} done", flush=True)
 
@@ -199,9 +251,14 @@ def main() -> int:
     print(f"     median {np.median(aucs):.4f}  above 0.80: {(aucs >= 0.80).sum()}"
           f"/{len(aucs)}  above 0.90: {(aucs >= 0.90).sum()}/{len(aucs)}")
 
+    if args.oof_out:
+        np.savez_compressed(ROOT / args.oof_out, oof=oof.astype(np.float32),
+                            rows=np.arange(len(df))[ok])
     print("[v3] refitting on everything ...", flush=True)
     cut = int(len(X) * 0.9)
-    final = [fit(X[:cut], Y[:cut], X[cut:], Y[cut:], s, device)
+    final = [fit(X[:cut], Y[:cut], X[cut:], Y[cut:], s + args.seed_offset,
+                 device,
+                 Ttr=None if T is None else T[:cut], cell_weight=cellw)
              for s in range(args.ensemble)]
     P = predict(final, Xp, device)
 
@@ -239,7 +296,10 @@ def main() -> int:
         "similarity_spearman": (round(rho, 4) if rho == rho else None),
         "config": {"hidden": list(HIDDEN), "batchnorm": BATCHNORM,
                    "dropout": DROPOUT, "pos_weight": POS_WEIGHT,
-                   "scale_all": SCALE_ALL, "ensemble": args.ensemble},
+                   "scale_all": SCALE_ALL, "ensemble": args.ensemble,
+                   **({"soft_targets": args.soft_targets,
+                       "soft_weight": args.soft_weight} if T is not None
+                      else {})},
         "descriptors": tasks, "molecules": names,
         "probs": [[round(float(v), 4) for v in row] for row in P],
     }, separators=(",", ":")), encoding="utf-8")
