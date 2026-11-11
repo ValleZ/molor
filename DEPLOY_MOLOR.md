@@ -85,7 +85,7 @@ The four inputs the exports actually open, and how each is rebuilt:
 |---|---|---|
 | `artifacts/library/` (vectors + logits) | `python -m orvector library add --csv library/input/expanded_materials.csv --device cpu` | the chemistry space, and the reference molecule set |
 | `artifacts/naturals.json` | `build_naturals.py --store library --max-nearest-cosine 1.01` from `data/naturals/compositions.json` and `data/naturals/oil_descriptions.json` | the oils, on the atlas and in the simplifier |
-| `artifacts/percepts_fp3.json` | `train_fp_v3.py` | every colour, and the simplifier's arithmetic |
+| `artifacts/percepts_fp4s.json` | `train_fp_v3.py --pos-weight --oof-out`, then `build_strength.py` (fp4 with panel-fitted strengths; `docs/PERCEPT_EVIDENCE.md`, "fp4s") | every colour, and the simplifier's arithmetic |
 
 ### Gate: the store must hold every row of the CSV
 

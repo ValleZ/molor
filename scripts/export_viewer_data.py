@@ -111,6 +111,11 @@ class NaturalEntry:
             sorted(constituents.items(), key=lambda kv: -kv[1])[:4])
 
 
+#: Set by --naturals for a local experiment on another percept file; the
+#: published build never passes it.
+NATURALS_OVERRIDE = None
+
+
 def load_naturals(store: str):
     """Return (entries, percept rows, receptor probability rows) for one store.
 
@@ -121,6 +126,8 @@ def load_naturals(store: str):
     """
     path = (ROOT / "artifacts" / "naturals.json" if store == "library"
             else ROOT / "artifacts" / f"naturals_{store}.json")
+    if NATURALS_OVERRIDE and store == "library":
+        path = ROOT / NATURALS_OVERRIDE
     if not path.is_file():
         return [], {}, {}
     blob = json.loads(path.read_text(encoding="utf-8"))
@@ -550,10 +557,18 @@ def main() -> int:
     # once, on 5 November 2026, because the default was fp3 while every other
     # step had moved to v4. Keep this aligned with
     # export_simplify_data.py --percepts and with build_naturals.py.
-    ap.add_argument("--percepts", default="artifacts/percepts_fp4.json",
+    # fp4s since 2026-11-11: fp4 with panel-fitted strengths
+    # (scripts/build_strength.py), and naturals.json is composed on it.
+    ap.add_argument("--percepts", default="artifacts/percepts_fp4s.json",
                     help="the percept model that colours the points, and the "
                          "space the smell map is projected in. Must match the "
-                         "model naturals.json was composed on (fp4).")
+                         "model naturals.json was composed on (fp4s).")
+    ap.add_argument("--naturals", default=None,
+                    help="read the oils from this file instead of "
+                         "artifacts/naturals.json. Only for a local experiment "
+                         "with another --percepts file: compose the oils on it "
+                         "first (build_naturals.py --percepts ... --out ... "
+                         "--force-out)")
     ap.add_argument("--no-white-point", action="store_true",
                     help="omit the average-of-everything reference point")
     ap.add_argument("--query", default=None,
@@ -564,7 +579,8 @@ def main() -> int:
     ap.add_argument("--no-notes", action="store_true",
                     help="omit the perfumer's private smelling notes (use for public builds)")
     args = ap.parse_args()
-    global MODELS
+    global MODELS, NATURALS_OVERRIDE
+    NATURALS_OVERRIDE = args.naturals
     if args.models:
         MODELS = []
         for part in args.models.split(","):

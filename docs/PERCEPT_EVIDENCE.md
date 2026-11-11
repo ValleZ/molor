@@ -587,6 +587,71 @@ knows, read the raised words against the bottle. The whole list is the
 `described` field of `artifacts/naturals.json`; `build_naturals.py` prints it,
 and `--no-descriptions` rebuilds the oils without it.
 
+## fp4s: fp4 with panel-fitted strengths (2026-11-11)
+
+**Status: the atlas and the simplifier read `artifacts/percepts_fp4s.json`.
+`percepts_fp4.json` is unchanged and is still the model; fp4s is a second
+stage on top of it.**
+
+Why. fp4 answers "would a describer use this word for this material". It was
+trained on yes/no word lists and has no notion of strength, so a faint facet
+reads like a leading one: tobacco on Damascone Beta 0.98 beside fruity 0.93,
+smoky on vanillin 0.88 where the panel rates it 1.5 of 100. Retraining fp4 on
+graded targets was tried first and failed (`docs/SOFT_TARGETS_REPORT.md`):
+the plain `pos_weight` loss pushes every graded cell back up, and a loss that
+respects the targets strips the profiles. The perfumer's rule since then:
+weights may be adjusted, a facet may not be dropped. The odd minor words are
+real (Hexyl Acetate is solventy with hints of mushroom and sharp rose;
+Citronellol is somewhat ozonic); it is their size that is wrong.
+
+What it is. `scripts/build_strength.py` fits a small second model on the
+Dravnieks panel, one row per (molecule, word): 10,414 rows, 127 molecules by
+the 82 words the Dravnieks crosswalk reaches. Inputs: fp4's out-of-fold
+opinion of the cell (`artifacts/percepts_fp4_oof.npz`; the shipped number has
+memorised the label row), whether the label row has the word, and the votes of
+the other sources (`data/percept/gslf_votes.csv`). Output: the expected panel
+rating, 0 to 100 (`artifacts/strength_fp4.json`). A molecule with no label row
+gets a fit on fp4's number alone. The percept file divides by the strongest
+word of a typical material (18.9 rating points) and bends values above 0.7
+toward 0.98, so order is kept and nothing reaches 1.
+
+What was tried on the way, all on 2026-11-10/11:
+
+| version | result |
+|---|---|
+| with word commonness as an input | fits held-out panel molecules best (0.62 within-molecule Spearman against 0.37 without, 0.29 for fp4's own number) but learns the panel's habit of rating everyday words high: sweet, green and "aromatic" rise everywhere, black currant and grapefruit sink |
+| midpoint of fp4 and that | looked better than fp4 to the perfumer; superseded |
+| a model trained on Claude's ratings of 240 materials | generalises to unseen materials, but the ratings lean on the label rows and several of their "absent" calls were wrong by the perfumer's nose; not used |
+| **without word commonness, on its own** | **chosen by the perfumer by eye on the atlas** |
+
+Known weak spots. It orders by label and source votes, so plum and floral
+lead Damascone Beta above fruity, and dry leads Iso E Super above woody. The
+56 vocabulary words with no panel equivalent are weighted by a model that
+never saw a rating for them. Verdox HC reads oddly in fp4 and fp4s alike.
+
+What moves with it. Words above 0.5 per material: 15.7 on fp4, 4.8 on fp4s
+(nothing is removed; the tail is lower). Imputed thresholds are k-NN in
+percept space, so 416 of the 436 imputed ones move, by a median factor of
+1.9, 23 of them by more than ten; leave-one-out error is 3.32x against 3.63x
+on fp4. Yardstick 0.864 against 1.147. `bench_simplify.py`: recovery of an
+oil's own constituents falls (0.78 / 0.87 / 0.81 at 2 / 3 / 4 materials on
+fp4, 0.67 / 0.79 / 0.75 on fp4s) while the search beats "keep the biggest"
+more often (0.43 / 0.38 / 0.58 against 0.49 / 0.44 / 0.67).
+
+**Downstream consumers of `simplify_data.json` other than the two pages are
+not switched.** Anything tuned to fp4's scale needs re-tuning before it reads
+fp4s; rebuild its input on fp4 meanwhile by passing
+`--percepts artifacts/percepts_fp4.json` to `build_naturals.py --out
+<scratch> --force-out` and to `export_simplify_data.py`.
+
+To rebuild fp4s after fp4 is retrained:
+
+```powershell
+.venv\Scripts\python.exe scripts	rain_fp_v3.py --pos-weight --out artifacts/percepts_fp4.json --oof-out artifacts/percepts_fp4_oof.npz
+.venv\Scripts\python.exe scriptsuild_strength.py        # strength_fp4.json and percepts_fp4s.json
+.venv\Scripts\python.exe scriptsuild_naturals.py --store library --max-nearest-cosine 1.01
+```
+
 ### To do
 
 In order. Each item says what to do and how to tell whether it worked.
@@ -604,7 +669,8 @@ In order. Each item says what to do and how to tell whether it worked.
    "no" must not overwrite a label. If collected at all, the answers are a
    private test set: which model disagrees with this nose less.
 5. **More label sources for the same molecules: checked 2026-11-09, worth
-   doing.** The pyrfume archive holds all four, and votes across sources grade
+   doing.** *Done 2026-11-10 and it failed as a retrain
+   (`docs/SOFT_TARGETS_REPORT.md`); the votes are an input of fp4s instead.* The pyrfume archive holds all four, and votes across sources grade
    the labels. On the Dravnieks panel molecules:
 
    | GS-LF label | votes from the 4 extra sources | cells | mean panel rating | rated 10 or more |
@@ -662,7 +728,7 @@ In order. Each item says what to do and how to tell whether it worked.
    models beside the mean. Try scoring a material at mean minus half its
    spread, and see whether label support rises on the unlabelled picks (about
    one per sheet today).
-9. **Panel calibration, later.** Revisit once items 4 to 7 have added
+9. **Panel calibration, later.** *Done 2026-11-11 as fp4s, see above.* Revisit once items 4 to 7 have added
    evidence: the calibration is the natural place to combine label, vote
    count, model and spread into one value, and the panel is the only graded
    truth to fit it on.

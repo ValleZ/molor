@@ -180,8 +180,11 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     # The active model. This default was fp3 long after fp4 was adopted, so
     # the documented rebuild command silently recomposed the oils on a model
-    # the rest of the stack no longer used.
-    ap.add_argument("--percepts", default="artifacts/percepts_fp4.json")
+    # the rest of the stack no longer used. fp4s since 2026-11-11 (fp4 with
+    # panel-fitted strengths, scripts/build_strength.py); a molecule's leading
+    # word reads about 0.88 there too, so DESCRIBED_CAP still lands an oil's
+    # leading word where a molecule's does.
+    ap.add_argument("--percepts", default="artifacts/percepts_fp4s.json")
     ap.add_argument("--descriptions", default=str(DESCRIPTIONS.relative_to(ROOT)),
                     help="supplier descriptions mapped onto the vocabulary; "
                          "their words are raised on the composed vector")

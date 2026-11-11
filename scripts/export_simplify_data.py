@@ -469,9 +469,12 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     # THE SWITCH. Which percept artifact the whole downstream stack uses:
     # this export -> artifacts/simplify_data.json -> perfumer materials.db.
-    # fp4 (retrained with pos_weight) is current; revert to fp3 by passing
-    # --percepts artifacts/percepts_fp3.json, or point at fp5 when it exists.
-    ap.add_argument("--percepts", default="artifacts/percepts_fp4.json")
+    # Since 2026-11-11 it is fp4s: fp4's words with panel-fitted strengths
+    # (scripts/build_strength.py). fp4 says whether a word applies and reads
+    # 0.98 for a faint facet; fp4s keeps every word and weights it. Revert
+    # with --percepts artifacts/percepts_fp4.json. Keep this aligned with
+    # build_naturals.py and export_viewer_data.py.
+    ap.add_argument("--percepts", default="artifacts/percepts_fp4s.json")
     ap.add_argument("--out", default="artifacts/simplify_data.json")
     args = ap.parse_args()
 
